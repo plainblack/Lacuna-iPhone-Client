@@ -1,0 +1,92 @@
+//
+//  AppDelegate_Phone.m
+//  UniversalClient
+//
+//  Created by Kevin Runde on 4/3/10.
+//  Copyright n/a 2010. All rights reserved.
+//
+
+#import "AppDelegate_Phone.h"
+#import "Session.h"
+#import	"LEMacros.h"
+
+@implementation AppDelegate_Phone
+
+
+@synthesize tabBarController;
+@synthesize mailTabBarItem;
+
+
+#pragma mark -
+#pragma mark Application delegate
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
+	
+    // Override point for customization after application launch
+	
+	[window addSubview:tabBarController.view];
+    [window makeKeyAndVisible];
+
+	[application setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+	[application setStatusBarHidden:NO animated:YES];
+
+	Session *session = [Session sharedInstance];
+	[session addObserver:self forKeyPath:@"numNewMessages" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+
+	return YES;
+}
+
+
+/**
+ Superclass implementation saves changes in the application's managed object context before the application terminates.
+ */
+- (void)applicationWillTerminate:(UIApplication *)application {
+	[super applicationWillTerminate:application];
+}
+
+
+#pragma mark -
+#pragma mark Memory management
+
+- (void)dealloc {
+	Session *session = [Session sharedInstance];
+	[session removeObserver:self forKeyPath:@"numNewMessages"];
+
+	self.tabBarController = nil;
+	self.mailTabBarItem = nil;
+	[super dealloc];
+}
+
+
+#pragma mark -
+#pragma mark KVO Methods
+
+
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+	if ([viewController.tabBarItem.title isEqualToString:@"Empire"]) {
+		return YES;
+	} else {
+		Session *session = [Session sharedInstance];
+		return session.isLoggedIn;
+	}
+}
+
+
+#pragma mark -
+#pragma mark KVO Methods
+
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+	if ( [keyPath isEqual:@"numNewMessages"]) {
+		Session *session = (Session *)object;
+		if(intv_(session.numNewMessages) > 0) {
+			self.mailTabBarItem.badgeValue = [NSString stringWithFormat:@"%@", session.numNewMessages];
+		} else {
+			self.mailTabBarItem.badgeValue = nil;
+		}
+	}
+}
+
+
+@end
+

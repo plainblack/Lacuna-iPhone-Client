@@ -1,0 +1,47 @@
+//
+//  LERequest.h
+//  DKTest
+//
+//  Created by Kevin Runde on 2/17/10.
+//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+
+@class DKDeferred;
+
+
+@interface LERequest : NSObject {
+	SEL callback;
+	NSObject *target;
+	NSDictionary *response;
+	BOOL wasError;
+	BOOL handledError;
+	DKDeferred *deferred;
+	BOOL canceled;
+	NSString *protocol;
+	NSString *serverName;
+}
+
+
+@property(nonatomic, retain) NSDictionary *response;
+@property(nonatomic, retain) DKDeferred *deferred;
+@property(nonatomic, retain) NSString *protocol;
+@property(nonatomic, retain) NSString *serverName;
+
+
+- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target;
+- (void)processSuccess;
+- (NSString *)serviceUrl;
+- (NSString *)methodName;
+- (id)params;
+- (BOOL)wasError;
+- (void)markErrorHandled;
+- (NSString *)errorMessage;
+- (NSInteger)errorCode;
+- (void)cancel;
+
+
+
+@end

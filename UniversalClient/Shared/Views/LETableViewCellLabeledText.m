@@ -1,0 +1,83 @@
+//
+//  LETableViewCellLabeledTextCell.m
+//  UniversalClient
+//
+//  Created by Kevin Runde on 4/8/10.
+//  Copyright 2010 n/a. All rights reserved.
+//
+
+#import "LETableViewCellLabeledText.h"
+#import "LEMacros.h"
+
+
+@implementation LETableViewCellLabeledText
+
+
+@synthesize label;
+@synthesize content;
+
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
+        // Initialization code
+    }
+    return self;
+}
+
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+
+- (void)dealloc {
+	self.label = nil;
+	self.content = nil;
+    [super dealloc];
+}
+
+
+#pragma mark -
+#pragma mark Class Methods
+
++ (LETableViewCellLabeledText *)getCellForTableView:(UITableView *)tableView {
+	static NSString *CellIdentifier = @"LabeledTextCell";
+	
+	LETableViewCellLabeledText *cell = (LETableViewCellLabeledText *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+		cell = [[LETableViewCellLabeledText alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+		cell.backgroundColor = CELL_BACKGROUND_COLOR;
+		cell.autoresizesSubviews = YES;
+		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		
+		cell.label = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 95, 44)] autorelease];
+		cell.label.backgroundColor = [UIColor clearColor];
+		cell.label.textAlignment = UITextAlignmentRight;
+		cell.label.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
+		[cell.contentView addSubview:cell.label];
+		cell.content = [[[UILabel alloc] initWithFrame:CGRectMake(105, 6, 210, 31)] autorelease];
+		cell.content.backgroundColor = [UIColor clearColor];
+		cell.content.textAlignment = UITextAlignmentLeft;
+		cell.content.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+		[cell.contentView addSubview:cell.content];
+		
+		//Set Font stuff
+		cell.label.font = LABEL_FONT;
+		cell.label.textColor = LABEL_COLOR;
+		cell.content.font = TEXT_FONT;
+		cell.content.textColor = TEXT_COLOR;
+	}
+	
+	return cell;
+}
+
+
++ (CGFloat)getHeightForTableView:(UITableView *)tableView {
+	return tableView.rowHeight;
+}
+
+
+@end
