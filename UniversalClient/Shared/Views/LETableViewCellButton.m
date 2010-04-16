@@ -58,4 +58,9 @@
 }
 
 
++ (CGFloat)getHeightForTableView:(UITableView *)tableView {
+	return tableView.rowHeight;
+}
+
+
 @end

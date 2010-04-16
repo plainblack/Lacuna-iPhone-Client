@@ -150,7 +150,6 @@ typedef enum {
 		case SECTION_REMEMBERED_ACCOUNT:
 			; //DO NOT REMOVE
 			NSDictionary *empireData = [self.empires objectAtIndex:indexPath.row];
-			NSLog(@"empireDate: %@", empireData);
 			LETableViewCellButton *rememberedAccountCell = [LETableViewCellButton getCellForTableView:tableView];
 			rememberedAccountCell.textLabel.text = [empireData objectForKey:@"username"];
 			return rememberedAccountCell;

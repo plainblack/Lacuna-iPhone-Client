@@ -58,6 +58,7 @@
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		
 		cell.imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(20, 10, 50, 50)] autorelease];
+		cell.imageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.imageView];
 
 		cell.medalNameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(78, 10, 222, 20)] autorelease];

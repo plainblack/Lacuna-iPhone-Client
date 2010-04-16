@@ -15,6 +15,7 @@
 
 
 + (LETableViewCellButton *)getCellForTableView:(UITableView *)tableView;
++ (CGFloat)getHeightForTableView:(UITableView *)tableView;
 
 
 @end

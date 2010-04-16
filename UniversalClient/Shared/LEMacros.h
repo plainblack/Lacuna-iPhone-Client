@@ -18,16 +18,20 @@
 
 //FONT SETTINGS
 #define LABEL_COLOR [UIColor colorWithWhite:0.4 alpha:1.0]
+#define LABEL_SMALL_COLOR [UIColor colorWithWhite:0.4 alpha:1.0]
 #define TEXT_COLOR [UIColor blackColor]
+#define TEXT_SMALL_COLOR [UIColor blackColor]
 #define PARAGRAPH_COLOR [UIColor blackColor]
 #define TEXT_ENTRY_COLOR [UIColor blackColor]
 #define BUTTON_TEXT_COLOR [UIColor blueColor];
 #define HEADER_TEXT_COLOR [UIColor whiteColor];
 
 #define LABEL_FONT [UIFont fontWithName:@"Verdana" size:12.0]
+#define LABEL_SMALL_FONT [UIFont fontWithName:@"Verdana" size:10.0]
 #define MESSAGE_FONT [UIFont fontWithName:@"Verdana" size:12.0]
 #define PARAGRAPH_FONT [UIFont fontWithName:@"Verdana" size:14.0]
 #define TEXT_FONT [UIFont fontWithName:@"Verdana" size:16.0]
+#define TEXT_SMALL_FONT [UIFont fontWithName:@"Verdana" size:10.0]
 #define TEXT_ENTRY_FONT [UIFont fontWithName:@"Verdana" size:18.0]
 #define HEADER_TEXT_FONT [UIFont fontWithName:@"Verdana" size:18.0];
 

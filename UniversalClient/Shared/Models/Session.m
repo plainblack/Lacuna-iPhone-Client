@@ -165,7 +165,6 @@ static Session *sharedSession = nil;
 
 
 - (id)loggedOut:(LEEmpireLogout *)request {
-	NSLog(@"logout success: %@", request.response);
 	if ([request result]) {
 		self.sessionId = nil;
 		self.empireData = nil;
