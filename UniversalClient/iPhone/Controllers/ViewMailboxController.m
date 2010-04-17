@@ -10,6 +10,7 @@
 #import "LEMacros.h"
 #import "Mailbox.h"
 #import "Session.h"
+#import "ViewMailMessageController.h"
 
 
 @implementation ViewMailboxController
@@ -42,7 +43,6 @@
 	self.pageSegmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
 	UIBarButtonItem *rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.pageSegmentedControl] autorelease];
 	self.navigationItem.rightBarButtonItem = rightBarButtonItem; 
-	self.navigationItem.title = @"TEST";
 	
 	UIBarButtonItem *trash = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(toggleEdit)] autorelease];
 	UIBarButtonItem	*compose = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(newMessage)] autorelease];
@@ -158,13 +158,11 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	/*
 	ViewMailMessageController *viewMailMessageController = [[ViewMailMessageController alloc] initWithNibName:@"ViewMailMessageController" bundle:nil];
 	viewMailMessageController.mailbox = self.mailbox;
 	viewMailMessageController.messageIndex = indexPath.row;
 	[[self navigationController] pushViewController:viewMailMessageController animated:YES];
 	[viewMailMessageController release];
-	*/
 }
 
 
@@ -204,14 +202,11 @@
 
 
 - (void) switchPage {
-	NSLog(@"switchPage called");
 	switch (self.pageSegmentedControl.selectedSegmentIndex) {
 		case 0:
-			NSLog(@"Previous Page");
 			[self.mailbox previousPage];
 			break;
 		case 1:
-			NSLog(@"Next Page");
 			[self.mailbox nextPage];
 			break;
 		default:
@@ -226,12 +221,15 @@
 	
 	switch (self.mailboxSegmentedControl.selectedSegmentIndex) {
 		case 0:
+			self.navigationItem.title = @"Inbox";
 			self.mailbox = [Mailbox loadInbox];
 			break;
 		case 1:
+			self.navigationItem.title = @"Archived";
 			self.mailbox = [Mailbox loadArchived];
 			break;
 		case 2:
+			self.navigationItem.title = @"Sent";
 			self.mailbox = [Mailbox loadSent];
 			break;
 		default:
