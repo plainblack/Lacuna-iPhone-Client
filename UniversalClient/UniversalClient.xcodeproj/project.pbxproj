@@ -20,6 +20,7 @@
 		28EEC04B1118E28000187D67 /* AppDelegate_Shared.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EEC04A1118E28000187D67 /* AppDelegate_Shared.m */; };
 		F603A8BE1177E7FC00BAC73A /* LETableViewCellBody.m in Sources */ = {isa = PBXBuildFile; fileRef = F603A8BD1177E7FC00BAC73A /* LETableViewCellBody.m */; };
 		F603A8EF1177F7F200BAC73A /* LETableViewCellCurrentResources.m in Sources */ = {isa = PBXBuildFile; fileRef = F603A8EE1177F7F200BAC73A /* LETableViewCellCurrentResources.m */; };
+		F603A91911780A0400BAC73A /* ViewBodyMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = F603A91811780A0400BAC73A /* ViewBodyMapController.m */; };
 		F631A3D311754AEF005E40CC /* ViewBodyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F631A3D211754AEF005E40CC /* ViewBodyController.m */; };
 		F631A3F311755489005E40CC /* ViewBodyController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F631A3F211755489005E40CC /* ViewBodyController.xib */; };
 		F634BADF116C27BE0084A8B2 /* icon_57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = F634BADE116C27BE0084A8B2 /* icon_57x57.png */; };
@@ -32,6 +33,8 @@
 		F6882D41116EB44F009B624B /* LETableViewCellLabeledText.m in Sources */ = {isa = PBXBuildFile; fileRef = F6882D40116EB44F009B624B /* LETableViewCellLabeledText.m */; };
 		F6882D52116EB6BF009B624B /* LETableViewCellLabeledParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = F6882D51116EB6BF009B624B /* LETableViewCellLabeledParagraph.m */; };
 		F6882DF7116EC6E7009B624B /* LETableViewCellMedal.m in Sources */ = {isa = PBXBuildFile; fileRef = F6882DF6116EC6E7009B624B /* LETableViewCellMedal.m */; };
+		F68FE06411794E870037806C /* WTFController.m in Sources */ = {isa = PBXBuildFile; fileRef = F68FE06211794E870037806C /* WTFController.m */; };
+		F68FE06511794E870037806C /* WTFController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F68FE06311794E870037806C /* WTFController.xib */; };
 		F69D2895117242B400D7277E /* LETableViewControllerGrouped.m in Sources */ = {isa = PBXBuildFile; fileRef = F69D2894117242B400D7277E /* LETableViewControllerGrouped.m */; };
 		F69D299211725FA400D7277E /* NewSpeciesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F69D299111725FA400D7277E /* NewSpeciesController.m */; };
 		F69D29B71172654500D7277E /* LETableViewCellOrbitSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = F69D29B61172654500D7277E /* LETableViewCellOrbitSelector.m */; };
@@ -106,6 +109,8 @@
 		F603A8BD1177E7FC00BAC73A /* LETableViewCellBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellBody.m; sourceTree = "<group>"; };
 		F603A8ED1177F7F200BAC73A /* LETableViewCellCurrentResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellCurrentResources.h; sourceTree = "<group>"; };
 		F603A8EE1177F7F200BAC73A /* LETableViewCellCurrentResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellCurrentResources.m; sourceTree = "<group>"; };
+		F603A91711780A0400BAC73A /* ViewBodyMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewBodyMapController.h; sourceTree = "<group>"; };
+		F603A91811780A0400BAC73A /* ViewBodyMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewBodyMapController.m; sourceTree = "<group>"; };
 		F631A3D111754AEF005E40CC /* ViewBodyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewBodyController.h; sourceTree = "<group>"; };
 		F631A3D211754AEF005E40CC /* ViewBodyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewBodyController.m; sourceTree = "<group>"; };
 		F631A3F211755489005E40CC /* ViewBodyController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewBodyController.xib; sourceTree = "<group>"; };
@@ -126,6 +131,9 @@
 		F6882D51116EB6BF009B624B /* LETableViewCellLabeledParagraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellLabeledParagraph.m; sourceTree = "<group>"; };
 		F6882DF5116EC6E7009B624B /* LETableViewCellMedal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellMedal.h; sourceTree = "<group>"; };
 		F6882DF6116EC6E7009B624B /* LETableViewCellMedal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellMedal.m; sourceTree = "<group>"; };
+		F68FE06111794E870037806C /* WTFController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WTFController.h; sourceTree = "<group>"; };
+		F68FE06211794E870037806C /* WTFController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WTFController.m; sourceTree = "<group>"; };
+		F68FE06311794E870037806C /* WTFController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WTFController.xib; sourceTree = "<group>"; };
 		F69D2893117242B400D7277E /* LETableViewControllerGrouped.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewControllerGrouped.h; sourceTree = "<group>"; };
 		F69D2894117242B400D7277E /* LETableViewControllerGrouped.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewControllerGrouped.m; sourceTree = "<group>"; };
 		F69D299011725FA400D7277E /* NewSpeciesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewSpeciesController.h; sourceTree = "<group>"; };
@@ -481,20 +489,25 @@
 		F6E4D66A1168D4CD00980B59 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F69D2893117242B400D7277E /* LETableViewControllerGrouped.h */,
+				F69D2894117242B400D7277E /* LETableViewControllerGrouped.m */,
 				F634BAE3116C2CB90084A8B2 /* LoginController.h */,
 				F634BAE4116C2CB90084A8B2 /* LoginController.m */,
 				F634BAE5116C2CB90084A8B2 /* LoginController.xib */,
 				F6882D00116EA658009B624B /* NewEmpireController.h */,
 				F6882D01116EA658009B624B /* NewEmpireController.m */,
-				F6882CFB116EA08A009B624B /* ViewEmpireController.h */,
-				F6882CFC116EA08A009B624B /* ViewEmpireController.m */,
-				F69D2893117242B400D7277E /* LETableViewControllerGrouped.h */,
-				F69D2894117242B400D7277E /* LETableViewControllerGrouped.m */,
 				F69D299011725FA400D7277E /* NewSpeciesController.h */,
 				F69D299111725FA400D7277E /* NewSpeciesController.m */,
 				F631A3D111754AEF005E40CC /* ViewBodyController.h */,
 				F631A3D211754AEF005E40CC /* ViewBodyController.m */,
 				F631A3F211755489005E40CC /* ViewBodyController.xib */,
+				F603A91711780A0400BAC73A /* ViewBodyMapController.h */,
+				F603A91811780A0400BAC73A /* ViewBodyMapController.m */,
+				F6882CFB116EA08A009B624B /* ViewEmpireController.h */,
+				F6882CFC116EA08A009B624B /* ViewEmpireController.m */,
+				F68FE06111794E870037806C /* WTFController.h */,
+				F68FE06211794E870037806C /* WTFController.m */,
+				F68FE06311794E870037806C /* WTFController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -572,6 +585,7 @@
 				F634BB55116C31E50084A8B2 /* LETableViewCellTextEntry.xib in Resources */,
 				F6DD1FDC116D33FC0013C58D /* Default.png in Resources */,
 				F631A3F311755489005E40CC /* ViewBodyController.xib in Resources */,
+				F68FE06511794E870037806C /* WTFController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -643,6 +657,8 @@
 				F631A3D311754AEF005E40CC /* ViewBodyController.m in Sources */,
 				F603A8BE1177E7FC00BAC73A /* LETableViewCellBody.m in Sources */,
 				F603A8EF1177F7F200BAC73A /* LETableViewCellCurrentResources.m in Sources */,
+				F603A91911780A0400BAC73A /* ViewBodyMapController.m in Sources */,
+				F68FE06411794E870037806C /* WTFController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

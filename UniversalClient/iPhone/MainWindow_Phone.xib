@@ -78,12 +78,12 @@
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<bool key="IBUIHorizontal">NO</bool>
-				<object class="IBUINavigationController" key="IBUISelectedViewController" id="441139154">
-					<object class="IBUITabBarItem" key="IBUITabBarItem" id="209952648">
-						<string key="IBUITitle">Empire</string>
+				<object class="IBUINavigationController" key="IBUISelectedViewController" id="256217583">
+					<object class="IBUITabBarItem" key="IBUITabBarItem" id="30871084">
+						<string key="IBUITitle">My Worls</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">assets/ui/s/home_planet.png</string>
+							<string key="NSResourceName">assets/ui/s/star_system.png</string>
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<reference key="IBUITabBar"/>
@@ -95,7 +95,7 @@
 					</object>
 					<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					<bool key="IBUIHorizontal">NO</bool>
-					<object class="IBUINavigationBar" key="IBUINavigationBar" id="166576721">
+					<object class="IBUINavigationBar" key="IBUINavigationBar" id="658876546">
 						<nil key="NSNextResponder"/>
 						<int key="NSvFlags">256</int>
 						<string key="NSFrameSize">{0, 0}</string>
@@ -103,21 +103,21 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSColor" key="IBUITintColor" id="432267164">
+						<object class="NSColor" key="IBUITintColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4zMjE1Njg2NCAwLjY3NDUwOTgyIDEAA</bytes>
 						</object>
 					</object>
 					<object class="NSMutableArray" key="IBUIViewControllers">
 						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="IBUIViewController" id="676456799">
-							<object class="IBUINavigationItem" key="IBUINavigationItem" id="743515267">
+						<object class="IBUIViewController" id="379876668">
+							<object class="IBUINavigationItem" key="IBUINavigationItem" id="472926125">
 								<reference key="IBUINavigationBar"/>
 								<string key="IBUITitle">Root View Controller</string>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
-							<reference key="IBUIParentViewController" ref="441139154"/>
-							<string key="IBUINibName">LoginController</string>
+							<reference key="IBUIParentViewController" ref="256217583"/>
+							<string key="IBUINibName">ViewBodyController</string>
 							<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
 								<int key="interfaceOrientation">1</int>
 							</object>
@@ -128,13 +128,12 @@
 				</object>
 				<object class="NSMutableArray" key="IBUIViewControllers">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<reference ref="441139154"/>
-					<object class="IBUINavigationController" id="256217583">
-						<object class="IBUITabBarItem" key="IBUITabBarItem" id="30871084">
-							<string key="IBUITitle">My Worls</string>
+					<object class="IBUINavigationController" id="441139154">
+						<object class="IBUITabBarItem" key="IBUITabBarItem" id="209952648">
+							<string key="IBUITitle">Empire</string>
 							<object class="NSCustomResource" key="IBUIImage">
 								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">assets/ui/s/star_system.png</string>
+								<string key="NSResourceName">assets/ui/s/home_planet.png</string>
 							</object>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							<reference key="IBUITabBar"/>
@@ -146,7 +145,7 @@
 						</object>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<bool key="IBUIHorizontal">NO</bool>
-						<object class="IBUINavigationBar" key="IBUINavigationBar" id="658876546">
+						<object class="IBUINavigationBar" key="IBUINavigationBar" id="166576721">
 							<nil key="NSNextResponder"/>
 							<int key="NSvFlags">256</int>
 							<string key="NSFrameSize">{0, 0}</string>
@@ -154,20 +153,20 @@
 							<bool key="IBUIClipsSubviews">YES</bool>
 							<bool key="IBUIMultipleTouchEnabled">YES</bool>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-							<object class="NSColor" key="IBUITintColor">
+							<object class="NSColor" key="IBUITintColor" id="432267164">
 								<int key="NSColorSpace">1</int>
 								<bytes key="NSRGB">MC4zMjE1Njg2NCAwLjY3NDUwOTgyIDEAA</bytes>
 							</object>
 						</object>
 						<object class="NSMutableArray" key="IBUIViewControllers">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIViewController" id="379876668">
-								<object class="IBUINavigationItem" key="IBUINavigationItem" id="472926125">
+							<object class="IBUIViewController" id="676456799">
+								<object class="IBUINavigationItem" key="IBUINavigationItem" id="743515267">
 									<string key="IBUITitle">Root View Controller</string>
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								</object>
-								<reference key="IBUIParentViewController" ref="256217583"/>
-								<string key="IBUINibName">ViewBodyController</string>
+								<reference key="IBUIParentViewController" ref="441139154"/>
+								<string key="IBUINibName">LoginController</string>
 								<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
 									<int key="interfaceOrientation">1</int>
 								</object>
@@ -176,6 +175,7 @@
 							</object>
 						</object>
 					</object>
+					<reference ref="256217583"/>
 					<object class="IBUINavigationController" id="166720309">
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="607239764">
 							<string key="IBUITitle">Universe</string>

@@ -15,6 +15,7 @@
 #import "LETableViewCellLabeledText.h"
 #import "LETableViewCellBody.h"
 #import "LETableViewCellCurrentResources.h"
+#import "ViewBodyMapController.h"
 
 
 typedef enum {
@@ -84,7 +85,6 @@ typedef enum {
 	
 	self.navigationItem.title = @"Loading";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
-	self.hidesBottomBarWhenPushed = YES;
 
 	self.sectionHeaders = array_([LEViewSectionTab tableView:self.tableView createWithText:@"Body"],
 								 [LEViewSectionTab tableView:self.tableView createWithText:@"Actions"],
@@ -131,6 +131,11 @@ typedef enum {
 }
 
  
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return YES;
+}
+
+
 #pragma mark -
 #pragma mark Table view data source
 
@@ -363,14 +368,12 @@ typedef enum {
 		switch (indexPath.row) {
 			case ACTION_ROW_VIEW_BUILDINGS:
 				NSLog(@"Clicked view buildings");
-				/*
-				ViewBodyBuildings *viewBodyBuildings = [[ViewBodyBuildings alloc] initWithNibName:@"ViewBodyBuildings" bundle:nil];
-				viewBodyBuildings.bodyId = self.bodyId;
-				viewBodyBuildings.bodyName = [self.bodyData objectForKey:@"name"];
-				viewBodyBuildings.maxBuildings = [self.bodyData objectForKey:@"size"];
-				[[self navigationController] pushViewController:viewBodyBuildings animated:YES];
-				[viewBodyBuildings release];
-				*/
+				ViewBodyMapController *viewBodyMapController = [[ViewBodyMapController alloc] init];
+				viewBodyMapController.bodyId = self.bodyId;
+				viewBodyMapController.bodyName = [self.bodyData objectForKey:@"name"];
+				viewBodyMapController.maxBuildings = [self.bodyData objectForKey:@"size"];
+				[self.navigationController pushViewController:viewBodyMapController animated:YES];
+				[viewBodyMapController release];
 				break;
 			case ACTION_ROW_RENAME_BODY:
 				NSLog(@"Clicked rename body");
