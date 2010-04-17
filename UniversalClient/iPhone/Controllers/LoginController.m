@@ -242,6 +242,7 @@ typedef enum {
 	self.empires = nil;
 	self.empireNameCell = nil;
 	self.passwordCell = nil;
+	[super viewDidUnload];
 }
 
 

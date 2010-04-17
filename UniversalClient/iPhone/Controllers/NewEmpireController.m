@@ -157,12 +157,12 @@
 
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-//	self.activityIndicator = nil;
 	self.nameCell = nil;
 	self.passwordCell = nil;
 	self.passwordConfirmationCell = nil;
 	self.speciesCell = nil;
 	self.speciesSelector = nil;
+	[self viewDidUnload];
 }
 
 

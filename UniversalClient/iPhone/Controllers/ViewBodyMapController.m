@@ -114,7 +114,6 @@
 }
 
 - (void)viewDidUnload {
-    [super viewDidUnload];
     // Release any retained subviews of the main view.
 	self.scrollView = nil;
 	self.buildings = nil;
@@ -122,6 +121,7 @@
 	buttonsByLoc = nil;
 	[locsByButton release];
 	locsByButton = nil;
+    [super viewDidUnload];
 }
 
 

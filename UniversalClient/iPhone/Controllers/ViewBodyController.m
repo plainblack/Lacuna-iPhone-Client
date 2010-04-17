@@ -408,6 +408,7 @@ typedef enum {
     self.bodyData = nil;
 	[self.timer invalidate];
 	self.timer = nil;
+	[super viewDidUnload];
 }
 
 

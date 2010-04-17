@@ -199,6 +199,7 @@ typedef enum {
 	self.buttonsByLoc = nil;
 	[leGetBuildables cancel];
 	self.leGetBuildables = nil;
+	[super viewDidUnload];
 }
 
 

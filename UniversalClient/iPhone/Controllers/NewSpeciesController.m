@@ -229,6 +229,7 @@
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     self.speciesNameCell = nil;
 	self.orbitCells = nil;
+	[super viewDidUnload];
 }
 
 

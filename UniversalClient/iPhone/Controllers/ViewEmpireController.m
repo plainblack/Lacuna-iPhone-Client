@@ -226,6 +226,7 @@ typedef enum {
     // For example: self.myOutlet = nil;
 	[self.leEmpireViewProfile cancel];
 	self.leEmpireViewProfile = nil;
+	[super viewDidUnload];
 }
 
 
