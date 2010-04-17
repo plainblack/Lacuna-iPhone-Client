@@ -20,7 +20,7 @@
 	hours = hours %24;
 	
 	if (days) {
-		return [NSString stringWithFormat:@"%i days, %02i:%02i:%02i", days, hours, minutes, seconds];
+		return [NSString stringWithFormat:@"%iD, %02i:%02i:%02i", days, hours, minutes, seconds];
 	} else {
 		return [NSString stringWithFormat:@"%02i:%02i:%02i", hours, minutes, seconds];
 	}
@@ -37,13 +37,18 @@
 }
 
 
-+ (NSString *)prettyDate:(NSString *)serverDateString {
++ (NSDate *)date:(NSString *)serverDateString {
 	NSDateFormatter *serverDateFormatter = [[[NSDateFormatter alloc] init] autorelease];
 	[serverDateFormatter setDateFormat:@"dd MM yyyy HH:mm:ss ZZZ"];
+	return [serverDateFormatter dateFromString:serverDateString];
+}
+
+
++ (NSString *)prettyDate:(NSString *)serverDateString {
 	NSDateFormatter *localDateFormatter = [[[NSDateFormatter alloc] init] autorelease];
 	[localDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
 	
-	NSDate *date = [serverDateFormatter dateFromString:serverDateString];
+	NSDate *date = [Util date:serverDateString];
 	return [localDateFormatter stringFromDate:date];
 }
 

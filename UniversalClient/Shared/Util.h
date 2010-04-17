@@ -16,6 +16,7 @@
 
 + (NSString *)prettyDuration:(NSInteger)seconds;
 + (CGFloat)heightForText:(NSString *)text inFrame:(CGRect)frame withFont:(UIFont *)font;
++ (NSDate *)date:(NSString *)serverDateString;
 + (NSString *)prettyDate:(NSString *)serverDateString;
 + (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize;
 

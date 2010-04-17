@@ -10,6 +10,7 @@
 #import "LEMacros.h"
 #import "Util.h"
 #import "LEGetBuildings.h"
+#import "ViewBuildingController.h"
 
 
 @implementation ViewBodyMapController
@@ -162,7 +163,14 @@
 
 
 - (void)buttonClicked:(id)sender {
-	NSLog(@"BUTTON CLICKED!");
+	NSString *loc = [locsByButton objectForKey:[NSValue valueWithNonretainedObject:sender]];
+	NSDictionary *building = [self.buildings objectForKey:loc];
+	if (building) {
+		ViewBuildingController *viewBuildingController = [ViewBuildingController create];
+		viewBuildingController.buildingId = [building objectForKey:@"id"];
+		viewBuildingController.urlPart = [building objectForKey:@"url"];
+		[[self navigationController] pushViewController:viewBuildingController animated:YES];
+	}
 }
 
 
