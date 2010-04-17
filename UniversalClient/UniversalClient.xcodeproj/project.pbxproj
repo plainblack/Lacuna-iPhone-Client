@@ -38,6 +38,7 @@
 		F69809BF117A154500BD2096 /* LETableViewCellProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = F69809BE117A154500BD2096 /* LETableViewCellProgress.m */; };
 		F69809C2117A155800BD2096 /* LETableViewCellCost.m in Sources */ = {isa = PBXBuildFile; fileRef = F69809C1117A155800BD2096 /* LETableViewCellCost.m */; };
 		F69809C5117A156E00BD2096 /* LETableViewCellUnbuildable.m in Sources */ = {isa = PBXBuildFile; fileRef = F69809C4117A156E00BD2096 /* LETableViewCellUnbuildable.m */; };
+		F6980A4D117A447200BD2096 /* NewBuildingController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6980A4C117A447200BD2096 /* NewBuildingController.m */; };
 		F69D2895117242B400D7277E /* LETableViewControllerGrouped.m in Sources */ = {isa = PBXBuildFile; fileRef = F69D2894117242B400D7277E /* LETableViewControllerGrouped.m */; };
 		F69D299211725FA400D7277E /* NewSpeciesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F69D299111725FA400D7277E /* NewSpeciesController.m */; };
 		F69D29B71172654500D7277E /* LETableViewCellOrbitSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = F69D29B61172654500D7277E /* LETableViewCellOrbitSelector.m */; };
@@ -144,6 +145,8 @@
 		F69809C1117A155800BD2096 /* LETableViewCellCost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellCost.m; sourceTree = "<group>"; };
 		F69809C3117A156E00BD2096 /* LETableViewCellUnbuildable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellUnbuildable.h; sourceTree = "<group>"; };
 		F69809C4117A156E00BD2096 /* LETableViewCellUnbuildable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellUnbuildable.m; sourceTree = "<group>"; };
+		F6980A4B117A447200BD2096 /* NewBuildingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewBuildingController.h; sourceTree = "<group>"; };
+		F6980A4C117A447200BD2096 /* NewBuildingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewBuildingController.m; sourceTree = "<group>"; };
 		F69D2893117242B400D7277E /* LETableViewControllerGrouped.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewControllerGrouped.h; sourceTree = "<group>"; };
 		F69D2894117242B400D7277E /* LETableViewControllerGrouped.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewControllerGrouped.m; sourceTree = "<group>"; };
 		F69D299011725FA400D7277E /* NewSpeciesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewSpeciesController.h; sourceTree = "<group>"; };
@@ -525,6 +528,8 @@
 				F6882CFC116EA08A009B624B /* ViewEmpireController.m */,
 				F69809A51179FFFB00BD2096 /* ViewBuildingController.h */,
 				F69809A61179FFFB00BD2096 /* ViewBuildingController.m */,
+				F6980A4B117A447200BD2096 /* NewBuildingController.h */,
+				F6980A4C117A447200BD2096 /* NewBuildingController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -679,6 +684,7 @@
 				F69809BF117A154500BD2096 /* LETableViewCellProgress.m in Sources */,
 				F69809C2117A155800BD2096 /* LETableViewCellCost.m in Sources */,
 				F69809C5117A156E00BD2096 /* LETableViewCellUnbuildable.m in Sources */,
+				F6980A4D117A447200BD2096 /* NewBuildingController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

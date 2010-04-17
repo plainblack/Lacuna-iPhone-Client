@@ -73,6 +73,7 @@
 		cell.reasonLabel.textAlignment = UITextAlignmentCenter;
 		cell.reasonLabel.font = TEXT_SMALL_FONT;
 		cell.reasonLabel.textColor = TEXT_SMALL_COLOR;
+		cell.reasonLabel.numberOfLines = 0;
 		cell.reasonLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.reasonLabel];
 		

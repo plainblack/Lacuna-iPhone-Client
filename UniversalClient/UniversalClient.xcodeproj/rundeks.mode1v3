@@ -285,97 +285,14 @@
 									<integer>0</integer>
 								</array>
 								<array>
-									<integer>20</integer>
+									<integer>23</integer>
 									<integer>3</integer>
 									<integer>2</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>21</integer>
-									<integer>3</integer>
-									<integer>2</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>50</integer>
-									<integer>31</integer>
-									<integer>26</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>51</integer>
-									<integer>31</integer>
-									<integer>26</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>52</integer>
-									<integer>31</integer>
-									<integer>26</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>53</integer>
-									<integer>31</integer>
-									<integer>26</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>54</integer>
-									<integer>31</integer>
-									<integer>26</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>55</integer>
-									<integer>31</integer>
-									<integer>26</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>56</integer>
-									<integer>31</integer>
-									<integer>26</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>57</integer>
-									<integer>31</integer>
-									<integer>26</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>58</integer>
-									<integer>31</integer>
-									<integer>26</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>59</integer>
-									<integer>31</integer>
-									<integer>26</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>60</integer>
-									<integer>31</integer>
-									<integer>26</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>61</integer>
-									<integer>31</integer>
-									<integer>26</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>68</integer>
-									<integer>26</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 965}, {186, 623}}</string>
+							<string>{{0, 50}, {186, 623}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -412,7 +329,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>Util.m</string>
+								<string>NewBuildingController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -420,11 +337,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>Util.m</string>
+										<string>NewBuildingController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F6980A4A117A42C100BD2096</string>
+										<string>F6980AC9117A568000BD2096</string>
 										<key>history</key>
 										<array>
 											<string>F6885F7E1168421D00080696</string>
@@ -536,7 +453,6 @@
 											<string>F69D2AB3117299B900D7277E</string>
 											<string>F69D2AC011729AE800D7277E</string>
 											<string>F631A3DF11755338005E40CC</string>
-											<string>F631A3E111755338005E40CC</string>
 											<string>F631A3E211755338005E40CC</string>
 											<string>F631A3E311755338005E40CC</string>
 											<string>F631A3FD11755691005E40CC</string>
@@ -563,18 +479,23 @@
 											<string>F69809F5117A3D6900BD2096</string>
 											<string>F69809F6117A3D6900BD2096</string>
 											<string>F69809F7117A3D6900BD2096</string>
-											<string>F69809F8117A3D6900BD2096</string>
 											<string>F69809F9117A3D6900BD2096</string>
 											<string>F69809FB117A3D6900BD2096</string>
 											<string>F69809FC117A3D6900BD2096</string>
 											<string>F69809FF117A3D6900BD2096</string>
-											<string>F6980A00117A3D6900BD2096</string>
-											<string>F6980A16117A3EFB00BD2096</string>
-											<string>F6980A21117A3F7C00BD2096</string>
 											<string>F6980A35117A415300BD2096</string>
 											<string>F6980A3C117A41CA00BD2096</string>
 											<string>F6980A48117A42C100BD2096</string>
-											<string>F6980A49117A42C100BD2096</string>
+											<string>F6980A4E117A44A500BD2096</string>
+											<string>F6980A4F117A44A500BD2096</string>
+											<string>F6980A50117A44A500BD2096</string>
+											<string>F6980A86117A497900BD2096</string>
+											<string>F6980A87117A497900BD2096</string>
+											<string>F6980AA0117A520D00BD2096</string>
+											<string>F6980AAD117A533500BD2096</string>
+											<string>F6980ABA117A54AF00BD2096</string>
+											<string>F6980AC7117A568000BD2096</string>
+											<string>F6980AC8117A568000BD2096</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -772,6 +693,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>F6885F691168335B00080696</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>/Users/rundeks/dev/iphone/Lacuna-iPhone-Client/UniversalClient/UniversalClient.xcodeproj</string>
@@ -794,14 +716,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ViewBuildingController.m</string>
+								<string>NewBuildingController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -818,6 +738,8 @@
 							<string>224pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -1021,7 +943,7 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>LERequest.m</string>
+										<string>SBJsonWriter.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -1077,8 +999,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>F619ADAE1177D9640087A38D</string>
-				<string>F619ADAF1177D9640087A38D</string>
+				<string>F6980AA8117A527000BD2096</string>
+				<string>F6980AA9117A527000BD2096</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>

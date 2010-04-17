@@ -11,6 +11,7 @@
 #import "Util.h"
 #import "LEGetBuildings.h"
 #import "ViewBuildingController.h"
+#import "NewBuildingController.h"
 
 
 @implementation ViewBodyMapController
@@ -170,7 +171,25 @@
 		viewBuildingController.buildingId = [building objectForKey:@"id"];
 		viewBuildingController.urlPart = [building objectForKey:@"url"];
 		[[self navigationController] pushViewController:viewBuildingController animated:YES];
+	} else {
+		NSInteger tmp;
+		NSNumber *x;
+		NSNumber *y;
+		NSScanner *scanner = [NSScanner scannerWithString:loc];
+		[scanner scanInteger:&tmp];
+		x = [NSNumber numberWithInt:tmp];
+		[scanner setScanLocation:[scanner scanLocation]+1];
+		[scanner scanInteger:&tmp];
+		y = [NSNumber numberWithInt:tmp];
+		NewBuildingController *newBuildingController = [NewBuildingController create];
+		newBuildingController.bodyId = self.bodyId;
+		newBuildingController.x = x;
+		newBuildingController.y = y;
+		newBuildingController.buildingsByLoc = self.buildings;
+		newBuildingController.buttonsByLoc = buttonsByLoc;
+		[[self navigationController] pushViewController:newBuildingController animated:YES];
 	}
+
 }
 
 

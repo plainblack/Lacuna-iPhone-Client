@@ -29,12 +29,12 @@
 
 
 - (id)params {
-	return array_([Session sharedInstance].sessionId, self.bodyId, self.x, self.y);
+	NSArray *params = array_([Session sharedInstance].sessionId, self.bodyId, self.x, self.y);
+	return params;
 }
 
 
 - (void)processSuccess {
-	NSLog(@"Buildable Buildings at %@.%@: %@", self.x, self.y, self.response);
 	NSDictionary *result = [self.response objectForKey:@"result"];
 	NSDictionary *buildableDict = [result objectForKey:@"buildable"];
 	
