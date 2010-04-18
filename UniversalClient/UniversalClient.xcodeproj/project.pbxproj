@@ -44,6 +44,7 @@
 		F6980B05117A6CF900BD2096 /* ViewMailMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */; };
 		F6980B06117A6CF900BD2096 /* ViewMailMessageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6980B04117A6CF900BD2096 /* ViewMailMessageController.xib */; };
 		F6980B44117A738D00BD2096 /* LETableViewCellParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = F6980B43117A738D00BD2096 /* LETableViewCellParagraph.m */; };
+		F6980B78117A8BD700BD2096 /* NewMailMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6980B76117A8BD700BD2096 /* NewMailMessageController.m */; };
 		F69D2895117242B400D7277E /* LETableViewControllerGrouped.m in Sources */ = {isa = PBXBuildFile; fileRef = F69D2894117242B400D7277E /* LETableViewControllerGrouped.m */; };
 		F69D299211725FA400D7277E /* NewSpeciesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F69D299111725FA400D7277E /* NewSpeciesController.m */; };
 		F69D29B71172654500D7277E /* LETableViewCellOrbitSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = F69D29B61172654500D7277E /* LETableViewCellOrbitSelector.m */; };
@@ -160,6 +161,8 @@
 		F6980B04117A6CF900BD2096 /* ViewMailMessageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewMailMessageController.xib; sourceTree = "<group>"; };
 		F6980B42117A738D00BD2096 /* LETableViewCellParagraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellParagraph.h; sourceTree = "<group>"; };
 		F6980B43117A738D00BD2096 /* LETableViewCellParagraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellParagraph.m; sourceTree = "<group>"; };
+		F6980B75117A8BD700BD2096 /* NewMailMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMailMessageController.h; sourceTree = "<group>"; };
+		F6980B76117A8BD700BD2096 /* NewMailMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMailMessageController.m; sourceTree = "<group>"; };
 		F69D2893117242B400D7277E /* LETableViewControllerGrouped.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewControllerGrouped.h; sourceTree = "<group>"; };
 		F69D2894117242B400D7277E /* LETableViewControllerGrouped.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewControllerGrouped.m; sourceTree = "<group>"; };
 		F69D299011725FA400D7277E /* NewSpeciesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewSpeciesController.h; sourceTree = "<group>"; };
@@ -551,6 +554,8 @@
 				F6980B02117A6CF900BD2096 /* ViewMailMessageController.h */,
 				F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */,
 				F6980B04117A6CF900BD2096 /* ViewMailMessageController.xib */,
+				F6980B75117A8BD700BD2096 /* NewMailMessageController.h */,
+				F6980B76117A8BD700BD2096 /* NewMailMessageController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -711,6 +716,7 @@
 				F6980ACF117A600E00BD2096 /* ViewMailboxController.m in Sources */,
 				F6980B05117A6CF900BD2096 /* ViewMailMessageController.m in Sources */,
 				F6980B44117A738D00BD2096 /* LETableViewCellParagraph.m in Sources */,
+				F6980B78117A8BD700BD2096 /* NewMailMessageController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

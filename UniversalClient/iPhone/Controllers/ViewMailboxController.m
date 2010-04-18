@@ -11,6 +11,7 @@
 #import "Mailbox.h"
 #import "Session.h"
 #import "ViewMailMessageController.h"
+#import "NewMailMessageController.h"
 
 
 @implementation ViewMailboxController
@@ -253,11 +254,8 @@
 
 
 - (void)newMessage {
-	/*
-	NewMailMessageController *newMailMessageController = [[NewMailMessageController alloc] initWithNibName:@"NewMailMessageController" bundle:nil];
+	NewMailMessageController *newMailMessageController = [NewMailMessageController create];
 	[[self navigationController] pushViewController:newMailMessageController animated:YES];
-	[newMailMessageController release];
-	 */
 }
 
 

@@ -278,38 +278,56 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
+									<integer>24</integer>
+									<integer>3</integer>
+									<integer>2</integer>
+									<integer>0</integer>
+								</array>
+								<array>
+									<integer>25</integer>
+									<integer>3</integer>
+									<integer>2</integer>
+									<integer>0</integer>
+								</array>
+								<array>
+									<integer>27</integer>
+									<integer>3</integer>
+									<integer>2</integer>
+									<integer>0</integer>
+								</array>
+								<array>
 									<integer>28</integer>
 									<integer>3</integer>
 									<integer>2</integer>
 									<integer>0</integer>
 								</array>
 								<array>
-									<integer>53</integer>
-									<integer>39</integer>
-									<integer>34</integer>
+									<integer>30</integer>
+									<integer>3</integer>
+									<integer>2</integer>
 									<integer>0</integer>
 								</array>
 								<array>
-									<integer>54</integer>
-									<integer>39</integer>
-									<integer>34</integer>
+									<integer>31</integer>
+									<integer>3</integer>
+									<integer>2</integer>
 									<integer>0</integer>
 								</array>
 								<array>
-									<integer>70</integer>
-									<integer>39</integer>
-									<integer>34</integer>
+									<integer>55</integer>
+									<integer>41</integer>
+									<integer>36</integer>
 									<integer>0</integer>
 								</array>
 								<array>
-									<integer>71</integer>
-									<integer>39</integer>
-									<integer>34</integer>
+									<integer>56</integer>
+									<integer>41</integer>
+									<integer>36</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 298}, {186, 623}}</string>
+							<string>{{0, 772}, {186, 623}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -346,7 +364,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>LETableViewCellParagraph.m</string>
+								<string>ViewMailMessageController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -354,11 +372,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>LETableViewCellParagraph.m</string>
+										<string>ViewMailMessageController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F6980B74117A771F00BD2096</string>
+										<string>F6980BC4117AA13500BD2096</string>
 										<key>history</key>
 										<array>
 											<string>F6885F7E1168421D00080696</string>
@@ -468,7 +486,6 @@
 											<string>F631A3E311755338005E40CC</string>
 											<string>F631A3FD11755691005E40CC</string>
 											<string>F603A8AE1177E7DE00BAC73A</string>
-											<string>F603A8C51177F3AD00BAC73A</string>
 											<string>F603A8C61177F3AD00BAC73A</string>
 											<string>F603A8C71177F3AD00BAC73A</string>
 											<string>F603A8D41177F73E00BAC73A</string>
@@ -480,7 +497,6 @@
 											<string>F68FE079117950730037806C</string>
 											<string>F68FE07A117950730037806C</string>
 											<string>F68FE0BB117959500037806C</string>
-											<string>F69809F0117A3D6900BD2096</string>
 											<string>F69809F1117A3D6900BD2096</string>
 											<string>F69809F4117A3D6900BD2096</string>
 											<string>F69809F5117A3D6900BD2096</string>
@@ -505,7 +521,6 @@
 											<string>F6980B14117A6FC900BD2096</string>
 											<string>F6980B15117A6FC900BD2096</string>
 											<string>F6980B16117A6FC900BD2096</string>
-											<string>F6980B17117A6FC900BD2096</string>
 											<string>F6980B18117A6FC900BD2096</string>
 											<string>F6980B19117A6FC900BD2096</string>
 											<string>F6980B1A117A6FC900BD2096</string>
@@ -513,13 +528,18 @@
 											<string>F6980B1C117A6FC900BD2096</string>
 											<string>F6980B1D117A6FC900BD2096</string>
 											<string>F6980B1F117A6FC900BD2096</string>
-											<string>F6980B2E117A705A00BD2096</string>
-											<string>F6980B3F117A71D000BD2096</string>
 											<string>F6980B53117A74F500BD2096</string>
-											<string>F6980B54117A74F500BD2096</string>
 											<string>F6980B56117A74F500BD2096</string>
-											<string>F6980B72117A771F00BD2096</string>
-											<string>F6980B73117A771F00BD2096</string>
+											<string>F6980B92117A919200BD2096</string>
+											<string>F6980B93117A919200BD2096</string>
+											<string>F6980B94117A919200BD2096</string>
+											<string>F6980B95117A919200BD2096</string>
+											<string>F6980B96117A919200BD2096</string>
+											<string>F6980BA7117A925F00BD2096</string>
+											<string>F6980BB8117A945200BD2096</string>
+											<string>F6980BB9117A945200BD2096</string>
+											<string>F6980BC2117AA13500BD2096</string>
+											<string>F6980BC3117AA13500BD2096</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -722,8 +742,8 @@
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>F6885F691168335B00080696</string>
 		<string>1CD10A99069EF8BA00B06720</string>
-		<string>/Users/rundeks/dev/iphone/Lacuna-iPhone-Client/UniversalClient/UniversalClient.xcodeproj</string>
 		<string>1C78EAAD065D492600B07095</string>
+		<string>/Users/rundeks/dev/iphone/Lacuna-iPhone-Client/UniversalClient/UniversalClient.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>105 196 1131 682 0 0 1440 878 </string>
@@ -747,7 +767,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>LETableViewCellParagraph.m</string>
+								<string>NewMailMessageController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>

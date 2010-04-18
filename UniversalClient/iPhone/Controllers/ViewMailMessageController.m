@@ -196,12 +196,9 @@ typedef enum {
 
 
 - (void)replyToMessage {
-	/*
-	NewMailMessageController *newMailMessageController = [[NewMailMessageController alloc] initWithNibName:@"NewMailMessageController" bundle:nil];
+	NewMailMessageController *newMailMessageController = [NewMailMessageController create];
 	newMailMessageController.replyToMessage = self.mailbox.messageDetails;
 	[[self navigationController] pushViewController:newMailMessageController animated:YES];
-	[newMailMessageController release];
-	 */
 }
 
 
