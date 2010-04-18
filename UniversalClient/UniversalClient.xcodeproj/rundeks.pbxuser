@@ -403,6 +403,7 @@
 			F6980BC2117AA13500BD2096 /* PBXTextBookmark */ = F6980BC2117AA13500BD2096 /* PBXTextBookmark */;
 			F6980BC3117AA13500BD2096 /* PBXTextBookmark */ = F6980BC3117AA13500BD2096 /* PBXTextBookmark */;
 			F6980BC4117AA13500BD2096 /* PBXTextBookmark */ = F6980BC4117AA13500BD2096 /* PBXTextBookmark */;
+			F6980BC9117AA15100BD2096 /* PBXTextBookmark */ = F6980BC9117AA15100BD2096 /* PBXTextBookmark */;
 			F69D287E1172389C00D7277E = F69D287E1172389C00D7277E /* PBXTextBookmark */;
 			F69D287F1172389C00D7277E = F69D287F1172389C00D7277E /* PBXTextBookmark */;
 			F69D28801172389C00D7277E = F69D28801172389C00D7277E /* PBXTextBookmark */;
@@ -2578,9 +2579,9 @@
 	};
 	F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1279, 3809}}";
-			sepNavSelRange = "{6446, 0}";
-			sepNavVisRange = "{6083, 759}";
+			sepNavIntBoundsRect = "{{0, 0}, {862, 3939}}";
+			sepNavSelRange = "{308, 0}";
+			sepNavVisRange = "{0, 539}";
 		};
 	};
 	F6980B0D117A6FC800BD2096 /* PBXTextBookmark */ = {
@@ -2599,7 +2600,7 @@
 		fRef = F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 281;
+		rLoc = 282;
 		rType = 1;
 	};
 	F6980B0F117A6FC800BD2096 /* PBXTextBookmark */ = {
@@ -2607,7 +2608,7 @@
 		fRef = F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */;
 		name = "ViewMailMessageController.m: 228";
 		rLen = 0;
-		rLoc = 8486;
+		rLoc = 8523;
 		rType = 0;
 		vrLen = 226;
 		vrLoc = 6917;
@@ -2788,7 +2789,7 @@
 		fRef = F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 281;
+		rLoc = 282;
 		rType = 1;
 	};
 	F6980B23117A6FC900BD2096 /* PBXTextBookmark */ = {
@@ -2796,7 +2797,7 @@
 		fRef = F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */;
 		name = "ViewMailMessageController.m: 228";
 		rLen = 0;
-		rLoc = 8486;
+		rLoc = 8523;
 		rType = 0;
 		vrLen = 510;
 		vrLoc = 6633;
@@ -2816,7 +2817,7 @@
 		fRef = F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */;
 		name = "ViewMailMessageController.m: 246";
 		rLen = 0;
-		rLoc = 6446;
+		rLoc = 6483;
 		rType = 0;
 		vrLen = 823;
 		vrLoc = 7093;
@@ -2846,7 +2847,7 @@
 		fRef = F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */;
 		name = "ViewMailMessageController.m: 246";
 		rLen = 0;
-		rLoc = 6446;
+		rLoc = 6483;
 		rType = 0;
 		vrLen = 821;
 		vrLoc = 7094;
@@ -2856,7 +2857,7 @@
 		fRef = F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */;
 		name = "ViewMailMessageController.m: 48";
 		rLen = 0;
-		rLoc = 1070;
+		rLoc = 1107;
 		rType = 0;
 		vrLen = 1547;
 		vrLoc = 873;
@@ -2866,7 +2867,7 @@
 		fRef = F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */;
 		name = "ViewMailMessageController.m: 48";
 		rLen = 0;
-		rLoc = 1070;
+		rLoc = 1107;
 		rType = 0;
 		vrLen = 471;
 		vrLoc = 0;
@@ -2906,7 +2907,7 @@
 		fRef = F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */;
 		name = "ViewMailMessageController.m: 48";
 		rLen = 0;
-		rLoc = 1070;
+		rLoc = 1107;
 		rType = 0;
 		vrLen = 467;
 		vrLoc = 3;
@@ -2916,7 +2917,7 @@
 		fRef = F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */;
 		name = "ViewMailMessageController.m: 119";
 		rLen = 0;
-		rLoc = 4529;
+		rLoc = 4566;
 		rType = 0;
 		vrLen = 460;
 		vrLoc = 55;
@@ -2940,7 +2941,7 @@
 		fRef = F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */;
 		name = "ViewMailMessageController.m: 271";
 		rLen = 0;
-		rLoc = 8486;
+		rLoc = 8523;
 		rType = 0;
 		vrLen = 515;
 		vrLoc = 6454;
@@ -2999,7 +3000,7 @@
 		fRef = F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */;
 		name = "ViewMailMessageController.m: 132";
 		rLen = 0;
-		rLoc = 4930;
+		rLoc = 4967;
 		rType = 0;
 		vrLen = 809;
 		vrLoc = 2982;
@@ -3058,7 +3059,7 @@
 		fRef = F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */;
 		name = "ViewMailMessageController.m: 107";
 		rLen = 0;
-		rLoc = 3754;
+		rLoc = 3791;
 		rType = 0;
 		vrLen = 875;
 		vrLoc = 3157;
@@ -3068,7 +3069,7 @@
 		fRef = F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */;
 		name = "ViewMailMessageController.m: 107";
 		rLen = 0;
-		rLoc = 3754;
+		rLoc = 3791;
 		rType = 0;
 		vrLen = 864;
 		vrLoc = 3158;
@@ -3078,7 +3079,7 @@
 		fRef = F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */;
 		name = "ViewMailMessageController.m: 107";
 		rLen = 0;
-		rLoc = 3754;
+		rLoc = 3791;
 		rType = 0;
 		vrLen = 961;
 		vrLoc = 3158;
@@ -3118,7 +3119,7 @@
 		fRef = F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */;
 		name = "ViewMailMessageController.m: 107";
 		rLen = 0;
-		rLoc = 3754;
+		rLoc = 3791;
 		rType = 0;
 		vrLen = 864;
 		vrLoc = 3158;
@@ -3128,7 +3129,7 @@
 		fRef = F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */;
 		name = "ViewMailMessageController.m: 107";
 		rLen = 0;
-		rLoc = 3738;
+		rLoc = 3775;
 		rType = 0;
 		vrLen = 855;
 		vrLoc = 3298;
@@ -3138,7 +3139,7 @@
 		fRef = F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */;
 		name = "ViewMailMessageController.m: 109";
 		rLen = 0;
-		rLoc = 3703;
+		rLoc = 3740;
 		rType = 0;
 		vrLen = 865;
 		vrLoc = 3413;
@@ -3148,7 +3149,7 @@
 		fRef = F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */;
 		name = "ViewMailMessageController.m: 109";
 		rLen = 0;
-		rLoc = 3703;
+		rLoc = 3740;
 		rType = 0;
 		vrLen = 403;
 		vrLoc = 8191;
@@ -3500,7 +3501,7 @@
 		fRef = F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */;
 		name = "ViewMailMessageController.m: 109";
 		rLen = 0;
-		rLoc = 3703;
+		rLoc = 3740;
 		rType = 0;
 		vrLen = 448;
 		vrLoc = 8146;
@@ -3510,10 +3511,20 @@
 		fRef = F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */;
 		name = "ViewMailMessageController.m: 202";
 		rLen = 0;
-		rLoc = 6446;
+		rLoc = 6483;
 		rType = 0;
 		vrLen = 759;
 		vrLoc = 6083;
+	};
+	F6980BC9117AA15100BD2096 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */;
+		name = "ViewMailMessageController.m: 14";
+		rLen = 0;
+		rLoc = 308;
+		rType = 0;
+		vrLen = 539;
+		vrLoc = 0;
 	};
 	F69D287E1172389C00D7277E /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;

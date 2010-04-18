@@ -11,6 +11,7 @@
 #import "Mailbox.h"
 #import "LETableViewCellLabeledText.h"
 #import "LETableViewCellParagraph.h"
+#import "NewMailMessageController.h"
 
 
 typedef enum {
