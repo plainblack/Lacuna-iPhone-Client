@@ -37,7 +37,7 @@ static int numRequests = 0;
 	wasError = NO;
 	handledError = NO;
 	
-	self.protocol = @"http";
+	self.protocol = @"https";
 	self.serverName = @"game.lacunaexpanse.com";
 	
 	callback = inCallback;

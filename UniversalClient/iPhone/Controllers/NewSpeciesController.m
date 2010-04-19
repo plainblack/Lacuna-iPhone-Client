@@ -61,59 +61,59 @@
 	self.constructionCell = [LETableViewCellAffinitySelector getCellForTableView:self.tableView];
 	self.constructionCell.nameLabel.text = @"Construction";
 	self.constructionCell.pointsDelegate = self;
-	[self.constructionCell setRating:1];
+	[self.constructionCell setRating:3];
 	
 	self.deceptionCell = [LETableViewCellAffinitySelector getCellForTableView:self.tableView];
 	self.deceptionCell.nameLabel.text = @"Deception";
 	self.deceptionCell.pointsDelegate = self;
-	[self.deceptionCell setRating:1];
+	[self.deceptionCell setRating:3];
 	
 	self.researchCell = [LETableViewCellAffinitySelector getCellForTableView:self.tableView];
 	self.researchCell.nameLabel.text = @"Research";
 	self.researchCell.pointsDelegate = self;
-	[self.researchCell setRating:1];
+	[self.researchCell setRating:3];
 	
 	self.managementCell = [LETableViewCellAffinitySelector getCellForTableView:self.tableView];
 	self.managementCell.nameLabel.text = @"Management";
 	self.managementCell.pointsDelegate = self;
-	[self.managementCell setRating:1];
+	[self.managementCell setRating:3];
 	
 	self.farmingCell = [LETableViewCellAffinitySelector getCellForTableView:self.tableView];
 	self.farmingCell.nameLabel.text = @"Farming";
 	self.farmingCell.pointsDelegate = self;
-	[self.farmingCell setRating:1];
+	[self.farmingCell setRating:3];
 	
 	self.miningCell = [LETableViewCellAffinitySelector getCellForTableView:self.tableView];
 	self.miningCell.nameLabel.text = @"Mining";
 	self.miningCell.pointsDelegate = self;
-	[self.miningCell setRating:1];
+	[self.miningCell setRating:3];
 	
 	self.scienceCell = [LETableViewCellAffinitySelector getCellForTableView:self.tableView];
 	self.scienceCell.nameLabel.text = @"Science";
 	self.scienceCell.pointsDelegate = self;
-	[self.scienceCell setRating:1];
+	[self.scienceCell setRating:3];
 	
 	self.environmentalCell = [LETableViewCellAffinitySelector getCellForTableView:self.tableView];
 	self.environmentalCell.nameLabel.text = @"Environmental";
 	self.environmentalCell.pointsDelegate = self;
-	[self.environmentalCell setRating:1];
+	[self.environmentalCell setRating:3];
 	
 	self.politicalCell = [LETableViewCellAffinitySelector getCellForTableView:self.tableView];
 	self.politicalCell.nameLabel.text = @"Political";
 	self.politicalCell.pointsDelegate = self;
-	[self.politicalCell setRating:1];
+	[self.politicalCell setRating:3];
 	
 	self.tradeCell = [LETableViewCellAffinitySelector getCellForTableView:self.tableView];
 	self.tradeCell.nameLabel.text = @"Trade";
 	self.tradeCell.pointsDelegate = self;
-	[self.tradeCell setRating:1];
+	[self.tradeCell setRating:3];
 	
 	self.growthCell = [LETableViewCellAffinitySelector getCellForTableView:self.tableView];
 	self.growthCell.nameLabel.text = @"Growth";
 	self.growthCell.pointsDelegate = self;
-	[self.growthCell setRating:1];
+	[self.growthCell setRating:3];
 	
-	points = 11;
+	points = 33;
 	self.navigationItem.title = [NSString stringWithFormat:@"%i / 45 points", points];
 	
 	self.sectionHeaders = array_([LEViewSectionTab tableView:self.tableView createWithText:@"Species"],

@@ -10,7 +10,7 @@
 #import "LESpeciesPointsUpdateDelegate.h"
 
 
-@interface LETableViewCellAffinitySelector : UITableViewCell {
+@interface LETableViewCellAffinitySelector : UITableViewCell <UIAlertViewDelegate> {
 	IBOutlet UILabel *nameLabel;
 	IBOutlet UILabel *valueLabel;
 	IBOutlet UIButton *minusButton;

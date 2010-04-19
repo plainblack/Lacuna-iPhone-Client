@@ -398,6 +398,8 @@
 				F6882DF6116EC6E7009B624B /* LETableViewCellMedal.m */,
 				F69D29B51172654500D7277E /* LETableViewCellOrbitSelector.h */,
 				F69D29B61172654500D7277E /* LETableViewCellOrbitSelector.m */,
+				F6980B42117A738D00BD2096 /* LETableViewCellParagraph.h */,
+				F6980B43117A738D00BD2096 /* LETableViewCellParagraph.m */,
 				F69809BD117A154500BD2096 /* LETableViewCellProgress.h */,
 				F69809BE117A154500BD2096 /* LETableViewCellProgress.m */,
 				F634BB51116C31BD0084A8B2 /* LETableViewCellTextEntry.h */,
@@ -407,8 +409,6 @@
 				F69809C4117A156E00BD2096 /* LETableViewCellUnbuildable.m */,
 				F6DD2062116D5B3C0013C58D /* LEViewSectionTab.h */,
 				F6DD2063116D5B3C0013C58D /* LEViewSectionTab.m */,
-				F6980B42117A738D00BD2096 /* LETableViewCellParagraph.h */,
-				F6980B43117A738D00BD2096 /* LETableViewCellParagraph.m */,
 			);
 			name = Views;
 			path = Shared/Views;
@@ -537,6 +537,8 @@
 				F6980A4C117A447200BD2096 /* NewBuildingController.m */,
 				F6882D00116EA658009B624B /* NewEmpireController.h */,
 				F6882D01116EA658009B624B /* NewEmpireController.m */,
+				F6980B75117A8BD700BD2096 /* NewMailMessageController.h */,
+				F6980B76117A8BD700BD2096 /* NewMailMessageController.m */,
 				F69D299011725FA400D7277E /* NewSpeciesController.h */,
 				F69D299111725FA400D7277E /* NewSpeciesController.m */,
 				F631A3D111754AEF005E40CC /* ViewBodyController.h */,
@@ -554,8 +556,6 @@
 				F6980B02117A6CF900BD2096 /* ViewMailMessageController.h */,
 				F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */,
 				F6980B04117A6CF900BD2096 /* ViewMailMessageController.xib */,
-				F6980B75117A8BD700BD2096 /* NewMailMessageController.h */,
-				F6980B76117A8BD700BD2096 /* NewMailMessageController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

@@ -11,11 +11,8 @@
 
 
 @interface LETableViewCellAffinitySelector (PrivateMethods)
-
-
 - (void)updateValueLabel;
-
-
+- (void)reallyDecreaseValue;
 @end
 
 
@@ -56,22 +53,17 @@
 
 
 #pragma mark -
+#pragma mark UIAlertViewDelegate Methods
+
+- (void) alertView:(UIAlertView *) alertView clickedButtonAtIndex:(int)index {
+	if (index != [alertView cancelButtonIndex]) {
+		[self reallyDecreaseValue];
+	}
+}
+
+
+#pragma mark -
 #pragma mark Instance Methods
-
-
-- (IBAction)decreaseValue {
-	value = [[NSNumber alloc] initWithInt:([value intValue] - 1)];
-	[self.pointsDelegate updatePoints:-1];
-	[self updateValueLabel];
-}
-
-
-- (IBAction)increaseValue {
-	value = [[NSNumber alloc] initWithInt:([value intValue] + 1)];
-	[self.pointsDelegate updatePoints:1];
-	[self updateValueLabel];
-}
-
 
 - (NSNumber *)rating {
 	return value;
@@ -85,6 +77,30 @@
 
 
 #pragma mark -
+#pragma mark Action Methods
+
+- (IBAction)decreaseValue {
+	if (intv_(value) == 2) {
+		UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Are you sure"
+													 message:@"Setting an affinity to 1 puts you are a significant disadvantage and should only be done by expert players."
+													delegate:self
+										   cancelButtonTitle:@"Cancel"
+										   otherButtonTitles:@"OK", nil];
+		[av show];
+	} else {
+		[self reallyDecreaseValue];
+	}
+}
+
+
+- (IBAction)increaseValue {
+	value = [[NSNumber alloc] initWithInt:([value intValue] + 1)];
+	[self.pointsDelegate updatePoints:1];
+	[self updateValueLabel];
+}
+
+
+#pragma mark -
 #pragma mark Private Methods
 
 
@@ -92,6 +108,13 @@
 	self.valueLabel.text = [value stringValue];
 	[self.minusButton setEnabled:(intv_(value) > 1)];
 	[self.plusButton setEnabled:(intv_(value) < 7)];
+}
+
+
+- (void)reallyDecreaseValue {
+	value = [[NSNumber alloc] initWithInt:([value intValue] - 1)];
+	[self.pointsDelegate updatePoints:-1];
+	[self updateValueLabel];
 }
 
 
