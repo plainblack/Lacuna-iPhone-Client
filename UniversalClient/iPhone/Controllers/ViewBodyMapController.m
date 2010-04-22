@@ -80,8 +80,7 @@
 		currentX += BODY_BUILDINGS_CELL_WIDTH;
 	}
 	
-	
-	self.navigationItem.title = [NSString stringWithFormat:@"%@/%@ Buildings", self.bodyName, self.maxBuildings];
+	self.navigationItem.title = [NSString stringWithFormat:@"Loading Buildings"];
 	self.leGetBuildings = [[[LEGetBuildings alloc] initWithCallback:@selector(buildingsLoaded:) target:self bodyId:self.bodyId] autorelease];
 }
 
@@ -158,6 +157,7 @@
 			}
 		}
 	}
+	self.navigationItem.title = [NSString stringWithFormat:@"%i/%@ Buildings", [self.buildings count], self.maxBuildings];
 	
 	return nil;
 }
