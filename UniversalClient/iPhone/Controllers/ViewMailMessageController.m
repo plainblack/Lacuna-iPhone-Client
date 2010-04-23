@@ -198,7 +198,6 @@ typedef enum {
 
 - (void)replyToMessage {
 	NewMailMessageController *newMailMessageController = [NewMailMessageController create];
-	NSLog(@"SETTING REPLYTOMESSAGE");
 	newMailMessageController.replyToMessage = self.mailbox.messageDetails;
 	[[self navigationController] pushViewController:newMailMessageController animated:YES];
 }
@@ -247,10 +246,8 @@ typedef enum {
 #pragma mark Action Methods
 
 - (void) switchMessage {
-	NSLog(@"switchMessage called");
 	switch (self.messageSegmentedControl.selectedSegmentIndex) {
 		case 0:
-			NSLog(@"Previous Message");
 			self.messageIndex--;
 			if (self.messageIndex < 0) {
 				self.messageIndex = 24;
@@ -260,7 +257,6 @@ typedef enum {
 			}
 			break;
 		case 1:
-			NSLog(@"Next Message");
 			self.messageIndex++;
 			if (self.messageIndex > ([self.mailbox.messageHeaders count]-1)) {
 				self.messageIndex = 0;

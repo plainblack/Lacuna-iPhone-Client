@@ -59,16 +59,27 @@ typedef enum {
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	NSLog(@"CHECKING REPLYTOMESSAGE");
 	if (replyToMessage) {
 		self.navigationItem.title = @"Reply";
 		self.toCell.textField.text = [replyToMessage objectForKey:@"from"];
 		self.subjectCell.textField.text = [NSString stringWithFormat:@"RE: %@", [replyToMessage objectForKey:@"subject"]];
 		self.messageTextView.text = [NSString stringWithFormat:@"\nIn reply to:\n%@", [replyToMessage objectForKey:@"body"]];
+		[self.messageTextView becomeFirstResponder];
+	} else {
+		[self.toCell becomeFirstResponder];
 	}
+
 }
 
 
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	if (replyToMessage) {
+		self.messageTextView.selectedRange = NSRangeZero;
+	}
+}
+
+	
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;
 }

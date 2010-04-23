@@ -10,6 +10,7 @@
 #define array_(__args...) [NSArray arrayWithObjects:__args, nil]
 #define dict_(__args...) [NSDictionary dictionaryWithObjectsAndKeys:__args, nil]
 #define intv_(__o) [__o intValue]
+#define NSRangeZero NSMakeRange(0,0)
 
 //#define CELL_BACKGROUND_COLOR [UIColor colorWithRed:(244/255.0) green:(215/255.0) blue:(78/255.0) alpha:1.0]
 #define CELL_BACKGROUND_IMAGE [UIImage imageNamed:@"assets/ui/bkg.png"]
