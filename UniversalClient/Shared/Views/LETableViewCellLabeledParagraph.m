@@ -79,7 +79,7 @@
 
 
 + (CGFloat)getHeightForTableView:(UITableView *)tableView text:(NSString *)text {
-	CGRect frame = CGRectMake(0, 0, tableView.bounds.size.width - 100, tableView.bounds.size.height);
+	CGRect frame = CGRectMake(0, 0, tableView.bounds.size.width - 100, 0);
 	CGFloat suggestedHeight = [Util heightForText:text inFrame:frame withFont:TEXT_FONT] + 12;
 	if (suggestedHeight < tableView.rowHeight) {
 		return tableView.rowHeight;

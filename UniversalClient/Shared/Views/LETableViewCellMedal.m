@@ -90,17 +90,11 @@
 
 
 + (CGFloat)getHeightForTableView:(UITableView *)tableView withMedal:(NSDictionary *)medal {
-	CGFloat suggestedHeight;
-	if ([medal objectForKey:@"note"] == [NSNull null]) {
-		suggestedHeight = 70.0;
+	NSObject *note = [medal objectForKey:@"note"];
+	if (note && note != [NSNull null]) {
+		return 135.0;
 	} else {
-		suggestedHeight = 135.0;
-	}
-	
-	if (tableView.rowHeight > suggestedHeight) {
-		return tableView.rowHeight;
-	} else {
-		return suggestedHeight;
+		return 70.0;
 	}
 }
 
