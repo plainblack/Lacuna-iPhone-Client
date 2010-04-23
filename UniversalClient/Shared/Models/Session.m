@@ -28,6 +28,7 @@ static Session *sharedSession = nil;
 @synthesize mapCenterZ;
 @synthesize numNewMessages;
 @synthesize empireList;
+@synthesize lastMessageAt;
 
 
 + (Session *)sharedInstance {
@@ -93,6 +94,8 @@ static Session *sharedSession = nil;
 	self.mapCenterY = nil;
 	self.mapCenterZ = nil;
 	self.empireList = nil;
+	self.numNewMessages = nil;
+	self.lastMessageAt = nil;
 	[super dealloc];
 }
 
@@ -203,4 +206,21 @@ static Session *sharedSession = nil;
 }
 
 
+#pragma mark -
+#pragma mark SPECIAL Setters
+
+- (void)setNumNewMessages:(NSNumber *)newNumNewMessages {
+	NSNumber *tmp = numNewMessages;
+	if (numNewMessages) {
+		[numNewMessages release];
+		numNewMessages = nil;
+	}
+	numNewMessages = newNumNewMessages;
+	if (numNewMessages) {
+		[numNewMessages retain];
+		if ( tmp && ([tmp compare:numNewMessages]==NSOrderedAscending) ) {
+			self.lastMessageAt = [NSDate date];
+		}
+	}
+}
 @end

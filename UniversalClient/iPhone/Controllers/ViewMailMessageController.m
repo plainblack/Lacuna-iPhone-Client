@@ -198,6 +198,7 @@ typedef enum {
 
 - (void)replyToMessage {
 	NewMailMessageController *newMailMessageController = [NewMailMessageController create];
+	NSLog(@"SETTING REPLYTOMESSAGE");
 	newMailMessageController.replyToMessage = self.mailbox.messageDetails;
 	[[self navigationController] pushViewController:newMailMessageController animated:YES];
 }
@@ -211,10 +212,6 @@ typedef enum {
 		[self.mailbox archiveMessage:self.messageIndex];
 		[self.navigationController popViewControllerAnimated:YES];
 	}
-}
-
-
-- (void)actionSheetCancel:(UIActionSheet *)actionSheet {
 }
 
 

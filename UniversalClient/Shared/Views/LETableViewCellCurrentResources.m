@@ -8,6 +8,7 @@
 
 #import "LETableViewCellCurrentResources.h"
 #import "LEMacros.h"
+#import "Util.h"
 
 
 @interface LETableViewCellCurrentResources (PrivateMethods)
@@ -101,7 +102,8 @@
 
 - (void)setWasteCurrent:(NSNumber *)current capacity:(NSNumber *)capacity perHour:(NSNumber *)perHour {
 	[self setTotalLabel:wasteTotalLabel current:current capacity:capacity];
-	[self setOppositePerHourLabel:wastePerHourLabel perHour:perHour];
+	[self setNormalPerHourLabel:waterPerHourLabel perHour:perHour];
+	//[self setOppositePerHourLabel:wastePerHourLabel perHour:perHour];
 }
 
 
@@ -115,12 +117,18 @@
 #pragma mark Private Methods
 
 - (void)setTotalLabel:(UILabel *)totalLabel current:(NSNumber *)current capacity:(NSNumber *)capacity {
-	totalLabel.text = [NSString stringWithFormat:@"%@/%@", current, capacity];
+	totalLabel.text = [NSString stringWithFormat:@"%@/%@", [Util prettyNumber:current], [Util prettyNumber:capacity]];
+	if (intv_(current) == intv_(capacity)) {
+		totalLabel.textColor = [UIColor redColor];
+	} else {
+		totalLabel.textColor = [UIColor blackColor];
+	}
+
 }
 
 
 - (void)setNormalPerHourLabel:(UILabel *)perHourLabel perHour:(NSNumber *)perHour {
-	perHourLabel.text = [NSString stringWithFormat:@"%@/hr", perHour];
+	perHourLabel.text = [NSString stringWithFormat:@"%@/hr", [Util prettyNumber:perHour]];
 	if ([perHour intValue] < 0) {
 		perHourLabel.textColor = [UIColor redColor];
 	} else {

@@ -53,6 +53,20 @@
 }
 
 
++ (NSString *)prettyNumber:(NSNumber *)number {
+	NSInteger value = [number intValue];
+	if (value > 2000000000) {
+		return [NSString stringWithFormat:@"%iB", (value/1000000000)];
+	} else if (value > 2000000) {
+		return [NSString stringWithFormat:@"%iM", (value/1000000)];
+	} else if (value > 2000) {
+		return [NSString stringWithFormat:@"%iK", (value/1000)];
+	} else {
+		return [NSString stringWithFormat:@"%i", value];
+	}
+}
+
+
 + (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize {
 	UIGraphicsBeginImageContext( newSize );
 	[image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];

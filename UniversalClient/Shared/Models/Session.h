@@ -18,6 +18,7 @@
 	NSNumber *mapCenterZ;
 	NSNumber *numNewMessages;
 	NSMutableArray *empireList;
+	NSDate *lastMessageAt;
 }
 
 @property(nonatomic, retain) NSString *sessionId;
@@ -28,6 +29,7 @@
 @property(nonatomic, retain) NSNumber *mapCenterZ;
 @property(nonatomic, retain) NSNumber *numNewMessages;
 @property(nonatomic, retain) NSMutableArray *empireList;
+@property(nonatomic, retain) NSDate *lastMessageAt;
 
 
 + (Session *)sharedInstance;

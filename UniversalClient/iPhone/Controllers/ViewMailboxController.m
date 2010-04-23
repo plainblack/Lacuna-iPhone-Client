@@ -23,6 +23,7 @@
 @synthesize otherMailboxBarButtonItems;
 @synthesize mailbox;
 @synthesize reloadTimer;
+@synthesize lastMessageAt;
 
 
 #pragma mark -
@@ -83,9 +84,10 @@
     [super viewDidAppear:animated];
 	[self.mailbox addObserver:self forKeyPath:@"messageHeaders" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 	self.reloadTimer = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
-	if (oldNumNewMessages) {
+	if (self.lastMessageAt) {
 		Session *session = [Session sharedInstance];
-		if (oldNumNewMessages <= session.numNewMessages) {
+		NSLog(@"My last message: %@, session last message: %@", self.lastMessageAt, session.lastMessageAt);
+		if ([self.lastMessageAt compare:session.lastMessageAt] != NSOrderedSame) {
 			[self loadMessages];
 		}
 	}
@@ -98,7 +100,7 @@
 	self.reloadTimer = nil;
 	[self.mailbox removeObserver:self forKeyPath:@"messageHeaders"];
 	Session *session = [Session sharedInstance];
-	oldNumNewMessages = session.numNewMessages;
+	self.lastMessageAt = session.lastMessageAt;
 }
 
 
@@ -184,6 +186,7 @@
 	self.inboxBarButtonItems = nil;
 	self.otherMailboxBarButtonItems = nil;
 	self.mailbox = nil;
+	self.lastMessageAt = nil;
 }
 
 

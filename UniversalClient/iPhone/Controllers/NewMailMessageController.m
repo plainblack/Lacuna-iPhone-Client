@@ -54,9 +54,14 @@ typedef enum {
 	self.messageTextView.textColor = TEXT_SMALL_COLOR;
 	self.messageTextView.backgroundColor = [UIColor clearColor];
 	self.messageTextView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
-	
+}
+
+
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	NSLog(@"CHECKING REPLYTOMESSAGE");
 	if (replyToMessage) {
-		self.navigationItem.title = @"Replay";
+		self.navigationItem.title = @"Reply";
 		self.toCell.textField.text = [replyToMessage objectForKey:@"from"];
 		self.subjectCell.textField.text = [NSString stringWithFormat:@"RE: %@", [replyToMessage objectForKey:@"subject"]];
 		self.messageTextView.text = [NSString stringWithFormat:@"\nIn reply to:\n%@", [replyToMessage objectForKey:@"body"]];

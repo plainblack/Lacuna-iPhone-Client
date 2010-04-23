@@ -19,7 +19,7 @@
 	NSArray *otherMailboxBarButtonItems;
 	Mailbox *mailbox;
 	NSTimer *reloadTimer;
-	NSNumber *oldNumNewMessages;
+	NSDate *lastMessageAt;
 }
 
 
@@ -29,6 +29,7 @@
 @property(nonatomic, retain) NSArray *otherMailboxBarButtonItems;
 @property(nonatomic, retain) Mailbox *mailbox;
 @property(nonatomic, retain) NSTimer *reloadTimer;
+@property(nonatomic, retain) NSDate *lastMessageAt;
 
 
 - (IBAction)newMessage;

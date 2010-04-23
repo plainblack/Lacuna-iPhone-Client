@@ -18,6 +18,7 @@
 + (CGFloat)heightForText:(NSString *)text inFrame:(CGRect)frame withFont:(UIFont *)font;
 + (NSDate *)date:(NSString *)serverDateString;
 + (NSString *)prettyDate:(NSString *)serverDateString;
++ (NSString *)prettyNumber:(NSNumber *)number;
 + (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize;
 
 
