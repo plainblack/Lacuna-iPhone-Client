@@ -23,16 +23,15 @@ typedef enum {
 	SECTION_UPGRADE
 } SECTION;
 
-typedef enum {
-	UPGRADE_BUILDING_STATS,
-	UPGRADE_BUILDING_PROGRESS
-} UPGRADE_BUILDING;
 
 typedef enum {
-	UPGRADE_NOT_BUILDING_STATS,
-	UPGRADE_NOT_BUILDING_COST,
-	UPGRADE_NOT_BUILDING_UPGRADE
-} UPGRADE_NOT_BUILDING;
+	ROW_BUILDING_STATS,
+	ROW_UPGRADE_BUILDING_STATS,
+	ROW_UPGRADE_BUILDING_COST,
+	ROW_UPGRADE_BUTTON,
+	ROW_UPGRADE_CANNOT,
+	ROW_UPGRADE_PROGRESS
+} ROW;
 
 
 @implementation ViewBuildingController
@@ -41,6 +40,7 @@ typedef enum {
 @synthesize buildingId;
 @synthesize buildingData;
 @synthesize urlPart;
+@synthesize sections;
 
 
 #pragma mark -
@@ -52,8 +52,8 @@ typedef enum {
 
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
-	self.sectionHeaders = array_([LEViewSectionTab tableView:self.tableView createWithText:@"Building"],
-								 [LEViewSectionTab tableView:self.tableView createWithText:@"Upgrade"]);
+	self.sections = [NSArray array];
+	self.sectionHeaders = [NSArray array];
 }
 
 
@@ -75,15 +75,22 @@ typedef enum {
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	return [self.sections count];
+	/*
 	if (self.buildingData) {
 		return 2;
 	} else {
 		return 0;
 	}
+	*/
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	NSDictionary *sectionData = [self.sections objectAtIndex:section];
+	NSArray *rows = [sectionData objectForKey:@"rows"];
+	return [rows count];
+	/*
     // Return the number of rows in the section.
 	switch (section) {
 		case SECTION_BUILDING:
@@ -103,11 +110,40 @@ typedef enum {
 			return 0;
 			break;
 	}
+	*/
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSDictionary *pendingBuild = [self.buildingData objectForKey:@"pending_build"];
+	NSDictionary *section = [self.sections objectAtIndex:indexPath.section];
+	NSArray *rows = [section objectForKey:@"rows"];
+	
+	switch (intv_([rows objectAtIndex:indexPath.row])) {
+		case ROW_BUILDING_STATS:
+			return 100.0;
+			break;
+		case ROW_UPGRADE_BUILDING_STATS:
+			return 100.0;
+			break;
+		case ROW_UPGRADE_BUILDING_COST:
+			return 65.0;
+			break;
+		case ROW_UPGRADE_BUTTON:
+			return tableView.rowHeight;
+			break;
+		case ROW_UPGRADE_CANNOT:
+			return 88.0;
+			break;
+		case ROW_UPGRADE_PROGRESS:
+			return 50.0;
+			break;
+		default:
+			return tableView.rowHeight;
+			break;
+	}
+	
+	/*
+	 NSDictionary *pendingBuild = [self.buildingData objectForKey:@"pending_build"];
 	
 	switch (indexPath.section) {
 		case SECTION_BUILDING:
@@ -155,13 +191,89 @@ typedef enum {
 			return 5;
 			break;
 	}
+	*/
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
+	NSDictionary *section = [self.sections objectAtIndex:indexPath.section];
+	NSArray *rows = [section objectForKey:@"rows"];
+
+	NSDictionary *upgrade = [self.buildingData objectForKey:@"upgrade"];
+	switch (intv_([rows objectAtIndex:indexPath.row])) {
+		case ROW_BUILDING_STATS:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellBuildingStats *statsCell = [LETableViewCellBuildingStats getCellForTableView:tableView];
+			[statsCell setBuildingImage:[UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/%@.png", [self.buildingData objectForKey:@"image"]]]];
+			[statsCell setBuildingName:[self.buildingData objectForKey:@"name"] buildingLevel:[self.buildingData objectForKey:@"level"]];
+			[statsCell setEnergyPerHour:[self.buildingData objectForKey:@"energy_hour"]];
+			[statsCell setFoodPerHour:[self.buildingData objectForKey:@"food_hour"]];
+			[statsCell setHappinessPerHour: [self.buildingData objectForKey:@"happiness_hour"]];
+			[statsCell setOrePerHour: [self.buildingData objectForKey:@"ore_hour"]];
+			[statsCell setWastePerHour:[self.buildingData objectForKey:@"waste_hour"]];
+			[statsCell setWaterPerHour:[self.buildingData objectForKey:@"water_hour"]];
+			cell = statsCell;
+			break;
+		case ROW_UPGRADE_BUILDING_STATS:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			NSDictionary *stats = [upgrade objectForKey:@"production"];
+			LETableViewCellBuildingStats *upgradeStatsCell = [LETableViewCellBuildingStats getCellForTableView:tableView];
+			[upgradeStatsCell setBuildingImage:[UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/%@.png", [upgrade objectForKey:@"image"]]]];
+			[upgradeStatsCell setBuildingName:[self.buildingData objectForKey:@"name"] buildingLevel:[NSNumber numberWithInt:intv_([self.buildingData objectForKey:@"level"])+1]];
+			[upgradeStatsCell setEnergyPerHour:[stats objectForKey:@"energy_hour"]];
+			[upgradeStatsCell setFoodPerHour:[stats objectForKey:@"food_hour"]];
+			[upgradeStatsCell setHappinessPerHour: [stats objectForKey:@"happiness_hour"]];
+			[upgradeStatsCell setOrePerHour: [stats objectForKey:@"ore_hour"]];
+			[upgradeStatsCell setWastePerHour:[stats objectForKey:@"waste_hour"]];
+			[upgradeStatsCell setWaterPerHour:[stats objectForKey:@"water_hour"]];
+			cell = upgradeStatsCell;
+			break;
+		case ROW_UPGRADE_BUILDING_COST:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			NSDictionary *cost = [upgrade objectForKey:@"cost"];
+			LETableViewCellCost *costCell = [LETableViewCellCost getCellForTableView:tableView];
+			[costCell setEnergyCost:[cost objectForKey:@"energy"]];
+			[costCell setFoodCost:[cost objectForKey:@"food"]];
+			[costCell setOreCost:[cost objectForKey:@"ore"]];
+			[costCell setTimeCost:[cost objectForKey:@"time"]];
+			[costCell setWasteCost:[cost objectForKey:@"waste"]];
+			[costCell setWaterCost:[cost objectForKey:@"water"]];
+			cell = costCell;
+			break;
+		case ROW_UPGRADE_BUTTON:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *buttonCell = [LETableViewCellButton getCellForTableView:tableView];
+			buttonCell.textLabel.text = @"Upgrade";
+			cell = buttonCell;
+			break;
+		case ROW_UPGRADE_CANNOT:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellUnbuildable *unbuildableCell = [LETableViewCellUnbuildable getCellForTableView:tableView];
+			NSArray *reason = [upgrade objectForKey:@"reason"];
+			if ([reason count] > 2) {
+				[unbuildableCell setReason:[NSString stringWithFormat:@"%@ (%@)", [reason objectAtIndex:1], [reason objectAtIndex:2]]];
+			} else {
+				[unbuildableCell setReason:[NSString stringWithFormat:@"%@", [reason objectAtIndex:1]]];
+			}
+			cell = unbuildableCell;
+			break;
+		case ROW_UPGRADE_PROGRESS:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellProgress *pendingCell = [LETableViewCellProgress getCellForTableView:tableView];
+			[pendingCell setTotalTime:totalBuildTime remainingTime:remainingBuildTime];
+			pendingCell.delegate = self;
+			cell = pendingCell;
+			break;
+		default:
+			cell = nil;
+			break;
+	}
 	
+	return cell;
+	
+	/*
 	switch (indexPath.section) {
 		case SECTION_BUILDING:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
@@ -263,7 +375,8 @@ typedef enum {
 			cell = nil;
 			break;
 	}
-    
+    */
+	
     return cell;
 }
 
@@ -272,12 +385,13 @@ typedef enum {
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == SECTION_UPGRADE && indexPath.row == UPGRADE_NOT_BUILDING_UPGRADE) {
-		NSDictionary *upgrade = [self.buildingData objectForKey:@"upgrade"];
-		BOOL canUpgrade = [[upgrade objectForKey:@"can"] boolValue];
-		if (canUpgrade) {
+	NSDictionary *section = [self.sections objectAtIndex:indexPath.section];
+	NSArray *rows = [section objectForKey:@"rows"];
+	
+	switch (intv_([rows objectAtIndex:indexPath.row])) {
+		case ROW_UPGRADE_BUTTON:
 			[[[LEUpgradeBuilding alloc] initWithCallback:@selector(upgradedBuilding:) target:self buildingId:self.buildingId buildingUrl:self.urlPart] autorelease];
-		}
+			break;
 	}
 }
 
@@ -297,6 +411,7 @@ typedef enum {
 	self.buildingId = nil;
 	self.buildingData = nil;
 	self.urlPart = nil;
+	self.sections = nil;
 	[super viewDidUnload];
 }
 
@@ -321,17 +436,34 @@ typedef enum {
 	self.buildingData = request.building;
 	
 	self.navigationItem.title = [self.buildingData objectForKey:@"name"];
-	
+
+	NSMutableArray *tmpSectionHeaders = [NSMutableArray arrayWithCapacity:5];
+	[tmpSectionHeaders addObject:[LEViewSectionTab tableView:self.tableView createWithText:@"Building"]];
+	NSMutableArray *tmpSections = [NSMutableArray arrayWithCapacity:5];
+	[tmpSections addObject:dict_([NSNumber numberWithInt:SECTION_BUILDING], @"type", array_([NSNumber numberWithInt:ROW_BUILDING_STATS]), @"rows")];
+
+	[tmpSectionHeaders addObject:[LEViewSectionTab tableView:self.tableView createWithText:@"Upgrade"]];
 	NSDictionary *pendingBuild = [self.buildingData objectForKey:@"pending_build"];
 	if (pendingBuild) {
+		[tmpSections addObject:dict_([NSNumber numberWithInt:SECTION_UPGRADE], @"type", array_([NSNumber numberWithInt:ROW_UPGRADE_BUILDING_STATS], [NSNumber numberWithInt:ROW_UPGRADE_PROGRESS]), @"rows")];
 		NSDate *buildEndDate = [Util date:[pendingBuild objectForKey:@"end"]];
 		NSDate *buildStartDate = [Util date:[pendingBuild objectForKey:@"start"]];
 		totalBuildTime = (NSInteger)[buildEndDate timeIntervalSinceDate:buildStartDate];
 		remainingBuildTime = intv_([pendingBuild objectForKey:@"seconds_remaining"]);
 	} else {
+		NSDictionary *upgrade = [self.buildingData objectForKey:@"upgrade"];
+		BOOL canUpgrade = [[upgrade objectForKey:@"can"] boolValue];
 		totalBuildTime = 0;
 		remainingBuildTime = 0;
+		if (canUpgrade) {
+			[tmpSections addObject:dict_([NSNumber numberWithInt:SECTION_UPGRADE], @"type", array_([NSNumber numberWithInt:ROW_UPGRADE_BUILDING_STATS], [NSNumber numberWithInt:ROW_UPGRADE_BUILDING_COST], [NSNumber numberWithInt:ROW_UPGRADE_BUTTON]), @"rows")];
+		} else {
+			[tmpSections addObject:dict_([NSNumber numberWithInt:SECTION_UPGRADE], @"type", array_([NSNumber numberWithInt:ROW_UPGRADE_BUILDING_STATS], [NSNumber numberWithInt:ROW_UPGRADE_BUILDING_COST], [NSNumber numberWithInt:ROW_UPGRADE_CANNOT]), @"rows")];
+		}
 	}
+	
+	self.sectionHeaders = tmpSectionHeaders;
+	self.sections = tmpSections;
 	
 	[self.tableView reloadData];
 	

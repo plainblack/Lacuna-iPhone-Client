@@ -17,12 +17,14 @@
 	NSString *urlPart;
 	NSInteger totalBuildTime;
 	NSInteger remainingBuildTime;
+	NSArray *sections;
 }
 
 
 @property(nonatomic, retain) NSString *buildingId;
 @property(nonatomic, retain) NSDictionary *buildingData;
 @property(nonatomic, retain) NSString *urlPart;
+@property(nonatomic, retain) NSArray *sections;
 
 
 + (ViewBuildingController *)create;
