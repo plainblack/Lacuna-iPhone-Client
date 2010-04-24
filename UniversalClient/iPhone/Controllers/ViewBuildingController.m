@@ -16,10 +16,12 @@
 #import "LETableViewCellBuildingStats.h"
 #import "LETableViewCellCost.h"
 #import "LETableViewCellUnbuildable.h"
+#import "ViewNetwork19NewsController.h"
 
 
 typedef enum {
 	SECTION_BUILDING,
+	SECTION_ACTIONS,
 	SECTION_UPGRADE
 } SECTION;
 
@@ -30,7 +32,8 @@ typedef enum {
 	ROW_UPGRADE_BUILDING_COST,
 	ROW_UPGRADE_BUTTON,
 	ROW_UPGRADE_CANNOT,
-	ROW_UPGRADE_PROGRESS
+	ROW_UPGRADE_PROGRESS,
+	ROW_VIEW_NETWORK_19
 } ROW;
 
 
@@ -76,13 +79,6 @@ typedef enum {
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	return [self.sections count];
-	/*
-	if (self.buildingData) {
-		return 2;
-	} else {
-		return 0;
-	}
-	*/
 }
 
 
@@ -90,27 +86,6 @@ typedef enum {
 	NSDictionary *sectionData = [self.sections objectAtIndex:section];
 	NSArray *rows = [sectionData objectForKey:@"rows"];
 	return [rows count];
-	/*
-    // Return the number of rows in the section.
-	switch (section) {
-		case SECTION_BUILDING:
-			return 1;
-			break;
-		case SECTION_UPGRADE:
-			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
-			NSDictionary *pendingBuild = [self.buildingData objectForKey:@"pending_build"];
-			
-			if (pendingBuild) {
-				return 2;
-			} else {
-				return 3;
-			}
-			break;
-		default:
-			return 0;
-			break;
-	}
-	*/
 }
 
 
@@ -128,6 +103,7 @@ typedef enum {
 		case ROW_UPGRADE_BUILDING_COST:
 			return 65.0;
 			break;
+		case ROW_VIEW_NETWORK_19:
 		case ROW_UPGRADE_BUTTON:
 			return tableView.rowHeight;
 			break;
@@ -141,57 +117,6 @@ typedef enum {
 			return tableView.rowHeight;
 			break;
 	}
-	
-	/*
-	 NSDictionary *pendingBuild = [self.buildingData objectForKey:@"pending_build"];
-	
-	switch (indexPath.section) {
-		case SECTION_BUILDING:
-			return 100.0;
-			break;
-		case SECTION_UPGRADE:
-			if (pendingBuild) {
-				switch (indexPath.row) {
-					case UPGRADE_BUILDING_STATS:
-						return 100.0;
-						break;
-					case UPGRADE_BUILDING_PROGRESS:
-						return 50.0;
-						break;
-					default:
-						return 5;
-						break;
-				}
-			} else {
-				switch (indexPath.row) {
-					case UPGRADE_NOT_BUILDING_STATS:
-						return 100.0;
-						break;
-					case UPGRADE_NOT_BUILDING_COST:
-						return 65.0;
-						break;
-					case UPGRADE_NOT_BUILDING_UPGRADE:
-						; //DO NOT REMOVE
-						NSDictionary *upgrade = [self.buildingData objectForKey:@"upgrade"];
-						BOOL canUpgrade = [[upgrade objectForKey:@"can"] boolValue];
-						
-						if (canUpgrade) {
-							return [tableView rowHeight];
-						} else {
-							return 88.0;
-						}
-						break;
-					default:
-						return 5;
-						break;
-				}
-			}
-			break;
-		default:
-			return 5;
-			break;
-	}
-	*/
 }
 
 
@@ -242,12 +167,6 @@ typedef enum {
 			[costCell setWaterCost:[cost objectForKey:@"water"]];
 			cell = costCell;
 			break;
-		case ROW_UPGRADE_BUTTON:
-			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
-			LETableViewCellButton *buttonCell = [LETableViewCellButton getCellForTableView:tableView];
-			buttonCell.textLabel.text = @"Upgrade";
-			cell = buttonCell;
-			break;
 		case ROW_UPGRADE_CANNOT:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellUnbuildable *unbuildableCell = [LETableViewCellUnbuildable getCellForTableView:tableView];
@@ -266,118 +185,24 @@ typedef enum {
 			pendingCell.delegate = self;
 			cell = pendingCell;
 			break;
+		case ROW_UPGRADE_BUTTON:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *upgradeButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			upgradeButtonCell.textLabel.text = @"Upgrade";
+			cell = upgradeButtonCell;
+			break;
+		case ROW_VIEW_NETWORK_19:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *viewNewsButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			viewNewsButtonCell.textLabel.text = @"View Network 19 News";
+			cell = viewNewsButtonCell;
+			break;
 		default:
 			cell = nil;
 			break;
 	}
 	
 	return cell;
-	
-	/*
-	switch (indexPath.section) {
-		case SECTION_BUILDING:
-			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
-			LETableViewCellBuildingStats *statsCell = [LETableViewCellBuildingStats getCellForTableView:tableView];
-			[statsCell setBuildingImage:[UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/%@.png", [self.buildingData objectForKey:@"image"]]]];
-			[statsCell setBuildingName:[self.buildingData objectForKey:@"name"] buildingLevel:[self.buildingData objectForKey:@"level"]];
-			[statsCell setEnergyPerHour:[self.buildingData objectForKey:@"energy_hour"]];
-			[statsCell setFoodPerHour:[self.buildingData objectForKey:@"food_hour"]];
-			[statsCell setHappinessPerHour: [self.buildingData objectForKey:@"happiness_hour"]];
-			[statsCell setOrePerHour: [self.buildingData objectForKey:@"ore_hour"]];
-			[statsCell setWastePerHour:[self.buildingData objectForKey:@"waste_hour"]];
-			[statsCell setWaterPerHour:[self.buildingData objectForKey:@"water_hour"]];
-			cell = statsCell;
-			break;
-		case SECTION_UPGRADE:
-			;
-			NSDictionary *upgrade = [self.buildingData objectForKey:@"upgrade"];
-			NSDictionary *pendingBuild = [self.buildingData objectForKey:@"pending_build"];
-			BOOL canUpgrade = [[upgrade objectForKey:@"can"] boolValue];
-			
-			if (pendingBuild) {
-				switch (indexPath.row) {
-					case UPGRADE_BUILDING_STATS:
-						; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
-						NSDictionary *stats = [upgrade objectForKey:@"production"];
-						LETableViewCellBuildingStats *statsCell = [LETableViewCellBuildingStats getCellForTableView:tableView];
-						[statsCell setBuildingImage:[UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/%@.png", [upgrade objectForKey:@"image"]]]];
-						[statsCell setBuildingName:[self.buildingData objectForKey:@"name"] buildingLevel:[NSNumber numberWithInt:intv_([self.buildingData objectForKey:@"level"])+1]];
-						[statsCell setEnergyPerHour:[stats objectForKey:@"energy_hour"]];
-						[statsCell setFoodPerHour:[stats objectForKey:@"food_hour"]];
-						[statsCell setHappinessPerHour: [stats objectForKey:@"happiness_hour"]];
-						[statsCell setOrePerHour: [stats objectForKey:@"ore_hour"]];
-						[statsCell setWastePerHour:[stats objectForKey:@"waste_hour"]];
-						[statsCell setWaterPerHour:[stats objectForKey:@"water_hour"]];
-						cell = statsCell;
-						break;
-					case UPGRADE_BUILDING_PROGRESS:
-						; //DO NOT REMOVE
-						LETableViewCellProgress *pendingCell = [LETableViewCellProgress getCellForTableView:tableView];
-						[pendingCell setTotalTime:totalBuildTime remainingTime:remainingBuildTime];
-						pendingCell.delegate = self;
-						cell = pendingCell;
-						break;
-					default:
-						cell = nil;
-						break;
-				}
-			} else {
-				switch (indexPath.row) {
-					case UPGRADE_NOT_BUILDING_STATS:
-						; //DO NOT REMOVE
-						NSDictionary *stats = [upgrade objectForKey:@"production"];
-						LETableViewCellBuildingStats *statsCell = [LETableViewCellBuildingStats getCellForTableView:tableView];
-						[statsCell setBuildingImage:[UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/%@.png", [upgrade objectForKey:@"image"]]]];
-						[statsCell setBuildingName:[self.buildingData objectForKey:@"name"] buildingLevel:[NSNumber numberWithInt:intv_([self.buildingData objectForKey:@"level"])+1]];
-						[statsCell setEnergyPerHour:[stats objectForKey:@"energy_hour"]];
-						[statsCell setFoodPerHour:[stats objectForKey:@"food_hour"]];
-						[statsCell setHappinessPerHour: [stats objectForKey:@"happiness_hour"]];
-						[statsCell setOrePerHour: [stats objectForKey:@"ore_hour"]];
-						[statsCell setWastePerHour:[stats objectForKey:@"waste_hour"]];
-						[statsCell setWaterPerHour:[stats objectForKey:@"water_hour"]];
-						cell = statsCell;
-						break;
-					case UPGRADE_NOT_BUILDING_COST:
-						; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
-						NSDictionary *cost = [upgrade objectForKey:@"cost"];
-						LETableViewCellCost *costCell = [LETableViewCellCost getCellForTableView:tableView];
-						[costCell setEnergyCost:[cost objectForKey:@"energy"]];
-						[costCell setFoodCost:[cost objectForKey:@"food"]];
-						[costCell setOreCost:[cost objectForKey:@"ore"]];
-						[costCell setTimeCost:[cost objectForKey:@"time"]];
-						[costCell setWasteCost:[cost objectForKey:@"waste"]];
-						[costCell setWaterCost:[cost objectForKey:@"water"]];
-						cell = costCell;
-						break;
-					case UPGRADE_NOT_BUILDING_UPGRADE:
-						if (canUpgrade) {
-							LETableViewCellButton *buttonCell = [LETableViewCellButton getCellForTableView:tableView];
-							buttonCell.textLabel.text = @"Upgrade";
-							cell = buttonCell;
-						} else {
-							LETableViewCellUnbuildable *unbuildableCell = [LETableViewCellUnbuildable getCellForTableView:tableView];
-							NSArray *reason = [upgrade objectForKey:@"reason"];
-							if ([reason count] > 2) {
-								[unbuildableCell setReason:[NSString stringWithFormat:@"%@ (%@)", [reason objectAtIndex:1], [reason objectAtIndex:2]]];
-							} else {
-								[unbuildableCell setReason:[NSString stringWithFormat:@"%@", [reason objectAtIndex:1]]];
-							}
-							cell = unbuildableCell;
-						}
-						break;
-					default:
-						cell = nil;
-						break;
-				}
-			}
-			break;
-		default:
-			cell = nil;
-			break;
-	}
-    */
-	
-    return cell;
 }
 
 
@@ -391,6 +216,13 @@ typedef enum {
 	switch (intv_([rows objectAtIndex:indexPath.row])) {
 		case ROW_UPGRADE_BUTTON:
 			[[[LEUpgradeBuilding alloc] initWithCallback:@selector(upgradedBuilding:) target:self buildingId:self.buildingId buildingUrl:self.urlPart] autorelease];
+			break;
+		case ROW_VIEW_NETWORK_19:
+			; //DO NOT REMOVE
+			ViewNetwork19NewsController *viewNetwork19NewsController = [ViewNetwork19NewsController create];
+			viewNetwork19NewsController.buildingId = self.buildingId;
+			viewNetwork19NewsController.urlPart = self.urlPart;
+			[self.navigationController pushViewController:viewNetwork19NewsController animated:YES];
 			break;
 	}
 }
@@ -441,6 +273,13 @@ typedef enum {
 	[tmpSectionHeaders addObject:[LEViewSectionTab tableView:self.tableView createWithText:@"Building"]];
 	NSMutableArray *tmpSections = [NSMutableArray arrayWithCapacity:5];
 	[tmpSections addObject:dict_([NSNumber numberWithInt:SECTION_BUILDING], @"type", array_([NSNumber numberWithInt:ROW_BUILDING_STATS]), @"rows")];
+	
+	
+	if ([self.urlPart isEqualToString:@"/network19"]) {
+		[tmpSectionHeaders addObject:[LEViewSectionTab tableView:self.tableView createWithText:@"Actions"]];
+		[tmpSections addObject:dict_([NSNumber numberWithInt:SECTION_ACTIONS], @"type", array_([NSNumber numberWithInt:ROW_VIEW_NETWORK_19]), @"rows")];
+	}
+	
 
 	[tmpSectionHeaders addObject:[LEViewSectionTab tableView:self.tableView createWithText:@"Upgrade"]];
 	NSDictionary *pendingBuild = [self.buildingData objectForKey:@"pending_build"];
