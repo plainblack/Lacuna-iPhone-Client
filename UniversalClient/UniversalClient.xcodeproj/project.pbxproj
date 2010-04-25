@@ -31,6 +31,7 @@
 		F6864F9B1183A131009826A7 /* ViewNetwork19NewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6864F9A1183A131009826A7 /* ViewNetwork19NewsController.m */; };
 		F6864F9E1183A3FB009826A7 /* LEBuildingViewNews.m in Sources */ = {isa = PBXBuildFile; fileRef = F6864F9D1183A3FB009826A7 /* LEBuildingViewNews.m */; };
 		F6864FCE1183A912009826A7 /* LETableViewCellNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F6864FCD1183A912009826A7 /* LETableViewCellNewsItem.m */; };
+		F68650081183D2A4009826A7 /* LEBuildingRestrictCoverage.m in Sources */ = {isa = PBXBuildFile; fileRef = F68650071183D2A4009826A7 /* LEBuildingRestrictCoverage.m */; };
 		F6882CFE116EA08A009B624B /* ViewEmpireController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6882CFC116EA08A009B624B /* ViewEmpireController.m */; };
 		F6882D03116EA658009B624B /* NewEmpireController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6882D01116EA658009B624B /* NewEmpireController.m */; };
 		F6882D41116EB44F009B624B /* LETableViewCellLabeledText.m in Sources */ = {isa = PBXBuildFile; fileRef = F6882D40116EB44F009B624B /* LETableViewCellLabeledText.m */; };
@@ -140,6 +141,8 @@
 		F6864F9D1183A3FB009826A7 /* LEBuildingViewNews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewNews.m; sourceTree = "<group>"; };
 		F6864FCC1183A912009826A7 /* LETableViewCellNewsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellNewsItem.h; sourceTree = "<group>"; };
 		F6864FCD1183A912009826A7 /* LETableViewCellNewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellNewsItem.m; sourceTree = "<group>"; };
+		F68650061183D2A4009826A7 /* LEBuildingRestrictCoverage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingRestrictCoverage.h; sourceTree = "<group>"; };
+		F68650071183D2A4009826A7 /* LEBuildingRestrictCoverage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingRestrictCoverage.m; sourceTree = "<group>"; };
 		F6882CFB116EA08A009B624B /* ViewEmpireController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewEmpireController.h; sourceTree = "<group>"; };
 		F6882CFC116EA08A009B624B /* ViewEmpireController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewEmpireController.m; sourceTree = "<group>"; };
 		F6882D00116EA658009B624B /* NewEmpireController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewEmpireController.h; sourceTree = "<group>"; };
@@ -521,6 +524,8 @@
 				F6AC4A19116C0F9B001B967A /* LEUpgradeBuilding.m */,
 				F6864F9C1183A3FB009826A7 /* LEBuildingViewNews.h */,
 				F6864F9D1183A3FB009826A7 /* LEBuildingViewNews.m */,
+				F68650061183D2A4009826A7 /* LEBuildingRestrictCoverage.h */,
+				F68650071183D2A4009826A7 /* LEBuildingRestrictCoverage.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -735,6 +740,7 @@
 				F6864F9B1183A131009826A7 /* ViewNetwork19NewsController.m in Sources */,
 				F6864F9E1183A3FB009826A7 /* LEBuildingViewNews.m in Sources */,
 				F6864FCE1183A912009826A7 /* LETableViewCellNewsItem.m in Sources */,
+				F68650081183D2A4009826A7 /* LEBuildingRestrictCoverage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

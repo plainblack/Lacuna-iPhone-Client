@@ -17,6 +17,7 @@
 #import "LETableViewCellCost.h"
 #import "LETableViewCellUnbuildable.h"
 #import "ViewNetwork19NewsController.h"
+#import "LEBuildingRestrictCoverage.h"
 
 
 typedef enum {
@@ -33,7 +34,9 @@ typedef enum {
 	ROW_UPGRADE_BUTTON,
 	ROW_UPGRADE_CANNOT,
 	ROW_UPGRADE_PROGRESS,
-	ROW_VIEW_NETWORK_19
+	ROW_VIEW_NETWORK_19,
+	ROW_RESTRICTED_NETWORK_19,
+	ROW_UNRESTRICTED_NETWORK_19
 } ROW;
 
 
@@ -105,6 +108,8 @@ typedef enum {
 			break;
 		case ROW_VIEW_NETWORK_19:
 		case ROW_UPGRADE_BUTTON:
+		case ROW_RESTRICTED_NETWORK_19:
+		case ROW_UNRESTRICTED_NETWORK_19:
 			return tableView.rowHeight;
 			break;
 		case ROW_UPGRADE_CANNOT:
@@ -197,6 +202,18 @@ typedef enum {
 			viewNewsButtonCell.textLabel.text = @"View Network 19 News";
 			cell = viewNewsButtonCell;
 			break;
+		case ROW_RESTRICTED_NETWORK_19:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *restrictedButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			restrictedButtonCell.textLabel.text = @"News restricted, change";
+			cell = restrictedButtonCell;
+			break;
+		case ROW_UNRESTRICTED_NETWORK_19:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *unrestrictedButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			unrestrictedButtonCell.textLabel.text = @"News unrestricted, change";
+			cell = unrestrictedButtonCell;
+			break;
 		default:
 			cell = nil;
 			break;
@@ -223,6 +240,12 @@ typedef enum {
 			viewNetwork19NewsController.buildingId = self.buildingId;
 			viewNetwork19NewsController.urlPart = self.urlPart;
 			[self.navigationController pushViewController:viewNetwork19NewsController animated:YES];
+			break;
+		case ROW_RESTRICTED_NETWORK_19:
+			[[[LEBuildingRestrictCoverage alloc] initWithCallback:@selector(buildingRestrictCoverageChanged:) target:self buildingId:self.buildingId buildingUrl:self.urlPart restricted:NO] autorelease];
+			break;
+		case ROW_UNRESTRICTED_NETWORK_19:
+			[[[LEBuildingRestrictCoverage alloc] initWithCallback:@selector(buildingRestrictCoverageChanged:) target:self buildingId:self.buildingId buildingUrl:self.urlPart restricted:YES] autorelease];
 			break;
 	}
 }
@@ -277,7 +300,16 @@ typedef enum {
 	
 	if ([self.urlPart isEqualToString:@"/network19"]) {
 		[tmpSectionHeaders addObject:[LEViewSectionTab tableView:self.tableView createWithText:@"Actions"]];
-		[tmpSections addObject:dict_([NSNumber numberWithInt:SECTION_ACTIONS], @"type", array_([NSNumber numberWithInt:ROW_VIEW_NETWORK_19]), @"rows")];
+		NSMutableArray *rows = [NSMutableArray arrayWithCapacity:5];
+		[rows addObject:[NSNumber numberWithInt:ROW_VIEW_NETWORK_19]];
+		BOOL restricted = [[[request.response objectForKey:@"result"] objectForKey:@"restrict_coverage"] boolValue];
+		NSLog(@"restrict_coverage: %@", [[request.response objectForKey:@"result"] objectForKey:@"restrict_coverage"]);
+		if (restricted) {
+			[rows addObject:[NSNumber numberWithInt:ROW_RESTRICTED_NETWORK_19]];
+		} else {
+			[rows addObject:[NSNumber numberWithInt:ROW_UNRESTRICTED_NETWORK_19]];
+		}
+		[tmpSections addObject:dict_([NSNumber numberWithInt:SECTION_ACTIONS], @"type", rows, @"rows")];
 	}
 	
 
@@ -314,6 +346,12 @@ typedef enum {
 	[[LEGetBuilding alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
 	
 	self.navigationItem.title = @"Refreshing";
+	
+	return nil;
+}
+
+- (id)buildingRestrictCoverageChanged:(LEBuildingRestrictCoverage *)request {
+	[[LEGetBuilding alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
 	
 	return nil;
 }

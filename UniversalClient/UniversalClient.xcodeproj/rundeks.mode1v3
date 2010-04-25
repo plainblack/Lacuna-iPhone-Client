@@ -267,7 +267,7 @@
 								<string>2860E386111B897F00E27156</string>
 								<string>F6E4D66A1168D4CD00980B59</string>
 								<string>28EEBF621118D79A00187D67</string>
-								<string>F634BB3E116C309B0084A8B2</string>
+								<string>F6E4D6681168D4B200980B59</string>
 								<string>19C28FACFE9D520D11CA2CBB</string>
 								<string>F6AC4A63116C1192001B967A</string>
 								<string>1C37FBAC04509CD000000102</string>
@@ -276,38 +276,26 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>33</integer>
+									<integer>23</integer>
 									<integer>3</integer>
 									<integer>2</integer>
 									<integer>0</integer>
 								</array>
 								<array>
-									<integer>57</integer>
-									<integer>43</integer>
+									<integer>92</integer>
+									<integer>41</integer>
 									<integer>38</integer>
 									<integer>0</integer>
 								</array>
 								<array>
-									<integer>58</integer>
-									<integer>43</integer>
-									<integer>38</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>76</integer>
-									<integer>43</integer>
-									<integer>38</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>77</integer>
-									<integer>43</integer>
+									<integer>93</integer>
+									<integer>41</integer>
 									<integer>38</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 292}, {210, 623}}</string>
+							<string>{{0, 1290}, {210, 623}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -344,7 +332,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>LETableViewCellNewsItem.m</string>
+								<string>ViewBuildingController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -352,11 +340,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>LETableViewCellNewsItem.m</string>
+										<string>ViewBuildingController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F68650041183B2D5009826A7</string>
+										<string>F68650381183D9FB009826A7</string>
 										<key>history</key>
 										<array>
 											<string>F6885F7E1168421D00080696</string>
@@ -520,15 +508,17 @@
 											<string>F6864FB51183A63E009826A7</string>
 											<string>F6864FB71183A63E009826A7</string>
 											<string>F6864FBA1183A63E009826A7</string>
-											<string>F6864FBF1183A6CF009826A7</string>
-											<string>F6864FC01183A6CF009826A7</string>
-											<string>F6864FC11183A6CF009826A7</string>
 											<string>F6864FC61183A74C009826A7</string>
 											<string>F6864FD11183AA85009826A7</string>
 											<string>F6864FD31183AA85009826A7</string>
-											<string>F6864FD91183AB0F009826A7</string>
 											<string>F6864FFC1183B25C009826A7</string>
-											<string>F6864FFD1183B25C009826A7</string>
+											<string>F68650221183D8A8009826A7</string>
+											<string>F68650231183D8A8009826A7</string>
+											<string>F68650241183D8A8009826A7</string>
+											<string>F68650251183D8A8009826A7</string>
+											<string>F68650261183D8A8009826A7</string>
+											<string>F68650271183D8A8009826A7</string>
+											<string>F68650281183D8A8009826A7</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
