@@ -16,6 +16,7 @@
 #import "LETableViewCellBody.h"
 #import "LETableViewCellCurrentResources.h"
 #import "ViewBodyMapController.h"
+#import "RenameBodyController.h"
 
 
 typedef enum {
@@ -377,12 +378,10 @@ typedef enum {
 				break;
 			case ACTION_ROW_RENAME_BODY:
 				NSLog(@"Clicked rename body");
-				/*
-				RenameBodyController *renameBodyController = [[RenameBodyController alloc] initWithNibName:@"RenameBodyController" bundle:nil];
+				RenameBodyController *renameBodyController = [RenameBodyController create];
 				renameBodyController.bodyId = self.bodyId;
+				renameBodyController.nameCell.textField.text = [self.bodyData objectForKey:@"name"];
 				[[self navigationController] pushViewController:renameBodyController animated:YES];
-				[renameBodyController release];
-				*/
 				break;
 			default:
 				NSLog(@"Invalid action clicked: %i:%i", indexPath.section, indexPath.row);

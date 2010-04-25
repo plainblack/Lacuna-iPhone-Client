@@ -266,8 +266,10 @@
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>2860E386111B897F00E27156</string>
 								<string>F6E4D66A1168D4CD00980B59</string>
+								<string>F6E4D66B1168D4CD00980B59</string>
 								<string>28EEBF621118D79A00187D67</string>
 								<string>F6E4D6681168D4B200980B59</string>
+								<string>F634BB3E116C309B0084A8B2</string>
 								<string>19C28FACFE9D520D11CA2CBB</string>
 								<string>F6AC4A63116C1192001B967A</string>
 								<string>1C37FBAC04509CD000000102</string>
@@ -276,26 +278,44 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>23</integer>
-									<integer>3</integer>
-									<integer>2</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>34</integer>
-									<integer>3</integer>
-									<integer>2</integer>
-									<integer>0</integer>
-								</array>
-								<array>
 									<integer>35</integer>
 									<integer>3</integer>
 									<integer>2</integer>
 									<integer>0</integer>
 								</array>
+								<array>
+									<integer>36</integer>
+									<integer>3</integer>
+									<integer>2</integer>
+									<integer>0</integer>
+								</array>
+								<array>
+									<integer>37</integer>
+									<integer>3</integer>
+									<integer>2</integer>
+									<integer>0</integer>
+								</array>
+								<array>
+									<integer>38</integer>
+									<integer>3</integer>
+									<integer>2</integer>
+									<integer>0</integer>
+								</array>
+								<array>
+									<integer>39</integer>
+									<integer>3</integer>
+									<integer>2</integer>
+									<integer>0</integer>
+								</array>
+								<array>
+									<integer>138</integer>
+									<integer>111</integer>
+									<integer>44</integer>
+									<integer>0</integer>
+								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 204}, {210, 623}}</string>
+							<string>{{0, 300}, {210, 623}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -332,7 +352,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ViewBuildingController.m</string>
+								<string>ViewSpiesController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -340,11 +360,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ViewBuildingController.m</string>
+										<string>ViewSpiesController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F6A9C6321184D950001F0D9C</string>
+										<string>F6A9C6931184EE8D001F0D9C</string>
 										<key>history</key>
 										<array>
 											<string>F6885F7E1168421D00080696</string>
@@ -472,7 +492,6 @@
 											<string>F6980B15117A6FC900BD2096</string>
 											<string>F6980B1D117A6FC900BD2096</string>
 											<string>F6980B95117A919200BD2096</string>
-											<string>F6980BB8117A945200BD2096</string>
 											<string>F6E5E440117C05F200B99EE1</string>
 											<string>F6E5E441117C05F200B99EE1</string>
 											<string>F6E5E442117C05F200B99EE1</string>
@@ -511,7 +530,6 @@
 											<string>F6A9C5D11184C1A8001F0D9C</string>
 											<string>F6A9C5D21184C1A8001F0D9C</string>
 											<string>F6A9C5D31184C1A8001F0D9C</string>
-											<string>F6A9C5D41184C1A8001F0D9C</string>
 											<string>F6A9C5D51184C1A8001F0D9C</string>
 											<string>F6A9C5D61184C1A8001F0D9C</string>
 											<string>F6A9C5D71184C1A8001F0D9C</string>
@@ -529,9 +547,15 @@
 											<string>F6A9C6061184CE50001F0D9C</string>
 											<string>F6A9C6081184CE50001F0D9C</string>
 											<string>F6A9C6241184D8BA001F0D9C</string>
-											<string>F6A9C62B1184D905001F0D9C</string>
-											<string>F6A9C6301184D950001F0D9C</string>
-											<string>F6A9C6311184D950001F0D9C</string>
+											<string>F6A9C66B1184E745001F0D9C</string>
+											<string>F6A9C66C1184E745001F0D9C</string>
+											<string>F6A9C67F1184E996001F0D9C</string>
+											<string>F6A9C6851184EA15001F0D9C</string>
+											<string>F6A9C68A1184EA67001F0D9C</string>
+											<string>F6A9C68B1184EA67001F0D9C</string>
+											<string>F6A9C68C1184EA67001F0D9C</string>
+											<string>F6A9C6901184EA9C001F0D9C</string>
+											<string>F6A9C6911184EA9C001F0D9C</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -733,8 +757,8 @@
 		<string>F6A9C5E81184C1A8001F0D9C</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>F6885F691168335B00080696</string>
-		<string>/Users/rundeks/dev/iphone/Lacuna-iPhone-Client/UniversalClient/UniversalClient.xcodeproj</string>
 		<string>1C78EAAD065D492600B07095</string>
+		<string>/Users/rundeks/dev/iphone/Lacuna-iPhone-Client/UniversalClient/UniversalClient.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>105 196 1131 682 0 0 1440 878 </string>

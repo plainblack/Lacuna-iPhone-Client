@@ -12,9 +12,8 @@
 #import "LEBuildingViewSpies.h"
 #import "LETableViewCellButton.h"
 #import "LETableViewCellLabeledText.h"
-#import "LEBuildingAssignSpy.h"
 #import "LEBuildingBurnSpy.h"
-#import "LEBuildingNameSpy.h"
+#import "RenameSpyController.h"
 
 typedef enum {
 	ROW_SPY_INFO,
@@ -159,20 +158,18 @@ typedef enum {
 			[[[LEBuildingBurnSpy alloc] initWithCallback:@selector(spyBurnt:) target:self buildingId:self.buildingId buildingUrl:self.urlPart spyId:[spy objectForKey:@"id"]] autorelease];
 			break;
 		case ROW_RENAME_BUTTON:
-			NSLog(@"KEVIN MAKE RENAME WORK");
+			; //DO NOT REMOVE
+			RenameSpyController *renameSpyController = [RenameSpyController create];
+			renameSpyController.buildingId = self.buildingId;
+			renameSpyController.spyId = [spy objectForKey:@"id"];
+			renameSpyController.urlPart = self.urlPart;
+			renameSpyController.nameCell.textField.text = [spy objectForKey:@"name"];
+			[self.navigationController pushViewController:renameSpyController animated:YES];
 			break;
 		case ROW_ASSIGN_BUTTON:
 			NSLog(@"KEVIN MAKE ASSIGN WORK");
 			break;
 	}
-    // Navigation logic may go here. Create and push another view controller.
-	/*
-	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 [detailViewController release];
-	 */
 }
 
 
