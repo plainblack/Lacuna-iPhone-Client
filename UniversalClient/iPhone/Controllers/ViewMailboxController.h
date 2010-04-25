@@ -32,6 +32,7 @@
 @property(nonatomic, retain) NSDate *lastMessageAt;
 
 
+- (void)clear;
 - (IBAction)newMessage;
 - (IBAction)switchMailBox;
 - (void)loadMessages;

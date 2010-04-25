@@ -71,14 +71,18 @@ typedef enum {
 	[super viewWillAppear:animated];
 	[self.mailbox addObserver:self forKeyPath:@"messageDetails" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 	[self.mailbox addObserver:self forKeyPath:@"messageHeaders" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+	isObserving = YES;
 	[self.mailbox loadMessage:self.messageIndex];
 }
 
 
 - (void)viewDidDisappear:(BOOL)animated {
 	[super viewDidDisappear:animated];
-	[self.mailbox removeObserver:self forKeyPath:@"messageDetails"];
-	[self.mailbox removeObserver:self forKeyPath:@"messageHeaders"];
+	if (self.mailbox && isObserving) {
+		[self.mailbox removeObserver:self forKeyPath:@"messageDetails"];
+		[self.mailbox removeObserver:self forKeyPath:@"messageHeaders"];
+		isObserving = NO;
+	}
 }
 
 

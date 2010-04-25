@@ -196,6 +196,17 @@
 
 
 #pragma mark -
+#pragma mark Instance Methods
+
+- (void)clear {
+	self.mailbox = nil;
+	self.lastMessageAt = nil;
+	self.mailboxSegmentedControl.selectedSegmentIndex = UISegmentedControlNoSegment;
+	[self.tableView reloadData];
+}
+
+
+#pragma mark -
 #pragma mark Action Methods
 
 
@@ -221,7 +232,9 @@
 
 
 - (void)loadMessages {
-	[self.mailbox removeObserver:self forKeyPath:@"messageHeaders"];
+	if (self.mailbox) {
+		[self.mailbox removeObserver:self forKeyPath:@"messageHeaders"];
+	}
 	
 	switch (self.mailboxSegmentedControl.selectedSegmentIndex) {
 		case 0:

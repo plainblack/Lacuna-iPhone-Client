@@ -16,6 +16,7 @@
 	UISegmentedControl *messageSegmentedControl;
 	Mailbox *mailbox;
 	NSInteger messageIndex;
+	BOOL isObserving;
 }
 
 

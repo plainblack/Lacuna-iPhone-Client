@@ -9,12 +9,18 @@
 #import "AppDelegate_Phone.h"
 #import "Session.h"
 #import	"LEMacros.h"
+#import "ViewBodyController.h"
+#import "ViewMailboxController.h"
 
 @implementation AppDelegate_Phone
 
 
 @synthesize tabBarController;
 @synthesize mailTabBarItem;
+@synthesize myWorldsNavigationController;
+@synthesize myWorldController;
+@synthesize mailNavigationController;
+@synthesize mailboxController;
 
 
 #pragma mark -
@@ -32,6 +38,7 @@
 
 	Session *session = [Session sharedInstance];
 	[session addObserver:self forKeyPath:@"numNewMessages" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+	[session addObserver:self forKeyPath:@"isLoggedIn" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 
 	return YES;
 }
@@ -54,6 +61,10 @@
 
 	self.tabBarController = nil;
 	self.mailTabBarItem = nil;
+	self.myWorldsNavigationController = nil;
+	self.myWorldController = nil;
+	self.mailNavigationController = nil;
+	self.mailboxController = nil;
 	[super dealloc];
 }
 
@@ -83,6 +94,14 @@
 			self.mailTabBarItem.badgeValue = [NSString stringWithFormat:@"%@", session.numNewMessages];
 		} else {
 			self.mailTabBarItem.badgeValue = nil;
+		}
+	} else if ( [keyPath isEqual:@"isLoggedIn"]) {
+		Session *session = (Session *)object;
+		if (!session.isLoggedIn) {
+			[self.myWorldsNavigationController popToRootViewControllerAnimated:NO];
+			[self.myWorldController clear];
+			[self.mailNavigationController popToRootViewControllerAnimated:NO];
+			[self.mailboxController clear];
 		}
 	}
 }

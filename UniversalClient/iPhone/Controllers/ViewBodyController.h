@@ -23,6 +23,9 @@
 @property(nonatomic, retain) NSTimer *timer;
 
 
+- (void)clear;
+
+
 + (ViewBodyController *)create;
 
 

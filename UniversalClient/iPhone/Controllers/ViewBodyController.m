@@ -405,9 +405,9 @@ typedef enum {
 
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    self.bodyData = nil;
 	[self.timer invalidate];
 	self.timer = nil;
+    self.bodyData = nil;
 	[super viewDidUnload];
 }
 
@@ -415,6 +415,18 @@ typedef enum {
 - (void)dealloc {
 	self.bodyId = nil;
     [super dealloc];
+}
+
+
+#pragma mark -
+#pragma mark Instance Methods
+
+- (void)clear {
+	[self.timer invalidate];
+	self.timer = nil;
+	self.bodyData = nil;
+	self.bodyId = nil;
+	[self.tableView reloadData];
 }
 
 
