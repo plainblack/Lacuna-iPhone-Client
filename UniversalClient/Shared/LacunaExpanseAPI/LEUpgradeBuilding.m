@@ -31,8 +31,7 @@
 
 
 - (void)processSuccess {
-	NSLog(@"Upgrade Building %@: %@", self.buildingId, self.response);
-	//NSDictionary *result = [self.response objectForKey:@"result"];
+	//Does nothing
 }
 
 

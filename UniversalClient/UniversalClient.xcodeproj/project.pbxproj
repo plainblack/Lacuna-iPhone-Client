@@ -53,6 +53,12 @@
 		F69D299211725FA400D7277E /* NewSpeciesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F69D299111725FA400D7277E /* NewSpeciesController.m */; };
 		F69D29B71172654500D7277E /* LETableViewCellOrbitSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = F69D29B61172654500D7277E /* LETableViewCellOrbitSelector.m */; };
 		F69D29BA1172655700D7277E /* LETableViewCellAffinitySelector.m in Sources */ = {isa = PBXBuildFile; fileRef = F69D29B91172655700D7277E /* LETableViewCellAffinitySelector.m */; };
+		F6A9C5951184A3B6001F0D9C /* LEBuildingTrainSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A9C5941184A3B6001F0D9C /* LEBuildingTrainSpy.m */; };
+		F6A9C5B01184BB3C001F0D9C /* LEBuildingViewSpies.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A9C5AF1184BB3C001F0D9C /* LEBuildingViewSpies.m */; };
+		F6A9C5B31184BB6D001F0D9C /* LEBuildingBurnSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A9C5B21184BB6D001F0D9C /* LEBuildingBurnSpy.m */; };
+		F6A9C5B61184BB80001F0D9C /* LEBuildingNameSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A9C5B51184BB80001F0D9C /* LEBuildingNameSpy.m */; };
+		F6A9C5B91184BBA1001F0D9C /* LEBuildingAssignSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A9C5B81184BBA1001F0D9C /* LEBuildingAssignSpy.m */; };
+		F6A9C5EB1184C1CC001F0D9C /* ViewSpiesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A9C5EA1184C1CC001F0D9C /* ViewSpiesController.m */; };
 		F6AC49E9116C0F7E001B967A /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC49E8116C0F7E001B967A /* Util.m */; };
 		F6AC4A1A116C0F9B001B967A /* LEBuildBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC49EB116C0F9B001B967A /* LEBuildBuilding.m */; };
 		F6AC4A1B116C0F9B001B967A /* LECheckEmpireName.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC49ED116C0F9B001B967A /* LECheckEmpireName.m */; };
@@ -184,6 +190,18 @@
 		F69D29B81172655700D7277E /* LETableViewCellAffinitySelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellAffinitySelector.h; sourceTree = "<group>"; };
 		F69D29B91172655700D7277E /* LETableViewCellAffinitySelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellAffinitySelector.m; sourceTree = "<group>"; };
 		F69D29BB11726B6E00D7277E /* LESpeciesPointsUpdateDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LESpeciesPointsUpdateDelegate.h; sourceTree = "<group>"; };
+		F6A9C5931184A3B6001F0D9C /* LEBuildingTrainSpy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingTrainSpy.h; sourceTree = "<group>"; };
+		F6A9C5941184A3B6001F0D9C /* LEBuildingTrainSpy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingTrainSpy.m; sourceTree = "<group>"; };
+		F6A9C5AE1184BB3C001F0D9C /* LEBuildingViewSpies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewSpies.h; sourceTree = "<group>"; };
+		F6A9C5AF1184BB3C001F0D9C /* LEBuildingViewSpies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewSpies.m; sourceTree = "<group>"; };
+		F6A9C5B11184BB6D001F0D9C /* LEBuildingBurnSpy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingBurnSpy.h; sourceTree = "<group>"; };
+		F6A9C5B21184BB6D001F0D9C /* LEBuildingBurnSpy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingBurnSpy.m; sourceTree = "<group>"; };
+		F6A9C5B41184BB80001F0D9C /* LEBuildingNameSpy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingNameSpy.h; sourceTree = "<group>"; };
+		F6A9C5B51184BB80001F0D9C /* LEBuildingNameSpy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingNameSpy.m; sourceTree = "<group>"; };
+		F6A9C5B71184BBA1001F0D9C /* LEBuildingAssignSpy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingAssignSpy.h; sourceTree = "<group>"; };
+		F6A9C5B81184BBA1001F0D9C /* LEBuildingAssignSpy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingAssignSpy.m; sourceTree = "<group>"; };
+		F6A9C5E91184C1CC001F0D9C /* ViewSpiesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewSpiesController.h; sourceTree = "<group>"; };
+		F6A9C5EA1184C1CC001F0D9C /* ViewSpiesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewSpiesController.m; sourceTree = "<group>"; };
 		F6AC49E6116C0F7E001B967A /* LEMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LEMacros.h; path = Shared/LEMacros.h; sourceTree = "<group>"; };
 		F6AC49E7116C0F7E001B967A /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Util.h; path = Shared/Util.h; sourceTree = "<group>"; };
 		F6AC49E8116C0F7E001B967A /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Util.m; path = Shared/Util.m; sourceTree = "<group>"; };
@@ -526,6 +544,16 @@
 				F6864F9D1183A3FB009826A7 /* LEBuildingViewNews.m */,
 				F68650061183D2A4009826A7 /* LEBuildingRestrictCoverage.h */,
 				F68650071183D2A4009826A7 /* LEBuildingRestrictCoverage.m */,
+				F6A9C5931184A3B6001F0D9C /* LEBuildingTrainSpy.h */,
+				F6A9C5941184A3B6001F0D9C /* LEBuildingTrainSpy.m */,
+				F6A9C5AE1184BB3C001F0D9C /* LEBuildingViewSpies.h */,
+				F6A9C5AF1184BB3C001F0D9C /* LEBuildingViewSpies.m */,
+				F6A9C5B11184BB6D001F0D9C /* LEBuildingBurnSpy.h */,
+				F6A9C5B21184BB6D001F0D9C /* LEBuildingBurnSpy.m */,
+				F6A9C5B41184BB80001F0D9C /* LEBuildingNameSpy.h */,
+				F6A9C5B51184BB80001F0D9C /* LEBuildingNameSpy.m */,
+				F6A9C5B71184BBA1001F0D9C /* LEBuildingAssignSpy.h */,
+				F6A9C5B81184BBA1001F0D9C /* LEBuildingAssignSpy.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -576,6 +604,8 @@
 				F6980B04117A6CF900BD2096 /* ViewMailMessageController.xib */,
 				F6864F991183A131009826A7 /* ViewNetwork19NewsController.h */,
 				F6864F9A1183A131009826A7 /* ViewNetwork19NewsController.m */,
+				F6A9C5E91184C1CC001F0D9C /* ViewSpiesController.h */,
+				F6A9C5EA1184C1CC001F0D9C /* ViewSpiesController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -741,6 +771,12 @@
 				F6864F9E1183A3FB009826A7 /* LEBuildingViewNews.m in Sources */,
 				F6864FCE1183A912009826A7 /* LETableViewCellNewsItem.m in Sources */,
 				F68650081183D2A4009826A7 /* LEBuildingRestrictCoverage.m in Sources */,
+				F6A9C5951184A3B6001F0D9C /* LEBuildingTrainSpy.m in Sources */,
+				F6A9C5B01184BB3C001F0D9C /* LEBuildingViewSpies.m in Sources */,
+				F6A9C5B31184BB6D001F0D9C /* LEBuildingBurnSpy.m in Sources */,
+				F6A9C5B61184BB80001F0D9C /* LEBuildingNameSpy.m in Sources */,
+				F6A9C5B91184BBA1001F0D9C /* LEBuildingAssignSpy.m in Sources */,
+				F6A9C5EB1184C1CC001F0D9C /* ViewSpiesController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

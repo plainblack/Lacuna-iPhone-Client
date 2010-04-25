@@ -14,6 +14,7 @@
 @interface ViewBuildingController : LETableViewControllerGrouped <LETableViewCellProgressDelegate> {
 	NSString *buildingId;
 	NSDictionary *buildingData;
+	NSDictionary *resultData;
 	NSString *urlPart;
 	NSInteger totalBuildTime;
 	NSInteger remainingBuildTime;
@@ -23,6 +24,7 @@
 
 @property(nonatomic, retain) NSString *buildingId;
 @property(nonatomic, retain) NSDictionary *buildingData;
+@property(nonatomic, retain) NSDictionary *resultData;
 @property(nonatomic, retain) NSString *urlPart;
 @property(nonatomic, retain) NSArray *sections;
 

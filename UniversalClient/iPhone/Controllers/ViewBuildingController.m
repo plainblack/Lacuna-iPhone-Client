@@ -18,6 +18,9 @@
 #import "LETableViewCellUnbuildable.h"
 #import "ViewNetwork19NewsController.h"
 #import "LEBuildingRestrictCoverage.h"
+#import "LETableViewCellLabeledText.h"
+#import "LEBuildingTrainSpy.h"
+#import "ViewSpiesController.h"
 
 
 typedef enum {
@@ -36,7 +39,11 @@ typedef enum {
 	ROW_UPGRADE_PROGRESS,
 	ROW_VIEW_NETWORK_19,
 	ROW_RESTRICTED_NETWORK_19,
-	ROW_UNRESTRICTED_NETWORK_19
+	ROW_UNRESTRICTED_NETWORK_19,
+	ROW_NUM_SPIES,
+	ROW_SPY_BUILD_COST,
+	ROW_BUILD_SPY_BUTTON,
+	ROW_VIEW_SPIES_BUTTON,
 } ROW;
 
 
@@ -45,6 +52,7 @@ typedef enum {
 
 @synthesize buildingId;
 @synthesize buildingData;
+@synthesize resultData;
 @synthesize urlPart;
 @synthesize sections;
 
@@ -69,6 +77,7 @@ typedef enum {
 	if (self.buildingData) {
 		self.buildingId = [self.buildingData objectForKey:@"id"];
 		self.navigationItem.title = [self.buildingData objectForKey:@"name"];
+		[self.tableView reloadData];
 	} else {
 		[[LEGetBuilding alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
 		
@@ -103,6 +112,7 @@ typedef enum {
 		case ROW_UPGRADE_BUILDING_STATS:
 			return 100.0;
 			break;
+		case ROW_SPY_BUILD_COST:
 		case ROW_UPGRADE_BUILDING_COST:
 			return 65.0;
 			break;
@@ -110,6 +120,8 @@ typedef enum {
 		case ROW_UPGRADE_BUTTON:
 		case ROW_RESTRICTED_NETWORK_19:
 		case ROW_UNRESTRICTED_NETWORK_19:
+		case ROW_BUILD_SPY_BUTTON:
+		case ROW_VIEW_SPIES_BUTTON:
 			return tableView.rowHeight;
 			break;
 		case ROW_UPGRADE_CANNOT:
@@ -117,6 +129,9 @@ typedef enum {
 			break;
 		case ROW_UPGRADE_PROGRESS:
 			return 50.0;
+			break;
+		case ROW_NUM_SPIES:
+			return tableView.rowHeight;
 			break;
 		default:
 			return tableView.rowHeight;
@@ -214,6 +229,38 @@ typedef enum {
 			unrestrictedButtonCell.textLabel.text = @"News unrestricted, change";
 			cell = unrestrictedButtonCell;
 			break;
+		case ROW_NUM_SPIES:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			NSDictionary *spiesData = [self.resultData objectForKey:@"spies"];
+			LETableViewCellLabeledText *numSpiesCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			numSpiesCell.label.text = @"Spies";
+			numSpiesCell.content.text = [NSString stringWithFormat:@"%@/%@", [spiesData objectForKey:@"current"], [spiesData objectForKey:@"maximum"]];
+			cell = numSpiesCell;
+			break;
+		case ROW_SPY_BUILD_COST:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			NSDictionary *buildSpyCost = [[self.resultData objectForKey:@"spies"] objectForKey:@"training_costs"];
+			LETableViewCellCost *buildSpyCostCell = [LETableViewCellCost getCellForTableView:tableView];
+			[buildSpyCostCell setEnergyCost:[buildSpyCost objectForKey:@"energy"]];
+			[buildSpyCostCell setFoodCost:[buildSpyCost objectForKey:@"food"]];
+			[buildSpyCostCell setOreCost:[buildSpyCost objectForKey:@"ore"]];
+			[buildSpyCostCell setTimeCost:[buildSpyCost objectForKey:@"time"]];
+			[buildSpyCostCell setWasteCost:[buildSpyCost objectForKey:@"waste"]];
+			[buildSpyCostCell setWaterCost:[buildSpyCost objectForKey:@"water"]];
+			cell = buildSpyCostCell;
+			break;
+		case ROW_BUILD_SPY_BUTTON:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *buildSpyButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			buildSpyButtonCell.textLabel.text = @"Build spy";
+			cell = buildSpyButtonCell;
+			break;
+		case ROW_VIEW_SPIES_BUTTON:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *viewSpiesButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			viewSpiesButtonCell.textLabel.text = @"View spies";
+			cell = viewSpiesButtonCell;
+			break;
 		default:
 			cell = nil;
 			break;
@@ -247,6 +294,17 @@ typedef enum {
 		case ROW_UNRESTRICTED_NETWORK_19:
 			[[[LEBuildingRestrictCoverage alloc] initWithCallback:@selector(buildingRestrictCoverageChanged:) target:self buildingId:self.buildingId buildingUrl:self.urlPart restricted:YES] autorelease];
 			break;
+		case ROW_BUILD_SPY_BUTTON:
+			[[[LEBuildingTrainSpy alloc] initWithCallback:@selector(spyTrained:) target:self buildingId:self.buildingId buildingUrl:self.urlPart quantity:[NSNumber numberWithInt:1]] autorelease];
+			break;
+		case ROW_VIEW_SPIES_BUTTON:
+			; //DO NOT REMOVE
+			ViewSpiesController *viewSpiesController = [ViewSpiesController create];
+			viewSpiesController.buildingId = self.buildingId;
+			viewSpiesController.spiesData = [self.resultData objectForKey:@"spies"];
+			viewSpiesController.urlPart = self.urlPart;
+			[self.navigationController pushViewController:viewSpiesController animated:YES];
+			break;
 	}
 }
 
@@ -265,6 +323,7 @@ typedef enum {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
 	self.buildingId = nil;
 	self.buildingData = nil;
+	self.resultData = nil;
 	self.urlPart = nil;
 	self.sections = nil;
 	[super viewDidUnload];
@@ -289,6 +348,7 @@ typedef enum {
 
 - (id)bodyDataLoaded:(LEGetBuilding *)request {
 	self.buildingData = request.building;
+	self.resultData = [request.response objectForKey:@"result"];
 	
 	self.navigationItem.title = [self.buildingData objectForKey:@"name"];
 
@@ -309,6 +369,14 @@ typedef enum {
 		} else {
 			[rows addObject:[NSNumber numberWithInt:ROW_UNRESTRICTED_NETWORK_19]];
 		}
+		[tmpSections addObject:dict_([NSNumber numberWithInt:SECTION_ACTIONS], @"type", rows, @"rows")];
+	} else 	if ([self.urlPart isEqualToString:@"/intelligence"]) {
+		[tmpSectionHeaders addObject:[LEViewSectionTab tableView:self.tableView createWithText:@"Spies"]];
+		NSMutableArray *rows = [NSMutableArray arrayWithCapacity:5];
+		[rows addObject:[NSNumber numberWithInt:ROW_NUM_SPIES]];
+		[rows addObject:[NSNumber numberWithInt:ROW_SPY_BUILD_COST]];
+		[rows addObject:[NSNumber numberWithInt:ROW_BUILD_SPY_BUTTON]];
+		[rows addObject:[NSNumber numberWithInt:ROW_VIEW_SPIES_BUTTON]];
 		[tmpSections addObject:dict_([NSNumber numberWithInt:SECTION_ACTIONS], @"type", rows, @"rows")];
 	}
 	
@@ -353,6 +421,15 @@ typedef enum {
 - (id)buildingRestrictCoverageChanged:(LEBuildingRestrictCoverage *)request {
 	[[LEGetBuilding alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
 	
+	return nil;
+}
+
+- (id)spyTrained:(LEBuildingTrainSpy *)request {
+	NSMutableDictionary *spiesData = [self.resultData objectForKey:@"spies"];
+	NSInteger currentSpyCount = intv_([spiesData objectForKey:@"current"]);
+	currentSpyCount += intv_(request.trained);
+	[spiesData setObject:[NSNumber numberWithInt:currentSpyCount] forKey:@"current"];
+	[self.tableView reloadData];
 	return nil;
 }
 
