@@ -28,6 +28,8 @@
 		F634BAE7116C2CB90084A8B2 /* LoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F634BAE5116C2CB90084A8B2 /* LoginController.xib */; };
 		F634BB53116C31BD0084A8B2 /* LETableViewCellTextEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = F634BB52116C31BD0084A8B2 /* LETableViewCellTextEntry.m */; };
 		F634BB55116C31E50084A8B2 /* LETableViewCellTextEntry.xib in Resources */ = {isa = PBXBuildFile; fileRef = F634BB54116C31E50084A8B2 /* LETableViewCellTextEntry.xib */; };
+		F67E11DA118A701A00D964FD /* AssignSpyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F67E11D9118A701A00D964FD /* AssignSpyController.m */; };
+		F67E11F1118A75BB00D964FD /* LETableViewCellSpyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F67E11F0118A75BB00D964FD /* LETableViewCellSpyInfo.m */; };
 		F6864F9B1183A131009826A7 /* ViewNetwork19NewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6864F9A1183A131009826A7 /* ViewNetwork19NewsController.m */; };
 		F6864F9E1183A3FB009826A7 /* LEBuildingViewNews.m in Sources */ = {isa = PBXBuildFile; fileRef = F6864F9D1183A3FB009826A7 /* LEBuildingViewNews.m */; };
 		F6864FCE1183A912009826A7 /* LETableViewCellNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F6864FCD1183A912009826A7 /* LETableViewCellNewsItem.m */; };
@@ -143,6 +145,10 @@
 		F634BB51116C31BD0084A8B2 /* LETableViewCellTextEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellTextEntry.h; sourceTree = "<group>"; };
 		F634BB52116C31BD0084A8B2 /* LETableViewCellTextEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellTextEntry.m; sourceTree = "<group>"; };
 		F634BB54116C31E50084A8B2 /* LETableViewCellTextEntry.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LETableViewCellTextEntry.xib; sourceTree = "<group>"; };
+		F67E11D8118A701A00D964FD /* AssignSpyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssignSpyController.h; sourceTree = "<group>"; };
+		F67E11D9118A701A00D964FD /* AssignSpyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssignSpyController.m; sourceTree = "<group>"; };
+		F67E11EF118A75BB00D964FD /* LETableViewCellSpyInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellSpyInfo.h; sourceTree = "<group>"; };
+		F67E11F0118A75BB00D964FD /* LETableViewCellSpyInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellSpyInfo.m; sourceTree = "<group>"; };
 		F6864F991183A131009826A7 /* ViewNetwork19NewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewNetwork19NewsController.h; sourceTree = "<group>"; };
 		F6864F9A1183A131009826A7 /* ViewNetwork19NewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewNetwork19NewsController.m; sourceTree = "<group>"; };
 		F6864F9C1183A3FB009826A7 /* LEBuildingViewNews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewNews.h; sourceTree = "<group>"; };
@@ -447,6 +453,8 @@
 				F6DD2063116D5B3C0013C58D /* LEViewSectionTab.m */,
 				F6864FCC1183A912009826A7 /* LETableViewCellNewsItem.h */,
 				F6864FCD1183A912009826A7 /* LETableViewCellNewsItem.m */,
+				F67E11EF118A75BB00D964FD /* LETableViewCellSpyInfo.h */,
+				F67E11F0118A75BB00D964FD /* LETableViewCellSpyInfo.m */,
 			);
 			name = Views;
 			path = Shared/Views;
@@ -616,6 +624,8 @@
 				F6A9C6341184DF55001F0D9C /* RenameSpyController.m */,
 				F6A9C6361184DF61001F0D9C /* RenameBodyController.h */,
 				F6A9C6371184DF61001F0D9C /* RenameBodyController.m */,
+				F67E11D8118A701A00D964FD /* AssignSpyController.h */,
+				F67E11D9118A701A00D964FD /* AssignSpyController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -789,6 +799,8 @@
 				F6A9C5EB1184C1CC001F0D9C /* ViewSpiesController.m in Sources */,
 				F6A9C6351184DF55001F0D9C /* RenameSpyController.m in Sources */,
 				F6A9C6381184DF61001F0D9C /* RenameBodyController.m in Sources */,
+				F67E11DA118A701A00D964FD /* AssignSpyController.m in Sources */,
+				F67E11F1118A75BB00D964FD /* LETableViewCellSpyInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

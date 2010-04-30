@@ -14,6 +14,9 @@
 #import "LETableViewCellLabeledText.h"
 #import "LEBuildingBurnSpy.h"
 #import "RenameSpyController.h"
+#import "AssignSpyController.h"
+#import "LETableViewCellSpyInfo.h"
+
 
 typedef enum {
 	ROW_SPY_INFO,
@@ -32,6 +35,7 @@ typedef enum {
 @synthesize urlPart;
 @synthesize spies;
 @synthesize reloadTimer;
+@synthesize possibleAssignments;
 
 
 #pragma mark -
@@ -83,7 +87,7 @@ typedef enum {
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	switch (indexPath.row) {
 		case ROW_SPY_INFO:
-			return [LETableViewCellLabeledText getHeightForTableView:tableView];
+			return [LETableViewCellSpyInfo getHeightForTableView:tableView];
 			break;
 		case ROW_BURN_BUTTON:
 		case ROW_RENAME_BUTTON:
@@ -109,9 +113,8 @@ typedef enum {
 	switch (indexPath.row) {
 		case ROW_SPY_INFO:
 			; //DO NOT REMOVE
-			LETableViewCellLabeledText *spyInfoCell = [LETableViewCellLabeledText getCellForTableView:tableView];
-			spyInfoCell.label.text = @"Spy";
-			spyInfoCell.content.text = [spy objectForKey:@"name"];
+			LETableViewCellSpyInfo *spyInfoCell = [LETableViewCellSpyInfo getCellForTableView:tableView];
+			[spyInfoCell setData:spy];
 			cell = spyInfoCell;
 			break;
 		case ROW_BURN_BUTTON:
@@ -152,7 +155,7 @@ typedef enum {
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSDictionary *spy = [self.spies objectAtIndex:indexPath.section];
+	NSMutableDictionary *spy = [self.spies objectAtIndex:indexPath.section];
 	switch (indexPath.row) {
 		case ROW_BURN_BUTTON:
 			[[[LEBuildingBurnSpy alloc] initWithCallback:@selector(spyBurnt:) target:self buildingId:self.buildingId buildingUrl:self.urlPart spyId:[spy objectForKey:@"id"]] autorelease];
@@ -167,7 +170,13 @@ typedef enum {
 			[self.navigationController pushViewController:renameSpyController animated:YES];
 			break;
 		case ROW_ASSIGN_BUTTON:
-			NSLog(@"KEVIN MAKE ASSIGN WORK");
+			; //DO NOT REMOVE
+			AssignSpyController *assignSpyController = [AssignSpyController create];
+			assignSpyController.buildingId = self.buildingId;
+			assignSpyController.spyData = spy;
+			assignSpyController.urlPart = self.urlPart;
+			assignSpyController.possibleAssignments = self.possibleAssignments;
+			[self.navigationController pushViewController:assignSpyController animated:YES];
 			break;
 	}
 }
@@ -189,6 +198,7 @@ typedef enum {
 	[self.reloadTimer invalidate]; 
 	self.reloadTimer = nil;
 	self.spies = nil;
+	self.possibleAssignments = nil;
 	[super viewDidUnload];
 }
 
@@ -214,6 +224,7 @@ typedef enum {
 
 - (id)spiesLoaded:(LEBuildingViewSpies *)request {
 	self.spies = request.spies;
+	self.possibleAssignments = request.possibleAssignments;
 	NSLog(@"SPIES: %@", self.spies);
 	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[self.spies count]];
 	for (NSDictionary *spy in self.spies) {

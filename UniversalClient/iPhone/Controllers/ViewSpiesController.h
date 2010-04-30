@@ -16,6 +16,7 @@
 	NSString *urlPart;
 	NSMutableArray *spies;
 	NSTimer *reloadTimer;
+	NSArray *possibleAssignments;
 }
 
 
@@ -24,6 +25,7 @@
 @property(nonatomic, retain) NSString *urlPart;
 @property(nonatomic, retain) NSMutableArray *spies;
 @property(nonatomic, retain) NSTimer *reloadTimer;
+@property(nonatomic, retain) NSArray *possibleAssignments;
 
 
 + (ViewSpiesController *) create;
