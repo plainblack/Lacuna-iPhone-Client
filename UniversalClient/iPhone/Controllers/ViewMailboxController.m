@@ -62,7 +62,7 @@
 	
 	self.inboxBarButtonItems = array_(fixed, trash, flexable, mailboxChooser, flexable, compose, fixed);
 	self.otherMailboxBarButtonItems = array_(fixed, trash_placeholder, flexable, mailboxChooser, flexable, compose, fixed);
-	
+
 	self.toolbarItems = self.inboxBarButtonItems;
 }
 

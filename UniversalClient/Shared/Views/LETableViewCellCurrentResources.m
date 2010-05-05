@@ -89,7 +89,7 @@
 
 
 - (void)setHappinessCurrent:(NSString *)current perHour:(NSNumber *)perHour {
-	self.happinessTotalLabel.text = current;
+	self.happinessTotalLabel.text = [Util prettyNumber:current];
 	[self setNormalPerHourLabel:happinessPerHourLabel perHour:perHour];
 }
 
@@ -138,7 +138,7 @@
 
 
 - (void)setOppositePerHourLabel:(UILabel *)perHourLabel perHour:(NSNumber *)perHour {
-	perHourLabel.text = [NSString stringWithFormat:@"%@/hr", perHour];
+	perHourLabel.text = [NSString stringWithFormat:@"%@/hr", [Util prettyNumber:perHour]];
 	if ([perHour intValue] < 0) {
 		perHourLabel.textColor = [UIColor blackColor];
 	} else {

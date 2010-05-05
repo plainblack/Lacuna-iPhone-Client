@@ -17,6 +17,7 @@
 	Mailbox *mailbox;
 	NSInteger messageIndex;
 	BOOL isObserving;
+	NSInteger numRows;
 }
 
 
