@@ -242,13 +242,13 @@ typedef enum {
 		NSDictionary *attachment = [attachements objectForKey:key];
 		NSString *link = [attachment objectForKey:@"link"];
 		if (link) {
-			NSLog(@"KEVIN MAKE THIS GO TO: %@", link);
+			[[UIApplication sharedApplication] openURL:[NSURL URLWithString:link]];
 		}
 	} else if ([key isEqualToString:@"link"]) {
 		NSDictionary *attachment = [attachements objectForKey:key];
 		NSString *link = [attachment objectForKey:@"url"];
 		if (link) {
-			NSLog(@"KEVIN MAKE THIS GO TO: %@", link);
+			[[UIApplication sharedApplication] openURL:[NSURL URLWithString:link]];
 		}
 	} else if ([key isEqualToString:@"table"]) {
 		NSArray *attachment = [attachements objectForKey:key];
