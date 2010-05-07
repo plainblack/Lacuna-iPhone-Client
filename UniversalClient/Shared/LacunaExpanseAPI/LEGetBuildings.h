@@ -13,11 +13,13 @@
 @interface LEGetBuildings : LERequest {
 	NSString *bodyId;
 	NSMutableDictionary *buildings;
+	NSString *surfaceImageName;
 }
 
 
 @property(nonatomic, retain) NSString *bodyId;
 @property(nonatomic, retain) NSMutableDictionary *buildings;
+@property(nonatomic, retain) NSString *surfaceImageName;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target bodyId:(NSString *)bodyId;

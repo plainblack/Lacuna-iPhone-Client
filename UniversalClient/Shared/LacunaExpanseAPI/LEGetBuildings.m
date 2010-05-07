@@ -16,6 +16,7 @@
 
 @synthesize bodyId;
 @synthesize buildings;
+@synthesize surfaceImageName;
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget bodyId:(NSString *)inBodyId {
@@ -34,6 +35,8 @@
 	
 	NSDictionary *buildingsDict = [result objectForKey:@"buildings"];
 	self.buildings = [NSMutableDictionary dictionaryWithCapacity:[buildingsDict count]];
+	
+	self.surfaceImageName = [[result objectForKey:@"body"] objectForKey:@"surface_image"];
 	
 	for(NSString *buildingId in [buildingsDict allKeys]) {
 		NSMutableDictionary *building = [buildingsDict objectForKey:buildingId];
@@ -57,6 +60,7 @@
 - (void)dealloc {
 	self.bodyId = nil;
 	self.buildings = nil;
+	self.surfaceImageName = nil;
 	[super dealloc];
 }
 

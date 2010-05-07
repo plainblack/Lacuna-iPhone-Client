@@ -24,7 +24,7 @@
     if ((self = [super initWithFrame:frame])) {
         self.autoresizesSubviews = YES;
 		
-		UIImage *tabImage = [UIImage imageNamed:@"assets/ui/tab.png"];
+		UIImage *tabImage = [UIImage imageNamed:@"assets/ui/tab_blue.png"];
 		UIImageView *tabImageView = [[[UIImageView alloc] initWithImage:tabImage] autorelease];
 		tabImageView.frame = CGRectMake(20, SECTION_HEIGHT-IMAGE_HEIGHT, IMAGE_WIDTH, IMAGE_HEIGHT);
 		[self addSubview:tabImageView];

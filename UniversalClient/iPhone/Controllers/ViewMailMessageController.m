@@ -16,6 +16,7 @@
 #import "LETableViewCellAttachedLink.h"
 #import "LETableViewCellButton.h"
 #import "ViewAttachedTableController.h"
+#import "ViewAttachedMapController.h"
 
 
 typedef enum {
@@ -258,7 +259,11 @@ typedef enum {
 		[[self navigationController] pushViewController:viewAttachedTableController animated:YES];
 		[viewAttachedTableController release];
 	} else if ([key isEqualToString:@"map"]) {
-		NSLog(@"KEVIN MAKE THIS GO TO A VIEW ONLY MAP!");
+		NSArray *attachment = [attachements objectForKey:key];
+		ViewAttachedMapController *viewAttachedMapController = [[ViewAttachedMapController alloc] init];
+		[viewAttachedMapController setAttachedMap:attachment];
+		[[self navigationController] pushViewController:viewAttachedMapController animated:YES];
+		[viewAttachedMapController release];
 	}
 }
 

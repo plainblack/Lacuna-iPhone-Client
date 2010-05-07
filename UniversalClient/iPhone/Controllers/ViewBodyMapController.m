@@ -64,15 +64,17 @@
 			[locsByButton setObject:loc forKey:[NSValue valueWithNonretainedObject:button]];
 
 			NSDictionary *building = [self.buildings objectForKey:loc];
-			[button setBackgroundImage:[UIImage imageNamed:@"/assets/planet_side/ground.png"] forState:UIControlStateNormal];
+			//[button setBackgroundImage:[UIImage imageNamed:@"/assets/planet_side/ground.png"] forState:UIControlStateNormal];
 			if (building) {
-				UIImage *tmp = [UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/%@.png", [building objectForKey:@"image"]]];
-				tmp = [Util imageWithImage:tmp scaledToSize:CGSizeMake(BODY_BUILDINGS_CELL_WIDTH, BODY_BUILDINGS_CELL_HEIGHT)];
-				[button setImage:tmp forState:UIControlStateNormal];
+				//UIImage *tmp = [UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/%@.png", [building objectForKey:@"image"]]];
+				//tmp = [Util imageWithImage:tmp scaledToSize:CGSizeMake(BODY_BUILDINGS_CELL_WIDTH, BODY_BUILDINGS_CELL_HEIGHT)];
+				//[button setImage:tmp forState:UIControlStateNormal];
+				[button setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/100/%@.png", [building objectForKey:@"image"]]] forState:UIControlStateNormal];
 			} else {
-				UIImage *tmp = [UIImage imageNamed:@"/assets/planet_side/build.png"];
-				tmp = [Util imageWithImage:tmp scaledToSize:CGSizeMake(BODY_BUILDINGS_CELL_WIDTH, BODY_BUILDINGS_CELL_HEIGHT)];
-				[button setImage:tmp forState:UIControlStateNormal];
+				//UIImage *tmp = [UIImage imageNamed:@"/assets/planet_side/build.png"];
+				//tmp = [Util imageWithImage:tmp scaledToSize:CGSizeMake(BODY_BUILDINGS_CELL_WIDTH, BODY_BUILDINGS_CELL_HEIGHT)];
+				//[button setImage:tmp forState:UIControlStateNormal];
+				[button setBackgroundImage:[UIImage imageNamed:@"/assets/planet_side/build.png"] forState:UIControlStateNormal];
 			}
 			
 			currentY += BODY_BUILDINGS_CELL_HEIGHT;
@@ -140,6 +142,9 @@
 - (id)buildingsLoaded:(LEGetBuildings *)request {
 	self.buildings = request.buildings;
 	
+	UIImage *surfaceImage = [UIImage imageNamed:[NSString stringWithFormat:@"assets/planet_side/%@.jpg", request.surfaceImageName]];
+	self.scrollView.backgroundColor = [UIColor colorWithPatternImage:surfaceImage];
+
 	for (int x=BODY_BUILDINGS_MIN_X; x<=BODY_BUILDINGS_MAX_X; x++) {
 		for (int y=BODY_BUILDINGS_MIN_Y; y<=BODY_BUILDINGS_MAX_Y; y++) {
 			NSString *key = [NSString stringWithFormat:@"%ix%i", x, y];
@@ -147,13 +152,15 @@
 			NSDictionary *building = [self.buildings objectForKey:key];
 			
 			if (building) {
-				UIImage *tmp = [UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/%@.png", [building objectForKey:@"image"]]];
-				tmp = [Util imageWithImage:tmp scaledToSize:CGSizeMake(BODY_BUILDINGS_CELL_WIDTH, BODY_BUILDINGS_CELL_HEIGHT)];
-				[button setImage:tmp forState:UIControlStateNormal];
+				//UIImage *tmp = [UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/100/%@.png", [building objectForKey:@"image"]]];
+				//tmp = [Util imageWithImage:tmp scaledToSize:CGSizeMake(BODY_BUILDINGS_CELL_WIDTH, BODY_BUILDINGS_CELL_HEIGHT)];
+				//[button setImage:tmp forState:UIControlStateNormal];
+				[button setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/100/%@.png", [building objectForKey:@"image"]]] forState:UIControlStateNormal];
 			} else {
-				UIImage *tmp = [UIImage imageNamed:@"/assets/planet_side/build.png"];
-				tmp = [Util imageWithImage:tmp scaledToSize:CGSizeMake(BODY_BUILDINGS_CELL_WIDTH, BODY_BUILDINGS_CELL_HEIGHT)];
-				[button setImage:tmp forState:UIControlStateNormal];
+				//UIImage *tmp = [UIImage imageNamed:@"/assets/planet_side/build.png"];
+				//tmp = [Util imageWithImage:tmp scaledToSize:CGSizeMake(BODY_BUILDINGS_CELL_WIDTH, BODY_BUILDINGS_CELL_HEIGHT)];
+				//[button setImage:tmp forState:UIControlStateNormal];
+				[button setBackgroundImage:[UIImage imageNamed:@"/assets/planet_side/build.png"] forState:UIControlStateNormal];
 			}
 		}
 	}
