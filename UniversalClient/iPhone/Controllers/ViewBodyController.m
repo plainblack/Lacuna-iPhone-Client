@@ -226,10 +226,19 @@ typedef enum {
 					LETableViewCellCurrentResources *resourceCell = [LETableViewCellCurrentResources getCellForTableView:tableView];
 					[resourceCell setEnergyCurrent:[self.bodyData objectForKey:@"energy_stored"] capacity:[self.bodyData objectForKey:@"energy_capacity"] perHour:[self.bodyData objectForKey:@"energy_hour"]];
 					[resourceCell setFoodCurrent:[self.bodyData objectForKey:@"food_stored"] capacity:[self.bodyData objectForKey:@"food_capacity"] perHour:[self.bodyData objectForKey:@"food_hour"]];
-					[resourceCell setHappinessCurrent:[self.bodyData objectForKey:@"happiness"] perHour:[self.bodyData objectForKey:@"happiness_hour"]];
+
+					NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+					[f setNumberStyle:NSNumberFormatterDecimalStyle];
+					NSNumber *happinessCurrent = [f numberFromString:[self.bodyData objectForKey:@"happiness"]];
+					NSNumber *happinessPerHour = [f numberFromString:[self.bodyData objectForKey:@"happiness_hour"]];
+					[f release];
+					[resourceCell setHappinessCurrent:happinessCurrent perHour:happinessPerHour];
+
 					[resourceCell setOreCurrent:[self.bodyData objectForKey:@"ore_stored"] capacity:[self.bodyData objectForKey:@"ore_capacity"] perHour:[self.bodyData objectForKey:@"ore_hour"]];
 					[resourceCell setWasteCurrent:[self.bodyData objectForKey:@"waste_stored"] capacity:[self.bodyData objectForKey:@"waste_capacity"] perHour:[self.bodyData objectForKey:@"waste_hour"]];
 					[resourceCell setWaterCurrent:[self.bodyData objectForKey:@"water_stored"] capacity:[self.bodyData objectForKey:@"water_capacity"] perHour:[self.bodyData objectForKey:@"water_hour"]];
+					NSLog(@"Waste Per Hour: %@", [self.bodyData objectForKey:@"waste_hour"]);
+
 					cell = resourceCell;
 					break;
 			}

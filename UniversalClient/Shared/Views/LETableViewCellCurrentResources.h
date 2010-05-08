@@ -41,7 +41,7 @@
 
 - (void)setEnergyCurrent:(NSNumber *)current capacity:(NSNumber *)capacity perHour:(NSNumber *)perHour;
 - (void)setFoodCurrent:(NSNumber *)current capacity:(NSNumber *)capacity perHour:(NSNumber *)perHour;
-- (void)setHappinessCurrent:(NSString *)current perHour:(NSNumber *)perHour;
+- (void)setHappinessCurrent:(NSNumber *)current perHour:(NSNumber *)perHour;
 - (void)setOreCurrent:(NSNumber *)current capacity:(NSNumber *)capacity perHour:(NSNumber *)perHour;
 - (void)setWasteCurrent:(NSNumber *)current capacity:(NSNumber *)capacity perHour:(NSNumber *)perHour;
 - (void)setWaterCurrent:(NSNumber *)current capacity:(NSNumber *)capacity perHour:(NSNumber *)perHour;

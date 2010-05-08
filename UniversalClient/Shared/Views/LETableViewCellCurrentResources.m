@@ -88,8 +88,8 @@
 }
 
 
-- (void)setHappinessCurrent:(NSString *)current perHour:(NSNumber *)perHour {
-	self.happinessTotalLabel.text = [Util prettyNumber:current];
+- (void)setHappinessCurrent:(NSNumber *)current perHour:(NSNumber *)perHour {
+	self.happinessTotalLabel.text = [NSString stringWithFormat:@"%@", [Util prettyNumber:current]];
 	[self setNormalPerHourLabel:happinessPerHourLabel perHour:perHour];
 }
 
@@ -102,7 +102,7 @@
 
 - (void)setWasteCurrent:(NSNumber *)current capacity:(NSNumber *)capacity perHour:(NSNumber *)perHour {
 	[self setTotalLabel:wasteTotalLabel current:current capacity:capacity];
-	[self setNormalPerHourLabel:waterPerHourLabel perHour:perHour];
+	[self setNormalPerHourLabel:wastePerHourLabel perHour:perHour];
 	//[self setOppositePerHourLabel:wastePerHourLabel perHour:perHour];
 }
 

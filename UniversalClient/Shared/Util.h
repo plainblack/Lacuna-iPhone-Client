@@ -19,7 +19,7 @@
 + (NSDate *)date:(NSString *)serverDateString;
 + (NSString *)prettyDate:(NSString *)serverDateString;
 + (NSString *)prettyNumber:(NSNumber *)number;
-+ (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize;
++ (UIImage *)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize;
 
 
 
