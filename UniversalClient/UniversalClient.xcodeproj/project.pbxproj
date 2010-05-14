@@ -29,6 +29,8 @@
 		F634BB53116C31BD0084A8B2 /* LETableViewCellTextEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = F634BB52116C31BD0084A8B2 /* LETableViewCellTextEntry.m */; };
 		F634BB55116C31E50084A8B2 /* LETableViewCellTextEntry.xib in Resources */ = {isa = PBXBuildFile; fileRef = F634BB54116C31E50084A8B2 /* LETableViewCellTextEntry.xib */; };
 		F645746C118DD62A000897C4 /* LETableViewCellAttachedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F645746B118DD62A000897C4 /* LETableViewCellAttachedImage.m */; };
+		F65D35B91195E00400454C2B /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F65D35B81195E00400454C2B /* iTunesArtwork */; };
+		F65D36681195F05B00454C2B /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = F65D36671195F05B00454C2B /* Entitlements.plist */; };
 		F67E11DA118A701A00D964FD /* AssignSpyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F67E11D9118A701A00D964FD /* AssignSpyController.m */; };
 		F67E11F1118A75BB00D964FD /* LETableViewCellSpyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F67E11F0118A75BB00D964FD /* LETableViewCellSpyInfo.m */; };
 		F6863C16118E475A00861037 /* LETableViewCellAttachedLink.m in Sources */ = {isa = PBXBuildFile; fileRef = F6863C15118E475A00861037 /* LETableViewCellAttachedLink.m */; };
@@ -152,6 +154,8 @@
 		F634BB54116C31E50084A8B2 /* LETableViewCellTextEntry.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LETableViewCellTextEntry.xib; sourceTree = "<group>"; };
 		F645746A118DD62A000897C4 /* LETableViewCellAttachedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellAttachedImage.h; sourceTree = "<group>"; };
 		F645746B118DD62A000897C4 /* LETableViewCellAttachedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellAttachedImage.m; sourceTree = "<group>"; };
+		F65D35B81195E00400454C2B /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
+		F65D36671195F05B00454C2B /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		F67E11D8118A701A00D964FD /* AssignSpyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssignSpyController.h; sourceTree = "<group>"; };
 		F67E11D9118A701A00D964FD /* AssignSpyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssignSpyController.m; sourceTree = "<group>"; };
 		F67E11EF118A75BB00D964FD /* LETableViewCellSpyInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellSpyInfo.h; sourceTree = "<group>"; };
@@ -397,10 +401,12 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				F65D35B81195E00400454C2B /* iTunesArtwork */,
 				F6DD1FDB116D33FC0013C58D /* Default.png */,
 				F634BADE116C27BE0084A8B2 /* icon_57x57.png */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				32CA4F630368D1EE00C91783 /* UniversalClient_Prefix.pch */,
+				F65D36671195F05B00454C2B /* Entitlements.plist */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -729,6 +735,8 @@
 				F6980B06117A6CF900BD2096 /* ViewMailMessageController.xib in Resources */,
 				F69B7FFE118FB51B0049D4A1 /* ViewAttachedTableController.xib in Resources */,
 				F688C4C11193A9160062DF8A /* assets in Resources */,
+				F65D35B91195E00400454C2B /* iTunesArtwork in Resources */,
+				F65D36681195F05B00454C2B /* Entitlements.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -839,7 +847,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kevin Runde";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kevin Runde (226QSGV9X2)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -848,7 +856,8 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "UniversalClient-Info.plist";
 				PRODUCT_NAME = UniversalClient;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3419F338-E2F3-4529-91E7-279F3C1FB8BF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "388B266D-0D71-48CC-9721-A3A938198127";
+				SDKROOT = iphoneos3.2;
 			};
 			name = Debug;
 		};
@@ -856,12 +865,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kevin Runde";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = UniversalClient_Prefix.pch;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "UniversalClient-Info.plist";
 				PRODUCT_NAME = UniversalClient;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A1CCBBEC-E810-4736-AFD9-10A03CCDF834";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -897,6 +908,39 @@
 			};
 			name = Release;
 		};
+		F65D36641195EF1500454C2B /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Distribution;
+		};
+		F65D36651195EF1500454C2B /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kevin Runde";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = UniversalClient_Prefix.pch;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "UniversalClient-Info.plist";
+				PRODUCT_NAME = UniversalClient;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A1CCBBEC-E810-4736-AFD9-10A03CCDF834";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Distribution;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -905,6 +949,7 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+				F65D36651195EF1500454C2B /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -914,6 +959,7 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+				F65D36641195EF1500454C2B /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

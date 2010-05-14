@@ -16,14 +16,14 @@
 #import "RenameSpyController.h"
 #import "AssignSpyController.h"
 #import "LETableViewCellSpyInfo.h"
+#import "Util.h"
 
 
 typedef enum {
 	ROW_SPY_INFO,
 	ROW_BURN_BUTTON,
 	ROW_RENAME_BUTTON,
-	ROW_ASSIGN_BUTTON,
-	ROW_ASSIGNED
+	ROW_ASSIGN_BUTTON
 } ROW;
 
 
@@ -85,17 +85,21 @@ typedef enum {
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	NSDictionary *spy = [self.spies objectAtIndex:indexPath.section];
 	switch (indexPath.row) {
 		case ROW_SPY_INFO:
 			return [LETableViewCellSpyInfo getHeightForTableView:tableView];
 			break;
 		case ROW_BURN_BUTTON:
 		case ROW_RENAME_BUTTON:
-		case ROW_ASSIGN_BUTTON:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
-		case ROW_ASSIGNED:
-			return [LETableViewCellLabeledText getHeightForTableView:tableView];
+		case ROW_ASSIGN_BUTTON:
+			if (intv_([spy objectForKey:@"is_available"]) == 1) {
+				return [LETableViewCellButton getHeightForTableView:tableView];
+			} else {
+				return [LETableViewCellLabeledText getHeightForTableView:tableView];
+			}
 			break;
 		default:
 			return tableView.rowHeight;
@@ -130,17 +134,16 @@ typedef enum {
 			cell = renameButtonCell;
 			break;
 		case ROW_ASSIGN_BUTTON:
-			; //DO NOT REMOVE
-			LETableViewCellButton *assignButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-			assignButtonCell.textLabel.text = @"Assign spy";
-			cell = assignButtonCell;
-			break;
-		case ROW_ASSIGNED:
-			; //DO NOT REMOVE
-			LETableViewCellLabeledText *assignedCell = [LETableViewCellLabeledText getCellForTableView:tableView];
-			assignedCell.label.text = @"Assignment";
-			assignedCell.content.text = [spy objectForKey:@"assignment"];
-			cell = assignedCell;
+			if (intv_([spy objectForKey:@"is_available"]) == 1) {
+				LETableViewCellButton *assignButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+				assignButtonCell.textLabel.text = @"Assign spy";
+				cell = assignButtonCell;
+			} else {
+				LETableViewCellLabeledText *assignedCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+				assignedCell.label.text = @"Busy until";
+				assignedCell.content.text = [Util prettyDate:[spy objectForKey:@"available_on"]];
+				cell = assignedCell;
+			}
 			break;
 		default:
 			cell = nil;
@@ -170,13 +173,14 @@ typedef enum {
 			[self.navigationController pushViewController:renameSpyController animated:YES];
 			break;
 		case ROW_ASSIGN_BUTTON:
-			; //DO NOT REMOVE
-			AssignSpyController *assignSpyController = [AssignSpyController create];
-			assignSpyController.buildingId = self.buildingId;
-			assignSpyController.spyData = spy;
-			assignSpyController.urlPart = self.urlPart;
-			assignSpyController.possibleAssignments = self.possibleAssignments;
-			[self.navigationController pushViewController:assignSpyController animated:YES];
+			if (intv_([spy objectForKey:@"is_available"]) == 1) {
+				AssignSpyController *assignSpyController = [AssignSpyController create];
+				assignSpyController.buildingId = self.buildingId;
+				assignSpyController.spyData = spy;
+				assignSpyController.urlPart = self.urlPart;
+				assignSpyController.possibleAssignments = self.possibleAssignments;
+				[self.navigationController pushViewController:assignSpyController animated:YES];
+			}
 			break;
 	}
 }

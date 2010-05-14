@@ -259,7 +259,7 @@ typedef enum {
 		[[self navigationController] pushViewController:viewAttachedTableController animated:YES];
 		[viewAttachedTableController release];
 	} else if ([key isEqualToString:@"map"]) {
-		NSArray *attachment = [attachements objectForKey:key];
+		NSDictionary *attachment = [attachements objectForKey:key];
 		ViewAttachedMapController *viewAttachedMapController = [[ViewAttachedMapController alloc] init];
 		[viewAttachedMapController setAttachedMap:attachment];
 		[[self navigationController] pushViewController:viewAttachedMapController animated:YES];

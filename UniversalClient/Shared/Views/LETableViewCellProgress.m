@@ -51,6 +51,7 @@
 
 - (void)setTotalTime:(NSInteger)inTotalTime remainingTime:(NSInteger)inRemainingTime {
 	NSLog(@"totalTime: %i, remainingTime: %i", inTotalTime, inRemainingTime);
+	[self.timer invalidate];
 	totalTime = inTotalTime + 2;
 	remainingTime = inRemainingTime + 2;
 	[self handleTimer:nil];

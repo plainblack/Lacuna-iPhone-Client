@@ -64,16 +64,9 @@
 			[locsByButton setObject:loc forKey:[NSValue valueWithNonretainedObject:button]];
 
 			NSDictionary *building = [self.buildings objectForKey:loc];
-			//[button setBackgroundImage:[UIImage imageNamed:@"/assets/planet_side/ground.png"] forState:UIControlStateNormal];
 			if (building) {
-				//UIImage *tmp = [UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/%@.png", [building objectForKey:@"image"]]];
-				//tmp = [Util imageWithImage:tmp scaledToSize:CGSizeMake(BODY_BUILDINGS_CELL_WIDTH, BODY_BUILDINGS_CELL_HEIGHT)];
-				//[button setImage:tmp forState:UIControlStateNormal];
 				[button setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/100/%@.png", [building objectForKey:@"image"]]] forState:UIControlStateNormal];
 			} else {
-				//UIImage *tmp = [UIImage imageNamed:@"/assets/planet_side/build.png"];
-				//tmp = [Util imageWithImage:tmp scaledToSize:CGSizeMake(BODY_BUILDINGS_CELL_WIDTH, BODY_BUILDINGS_CELL_HEIGHT)];
-				//[button setImage:tmp forState:UIControlStateNormal];
 				[button setBackgroundImage:[UIImage imageNamed:@"/assets/planet_side/build.png"] forState:UIControlStateNormal];
 			}
 			
@@ -152,14 +145,8 @@
 			NSDictionary *building = [self.buildings objectForKey:key];
 			
 			if (building) {
-				//UIImage *tmp = [UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/100/%@.png", [building objectForKey:@"image"]]];
-				//tmp = [Util imageWithImage:tmp scaledToSize:CGSizeMake(BODY_BUILDINGS_CELL_WIDTH, BODY_BUILDINGS_CELL_HEIGHT)];
-				//[button setImage:tmp forState:UIControlStateNormal];
 				[button setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/100/%@.png", [building objectForKey:@"image"]]] forState:UIControlStateNormal];
 			} else {
-				//UIImage *tmp = [UIImage imageNamed:@"/assets/planet_side/build.png"];
-				//tmp = [Util imageWithImage:tmp scaledToSize:CGSizeMake(BODY_BUILDINGS_CELL_WIDTH, BODY_BUILDINGS_CELL_HEIGHT)];
-				//[button setImage:tmp forState:UIControlStateNormal];
 				[button setBackgroundImage:[UIImage imageNamed:@"/assets/planet_side/build.png"] forState:UIControlStateNormal];
 			}
 		}

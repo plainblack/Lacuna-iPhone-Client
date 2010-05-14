@@ -57,43 +57,6 @@
 		imageView.frame = CGRectMake(viewX, viewY, BODY_BUILDINGS_CELL_WIDTH, BODY_BUILDINGS_CELL_HEIGHT);
 		[self.scrollView addSubview:imageView];
 	}
-	/*
-	buttonsByLoc = [[NSMutableDictionary alloc] initWithCapacity:BODY_BUILDINGS_NUM_ROWS*BODY_BUILDINGS_NUM_COLS];
-	locsByButton = [[NSMutableDictionary alloc] initWithCapacity:BODY_BUILDINGS_NUM_ROWS*BODY_BUILDINGS_NUM_COLS];
-	int currentX = 0;
-	for (int x=BODY_BUILDINGS_MIN_X; x<=BODY_BUILDINGS_MAX_X; x++) {
-		int currentY = 0;
-		for (int y=BODY_BUILDINGS_MAX_Y; y>=BODY_BUILDINGS_MIN_Y; y--) {
-			NSString *loc = [NSString stringWithFormat:@"%ix%i", x, y];
-			UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-			button.autoresizesSubviews = YES;
-			[button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-			button.frame = CGRectMake(currentX, currentY, BODY_BUILDINGS_CELL_WIDTH, BODY_BUILDINGS_CELL_HEIGHT);
-			button.contentMode = UIViewContentModeScaleToFill;
-			button.imageView.contentMode = UIViewContentModeScaleToFill;
-			button.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-			button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-			[self.scrollView addSubview:button];
-			[buttonsByLoc setObject:button forKey:loc];
-			[locsByButton setObject:loc forKey:[NSValue valueWithNonretainedObject:button]];
-			
-			NSDictionary *building = [self.buildings objectForKey:loc];
-			[button setBackgroundImage:[UIImage imageNamed:@"/assets/planet_side/ground.png"] forState:UIControlStateNormal];
-			if (building) {
-				UIImage *tmp = [UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/%@.png", [building objectForKey:@"image"]]];
-				tmp = [Util imageWithImage:tmp scaledToSize:CGSizeMake(BODY_BUILDINGS_CELL_WIDTH, BODY_BUILDINGS_CELL_HEIGHT)];
-				[button setImage:tmp forState:UIControlStateNormal];
-			} else {
-				UIImage *tmp = [UIImage imageNamed:@"/assets/planet_side/build.png"];
-				tmp = [Util imageWithImage:tmp scaledToSize:CGSizeMake(BODY_BUILDINGS_CELL_WIDTH, BODY_BUILDINGS_CELL_HEIGHT)];
-				[button setImage:tmp forState:UIControlStateNormal];
-			}
-			
-			currentY += BODY_BUILDINGS_CELL_HEIGHT;
-		}
-		currentX += BODY_BUILDINGS_CELL_WIDTH;
-	}
-	*/
 }
 
 

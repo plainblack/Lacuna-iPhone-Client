@@ -108,7 +108,7 @@ typedef enum {
 			; //DO NOT REMOVE
 			NSDictionary *stats = [building objectForKey:@"production"];
 			LETableViewCellBuildingStats *buildingStatsCell = [LETableViewCellBuildingStats getCellForTableView:tableView];
-			[buildingStatsCell setBuildingImage:[UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/%@.png", [building objectForKey:@"image"]]]];
+			[buildingStatsCell setBuildingImage:[UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/100/%@.png", [building objectForKey:@"image"]]]];
 			[buildingStatsCell setBuildingName:[building objectForKey:@"name"] buildingLevel:[NSNumber numberWithInt:1]];
 			[buildingStatsCell setEnergyPerHour:[stats objectForKey:@"energy_hour"]];
 			[buildingStatsCell setFoodPerHour:[stats objectForKey:@"food_hour"]];
@@ -267,7 +267,7 @@ typedef enum {
 		NSString *loc = [NSString stringWithFormat:@"%@x%@", self.x, self.y];
 		[self.buildingsByLoc setObject:building forKey:loc];
 		UIButton *button = [self.buttonsByLoc objectForKey:loc];
-		UIImage *tmp = [UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/%@.png", [building objectForKey:@"image"]]];
+		UIImage *tmp = [UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/100/%@.png", [building objectForKey:@"image"]]];
 		tmp = [Util imageWithImage:tmp scaledToSize:CGSizeMake(BODY_BUILDINGS_CELL_WIDTH, BODY_BUILDINGS_CELL_HEIGHT)];
 		[button setImage:tmp forState:UIControlStateNormal];
 		[self.navigationController popViewControllerAnimated:TRUE];

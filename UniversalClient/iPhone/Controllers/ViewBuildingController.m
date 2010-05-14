@@ -151,7 +151,7 @@ typedef enum {
 		case ROW_BUILDING_STATS:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellBuildingStats *statsCell = [LETableViewCellBuildingStats getCellForTableView:tableView];
-			[statsCell setBuildingImage:[UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/%@.png", [self.buildingData objectForKey:@"image"]]]];
+			[statsCell setBuildingImage:[UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/100/%@.png", [self.buildingData objectForKey:@"image"]]]];
 			[statsCell setBuildingName:[self.buildingData objectForKey:@"name"] buildingLevel:[self.buildingData objectForKey:@"level"]];
 			[statsCell setEnergyPerHour:[self.buildingData objectForKey:@"energy_hour"]];
 			[statsCell setFoodPerHour:[self.buildingData objectForKey:@"food_hour"]];
@@ -165,7 +165,7 @@ typedef enum {
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			NSDictionary *stats = [upgrade objectForKey:@"production"];
 			LETableViewCellBuildingStats *upgradeStatsCell = [LETableViewCellBuildingStats getCellForTableView:tableView];
-			[upgradeStatsCell setBuildingImage:[UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/%@.png", [upgrade objectForKey:@"image"]]]];
+			[upgradeStatsCell setBuildingImage:[UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/100/%@.png", [upgrade objectForKey:@"image"]]]];
 			[upgradeStatsCell setBuildingName:[self.buildingData objectForKey:@"name"] buildingLevel:[NSNumber numberWithInt:intv_([self.buildingData objectForKey:@"level"])+1]];
 			[upgradeStatsCell setEnergyPerHour:[stats objectForKey:@"energy_hour"]];
 			[upgradeStatsCell setFoodPerHour:[stats objectForKey:@"food_hour"]];
@@ -375,7 +375,13 @@ typedef enum {
 		NSMutableArray *rows = [NSMutableArray arrayWithCapacity:5];
 		[rows addObject:[NSNumber numberWithInt:ROW_NUM_SPIES]];
 		[rows addObject:[NSNumber numberWithInt:ROW_SPY_BUILD_COST]];
-		[rows addObject:[NSNumber numberWithInt:ROW_BUILD_SPY_BUTTON]];
+		
+		NSInteger current = intv_([[self.resultData objectForKey:@"spies"] objectForKey:@"current"]);
+		NSInteger max = intv_([[self.resultData objectForKey:@"spies"] objectForKey:@"maximum"]);
+		if (current < max) {
+			[rows addObject:[NSNumber numberWithInt:ROW_BUILD_SPY_BUTTON]];
+		}
+		
 		[rows addObject:[NSNumber numberWithInt:ROW_VIEW_SPIES_BUTTON]];
 		[tmpSections addObject:dict_([NSNumber numberWithInt:SECTION_ACTIONS], @"type", rows, @"rows")];
 	}
