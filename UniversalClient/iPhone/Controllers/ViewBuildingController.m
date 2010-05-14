@@ -21,6 +21,7 @@
 #import "LETableViewCellLabeledText.h"
 #import "LEBuildingTrainSpy.h"
 #import "ViewSpiesController.h"
+#import "RecycleController.h"
 
 
 typedef enum {
@@ -44,6 +45,9 @@ typedef enum {
 	ROW_SPY_BUILD_COST,
 	ROW_BUILD_SPY_BUTTON,
 	ROW_VIEW_SPIES_BUTTON,
+	ROW_RECYCLE,
+	ROW_RECYCLE_PENDING,
+	ROW_SUBSIDIZE
 } ROW;
 
 
@@ -122,7 +126,9 @@ typedef enum {
 		case ROW_UNRESTRICTED_NETWORK_19:
 		case ROW_BUILD_SPY_BUTTON:
 		case ROW_VIEW_SPIES_BUTTON:
-			return tableView.rowHeight;
+		case ROW_RECYCLE:
+		case ROW_SUBSIDIZE:
+			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		case ROW_UPGRADE_CANNOT:
 			return 88.0;
@@ -133,6 +139,10 @@ typedef enum {
 		case ROW_NUM_SPIES:
 			return tableView.rowHeight;
 			break;
+		case ROW_RECYCLE_PENDING:
+			return tableView.rowHeight;
+			break;
+			
 		default:
 			return tableView.rowHeight;
 			break;
@@ -261,6 +271,25 @@ typedef enum {
 			viewSpiesButtonCell.textLabel.text = @"View spies";
 			cell = viewSpiesButtonCell;
 			break;
+		case ROW_RECYCLE:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *recycleButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			recycleButtonCell.textLabel.text = @"Recycle";
+			cell = recycleButtonCell;
+			break;
+		case ROW_RECYCLE_PENDING:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellLabeledText *recyclingCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			recyclingCell.label.text = @"Busy";
+			recyclingCell.content.text = @"Recycling";
+			cell = recyclingCell;
+			break;
+		case ROW_SUBSIDIZE:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *subsidizeButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			subsidizeButtonCell.textLabel.text = @"Subsidize";
+			cell = subsidizeButtonCell;
+			break;
 		default:
 			cell = nil;
 			break;
@@ -304,6 +333,16 @@ typedef enum {
 			viewSpiesController.spiesData = [self.resultData objectForKey:@"spies"];
 			viewSpiesController.urlPart = self.urlPart;
 			[self.navigationController pushViewController:viewSpiesController animated:YES];
+			break;
+		case ROW_RECYCLE:
+			; //DO NOT REMOVE
+			RecycleController *recycleController = [RecycleController create];
+			recycleController.buildingId = self.buildingId;
+			recycleController.urlPart = self.urlPart;
+			recycleController.secondsPerResource = [[self.resultData objectForKey:@"recycle"] objectForKey:@"seconds_per_resource"];
+			[self.navigationController pushViewController:recycleController animated:YES];
+			break;
+		case ROW_SUBSIDIZE:
 			break;
 	}
 }
@@ -383,6 +422,19 @@ typedef enum {
 		}
 		
 		[rows addObject:[NSNumber numberWithInt:ROW_VIEW_SPIES_BUTTON]];
+		[tmpSections addObject:dict_([NSNumber numberWithInt:SECTION_ACTIONS], @"type", rows, @"rows")];
+	} else 	if ([self.urlPart isEqualToString:@"/wasterecycling"]) {
+		[tmpSectionHeaders addObject:[LEViewSectionTab tableView:self.tableView createWithText:@"Actions"]];
+		NSMutableArray *rows = [NSMutableArray arrayWithCapacity:2];
+		
+		NSInteger canRecycle = intv_([[self.resultData objectForKey:@"recycle"] objectForKey:@"can"]);
+		if (canRecycle) {
+			[rows addObject:[NSNumber numberWithInt:ROW_RECYCLE]];
+		} else {
+			[rows addObject:[NSNumber numberWithInt:ROW_RECYCLE_PENDING]];
+			[rows addObject:[NSNumber numberWithInt:ROW_SUBSIDIZE]];
+		}
+		
 		[tmpSections addObject:dict_([NSNumber numberWithInt:SECTION_ACTIONS], @"type", rows, @"rows")];
 	}
 	

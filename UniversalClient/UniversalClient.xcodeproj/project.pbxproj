@@ -45,6 +45,8 @@
 		F6882DF7116EC6E7009B624B /* LETableViewCellMedal.m in Sources */ = {isa = PBXBuildFile; fileRef = F6882DF6116EC6E7009B624B /* LETableViewCellMedal.m */; };
 		F688A34911939EEB0062DF8A /* ViewAttachedMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = F688A34711939EEB0062DF8A /* ViewAttachedMapController.m */; };
 		F688C4C11193A9160062DF8A /* assets in Resources */ = {isa = PBXBuildFile; fileRef = F688B98F1193A9150062DF8A /* assets */; };
+		F697BA09119CE035004B2119 /* RecycleController.m in Sources */ = {isa = PBXBuildFile; fileRef = F697BA08119CE035004B2119 /* RecycleController.m */; };
+		F697BA0C119CE6BD004B2119 /* LEBuildingRecycle.m in Sources */ = {isa = PBXBuildFile; fileRef = F697BA0B119CE6BD004B2119 /* LEBuildingRecycle.m */; };
 		F69809A71179FFFB00BD2096 /* ViewBuildingController.m in Sources */ = {isa = PBXBuildFile; fileRef = F69809A61179FFFB00BD2096 /* ViewBuildingController.m */; };
 		F69809BC117A14FE00BD2096 /* LETableViewCellBuildingStats.m in Sources */ = {isa = PBXBuildFile; fileRef = F69809BB117A14FE00BD2096 /* LETableViewCellBuildingStats.m */; };
 		F69809BF117A154500BD2096 /* LETableViewCellProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = F69809BE117A154500BD2096 /* LETableViewCellProgress.m */; };
@@ -183,6 +185,10 @@
 		F688A34611939EEB0062DF8A /* ViewAttachedMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewAttachedMapController.h; sourceTree = "<group>"; };
 		F688A34711939EEB0062DF8A /* ViewAttachedMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewAttachedMapController.m; sourceTree = "<group>"; };
 		F688B98F1193A9150062DF8A /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
+		F697BA07119CE035004B2119 /* RecycleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecycleController.h; sourceTree = "<group>"; };
+		F697BA08119CE035004B2119 /* RecycleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecycleController.m; sourceTree = "<group>"; };
+		F697BA0A119CE6BD004B2119 /* LEBuildingRecycle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingRecycle.h; sourceTree = "<group>"; };
+		F697BA0B119CE6BD004B2119 /* LEBuildingRecycle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingRecycle.m; sourceTree = "<group>"; };
 		F69809A51179FFFB00BD2096 /* ViewBuildingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewBuildingController.h; sourceTree = "<group>"; };
 		F69809A61179FFFB00BD2096 /* ViewBuildingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewBuildingController.m; sourceTree = "<group>"; };
 		F69809BA117A14FE00BD2096 /* LETableViewCellBuildingStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellBuildingStats.h; sourceTree = "<group>"; };
@@ -592,6 +598,8 @@
 				F6A9C5B51184BB80001F0D9C /* LEBuildingNameSpy.m */,
 				F6A9C5B71184BBA1001F0D9C /* LEBuildingAssignSpy.h */,
 				F6A9C5B81184BBA1001F0D9C /* LEBuildingAssignSpy.m */,
+				F697BA0A119CE6BD004B2119 /* LEBuildingRecycle.h */,
+				F697BA0B119CE6BD004B2119 /* LEBuildingRecycle.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -655,6 +663,8 @@
 				F69B7FFC118FB51A0049D4A1 /* ViewAttachedTableController.xib */,
 				F688A34611939EEB0062DF8A /* ViewAttachedMapController.h */,
 				F688A34711939EEB0062DF8A /* ViewAttachedMapController.m */,
+				F697BA07119CE035004B2119 /* RecycleController.h */,
+				F697BA08119CE035004B2119 /* RecycleController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -837,6 +847,8 @@
 				F6863C16118E475A00861037 /* LETableViewCellAttachedLink.m in Sources */,
 				F69B7FFD118FB51A0049D4A1 /* ViewAttachedTableController.m in Sources */,
 				F688A34911939EEB0062DF8A /* ViewAttachedMapController.m in Sources */,
+				F697BA09119CE035004B2119 /* RecycleController.m in Sources */,
+				F697BA0C119CE6BD004B2119 /* LEBuildingRecycle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
