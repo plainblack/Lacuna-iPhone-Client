@@ -77,4 +77,12 @@
 }
 
 
++ (NSNumber *)asNumber:(NSString *)string {
+	NSNumberFormatter *f = [[[NSNumberFormatter alloc] init] autorelease];
+	[f setNumberStyle:NSNumberFormatterDecimalStyle];
+	return [f numberFromString:string];
+}
+
+
+
 @end

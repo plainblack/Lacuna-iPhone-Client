@@ -21,6 +21,7 @@
 		F603A8BE1177E7FC00BAC73A /* LETableViewCellBody.m in Sources */ = {isa = PBXBuildFile; fileRef = F603A8BD1177E7FC00BAC73A /* LETableViewCellBody.m */; };
 		F603A8EF1177F7F200BAC73A /* LETableViewCellCurrentResources.m in Sources */ = {isa = PBXBuildFile; fileRef = F603A8EE1177F7F200BAC73A /* LETableViewCellCurrentResources.m */; };
 		F603A91911780A0400BAC73A /* ViewBodyMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = F603A91811780A0400BAC73A /* ViewBodyMapController.m */; };
+		F6132E5B119E3A78000F99A9 /* LETableViewCellNumberEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = F6132E5A119E3A78000F99A9 /* LETableViewCellNumberEntry.m */; };
 		F631A3D311754AEF005E40CC /* ViewBodyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F631A3D211754AEF005E40CC /* ViewBodyController.m */; };
 		F631A3F311755489005E40CC /* ViewBodyController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F631A3F211755489005E40CC /* ViewBodyController.xib */; };
 		F634BADF116C27BE0084A8B2 /* icon_57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = F634BADE116C27BE0084A8B2 /* icon_57x57.png */; };
@@ -31,6 +32,8 @@
 		F645746C118DD62A000897C4 /* LETableViewCellAttachedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F645746B118DD62A000897C4 /* LETableViewCellAttachedImage.m */; };
 		F65D35B91195E00400454C2B /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F65D35B81195E00400454C2B /* iTunesArtwork */; };
 		F65D36681195F05B00454C2B /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = F65D36671195F05B00454C2B /* Entitlements.plist */; };
+		F6724F55119F74F200D57E0D /* PickNumericValueController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6724F53119F74F200D57E0D /* PickNumericValueController.m */; };
+		F6724F56119F74F200D57E0D /* PickNumericValueController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6724F54119F74F200D57E0D /* PickNumericValueController.xib */; };
 		F67E11DA118A701A00D964FD /* AssignSpyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F67E11D9118A701A00D964FD /* AssignSpyController.m */; };
 		F67E11F1118A75BB00D964FD /* LETableViewCellSpyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F67E11F0118A75BB00D964FD /* LETableViewCellSpyInfo.m */; };
 		F6863C16118E475A00861037 /* LETableViewCellAttachedLink.m in Sources */ = {isa = PBXBuildFile; fileRef = F6863C15118E475A00861037 /* LETableViewCellAttachedLink.m */; };
@@ -144,6 +147,8 @@
 		F603A8EE1177F7F200BAC73A /* LETableViewCellCurrentResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellCurrentResources.m; sourceTree = "<group>"; };
 		F603A91711780A0400BAC73A /* ViewBodyMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewBodyMapController.h; sourceTree = "<group>"; };
 		F603A91811780A0400BAC73A /* ViewBodyMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewBodyMapController.m; sourceTree = "<group>"; };
+		F6132E59119E3A78000F99A9 /* LETableViewCellNumberEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellNumberEntry.h; sourceTree = "<group>"; };
+		F6132E5A119E3A78000F99A9 /* LETableViewCellNumberEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellNumberEntry.m; sourceTree = "<group>"; };
 		F631A3D111754AEF005E40CC /* ViewBodyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewBodyController.h; sourceTree = "<group>"; };
 		F631A3D211754AEF005E40CC /* ViewBodyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewBodyController.m; sourceTree = "<group>"; };
 		F631A3F211755489005E40CC /* ViewBodyController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewBodyController.xib; sourceTree = "<group>"; };
@@ -158,6 +163,9 @@
 		F645746B118DD62A000897C4 /* LETableViewCellAttachedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellAttachedImage.m; sourceTree = "<group>"; };
 		F65D35B81195E00400454C2B /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		F65D36671195F05B00454C2B /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		F6724F52119F74F200D57E0D /* PickNumericValueController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickNumericValueController.h; sourceTree = "<group>"; };
+		F6724F53119F74F200D57E0D /* PickNumericValueController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickNumericValueController.m; sourceTree = "<group>"; };
+		F6724F54119F74F200D57E0D /* PickNumericValueController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickNumericValueController.xib; sourceTree = "<group>"; };
 		F67E11D8118A701A00D964FD /* AssignSpyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssignSpyController.h; sourceTree = "<group>"; };
 		F67E11D9118A701A00D964FD /* AssignSpyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssignSpyController.m; sourceTree = "<group>"; };
 		F67E11EF118A75BB00D964FD /* LETableViewCellSpyInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellSpyInfo.h; sourceTree = "<group>"; };
@@ -485,6 +493,8 @@
 				F645746B118DD62A000897C4 /* LETableViewCellAttachedImage.m */,
 				F6863C14118E475A00861037 /* LETableViewCellAttachedLink.h */,
 				F6863C15118E475A00861037 /* LETableViewCellAttachedLink.m */,
+				F6132E59119E3A78000F99A9 /* LETableViewCellNumberEntry.h */,
+				F6132E5A119E3A78000F99A9 /* LETableViewCellNumberEntry.m */,
 			);
 			name = Views;
 			path = Shared/Views;
@@ -665,6 +675,9 @@
 				F688A34711939EEB0062DF8A /* ViewAttachedMapController.m */,
 				F697BA07119CE035004B2119 /* RecycleController.h */,
 				F697BA08119CE035004B2119 /* RecycleController.m */,
+				F6724F52119F74F200D57E0D /* PickNumericValueController.h */,
+				F6724F53119F74F200D57E0D /* PickNumericValueController.m */,
+				F6724F54119F74F200D57E0D /* PickNumericValueController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -747,6 +760,7 @@
 				F688C4C11193A9160062DF8A /* assets in Resources */,
 				F65D35B91195E00400454C2B /* iTunesArtwork in Resources */,
 				F65D36681195F05B00454C2B /* Entitlements.plist in Resources */,
+				F6724F56119F74F200D57E0D /* PickNumericValueController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -849,6 +863,8 @@
 				F688A34911939EEB0062DF8A /* ViewAttachedMapController.m in Sources */,
 				F697BA09119CE035004B2119 /* RecycleController.m in Sources */,
 				F697BA0C119CE6BD004B2119 /* LEBuildingRecycle.m in Sources */,
+				F6132E5B119E3A78000F99A9 /* LETableViewCellNumberEntry.m in Sources */,
+				F6724F55119F74F200D57E0D /* PickNumericValueController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,7 +10,7 @@
 #import "LEMacros.h"
 #import "LEBuildingRecycle.h"
 #import "LEViewSectionTab.h"
-#import "LETableViewCellTextEntry.h"
+#import "LETableViewCellNumberEntry.h"
 #import "LETableViewCellLabeledText.h"
 
 
@@ -62,7 +62,7 @@ typedef enum {
 		case ROW_ENERGY:
 		case ROW_ORE:
 		case ROW_WATER:
-			return [LETableViewCellTextEntry getHeightForTableView:tableView];
+			return [LETableViewCellNumberEntry getHeightForTableView:tableView];
 			break;
 		case ROW_SUBSIDIZED:
 			return tableView.rowHeight;
@@ -85,23 +85,23 @@ typedef enum {
     switch (indexPath.row) {
 		case ROW_ENERGY:
 			; //DO NOT REMOVE
-			LETableViewCellTextEntry *energyCell = [LETableViewCellTextEntry getCellForTableView:tableView];
+			LETableViewCellNumberEntry *energyCell = [LETableViewCellNumberEntry getCellForTableView:tableView viewController:self];
 			energyCell.label.text = @"Energy";
-			energyCell.textField.text = @"0";
+			[energyCell setNumericValue:[NSNumber numberWithInt:0]];
 			cell = energyCell;
 			break;
 		case ROW_ORE:
 			; //DO NOT REMOVE
-			LETableViewCellTextEntry *oreCell = [LETableViewCellTextEntry getCellForTableView:tableView];
+			LETableViewCellNumberEntry *oreCell = [LETableViewCellNumberEntry getCellForTableView:tableView viewController:self];
 			oreCell.label.text = @"Ore";
-			oreCell.textField.text = @"0";
+			[oreCell setNumericValue:[NSNumber numberWithInt:0]];
 			cell = oreCell;
 			break;
 		case ROW_WATER:
 			; //DO NOT REMOVE
-			LETableViewCellTextEntry *waterCell = [LETableViewCellTextEntry getCellForTableView:tableView];
+			LETableViewCellNumberEntry *waterCell = [LETableViewCellNumberEntry getCellForTableView:tableView viewController:self];
 			waterCell.label.text = @"Water";
-			waterCell.textField.text = @"0";
+			[waterCell setNumericValue:[NSNumber numberWithInt:0]];
 			cell = waterCell;
 			break;
 		case ROW_SUBSIDIZED:

@@ -132,6 +132,8 @@ static Session *sharedSession = nil;
 	} else {
 		KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithIdentifier:request.username accessGroup:nil] autorelease];
 		[keychainItemWrapper resetKeychainItem];
+		[keychainItemWrapper setObject:request.username forKey:(id)kSecAttrAccount];
+		[keychainItemWrapper setObject:request.password forKey:(id)kSecValueData];
 		BOOL found = NO;
 		for (NSDictionary *empire in self.empireList) {
 			if ([[empire objectForKey:@"username"] isEqualToString:request.username]){
