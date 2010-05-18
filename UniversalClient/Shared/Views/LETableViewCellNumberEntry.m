@@ -68,6 +68,11 @@
 }
 
 
+- (NSNumber *)numericValue {
+	return numericValue;
+}
+
+
 - (IBAction)editNumericValue {
 	PickNumericValueController *pickNumericValueController = [PickNumericValueController createWithDelegate:self];
 	[self.viewController presentModalViewController:pickNumericValueController animated:YES];

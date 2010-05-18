@@ -10,16 +10,25 @@
 #import "LETableViewControllerGrouped.h"
 
 
+@class LETableViewCellNumberEntry;
+
+
 @interface RecycleController : LETableViewControllerGrouped {
 	NSString *buildingId;
 	NSString *urlPart;
 	NSNumber *secondsPerResource;
+	LETableViewCellNumberEntry *energyCell;
+	LETableViewCellNumberEntry *oreCell;
+	LETableViewCellNumberEntry *waterCell;
 }
 
 
 @property(nonatomic, retain) NSString *buildingId;
 @property(nonatomic, retain) NSString *urlPart;
 @property(nonatomic, retain) NSNumber *secondsPerResource;
+@property(nonatomic, retain) LETableViewCellNumberEntry *energyCell;
+@property(nonatomic, retain) LETableViewCellNumberEntry *oreCell;
+@property(nonatomic, retain) LETableViewCellNumberEntry *waterCell;
 
 
 + (RecycleController *) create;

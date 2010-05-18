@@ -24,6 +24,7 @@
 
 
 - (void)setNumericValue:(NSNumber *)value;
+- (NSNumber *)numericValue;
 - (IBAction)editNumericValue;
 
 

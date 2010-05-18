@@ -29,6 +29,9 @@ typedef enum {
 @synthesize buildingId;
 @synthesize urlPart;
 @synthesize secondsPerResource;
+@synthesize energyCell;
+@synthesize oreCell;
+@synthesize waterCell;
 
 
 #pragma mark -
@@ -41,6 +44,11 @@ typedef enum {
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)] autorelease];
 	
 	self.sectionHeaders = array_([LEViewSectionTab tableView:self.tableView createWithText:@"Recycle"]);
+	
+	self.energyCell = [LETableViewCellNumberEntry getCellForTableView:self.tableView viewController:self];
+	self.oreCell = [LETableViewCellNumberEntry getCellForTableView:self.tableView viewController:self];
+	self.waterCell = [LETableViewCellNumberEntry getCellForTableView:self.tableView viewController:self];
+
 }
 
 
@@ -84,25 +92,19 @@ typedef enum {
     
     switch (indexPath.row) {
 		case ROW_ENERGY:
-			; //DO NOT REMOVE
-			LETableViewCellNumberEntry *energyCell = [LETableViewCellNumberEntry getCellForTableView:tableView viewController:self];
-			energyCell.label.text = @"Energy";
-			[energyCell setNumericValue:[NSNumber numberWithInt:0]];
-			cell = energyCell;
+			self.energyCell.label.text = @"Energy";
+			[self.energyCell setNumericValue:[NSNumber numberWithInt:0]];
+			cell = self.energyCell;
 			break;
 		case ROW_ORE:
-			; //DO NOT REMOVE
-			LETableViewCellNumberEntry *oreCell = [LETableViewCellNumberEntry getCellForTableView:tableView viewController:self];
-			oreCell.label.text = @"Ore";
-			[oreCell setNumericValue:[NSNumber numberWithInt:0]];
-			cell = oreCell;
+			self.oreCell.label.text = @"Ore";
+			[self.oreCell setNumericValue:[NSNumber numberWithInt:0]];
+			cell = self.oreCell;
 			break;
 		case ROW_WATER:
-			; //DO NOT REMOVE
-			LETableViewCellNumberEntry *waterCell = [LETableViewCellNumberEntry getCellForTableView:tableView viewController:self];
-			waterCell.label.text = @"Water";
-			[waterCell setNumericValue:[NSNumber numberWithInt:0]];
-			cell = waterCell;
+			self.waterCell.label.text = @"Water";
+			[self.waterCell setNumericValue:[NSNumber numberWithInt:0]];
+			cell = self.waterCell;
 			break;
 		case ROW_SUBSIDIZED:
 			; //DO NOT REMOVE
@@ -139,6 +141,9 @@ typedef enum {
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
+	self.energyCell = nil;
+	self.oreCell = nil;
+	self.waterCell = nil;
 }
 
 
@@ -159,7 +164,7 @@ typedef enum {
 
 
 - (void)save {
-	[[[LEBuildingRecycle alloc] initWithCallback:@selector(recyclStarted:) target:self buildingId:self.buildingId buildingUrl:self.urlPart energy:[NSNumber numberWithInt:1] ore:[NSNumber numberWithInt:1] water:[NSNumber numberWithInt:1] subsidized:NO] autorelease];
+	[[[LEBuildingRecycle alloc] initWithCallback:@selector(recyclStarted:) target:self buildingId:self.buildingId buildingUrl:self.urlPart energy:[self.energyCell numericValue] ore:[self.oreCell numericValue] water:[self.waterCell numericValue] subsidized:NO] autorelease];
 }
 
 
