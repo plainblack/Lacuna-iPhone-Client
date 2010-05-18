@@ -448,9 +448,9 @@
 	};
 	F6132E5A119E3A78000F99A9 /* LETableViewCellNumberEntry.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1104, 1625}}";
-			sepNavSelRange = "{1478, 0}";
-			sepNavVisRange = "{1075, 696}";
+			sepNavIntBoundsRect = "{{0, 0}, {1104, 1664}}";
+			sepNavSelRange = "{1529, 0}";
+			sepNavVisRange = "{1370, 958}";
 		};
 	};
 	F6132E61119E3DB6000F99A9 /* PBXTextBookmark */ = {
@@ -1565,16 +1565,16 @@
 	};
 	F697BA07119CE035004B2119 /* RecycleController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {835, 377}}";
-			sepNavSelRange = "{525, 0}";
-			sepNavVisRange = "{27, 517}";
+			sepNavIntBoundsRect = "{{0, 0}, {835, 507}}";
+			sepNavSelRange = "{239, 0}";
+			sepNavVisRange = "{0, 501}";
 		};
 	};
 	F697BA08119CE035004B2119 /* RecycleController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {936, 2327}}";
-			sepNavSelRange = "{2064, 0}";
-			sepNavVisRange = "{2286, 556}";
+			sepNavIntBoundsRect = "{{0, 0}, {1923, 2470}}";
+			sepNavSelRange = "{1437, 0}";
+			sepNavVisRange = "{4032, 636}";
 		};
 	};
 	F697BA0A119CE6BD004B2119 /* LEBuildingRecycle.h */ = {
@@ -1676,7 +1676,7 @@
 		fRef = F697BA07119CE035004B2119 /* RecycleController.h */;
 		name = "RecycleController.h: 25";
 		rLen = 0;
-		rLoc = 525;
+		rLoc = 884;
 		rType = 0;
 		vrLen = 517;
 		vrLoc = 27;
@@ -1713,16 +1713,16 @@
 	};
 	F69809A51179FFFB00BD2096 /* ViewBuildingController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {838, 416}}";
+			sepNavIntBoundsRect = "{{0, 0}, {835, 442}}";
 			sepNavSelRange = "{442, 0}";
-			sepNavVisRange = "{0, 524}";
+			sepNavVisRange = "{0, 579}";
 		};
 	};
 	F69809A61179FFFB00BD2096 /* ViewBuildingController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1433, 6760}}";
-			sepNavSelRange = "{13434, 0}";
-			sepNavVisRange = "{2226, 901}";
+			sepNavIntBoundsRect = "{{0, 0}, {1433, 6565}}";
+			sepNavSelRange = "{13875, 0}";
+			sepNavVisRange = "{13047, 952}";
 		};
 	};
 	F69809BA117A14FE00BD2096 /* LETableViewCellBuildingStats.h */ = {
@@ -2018,7 +2018,7 @@
 		fRef = F697BA08119CE035004B2119 /* RecycleController.m */;
 		name = "RecycleController.m: 102";
 		rLen = 0;
-		rLoc = 2753;
+		rLoc = 2734;
 		rType = 0;
 		vrLen = 1019;
 		vrLoc = 1853;
