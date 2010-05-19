@@ -22,6 +22,7 @@
 #import "LEBuildingTrainSpy.h"
 #import "ViewSpiesController.h"
 #import "RecycleController.h"
+#import "LEBuildingSubsidizeRecycling.h"
 
 
 typedef enum {
@@ -343,7 +344,7 @@ typedef enum {
 			[self.navigationController pushViewController:recycleController animated:YES];
 			break;
 		case ROW_SUBSIDIZE:
-			LE
+			[[[LEBuildingSubsidizeRecycling alloc] initWithCallback:@selector(subsidizedRecycling:) target:self buildingId:self.buildingId buildingUrl:self.urlPart] autorelease];
 			break;
 	}
 }
@@ -489,6 +490,13 @@ typedef enum {
 	currentSpyCount += intv_(request.trained);
 	[spiesData setObject:[NSNumber numberWithInt:currentSpyCount] forKey:@"current"];
 	[self.tableView reloadData];
+	return nil;
+}
+
+
+- (id)subsidizedRecycling:(LEBuildingSubsidizeRecycling *)request {
+	[[LEGetBuilding alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
+	self.navigationItem.title = @"Loading";
 	return nil;
 }
 

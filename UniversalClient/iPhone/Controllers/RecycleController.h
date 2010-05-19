@@ -11,6 +11,7 @@
 
 
 @class LETableViewCellNumberEntry;
+@class LETableViewCellLabeledSwitch;
 
 
 @interface RecycleController : LETableViewControllerGrouped {
@@ -20,6 +21,7 @@
 	LETableViewCellNumberEntry *energyCell;
 	LETableViewCellNumberEntry *oreCell;
 	LETableViewCellNumberEntry *waterCell;
+	LETableViewCellLabeledSwitch *subsidizedCell;
 }
 
 
@@ -29,6 +31,7 @@
 @property(nonatomic, retain) LETableViewCellNumberEntry *energyCell;
 @property(nonatomic, retain) LETableViewCellNumberEntry *oreCell;
 @property(nonatomic, retain) LETableViewCellNumberEntry *waterCell;
+@property(nonatomic, retain) LETableViewCellLabeledSwitch *subsidizedCell;
 
 
 + (RecycleController *) create;

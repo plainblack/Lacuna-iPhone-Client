@@ -12,6 +12,7 @@
 #import "LEViewSectionTab.h"
 #import "LETableViewCellNumberEntry.h"
 #import "LETableViewCellLabeledText.h"
+#import "LETableViewCellLabeledSwitch.h"
 
 
 typedef enum {
@@ -32,6 +33,7 @@ typedef enum {
 @synthesize energyCell;
 @synthesize oreCell;
 @synthesize waterCell;
+@synthesize subsidizedCell;
 
 
 #pragma mark -
@@ -39,7 +41,7 @@ typedef enum {
 
 
 - (void)viewDidLoad {
-	self.navigationItem.title = @"Assign Spy";
+	self.navigationItem.title = @"Recycle";
 	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)] autorelease];
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)] autorelease];
 	
@@ -48,6 +50,7 @@ typedef enum {
 	self.energyCell = [LETableViewCellNumberEntry getCellForTableView:self.tableView viewController:self];
 	self.oreCell = [LETableViewCellNumberEntry getCellForTableView:self.tableView viewController:self];
 	self.waterCell = [LETableViewCellNumberEntry getCellForTableView:self.tableView viewController:self];
+	self.subsidizedCell = [LETableViewCellLabeledSwitch getCellForTableView:self.tableView];
 
 }
 
@@ -73,7 +76,7 @@ typedef enum {
 			return [LETableViewCellNumberEntry getHeightForTableView:tableView];
 			break;
 		case ROW_SUBSIDIZED:
-			return tableView.rowHeight;
+			return [LETableViewCellLabeledSwitch getHeightForTableView:tableView];
 			break;
 		case ROW_TIME:
 			return [LETableViewCellLabeledText getHeightForTableView:tableView];
@@ -108,9 +111,8 @@ typedef enum {
 			break;
 		case ROW_SUBSIDIZED:
 			; //DO NOT REMOVE
-			LETableViewCellLabeledText *subsidizedCell = [LETableViewCellLabeledText getCellForTableView:tableView];
-			subsidizedCell.content.text = @"Subsidized";
-			cell = subsidizedCell;
+			self.subsidizedCell.label.text = @"Subsidized";
+			cell = self.subsidizedCell;
 			break;
 		case ROW_TIME:
 			; //DO NOT REMOVE
@@ -144,6 +146,7 @@ typedef enum {
 	self.energyCell = nil;
 	self.oreCell = nil;
 	self.waterCell = nil;
+	self.subsidizedCell = nil;
 }
 
 
@@ -164,7 +167,7 @@ typedef enum {
 
 
 - (void)save {
-	[[[LEBuildingRecycle alloc] initWithCallback:@selector(recyclStarted:) target:self buildingId:self.buildingId buildingUrl:self.urlPart energy:[self.energyCell numericValue] ore:[self.oreCell numericValue] water:[self.waterCell numericValue] subsidized:NO] autorelease];
+	[[[LEBuildingRecycle alloc] initWithCallback:@selector(recyclStarted:) target:self buildingId:self.buildingId buildingUrl:self.urlPart energy:[self.energyCell numericValue] ore:[self.oreCell numericValue] water:[self.waterCell numericValue] subsidized:[self.subsidizedCell isSelected]] autorelease];
 }
 
 

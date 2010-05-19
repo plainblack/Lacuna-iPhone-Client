@@ -34,6 +34,8 @@
 		F65D36681195F05B00454C2B /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = F65D36671195F05B00454C2B /* Entitlements.plist */; };
 		F6724F55119F74F200D57E0D /* PickNumericValueController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6724F53119F74F200D57E0D /* PickNumericValueController.m */; };
 		F6724F56119F74F200D57E0D /* PickNumericValueController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6724F54119F74F200D57E0D /* PickNumericValueController.xib */; };
+		F678F71F11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = F678F71E11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.m */; };
+		F678F75511A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.m in Sources */ = {isa = PBXBuildFile; fileRef = F678F75411A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.m */; };
 		F67E11DA118A701A00D964FD /* AssignSpyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F67E11D9118A701A00D964FD /* AssignSpyController.m */; };
 		F67E11F1118A75BB00D964FD /* LETableViewCellSpyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F67E11F0118A75BB00D964FD /* LETableViewCellSpyInfo.m */; };
 		F6863C16118E475A00861037 /* LETableViewCellAttachedLink.m in Sources */ = {isa = PBXBuildFile; fileRef = F6863C15118E475A00861037 /* LETableViewCellAttachedLink.m */; };
@@ -166,6 +168,10 @@
 		F6724F52119F74F200D57E0D /* PickNumericValueController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickNumericValueController.h; sourceTree = "<group>"; };
 		F6724F53119F74F200D57E0D /* PickNumericValueController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickNumericValueController.m; sourceTree = "<group>"; };
 		F6724F54119F74F200D57E0D /* PickNumericValueController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickNumericValueController.xib; sourceTree = "<group>"; };
+		F678F71D11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellLabeledSwitch.h; sourceTree = "<group>"; };
+		F678F71E11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellLabeledSwitch.m; sourceTree = "<group>"; };
+		F678F75311A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingSubsidizeRecycling.h; sourceTree = "<group>"; };
+		F678F75411A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingSubsidizeRecycling.m; sourceTree = "<group>"; };
 		F67E11D8118A701A00D964FD /* AssignSpyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssignSpyController.h; sourceTree = "<group>"; };
 		F67E11D9118A701A00D964FD /* AssignSpyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssignSpyController.m; sourceTree = "<group>"; };
 		F67E11EF118A75BB00D964FD /* LETableViewCellSpyInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellSpyInfo.h; sourceTree = "<group>"; };
@@ -495,6 +501,8 @@
 				F6863C15118E475A00861037 /* LETableViewCellAttachedLink.m */,
 				F6132E59119E3A78000F99A9 /* LETableViewCellNumberEntry.h */,
 				F6132E5A119E3A78000F99A9 /* LETableViewCellNumberEntry.m */,
+				F678F71D11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.h */,
+				F678F71E11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.m */,
 			);
 			name = Views;
 			path = Shared/Views;
@@ -610,6 +618,8 @@
 				F6A9C5B81184BBA1001F0D9C /* LEBuildingAssignSpy.m */,
 				F697BA0A119CE6BD004B2119 /* LEBuildingRecycle.h */,
 				F697BA0B119CE6BD004B2119 /* LEBuildingRecycle.m */,
+				F678F75311A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.h */,
+				F678F75411A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -865,6 +875,8 @@
 				F697BA0C119CE6BD004B2119 /* LEBuildingRecycle.m in Sources */,
 				F6132E5B119E3A78000F99A9 /* LETableViewCellNumberEntry.m in Sources */,
 				F6724F55119F74F200D57E0D /* PickNumericValueController.m in Sources */,
+				F678F71F11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.m in Sources */,
+				F678F75511A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
