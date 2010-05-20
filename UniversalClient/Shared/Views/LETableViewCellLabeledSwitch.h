@@ -12,14 +12,13 @@
 @interface LETableViewCellLabeledSwitch : UITableViewCell {
 	UILabel *label;
 	UISwitch *selectedSwitch;
+	BOOL isSelected;
 }
 
 
 @property(nonatomic, retain) UILabel *label;
 @property(nonatomic, retain) UISwitch *selectedSwitch;
-
-
-- (BOOL)isSelected;
+@property(nonatomic, assign) BOOL isSelected;
 
 
 + (LETableViewCellLabeledSwitch *)getCellForTableView:(UITableView *)tableView;

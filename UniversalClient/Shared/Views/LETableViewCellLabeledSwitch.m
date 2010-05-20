@@ -15,6 +15,7 @@
 
 @synthesize label;
 @synthesize selectedSwitch;
+@synthesize isSelected;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -41,11 +42,10 @@
 
 
 #pragma mark -
-#pragma mark Instance Methods
+#pragma mark Action Methods
 
-
-- (BOOL)isSelected {
-	return self.selectedSwitch.on;
+- (IBAction)switchChanged {
+	self.isSelected = self.selectedSwitch.on;
 }
 
 
@@ -72,6 +72,7 @@
 		
 		cell.selectedSwitch = [[[UISwitch alloc] initWithFrame:CGRectMake(206, 9, 94, 27)] autorelease];
 		cell.selectedSwitch.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+		[cell.selectedSwitch addTarget:cell action:@selector(switchChanged) forControlEvents:UIControlEventValueChanged];
 		[cell.contentView addSubview:cell.selectedSwitch];
 	}
 	

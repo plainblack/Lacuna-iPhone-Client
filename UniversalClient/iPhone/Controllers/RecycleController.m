@@ -28,8 +28,10 @@ typedef enum {
 
 
 @synthesize buildingId;
+@synthesize requestData;
 @synthesize urlPart;
 @synthesize secondsPerResource;
+@synthesize seconds;
 @synthesize energyCell;
 @synthesize oreCell;
 @synthesize waterCell;
@@ -48,10 +50,17 @@ typedef enum {
 	self.sectionHeaders = array_([LEViewSectionTab tableView:self.tableView createWithText:@"Recycle"]);
 	
 	self.energyCell = [LETableViewCellNumberEntry getCellForTableView:self.tableView viewController:self];
+	[self.energyCell setNumericValue:[NSNumber numberWithInt:0]];
 	self.oreCell = [LETableViewCellNumberEntry getCellForTableView:self.tableView viewController:self];
+	[self.oreCell setNumericValue:[NSNumber numberWithInt:0]];
 	self.waterCell = [LETableViewCellNumberEntry getCellForTableView:self.tableView viewController:self];
+	[self.waterCell setNumericValue:[NSNumber numberWithInt:0]];
 	self.subsidizedCell = [LETableViewCellLabeledSwitch getCellForTableView:self.tableView];
-
+	self.seconds = [NSNumber numberWithInt:0];
+	[self.energyCell addObserver:self forKeyPath:@"numericValue" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+	[self.oreCell addObserver:self forKeyPath:@"numericValue" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+	[self.waterCell addObserver:self forKeyPath:@"numericValue" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+	[self.subsidizedCell addObserver:self forKeyPath:@"isSelected" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 }
 
 
@@ -90,23 +99,19 @@ typedef enum {
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     UITableViewCell *cell;
     
     switch (indexPath.row) {
 		case ROW_ENERGY:
 			self.energyCell.label.text = @"Energy";
-			[self.energyCell setNumericValue:[NSNumber numberWithInt:0]];
 			cell = self.energyCell;
 			break;
 		case ROW_ORE:
 			self.oreCell.label.text = @"Ore";
-			[self.oreCell setNumericValue:[NSNumber numberWithInt:0]];
 			cell = self.oreCell;
 			break;
 		case ROW_WATER:
 			self.waterCell.label.text = @"Water";
-			[self.waterCell setNumericValue:[NSNumber numberWithInt:0]];
 			cell = self.waterCell;
 			break;
 		case ROW_SUBSIDIZED:
@@ -118,7 +123,7 @@ typedef enum {
 			; //DO NOT REMOVE
 			LETableViewCellLabeledText *timeCell = [LETableViewCellLabeledText getCellForTableView:tableView];
 			timeCell.label.text = @"Time needed";
-			timeCell.content.text = @"0 seconds";
+			timeCell.content.text = [NSString stringWithFormat:@"%@ seconds", self.seconds];
 			cell = timeCell;
 			break;
 		default:
@@ -143,15 +148,20 @@ typedef enum {
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
+	[self.energyCell removeObserver:self forKeyPath:@"numericValue"];
+	[self.oreCell removeObserver:self forKeyPath:@"numericValue"];
+	[self.waterCell removeObserver:self forKeyPath:@"numericValue"];
 	self.energyCell = nil;
 	self.oreCell = nil;
 	self.waterCell = nil;
 	self.subsidizedCell = nil;
+	self.seconds = nil;
 }
 
 
 - (void)dealloc {
 	self.buildingId = nil;
+	self.requestData = nil;
 	self.urlPart = nil;
 	self.secondsPerResource = nil;
     [super dealloc];
@@ -175,8 +185,48 @@ typedef enum {
 #pragma mark Callback Methods
 
 - (id)recyclStarted:(LEBuildingRecycle *)request {
+	NSNumber *secondsRemaining = [[request.response objectForKey:@"result"] objectForKey:@"seconds_remaining"];
+	NSMutableDictionary *recycleData = [self.requestData objectForKey:@"recycle"];
+	[recycleData setObject:secondsRemaining forKey:@"seconds_remaining"];
+	[recycleData setObject:[NSNumber numberWithBool:(intv_(secondsRemaining) == 0)] forKey:@"can"];
 	[[self navigationController] popViewControllerAnimated:YES];
 	return nil;
+}
+
+
+#pragma mark -
+#pragma mark KVO Methods
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+	NSLog(@"observeValueForKeyPath called");
+	if ( [keyPath isEqual:@"numericValue"] ) {
+		if (self.subsidizedCell.isSelected) {
+			self.seconds = [NSNumber numberWithInt:0];
+			[self.tableView reloadData];
+		} else {
+			NSInteger totalAmount = 0;
+			totalAmount += intv_(self.energyCell.numericValue);
+			totalAmount += intv_(self.oreCell.numericValue);
+			totalAmount += intv_(self.waterCell.numericValue);
+			self.seconds = [NSNumber numberWithInt:(totalAmount * intv_(secondsPerResource))];
+			[self.tableView reloadData];
+		}
+	} else if ( [keyPath isEqual:@"isSelected"] ) {
+		if (self.subsidizedCell.isSelected) {
+			NSLog(@"Set to 0");
+			self.seconds = [NSNumber numberWithInt:0];
+			[self.tableView reloadData];
+		} else {
+			NSLog(@"Set to sum");
+			NSInteger totalAmount = 0;
+			totalAmount += intv_(self.energyCell.numericValue);
+			totalAmount += intv_(self.oreCell.numericValue);
+			totalAmount += intv_(self.waterCell.numericValue);
+			NSLog(@"totalAmount: %i", totalAmount);
+			self.seconds = [NSNumber numberWithInt:(totalAmount * intv_(secondsPerResource))];
+			[self.tableView reloadData];
+		}
+	}
 }
 
 

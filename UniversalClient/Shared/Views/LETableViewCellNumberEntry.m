@@ -18,6 +18,7 @@
 @synthesize label;
 @synthesize numberButton;
 @synthesize viewController;
+@synthesize numericValue;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -40,7 +41,7 @@
 	self.label = nil;
 	self.numberButton = nil;
 	self.viewController = nil;
-	[numericValue release];
+	self.numericValue = nil;
     [super dealloc];
 }
 
@@ -50,9 +51,7 @@
 
 - (void)newNumericValue:(NSNumber *)value {
 	NSLog(@"newNumericValue: %@", value);
-	[numericValue release];
-	numericValue = value;
-	[numericValue retain];
+	[self setNumericValue:value];
 	[self.numberButton setTitle:[value stringValue] forState:UIControlStateNormal];
 }
 
@@ -60,23 +59,10 @@
 #pragma mark -
 #pragma mark Instance Methods
 
-- (void)setNumericValue:(NSNumber *)value {
-	[numericValue release];
-	numericValue = value;
-	[numericValue retain];
-	[self.numberButton setTitle:[value stringValue] forState:UIControlStateNormal];
-}
-
-
-- (NSNumber *)numericValue {
-	return numericValue;
-}
-
-
 - (IBAction)editNumericValue {
 	PickNumericValueController *pickNumericValueController = [PickNumericValueController createWithDelegate:self];
 	[self.viewController presentModalViewController:pickNumericValueController animated:YES];
-	[pickNumericValueController setValue:numericValue];
+	[pickNumericValueController setValue:self.numericValue];
 }
 
 

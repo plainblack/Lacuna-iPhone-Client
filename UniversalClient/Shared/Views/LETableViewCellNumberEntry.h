@@ -21,10 +21,9 @@
 @property(nonatomic, retain) IBOutlet UILabel *label;
 @property(nonatomic, retain) IBOutlet UIButton *numberButton;
 @property(nonatomic, retain) UIViewController *viewController;
+@property(nonatomic, retain) NSNumber *numericValue;
 
 
-- (void)setNumericValue:(NSNumber *)value;
-- (NSNumber *)numericValue;
 - (IBAction)editNumericValue;
 
 

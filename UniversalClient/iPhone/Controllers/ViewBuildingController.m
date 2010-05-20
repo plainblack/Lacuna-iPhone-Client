@@ -81,13 +81,10 @@ typedef enum {
 
 	if (self.buildingData) {
 		self.buildingId = [self.buildingData objectForKey:@"id"];
-		self.navigationItem.title = [self.buildingData objectForKey:@"name"];
-		[self.tableView reloadData];
-	} else {
-		[[LEGetBuilding alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
-		
-		self.navigationItem.title = @"Loading";
 	}
+
+	[[LEGetBuilding alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
+	self.navigationItem.title = @"Loading";
 }
 
 
