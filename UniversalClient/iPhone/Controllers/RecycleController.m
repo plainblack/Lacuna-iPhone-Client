@@ -28,7 +28,6 @@ typedef enum {
 
 
 @synthesize buildingId;
-@synthesize requestData;
 @synthesize urlPart;
 @synthesize secondsPerResource;
 @synthesize seconds;
@@ -161,7 +160,6 @@ typedef enum {
 
 - (void)dealloc {
 	self.buildingId = nil;
-	self.requestData = nil;
 	self.urlPart = nil;
 	self.secondsPerResource = nil;
     [super dealloc];
@@ -185,10 +183,6 @@ typedef enum {
 #pragma mark Callback Methods
 
 - (id)recyclStarted:(LEBuildingRecycle *)request {
-	NSNumber *secondsRemaining = [[request.response objectForKey:@"result"] objectForKey:@"seconds_remaining"];
-	NSMutableDictionary *recycleData = [self.requestData objectForKey:@"recycle"];
-	[recycleData setObject:secondsRemaining forKey:@"seconds_remaining"];
-	[recycleData setObject:[NSNumber numberWithBool:(intv_(secondsRemaining) == 0)] forKey:@"can"];
 	[[self navigationController] popViewControllerAnimated:YES];
 	return nil;
 }

@@ -16,7 +16,6 @@
 
 @interface RecycleController : LETableViewControllerGrouped {
 	NSString *buildingId;
-	NSDictionary *requestData;
 	NSString *urlPart;
 	NSNumber *secondsPerResource;
 	NSNumber *seconds;
@@ -28,7 +27,6 @@
 
 
 @property(nonatomic, retain) NSString *buildingId;
-@property(nonatomic, retain) NSDictionary *requestData;
 @property(nonatomic, retain) NSString *urlPart;
 @property(nonatomic, retain) NSNumber *secondsPerResource;
 @property(nonatomic, retain) NSNumber *seconds;
