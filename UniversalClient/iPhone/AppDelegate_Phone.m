@@ -90,8 +90,8 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ( [keyPath isEqual:@"numNewMessages"]) {
 		Session *session = (Session *)object;
-		if(intv_(session.numNewMessages) > 0) {
-			self.mailTabBarItem.badgeValue = [NSString stringWithFormat:@"%@", session.numNewMessages];
+		if(session.numNewMessages > 0) {
+			self.mailTabBarItem.badgeValue = [NSString stringWithFormat:@"%i", session.numNewMessages];
 		} else {
 			self.mailTabBarItem.badgeValue = nil;
 		}

@@ -89,7 +89,11 @@
 		NSLog(@"My last message: %@, session last message: %@", self.lastMessageAt, session.lastMessageAt);
 		if ([self.lastMessageAt compare:session.lastMessageAt] != NSOrderedSame) {
 			[self loadMessages];
+			self.lastMessageAt = session.lastMessageAt;
 		}
+	}else {
+		NSLog(@"No lastMessageAt yet.");
+		self.lastMessageAt = [NSDate date];
 	}
 }
 
@@ -99,8 +103,6 @@
 	[self.reloadTimer invalidate];
 	self.reloadTimer = nil;
 	[self.mailbox removeObserver:self forKeyPath:@"messageHeaders"];
-	Session *session = [Session sharedInstance];
-	self.lastMessageAt = session.lastMessageAt;
 }
 
 

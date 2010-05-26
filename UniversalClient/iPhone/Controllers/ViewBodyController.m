@@ -9,7 +9,7 @@
 #import "ViewBodyController.h"
 #import "LEMacros.h"
 #import "Session.h"
-#import "LEGetBody.h"
+#import "LEBodyStatus.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellButton.h"
 #import "LETableViewCellLabeledText.h"
@@ -108,7 +108,7 @@ typedef enum {
 		self.navigationItem.title = @"Loading";
 	}
 	
-	[[LEGetBody alloc] initWithCallback:@selector(bodyDataLoaded:) target:self bodyId:self.bodyId];
+	[[LEBodyStatus alloc] initWithCallback:@selector(bodyDataLoaded:) target:self bodyId:self.bodyId];
 }
 
 
@@ -441,8 +441,10 @@ typedef enum {
 #pragma mark -
 #pragma mark Callback Methods
 
-- (id)bodyDataLoaded:(LEGetBody *)request {
+- (id)bodyDataLoaded:(LEBodyStatus *)request {
+	NSLog(@"bodyDataLaoded!");
 	self.bodyData = request.body;
+	NSLog(@"Body Data: %@", self.bodyData);
 	
 	Session *session = [Session sharedInstance];
 	NSString *sessionEmpireId = [session.empireData objectForKey:@"id"];
@@ -458,7 +460,7 @@ typedef enum {
 
 - (void)handleTimer:(NSTimer *)theTimer {
 	if (theTimer == self.timer) {
-		[[LEGetBody alloc] initWithCallback:@selector(bodyDataLoaded:) target:self bodyId:self.bodyId];
+		[[LEBodyStatus alloc] initWithCallback:@selector(bodyDataLoaded:) target:self bodyId:self.bodyId];
 	}
 }
 

@@ -38,7 +38,7 @@ static int numRequests = 0;
 	handledError = NO;
 	
 	self.protocol = @"https";
-	self.serverName = @"game.lacunaexpanse.com";
+	self.serverName = @"alpha.lacunaexpanse.com";
 	
 	callback = inCallback;
 	target = inTarget;
@@ -144,6 +144,16 @@ static int numRequests = 0;
 	if (numRequests < 1) {
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	}
+	
+	NSDictionary *result = [self.response objectForKey:@"result"];
+	if (result && [result respondsToSelector:@selector(objectForKey:)]) {
+		NSDictionary *status = [result objectForKey:@"status"];
+		if (status) {
+			Session *session = [Session sharedInstance];
+			[session processStatus:status];
+		}
+	}
+	/*
 	NSDictionary *result = [self.response objectForKey:@"result"];
 	if (result && [result respondsToSelector:@selector(objectForKey:)]) {
 		NSDictionary *status = [result objectForKey:@"status"];
@@ -170,6 +180,7 @@ static int numRequests = 0;
 	} else {
 		NSLog(@"No result");
 	}
+	 */
 	
 }
 

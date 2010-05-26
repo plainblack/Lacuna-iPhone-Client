@@ -13,6 +13,7 @@
 #import "LEInboxViewSent.h"
 #import "LEInboxViewArchived.h"
 #import "LEMacros.h"
+#import "Session.h"
 
 #define START_PAGE 1
 #define MAX_MESSAGES_PER_PAGE 25
@@ -78,6 +79,8 @@
 	NSLog(@"Loading a message");
 	self.messageDetails = [self.messageHeaders objectAtIndex:index];
 	[self.messageDetails setObject:[NSNumber numberWithInt:1] forKey:@"has_read"];
+	Session *session = [Session sharedInstance];
+	session.numNewMessages -= 1;
 	NSString *messageId = [self.messageDetails objectForKey:@"id"];
 	[[[LEInboxRead alloc] initWithCallback:@selector(messageDetailsLoaded:) target:self messageId:messageId] autorelease];
 }

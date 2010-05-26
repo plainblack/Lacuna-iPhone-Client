@@ -123,6 +123,7 @@
 		F6DD2118116D73F50013C58D /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DD210B116D73F50013C58D /* SBJsonParser.m */; };
 		F6DD2119116D73F50013C58D /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DD210D116D73F50013C58D /* SBJsonWriter.m */; };
 		F6DD2141116D75770013C58D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6DD2140116D75770013C58D /* CoreLocation.framework */; };
+		F6F5427D11A9D7D4006F347B /* LEBodyStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -344,6 +345,8 @@
 		F6DD210C116D73F50013C58D /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		F6DD210D116D73F50013C58D /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		F6DD2140116D75770013C58D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		F6F5427B11A9D7D4006F347B /* LEBodyStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBodyStatus.h; sourceTree = "<group>"; };
+		F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBodyStatus.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -556,6 +559,24 @@
 			children = (
 				F6AC49EA116C0F9B001B967A /* LEBuildBuilding.h */,
 				F6AC49EB116C0F9B001B967A /* LEBuildBuilding.m */,
+				F6A9C5B71184BBA1001F0D9C /* LEBuildingAssignSpy.h */,
+				F6A9C5B81184BBA1001F0D9C /* LEBuildingAssignSpy.m */,
+				F6A9C5B11184BB6D001F0D9C /* LEBuildingBurnSpy.h */,
+				F6A9C5B21184BB6D001F0D9C /* LEBuildingBurnSpy.m */,
+				F6A9C5B41184BB80001F0D9C /* LEBuildingNameSpy.h */,
+				F6A9C5B51184BB80001F0D9C /* LEBuildingNameSpy.m */,
+				F697BA0A119CE6BD004B2119 /* LEBuildingRecycle.h */,
+				F697BA0B119CE6BD004B2119 /* LEBuildingRecycle.m */,
+				F68650061183D2A4009826A7 /* LEBuildingRestrictCoverage.h */,
+				F68650071183D2A4009826A7 /* LEBuildingRestrictCoverage.m */,
+				F678F75311A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.h */,
+				F678F75411A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.m */,
+				F6A9C5931184A3B6001F0D9C /* LEBuildingTrainSpy.h */,
+				F6A9C5941184A3B6001F0D9C /* LEBuildingTrainSpy.m */,
+				F6864F9C1183A3FB009826A7 /* LEBuildingViewNews.h */,
+				F6864F9D1183A3FB009826A7 /* LEBuildingViewNews.m */,
+				F6A9C5AE1184BB3C001F0D9C /* LEBuildingViewSpies.h */,
+				F6A9C5AF1184BB3C001F0D9C /* LEBuildingViewSpies.m */,
 				F6AC49EC116C0F9B001B967A /* LECheckEmpireName.h */,
 				F6AC49ED116C0F9B001B967A /* LECheckEmpireName.m */,
 				F6AC49EE116C0F9B001B967A /* LECheckSpeciesName.h */,
@@ -602,24 +623,8 @@
 				F6AC4A17116C0F9B001B967A /* LESpeciesSetHuman.m */,
 				F6AC4A18116C0F9B001B967A /* LEUpgradeBuilding.h */,
 				F6AC4A19116C0F9B001B967A /* LEUpgradeBuilding.m */,
-				F6864F9C1183A3FB009826A7 /* LEBuildingViewNews.h */,
-				F6864F9D1183A3FB009826A7 /* LEBuildingViewNews.m */,
-				F68650061183D2A4009826A7 /* LEBuildingRestrictCoverage.h */,
-				F68650071183D2A4009826A7 /* LEBuildingRestrictCoverage.m */,
-				F6A9C5931184A3B6001F0D9C /* LEBuildingTrainSpy.h */,
-				F6A9C5941184A3B6001F0D9C /* LEBuildingTrainSpy.m */,
-				F6A9C5AE1184BB3C001F0D9C /* LEBuildingViewSpies.h */,
-				F6A9C5AF1184BB3C001F0D9C /* LEBuildingViewSpies.m */,
-				F6A9C5B11184BB6D001F0D9C /* LEBuildingBurnSpy.h */,
-				F6A9C5B21184BB6D001F0D9C /* LEBuildingBurnSpy.m */,
-				F6A9C5B41184BB80001F0D9C /* LEBuildingNameSpy.h */,
-				F6A9C5B51184BB80001F0D9C /* LEBuildingNameSpy.m */,
-				F6A9C5B71184BBA1001F0D9C /* LEBuildingAssignSpy.h */,
-				F6A9C5B81184BBA1001F0D9C /* LEBuildingAssignSpy.m */,
-				F697BA0A119CE6BD004B2119 /* LEBuildingRecycle.h */,
-				F697BA0B119CE6BD004B2119 /* LEBuildingRecycle.m */,
-				F678F75311A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.h */,
-				F678F75411A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.m */,
+				F6F5427B11A9D7D4006F347B /* LEBodyStatus.h */,
+				F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -877,6 +882,7 @@
 				F6724F55119F74F200D57E0D /* PickNumericValueController.m in Sources */,
 				F678F71F11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.m in Sources */,
 				F678F75511A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.m in Sources */,
+				F6F5427D11A9D7D4006F347B /* LEBodyStatus.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

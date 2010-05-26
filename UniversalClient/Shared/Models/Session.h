@@ -16,9 +16,10 @@
 	NSNumber *mapCenterX;
 	NSNumber *mapCenterY;
 	NSNumber *mapCenterZ;
-	NSNumber *numNewMessages;
+	NSInteger numNewMessages;
 	NSMutableArray *empireList;
 	NSDate *lastMessageAt;
+	NSString *serverVersion;
 }
 
 @property(nonatomic, retain) NSString *sessionId;
@@ -27,16 +28,18 @@
 @property(nonatomic, retain) NSNumber *mapCenterX;
 @property(nonatomic, retain) NSNumber *mapCenterY;
 @property(nonatomic, retain) NSNumber *mapCenterZ;
-@property(nonatomic, retain) NSNumber *numNewMessages;
+@property(nonatomic, assign) NSInteger numNewMessages;
 @property(nonatomic, retain) NSMutableArray *empireList;
 @property(nonatomic, retain) NSDate *lastMessageAt;
+@property(nonatomic, retain) NSString *serverVersion;
 
 
-+ (Session *)sharedInstance;
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password;
 - (void)logout;
-- (void)updateStatus;
 - (void)forgetEmpireNamed:(NSString *)empireName;
+- (void)processStatus:(NSDictionary *)status;
+
++ (Session *)sharedInstance;
 
 
 @end

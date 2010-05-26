@@ -12,6 +12,7 @@
 #import "LEEmpireLogout.h"
 #import "LEMacros.h"
 #import "KeychainItemWrapper.h"
+#import "Util.h"
 
 
 static Session *sharedSession = nil;
@@ -29,7 +30,11 @@ static Session *sharedSession = nil;
 @synthesize numNewMessages;
 @synthesize empireList;
 @synthesize lastMessageAt;
+@synthesize serverVersion;
 
+
+#pragma mark --
+#pragma mark Singleton methods
 
 + (Session *)sharedInstance {
     if (sharedSession == nil) {
@@ -68,6 +73,8 @@ static Session *sharedSession = nil;
     return self;
 }
 
+#pragma mark --
+#pragma mark Live Cycle methods
 
 - (id)init {
 	NSLog(@"Session init called");
@@ -94,14 +101,15 @@ static Session *sharedSession = nil;
 	self.mapCenterY = nil;
 	self.mapCenterZ = nil;
 	self.empireList = nil;
-	self.numNewMessages = nil;
 	self.lastMessageAt = nil;
+	self.serverVersion = nil;
 	[super dealloc];
 }
 
+#pragma mark --
+#pragma mark Instance methods
 
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password {
-	NSLog(@"User: %@, pass: %@", username, password);
 	[[[LEEmpireLogin alloc] initWithCallback:@selector(loggedIn:) target:self username:username password:password] autorelease];
 }
 
@@ -111,13 +119,70 @@ static Session *sharedSession = nil;
 }
 
 
-- (void)updateStatus {
-	id service = [DKDeferred jsonService:@"https://game.lacunaexpanse.com/empire/" name:@"get_full_status"];
-	DKDeferred *d = [service :array_([Session sharedInstance].sessionId)];
-	[d addCallback:callbackTS(self, fullStatusUpdate:)];
-	[d addErrback:callbackTS(self, apiError:)];
+- (void)forgetEmpireNamed:(NSString *)empireName {
+	NSDictionary *foundEmpire;
+	for (NSDictionary *empire in self.empireList) {
+		if ([[empire objectForKey:@"username"] isEqualToString:empireName]){
+			foundEmpire = empire;
+		}
+	}
+	if (foundEmpire) {
+		[self.empireList removeObject:foundEmpire];
+		NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+		NSString *documentFolderPath = [searchPaths objectAtIndex:0];
+		NSString *empireListFileName = [documentFolderPath stringByAppendingPathComponent:@"empireList.dat"];
+		[self.empireList writeToFile:empireListFileName atomically:YES];
+	}
 }
 
+
+- (void)processStatus:(NSDictionary *)status {
+	if (status && [status respondsToSelector:@selector(objectForKey:)]) {
+		NSDictionary *serverStatus = [status objectForKey:@"server"];
+		NSLog(@"server status: %@", serverStatus);
+		if (serverStatus) {
+			NSString *newServerVersion = [serverStatus objectForKey:@"version"];
+			if (self.serverVersion) {
+				if (![self.serverVersion isEqual:newServerVersion]) {
+					NSLog(@"Server version changed from: %@ to %@", self.serverVersion, newServerVersion);
+					self.serverVersion = newServerVersion;
+				}
+			} else {
+				NSLog(@"Setting server version to %@", newServerVersion);
+				self.serverVersion = newServerVersion;
+			}
+		}
+		
+		NSDictionary *empireStatus = [status objectForKey:@"empire"];
+		NSLog(@"empireStatus: %@", empireStatus);
+		if (empireStatus) {
+			NSInteger oldNumNewMessages = intv_([self.empireData objectForKey:@"has_new_messages"]);
+			NSInteger newNumNewMessages = intv_([empireStatus objectForKey:@"has_new_messages"]);
+			self.empireData = empireStatus;
+			if (oldNumNewMessages != newNumNewMessages) {
+				self.numNewMessages = newNumNewMessages;
+			}
+			NSDictionary *newestMessage = [empireStatus objectForKey:@"most_recent_message"];
+			if (newestMessage && (id)newestMessage != [NSNull null]) {
+				NSString *dateReceivedString = [newestMessage objectForKey:@"date_received"];
+				if (dateReceivedString) {
+					NSLog(@"Setting lastMessageAt to: %@", dateReceivedString);
+					self.lastMessageAt = [Util date:dateReceivedString];
+				}else {
+					NSLog(@"date_received was not their");
+				}
+			}else {
+				NSLog(@"most_recent_message was not their");
+			}
+			
+			self.numNewMessages = intv_([empireStatus objectForKey:@"has_new_messages"]);
+		}
+	}
+}
+
+
+#pragma mark --
+#pragma mark Callback methods
 
 - (id)loggedIn:(LEEmpireLogin *)request {
 	if ([request wasError]) {
@@ -151,11 +216,6 @@ static Session *sharedSession = nil;
 		
 		self.sessionId = request.sessionId;
 		self.empireData = request.empireData;
-		NSString *homePlanetId = [self.empireData objectForKey:@"home_planet_id"];
-		NSDictionary *homePlanet = [[self.empireData objectForKey:@"planets"] objectForKey:homePlanetId];
-		self.mapCenterX = [homePlanet objectForKey:@"x"];
-		self.mapCenterY = [homePlanet objectForKey:@"y"];
-		self.mapCenterZ = [homePlanet objectForKey:@"z"];
 		self.isLoggedIn = TRUE;
 		
 		NSLog(@"Session ID: %@", self.sessionId);
@@ -178,47 +238,4 @@ static Session *sharedSession = nil;
 	return nil;
 }
 
-
-- (id)fullStatusUpdate:(id)results {
-	NSLog(@"fullStatusUpdate success: %@", results);
-	self.empireData = [[results objectForKey:@"result"] objectForKey:@"empire"];
-	
-	return nil;
-}
-
-
-- (void)forgetEmpireNamed:(NSString *)empireName {
-	NSDictionary *foundEmpire;
-	for (NSDictionary *empire in self.empireList) {
-		if ([[empire objectForKey:@"username"] isEqualToString:empireName]){
-			foundEmpire = empire;
-		}
-	}
-	if (foundEmpire) {
-		[self.empireList removeObject:foundEmpire];
-		NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-		NSString *documentFolderPath = [searchPaths objectAtIndex:0];
-		NSString *empireListFileName = [documentFolderPath stringByAppendingPathComponent:@"empireList.dat"];
-		[self.empireList writeToFile:empireListFileName atomically:YES];
-	}
-}
-
-
-#pragma mark -
-#pragma mark SPECIAL Setters
-
-- (void)setNumNewMessages:(NSNumber *)newNumNewMessages {
-	NSNumber *tmp = numNewMessages;
-	if (numNewMessages) {
-		[numNewMessages release];
-		numNewMessages = nil;
-	}
-	numNewMessages = newNumNewMessages;
-	if (numNewMessages) {
-		[numNewMessages retain];
-		if ( tmp && ([tmp compare:numNewMessages]==NSOrderedAscending) ) {
-			self.lastMessageAt = [NSDate date];
-		}
-	}
-}
 @end

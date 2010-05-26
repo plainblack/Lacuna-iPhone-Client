@@ -440,7 +440,7 @@ typedef enum {
 
 	[tmpSectionHeaders addObject:[LEViewSectionTab tableView:self.tableView createWithText:@"Upgrade"]];
 	NSDictionary *pendingBuild = [self.buildingData objectForKey:@"pending_build"];
-	if (pendingBuild) {
+	if (pendingBuild && (id)pendingBuild != [NSNull null]) {
 		[tmpSections addObject:dict_([NSNumber numberWithInt:SECTION_UPGRADE], @"type", array_([NSNumber numberWithInt:ROW_UPGRADE_BUILDING_STATS], [NSNumber numberWithInt:ROW_UPGRADE_PROGRESS]), @"rows")];
 		NSDate *buildEndDate = [Util date:[pendingBuild objectForKey:@"end"]];
 		NSDate *buildStartDate = [Util date:[pendingBuild objectForKey:@"start"]];

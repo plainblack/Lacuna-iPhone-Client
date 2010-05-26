@@ -114,7 +114,11 @@ typedef enum {
 					; //DO NOT REMOVE
 					LETableViewCellLabeledParagraph *descriptionCell = [LETableViewCellLabeledParagraph getCellForTableView:tableView];
 					descriptionCell.label.text = @"Description";
-					descriptionCell.content.text = leEmpireViewProfile.description;
+					if ((id)leEmpireViewProfile.description == [NSNull null]) {
+						descriptionCell.content.text = @"";
+					} else {
+						descriptionCell.content.text = leEmpireViewProfile.description;
+					}
 					cell = descriptionCell;
 					break;
 				case EMPIRE_ROW_STATUS:

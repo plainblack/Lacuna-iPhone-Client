@@ -340,8 +340,8 @@ typedef enum {
 		}
 		
 		NSDictionary *attachements = [self.mailbox.messageDetails objectForKey:@"attachments"];
-		
-		if (attachements) {
+
+		if (attachements && (id)attachements != [NSNull null]) {
 			numRows = 4 + [attachements count];
 		} else {
 			numRows = 4;

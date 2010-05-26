@@ -28,6 +28,10 @@
 
 
 + (CGFloat)heightForText:(NSString *)text inFrame:(CGRect)frame withFont:(UIFont *)font {
+	if (!text || (id)text == [NSNull null]) {
+		text = @"";
+		NSLog(@"Setting text to empty string");
+	}
 	// NOTE: FLT_MAX is a large float. Returned height will be less.
 	CGSize cellSize = CGSizeMake(frame.size.width - 10, FLT_MAX);
 	cellSize = [text sizeWithFont:font 
