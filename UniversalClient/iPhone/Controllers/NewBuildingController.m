@@ -269,7 +269,7 @@ typedef enum {
 		UIButton *button = [self.buttonsByLoc objectForKey:loc];
 		UIImage *tmp = [UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/100/%@.png", [building objectForKey:@"image"]]];
 		tmp = [Util imageWithImage:tmp scaledToSize:CGSizeMake(BODY_BUILDINGS_CELL_WIDTH, BODY_BUILDINGS_CELL_HEIGHT)];
-		[button setImage:tmp forState:UIControlStateNormal];
+		[button setBackgroundImage:tmp forState:UIControlStateNormal];
 		[self.navigationController popViewControllerAnimated:TRUE];
 	}
 	
