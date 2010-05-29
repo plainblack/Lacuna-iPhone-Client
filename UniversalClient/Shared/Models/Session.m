@@ -196,7 +196,7 @@ static Session *sharedSession = nil;
 		self.empireData = nil;
 	} else {
 		KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithIdentifier:request.username accessGroup:nil] autorelease];
-		[keychainItemWrapper resetKeychainItem];
+		//[keychainItemWrapper resetKeychainItem]; //I removed this and now things work on teras phone maybe??
 		[keychainItemWrapper setObject:request.username forKey:(id)kSecAttrAccount];
 		[keychainItemWrapper setObject:request.password forKey:(id)kSecValueData];
 		BOOL found = NO;

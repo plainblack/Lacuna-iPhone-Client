@@ -278,7 +278,8 @@
 - (void)handleSpeciesSelection {
 	switch (self.speciesSelector.selectedSegmentIndex) {
 		case 0:
-			[[[LESpeciesSetHuman alloc] initWithCallback:@selector(humanSet:) target:self empireId:self.empireId] autorelease];
+			//[[[LESpeciesSetHuman alloc] initWithCallback:@selector(humanSet:) target:self empireId:self.empireId] autorelease];
+			[[[LEEmpireFound alloc] initWithCallback:@selector(empireFounded:) target:self empireId:self.empireId] autorelease];
 			break;
 		case 1:
 			; //Do Not Remove

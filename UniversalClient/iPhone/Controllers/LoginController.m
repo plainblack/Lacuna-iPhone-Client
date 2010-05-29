@@ -53,10 +53,6 @@ typedef enum {
 	self.passwordCell.delegate = self;
 	self.passwordCell.secureTextEntry = YES;
 	
-	self.sectionHeaders = array_([LEViewSectionTab tableView:self.tableView createWithText:@"Login"],
-								 [LEViewSectionTab tableView:self.tableView createWithText:@"Empires"],
-								 [NSNull null]);
-
 }
 
 
@@ -71,6 +67,16 @@ typedef enum {
 	[session addObserver:self forKeyPath:@"isLoggedIn" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 	
 	self.empires = session.empireList;
+	if ([self.empires count] > 0) {
+		self.sectionHeaders = array_([LEViewSectionTab tableView:self.tableView createWithText:@"Login"],
+									 [LEViewSectionTab tableView:self.tableView createWithText:@"Empires"],
+									 [NSNull null]);
+	} else {
+		self.sectionHeaders = array_([LEViewSectionTab tableView:self.tableView createWithText:@"Login"],
+									 [NSNull null],
+									 [NSNull null]);
+	}
+
 	[self.tableView reloadData];
 	
 	self.empireNameCell.textField.text = @"";
@@ -178,6 +184,11 @@ typedef enum {
 		Session *session = [Session sharedInstance];
 		[session forgetEmpireNamed:[empireData objectForKey:@"username"]];
 		self.empires = session.empireList;
+		if ([self.empires count] == 0) {
+			self.sectionHeaders = array_([LEViewSectionTab tableView:self.tableView createWithText:@"Login"],
+										 [NSNull null],
+										 [NSNull null]);
+		}
 		[self.tableView reloadData];
 	}
 }
@@ -194,6 +205,7 @@ typedef enum {
 			if (indexPath.row == 2) {
 				[self.empireNameCell resignFirstResponder];
 				[self.passwordCell resignFirstResponder];
+				NSLog(@"Username: %@, Password is %@", empireNameCell.textField.text, self.passwordCell.textField.text);
 				[session loginWithUsername:self.empireNameCell.textField.text password:self.passwordCell.textField.text];
 			}
 			break;
@@ -206,10 +218,9 @@ typedef enum {
 				password = @"abc123";
 			} else {
 				NSLog(@"Looking up: %@", username);
-				KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithIdentifier:username accessGroup:nil] autorelease];
+				KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithIdentifier:username accessGroup:nil] autorelease];				
 				password = [keychainItemWrapper objectForKey:(id)kSecValueData];
 			}
-			
 			[session loginWithUsername:username password:password];
 			break;
 		case SECTION_CREATE_NEW:

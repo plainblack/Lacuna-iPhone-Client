@@ -902,7 +902,7 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "UniversalClient-Info.plist";
 				PRODUCT_NAME = UniversalClient;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "388B266D-0D71-48CC-9721-A3A938198127";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "033CEE26-E0FC-429F-AE61-EB2EA2559848";
 				SDKROOT = iphoneos3.2;
 			};
 			name = Debug;
