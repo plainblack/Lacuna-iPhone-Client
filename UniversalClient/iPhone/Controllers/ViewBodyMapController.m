@@ -160,21 +160,26 @@
 - (void)buttonClicked:(id)sender {
 	NSString *loc = [locsByButton objectForKey:[NSValue valueWithNonretainedObject:sender]];
 	NSDictionary *building = [self.buildings objectForKey:loc];
+	NSInteger tmp;
+	NSNumber *x;
+	NSNumber *y;
+	NSScanner *scanner = [NSScanner scannerWithString:loc];
+	[scanner scanInteger:&tmp];
+	x = [NSNumber numberWithInt:tmp];
+	[scanner setScanLocation:[scanner scanLocation]+1];
+	[scanner scanInteger:&tmp];
+	y = [NSNumber numberWithInt:tmp];
+
 	if (building) {
 		ViewBuildingController *viewBuildingController = [ViewBuildingController create];
 		viewBuildingController.buildingId = [building objectForKey:@"id"];
 		viewBuildingController.urlPart = [building objectForKey:@"url"];
+		viewBuildingController.x = x;
+		viewBuildingController.y = y;
+		viewBuildingController.buildingsByLoc = self.buildings;
+		viewBuildingController.buttonsByLoc = buttonsByLoc;
 		[[self navigationController] pushViewController:viewBuildingController animated:YES];
 	} else {
-		NSInteger tmp;
-		NSNumber *x;
-		NSNumber *y;
-		NSScanner *scanner = [NSScanner scannerWithString:loc];
-		[scanner scanInteger:&tmp];
-		x = [NSNumber numberWithInt:tmp];
-		[scanner setScanLocation:[scanner scanLocation]+1];
-		[scanner scanInteger:&tmp];
-		y = [NSNumber numberWithInt:tmp];
 		NewBuildingController *newBuildingController = [NewBuildingController create];
 		newBuildingController.bodyId = self.bodyId;
 		newBuildingController.x = x;

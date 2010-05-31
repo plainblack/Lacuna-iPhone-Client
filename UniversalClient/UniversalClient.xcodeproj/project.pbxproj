@@ -123,6 +123,8 @@
 		F6DD2118116D73F50013C58D /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DD210B116D73F50013C58D /* SBJsonParser.m */; };
 		F6DD2119116D73F50013C58D /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DD210D116D73F50013C58D /* SBJsonWriter.m */; };
 		F6DD2141116D75770013C58D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6DD2140116D75770013C58D /* CoreLocation.framework */; };
+		F6E3EFBC11B4389A00E7BC86 /* LEBuildingThrowParty.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3EFBB11B4389A00E7BC86 /* LEBuildingThrowParty.m */; };
+		F6E3EFCA11B4440200E7BC86 /* LEBuildingDemolish.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3EFC911B4440200E7BC86 /* LEBuildingDemolish.m */; };
 		F6F5427D11A9D7D4006F347B /* LEBodyStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */; };
 /* End PBXBuildFile section */
 
@@ -345,6 +347,10 @@
 		F6DD210C116D73F50013C58D /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		F6DD210D116D73F50013C58D /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		F6DD2140116D75770013C58D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		F6E3EFBA11B4389A00E7BC86 /* LEBuildingThrowParty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingThrowParty.h; sourceTree = "<group>"; };
+		F6E3EFBB11B4389A00E7BC86 /* LEBuildingThrowParty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingThrowParty.m; sourceTree = "<group>"; };
+		F6E3EFC811B4440200E7BC86 /* LEBuildingDemolish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingDemolish.h; sourceTree = "<group>"; };
+		F6E3EFC911B4440200E7BC86 /* LEBuildingDemolish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingDemolish.m; sourceTree = "<group>"; };
 		F6F5427B11A9D7D4006F347B /* LEBodyStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBodyStatus.h; sourceTree = "<group>"; };
 		F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBodyStatus.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -625,6 +631,10 @@
 				F6AC4A19116C0F9B001B967A /* LEUpgradeBuilding.m */,
 				F6F5427B11A9D7D4006F347B /* LEBodyStatus.h */,
 				F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */,
+				F6E3EFBA11B4389A00E7BC86 /* LEBuildingThrowParty.h */,
+				F6E3EFBB11B4389A00E7BC86 /* LEBuildingThrowParty.m */,
+				F6E3EFC811B4440200E7BC86 /* LEBuildingDemolish.h */,
+				F6E3EFC911B4440200E7BC86 /* LEBuildingDemolish.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -883,6 +893,8 @@
 				F678F71F11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.m in Sources */,
 				F678F75511A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.m in Sources */,
 				F6F5427D11A9D7D4006F347B /* LEBodyStatus.m in Sources */,
+				F6E3EFBC11B4389A00E7BC86 /* LEBuildingThrowParty.m in Sources */,
+				F6E3EFCA11B4440200E7BC86 /* LEBuildingDemolish.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

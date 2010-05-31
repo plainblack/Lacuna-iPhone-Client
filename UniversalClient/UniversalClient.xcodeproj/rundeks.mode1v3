@@ -229,6 +229,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -326,7 +328,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F61BCEEA11B0C89F003EB90C</string>
+										<string>F6E3EFB511B4365600E7BC86</string>
 										<key>history</key>
 										<array>
 											<string>F6885F7E1168421D00080696</string>
@@ -558,7 +560,7 @@
 											<string>F61BCEDD11B0C51B003EB90C</string>
 											<string>F61BCEDE11B0C51B003EB90C</string>
 											<string>F61BCEE511B0C737003EB90C</string>
-											<string>F61BCEDC11B0C51B003EB90C</string>
+											<string>F6E3EFB411B4365600E7BC86</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -570,14 +572,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1004, 932}}</string>
+								<string>{{0, 0}, {1004, 928}}</string>
 								<key>RubberWindowFrame</key>
 								<string>380 213 1327 1205 0 0 2560 1418 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>932pt</string>
+							<string>928pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -590,14 +592,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 937}, {1004, 227}}</string>
+								<string>{{0, 933}, {1004, 231}}</string>
 								<key>RubberWindowFrame</key>
 								<string>380 213 1327 1205 0 0 2560 1418 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>227pt</string>
+							<string>231pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -616,9 +618,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>F61BC6C711B08DE6003EB90C</string>
+				<string>F6E3EFB611B4365600E7BC86</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>F61BC6C811B08DE6003EB90C</string>
+				<string>F6E3EFB711B4365600E7BC86</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -756,11 +758,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>F61BC6E811B095D8003EB90C</string>
-		<string>F61BC6E911B095D8003EB90C</string>
-		<string>1C530D57069F1CE1000CFCEE</string>
-		<string>1C78EAAD065D492600B07095</string>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>F6885F691168335B00080696</string>
 		<string>/Users/rundeks/dev/iphone/Lacuna-iPhone-Client/UniversalClient/UniversalClient.xcodeproj</string>
 	</array>
@@ -803,8 +800,6 @@
 							<string>224pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -844,7 +839,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>F6885F691168335B00080696</string>
-				<string>F61BC6C911B08DE6003EB90C</string>
+				<string>F6E3EFB811B4365600E7BC86</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>

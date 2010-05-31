@@ -11,7 +11,7 @@
 #import "LETableViewCellProgress.h"
 
 
-@interface ViewBuildingController : LETableViewControllerGrouped <LETableViewCellProgressDelegate> {
+@interface ViewBuildingController : LETableViewControllerGrouped <LETableViewCellProgressDelegate, UIActionSheetDelegate> {
 	NSString *buildingId;
 	NSDictionary *buildingData;
 	NSDictionary *resultData;
@@ -19,6 +19,10 @@
 	NSInteger totalBuildTime;
 	NSInteger remainingBuildTime;
 	NSArray *sections;
+	NSMutableDictionary *buildingsByLoc;
+	NSMutableDictionary *buttonsByLoc;
+	NSNumber *x;
+	NSNumber *y;
 }
 
 
@@ -27,6 +31,10 @@
 @property(nonatomic, retain) NSDictionary *resultData;
 @property(nonatomic, retain) NSString *urlPart;
 @property(nonatomic, retain) NSArray *sections;
+@property(nonatomic, retain) NSMutableDictionary *buildingsByLoc;
+@property(nonatomic, retain) NSMutableDictionary *buttonsByLoc;
+@property(nonatomic, retain) NSNumber *x;
+@property(nonatomic, retain) NSNumber *y;
 
 
 + (ViewBuildingController *)create;

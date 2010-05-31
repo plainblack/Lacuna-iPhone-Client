@@ -23,6 +23,8 @@
 #import "ViewSpiesController.h"
 #import "RecycleController.h"
 #import "LEBuildingSubsidizeRecycling.h"
+#import "LEBuildingDemolish.h"
+#import "LEBuildingThrowParty.h"
 
 
 typedef enum {
@@ -48,7 +50,10 @@ typedef enum {
 	ROW_VIEW_SPIES_BUTTON,
 	ROW_RECYCLE,
 	ROW_RECYCLE_PENDING,
-	ROW_SUBSIDIZE
+	ROW_SUBSIDIZE,
+	ROW_THROW_PARTY,
+	ROW_PARTY_PENDING,
+	ROW_DEMOLISH_BUTTON
 } ROW;
 
 
@@ -60,6 +65,10 @@ typedef enum {
 @synthesize resultData;
 @synthesize urlPart;
 @synthesize sections;
+@synthesize buildingsByLoc;
+@synthesize buttonsByLoc;
+@synthesize x;
+@synthesize y;
 
 
 #pragma mark -
@@ -126,6 +135,8 @@ typedef enum {
 		case ROW_VIEW_SPIES_BUTTON:
 		case ROW_RECYCLE:
 		case ROW_SUBSIDIZE:
+		case ROW_THROW_PARTY:
+		case ROW_DEMOLISH_BUTTON:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		case ROW_UPGRADE_CANNOT:
@@ -140,7 +151,9 @@ typedef enum {
 		case ROW_RECYCLE_PENDING:
 			return tableView.rowHeight;
 			break;
-			
+		case ROW_PARTY_PENDING:
+			return [LETableViewCellProgress getHeightForTableView:tableView];
+			break;
 		default:
 			return tableView.rowHeight;
 			break;
@@ -288,6 +301,25 @@ typedef enum {
 			subsidizeButtonCell.textLabel.text = @"Subsidize";
 			cell = subsidizeButtonCell;
 			break;
+		case ROW_THROW_PARTY:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *throwPartyCell = [LETableViewCellButton getCellForTableView:tableView];
+			throwPartyCell.textLabel.text = @"Throw Party";
+			cell = throwPartyCell;
+			break;
+		case ROW_PARTY_PENDING:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellLabeledText *partyPendingCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			partyPendingCell.label.text = @"Busy";
+			partyPendingCell.content.text = @"Throwing Party";
+			cell = partyPendingCell;
+			break;
+		case ROW_DEMOLISH_BUTTON:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *demolishCell = [LETableViewCellButton getCellForTableView:tableView];
+			demolishCell.textLabel.text = @"Demolish";
+			cell = demolishCell;
+			break;
 		default:
 			cell = nil;
 			break;
@@ -343,6 +375,16 @@ typedef enum {
 		case ROW_SUBSIDIZE:
 			[[[LEBuildingSubsidizeRecycling alloc] initWithCallback:@selector(subsidizedRecycling:) target:self buildingId:self.buildingId buildingUrl:self.urlPart] autorelease];
 			break;
+		case ROW_THROW_PARTY:
+			[[[LEBuildingThrowParty alloc] initWithCallback:@selector(throwingParty:) target:self buildingId:self.buildingId buildingUrl:self.urlPart] autorelease];
+			break;
+		case ROW_DEMOLISH_BUTTON:
+			; //DO NOT REMOVE
+			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Demolish building?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+			actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+			[actionSheet showFromTabBar:self.tabBarController.tabBar];
+			[actionSheet release];
+			break;
 	}
 }
 
@@ -359,16 +401,20 @@ typedef enum {
 
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-	self.buildingId = nil;
-	self.buildingData = nil;
-	self.resultData = nil;
-	self.urlPart = nil;
-	self.sections = nil;
 	[super viewDidUnload];
 }
 
 
 - (void)dealloc {
+	self.buildingId = nil;
+	self.buildingData = nil;
+	self.resultData = nil;
+	self.urlPart = nil;
+	self.sections = nil;
+	self.buttonsByLoc = nil;
+	self.buildingsByLoc = nil;
+	self.x = nil;
+	self.y = nil;
     [super dealloc];
 }
 
@@ -378,6 +424,16 @@ typedef enum {
 
 - (void)progressComplete {
 	[[LEGetBuilding alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
+}
+
+
+#pragma mark -
+#pragma mark UIActionSheetDelegate Methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
+		[[[LEBuildingDemolish alloc] initWithCallback:@selector(buildingDemolished:) target:self buildingId:self.buildingId buildingUrl:self.urlPart] autorelease];
+	}
 }
 
 
@@ -435,6 +491,18 @@ typedef enum {
 		}
 		
 		[tmpSections addObject:dict_([NSNumber numberWithInt:SECTION_ACTIONS], @"type", rows, @"rows")];
+	} else 	if ([self.urlPart isEqualToString:@"/park"]) {
+		[tmpSectionHeaders addObject:[LEViewSectionTab tableView:self.tableView createWithText:@"Party"]];
+		NSMutableArray *rows = [NSMutableArray arrayWithCapacity:2];
+		
+		NSInteger canRecycle = intv_([[self.resultData objectForKey:@"party"] objectForKey:@"can_throw"]);
+		if (canRecycle) {
+			[rows addObject:[NSNumber numberWithInt:ROW_THROW_PARTY]];
+		} else {
+			[rows addObject:[NSNumber numberWithInt:ROW_PARTY_PENDING]];
+		}
+		
+		[tmpSections addObject:dict_([NSNumber numberWithInt:SECTION_ACTIONS], @"type", rows, @"rows")];
 	}
 	
 
@@ -452,9 +520,9 @@ typedef enum {
 		totalBuildTime = 0;
 		remainingBuildTime = 0;
 		if (canUpgrade) {
-			[tmpSections addObject:dict_([NSNumber numberWithInt:SECTION_UPGRADE], @"type", array_([NSNumber numberWithInt:ROW_UPGRADE_BUILDING_STATS], [NSNumber numberWithInt:ROW_UPGRADE_BUILDING_COST], [NSNumber numberWithInt:ROW_UPGRADE_BUTTON]), @"rows")];
+			[tmpSections addObject:dict_([NSNumber numberWithInt:SECTION_UPGRADE], @"type", array_([NSNumber numberWithInt:ROW_UPGRADE_BUILDING_STATS], [NSNumber numberWithInt:ROW_UPGRADE_BUILDING_COST], [NSNumber numberWithInt:ROW_UPGRADE_BUTTON], [NSNumber numberWithInt:ROW_DEMOLISH_BUTTON]), @"rows")];
 		} else {
-			[tmpSections addObject:dict_([NSNumber numberWithInt:SECTION_UPGRADE], @"type", array_([NSNumber numberWithInt:ROW_UPGRADE_BUILDING_STATS], [NSNumber numberWithInt:ROW_UPGRADE_BUILDING_COST], [NSNumber numberWithInt:ROW_UPGRADE_CANNOT]), @"rows")];
+			[tmpSections addObject:dict_([NSNumber numberWithInt:SECTION_UPGRADE], @"type", array_([NSNumber numberWithInt:ROW_UPGRADE_BUILDING_STATS], [NSNumber numberWithInt:ROW_UPGRADE_BUILDING_COST], [NSNumber numberWithInt:ROW_UPGRADE_CANNOT], [NSNumber numberWithInt:ROW_DEMOLISH_BUTTON]), @"rows")];
 		}
 	}
 	
@@ -494,6 +562,25 @@ typedef enum {
 - (id)subsidizedRecycling:(LEBuildingSubsidizeRecycling *)request {
 	[[LEGetBuilding alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
 	self.navigationItem.title = @"Loading";
+	return nil;
+}
+
+
+- (id)throwingParty:(LEBuildingThrowParty *)request {
+	[[LEGetBuilding alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
+	self.navigationItem.title = @"Loading";
+	return nil;
+}
+
+
+- (id)buildingDemolished:(LEBuildingDemolish *)request {
+	[self.navigationController popViewControllerAnimated:YES];
+	NSString *loc = [NSString stringWithFormat:@"%@x%@", self.x, self.y];
+	UIButton *button = [self.buttonsByLoc objectForKey:loc];
+	UIImage *tmp = [UIImage imageNamed:@"/assets/planet_side/build.png"];
+	tmp = [Util imageWithImage:tmp scaledToSize:CGSizeMake(BODY_BUILDINGS_CELL_WIDTH, BODY_BUILDINGS_CELL_HEIGHT)];
+	[button setBackgroundImage:tmp forState:UIControlStateNormal];
+	[self.buildingsByLoc removeObjectForKey:loc];
 	return nil;
 }
 
