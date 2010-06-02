@@ -125,6 +125,13 @@
 		F6DD2141116D75770013C58D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6DD2140116D75770013C58D /* CoreLocation.framework */; };
 		F6E3EFBC11B4389A00E7BC86 /* LEBuildingThrowParty.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3EFBB11B4389A00E7BC86 /* LEBuildingThrowParty.m */; };
 		F6E3EFCA11B4440200E7BC86 /* LEBuildingDemolish.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3EFC911B4440200E7BC86 /* LEBuildingDemolish.m */; };
+		F6E3EFF011B45BA000E7BC86 /* ViewEmpireBoostsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3EFEF11B45BA000E7BC86 /* ViewEmpireBoostsController.m */; };
+		F6E3F01E11B46BBB00E7BC86 /* LEEmpireViewBoosts.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F01D11B46BBB00E7BC86 /* LEEmpireViewBoosts.m */; };
+		F6E3F02111B46BD500E7BC86 /* LEEmpireBoostEnergy.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F02011B46BD500E7BC86 /* LEEmpireBoostEnergy.m */; };
+		F6E3F02411B46BE300E7BC86 /* LEEmpireBoostFood.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F02311B46BE300E7BC86 /* LEEmpireBoostFood.m */; };
+		F6E3F02711B46BEE00E7BC86 /* LEEmpireBoostHappiness.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F02611B46BEE00E7BC86 /* LEEmpireBoostHappiness.m */; };
+		F6E3F02A11B46BF800E7BC86 /* LEEmpireBoostOre.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F02911B46BF800E7BC86 /* LEEmpireBoostOre.m */; };
+		F6E3F02D11B46C0600E7BC86 /* LEEmpireBoostWater.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F02C11B46C0600E7BC86 /* LEEmpireBoostWater.m */; };
 		F6F5427D11A9D7D4006F347B /* LEBodyStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */; };
 /* End PBXBuildFile section */
 
@@ -351,6 +358,20 @@
 		F6E3EFBB11B4389A00E7BC86 /* LEBuildingThrowParty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingThrowParty.m; sourceTree = "<group>"; };
 		F6E3EFC811B4440200E7BC86 /* LEBuildingDemolish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingDemolish.h; sourceTree = "<group>"; };
 		F6E3EFC911B4440200E7BC86 /* LEBuildingDemolish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingDemolish.m; sourceTree = "<group>"; };
+		F6E3EFEE11B45BA000E7BC86 /* ViewEmpireBoostsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewEmpireBoostsController.h; sourceTree = "<group>"; };
+		F6E3EFEF11B45BA000E7BC86 /* ViewEmpireBoostsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewEmpireBoostsController.m; sourceTree = "<group>"; };
+		F6E3F01C11B46BBB00E7BC86 /* LEEmpireViewBoosts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireViewBoosts.h; sourceTree = "<group>"; };
+		F6E3F01D11B46BBB00E7BC86 /* LEEmpireViewBoosts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireViewBoosts.m; sourceTree = "<group>"; };
+		F6E3F01F11B46BD500E7BC86 /* LEEmpireBoostEnergy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireBoostEnergy.h; sourceTree = "<group>"; };
+		F6E3F02011B46BD500E7BC86 /* LEEmpireBoostEnergy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireBoostEnergy.m; sourceTree = "<group>"; };
+		F6E3F02211B46BE300E7BC86 /* LEEmpireBoostFood.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireBoostFood.h; sourceTree = "<group>"; };
+		F6E3F02311B46BE300E7BC86 /* LEEmpireBoostFood.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireBoostFood.m; sourceTree = "<group>"; };
+		F6E3F02511B46BEE00E7BC86 /* LEEmpireBoostHappiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireBoostHappiness.h; sourceTree = "<group>"; };
+		F6E3F02611B46BEE00E7BC86 /* LEEmpireBoostHappiness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireBoostHappiness.m; sourceTree = "<group>"; };
+		F6E3F02811B46BF800E7BC86 /* LEEmpireBoostOre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireBoostOre.h; sourceTree = "<group>"; };
+		F6E3F02911B46BF800E7BC86 /* LEEmpireBoostOre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireBoostOre.m; sourceTree = "<group>"; };
+		F6E3F02B11B46C0600E7BC86 /* LEEmpireBoostWater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireBoostWater.h; sourceTree = "<group>"; };
+		F6E3F02C11B46C0600E7BC86 /* LEEmpireBoostWater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireBoostWater.m; sourceTree = "<group>"; };
 		F6F5427B11A9D7D4006F347B /* LEBodyStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBodyStatus.h; sourceTree = "<group>"; };
 		F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBodyStatus.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -635,6 +656,18 @@
 				F6E3EFBB11B4389A00E7BC86 /* LEBuildingThrowParty.m */,
 				F6E3EFC811B4440200E7BC86 /* LEBuildingDemolish.h */,
 				F6E3EFC911B4440200E7BC86 /* LEBuildingDemolish.m */,
+				F6E3F01C11B46BBB00E7BC86 /* LEEmpireViewBoosts.h */,
+				F6E3F01D11B46BBB00E7BC86 /* LEEmpireViewBoosts.m */,
+				F6E3F01F11B46BD500E7BC86 /* LEEmpireBoostEnergy.h */,
+				F6E3F02011B46BD500E7BC86 /* LEEmpireBoostEnergy.m */,
+				F6E3F02211B46BE300E7BC86 /* LEEmpireBoostFood.h */,
+				F6E3F02311B46BE300E7BC86 /* LEEmpireBoostFood.m */,
+				F6E3F02511B46BEE00E7BC86 /* LEEmpireBoostHappiness.h */,
+				F6E3F02611B46BEE00E7BC86 /* LEEmpireBoostHappiness.m */,
+				F6E3F02811B46BF800E7BC86 /* LEEmpireBoostOre.h */,
+				F6E3F02911B46BF800E7BC86 /* LEEmpireBoostOre.m */,
+				F6E3F02B11B46C0600E7BC86 /* LEEmpireBoostWater.h */,
+				F6E3F02C11B46C0600E7BC86 /* LEEmpireBoostWater.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -703,6 +736,8 @@
 				F6724F52119F74F200D57E0D /* PickNumericValueController.h */,
 				F6724F53119F74F200D57E0D /* PickNumericValueController.m */,
 				F6724F54119F74F200D57E0D /* PickNumericValueController.xib */,
+				F6E3EFEE11B45BA000E7BC86 /* ViewEmpireBoostsController.h */,
+				F6E3EFEF11B45BA000E7BC86 /* ViewEmpireBoostsController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -895,6 +930,13 @@
 				F6F5427D11A9D7D4006F347B /* LEBodyStatus.m in Sources */,
 				F6E3EFBC11B4389A00E7BC86 /* LEBuildingThrowParty.m in Sources */,
 				F6E3EFCA11B4440200E7BC86 /* LEBuildingDemolish.m in Sources */,
+				F6E3EFF011B45BA000E7BC86 /* ViewEmpireBoostsController.m in Sources */,
+				F6E3F01E11B46BBB00E7BC86 /* LEEmpireViewBoosts.m in Sources */,
+				F6E3F02111B46BD500E7BC86 /* LEEmpireBoostEnergy.m in Sources */,
+				F6E3F02411B46BE300E7BC86 /* LEEmpireBoostFood.m in Sources */,
+				F6E3F02711B46BEE00E7BC86 /* LEEmpireBoostHappiness.m in Sources */,
+				F6E3F02A11B46BF800E7BC86 /* LEEmpireBoostOre.m in Sources */,
+				F6E3F02D11B46C0600E7BC86 /* LEEmpireBoostWater.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

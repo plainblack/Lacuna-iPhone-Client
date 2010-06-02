@@ -15,7 +15,8 @@
 #import "LETableViewCellLabeledParagraph.h"
 #import "LETableViewCellMedal.h"
 #import "Util.h"
-
+#import "LETableViewCellButton.h"
+#import "ViewEmpireBoostsController.h"
 
 typedef enum {
 	SECTION_EMPIRE,
@@ -27,8 +28,8 @@ typedef enum {
 	EMPIRE_ROW_NAME,
 	EMPIRE_ROW_DESCRIPTION,
 	EMPIRE_ROW_STATUS,
-	EMPIRE_ROW_HAPPINESS,
-	EMPIRE_ROW_ESSENTIA
+	EMPIRE_ROW_ESSENTIA,
+	EMPIRE_ROW_BOOSTS
 } EMPIRE_ROW;
 
 
@@ -94,6 +95,39 @@ typedef enum {
 }
 
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	switch (indexPath.section) {
+		case SECTION_EMPIRE:
+			switch (indexPath.row) {
+				case EMPIRE_ROW_NAME:
+				case EMPIRE_ROW_ESSENTIA:
+					return [LETableViewCellLabeledText getHeightForTableView:tableView];
+					break;
+				case EMPIRE_ROW_DESCRIPTION:
+					return [LETableViewCellLabeledParagraph getHeightForTableView:tableView text:leEmpireViewProfile.description];
+					break;
+				case EMPIRE_ROW_STATUS:
+					return [LETableViewCellLabeledParagraph getHeightForTableView:tableView text:leEmpireViewProfile.status];
+					break;
+				case EMPIRE_ROW_BOOSTS:
+					return [LETableViewCellButton getHeightForTableView:tableView];
+					break;
+				default:
+					return 0.0;
+					break;
+			}
+			break;
+		case SECTION_MEDALS:
+			; //DO NOT REMOVE
+			NSDictionary *medal = [self.leEmpireViewProfile.medals objectAtIndex:indexPath.row];
+			return [LETableViewCellMedal getHeightForTableView:tableView withMedal:medal];
+		default:
+			return 0.0;
+			break;
+	}
+}
+
+
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -128,19 +162,18 @@ typedef enum {
 					statusCell.content.text = leEmpireViewProfile.status;
 					cell = statusCell;
 					break;
-				case EMPIRE_ROW_HAPPINESS:
-					; //DO NOT REMOVE
-					LETableViewCellLabeledText *happinessCell = [LETableViewCellLabeledText getCellForTableView:tableView];
-					happinessCell.label.text = @"Happiness";
-					happinessCell.content.text = [NSString stringWithFormat:@"%@", [session.empireData objectForKey:@"happiness"]];
-					cell = happinessCell;
-					break;
 				case EMPIRE_ROW_ESSENTIA:
 					; //DO NOT REMOVE
 					LETableViewCellLabeledText *essentiaCell = [LETableViewCellLabeledText getCellForTableView:tableView];
 					essentiaCell.label.text = @"Essentia";
 					essentiaCell.content.text = [NSString stringWithFormat:@"%@", [session.empireData objectForKey:@"essentia"]];
 					cell = essentiaCell;
+					break;
+				case EMPIRE_ROW_BOOSTS:
+					; //DO NOT REMOVE
+					LETableViewCellButton *boostsButton = [LETableViewCellButton getCellForTableView:tableView];
+					boostsButton.textLabel.text = @"View Empire Boosts";
+					cell = boostsButton;
 					break;
 				default:
 					break;
@@ -169,49 +202,19 @@ typedef enum {
 }
 
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	switch (indexPath.section) {
-		case SECTION_EMPIRE:
-			switch (indexPath.row) {
-				case EMPIRE_ROW_NAME:
-				case EMPIRE_ROW_HAPPINESS:
-				case EMPIRE_ROW_ESSENTIA:
-					return [LETableViewCellLabeledText getHeightForTableView:tableView];
-					break;
-				case EMPIRE_ROW_DESCRIPTION:
-					return [LETableViewCellLabeledParagraph getHeightForTableView:tableView text:leEmpireViewProfile.description];
-					break;
-				case EMPIRE_ROW_STATUS:
-					return [LETableViewCellLabeledParagraph getHeightForTableView:tableView text:leEmpireViewProfile.status];
-					break;
-				default:
-					return 0.0;
-					break;
-			}
-			break;
-		case SECTION_MEDALS:
-			; //DO NOT REMOVE
-			NSDictionary *medal = [self.leEmpireViewProfile.medals objectAtIndex:indexPath.row];
-			return [LETableViewCellMedal getHeightForTableView:tableView withMedal:medal];
-		default:
-			return 0.0;
-			break;
-	}
-}
-
-
 #pragma mark -
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	/*
-	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 [detailViewController release];
-	 */
+	switch (indexPath.row) {
+		case EMPIRE_ROW_BOOSTS:
+			; //DO NOT REMOVE
+			ViewEmpireBoostsController *viewEmpireBoostsController = [ViewEmpireBoostsController create];
+			[self.navigationController pushViewController:viewEmpireBoostsController animated:YES];
+			break;
+		default:
+			break;
+	}
 }
 
 
