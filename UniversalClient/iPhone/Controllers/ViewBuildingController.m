@@ -311,7 +311,11 @@ typedef enum {
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellLabeledText *partyPendingCell = [LETableViewCellLabeledText getCellForTableView:tableView];
 			partyPendingCell.label.text = @"Busy";
-			partyPendingCell.content.text = @"Throwing Party";
+			if ([[self.resultData objectForKey:@"party"] objectForKey:@"seconds_remaining"]) {
+				partyPendingCell.content.text = @"Throwing Party";
+			} else {
+				partyPendingCell.content.text = @"Cannot throw party";
+			}
 			cell = partyPendingCell;
 			break;
 		case ROW_DEMOLISH_BUTTON:
