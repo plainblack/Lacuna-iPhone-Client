@@ -237,7 +237,6 @@ typedef enum {
 					[resourceCell setOreCurrent:[self.bodyData objectForKey:@"ore_stored"] capacity:[self.bodyData objectForKey:@"ore_capacity"] perHour:[self.bodyData objectForKey:@"ore_hour"]];
 					[resourceCell setWasteCurrent:[self.bodyData objectForKey:@"waste_stored"] capacity:[self.bodyData objectForKey:@"waste_capacity"] perHour:[self.bodyData objectForKey:@"waste_hour"]];
 					[resourceCell setWaterCurrent:[self.bodyData objectForKey:@"water_stored"] capacity:[self.bodyData objectForKey:@"water_capacity"] perHour:[self.bodyData objectForKey:@"water_hour"]];
-					NSLog(@"Waste Per Hour: %@", [self.bodyData objectForKey:@"waste_hour"]);
 
 					cell = resourceCell;
 					break;
