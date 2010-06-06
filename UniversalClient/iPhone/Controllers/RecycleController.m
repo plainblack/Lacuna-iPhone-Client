@@ -13,6 +13,7 @@
 #import "LETableViewCellNumberEntry.h"
 #import "LETableViewCellLabeledText.h"
 #import "LETableViewCellLabeledSwitch.h"
+#import "Util.h"
 
 
 typedef enum {
@@ -122,7 +123,7 @@ typedef enum {
 			; //DO NOT REMOVE
 			LETableViewCellLabeledText *timeCell = [LETableViewCellLabeledText getCellForTableView:tableView];
 			timeCell.label.text = @"Time needed";
-			timeCell.content.text = [NSString stringWithFormat:@"%@ seconds", self.seconds];
+			timeCell.content.text = [Util prettyDuration:intv_(self.seconds)];
 			cell = timeCell;
 			break;
 		default:

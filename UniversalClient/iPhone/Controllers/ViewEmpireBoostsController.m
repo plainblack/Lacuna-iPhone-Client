@@ -17,6 +17,7 @@
 #import "LEEmpireBoostHappiness.h"
 #import "LEEmpireBoostOre.h"
 #import "LEEmpireBoostWater.h"
+#import "Util.h"
 
 
 typedef enum {
@@ -41,7 +42,7 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-    self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
+    //self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
 	self.navigationItem.title = @"Loading";
 	
 	self.sectionHeaders = array_([LEViewSectionTab tableView:self.tableView createWithText:@"Empire Boosts"]);
@@ -173,7 +174,7 @@ typedef enum {
 	if ([self isBoosting:boostEndDate]) {
 		LETableViewCellLabeledText *energyPendingCell = [LETableViewCellLabeledText getCellForTableView:tableView];
 		energyPendingCell.label.text = name;
-		energyPendingCell.content.text = @"Boosting";
+		energyPendingCell.content.text = [Util formatDate:boostEndDate];
 		return energyPendingCell;
 	} else {
 		LETableViewCellButton *energyButtonCell = [LETableViewCellButton getCellForTableView:tableView];

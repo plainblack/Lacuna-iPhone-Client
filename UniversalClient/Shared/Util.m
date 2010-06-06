@@ -48,12 +48,15 @@
 }
 
 
-+ (NSString *)prettyDate:(NSString *)serverDateString {
++ (NSString *)formatDate:(NSDate *)serverDate {
 	NSDateFormatter *localDateFormatter = [[[NSDateFormatter alloc] init] autorelease];
 	[localDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
-	
-	NSDate *date = [Util date:serverDateString];
-	return [localDateFormatter stringFromDate:date];
+	return [localDateFormatter stringFromDate:serverDate];
+}
+
+
++ (NSString *)prettyDate:(NSString *)serverDateString {
+	return [Util formatDate:[Util date:serverDateString]];
 }
 
 

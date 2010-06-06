@@ -17,6 +17,7 @@
 #import "Util.h"
 #import "LETableViewCellButton.h"
 #import "ViewEmpireBoostsController.h"
+#import "EditEmpireProfileText.h"
 
 typedef enum {
 	SECTION_EMPIRE,
@@ -45,7 +46,7 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-    self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
+    self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
 	self.navigationItem.title = @"Loading";
 	
 	self.sectionHeaders = array_([LEViewSectionTab tableView:self.tableView createWithText:@"Empire"],
@@ -153,6 +154,8 @@ typedef enum {
 					} else {
 						descriptionCell.content.text = leEmpireViewProfile.description;
 					}
+					descriptionCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+					descriptionCell.selectionStyle = UITableViewCellSelectionStyleBlue;
 					cell = descriptionCell;
 					break;
 				case EMPIRE_ROW_STATUS:
@@ -160,6 +163,8 @@ typedef enum {
 					LETableViewCellLabeledParagraph *statusCell = [LETableViewCellLabeledParagraph getCellForTableView:tableView];
 					statusCell.label.text = @"Status";
 					statusCell.content.text = leEmpireViewProfile.status;
+					statusCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+					statusCell.selectionStyle = UITableViewCellSelectionStyleBlue;
 					cell = statusCell;
 					break;
 				case EMPIRE_ROW_ESSENTIA:
@@ -211,6 +216,16 @@ typedef enum {
 			; //DO NOT REMOVE
 			ViewEmpireBoostsController *viewEmpireBoostsController = [ViewEmpireBoostsController create];
 			[self.navigationController pushViewController:viewEmpireBoostsController animated:YES];
+			break;
+		case EMPIRE_ROW_DESCRIPTION:
+			; //DO NOT REMOVE
+			EditEmpireProfileText *editDescriptionEmpireProfileText = [EditEmpireProfileText createForLEEmpireViewProfile:leEmpireViewProfile textName:@"Description" textKey:@"description" text:leEmpireViewProfile.description];
+			[self.navigationController pushViewController:editDescriptionEmpireProfileText animated:YES];
+			break;
+		case EMPIRE_ROW_STATUS:
+			; //DO NOT REMOVE
+			EditEmpireProfileText *editStatusEmpireProfileText = [EditEmpireProfileText createForLEEmpireViewProfile:leEmpireViewProfile textName:@"Status" textKey:@"status_message" text:leEmpireViewProfile.status];
+			[self.navigationController pushViewController:editStatusEmpireProfileText animated:YES];
 			break;
 		default:
 			break;

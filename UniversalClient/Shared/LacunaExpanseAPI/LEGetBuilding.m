@@ -32,7 +32,6 @@
 
 
 - (void)processSuccess {
-	NSLog(@"Loading Building Details for '%@': %@", self.buildingId, self.response);
 	NSDictionary *result = [self.response objectForKey:@"result"];
 	
 	self.building = [result objectForKey:@"building"];

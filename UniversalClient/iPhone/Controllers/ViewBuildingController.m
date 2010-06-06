@@ -152,7 +152,7 @@ typedef enum {
 			return tableView.rowHeight;
 			break;
 		case ROW_PARTY_PENDING:
-			return [LETableViewCellProgress getHeightForTableView:tableView];
+			return tableView.rowHeight;
 			break;
 		default:
 			return tableView.rowHeight;
@@ -291,8 +291,8 @@ typedef enum {
 		case ROW_RECYCLE_PENDING:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellLabeledText *recyclingCell = [LETableViewCellLabeledText getCellForTableView:tableView];
-			recyclingCell.label.text = @"Busy";
-			recyclingCell.content.text = @"Recycling";
+			recyclingCell.label.text = @"Recycling";
+			recyclingCell.content.text = [Util prettyDuration:intv_([[self.resultData objectForKey:@"recycle"] objectForKey:@"seconds_remaining"])];
 			cell = recyclingCell;
 			break;
 		case ROW_SUBSIDIZE:
@@ -310,11 +310,12 @@ typedef enum {
 		case ROW_PARTY_PENDING:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellLabeledText *partyPendingCell = [LETableViewCellLabeledText getCellForTableView:tableView];
-			partyPendingCell.label.text = @"Busy";
 			if ([[self.resultData objectForKey:@"party"] objectForKey:@"seconds_remaining"]) {
-				partyPendingCell.content.text = @"Throwing Party";
+				partyPendingCell.label.text = @"Party";
+				partyPendingCell.content.text = [Util prettyDuration:intv_([[self.resultData objectForKey:@"party"] objectForKey:@"seconds_remaining"])];
 			} else {
-				partyPendingCell.content.text = @"Cannot throw party";
+				partyPendingCell.label.text = @"Party";
+				partyPendingCell.content.text = @"Not enough food";
 			}
 			cell = partyPendingCell;
 			break;

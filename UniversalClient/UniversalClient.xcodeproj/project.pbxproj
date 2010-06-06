@@ -123,6 +123,9 @@
 		F6DD2118116D73F50013C58D /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DD210B116D73F50013C58D /* SBJsonParser.m */; };
 		F6DD2119116D73F50013C58D /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DD210D116D73F50013C58D /* SBJsonWriter.m */; };
 		F6DD2141116D75770013C58D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6DD2140116D75770013C58D /* CoreLocation.framework */; };
+		F6E3E57F11BB0A3200A031CF /* EditEmpireProfileText.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3E57E11BB0A3200A031CF /* EditEmpireProfileText.m */; };
+		F6E3E58211BB0EA500A031CF /* LEEmpireEditProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3E58111BB0EA500A031CF /* LEEmpireEditProfile.m */; };
+		F6E3E5E011BB1E8500A031CF /* LETableViewCellTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3E5DF11BB1E8500A031CF /* LETableViewCellTextView.m */; };
 		F6E3EFBC11B4389A00E7BC86 /* LEBuildingThrowParty.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3EFBB11B4389A00E7BC86 /* LEBuildingThrowParty.m */; };
 		F6E3EFCA11B4440200E7BC86 /* LEBuildingDemolish.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3EFC911B4440200E7BC86 /* LEBuildingDemolish.m */; };
 		F6E3EFF011B45BA000E7BC86 /* ViewEmpireBoostsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3EFEF11B45BA000E7BC86 /* ViewEmpireBoostsController.m */; };
@@ -354,6 +357,12 @@
 		F6DD210C116D73F50013C58D /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		F6DD210D116D73F50013C58D /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		F6DD2140116D75770013C58D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		F6E3E57D11BB0A3200A031CF /* EditEmpireProfileText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditEmpireProfileText.h; sourceTree = "<group>"; };
+		F6E3E57E11BB0A3200A031CF /* EditEmpireProfileText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditEmpireProfileText.m; sourceTree = "<group>"; };
+		F6E3E58011BB0EA500A031CF /* LEEmpireEditProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireEditProfile.h; sourceTree = "<group>"; };
+		F6E3E58111BB0EA500A031CF /* LEEmpireEditProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireEditProfile.m; sourceTree = "<group>"; };
+		F6E3E5DE11BB1E8500A031CF /* LETableViewCellTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellTextView.h; sourceTree = "<group>"; };
+		F6E3E5DF11BB1E8500A031CF /* LETableViewCellTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellTextView.m; sourceTree = "<group>"; };
 		F6E3EFBA11B4389A00E7BC86 /* LEBuildingThrowParty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingThrowParty.h; sourceTree = "<group>"; };
 		F6E3EFBB11B4389A00E7BC86 /* LEBuildingThrowParty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingThrowParty.m; sourceTree = "<group>"; };
 		F6E3EFC811B4440200E7BC86 /* LEBuildingDemolish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingDemolish.h; sourceTree = "<group>"; };
@@ -492,6 +501,10 @@
 				F69D29BB11726B6E00D7277E /* LESpeciesPointsUpdateDelegate.h */,
 				F69D29B81172655700D7277E /* LETableViewCellAffinitySelector.h */,
 				F69D29B91172655700D7277E /* LETableViewCellAffinitySelector.m */,
+				F645746A118DD62A000897C4 /* LETableViewCellAttachedImage.h */,
+				F645746B118DD62A000897C4 /* LETableViewCellAttachedImage.m */,
+				F6863C14118E475A00861037 /* LETableViewCellAttachedLink.h */,
+				F6863C15118E475A00861037 /* LETableViewCellAttachedLink.m */,
 				F603A8BC1177E7FC00BAC73A /* LETableViewCellBody.h */,
 				F603A8BD1177E7FC00BAC73A /* LETableViewCellBody.m */,
 				F69809BA117A14FE00BD2096 /* LETableViewCellBuildingStats.h */,
@@ -504,16 +517,24 @@
 				F603A8EE1177F7F200BAC73A /* LETableViewCellCurrentResources.m */,
 				F6882D50116EB6BF009B624B /* LETableViewCellLabeledParagraph.h */,
 				F6882D51116EB6BF009B624B /* LETableViewCellLabeledParagraph.m */,
+				F678F71D11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.h */,
+				F678F71E11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.m */,
 				F6882D3F116EB44F009B624B /* LETableViewCellLabeledText.h */,
 				F6882D40116EB44F009B624B /* LETableViewCellLabeledText.m */,
 				F6882DF5116EC6E7009B624B /* LETableViewCellMedal.h */,
 				F6882DF6116EC6E7009B624B /* LETableViewCellMedal.m */,
+				F6864FCC1183A912009826A7 /* LETableViewCellNewsItem.h */,
+				F6864FCD1183A912009826A7 /* LETableViewCellNewsItem.m */,
+				F6132E59119E3A78000F99A9 /* LETableViewCellNumberEntry.h */,
+				F6132E5A119E3A78000F99A9 /* LETableViewCellNumberEntry.m */,
 				F69D29B51172654500D7277E /* LETableViewCellOrbitSelector.h */,
 				F69D29B61172654500D7277E /* LETableViewCellOrbitSelector.m */,
 				F6980B42117A738D00BD2096 /* LETableViewCellParagraph.h */,
 				F6980B43117A738D00BD2096 /* LETableViewCellParagraph.m */,
 				F69809BD117A154500BD2096 /* LETableViewCellProgress.h */,
 				F69809BE117A154500BD2096 /* LETableViewCellProgress.m */,
+				F67E11EF118A75BB00D964FD /* LETableViewCellSpyInfo.h */,
+				F67E11F0118A75BB00D964FD /* LETableViewCellSpyInfo.m */,
 				F634BB51116C31BD0084A8B2 /* LETableViewCellTextEntry.h */,
 				F634BB52116C31BD0084A8B2 /* LETableViewCellTextEntry.m */,
 				F634BB54116C31E50084A8B2 /* LETableViewCellTextEntry.xib */,
@@ -521,18 +542,8 @@
 				F69809C4117A156E00BD2096 /* LETableViewCellUnbuildable.m */,
 				F6DD2062116D5B3C0013C58D /* LEViewSectionTab.h */,
 				F6DD2063116D5B3C0013C58D /* LEViewSectionTab.m */,
-				F6864FCC1183A912009826A7 /* LETableViewCellNewsItem.h */,
-				F6864FCD1183A912009826A7 /* LETableViewCellNewsItem.m */,
-				F67E11EF118A75BB00D964FD /* LETableViewCellSpyInfo.h */,
-				F67E11F0118A75BB00D964FD /* LETableViewCellSpyInfo.m */,
-				F645746A118DD62A000897C4 /* LETableViewCellAttachedImage.h */,
-				F645746B118DD62A000897C4 /* LETableViewCellAttachedImage.m */,
-				F6863C14118E475A00861037 /* LETableViewCellAttachedLink.h */,
-				F6863C15118E475A00861037 /* LETableViewCellAttachedLink.m */,
-				F6132E59119E3A78000F99A9 /* LETableViewCellNumberEntry.h */,
-				F6132E5A119E3A78000F99A9 /* LETableViewCellNumberEntry.m */,
-				F678F71D11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.h */,
-				F678F71E11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.m */,
+				F6E3E5DE11BB1E8500A031CF /* LETableViewCellTextView.h */,
+				F6E3E5DF11BB1E8500A031CF /* LETableViewCellTextView.m */,
 			);
 			name = Views;
 			path = Shared/Views;
@@ -584,12 +595,16 @@
 		F6E4D6681168D4B200980B59 /* LacunaExpanseAPI */ = {
 			isa = PBXGroup;
 			children = (
+				F6F5427B11A9D7D4006F347B /* LEBodyStatus.h */,
+				F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */,
 				F6AC49EA116C0F9B001B967A /* LEBuildBuilding.h */,
 				F6AC49EB116C0F9B001B967A /* LEBuildBuilding.m */,
 				F6A9C5B71184BBA1001F0D9C /* LEBuildingAssignSpy.h */,
 				F6A9C5B81184BBA1001F0D9C /* LEBuildingAssignSpy.m */,
 				F6A9C5B11184BB6D001F0D9C /* LEBuildingBurnSpy.h */,
 				F6A9C5B21184BB6D001F0D9C /* LEBuildingBurnSpy.m */,
+				F6E3EFC811B4440200E7BC86 /* LEBuildingDemolish.h */,
+				F6E3EFC911B4440200E7BC86 /* LEBuildingDemolish.m */,
 				F6A9C5B41184BB80001F0D9C /* LEBuildingNameSpy.h */,
 				F6A9C5B51184BB80001F0D9C /* LEBuildingNameSpy.m */,
 				F697BA0A119CE6BD004B2119 /* LEBuildingRecycle.h */,
@@ -598,6 +613,8 @@
 				F68650071183D2A4009826A7 /* LEBuildingRestrictCoverage.m */,
 				F678F75311A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.h */,
 				F678F75411A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.m */,
+				F6E3EFBA11B4389A00E7BC86 /* LEBuildingThrowParty.h */,
+				F6E3EFBB11B4389A00E7BC86 /* LEBuildingThrowParty.m */,
 				F6A9C5931184A3B6001F0D9C /* LEBuildingTrainSpy.h */,
 				F6A9C5941184A3B6001F0D9C /* LEBuildingTrainSpy.m */,
 				F6864F9C1183A3FB009826A7 /* LEBuildingViewNews.h */,
@@ -608,14 +625,28 @@
 				F6AC49ED116C0F9B001B967A /* LECheckEmpireName.m */,
 				F6AC49EE116C0F9B001B967A /* LECheckSpeciesName.h */,
 				F6AC49EF116C0F9B001B967A /* LECheckSpeciesName.m */,
+				F6E3F01F11B46BD500E7BC86 /* LEEmpireBoostEnergy.h */,
+				F6E3F02011B46BD500E7BC86 /* LEEmpireBoostEnergy.m */,
+				F6E3F02211B46BE300E7BC86 /* LEEmpireBoostFood.h */,
+				F6E3F02311B46BE300E7BC86 /* LEEmpireBoostFood.m */,
+				F6E3F02511B46BEE00E7BC86 /* LEEmpireBoostHappiness.h */,
+				F6E3F02611B46BEE00E7BC86 /* LEEmpireBoostHappiness.m */,
+				F6E3F02811B46BF800E7BC86 /* LEEmpireBoostOre.h */,
+				F6E3F02911B46BF800E7BC86 /* LEEmpireBoostOre.m */,
+				F6E3F02B11B46C0600E7BC86 /* LEEmpireBoostWater.h */,
+				F6E3F02C11B46C0600E7BC86 /* LEEmpireBoostWater.m */,
 				F6AC49F0116C0F9B001B967A /* LEEmpireCreate.h */,
 				F6AC49F1116C0F9B001B967A /* LEEmpireCreate.m */,
+				F6E3E58011BB0EA500A031CF /* LEEmpireEditProfile.h */,
+				F6E3E58111BB0EA500A031CF /* LEEmpireEditProfile.m */,
 				F6AC49F2116C0F9B001B967A /* LEEmpireFound.h */,
 				F6AC49F3116C0F9B001B967A /* LEEmpireFound.m */,
 				F6AC49F4116C0F9B001B967A /* LEEmpireLogin.h */,
 				F6AC49F5116C0F9B001B967A /* LEEmpireLogin.m */,
 				F6AC49F6116C0F9B001B967A /* LEEmpireLogout.h */,
 				F6AC49F7116C0F9B001B967A /* LEEmpireLogout.m */,
+				F6E3F01C11B46BBB00E7BC86 /* LEEmpireViewBoosts.h */,
+				F6E3F01D11B46BBB00E7BC86 /* LEEmpireViewBoosts.m */,
 				F6AC49F8116C0F9B001B967A /* LEEmpireViewProfile.h */,
 				F6AC49F9116C0F9B001B967A /* LEEmpireViewProfile.m */,
 				F6AC49FA116C0F9B001B967A /* LEGetBody.h */,
@@ -650,24 +681,6 @@
 				F6AC4A17116C0F9B001B967A /* LESpeciesSetHuman.m */,
 				F6AC4A18116C0F9B001B967A /* LEUpgradeBuilding.h */,
 				F6AC4A19116C0F9B001B967A /* LEUpgradeBuilding.m */,
-				F6F5427B11A9D7D4006F347B /* LEBodyStatus.h */,
-				F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */,
-				F6E3EFBA11B4389A00E7BC86 /* LEBuildingThrowParty.h */,
-				F6E3EFBB11B4389A00E7BC86 /* LEBuildingThrowParty.m */,
-				F6E3EFC811B4440200E7BC86 /* LEBuildingDemolish.h */,
-				F6E3EFC911B4440200E7BC86 /* LEBuildingDemolish.m */,
-				F6E3F01C11B46BBB00E7BC86 /* LEEmpireViewBoosts.h */,
-				F6E3F01D11B46BBB00E7BC86 /* LEEmpireViewBoosts.m */,
-				F6E3F01F11B46BD500E7BC86 /* LEEmpireBoostEnergy.h */,
-				F6E3F02011B46BD500E7BC86 /* LEEmpireBoostEnergy.m */,
-				F6E3F02211B46BE300E7BC86 /* LEEmpireBoostFood.h */,
-				F6E3F02311B46BE300E7BC86 /* LEEmpireBoostFood.m */,
-				F6E3F02511B46BEE00E7BC86 /* LEEmpireBoostHappiness.h */,
-				F6E3F02611B46BEE00E7BC86 /* LEEmpireBoostHappiness.m */,
-				F6E3F02811B46BF800E7BC86 /* LEEmpireBoostOre.h */,
-				F6E3F02911B46BF800E7BC86 /* LEEmpireBoostOre.m */,
-				F6E3F02B11B46C0600E7BC86 /* LEEmpireBoostWater.h */,
-				F6E3F02C11B46C0600E7BC86 /* LEEmpireBoostWater.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -688,6 +701,8 @@
 		F6E4D66A1168D4CD00980B59 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F67E11D8118A701A00D964FD /* AssignSpyController.h */,
+				F67E11D9118A701A00D964FD /* AssignSpyController.m */,
 				F69D2893117242B400D7277E /* LETableViewControllerGrouped.h */,
 				F69D2894117242B400D7277E /* LETableViewControllerGrouped.m */,
 				F634BAE3116C2CB90084A8B2 /* LoginController.h */,
@@ -701,6 +716,20 @@
 				F6980B76117A8BD700BD2096 /* NewMailMessageController.m */,
 				F69D299011725FA400D7277E /* NewSpeciesController.h */,
 				F69D299111725FA400D7277E /* NewSpeciesController.m */,
+				F6724F52119F74F200D57E0D /* PickNumericValueController.h */,
+				F6724F53119F74F200D57E0D /* PickNumericValueController.m */,
+				F6724F54119F74F200D57E0D /* PickNumericValueController.xib */,
+				F697BA07119CE035004B2119 /* RecycleController.h */,
+				F697BA08119CE035004B2119 /* RecycleController.m */,
+				F6A9C6361184DF61001F0D9C /* RenameBodyController.h */,
+				F6A9C6371184DF61001F0D9C /* RenameBodyController.m */,
+				F6A9C6331184DF55001F0D9C /* RenameSpyController.h */,
+				F6A9C6341184DF55001F0D9C /* RenameSpyController.m */,
+				F688A34611939EEB0062DF8A /* ViewAttachedMapController.h */,
+				F688A34711939EEB0062DF8A /* ViewAttachedMapController.m */,
+				F69B7FFA118FB51A0049D4A1 /* ViewAttachedTableController.h */,
+				F69B7FFB118FB51A0049D4A1 /* ViewAttachedTableController.m */,
+				F69B7FFC118FB51A0049D4A1 /* ViewAttachedTableController.xib */,
 				F631A3D111754AEF005E40CC /* ViewBodyController.h */,
 				F631A3D211754AEF005E40CC /* ViewBodyController.m */,
 				F631A3F211755489005E40CC /* ViewBodyController.xib */,
@@ -708,6 +737,8 @@
 				F603A91811780A0400BAC73A /* ViewBodyMapController.m */,
 				F69809A51179FFFB00BD2096 /* ViewBuildingController.h */,
 				F69809A61179FFFB00BD2096 /* ViewBuildingController.m */,
+				F6E3EFEE11B45BA000E7BC86 /* ViewEmpireBoostsController.h */,
+				F6E3EFEF11B45BA000E7BC86 /* ViewEmpireBoostsController.m */,
 				F6882CFB116EA08A009B624B /* ViewEmpireController.h */,
 				F6882CFC116EA08A009B624B /* ViewEmpireController.m */,
 				F6980ACC117A600E00BD2096 /* ViewMailboxController.h */,
@@ -720,24 +751,8 @@
 				F6864F9A1183A131009826A7 /* ViewNetwork19NewsController.m */,
 				F6A9C5E91184C1CC001F0D9C /* ViewSpiesController.h */,
 				F6A9C5EA1184C1CC001F0D9C /* ViewSpiesController.m */,
-				F6A9C6331184DF55001F0D9C /* RenameSpyController.h */,
-				F6A9C6341184DF55001F0D9C /* RenameSpyController.m */,
-				F6A9C6361184DF61001F0D9C /* RenameBodyController.h */,
-				F6A9C6371184DF61001F0D9C /* RenameBodyController.m */,
-				F67E11D8118A701A00D964FD /* AssignSpyController.h */,
-				F67E11D9118A701A00D964FD /* AssignSpyController.m */,
-				F69B7FFA118FB51A0049D4A1 /* ViewAttachedTableController.h */,
-				F69B7FFB118FB51A0049D4A1 /* ViewAttachedTableController.m */,
-				F69B7FFC118FB51A0049D4A1 /* ViewAttachedTableController.xib */,
-				F688A34611939EEB0062DF8A /* ViewAttachedMapController.h */,
-				F688A34711939EEB0062DF8A /* ViewAttachedMapController.m */,
-				F697BA07119CE035004B2119 /* RecycleController.h */,
-				F697BA08119CE035004B2119 /* RecycleController.m */,
-				F6724F52119F74F200D57E0D /* PickNumericValueController.h */,
-				F6724F53119F74F200D57E0D /* PickNumericValueController.m */,
-				F6724F54119F74F200D57E0D /* PickNumericValueController.xib */,
-				F6E3EFEE11B45BA000E7BC86 /* ViewEmpireBoostsController.h */,
-				F6E3EFEF11B45BA000E7BC86 /* ViewEmpireBoostsController.m */,
+				F6E3E57D11BB0A3200A031CF /* EditEmpireProfileText.h */,
+				F6E3E57E11BB0A3200A031CF /* EditEmpireProfileText.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -937,6 +952,9 @@
 				F6E3F02711B46BEE00E7BC86 /* LEEmpireBoostHappiness.m in Sources */,
 				F6E3F02A11B46BF800E7BC86 /* LEEmpireBoostOre.m in Sources */,
 				F6E3F02D11B46C0600E7BC86 /* LEEmpireBoostWater.m in Sources */,
+				F6E3E57F11BB0A3200A031CF /* EditEmpireProfileText.m in Sources */,
+				F6E3E58211BB0EA500A031CF /* LEEmpireEditProfile.m in Sources */,
+				F6E3E5E011BB1E8500A031CF /* LETableViewCellTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1029,14 +1047,16 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kevin Runde";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kevin Runde";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = UniversalClient_Prefix.pch;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "UniversalClient-Info.plist";
 				PRODUCT_NAME = UniversalClient;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A1CCBBEC-E810-4736-AFD9-10A03CCDF834";
+				PROVISIONING_PROFILE = "1D0D270A-6AF7-4BE6-9068-339FE078CBF6";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Distribution;

@@ -60,6 +60,7 @@
 
 
 - (void)setAutocorrectionType:(UITextAutocorrectionType) type {
+	self.textField.autocorrectionType = type;
 }
 
 
