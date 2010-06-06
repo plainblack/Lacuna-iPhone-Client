@@ -65,6 +65,7 @@
 		cell.content.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		cell.content.editable = NO;
 		cell.content.scrollEnabled = NO;
+		cell.content.userInteractionEnabled = NO;
 		[cell.contentView addSubview:cell.content];
 		
 		//Set Font stuff

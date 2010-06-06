@@ -36,7 +36,7 @@
 		};
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
-		activeBuildConfigurationName = Distribution;
+		activeBuildConfigurationName = Debug;
 		activeExecutable = F6885F4D1168330600080696 /* UniversalClient */;
 		activeSDKPreference = iphoneos3.2;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* UniversalClient */;
@@ -328,6 +328,13 @@
 			F6AC4F0B116C1302001B967A = F6AC4F0B116C1302001B967A /* PBXTextBookmark */;
 			F6AC4F0D116C1302001B967A = F6AC4F0D116C1302001B967A /* PBXBookmark */;
 			F6D2BABF11BB2FF200C3091D /* PBXTextBookmark */ = F6D2BABF11BB2FF200C3091D /* PBXTextBookmark */;
+			F6D2BAC511BB37F600C3091D /* PBXTextBookmark */ = F6D2BAC511BB37F600C3091D /* PBXTextBookmark */;
+			F6D2BAC611BB37F600C3091D /* PBXTextBookmark */ = F6D2BAC611BB37F600C3091D /* PBXTextBookmark */;
+			F6D2BAC711BB37F600C3091D /* PBXTextBookmark */ = F6D2BAC711BB37F600C3091D /* PBXTextBookmark */;
+			F6D2BADF11BB391D00C3091D /* PBXTextBookmark */ = F6D2BADF11BB391D00C3091D /* PBXTextBookmark */;
+			F6D2BAE011BB391D00C3091D /* PBXTextBookmark */ = F6D2BAE011BB391D00C3091D /* PBXTextBookmark */;
+			F6D2BAE111BB391D00C3091D /* PlistBookmark */ = F6D2BAE111BB391D00C3091D /* PlistBookmark */;
+			F6D2BAE211BB391D00C3091D /* PlistBookmark */ = F6D2BAE211BB391D00C3091D /* PlistBookmark */;
 			F6DD2151116D76100013C58D = F6DD2151116D76100013C58D /* PBXTextBookmark */;
 			F6DD2152116D76100013C58D = F6DD2152116D76100013C58D /* PBXTextBookmark */;
 			F6E3E56A11BAF86600A031CF = F6E3E56A11BAF86600A031CF /* PBXTextBookmark */;
@@ -1513,9 +1520,9 @@
 	};
 	F6882CFC116EA08A009B624B /* ViewEmpireController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1601, 3705}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1601, 3653}}";
 			sepNavSelRange = "{7400, 0}";
-			sepNavVisRange = "{5582, 2462}";
+			sepNavVisRange = "{0, 1701}";
 			sepNavWindowFrame = "{{15, 68}, {750, 810}}";
 		};
 	};
@@ -1557,9 +1564,9 @@
 	};
 	F6882D51116EB6BF009B624B /* LETableViewCellLabeledParagraph.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {992, 1144}}";
-			sepNavSelRange = "{2420, 0}";
-			sepNavVisRange = "{2315, 393}";
+			sepNavIntBoundsRect = "{{0, 0}, {992, 1222}}";
+			sepNavSelRange = "{2149, 0}";
+			sepNavVisRange = "{555, 2191}";
 		};
 	};
 	F6882DF5116EC6E7009B624B /* LETableViewCellMedal.h */ = {
@@ -3445,6 +3452,78 @@
 		vrLen = 2462;
 		vrLoc = 5582;
 	};
+	F6D2BAC511BB37F600C3091D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6882CFC116EA08A009B624B /* ViewEmpireController.m */;
+		name = "ViewEmpireController.m: 227";
+		rLen = 0;
+		rLoc = 7400;
+		rType = 0;
+		vrLen = 1701;
+		vrLoc = 0;
+	};
+	F6D2BAC611BB37F600C3091D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6E3E5DE11BB1E8500A031CF /* LETableViewCellTextView.h */;
+		name = "LETableViewCellTextView.h: 15";
+		rLen = 0;
+		rLoc = 306;
+		rType = 0;
+		vrLen = 723;
+		vrLoc = 0;
+	};
+	F6D2BAC711BB37F600C3091D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6E3E5DF11BB1E8500A031CF /* LETableViewCellTextView.m */;
+		name = "LETableViewCellTextView.m: 161";
+		rLen = 0;
+		rLoc = 3434;
+		rType = 0;
+		vrLen = 1858;
+		vrLoc = 2269;
+	};
+	F6D2BADF11BB391D00C3091D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6E3E5DF11BB1E8500A031CF /* LETableViewCellTextView.m */;
+		name = "LETableViewCellTextView.m: 160";
+		rLen = 0;
+		rLoc = 3417;
+		rType = 0;
+		vrLen = 1841;
+		vrLoc = 2269;
+	};
+	F6D2BAE011BB391D00C3091D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6882D51116EB6BF009B624B /* LETableViewCellLabeledParagraph.m */;
+		name = "LETableViewCellLabeledParagraph.m: 69";
+		rLen = 0;
+		rLoc = 2149;
+		rType = 0;
+		vrLen = 2191;
+		vrLoc = 555;
+	};
+	F6D2BAE111BB391D00C3091D /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* UniversalClient-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/rundeks/dev/iphone/Lacuna-iPhone-Client/UniversalClient/UniversalClient-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	F6D2BAE211BB391D00C3091D /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* UniversalClient-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/rundeks/dev/iphone/Lacuna-iPhone-Client/UniversalClient/UniversalClient-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
 	F6DD2024116D561F0013C58D /* LETableViewCellButton.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {862, 385}}";
@@ -3713,7 +3792,7 @@
 	};
 	F6E3E5DE11BB1E8500A031CF /* LETableViewCellTextView.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {943, 846}}";
+			sepNavIntBoundsRect = "{{0, 0}, {943, 861}}";
 			sepNavSelRange = "{306, 0}";
 			sepNavVisRange = "{0, 723}";
 		};
@@ -3721,8 +3800,8 @@
 	F6E3E5DF11BB1E8500A031CF /* LETableViewCellTextView.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {943, 2470}}";
-			sepNavSelRange = "{3415, 0}";
-			sepNavVisRange = "{807, 1275}";
+			sepNavSelRange = "{3417, 0}";
+			sepNavVisRange = "{2269, 1841}";
 		};
 	};
 	F6E3E5FB11BB209800A031CF /* PBXTextBookmark */ = {
@@ -4307,7 +4386,7 @@
 		fRef = F6882D51116EB6BF009B624B /* LETableViewCellLabeledParagraph.m */;
 		name = "LETableViewCellLabeledParagraph.m: 82";
 		rLen = 0;
-		rLoc = 2420;
+		rLoc = 2464;
 		rType = 0;
 		vrLen = 393;
 		vrLoc = 2315;
