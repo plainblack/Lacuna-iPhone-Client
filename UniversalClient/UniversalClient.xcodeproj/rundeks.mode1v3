@@ -264,12 +264,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
-								<string>2860E386111B897F00E27156</string>
-								<string>F6E4D66A1168D4CD00980B59</string>
-								<string>F6E4D66B1168D4CD00980B59</string>
 								<string>28EEBF621118D79A00187D67</string>
-								<string>F6E4D6691168D4B200980B59</string>
-								<string>F634BB3E116C309B0084A8B2</string>
 								<string>19C28FACFE9D520D11CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
 								<string>1C37FAAC04509CD000000102</string>
@@ -277,14 +272,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>24</integer>
-									<integer>4</integer>
-									<integer>3</integer>
+									<integer>22</integer>
+									<integer>21</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 2}, {301, 1146}}</string>
+							<string>{{0, 0}, {301, 1146}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -314,14 +308,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>RecycleController.m</string>
+								<string>UniversalClient-Info.plist</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -329,11 +321,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>RecycleController.m</string>
+										<string>UniversalClient-Info.plist</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F68DC56D11CD6B2100144A49</string>
+										<string>F68DC58811CD6EBF00144A49</string>
 										<key>history</key>
 										<array>
 											<string>F6885F7E1168421D00080696</string>
@@ -485,7 +477,6 @@
 											<string>F65D35CC1195E50E00454C2B</string>
 											<string>F65D35CD1195E50E00454C2B</string>
 											<string>F65D366F1195F15000454C2B</string>
-											<string>F65D367C1196042300454C2B</string>
 											<string>F65D367D1196042300454C2B</string>
 											<string>F65D367E1196042300454C2B</string>
 											<string>F697BA23119CF182004B2119</string>
@@ -570,7 +561,6 @@
 											<string>F605992411C712A600B37B3B</string>
 											<string>F6FB97B211C7284800B90A84</string>
 											<string>F6FB97B311C7284800B90A84</string>
-											<string>F6FB97B411C7284800B90A84</string>
 											<string>F68DC55411CD6B2100144A49</string>
 											<string>F68DC55511CD6B2100144A49</string>
 											<string>F68DC55611CD6B2100144A49</string>
@@ -582,7 +572,6 @@
 											<string>F68DC55C11CD6B2100144A49</string>
 											<string>F68DC55D11CD6B2100144A49</string>
 											<string>F68DC55E11CD6B2100144A49</string>
-											<string>F68DC55F11CD6B2100144A49</string>
 											<string>F68DC56011CD6B2100144A49</string>
 											<string>F68DC56111CD6B2100144A49</string>
 											<string>F68DC56211CD6B2100144A49</string>
@@ -596,7 +585,10 @@
 											<string>F68DC56A11CD6B2100144A49</string>
 											<string>F68DC56B11CD6B2100144A49</string>
 											<string>F68DC56C11CD6B2100144A49</string>
-											<string>F6E3E57911BB092600A031CF</string>
+											<string>F68DC57211CD6BAB00144A49</string>
+											<string>F68DC57311CD6BAB00144A49</string>
+											<string>F68DC58611CD6EBF00144A49</string>
+											<string>F68DC58711CD6EBF00144A49</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>

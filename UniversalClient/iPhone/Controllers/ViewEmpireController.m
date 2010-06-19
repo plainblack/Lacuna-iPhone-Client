@@ -152,7 +152,7 @@ typedef enum {
 					; //DO NOT REMOVE
 					LETableViewCellLabeledParagraph *descriptionCell = [LETableViewCellLabeledParagraph getCellForTableView:tableView];
 					descriptionCell.label.text = @"Description";
-					if ((id)leEmpireViewProfile.description == [NSNull null]) {
+					if ((id)self.empire.description == [NSNull null]) {
 						descriptionCell.content.text = @"";
 					} else {
 						descriptionCell.content.text = self.empire.description;

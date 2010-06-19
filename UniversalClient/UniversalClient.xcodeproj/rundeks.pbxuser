@@ -36,7 +36,7 @@
 		};
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
-		activeBuildConfigurationName = Debug;
+		activeBuildConfigurationName = Distribution;
 		activeExecutable = F6885F4D1168330600080696 /* UniversalClient */;
 		activeSDKPreference = iphoneos3.2;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* UniversalClient */;
@@ -260,6 +260,17 @@
 			F68DC56B11CD6B2100144A49 /* PBXTextBookmark */ = F68DC56B11CD6B2100144A49 /* PBXTextBookmark */;
 			F68DC56C11CD6B2100144A49 /* PBXTextBookmark */ = F68DC56C11CD6B2100144A49 /* PBXTextBookmark */;
 			F68DC56D11CD6B2100144A49 /* PBXTextBookmark */ = F68DC56D11CD6B2100144A49 /* PBXTextBookmark */;
+			F68DC57211CD6BAB00144A49 /* PBXTextBookmark */ = F68DC57211CD6BAB00144A49 /* PBXTextBookmark */;
+			F68DC57311CD6BAB00144A49 /* PlistBookmark */ = F68DC57311CD6BAB00144A49 /* PlistBookmark */;
+			F68DC57411CD6BAB00144A49 /* PlistBookmark */ = F68DC57411CD6BAB00144A49 /* PlistBookmark */;
+			F68DC57511CD6BAB00144A49 /* PlistBookmark */ = F68DC57511CD6BAB00144A49 /* PlistBookmark */;
+			F68DC57811CD6E1F00144A49 /* PlistBookmark */ = F68DC57811CD6E1F00144A49 /* PlistBookmark */;
+			F68DC58011CD6E9500144A49 /* PlistBookmark */ = F68DC58011CD6E9500144A49 /* PlistBookmark */;
+			F68DC58111CD6E9500144A49 /* PBXTextBookmark */ = F68DC58111CD6E9500144A49 /* PBXTextBookmark */;
+			F68DC58211CD6E9500144A49 /* PBXTextBookmark */ = F68DC58211CD6E9500144A49 /* PBXTextBookmark */;
+			F68DC58611CD6EBF00144A49 /* PBXTextBookmark */ = F68DC58611CD6EBF00144A49 /* PBXTextBookmark */;
+			F68DC58711CD6EBF00144A49 /* PlistBookmark */ = F68DC58711CD6EBF00144A49 /* PlistBookmark */;
+			F68DC58811CD6EBF00144A49 /* PlistBookmark */ = F68DC58811CD6EBF00144A49 /* PlistBookmark */;
 			F697BA23119CF182004B2119 = F697BA23119CF182004B2119 /* PBXTextBookmark */;
 			F697BA24119CF182004B2119 = F697BA24119CF182004B2119 /* PBXTextBookmark */;
 			F697BA26119CF182004B2119 = F697BA26119CF182004B2119 /* PBXTextBookmark */;
@@ -1488,9 +1499,9 @@
 	};
 	F6882CFC116EA08A009B624B /* ViewEmpireController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1398, 3731}}";
-			sepNavSelRange = "{4265, 0}";
-			sepNavVisRange = "{50, 1543}";
+			sepNavIntBoundsRect = "{{0, 0}, {1153, 3497}}";
+			sepNavSelRange = "{4120, 0}";
+			sepNavVisRange = "{3548, 2726}";
 			sepNavWindowFrame = "{{15, 68}, {750, 810}}";
 		};
 	};
@@ -1941,7 +1952,7 @@
 		fRef = F6882CFC116EA08A009B624B /* ViewEmpireController.m */;
 		name = "ViewEmpireController.m: 158";
 		rLen = 0;
-		rLoc = 4265;
+		rLoc = 4257;
 		rType = 0;
 		vrLen = 1543;
 		vrLoc = 50;
@@ -2085,6 +2096,125 @@
 		rType = 0;
 		vrLen = 2677;
 		vrLoc = 506;
+	};
+	F68DC57211CD6BAB00144A49 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F697BA08119CE035004B2119 /* RecycleController.m */;
+		name = "RecycleController.m: 48";
+		rLen = 0;
+		rLoc = 1108;
+		rType = 0;
+		vrLen = 2677;
+		vrLoc = 506;
+	};
+	F68DC57311CD6BAB00144A49 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = F65D36671195F05B00454C2B /* Entitlements.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			"get-task-allow",
+		);
+		name = "/Users/rundeks/dev/iphone/Lacuna-iPhone-Client/UniversalClient/Entitlements.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	F68DC57411CD6BAB00144A49 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* UniversalClient-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			LSRequiresIPhoneOS,
+		);
+		name = "/Users/rundeks/dev/iphone/Lacuna-iPhone-Client/UniversalClient/UniversalClient-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	F68DC57511CD6BAB00144A49 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* UniversalClient-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			LSRequiresIPhoneOS,
+		);
+		name = "/Users/rundeks/dev/iphone/Lacuna-iPhone-Client/UniversalClient/UniversalClient-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	F68DC57811CD6E1F00144A49 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* UniversalClient-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			LSRequiresIPhoneOS,
+		);
+		name = "/Users/rundeks/dev/iphone/Lacuna-iPhone-Client/UniversalClient/UniversalClient-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	F68DC58011CD6E9500144A49 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* UniversalClient-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/rundeks/dev/iphone/Lacuna-iPhone-Client/UniversalClient/UniversalClient-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	F68DC58111CD6E9500144A49 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6882CFC116EA08A009B624B /* ViewEmpireController.m */;
+		rLen = 0;
+		rLoc = 157;
+		rType = 1;
+	};
+	F68DC58211CD6E9500144A49 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6882CFC116EA08A009B624B /* ViewEmpireController.m */;
+		name = "ViewEmpireController.m: 155";
+		rLen = 0;
+		rLoc = 4120;
+		rType = 0;
+		vrLen = 2701;
+		vrLoc = 3548;
+	};
+	F68DC58611CD6EBF00144A49 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6882CFC116EA08A009B624B /* ViewEmpireController.m */;
+		name = "ViewEmpireController.m: 155";
+		rLen = 0;
+		rLoc = 4120;
+		rType = 0;
+		vrLen = 2726;
+		vrLoc = 3548;
+	};
+	F68DC58711CD6EBF00144A49 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* UniversalClient-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+		);
+		name = "/Users/rundeks/dev/iphone/Lacuna-iPhone-Client/UniversalClient/UniversalClient-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	F68DC58811CD6EBF00144A49 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* UniversalClient-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			LSRequiresIPhoneOS,
+		);
+		name = "/Users/rundeks/dev/iphone/Lacuna-iPhone-Client/UniversalClient/UniversalClient-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
 	};
 	F697BA07119CE035004B2119 /* RecycleController.h */ = {
 		uiCtxt = {
@@ -2369,7 +2499,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {720, 4264}}";
 			sepNavSelRange = "{8823, 9}";
-			sepNavVisRange = "{8590, 411}";
+			sepNavVisRange = "{8590, 361}";
 		};
 	};
 	F6980B02117A6CF900BD2096 /* ViewMailMessageController.h */ = {
@@ -3866,7 +3996,7 @@
 		fRef = F6882CFC116EA08A009B624B /* ViewEmpireController.m */;
 		name = "ViewEmpireController.m: 227";
 		rLen = 0;
-		rLoc = 7296;
+		rLoc = 7288;
 		rType = 0;
 		vrLen = 1701;
 		vrLoc = 0;
@@ -4079,7 +4209,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1132, 1924}}";
 			sepNavSelRange = "{2447, 0}";
-			sepNavVisRange = "{2304, 320}";
+			sepNavVisRange = "{2304, 304}";
 			sepNavWindowFrame = "{{15, 855}, {750, 558}}";
 		};
 	};
