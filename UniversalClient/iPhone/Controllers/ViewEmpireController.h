@@ -11,15 +11,17 @@
 
 
 @class LEEmpireViewProfile;
+@class Empire;
 
 
 @interface ViewEmpireController : LETableViewControllerGrouped {
 	LEEmpireViewProfile *leEmpireViewProfile;
+	Empire *empire;
 }
 
 
 @property(nonatomic, retain) LEEmpireViewProfile *leEmpireViewProfile;
-
+@property(nonatomic, retain) Empire *empire;
 
 + (ViewEmpireController *) create;
 

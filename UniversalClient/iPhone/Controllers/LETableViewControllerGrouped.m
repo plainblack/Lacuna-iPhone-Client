@@ -22,10 +22,7 @@
 
 - (id)init {
     if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
-		self.view.autoresizesSubviews = YES;
-		self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-		self.tableView.backgroundColor = [UIColor clearColor];
-		self.tableView.separatorColor = LE_BLUE;
+		//Do any special init stuff here
     }
     return self;
 }
@@ -33,6 +30,15 @@
 
 #pragma mark -
 #pragma mark View lifecycle
+
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+
+	self.view.autoresizesSubviews = YES;
+	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	self.tableView.backgroundColor = [UIColor clearColor];
+	self.tableView.separatorColor = LE_BLUE;
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;

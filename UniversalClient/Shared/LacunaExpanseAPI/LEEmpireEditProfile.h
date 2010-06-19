@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "LERequest.h"
-#import "LEEmpireViewProfile.h"
+
+
+@class Empire;
 
 
 @interface LEEmpireEditProfile : LERequest {
@@ -19,7 +21,7 @@
 @property(nonatomic, retain) NSMutableDictionary *profile;
 
 
-- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target textKey:(NSString *)textKey text:(NSString *)text leEmpireViewProfile:(LEEmpireViewProfile *)leEmpireViewProfile;
+- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target textKey:(NSString *)textKey text:(NSString *)text empire:(Empire *)empire;
 
 
 @end

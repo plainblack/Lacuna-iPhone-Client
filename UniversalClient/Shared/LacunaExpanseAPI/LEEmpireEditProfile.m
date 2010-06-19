@@ -9,6 +9,7 @@
 #import "LEEmpireEditProfile.h"
 #import "LEMacros.h"
 #import "Session.h"
+#import "Empire.h"
 
 
 @implementation LEEmpireEditProfile
@@ -17,10 +18,10 @@
 @synthesize profile;
 
 
-- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget textKey:(NSString *)textKey text:(NSString *)text leEmpireViewProfile:(LEEmpireViewProfile *)leEmpireViewProfile {
+- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget textKey:(NSString *)textKey text:(NSString *)text empire:(Empire *)empire {
 	self.profile = [NSMutableDictionary dictionaryWithCapacity:3];
-	[self.profile setObject:leEmpireViewProfile.status forKey:@"status_message"];
-	[self.profile setObject:leEmpireViewProfile.description forKey:@"description"];
+	[self.profile setObject:empire.status forKey:@"status_message"];
+	[self.profile setObject:empire.description forKey:@"description"];
 	[self.profile setObject:[NSArray array] forKey:@"public_medals"];
 	[self.profile setObject:text forKey:textKey];
 	return [super initWithCallback:inCallback target:inTarget];

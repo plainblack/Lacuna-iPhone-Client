@@ -10,6 +10,7 @@
 #import "LEEmpireEditProfile.h"
 #import "LEViewSectionTab.h"
 #import "LEMacros.h"
+#import "Empire.h"
 
 
 @implementation EditEmpireProfileText
@@ -18,7 +19,7 @@
 @synthesize textCell;
 @synthesize textName;
 @synthesize textKey;
-@synthesize leEmpireViewProfile;
+@synthesize empire;
 
 
 #pragma mark -
@@ -89,7 +90,7 @@
 - (void)dealloc {
 	self.textName = nil;
 	self.textKey = nil;
-	self.leEmpireViewProfile = nil;
+	self.empire = nil;
     [super dealloc];
 }
 
@@ -103,7 +104,7 @@
 
 
 - (void)save {
-	[[LEEmpireEditProfile alloc] initWithCallback:@selector(textUpdated:) target:self textKey:self.textKey text:self.textCell.textView.text leEmpireViewProfile:self.leEmpireViewProfile];
+	[[LEEmpireEditProfile alloc] initWithCallback:@selector(textUpdated:) target:self textKey:self.textKey text:self.textCell.textView.text empire:self.empire];
 }
 
 
@@ -119,10 +120,10 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (EditEmpireProfileText *)createForLEEmpireViewProfile:(LEEmpireViewProfile *)inLEEmpireViewProfile textName:(NSString *)name textKey:(NSString *)key text:(NSString *)text {
++ (EditEmpireProfileText *)createForEmpire:(Empire *)inEmpire textName:(NSString *)name textKey:(NSString *)key text:(NSString *)text {
 	EditEmpireProfileText *editEmpireProfileText = [[[EditEmpireProfileText alloc] init] autorelease];
 	
-	editEmpireProfileText.leEmpireViewProfile = inLEEmpireViewProfile;
+	editEmpireProfileText.empire = inEmpire;
 	editEmpireProfileText.textKey = key;
 	editEmpireProfileText.textName = name;
 	if ((id)text == [NSNull null]) {

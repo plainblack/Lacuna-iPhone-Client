@@ -8,15 +8,14 @@
 
 #import "LEEmpireViewProfile.h"
 #import "LEMacros.h"
+#import "Empire.h"
 
 
 @implementation LEEmpireViewProfile
 
 
 @synthesize sessionId;
-@synthesize description;
-@synthesize status;
-@synthesize medals;
+@synthesize empire;
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget sessionId:(NSString *)inSessionId {
@@ -34,8 +33,9 @@
 - (void)processSuccess {
 	NSDictionary *result = [self.response objectForKey:@"result"];
 	NSDictionary *profile = [result objectForKey:@"profile"];
-	self.description = [profile objectForKey:@"description"];
-	self.status = [profile objectForKey:@"status_message"];
+	Empire *newEmpire = [[[Empire alloc] init] autorelease];
+	newEmpire.description = [profile objectForKey:@"description"];
+	newEmpire.status = [profile objectForKey:@"status_message"];
 	
 	NSMutableDictionary *medalsDictionary = [profile objectForKey:@"medals"];
 	NSMutableArray *medalArray = [NSMutableArray arrayWithCapacity:[medalsDictionary count]];
@@ -46,7 +46,8 @@
 	}
 	[medalArray sortUsingDescriptors:array_([[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES])];
 
-	self.medals = medalArray;
+	newEmpire.medals = medalArray;
+	self.empire = newEmpire;
 }
 
 
@@ -62,9 +63,7 @@
 
 - (void)dealloc {
 	self.sessionId = nil;
-	self.description = nil;
-	self.status = nil;
-	self.medals = nil;
+	self.empire = nil;
 	[super dealloc];
 }
 

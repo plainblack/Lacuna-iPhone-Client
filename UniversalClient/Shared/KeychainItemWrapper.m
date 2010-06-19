@@ -151,11 +151,15 @@
         [genericPasswordQuery setObject:(id)kSecMatchLimitOne forKey:(id)kSecMatchLimit];
         [genericPasswordQuery setObject:(id)kCFBooleanTrue forKey:(id)kSecReturnAttributes];
         
+		//UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"SAN Check" message:[NSString stringWithFormat:@"genericPasswordQuery: %@", genericPasswordQuery] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+		//[av show];
         NSDictionary *tempQuery = [NSDictionary dictionaryWithDictionary:genericPasswordQuery];
         
         NSMutableDictionary *outDictionary = nil;
         
-        if (! SecItemCopyMatching((CFDictionaryRef)tempQuery, (CFTypeRef *)&outDictionary) == noErr)
+		OSStatus copyResult = SecItemCopyMatching((CFDictionaryRef)tempQuery, (CFTypeRef *)&outDictionary);
+		NSLog(@"initWithIdentifier result: %d", copyResult);
+        if (! copyResult == noErr)
         {
             // Stick these default values into keychain item if nothing found.
             [self resetKeychainItem];
@@ -285,9 +289,9 @@
     NSDictionary *attributes = NULL;
     NSMutableDictionary *updateItem = NULL;
     
+	//UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"SAN Check" message:[NSString stringWithFormat:@"genericPasswordQuery: %@", genericPasswordQuery] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+	//[av show];
 	OSStatus copyResult = SecItemCopyMatching((CFDictionaryRef)genericPasswordQuery, (CFTypeRef *)&attributes);
-	NSString *copyErrorMsg = [NSString stringWithFormat:@"Couldn't copy the Keychain Item: %d", copyResult];
-	[copyErrorMsg autorelease];
     if (copyResult == noErr)
     {
         // First we need the attributes from the Keychain.
@@ -300,18 +304,23 @@
         [tempCheck removeObjectForKey:(id)kSecClass];
         
         // An implicit assumption is that you can only update a single item at a time.
-        NSAssert( SecItemUpdate((CFDictionaryRef)updateItem, (CFDictionaryRef)tempCheck) == noErr, 
-                 @"Couldn't update the Keychain Item." );
+		OSStatus updateResult = SecItemUpdate((CFDictionaryRef)updateItem, (CFDictionaryRef)tempCheck);
+        NSAssert(updateResult == noErr, @"Couldn't update the Keychain Item." );
+
+		if (updateResult != noErr) {
+			UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Update" message:[NSString stringWithFormat:@"Result: %d", updateResult] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+			[av show];
+		}
     }
     else
     {
-        // No previous item found, add the new one.
-		NSLog(@"Copy failed becuase: %@", copyErrorMsg);
-		NSLog(@"keychainItemData: %@", keychainItemData);
 		OSStatus addResult = SecItemAdd((CFDictionaryRef)[self dictionaryToSecItemFormat:keychainItemData], NULL);
-		NSString *addErrorMsg = [NSString stringWithFormat:@"Couldn't add the Keychain Item: %d", addResult];
-		[addErrorMsg autorelease];
-        NSAssert(addResult == noErr, addErrorMsg);
+        NSAssert(addResult == noErr, @"Couldn't add the Keychain Item.");
+
+		if (addResult != noErr) {
+			UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Add" message:[NSString stringWithFormat:@"Result: %d", addResult] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+			[av show];
+		}
     }
 }
 

@@ -84,16 +84,17 @@
     [super viewDidAppear:animated];
 	[self.mailbox addObserver:self forKeyPath:@"messageHeaders" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 	self.reloadTimer = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
+	Session *session = [Session sharedInstance];
 	if (self.lastMessageAt) {
-		Session *session = [Session sharedInstance];
 		NSLog(@"My last message: %@, session last message: %@", self.lastMessageAt, session.lastMessageAt);
 		if ([self.lastMessageAt compare:session.lastMessageAt] != NSOrderedSame) {
 			[self loadMessages];
 			self.lastMessageAt = session.lastMessageAt;
+			[self.tableView reloadData];
 		}
 	}else {
 		NSLog(@"No lastMessageAt yet.");
-		self.lastMessageAt = [NSDate date];
+		self.lastMessageAt = session.lastMessageAt;
 	}
 }
 
@@ -215,6 +216,7 @@
 - (void) switchMailBox {
 	[self.tableView setEditing:NO animated:YES];
 	[self loadMessages];
+	[self.tableView reloadData];
 }
 
 

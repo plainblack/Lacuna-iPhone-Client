@@ -50,6 +50,7 @@
 		F6882DF7116EC6E7009B624B /* LETableViewCellMedal.m in Sources */ = {isa = PBXBuildFile; fileRef = F6882DF6116EC6E7009B624B /* LETableViewCellMedal.m */; };
 		F688A34911939EEB0062DF8A /* ViewAttachedMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = F688A34711939EEB0062DF8A /* ViewAttachedMapController.m */; };
 		F688C4C11193A9160062DF8A /* assets in Resources */ = {isa = PBXBuildFile; fileRef = F688B98F1193A9150062DF8A /* assets */; };
+		F68DC4FB11CD1B0D00144A49 /* Empire.m in Sources */ = {isa = PBXBuildFile; fileRef = F68DC4FA11CD1B0D00144A49 /* Empire.m */; };
 		F697BA09119CE035004B2119 /* RecycleController.m in Sources */ = {isa = PBXBuildFile; fileRef = F697BA08119CE035004B2119 /* RecycleController.m */; };
 		F697BA0C119CE6BD004B2119 /* LEBuildingRecycle.m in Sources */ = {isa = PBXBuildFile; fileRef = F697BA0B119CE6BD004B2119 /* LEBuildingRecycle.m */; };
 		F69809A71179FFFB00BD2096 /* ViewBuildingController.m in Sources */ = {isa = PBXBuildFile; fileRef = F69809A61179FFFB00BD2096 /* ViewBuildingController.m */; };
@@ -64,6 +65,8 @@
 		F6980B06117A6CF900BD2096 /* ViewMailMessageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6980B04117A6CF900BD2096 /* ViewMailMessageController.xib */; };
 		F6980B44117A738D00BD2096 /* LETableViewCellParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = F6980B43117A738D00BD2096 /* LETableViewCellParagraph.m */; };
 		F6980B78117A8BD700BD2096 /* NewMailMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6980B76117A8BD700BD2096 /* NewMailMessageController.m */; };
+		F6993B0E11C5CDF8003A7316 /* EditSavedEmpire.m in Sources */ = {isa = PBXBuildFile; fileRef = F6993B0C11C5CDF8003A7316 /* EditSavedEmpire.m */; };
+		F6993B0F11C5CDF8003A7316 /* EditSavedEmpire.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6993B0D11C5CDF8003A7316 /* EditSavedEmpire.xib */; };
 		F69B7FFD118FB51A0049D4A1 /* ViewAttachedTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = F69B7FFB118FB51A0049D4A1 /* ViewAttachedTableController.m */; };
 		F69B7FFE118FB51B0049D4A1 /* ViewAttachedTableController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F69B7FFC118FB51A0049D4A1 /* ViewAttachedTableController.xib */; };
 		F69D2895117242B400D7277E /* LETableViewControllerGrouped.m in Sources */ = {isa = PBXBuildFile; fileRef = F69D2894117242B400D7277E /* LETableViewControllerGrouped.m */; };
@@ -212,6 +215,8 @@
 		F688A34611939EEB0062DF8A /* ViewAttachedMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewAttachedMapController.h; sourceTree = "<group>"; };
 		F688A34711939EEB0062DF8A /* ViewAttachedMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewAttachedMapController.m; sourceTree = "<group>"; };
 		F688B98F1193A9150062DF8A /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
+		F68DC4F911CD1B0D00144A49 /* Empire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Empire.h; sourceTree = "<group>"; };
+		F68DC4FA11CD1B0D00144A49 /* Empire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Empire.m; sourceTree = "<group>"; };
 		F697BA07119CE035004B2119 /* RecycleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecycleController.h; sourceTree = "<group>"; };
 		F697BA08119CE035004B2119 /* RecycleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecycleController.m; sourceTree = "<group>"; };
 		F697BA0A119CE6BD004B2119 /* LEBuildingRecycle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingRecycle.h; sourceTree = "<group>"; };
@@ -238,6 +243,9 @@
 		F6980B43117A738D00BD2096 /* LETableViewCellParagraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellParagraph.m; sourceTree = "<group>"; };
 		F6980B75117A8BD700BD2096 /* NewMailMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMailMessageController.h; sourceTree = "<group>"; };
 		F6980B76117A8BD700BD2096 /* NewMailMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMailMessageController.m; sourceTree = "<group>"; };
+		F6993B0B11C5CDF8003A7316 /* EditSavedEmpire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditSavedEmpire.h; sourceTree = "<group>"; };
+		F6993B0C11C5CDF8003A7316 /* EditSavedEmpire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditSavedEmpire.m; sourceTree = "<group>"; };
+		F6993B0D11C5CDF8003A7316 /* EditSavedEmpire.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditSavedEmpire.xib; sourceTree = "<group>"; };
 		F69B7FFA118FB51A0049D4A1 /* ViewAttachedTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewAttachedTableController.h; sourceTree = "<group>"; };
 		F69B7FFB118FB51A0049D4A1 /* ViewAttachedTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewAttachedTableController.m; sourceTree = "<group>"; };
 		F69B7FFC118FB51A0049D4A1 /* ViewAttachedTableController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewAttachedTableController.xib; sourceTree = "<group>"; };
@@ -693,6 +701,8 @@
 				F6AC4A33116C0FAE001B967A /* Mailbox.m */,
 				F6AC4A34116C0FAE001B967A /* Session.h */,
 				F6AC4A35116C0FAE001B967A /* Session.m */,
+				F68DC4F911CD1B0D00144A49 /* Empire.h */,
+				F68DC4FA11CD1B0D00144A49 /* Empire.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -753,6 +763,9 @@
 				F6A9C5EA1184C1CC001F0D9C /* ViewSpiesController.m */,
 				F6E3E57D11BB0A3200A031CF /* EditEmpireProfileText.h */,
 				F6E3E57E11BB0A3200A031CF /* EditEmpireProfileText.m */,
+				F6993B0B11C5CDF8003A7316 /* EditSavedEmpire.h */,
+				F6993B0C11C5CDF8003A7316 /* EditSavedEmpire.m */,
+				F6993B0D11C5CDF8003A7316 /* EditSavedEmpire.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -836,6 +849,7 @@
 				F65D35B91195E00400454C2B /* iTunesArtwork in Resources */,
 				F65D36681195F05B00454C2B /* Entitlements.plist in Resources */,
 				F6724F56119F74F200D57E0D /* PickNumericValueController.xib in Resources */,
+				F6993B0F11C5CDF8003A7316 /* EditSavedEmpire.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -955,6 +969,8 @@
 				F6E3E57F11BB0A3200A031CF /* EditEmpireProfileText.m in Sources */,
 				F6E3E58211BB0EA500A031CF /* LEEmpireEditProfile.m in Sources */,
 				F6E3E5E011BB1E8500A031CF /* LETableViewCellTextView.m in Sources */,
+				F6993B0E11C5CDF8003A7316 /* EditSavedEmpire.m in Sources */,
+				F68DC4FB11CD1B0D00144A49 /* Empire.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1048,7 +1064,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Kevin Runde";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kevin Runde";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = UniversalClient_Prefix.pch;
@@ -1056,7 +1072,7 @@
 				INFOPLIST_FILE = "UniversalClient-Info.plist";
 				PRODUCT_NAME = UniversalClient;
 				PROVISIONING_PROFILE = "1D0D270A-6AF7-4BE6-9068-339FE078CBF6";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1D0D270A-6AF7-4BE6-9068-339FE078CBF6";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Distribution;

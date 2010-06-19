@@ -14,6 +14,7 @@
 #import "KeychainItemWrapper.h"
 #import "ViewEmpireController.h"
 #import "NewEmpireController.h"
+#import "EditSavedEmpire.h"
 
 
 typedef enum {
@@ -158,6 +159,7 @@ typedef enum {
 			NSDictionary *empireData = [self.empires objectAtIndex:indexPath.row];
 			LETableViewCellButton *rememberedAccountCell = [LETableViewCellButton getCellForTableView:tableView];
 			rememberedAccountCell.textLabel.text = [empireData objectForKey:@"username"];
+			rememberedAccountCell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 			return rememberedAccountCell;
 			break;
 		case SECTION_CREATE_NEW:
@@ -213,14 +215,8 @@ typedef enum {
 			; //DO NOT REMOVE
 			NSDictionary *empireData = [self.empires objectAtIndex:indexPath.row];
 			NSString *username = [empireData objectForKey:@"username"];
-			NSString *password;
-			if ([username isEqualToString:@"bob57"]) {
-				password = @"abc123";
-			} else {
-				NSLog(@"Looking up: %@", username);
-				KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithIdentifier:username accessGroup:nil] autorelease];				
-				password = [keychainItemWrapper objectForKey:(id)kSecValueData];
-			}
+			KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithIdentifier:username accessGroup:nil] autorelease];				
+			NSString *password = [keychainItemWrapper objectForKey:(id)kSecValueData];
 			[session loginWithUsername:username password:password];
 			break;
 		case SECTION_CREATE_NEW:
@@ -234,6 +230,20 @@ typedef enum {
 			[navController release];
 			break;
 		default:
+			break;
+	}
+}
+
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+	switch (indexPath.section) {
+		case SECTION_REMEMBERED_ACCOUNT:
+			; //DO NOT REMOVE
+			NSDictionary *empireData = [self.empires objectAtIndex:indexPath.row];
+			NSString *username = [empireData objectForKey:@"username"];
+			EditSavedEmpire *editSavedEmpire = [[[EditSavedEmpire alloc] initWithNibName:@"EditSavedEmpire" bundle:nil] autorelease];
+			editSavedEmpire.empireName = username;
+			[self.navigationController pushViewController:editSavedEmpire animated:YES];
 			break;
 	}
 }

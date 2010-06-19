@@ -18,6 +18,8 @@
 #import "LETableViewCellButton.h"
 #import "ViewEmpireBoostsController.h"
 #import "EditEmpireProfileText.h"
+#import "Empire.h"
+
 
 typedef enum {
 	SECTION_EMPIRE,
@@ -38,6 +40,7 @@ typedef enum {
 
 
 @synthesize leEmpireViewProfile;
+@synthesize empire;
 
 
 #pragma mark -
@@ -87,7 +90,7 @@ typedef enum {
 			return 5;
 			break;
 		case SECTION_MEDALS:
-			return [self.leEmpireViewProfile.medals count];
+			return [empire.medals count];
 			break;
 		default:
 			return 0;
@@ -105,10 +108,10 @@ typedef enum {
 					return [LETableViewCellLabeledText getHeightForTableView:tableView];
 					break;
 				case EMPIRE_ROW_DESCRIPTION:
-					return [LETableViewCellLabeledParagraph getHeightForTableView:tableView text:leEmpireViewProfile.description];
+					return [LETableViewCellLabeledParagraph getHeightForTableView:tableView text:self.empire.description];
 					break;
 				case EMPIRE_ROW_STATUS:
-					return [LETableViewCellLabeledParagraph getHeightForTableView:tableView text:leEmpireViewProfile.status];
+					return [LETableViewCellLabeledParagraph getHeightForTableView:tableView text:self.empire.status];
 					break;
 				case EMPIRE_ROW_BOOSTS:
 					return [LETableViewCellButton getHeightForTableView:tableView];
@@ -120,7 +123,7 @@ typedef enum {
 			break;
 		case SECTION_MEDALS:
 			; //DO NOT REMOVE
-			NSDictionary *medal = [self.leEmpireViewProfile.medals objectAtIndex:indexPath.row];
+			NSDictionary *medal = [empire.medals objectAtIndex:indexPath.row];
 			return [LETableViewCellMedal getHeightForTableView:tableView withMedal:medal];
 		default:
 			return 0.0;
@@ -152,7 +155,7 @@ typedef enum {
 					if ((id)leEmpireViewProfile.description == [NSNull null]) {
 						descriptionCell.content.text = @"";
 					} else {
-						descriptionCell.content.text = leEmpireViewProfile.description;
+						descriptionCell.content.text = self.empire.description;
 					}
 					descriptionCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 					descriptionCell.selectionStyle = UITableViewCellSelectionStyleBlue;
@@ -162,7 +165,7 @@ typedef enum {
 					; //DO NOT REMOVE
 					LETableViewCellLabeledParagraph *statusCell = [LETableViewCellLabeledParagraph getCellForTableView:tableView];
 					statusCell.label.text = @"Status";
-					statusCell.content.text = leEmpireViewProfile.status;
+					statusCell.content.text = self.empire.status;
 					statusCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 					statusCell.selectionStyle = UITableViewCellSelectionStyleBlue;
 					cell = statusCell;
@@ -186,7 +189,7 @@ typedef enum {
 			break;
 		case SECTION_MEDALS:
 			; //DO NOT REMOVE
-			NSDictionary *medal = [self.leEmpireViewProfile.medals objectAtIndex:indexPath.row];
+			NSDictionary *medal = [empire.medals objectAtIndex:indexPath.row];
 			LETableViewCellMedal *medalCell = [LETableViewCellMedal getCellForTableView:tableView];
 			medalCell.medalNameLabel.text = [medal objectForKey:@"name"];
 			medalCell.dateLabel.text = [Util prettyDate:[medal objectForKey:@"date"]];
@@ -219,12 +222,12 @@ typedef enum {
 			break;
 		case EMPIRE_ROW_DESCRIPTION:
 			; //DO NOT REMOVE
-			EditEmpireProfileText *editDescriptionEmpireProfileText = [EditEmpireProfileText createForLEEmpireViewProfile:leEmpireViewProfile textName:@"Description" textKey:@"description" text:leEmpireViewProfile.description];
+			EditEmpireProfileText *editDescriptionEmpireProfileText = [EditEmpireProfileText createForEmpire:self.empire textName:@"Description" textKey:@"description" text:self.empire.description];
 			[self.navigationController pushViewController:editDescriptionEmpireProfileText animated:YES];
 			break;
 		case EMPIRE_ROW_STATUS:
 			; //DO NOT REMOVE
-			EditEmpireProfileText *editStatusEmpireProfileText = [EditEmpireProfileText createForLEEmpireViewProfile:leEmpireViewProfile textName:@"Status" textKey:@"status_message" text:leEmpireViewProfile.status];
+			EditEmpireProfileText *editStatusEmpireProfileText = [EditEmpireProfileText createForEmpire:self.empire textName:@"Status" textKey:@"status_message" text:self.empire.status];
 			[self.navigationController pushViewController:editStatusEmpireProfileText animated:YES];
 			break;
 		default:
@@ -243,11 +246,13 @@ typedef enum {
     // Relinquish ownership any cached data, images, etc that aren't in use.
 }
 
+
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
 	[self.leEmpireViewProfile cancel];
 	self.leEmpireViewProfile = nil;
+	self.empire = nil;
 	[super viewDidUnload];
 }
 
@@ -262,6 +267,7 @@ typedef enum {
 
 - (id)profileLoaded:(LEEmpireViewProfile *)request {
 	self.navigationItem.title = @"Your profile";
+	self.empire = request.empire;
 	[self.tableView reloadData];
 	return nil;
 }

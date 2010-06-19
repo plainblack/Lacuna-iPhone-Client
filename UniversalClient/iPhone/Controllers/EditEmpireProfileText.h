@@ -9,24 +9,26 @@
 #import <UIKit/UIKit.h>
 #import "LETableViewControllerGrouped.h"
 #import "LETableViewCellTextView.h"
-#import "LEEmpireViewProfile.h"
+
+
+@class Empire;
 
 
 @interface EditEmpireProfileText : LETableViewControllerGrouped {
 	LETableViewCellTextView *textCell;
 	NSString *textName;
 	NSString *textKey;
-	LEEmpireViewProfile *leEmpireViewProfile;
+	Empire *empire;
 }
 
 
 @property(nonatomic, retain) LETableViewCellTextView *textCell;
 @property(nonatomic, retain) NSString *textName;
 @property(nonatomic, retain) NSString *textKey;
-@property(nonatomic, retain) LEEmpireViewProfile *leEmpireViewProfile;
+@property(nonatomic, retain) Empire *empire;
 
 
-+ (EditEmpireProfileText *)createForLEEmpireViewProfile:(LEEmpireViewProfile *)leEmpireViewProfile textName:(NSString *)name textKey:(NSString *)key text:(NSString *)text;
++ (EditEmpireProfileText *)createForEmpire:(Empire *)empire textName:(NSString *)name textKey:(NSString *)key text:(NSString *)text;
 
 
 @end

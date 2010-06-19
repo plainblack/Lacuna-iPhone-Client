@@ -63,6 +63,7 @@
 	PickNumericValueController *pickNumericValueController = [PickNumericValueController createWithDelegate:self];
 	[self.viewController presentModalViewController:pickNumericValueController animated:YES];
 	[pickNumericValueController setValue:self.numericValue];
+	pickNumericValueController.titleLabel.text = self.label.text;
 }
 
 
