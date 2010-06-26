@@ -43,14 +43,14 @@
 		F6864F9E1183A3FB009826A7 /* LEBuildingViewNews.m in Sources */ = {isa = PBXBuildFile; fileRef = F6864F9D1183A3FB009826A7 /* LEBuildingViewNews.m */; };
 		F6864FCE1183A912009826A7 /* LETableViewCellNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F6864FCD1183A912009826A7 /* LETableViewCellNewsItem.m */; };
 		F68650081183D2A4009826A7 /* LEBuildingRestrictCoverage.m in Sources */ = {isa = PBXBuildFile; fileRef = F68650071183D2A4009826A7 /* LEBuildingRestrictCoverage.m */; };
-		F6882CFE116EA08A009B624B /* ViewEmpireController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6882CFC116EA08A009B624B /* ViewEmpireController.m */; };
+		F6882CFE116EA08A009B624B /* ViewEmpireProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6882CFC116EA08A009B624B /* ViewEmpireProfileController.m */; };
 		F6882D03116EA658009B624B /* NewEmpireController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6882D01116EA658009B624B /* NewEmpireController.m */; };
 		F6882D41116EB44F009B624B /* LETableViewCellLabeledText.m in Sources */ = {isa = PBXBuildFile; fileRef = F6882D40116EB44F009B624B /* LETableViewCellLabeledText.m */; };
 		F6882D52116EB6BF009B624B /* LETableViewCellLabeledParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = F6882D51116EB6BF009B624B /* LETableViewCellLabeledParagraph.m */; };
 		F6882DF7116EC6E7009B624B /* LETableViewCellMedal.m in Sources */ = {isa = PBXBuildFile; fileRef = F6882DF6116EC6E7009B624B /* LETableViewCellMedal.m */; };
 		F688A34911939EEB0062DF8A /* ViewAttachedMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = F688A34711939EEB0062DF8A /* ViewAttachedMapController.m */; };
 		F688C4C11193A9160062DF8A /* assets in Resources */ = {isa = PBXBuildFile; fileRef = F688B98F1193A9150062DF8A /* assets */; };
-		F68DC4FB11CD1B0D00144A49 /* Empire.m in Sources */ = {isa = PBXBuildFile; fileRef = F68DC4FA11CD1B0D00144A49 /* Empire.m */; };
+		F68DC4FB11CD1B0D00144A49 /* EmpireProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F68DC4FA11CD1B0D00144A49 /* EmpireProfile.m */; };
 		F697BA09119CE035004B2119 /* RecycleController.m in Sources */ = {isa = PBXBuildFile; fileRef = F697BA08119CE035004B2119 /* RecycleController.m */; };
 		F697BA0C119CE6BD004B2119 /* LEBuildingRecycle.m in Sources */ = {isa = PBXBuildFile; fileRef = F697BA0B119CE6BD004B2119 /* LEBuildingRecycle.m */; };
 		F69809A71179FFFB00BD2096 /* ViewBuildingController.m in Sources */ = {isa = PBXBuildFile; fileRef = F69809A61179FFFB00BD2096 /* ViewBuildingController.m */; };
@@ -139,6 +139,7 @@
 		F6E3F02A11B46BF800E7BC86 /* LEEmpireBoostOre.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F02911B46BF800E7BC86 /* LEEmpireBoostOre.m */; };
 		F6E3F02D11B46C0600E7BC86 /* LEEmpireBoostWater.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F02C11B46C0600E7BC86 /* LEEmpireBoostWater.m */; };
 		F6E766BE11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E766BD11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.m */; };
+		F6E7671111D68C6400778C1D /* Empire.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E7671011D68C6400778C1D /* Empire.m */; };
 		F6F5427D11A9D7D4006F347B /* LEBodyStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */; };
 /* End PBXBuildFile section */
 
@@ -203,8 +204,8 @@
 		F6864FCD1183A912009826A7 /* LETableViewCellNewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellNewsItem.m; sourceTree = "<group>"; };
 		F68650061183D2A4009826A7 /* LEBuildingRestrictCoverage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingRestrictCoverage.h; sourceTree = "<group>"; };
 		F68650071183D2A4009826A7 /* LEBuildingRestrictCoverage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingRestrictCoverage.m; sourceTree = "<group>"; };
-		F6882CFB116EA08A009B624B /* ViewEmpireController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewEmpireController.h; sourceTree = "<group>"; };
-		F6882CFC116EA08A009B624B /* ViewEmpireController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewEmpireController.m; sourceTree = "<group>"; };
+		F6882CFB116EA08A009B624B /* ViewEmpireProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewEmpireProfileController.h; sourceTree = "<group>"; };
+		F6882CFC116EA08A009B624B /* ViewEmpireProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewEmpireProfileController.m; sourceTree = "<group>"; };
 		F6882D00116EA658009B624B /* NewEmpireController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewEmpireController.h; sourceTree = "<group>"; };
 		F6882D01116EA658009B624B /* NewEmpireController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewEmpireController.m; sourceTree = "<group>"; };
 		F6882D3F116EB44F009B624B /* LETableViewCellLabeledText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellLabeledText.h; sourceTree = "<group>"; };
@@ -216,8 +217,8 @@
 		F688A34611939EEB0062DF8A /* ViewAttachedMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewAttachedMapController.h; sourceTree = "<group>"; };
 		F688A34711939EEB0062DF8A /* ViewAttachedMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewAttachedMapController.m; sourceTree = "<group>"; };
 		F688B98F1193A9150062DF8A /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
-		F68DC4F911CD1B0D00144A49 /* Empire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Empire.h; sourceTree = "<group>"; };
-		F68DC4FA11CD1B0D00144A49 /* Empire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Empire.m; sourceTree = "<group>"; };
+		F68DC4F911CD1B0D00144A49 /* EmpireProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmpireProfile.h; sourceTree = "<group>"; };
+		F68DC4FA11CD1B0D00144A49 /* EmpireProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmpireProfile.m; sourceTree = "<group>"; };
 		F697BA07119CE035004B2119 /* RecycleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecycleController.h; sourceTree = "<group>"; };
 		F697BA08119CE035004B2119 /* RecycleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecycleController.m; sourceTree = "<group>"; };
 		F697BA0A119CE6BD004B2119 /* LEBuildingRecycle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingRecycle.h; sourceTree = "<group>"; };
@@ -392,6 +393,8 @@
 		F6E3F02C11B46C0600E7BC86 /* LEEmpireBoostWater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireBoostWater.m; sourceTree = "<group>"; };
 		F6E766BC11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingSubsidizeBuildQueue.h; sourceTree = "<group>"; };
 		F6E766BD11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingSubsidizeBuildQueue.m; sourceTree = "<group>"; };
+		F6E7670F11D68C6400778C1D /* Empire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Empire.h; sourceTree = "<group>"; };
+		F6E7671011D68C6400778C1D /* Empire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Empire.m; sourceTree = "<group>"; };
 		F6F5427B11A9D7D4006F347B /* LEBodyStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBodyStatus.h; sourceTree = "<group>"; };
 		F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBodyStatus.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -706,8 +709,10 @@
 				F6AC4A33116C0FAE001B967A /* Mailbox.m */,
 				F6AC4A34116C0FAE001B967A /* Session.h */,
 				F6AC4A35116C0FAE001B967A /* Session.m */,
-				F68DC4F911CD1B0D00144A49 /* Empire.h */,
-				F68DC4FA11CD1B0D00144A49 /* Empire.m */,
+				F68DC4F911CD1B0D00144A49 /* EmpireProfile.h */,
+				F68DC4FA11CD1B0D00144A49 /* EmpireProfile.m */,
+				F6E7670F11D68C6400778C1D /* Empire.h */,
+				F6E7671011D68C6400778C1D /* Empire.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -754,8 +759,8 @@
 				F69809A61179FFFB00BD2096 /* ViewBuildingController.m */,
 				F6E3EFEE11B45BA000E7BC86 /* ViewEmpireBoostsController.h */,
 				F6E3EFEF11B45BA000E7BC86 /* ViewEmpireBoostsController.m */,
-				F6882CFB116EA08A009B624B /* ViewEmpireController.h */,
-				F6882CFC116EA08A009B624B /* ViewEmpireController.m */,
+				F6882CFB116EA08A009B624B /* ViewEmpireProfileController.h */,
+				F6882CFC116EA08A009B624B /* ViewEmpireProfileController.m */,
 				F6980ACC117A600E00BD2096 /* ViewMailboxController.h */,
 				F6980ACD117A600E00BD2096 /* ViewMailboxController.m */,
 				F6980ACE117A600E00BD2096 /* ViewMailboxController.xib */,
@@ -914,7 +919,7 @@
 				F6DD2117116D73F50013C58D /* SBJsonBase.m in Sources */,
 				F6DD2118116D73F50013C58D /* SBJsonParser.m in Sources */,
 				F6DD2119116D73F50013C58D /* SBJsonWriter.m in Sources */,
-				F6882CFE116EA08A009B624B /* ViewEmpireController.m in Sources */,
+				F6882CFE116EA08A009B624B /* ViewEmpireProfileController.m in Sources */,
 				F6882D03116EA658009B624B /* NewEmpireController.m in Sources */,
 				F6882D41116EB44F009B624B /* LETableViewCellLabeledText.m in Sources */,
 				F6882D52116EB6BF009B624B /* LETableViewCellLabeledParagraph.m in Sources */,
@@ -975,8 +980,9 @@
 				F6E3E58211BB0EA500A031CF /* LEEmpireEditProfile.m in Sources */,
 				F6E3E5E011BB1E8500A031CF /* LETableViewCellTextView.m in Sources */,
 				F6993B0E11C5CDF8003A7316 /* EditSavedEmpire.m in Sources */,
-				F68DC4FB11CD1B0D00144A49 /* Empire.m in Sources */,
+				F68DC4FB11CD1B0D00144A49 /* EmpireProfile.m in Sources */,
 				F6E766BE11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.m in Sources */,
+				F6E7671111D68C6400778C1D /* Empire.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

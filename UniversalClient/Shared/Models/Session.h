@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Empire.h"
 
 
 @interface Session : NSObject {
 	NSString *sessionId;
-	NSDictionary *empireData;
+	Empire *empire;
 	BOOL isLoggedIn;
 	NSNumber *mapCenterX;
 	NSNumber *mapCenterY;
@@ -23,8 +24,8 @@
 }
 
 @property(nonatomic, retain) NSString *sessionId;
-@property(nonatomic, retain) NSDictionary *empireData;
-@property(nonatomic) BOOL isLoggedIn;
+@property(nonatomic, retain) Empire *empire;
+@property(nonatomic, assign) BOOL isLoggedIn;
 @property(nonatomic, retain) NSNumber *mapCenterX;
 @property(nonatomic, retain) NSNumber *mapCenterY;
 @property(nonatomic, retain) NSNumber *mapCenterZ;

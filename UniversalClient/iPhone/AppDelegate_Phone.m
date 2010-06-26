@@ -34,7 +34,7 @@
     [window makeKeyAndVisible];
 
 	[application setStatusBarStyle:UIStatusBarStyleBlackOpaque];
-	[application setStatusBarHidden:NO animated:YES];
+	[application setStatusBarHidden:NO withAnimation:YES];
 
 	Session *session = [Session sharedInstance];
 	[session addObserver:self forKeyPath:@"numNewMessages" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];

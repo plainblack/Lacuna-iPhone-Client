@@ -12,7 +12,7 @@
 #import "LEViewSectionTab.h"
 #import "Session.h"
 #import "KeychainItemWrapper.h"
-#import "ViewEmpireController.h"
+#import "ViewEmpireProfileController.h"
 #import "NewEmpireController.h"
 #import "EditSavedEmpire.h"
 
@@ -299,7 +299,7 @@ typedef enum {
 		Session *session = (Session *)object;
 		if(session.isLoggedIn) {
 			NSLog(@"LOGGED IN");
-			[self.navigationController pushViewController:[ViewEmpireController create]
+			[self.navigationController pushViewController:[ViewEmpireProfileController create]
 												 animated:YES];
 		}
 		

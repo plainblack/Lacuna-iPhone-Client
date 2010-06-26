@@ -8,7 +8,7 @@
 
 #import "LEEmpireViewProfile.h"
 #import "LEMacros.h"
-#import "Empire.h"
+#import "EmpireProfile.h"
 
 
 @implementation LEEmpireViewProfile
@@ -33,7 +33,7 @@
 - (void)processSuccess {
 	NSDictionary *result = [self.response objectForKey:@"result"];
 	NSDictionary *profile = [result objectForKey:@"profile"];
-	Empire *newEmpire = [[[Empire alloc] init] autorelease];
+	EmpireProfile *newEmpire = [[[EmpireProfile alloc] init] autorelease];
 	newEmpire.description = [profile objectForKey:@"description"];
 	newEmpire.status = [profile objectForKey:@"status_message"];
 	

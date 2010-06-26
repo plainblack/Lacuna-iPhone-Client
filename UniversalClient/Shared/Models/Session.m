@@ -13,6 +13,7 @@
 #import "LEMacros.h"
 #import "KeychainItemWrapper.h"
 #import "Util.h"
+#import "Empire.h"
 
 
 static Session *sharedSession = nil;
@@ -22,7 +23,6 @@ static Session *sharedSession = nil;
 
 
 @synthesize sessionId;
-@synthesize empireData;
 @synthesize isLoggedIn;
 @synthesize mapCenterX;
 @synthesize mapCenterY;
@@ -31,6 +31,7 @@ static Session *sharedSession = nil;
 @synthesize empireList;
 @synthesize lastMessageAt;
 @synthesize serverVersion;
+@synthesize empire;
 
 
 #pragma mark --
@@ -96,7 +97,7 @@ static Session *sharedSession = nil;
 
 - (void)dealloc {
 	self.sessionId = nil;
-	self.empireData = nil;
+	self.empire = nil;
 	self.mapCenterX = nil;
 	self.mapCenterY = nil;
 	self.mapCenterZ = nil;
@@ -121,9 +122,9 @@ static Session *sharedSession = nil;
 
 - (void)forgetEmpireNamed:(NSString *)empireName {
 	NSDictionary *foundEmpire;
-	for (NSDictionary *empire in self.empireList) {
-		if ([[empire objectForKey:@"username"] isEqualToString:empireName]){
-			foundEmpire = empire;
+	for (NSDictionary *savedEmpire in self.empireList) {
+		if ([[savedEmpire objectForKey:@"username"] isEqualToString:empireName]){
+			foundEmpire = savedEmpire;
 		}
 	}
 	if (foundEmpire) {
@@ -156,9 +157,10 @@ static Session *sharedSession = nil;
 		NSDictionary *empireStatus = [status objectForKey:@"empire"];
 		NSLog(@"empireStatus: %@", empireStatus);
 		if (empireStatus) {
-			NSInteger oldNumNewMessages = intv_([self.empireData objectForKey:@"has_new_messages"]);
+			NSInteger oldNumNewMessages = self.empire.numNewMessages;
+			NSLog(@"About to parse empire data");
+			[self.empire parseData:empireStatus];
 			NSInteger newNumNewMessages = intv_([empireStatus objectForKey:@"has_new_messages"]);
-			self.empireData = empireStatus;
 			if (oldNumNewMessages != newNumNewMessages) {
 				self.numNewMessages = newNumNewMessages;
 			}
@@ -193,15 +195,15 @@ static Session *sharedSession = nil;
 		[av show];
 
 		self.sessionId = nil;
-		self.empireData = nil;
+		self.empire = nil;
 	} else {
 		KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithIdentifier:request.username accessGroup:nil] autorelease];
 		//[keychainItemWrapper resetKeychainItem]; //I removed this and now things work on teras phone maybe??
 		[keychainItemWrapper setObject:request.username forKey:(id)kSecAttrAccount];
 		[keychainItemWrapper setObject:request.password forKey:(id)kSecValueData];
 		BOOL found = NO;
-		for (NSDictionary *empire in self.empireList) {
-			if ([[empire objectForKey:@"username"] isEqualToString:request.username]){
+		for (NSDictionary *savedEmpire in self.empireList) {
+			if ([[savedEmpire objectForKey:@"username"] isEqualToString:request.username]){
 				found = YES;
 			}
 		}
@@ -215,7 +217,9 @@ static Session *sharedSession = nil;
 	
 		
 		self.sessionId = request.sessionId;
-		self.empireData = request.empireData;
+		NSLog(@"About to parse empire data");
+		self.empire = [[Empire alloc] init];
+		[self.empire parseData:request.empireData];
 		self.isLoggedIn = TRUE;
 		
 		NSLog(@"Session ID: %@", self.sessionId);
@@ -228,7 +232,7 @@ static Session *sharedSession = nil;
 - (id)loggedOut:(LEEmpireLogout *)request {
 	if ([request result]) {
 		self.sessionId = nil;
-		self.empireData = nil;
+		self.empire = nil;
 		self.isLoggedIn = FALSE;
 		self.numNewMessages = 0;
 	} else {

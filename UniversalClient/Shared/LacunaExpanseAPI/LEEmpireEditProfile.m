@@ -9,7 +9,7 @@
 #import "LEEmpireEditProfile.h"
 #import "LEMacros.h"
 #import "Session.h"
-#import "Empire.h"
+#import "EmpireProfile.h"
 
 
 @implementation LEEmpireEditProfile
@@ -18,7 +18,7 @@
 @synthesize profile;
 
 
-- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget textKey:(NSString *)textKey text:(NSString *)text empire:(Empire *)empire {
+- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget textKey:(NSString *)textKey text:(NSString *)text empire:(EmpireProfile *)empire {
 	self.profile = [NSMutableDictionary dictionaryWithCapacity:3];
 	[self.profile setObject:empire.status forKey:@"status_message"];
 	[self.profile setObject:empire.description forKey:@"description"];

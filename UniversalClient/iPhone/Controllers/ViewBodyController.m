@@ -102,7 +102,7 @@ typedef enum {
 		self.navigationItem.title = [self.bodyData objectForKey:@"name"];
 	} else {
 		if (!self.bodyId) {
-			self.bodyId = [session.empireData objectForKey:@"home_planet_id"];
+			self.bodyId = session.empire.homePlanetId;
 		}
 		
 		self.navigationItem.title = @"Loading";
@@ -446,7 +446,7 @@ typedef enum {
 	NSLog(@"Body Data: %@", self.bodyData);
 	
 	Session *session = [Session sharedInstance];
-	NSString *sessionEmpireId = [session.empireData objectForKey:@"id"];
+	NSString *sessionEmpireId = session.empire.id;
 	NSString *bodyEmpireId = [[self.bodyData objectForKey:@"empire"] objectForKey:@"id"];
 	ownBody = [bodyEmpireId isEqualToString:sessionEmpireId];
 	

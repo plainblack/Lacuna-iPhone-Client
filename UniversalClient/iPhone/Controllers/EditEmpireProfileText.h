@@ -11,24 +11,24 @@
 #import "LETableViewCellTextView.h"
 
 
-@class Empire;
+@class EmpireProfile;
 
 
 @interface EditEmpireProfileText : LETableViewControllerGrouped {
 	LETableViewCellTextView *textCell;
 	NSString *textName;
 	NSString *textKey;
-	Empire *empire;
+	EmpireProfile *empireProfile;
 }
 
 
 @property(nonatomic, retain) LETableViewCellTextView *textCell;
 @property(nonatomic, retain) NSString *textName;
 @property(nonatomic, retain) NSString *textKey;
-@property(nonatomic, retain) Empire *empire;
+@property(nonatomic, retain) EmpireProfile *empireProfile;
 
 
-+ (EditEmpireProfileText *)createForEmpire:(Empire *)empire textName:(NSString *)name textKey:(NSString *)key text:(NSString *)text;
++ (EditEmpireProfileText *)createForEmpireProfile:(EmpireProfile *)empireProfile textName:(NSString *)name textKey:(NSString *)key text:(NSString *)text;
 
 
 @end

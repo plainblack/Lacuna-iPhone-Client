@@ -10,7 +10,7 @@
 #import "LEEmpireEditProfile.h"
 #import "LEViewSectionTab.h"
 #import "LEMacros.h"
-#import "Empire.h"
+#import "EmpireProfile.h"
 
 
 @implementation EditEmpireProfileText
@@ -19,19 +19,25 @@
 @synthesize textCell;
 @synthesize textName;
 @synthesize textKey;
-@synthesize empire;
+@synthesize empireProfile;
 
 
 #pragma mark -
 #pragma mark View lifecycle
+
+- (id)init {
+	if ([super init]) {
+		self.textCell = [LETableViewCellTextView getCellForTableView:self.tableView];
+	}
+	
+	return self;
+}
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
 	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)] autorelease];
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)] autorelease];
-
-	self.textCell = [LETableViewCellTextView getCellForTableView:self.tableView];
 }
 
 
@@ -82,15 +88,15 @@
 }
 
 - (void)viewDidUnload {
-	self.textCell = nil;
 	[self viewDidUnload];
 }
 
 
 - (void)dealloc {
+	self.textCell = nil;
 	self.textName = nil;
 	self.textKey = nil;
-	self.empire = nil;
+	self.empireProfile = nil;
     [super dealloc];
 }
 
@@ -104,7 +110,7 @@
 
 
 - (void)save {
-	[[LEEmpireEditProfile alloc] initWithCallback:@selector(textUpdated:) target:self textKey:self.textKey text:self.textCell.textView.text empire:self.empire];
+	[[LEEmpireEditProfile alloc] initWithCallback:@selector(textUpdated:) target:self textKey:self.textKey text:self.textCell.textView.text empire:self.empireProfile];
 }
 
 
@@ -120,10 +126,10 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (EditEmpireProfileText *)createForEmpire:(Empire *)inEmpire textName:(NSString *)name textKey:(NSString *)key text:(NSString *)text {
++ (EditEmpireProfileText *)createForEmpireProfile:(EmpireProfile *)inEmpireProfile textName:(NSString *)name textKey:(NSString *)key text:(NSString *)text {
 	EditEmpireProfileText *editEmpireProfileText = [[[EditEmpireProfileText alloc] init] autorelease];
 	
-	editEmpireProfileText.empire = inEmpire;
+	editEmpireProfileText.empireProfile = inEmpireProfile;
 	editEmpireProfileText.textKey = key;
 	editEmpireProfileText.textName = name;
 	if ((id)text == [NSNull null]) {

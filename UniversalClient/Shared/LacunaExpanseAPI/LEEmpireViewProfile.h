@@ -9,16 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "LERequest.h"
 
-@class Empire;
+@class EmpireProfile;
 
 @interface LEEmpireViewProfile : LERequest {
 	NSString *sessionId;
-	Empire *empire;
+	EmpireProfile *empire;
 }
 
 
 @property(nonatomic, retain) NSString *sessionId;
-@property(nonatomic, retain) Empire *empire;
+@property(nonatomic, retain) EmpireProfile *empire;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target sessionId:(NSString *)sessionId;
