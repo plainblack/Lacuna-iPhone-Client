@@ -976,10 +976,10 @@ static DKDeferredCache *__sharedCache;
     NSString *cachesPath = [paths objectAtIndex:0];
     dir = [[cachesPath stringByAppendingPathComponent:_dir] retain];
     if (![fm fileExistsAtPath:cachesPath]) {
-      [fm createDirectoryAtPath:cachesPath attributes:nil];
+		[fm createDirectoryAtPath:cachesPath withIntermediateDirectories:YES attributes:nil error:nil];
     }
     if (![fm fileExistsAtPath:dir]) {
-      [fm createDirectoryAtPath:dir attributes:nil];
+		[fm createDirectoryAtPath:dir withIntermediateDirectories:YES attributes:nil error:nil];
     }
   }
   return self;
@@ -994,7 +994,7 @@ static DKDeferredCache *__sharedCache;
 - (void)_cull {
   if ([self _getNumEntries] > maxEntries) {
     NSFileManager *fm = [NSFileManager defaultManager];
-    NSArray *fileList = [fm directoryContentsAtPath:dir];
+	  NSArray *fileList = [fm contentsOfDirectoryAtPath:dir error:nil];
     NSMutableArray *doomed = [NSMutableArray array];
     int count = 0;
     for (NSString *path in fileList) {
@@ -1012,7 +1012,7 @@ static DKDeferredCache *__sharedCache;
 
 - (int)_getNumEntries {
   NSArray *fileNames = [[NSFileManager defaultManager]
-                        directoryContentsAtPath:dir];
+                        contentsOfDirectoryAtPath:dir error:nil];
   if (!fileNames)
     return 0;
   return [fileNames count];

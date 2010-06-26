@@ -153,35 +153,6 @@ static int numRequests = 0;
 			[session processStatus:status];
 		}
 	}
-	/*
-	NSDictionary *result = [self.response objectForKey:@"result"];
-	if (result && [result respondsToSelector:@selector(objectForKey:)]) {
-		NSDictionary *status = [result objectForKey:@"status"];
-		if (status) {
-			NSDictionary *empire = [status objectForKey:@"empire"];
-			if (empire) {
-				NSNumber *numNewMessages = [empire objectForKey:@"has_new_messages"];
-				if (numNewMessages) {
-					Session *session = [Session sharedInstance];
-					if (intv_(numNewMessages) != intv_(session.numNewMessages)) {
-						session.numNewMessages = numNewMessages;
-					} else {
-						NSLog(@"No change in number of mail messages");
-					}
-				} else {
-					NSLog(@"No has_new_messages in Status Empire Section");
-				}
-			} else {
-				NSLog(@"No Status Empire Section");
-			}
-		} else {
-			NSLog(@"No Status Section");
-		}
-	} else {
-		NSLog(@"No result");
-	}
-	 */
-	
 }
 
 
