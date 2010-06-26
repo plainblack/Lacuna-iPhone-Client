@@ -23,6 +23,7 @@
 	NSMutableDictionary *buttonsByLoc;
 	NSNumber *x;
 	NSNumber *y;
+	NSInteger subsidyBuildQueueCost;
 }
 
 

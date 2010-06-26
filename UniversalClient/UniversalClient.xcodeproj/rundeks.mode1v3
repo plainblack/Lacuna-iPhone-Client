@@ -229,8 +229,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -266,14 +264,24 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
+								<string>2860E386111B897F00E27156</string>
+								<string>F6E4D66A1168D4CD00980B59</string>
+								<string>28EEBF621118D79A00187D67</string>
 								<string>19C28FACFE9D520D11CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>8</integer>
-									<integer>7</integer>
+									<integer>39</integer>
+									<integer>4</integer>
+									<integer>3</integer>
+									<integer>0</integer>
+								</array>
+								<array>
+									<integer>40</integer>
+									<integer>4</integer>
+									<integer>3</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -308,12 +316,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>DKDeferred.m</string>
+								<string>ViewBuildingController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -321,11 +331,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>DKDeferred.m</string>
+										<string>ViewBuildingController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F6E766B711D620E300778C1D</string>
+										<string>F6E766E511D62FCC00778C1D</string>
 										<key>history</key>
 										<array>
 											<string>F6885F7E1168421D00080696</string>
@@ -489,8 +499,6 @@
 											<string>F6132E75119E3E07000F99A9</string>
 											<string>F678F72A11A37420006E4BA1</string>
 											<string>F678F72B11A37420006E4BA1</string>
-											<string>F678F76011A37BE6006E4BA1</string>
-											<string>F678F76111A37BE6006E4BA1</string>
 											<string>F607B24D11A4D9CA00AE69D8</string>
 											<string>F607B25011A4D9CA00AE69D8</string>
 											<string>F607B25111A4D9CA00AE69D8</string>
@@ -528,10 +536,8 @@
 											<string>F6E3F06F11B4813800E7BC86</string>
 											<string>F63FB1D011B5EAD7007A3315</string>
 											<string>F6E3E56C11BAF86600A031CF</string>
-											<string>F6E3E56D11BAF86600A031CF</string>
 											<string>F6E3E56E11BAF86600A031CF</string>
 											<string>F6E3E56F11BAF86600A031CF</string>
-											<string>F6E3E57011BAF86600A031CF</string>
 											<string>F6E3E57A11BB092600A031CF</string>
 											<string>F6E3E57B11BB092600A031CF</string>
 											<string>F6E3E59B11BB1A8D00A031CF</string>
@@ -589,7 +595,13 @@
 											<string>F6FFD46911D1A81400C5E6E7</string>
 											<string>F6FFD46A11D1A81400C5E6E7</string>
 											<string>F6E8EC0011D5A8EA002B871B</string>
-											<string>F6E8EC1811D5B4AB002B871B</string>
+											<string>F6E766CF11D62CC100778C1D</string>
+											<string>F6E766D011D62CC100778C1D</string>
+											<string>F6E766D111D62CC100778C1D</string>
+											<string>F6E766D211D62CC100778C1D</string>
+											<string>F6E766D311D62CC100778C1D</string>
+											<string>F6E766D411D62CC100778C1D</string>
+											<string>F6E766D511D62CC100778C1D</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -791,8 +803,8 @@
 		<string>F6E766BB11D620E300778C1D</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>F6885F691168335B00080696</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/rundeks/dev/iphone/Lacuna-iPhone-Client/UniversalClient/UniversalClient.xcodeproj</string>
+		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
 	<string>380 213 1327 1205 0 0 2560 1418 </string>

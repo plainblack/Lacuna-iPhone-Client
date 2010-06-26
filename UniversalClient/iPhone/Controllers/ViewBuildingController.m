@@ -25,6 +25,7 @@
 #import "LEBuildingSubsidizeRecycling.h"
 #import "LEBuildingDemolish.h"
 #import "LEBuildingThrowParty.h"
+#import "LEBuildingSubsidizeBuildQueue.h"
 
 
 typedef enum {
@@ -53,7 +54,10 @@ typedef enum {
 	ROW_SUBSIDIZE,
 	ROW_THROW_PARTY,
 	ROW_PARTY_PENDING,
-	ROW_DEMOLISH_BUTTON
+	ROW_DEMOLISH_BUTTON,
+	ROW_BUILD_QUEUE_ITEM,
+	ROW_SUBSIDIZE_BUILD_QUEUE,
+	ROW_EMPTY
 } ROW;
 
 
@@ -135,6 +139,7 @@ typedef enum {
 		case ROW_VIEW_SPIES_BUTTON:
 		case ROW_RECYCLE:
 		case ROW_SUBSIDIZE:
+		case ROW_SUBSIDIZE_BUILD_QUEUE:
 		case ROW_THROW_PARTY:
 		case ROW_DEMOLISH_BUTTON:
 			return [LETableViewCellButton getHeightForTableView:tableView];
@@ -153,6 +158,12 @@ typedef enum {
 			break;
 		case ROW_PARTY_PENDING:
 			return tableView.rowHeight;
+			break;
+		case ROW_BUILD_QUEUE_ITEM:
+			return [LETableViewCellLabeledText getHeightForTableView:tableView];
+			break;
+		case ROW_EMPTY:
+			return [LETableViewCellLabeledText getHeightForTableView:tableView];
 			break;
 		default:
 			return tableView.rowHeight;
@@ -301,6 +312,12 @@ typedef enum {
 			subsidizeButtonCell.textLabel.text = @"Subsidize";
 			cell = subsidizeButtonCell;
 			break;
+		case ROW_SUBSIDIZE_BUILD_QUEUE:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *subsidizeBuildQueueButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			subsidizeBuildQueueButtonCell.textLabel.text = [NSString stringWithFormat:@"Subsidize (%i essentia)", self->subsidyBuildQueueCost];
+			cell = subsidizeBuildQueueButtonCell;
+			break;
 		case ROW_THROW_PARTY:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellButton *throwPartyCell = [LETableViewCellButton getCellForTableView:tableView];
@@ -324,6 +341,20 @@ typedef enum {
 			LETableViewCellButton *demolishCell = [LETableViewCellButton getCellForTableView:tableView];
 			demolishCell.textLabel.text = @"Demolish";
 			cell = demolishCell;
+			break;
+		case ROW_BUILD_QUEUE_ITEM:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			NSArray *buildQueue = [self.resultData objectForKey:@"build_queue"];
+			NSDictionary *buildQueueItem = [buildQueue objectAtIndex:indexPath.row];
+			LETableViewCellLabeledText *buildQueueItemCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			buildQueueItemCell.textLabel.text = [NSString stringWithFormat:@"%@ to %@", [buildQueueItem objectForKey:@"name"], [buildQueueItem objectForKey:@"to_level"]];
+			cell = buildQueueItemCell;
+			break;
+		case ROW_EMPTY:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellLabeledText *emptyCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			emptyCell.textLabel.text = @"Empty";
+			cell = emptyCell;
 			break;
 		default:
 			cell = nil;
@@ -379,6 +410,9 @@ typedef enum {
 			break;
 		case ROW_SUBSIDIZE:
 			[[[LEBuildingSubsidizeRecycling alloc] initWithCallback:@selector(subsidizedRecycling:) target:self buildingId:self.buildingId buildingUrl:self.urlPart] autorelease];
+			break;
+		case ROW_SUBSIDIZE_BUILD_QUEUE:
+			[[[LEBuildingSubsidizeBuildQueue alloc] initWithCallback:@selector(subsidizedBuildQueue:) target:self buildingId:self.buildingId buildingUrl:self.urlPart] autorelease];
 			break;
 		case ROW_THROW_PARTY:
 			[[[LEBuildingThrowParty alloc] initWithCallback:@selector(throwingParty:) target:self buildingId:self.buildingId buildingUrl:self.urlPart] autorelease];
@@ -508,6 +542,26 @@ typedef enum {
 		}
 		
 		[tmpSections addObject:dict_([NSNumber numberWithInt:SECTION_ACTIONS], @"type", rows, @"rows")];
+	} else 	if ([self.urlPart isEqualToString:@"/development"]) {
+		if ([self.resultData objectForKey:@"build_queue"]) {
+			[tmpSectionHeaders addObject:[LEViewSectionTab tableView:self.tableView createWithText:@"Build Queue"]];
+			NSMutableArray *rows = [NSMutableArray arrayWithCapacity:2];
+			
+			self->subsidyBuildQueueCost = intv_([self.resultData objectForKey:@"subsidy_cost"]);
+			NSArray *buildQueue = [self.resultData objectForKey:@"build_queue"];
+			NSInteger buildQueueSize = [buildQueue count];
+			if (buildQueueSize > 0) {
+				for (int i=0; i<buildQueueSize; i++) {
+					[rows addObject:[NSNumber numberWithInt:ROW_BUILD_QUEUE_ITEM]];
+				}
+				[rows addObject:[NSNumber numberWithInt:ROW_SUBSIDIZE_BUILD_QUEUE]];
+			} else {
+				[rows addObject:[NSNumber numberWithInt:ROW_EMPTY]];
+			}
+
+			
+			[tmpSections addObject:dict_([NSNumber numberWithInt:SECTION_ACTIONS], @"type", rows, @"rows")];
+		}
 	}
 	
 
@@ -565,6 +619,13 @@ typedef enum {
 
 
 - (id)subsidizedRecycling:(LEBuildingSubsidizeRecycling *)request {
+	[[LEGetBuilding alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
+	self.navigationItem.title = @"Loading";
+	return nil;
+}
+
+
+- (id)subsidizedBuildQueue:(LEBuildingSubsidizeBuildQueue *)request {
 	[[LEGetBuilding alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
 	self.navigationItem.title = @"Loading";
 	return nil;
