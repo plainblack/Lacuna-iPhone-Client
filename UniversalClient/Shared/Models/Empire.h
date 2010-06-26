@@ -19,6 +19,7 @@
 	NSString *name;
 	NSString *statusMessage;
 	NSString *homePlanetId;
+	NSDate *lastMessageAt;
 	NSInteger numNewMessages;
 	NSInteger essentia;
 	NSArray *planets;
@@ -31,6 +32,7 @@
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *statusMessage;
 @property (nonatomic, retain) NSString *homePlanetId;
+@property(nonatomic, retain) NSDate *lastMessageAt;
 @property (nonatomic, assign) NSInteger numNewMessages;
 @property (nonatomic, assign) NSInteger essentia;
 @property (nonatomic, retain) NSArray *planets;

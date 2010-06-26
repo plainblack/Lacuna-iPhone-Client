@@ -10,10 +10,10 @@
 #import "DKDeferred+JSON.h"
 #import "LEEmpireLogin.h"
 #import "LEEmpireLogout.h"
+#import "LEBodyStatus.h"
 #import "LEMacros.h"
 #import "KeychainItemWrapper.h"
 #import "Util.h"
-#import "Empire.h"
 
 
 static Session *sharedSession = nil;
@@ -24,14 +24,10 @@ static Session *sharedSession = nil;
 
 @synthesize sessionId;
 @synthesize isLoggedIn;
-@synthesize mapCenterX;
-@synthesize mapCenterY;
-@synthesize mapCenterZ;
-@synthesize numNewMessages;
-@synthesize empireList;
-@synthesize lastMessageAt;
+@synthesize savedEmpireList;
 @synthesize serverVersion;
 @synthesize empire;
+@synthesize body;
 
 
 #pragma mark --
@@ -78,17 +74,12 @@ static Session *sharedSession = nil;
 #pragma mark Live Cycle methods
 
 - (id)init {
-	NSLog(@"Session init called");
-	self.mapCenterX = [NSNumber numberWithInt:0];
-	self.mapCenterY = [NSNumber numberWithInt:0];
-	self.mapCenterZ = [NSNumber numberWithInt:0];
-
 	NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentFolderPath = [searchPaths objectAtIndex:0];
 	NSString *empireListFileName = [documentFolderPath stringByAppendingPathComponent:@"empireList.dat"];
-	self.empireList = [NSMutableArray arrayWithContentsOfFile:empireListFileName];
-	if (!self.empireList) {
-		self.empireList = [NSMutableArray arrayWithCapacity:1];
+	self.savedEmpireList = [NSMutableArray arrayWithContentsOfFile:empireListFileName];
+	if (!self.savedEmpireList) {
+		self.savedEmpireList = [NSMutableArray arrayWithCapacity:1];
 	}
 
 	return self;
@@ -98,11 +89,8 @@ static Session *sharedSession = nil;
 - (void)dealloc {
 	self.sessionId = nil;
 	self.empire = nil;
-	self.mapCenterX = nil;
-	self.mapCenterY = nil;
-	self.mapCenterZ = nil;
-	self.empireList = nil;
-	self.lastMessageAt = nil;
+	self.body = nil;
+	self.savedEmpireList = nil;
 	self.serverVersion = nil;
 	[super dealloc];
 }
@@ -122,17 +110,17 @@ static Session *sharedSession = nil;
 
 - (void)forgetEmpireNamed:(NSString *)empireName {
 	NSDictionary *foundEmpire;
-	for (NSDictionary *savedEmpire in self.empireList) {
+	for (NSDictionary *savedEmpire in self.savedEmpireList) {
 		if ([[savedEmpire objectForKey:@"username"] isEqualToString:empireName]){
 			foundEmpire = savedEmpire;
 		}
 	}
 	if (foundEmpire) {
-		[self.empireList removeObject:foundEmpire];
+		[self.savedEmpireList removeObject:foundEmpire];
 		NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 		NSString *documentFolderPath = [searchPaths objectAtIndex:0];
 		NSString *empireListFileName = [documentFolderPath stringByAppendingPathComponent:@"empireList.dat"];
-		[self.empireList writeToFile:empireListFileName atomically:YES];
+		[self.savedEmpireList writeToFile:empireListFileName atomically:YES];
 	}
 }
 
@@ -140,7 +128,6 @@ static Session *sharedSession = nil;
 - (void)processStatus:(NSDictionary *)status {
 	if (status && [status respondsToSelector:@selector(objectForKey:)]) {
 		NSDictionary *serverStatus = [status objectForKey:@"server"];
-		NSLog(@"server status: %@", serverStatus);
 		if (serverStatus) {
 			NSString *newServerVersion = [serverStatus objectForKey:@"version"];
 			if (self.serverVersion) {
@@ -149,37 +136,20 @@ static Session *sharedSession = nil;
 					self.serverVersion = newServerVersion;
 				}
 			} else {
-				NSLog(@"Setting server version to %@", newServerVersion);
 				self.serverVersion = newServerVersion;
 			}
 		}
 		
 		NSDictionary *empireStatus = [status objectForKey:@"empire"];
-		NSLog(@"empireStatus: %@", empireStatus);
 		if (empireStatus) {
-			NSInteger oldNumNewMessages = self.empire.numNewMessages;
-			NSLog(@"About to parse empire data");
 			[self.empire parseData:empireStatus];
-			NSInteger newNumNewMessages = intv_([empireStatus objectForKey:@"has_new_messages"]);
-			if (oldNumNewMessages != newNumNewMessages) {
-				self.numNewMessages = newNumNewMessages;
-			}
-			NSDictionary *newestMessage = [empireStatus objectForKey:@"most_recent_message"];
-			if (newestMessage && (id)newestMessage != [NSNull null]) {
-				NSString *dateReceivedString = [newestMessage objectForKey:@"date_received"];
-				if (dateReceivedString) {
-					NSLog(@"Setting lastMessageAt to: %@", dateReceivedString);
-					self.lastMessageAt = [Util date:dateReceivedString];
-				}else {
-					NSLog(@"date_received was not their");
-				}
-			}else {
-				NSLog(@"most_recent_message was not their");
-			}
-			
-			self.numNewMessages = intv_([empireStatus objectForKey:@"has_new_messages"]);
 		}
 	}
+}
+
+
+- (void) loadBody:(NSString *)bodyId {
+	[[[LEBodyStatus alloc] initWithCallback:@selector(bodyLoaded:) target:self bodyId:bodyId] autorelease];
 }
 
 
@@ -202,27 +172,24 @@ static Session *sharedSession = nil;
 		[keychainItemWrapper setObject:request.username forKey:(id)kSecAttrAccount];
 		[keychainItemWrapper setObject:request.password forKey:(id)kSecValueData];
 		BOOL found = NO;
-		for (NSDictionary *savedEmpire in self.empireList) {
+		for (NSDictionary *savedEmpire in self.savedEmpireList) {
 			if ([[savedEmpire objectForKey:@"username"] isEqualToString:request.username]){
 				found = YES;
 			}
 		}
 		if (!found) {
-			[self.empireList addObject:dict_(request.username, @"username")];
+			[self.savedEmpireList addObject:dict_(request.username, @"username")];
 			NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 			NSString *documentFolderPath = [searchPaths objectAtIndex:0];
 			NSString *empireListFileName = [documentFolderPath stringByAppendingPathComponent:@"empireList.dat"];
-			[self.empireList writeToFile:empireListFileName atomically:YES];
+			[self.savedEmpireList writeToFile:empireListFileName atomically:YES];
 		}
 	
 		
 		self.sessionId = request.sessionId;
-		NSLog(@"About to parse empire data");
 		self.empire = [[Empire alloc] init];
 		[self.empire parseData:request.empireData];
 		self.isLoggedIn = TRUE;
-		
-		NSLog(@"Session ID: %@", self.sessionId);
 	}
 	
 	return nil;
@@ -234,11 +201,14 @@ static Session *sharedSession = nil;
 		self.sessionId = nil;
 		self.empire = nil;
 		self.isLoggedIn = FALSE;
-		self.numNewMessages = 0;
-	} else {
-		NSLog(@"Logout failed");
 	}
 	
+	return nil;
+}
+
+
+- (id)bodyLoaded:(LEBodyStatus *)request {
+	NSLog(@"Body Loaded: %@", request);
 	return nil;
 }
 

@@ -43,7 +43,6 @@
 	[newDict setObject:[Util date:[tmp objectForKey:@"water"]] forKey:@"water"];
 	
 	self.boosts = newDict;
-	NSLog(@"Boosts: %@", self.boosts);
 }
 
 

@@ -37,7 +37,6 @@
 	[application setStatusBarHidden:NO withAnimation:YES];
 
 	Session *session = [Session sharedInstance];
-	[session addObserver:self forKeyPath:@"numNewMessages" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 	[session addObserver:self forKeyPath:@"isLoggedIn" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 
 	return YES;
@@ -89,19 +88,30 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ( [keyPath isEqual:@"numNewMessages"]) {
-		Session *session = (Session *)object;
-		if(session.numNewMessages > 0) {
-			self.mailTabBarItem.badgeValue = [NSString stringWithFormat:@"%i", session.numNewMessages];
-		} else {
-			self.mailTabBarItem.badgeValue = nil;
+		Empire *empire = (Empire *)object;
+		if (empire) {
+			if(empire.numNewMessages > 0) {
+				self.mailTabBarItem.badgeValue = [NSString stringWithFormat:@"%i", empire.numNewMessages];
+			} else {
+				self.mailTabBarItem.badgeValue = nil;
+			}
 		}
 	} else if ( [keyPath isEqual:@"isLoggedIn"]) {
 		Session *session = (Session *)object;
+		NSLog(@"change: %@", change);
 		if (!session.isLoggedIn) {
 			[self.myWorldsNavigationController popToRootViewControllerAnimated:NO];
 			[self.myWorldController clear];
 			[self.mailNavigationController popToRootViewControllerAnimated:NO];
 			[self.mailboxController clear];
+		} else {
+			NSLog(@"Observing");
+			if(session.empire.numNewMessages > 0) {
+				self.mailTabBarItem.badgeValue = [NSString stringWithFormat:@"%i", session.empire.numNewMessages];
+			} else {
+				self.mailTabBarItem.badgeValue = nil;
+			}
+			[session.empire addObserver:self forKeyPath:@"numNewMessages" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 		}
 	}
 }

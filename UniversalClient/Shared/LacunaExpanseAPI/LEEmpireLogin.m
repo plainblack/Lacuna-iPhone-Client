@@ -37,7 +37,6 @@
 	NSDictionary *status = [result objectForKey:@"status"];
 	self.sessionId = [result objectForKey:@"session_id"];
 	self.empireData = [status objectForKey:@"empire"];
-	NSLog(@"Logged in with session: %@", self.sessionId);
 }
 
 

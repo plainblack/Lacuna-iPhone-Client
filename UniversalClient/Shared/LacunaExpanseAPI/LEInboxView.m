@@ -26,7 +26,6 @@
 
 - (id)params {
 	NSArray *params = array_([Session sharedInstance].sessionId, dict_(self.page, @"page_number"));
-	NSLog(@"Loading page: %@", params);
 	return params;
 }
 

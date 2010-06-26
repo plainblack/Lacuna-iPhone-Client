@@ -76,11 +76,10 @@
 
 
 - (void)loadMessage:(NSInteger)index {
-	NSLog(@"Loading a message");
 	self.messageDetails = [self.messageHeaders objectAtIndex:index];
 	[self.messageDetails setObject:[NSNumber numberWithInt:1] forKey:@"has_read"];
 	Session *session = [Session sharedInstance];
-	session.numNewMessages -= 1;
+	session.empire.numNewMessages -= 1;
 	NSString *messageId = [self.messageDetails objectForKey:@"id"];
 	[[[LEInboxRead alloc] initWithCallback:@selector(messageDetailsLoaded:) target:self messageId:messageId] autorelease];
 }
@@ -113,7 +112,6 @@
 
 - (void)loadMessageHeaders {
 	//Load Page
-	NSLog(@"Loading messages");
 	switch (leMailboxType) {
 		case LEMailboxTypeArchived:
 			[[[LEInboxViewArchived alloc] initWithCallback:@selector(messagesLoaded:) target:self page:[NSNumber numberWithInt:pageIndex]] autorelease];

@@ -9,6 +9,7 @@
 #import "Empire.h"
 #import "EmpireProfile.h"
 #import "LEMacros.h"
+#import "Util.h"
 
 
 @implementation Empire
@@ -19,6 +20,7 @@
 @synthesize name;
 @synthesize statusMessage;
 @synthesize homePlanetId;
+@synthesize lastMessageAt;
 @synthesize numNewMessages;
 @synthesize essentia;
 @synthesize planets;
@@ -39,6 +41,7 @@
 	self.name = nil;
 	self.statusMessage = nil;
 	self.homePlanetId = nil;
+	self.lastMessageAt = nil;
 	self.planets = nil;
 	self.profile = nil;
 	[super dealloc];
@@ -62,7 +65,15 @@
 	self.essentia = intv_([empireData objectForKey:@"essentia"]);
 	self.numNewMessages = intv_([empireData objectForKey:@"has_new_messages"]);
 	self.planets = [empireData objectForKey:@"planets"];
-	NSLog(@"Empire.parseData: %@", self);
+	
+	NSDictionary *newestMessage = [empireData objectForKey:@"most_recent_message"];
+	if (newestMessage && (id)newestMessage != [NSNull null]) {
+		NSString *dateReceivedString = [newestMessage objectForKey:@"date_received"];
+		if (dateReceivedString) {
+			self.lastMessageAt = [Util date:dateReceivedString];
+		}
+	}
+	
 }
 
 

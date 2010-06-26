@@ -193,7 +193,6 @@ typedef enum {
 #pragma mark KVO Methods
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-	NSLog(@"observeValueForKeyPath called");
 	if ( [keyPath isEqual:@"numericValue"] ) {
 		if (self.subsidizedCell.isSelected) {
 			self.seconds = [NSNumber numberWithInt:0];
@@ -208,16 +207,13 @@ typedef enum {
 		}
 	} else if ( [keyPath isEqual:@"isSelected"] ) {
 		if (self.subsidizedCell.isSelected) {
-			NSLog(@"Set to 0");
 			self.seconds = [NSNumber numberWithInt:0];
 			[self.tableView reloadData];
 		} else {
-			NSLog(@"Set to sum");
 			NSInteger totalAmount = 0;
 			totalAmount += intv_(self.energyCell.numericValue);
 			totalAmount += intv_(self.oreCell.numericValue);
 			totalAmount += intv_(self.waterCell.numericValue);
-			NSLog(@"totalAmount: %i", totalAmount);
 			self.seconds = [NSNumber numberWithInt:(totalAmount * intv_(secondsPerResource))];
 			[self.tableView reloadData];
 		}

@@ -86,15 +86,13 @@
 	self.reloadTimer = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
 	Session *session = [Session sharedInstance];
 	if (self.lastMessageAt) {
-		NSLog(@"My last message: %@, session last message: %@", self.lastMessageAt, session.lastMessageAt);
-		if ([self.lastMessageAt compare:session.lastMessageAt] != NSOrderedSame) {
+		if ([self.lastMessageAt compare:session.empire.lastMessageAt] != NSOrderedSame) {
 			[self loadMessages];
-			self.lastMessageAt = session.lastMessageAt;
+			self.lastMessageAt = session.empire.lastMessageAt;
 			[self.tableView reloadData];
 		}
 	}else {
-		NSLog(@"No lastMessageAt yet.");
-		self.lastMessageAt = session.lastMessageAt;
+		self.lastMessageAt = session.empire.lastMessageAt;
 	}
 }
 

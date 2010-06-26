@@ -496,7 +496,6 @@ typedef enum {
 		NSMutableArray *rows = [NSMutableArray arrayWithCapacity:5];
 		[rows addObject:[NSNumber numberWithInt:ROW_VIEW_NETWORK_19]];
 		BOOL restricted = [[[request.response objectForKey:@"result"] objectForKey:@"restrict_coverage"] boolValue];
-		NSLog(@"restrict_coverage: %@", [[request.response objectForKey:@"result"] objectForKey:@"restrict_coverage"]);
 		if (restricted) {
 			[rows addObject:[NSNumber numberWithInt:ROW_RESTRICTED_NETWORK_19]];
 		} else {

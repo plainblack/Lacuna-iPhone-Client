@@ -44,9 +44,6 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	
-	NSLog(@"Name: %@", self.textName);
-	NSLog(@"Key: %@", self.textName);
-	
 	self.navigationItem.title = [NSString stringWithFormat:@"Edit %@", self.textName];
 	
 	self.sectionHeaders = array_([LEViewSectionTab tableView:self.tableView createWithText:self.textName]);

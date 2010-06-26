@@ -34,7 +34,6 @@
 
 
 - (id)params {
-	NSLog(@"Subsidized: %i", self.subsidized);
 	return array_([Session sharedInstance].sessionId, self.buildingId, self.water, self.ore, self.energy, [NSNumber numberWithBool:self.subsidized]);
 }
 

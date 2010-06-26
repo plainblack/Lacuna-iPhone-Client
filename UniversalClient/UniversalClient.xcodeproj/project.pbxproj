@@ -140,6 +140,7 @@
 		F6E3F02D11B46C0600E7BC86 /* LEEmpireBoostWater.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F02C11B46C0600E7BC86 /* LEEmpireBoostWater.m */; };
 		F6E766BE11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E766BD11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.m */; };
 		F6E7671111D68C6400778C1D /* Empire.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E7671011D68C6400778C1D /* Empire.m */; };
+		F6E767C611D6A4D400778C1D /* Body.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E767C511D6A4D400778C1D /* Body.m */; };
 		F6F5427D11A9D7D4006F347B /* LEBodyStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */; };
 /* End PBXBuildFile section */
 
@@ -395,6 +396,8 @@
 		F6E766BD11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingSubsidizeBuildQueue.m; sourceTree = "<group>"; };
 		F6E7670F11D68C6400778C1D /* Empire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Empire.h; sourceTree = "<group>"; };
 		F6E7671011D68C6400778C1D /* Empire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Empire.m; sourceTree = "<group>"; };
+		F6E767C411D6A4D400778C1D /* Body.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Body.h; sourceTree = "<group>"; };
+		F6E767C511D6A4D400778C1D /* Body.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Body.m; sourceTree = "<group>"; };
 		F6F5427B11A9D7D4006F347B /* LEBodyStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBodyStatus.h; sourceTree = "<group>"; };
 		F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBodyStatus.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -713,6 +716,8 @@
 				F68DC4FA11CD1B0D00144A49 /* EmpireProfile.m */,
 				F6E7670F11D68C6400778C1D /* Empire.h */,
 				F6E7671011D68C6400778C1D /* Empire.m */,
+				F6E767C411D6A4D400778C1D /* Body.h */,
+				F6E767C511D6A4D400778C1D /* Body.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -983,6 +988,7 @@
 				F68DC4FB11CD1B0D00144A49 /* EmpireProfile.m in Sources */,
 				F6E766BE11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.m in Sources */,
 				F6E7671111D68C6400778C1D /* Empire.m in Sources */,
+				F6E767C611D6A4D400778C1D /* Body.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

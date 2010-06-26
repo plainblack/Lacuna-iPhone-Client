@@ -35,8 +35,7 @@
 
 
 - (void)processSuccess {
-	NSDictionary *result = [self.response objectForKey:@"result"];
-	NSLog(@"Result: %@", result);
+	//NSDictionary *result = [self.response objectForKey:@"result"];
 }
 
 

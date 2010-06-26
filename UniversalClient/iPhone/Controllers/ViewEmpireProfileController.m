@@ -277,7 +277,6 @@ typedef enum {
 #pragma mark Class Methods
 
 + (ViewEmpireProfileController *) create {
-	NSLog(@"create");
 	return [[[ViewEmpireProfileController alloc] init] autorelease];
 }
 

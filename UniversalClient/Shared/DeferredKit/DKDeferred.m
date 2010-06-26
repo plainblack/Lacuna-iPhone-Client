@@ -743,7 +743,7 @@ static NSInteger __urlConnectionCount;
                      connectionWithRequest:request
                      delegate:self] retain];
       __urlConnectionCount += 1;
-      NSLog(@"loading %@ : %@", self.started, url);
+      //NSLog(@"loading %@ : %@", self.started, url);
       if (!connection) {
         __urlConnectionCount -= 1;
         NSLog(@"error:???");

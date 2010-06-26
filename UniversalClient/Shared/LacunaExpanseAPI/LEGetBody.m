@@ -24,7 +24,6 @@
 }
 
 - (id)params {
-	NSLog(@"GetBody: %@, %@", [Session sharedInstance].sessionId, self.bodyId);
 	return array_([Session sharedInstance].sessionId, self.bodyId);
 }
 

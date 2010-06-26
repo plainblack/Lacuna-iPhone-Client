@@ -50,7 +50,6 @@
 #pragma mark PickNumericValueController Methods
 
 - (void)newNumericValue:(NSNumber *)value {
-	NSLog(@"newNumericValue: %@", value);
 	[self setNumericValue:value];
 	[self.numberButton setTitle:[value stringValue] forState:UIControlStateNormal];
 }

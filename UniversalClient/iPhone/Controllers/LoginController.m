@@ -67,7 +67,7 @@ typedef enum {
 	
 	[session addObserver:self forKeyPath:@"isLoggedIn" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 	
-	self.empires = session.empireList;
+	self.empires = session.savedEmpireList;
 	if ([self.empires count] > 0) {
 		self.sectionHeaders = array_([LEViewSectionTab tableView:self.tableView createWithText:@"Login"],
 									 [LEViewSectionTab tableView:self.tableView createWithText:@"Empires"],
@@ -120,7 +120,7 @@ typedef enum {
 		case SECTION_REMEMBERED_ACCOUNT:
 			; //DO NOT REMOVE
 			Session *session = [Session sharedInstance];
-			return [session.empireList count];
+			return [session.savedEmpireList count];
 			break;
 		case SECTION_CREATE_NEW:
 			return 1;
@@ -185,7 +185,7 @@ typedef enum {
 		NSDictionary *empireData = [self.empires objectAtIndex:indexPath.row];
 		Session *session = [Session sharedInstance];
 		[session forgetEmpireNamed:[empireData objectForKey:@"username"]];
-		self.empires = session.empireList;
+		self.empires = session.savedEmpireList;
 		if ([self.empires count] == 0) {
 			self.sectionHeaders = array_([LEViewSectionTab tableView:self.tableView createWithText:@"Login"],
 										 [NSNull null],
@@ -207,7 +207,6 @@ typedef enum {
 			if (indexPath.row == 2) {
 				[self.empireNameCell resignFirstResponder];
 				[self.passwordCell resignFirstResponder];
-				NSLog(@"Username: %@, Password is %@", empireNameCell.textField.text, self.passwordCell.textField.text);
 				[session loginWithUsername:self.empireNameCell.textField.text password:self.passwordCell.textField.text];
 			}
 			break;
@@ -298,7 +297,6 @@ typedef enum {
 	if ( [keyPath isEqual:@"isLoggedIn"]) {
 		Session *session = (Session *)object;
 		if(session.isLoggedIn) {
-			NSLog(@"LOGGED IN");
 			[self.navigationController pushViewController:[ViewEmpireProfileController create]
 												 animated:YES];
 		}

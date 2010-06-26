@@ -274,50 +274,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>43</integer>
+									<integer>46</integer>
 									<integer>4</integer>
 									<integer>3</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>44</integer>
-									<integer>4</integer>
-									<integer>3</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>55</integer>
-									<integer>4</integer>
-									<integer>3</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>56</integer>
-									<integer>4</integer>
-									<integer>3</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>71</integer>
-									<integer>68</integer>
-									<integer>64</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>73</integer>
-									<integer>68</integer>
-									<integer>64</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>75</integer>
-									<integer>68</integer>
-									<integer>64</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 554}, {301, 1146}}</string>
+							<string>{{0, 292}, {301, 1146}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -354,7 +318,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>EditEmpireProfileText.m</string>
+								<string>ViewMailboxController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -362,11 +326,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>EditEmpireProfileText.m</string>
+										<string>ViewMailboxController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F6E767C111D6A2B000778C1D</string>
+										<string>F6E768A211D6AFDA00778C1D</string>
 										<key>history</key>
 										<array>
 											<string>F6885F7E1168421D00080696</string>
@@ -534,7 +498,6 @@
 											<string>F607B25011A4D9CA00AE69D8</string>
 											<string>F607B25111A4D9CA00AE69D8</string>
 											<string>F6E62B4111A61E5500B2B0F2</string>
-											<string>F6E62B4211A61E5500B2B0F2</string>
 											<string>F6F5428E11A9F1A8006F347B</string>
 											<string>F6F5428F11A9F1A8006F347B</string>
 											<string>F6F5429111A9F1A8006F347B</string>
@@ -594,12 +557,9 @@
 											<string>F68DC55411CD6B2100144A49</string>
 											<string>F68DC55611CD6B2100144A49</string>
 											<string>F68DC55711CD6B2100144A49</string>
-											<string>F68DC55911CD6B2100144A49</string>
 											<string>F68DC55A11CD6B2100144A49</string>
 											<string>F68DC55D11CD6B2100144A49</string>
 											<string>F68DC56011CD6B2100144A49</string>
-											<string>F68DC56211CD6B2100144A49</string>
-											<string>F68DC56311CD6B2100144A49</string>
 											<string>F68DC56611CD6B2100144A49</string>
 											<string>F68DC56711CD6B2100144A49</string>
 											<string>F68DC56811CD6B2100144A49</string>
@@ -607,7 +567,6 @@
 											<string>F68DC56A11CD6B2100144A49</string>
 											<string>F68DC56B11CD6B2100144A49</string>
 											<string>F68DC56C11CD6B2100144A49</string>
-											<string>F68DC57211CD6BAB00144A49</string>
 											<string>F68DC57311CD6BAB00144A49</string>
 											<string>F6FFCF1F11D187E600C5E6E7</string>
 											<string>F6FFCF2011D187E600C5E6E7</string>
@@ -621,20 +580,26 @@
 											<string>F6E766D311D62CC100778C1D</string>
 											<string>F6E766D411D62CC100778C1D</string>
 											<string>F6E766FA11D68BAE00778C1D</string>
-											<string>F6E7675211D69A3F00778C1D</string>
 											<string>F6E7675411D69A3F00778C1D</string>
 											<string>F6E7675511D69A3F00778C1D</string>
 											<string>F6E7676311D69A9F00778C1D</string>
 											<string>F6E7676B11D69B0E00778C1D</string>
 											<string>F6E7676C11D69B0E00778C1D</string>
-											<string>F6E7678D11D6A01800778C1D</string>
-											<string>F6E7678E11D6A01800778C1D</string>
-											<string>F6E7679111D6A01800778C1D</string>
-											<string>F6E7679211D6A01800778C1D</string>
 											<string>F6E7679811D6A04500778C1D</string>
 											<string>F6E7679B11D6A12900778C1D</string>
 											<string>F6E767A711D6A16F00778C1D</string>
-											<string>F6E767A811D6A16F00778C1D</string>
+											<string>F6E767D311D6A60A00778C1D</string>
+											<string>F6E767D411D6A60A00778C1D</string>
+											<string>F6E7681011D6A7E200778C1D</string>
+											<string>F6E7684611D6AAD700778C1D</string>
+											<string>F6E7684911D6AB8700778C1D</string>
+											<string>F6E7686711D6AC9000778C1D</string>
+											<string>F6E7689C11D6AFDA00778C1D</string>
+											<string>F6E7689D11D6AFDA00778C1D</string>
+											<string>F6E7689E11D6AFDA00778C1D</string>
+											<string>F6E7689F11D6AFDA00778C1D</string>
+											<string>F6E768A011D6AFDA00778C1D</string>
+											<string>F6E768A111D6AFDA00778C1D</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -832,13 +797,15 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>F6E768A311D6AFDA00778C1D</string>
+		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>F6E766FF11D68BAE00778C1D</string>
 		<string>F6E766BA11D620E300778C1D</string>
 		<string>F6E766BB11D620E300778C1D</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>F6885F691168335B00080696</string>
-		<string>/Users/rundeks/dev/iphone/Lacuna-iPhone-Client/UniversalClient/UniversalClient.xcodeproj</string>
 		<string>1C78EAAD065D492600B07095</string>
+		<string>/Users/rundeks/dev/iphone/Lacuna-iPhone-Client/UniversalClient/UniversalClient.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>380 213 1327 1205 0 0 2560 1418 </string>
@@ -862,7 +829,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>Session.m</string>
+								<string>ViewMailboxController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -1077,12 +1044,14 @@
 							<key>Dock</key>
 							<array>
 								<dict>
+									<key>BecomeActive</key>
+									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ViewMailboxController.m</string>
+										<string>LEBuildingRecycle.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -1103,8 +1072,6 @@
 							<string>212pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -1140,8 +1107,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>F68DC4EE11CD175400144A49</string>
-				<string>F68DC4EF11CD175400144A49</string>
+				<string>F6E767E111D6A6F500778C1D</string>
+				<string>F6E767E211D6A6F500778C1D</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>
@@ -1169,6 +1136,8 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>

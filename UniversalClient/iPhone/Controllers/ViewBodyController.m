@@ -376,7 +376,7 @@ typedef enum {
 	if (indexPath.section == SECTION_ACTIONS) {
 		switch (indexPath.row) {
 			case ACTION_ROW_VIEW_BUILDINGS:
-				NSLog(@"Clicked view buildings");
+				; //DO NOT REMOVE
 				ViewBodyMapController *viewBodyMapController = [[ViewBodyMapController alloc] init];
 				viewBodyMapController.bodyId = self.bodyId;
 				viewBodyMapController.bodyName = [self.bodyData objectForKey:@"name"];
@@ -385,7 +385,7 @@ typedef enum {
 				[viewBodyMapController release];
 				break;
 			case ACTION_ROW_RENAME_BODY:
-				NSLog(@"Clicked rename body");
+				; //DO NOT REMOVE
 				RenameBodyController *renameBodyController = [RenameBodyController create];
 				renameBodyController.bodyId = self.bodyId;
 				renameBodyController.nameCell.textField.text = [self.bodyData objectForKey:@"name"];
@@ -441,9 +441,7 @@ typedef enum {
 #pragma mark Callback Methods
 
 - (id)bodyDataLoaded:(LEBodyStatus *)request {
-	NSLog(@"bodyDataLaoded!");
 	self.bodyData = request.body;
-	NSLog(@"Body Data: %@", self.bodyData);
 	
 	Session *session = [Session sharedInstance];
 	NSString *sessionEmpireId = session.empire.id;
