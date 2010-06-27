@@ -8,6 +8,8 @@
 
 #import "Body.h"
 #import "LEMacros.h"
+#import "LEBodyGetBuildings.h"
+
 
 @implementation Body
 
@@ -35,14 +37,16 @@
 @synthesize ore;
 @synthesize waste;
 @synthesize water;
+@synthesize buildingMap;
+@synthesize surfaceImageName;
 
 
 #pragma mark --
 #pragma mark NSObject Methods
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"id:%@, name:%@, type:%@, empireId:%@, empireName:%@, x:%i, y:%i, starId:%@i, starName:%@, orbit:%i", 
-			self.id, self.name, self.type, self.empireId, self.empireName, self.x, self.y, self.starId, self.starName, self.orbit];
+	return [NSString stringWithFormat:@"id:%@, name:%@, type:%@, surfaceImageName:%@, empireId:%@, empireName:%@, x:%i, y:%i, starId:%@i, starName:%@, orbit:%i", 
+			self.id, self.name, self.type, self.surfaceImageName, self.empireId, self.empireName, self.x, self.y, self.starId, self.starName, self.orbit];
 }
 
 
@@ -63,6 +67,8 @@
 	self.ore = nil;
 	self.waste = nil;
 	self.water = nil;
+	self.buildingMap = nil;
+	self.surfaceImageName = nil;
 	[super dealloc];
 }
 
@@ -111,6 +117,25 @@
 		[self.happiness subtractFromCurrent:extraWaste];
 	}
 }
+
+
+- (void)loadBuildingMap {
+	NSLog(@"loadBuildingMap called");
+	[[LEBodyGetBuildings alloc] initWithCallback:@selector(buildingMapLoaded:) target:self bodyId:self.id];
+}
+
+
+#pragma mark --
+#pragma mark Callback Methods
+
+- (id)buildingMapLoaded:(LEBodyGetBuildings *)request {
+	NSLog(@"buildingMapLoaded: %@", request);
+	self.surfaceImageName = request.surfaceImageName;
+	self.buildingMap = request.buildings;
+	return nil;
+}
+
+
 
 
 @end

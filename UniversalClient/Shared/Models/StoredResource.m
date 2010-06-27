@@ -60,8 +60,6 @@
 	resource.perSec = [NSNumber numberWithFloat:resource.perHour / SEC_IN_HOUR];
 	resource.lastTick = [NSDate date];
 	
-	NSLog(@"%@: perHour=%i, perSec=%@", prefix, resource.perHour, resource.perSec);
-	
 	return resource;
 }
 

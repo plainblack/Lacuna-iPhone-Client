@@ -6,12 +6,12 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "LEGetBuildings.h"
+#import "LEBodyGetBuildings.h"
 #import "Session.h"
 #import "LEMacros.h"
 
 
-@implementation LEGetBuildings
+@implementation LEBodyGetBuildings
 
 
 @synthesize bodyId;

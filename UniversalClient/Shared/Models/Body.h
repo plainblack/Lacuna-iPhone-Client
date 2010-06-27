@@ -35,6 +35,8 @@
 	StoredResource *ore;
 	StoredResource *waste;
 	StoredResource *water;
+	NSMutableDictionary *buildingMap;
+	NSString *surfaceImageName;
 }
 
 
@@ -61,10 +63,13 @@
 @property (nonatomic, retain) StoredResource *ore;
 @property (nonatomic, retain) StoredResource *waste;
 @property (nonatomic, retain) StoredResource *water;
+@property (nonatomic, retain) NSMutableDictionary *buildingMap;
+@property (nonatomic, retain) NSString *surfaceImageName;
 
 
 - (void)parseData:(NSDictionary *)bodyData;
 - (void)tick:(NSTimeInterval)interval;
+- (void)loadBuildingMap;
 
 
 @end

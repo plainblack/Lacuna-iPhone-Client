@@ -10,7 +10,7 @@
 #import "LERequest.h"
 
 
-@interface LEGetBuildings : LERequest {
+@interface LEBodyGetBuildings : LERequest {
 	NSString *bodyId;
 	NSMutableDictionary *buildings;
 	NSString *surfaceImageName;

@@ -92,7 +92,7 @@
 		F6AC4A21116C0F9B001B967A /* LEEmpireViewProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC49F9116C0F9B001B967A /* LEEmpireViewProfile.m */; };
 		F6AC4A23116C0F9B001B967A /* LEGetBuildables.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC49FD116C0F9B001B967A /* LEGetBuildables.m */; };
 		F6AC4A24116C0F9B001B967A /* LEGetBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC49FF116C0F9B001B967A /* LEGetBuilding.m */; };
-		F6AC4A25116C0F9B001B967A /* LEGetBuildings.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC4A01116C0F9B001B967A /* LEGetBuildings.m */; };
+		F6AC4A25116C0F9B001B967A /* LEBodyGetBuildings.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC4A01116C0F9B001B967A /* LEBodyGetBuildings.m */; };
 		F6AC4A26116C0F9B001B967A /* LEGetSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC4A03116C0F9B001B967A /* LEGetSystem.m */; };
 		F6AC4A27116C0F9B001B967A /* LEInboxArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC4A05116C0F9B001B967A /* LEInboxArchive.m */; };
 		F6AC4A28116C0F9B001B967A /* LEInboxRead.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC4A07116C0F9B001B967A /* LEInboxRead.m */; };
@@ -301,8 +301,8 @@
 		F6AC49FD116C0F9B001B967A /* LEGetBuildables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEGetBuildables.m; sourceTree = "<group>"; };
 		F6AC49FE116C0F9B001B967A /* LEGetBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEGetBuilding.h; sourceTree = "<group>"; };
 		F6AC49FF116C0F9B001B967A /* LEGetBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEGetBuilding.m; sourceTree = "<group>"; };
-		F6AC4A00116C0F9B001B967A /* LEGetBuildings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEGetBuildings.h; sourceTree = "<group>"; };
-		F6AC4A01116C0F9B001B967A /* LEGetBuildings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEGetBuildings.m; sourceTree = "<group>"; };
+		F6AC4A00116C0F9B001B967A /* LEBodyGetBuildings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBodyGetBuildings.h; sourceTree = "<group>"; };
+		F6AC4A01116C0F9B001B967A /* LEBodyGetBuildings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBodyGetBuildings.m; sourceTree = "<group>"; };
 		F6AC4A02116C0F9B001B967A /* LEGetSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEGetSystem.h; sourceTree = "<group>"; };
 		F6AC4A03116C0F9B001B967A /* LEGetSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEGetSystem.m; sourceTree = "<group>"; };
 		F6AC4A04116C0F9B001B967A /* LEInboxArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEInboxArchive.h; sourceTree = "<group>"; };
@@ -673,8 +673,8 @@
 				F6AC49FD116C0F9B001B967A /* LEGetBuildables.m */,
 				F6AC49FE116C0F9B001B967A /* LEGetBuilding.h */,
 				F6AC49FF116C0F9B001B967A /* LEGetBuilding.m */,
-				F6AC4A00116C0F9B001B967A /* LEGetBuildings.h */,
-				F6AC4A01116C0F9B001B967A /* LEGetBuildings.m */,
+				F6AC4A00116C0F9B001B967A /* LEBodyGetBuildings.h */,
+				F6AC4A01116C0F9B001B967A /* LEBodyGetBuildings.m */,
 				F6AC4A02116C0F9B001B967A /* LEGetSystem.h */,
 				F6AC4A03116C0F9B001B967A /* LEGetSystem.m */,
 				F6AC4A04116C0F9B001B967A /* LEInboxArchive.h */,
@@ -896,7 +896,7 @@
 				F6AC4A21116C0F9B001B967A /* LEEmpireViewProfile.m in Sources */,
 				F6AC4A23116C0F9B001B967A /* LEGetBuildables.m in Sources */,
 				F6AC4A24116C0F9B001B967A /* LEGetBuilding.m in Sources */,
-				F6AC4A25116C0F9B001B967A /* LEGetBuildings.m in Sources */,
+				F6AC4A25116C0F9B001B967A /* LEBodyGetBuildings.m in Sources */,
 				F6AC4A26116C0F9B001B967A /* LEGetSystem.m in Sources */,
 				F6AC4A27116C0F9B001B967A /* LEInboxArchive.m in Sources */,
 				F6AC4A28116C0F9B001B967A /* LEInboxRead.m in Sources */,

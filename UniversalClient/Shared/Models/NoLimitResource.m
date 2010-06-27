@@ -47,7 +47,6 @@
 				  
 - (void)subtractFromCurrent:(NSNumber *)adjustment {
 	double tmp = ([self.current doubleValue] - [adjustment doubleValue]);
-	NSLog(@"subtracting %@ by %@ to be %f", self.current, adjustment, tmp);
 	self.current = [NSNumber numberWithDouble:tmp];
 }
 
@@ -65,8 +64,6 @@
 	resource.perHour = [[f numberFromString:[data objectForKey:[NSString stringWithFormat:@"%@_hour", prefix]]] intValue];
 	resource.perSec = [NSNumber numberWithFloat:resource.perHour / SEC_IN_HOUR];
 	resource.lastTick = [NSDate date];
-
-	NSLog(@"%@: perHour=%i, perSec=%@", prefix, resource.perHour, resource.perSec);
 
 	return resource;
 }
