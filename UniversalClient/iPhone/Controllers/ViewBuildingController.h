@@ -13,29 +13,16 @@
 
 @interface ViewBuildingController : LETableViewControllerGrouped <LETableViewCellProgressDelegate, UIActionSheetDelegate> {
 	NSString *buildingId;
-	NSDictionary *buildingData;
-	NSDictionary *resultData;
 	NSString *urlPart;
-	NSInteger totalBuildTime;
-	NSInteger remainingBuildTime;
-	NSArray *sections;
 	NSMutableDictionary *buildingsByLoc;
 	NSMutableDictionary *buttonsByLoc;
-	NSNumber *x;
-	NSNumber *y;
-	NSInteger subsidyBuildQueueCost;
 }
 
 
 @property(nonatomic, retain) NSString *buildingId;
-@property(nonatomic, retain) NSDictionary *buildingData;
-@property(nonatomic, retain) NSDictionary *resultData;
 @property(nonatomic, retain) NSString *urlPart;
-@property(nonatomic, retain) NSArray *sections;
 @property(nonatomic, retain) NSMutableDictionary *buildingsByLoc;
 @property(nonatomic, retain) NSMutableDictionary *buttonsByLoc;
-@property(nonatomic, retain) NSNumber *x;
-@property(nonatomic, retain) NSNumber *y;
 
 
 + (ViewBuildingController *)create;

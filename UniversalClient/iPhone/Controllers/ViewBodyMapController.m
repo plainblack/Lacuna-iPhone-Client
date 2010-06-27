@@ -78,12 +78,14 @@
 }
 
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+	
 	Session *session = [Session sharedInstance];
 	[session addObserver:self forKeyPath:@"body.buildingMap" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 	[session.body loadBuildingMap];
-	self.navigationItem.title = [NSString stringWithFormat:@"Loading Buildings"];
+	
+	self.navigationItem.title = [NSString stringWithFormat:@"Loading"];
 }
 
 
@@ -143,8 +145,6 @@
 		ViewBuildingController *viewBuildingController = [ViewBuildingController create];
 		viewBuildingController.buildingId = [building objectForKey:@"id"];
 		viewBuildingController.urlPart = [building objectForKey:@"url"];
-		viewBuildingController.x = x;
-		viewBuildingController.y = y;
 		viewBuildingController.buildingsByLoc = session.body.buildingMap;
 		viewBuildingController.buttonsByLoc = buttonsByLoc;
 		[[self navigationController] pushViewController:viewBuildingController animated:YES];
@@ -152,8 +152,6 @@
 		Session *session = [Session sharedInstance];
 		NewBuildingController *newBuildingController = [NewBuildingController create];
 		newBuildingController.bodyId = session.body.id;
-		newBuildingController.x = x;
-		newBuildingController.y = y;
 		newBuildingController.buildingsByLoc = session.body.buildingMap;
 		newBuildingController.buttonsByLoc = buttonsByLoc;
 		[[self navigationController] pushViewController:newBuildingController animated:YES];
@@ -166,7 +164,6 @@
 #pragma mark KVO Callback
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-	NSLog(@"ViewBodyMapContorller KVO called: %@", keyPath);
 	if ([keyPath isEqual:@"body.buildingMap"]) {
 		Session *session = [Session sharedInstance];
 		UIImage *surfaceImage = [UIImage imageNamed:[NSString stringWithFormat:@"assets/planet_side/%@.jpg", session.body.surfaceImageName]];

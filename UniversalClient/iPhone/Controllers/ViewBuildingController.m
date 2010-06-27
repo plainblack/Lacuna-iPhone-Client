@@ -26,6 +26,7 @@
 #import "LEBuildingDemolish.h"
 #import "LEBuildingThrowParty.h"
 #import "LEBuildingSubsidizeBuildQueue.h"
+#import "Session.h"
 
 
 typedef enum {
@@ -65,14 +66,9 @@ typedef enum {
 
 
 @synthesize buildingId;
-@synthesize buildingData;
-@synthesize resultData;
 @synthesize urlPart;
-@synthesize sections;
 @synthesize buildingsByLoc;
 @synthesize buttonsByLoc;
-@synthesize x;
-@synthesize y;
 
 
 #pragma mark -
@@ -84,7 +80,6 @@ typedef enum {
 
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
-	self.sections = [NSArray array];
 	self.sectionHeaders = [NSArray array];
 }
 
@@ -92,31 +87,54 @@ typedef enum {
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-	if (self.buildingData) {
-		self.buildingId = [self.buildingData objectForKey:@"id"];
-	}
+	Session *session = [Session sharedInstance];
+	[session addObserver:self forKeyPath:@"body.currentBuilding" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+	[session.body loadBuilding:self.buildingId buildingUrl:self.urlPart];
 
-	[[LEBuildingView alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
 	self.navigationItem.title = @"Loading";
 }
 
+
+- (void)viewDidDisappear:(BOOL)animated {
+	[super viewDidDisappear:animated];
+	
+	Session *session = [Session sharedInstance];
+	[session removeObserver:self forKeyPath:@"body.currentBuilding"];
+}
 
 #pragma mark -
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return [self.sections count];
+	Session *session = [Session sharedInstance];
+	if (session.body.currentBuilding) {
+		return [session.body.currentBuilding sectionCount];
+	} else {
+		return 0;
+	}
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	NSDictionary *sectionData = [self.sections objectAtIndex:section];
-	NSArray *rows = [sectionData objectForKey:@"rows"];
-	return [rows count];
+	Session *session = [Session sharedInstance];
+	if (session.body.currentBuilding) {
+		return [session.body.currentBuilding numRowsInSection:section];
+	} else {
+		return 0;
+	}
+
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	Session *session = [Session sharedInstance];
+	if (session.body.currentBuilding) {
+		return [session.body.currentBuilding tableView:tableView heightForRowAtIndexPath:indexPath];
+	} else {
+		return tableView.rowHeight;
+	}
+
+	/*
 	NSDictionary *section = [self.sections objectAtIndex:indexPath.section];
 	NSArray *rows = [section objectForKey:@"rows"];
 	
@@ -169,11 +187,20 @@ typedef enum {
 			return tableView.rowHeight;
 			break;
 	}
+	 */
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	Session *session = [Session sharedInstance];
+	if (session.body.currentBuilding) {
+		return [session.body.currentBuilding tableView:tableView cellForRowAtIndexPath:indexPath];
+	} else {
+		return nil;
+	}
+
+	/*
     UITableViewCell *cell;
 	NSDictionary *section = [self.sections objectAtIndex:indexPath.section];
 	NSArray *rows = [section objectForKey:@"rows"];
@@ -362,6 +389,7 @@ typedef enum {
 	}
 	
 	return cell;
+	 */
 }
 
 
@@ -369,7 +397,13 @@ typedef enum {
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSDictionary *section = [self.sections objectAtIndex:indexPath.section];
+	Session *session = [Session sharedInstance];
+	if (session.body.currentBuilding) {
+		[session.body.currentBuilding tableView:tableView didSelectRowAtIndexPath:indexPath];
+	}
+
+	/*
+	 NSDictionary *section = [self.sections objectAtIndex:indexPath.section];
 	NSArray *rows = [section objectForKey:@"rows"];
 	
 	switch (intv_([rows objectAtIndex:indexPath.row])) {
@@ -425,6 +459,7 @@ typedef enum {
 			[actionSheet release];
 			break;
 	}
+	 */
 }
 
 
@@ -446,14 +481,9 @@ typedef enum {
 
 - (void)dealloc {
 	self.buildingId = nil;
-	self.buildingData = nil;
-	self.resultData = nil;
 	self.urlPart = nil;
-	self.sections = nil;
 	self.buttonsByLoc = nil;
 	self.buildingsByLoc = nil;
-	self.x = nil;
-	self.y = nil;
     [super dealloc];
 }
 
@@ -462,7 +492,7 @@ typedef enum {
 #pragma mark LETableViewBuildProgressCellDelegate Methods
 
 - (void)progressComplete {
-	[[LEBuildingView alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
+	//[[LEBuildingView alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
 }
 
 
@@ -479,6 +509,7 @@ typedef enum {
 #pragma mark -
 #pragma mark Callbacks
 
+/*
 - (id)bodyDataLoaded:(LEBuildingView *)request {
 	self.buildingData = request.building;
 	self.resultData = [request.response objectForKey:@"result"];
@@ -592,7 +623,6 @@ typedef enum {
 	return nil;
 }
 
-
 - (id)upgradedBuilding:(LEUpgradeBuilding *)request {
 	[[LEBuildingView alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
 	
@@ -648,6 +678,7 @@ typedef enum {
 	[self.buildingsByLoc removeObjectForKey:loc];
 	return nil;
 }
+*/
 
 
 #pragma mark -
@@ -655,6 +686,27 @@ typedef enum {
 
 + (ViewBuildingController *)create {
 	return [[[ViewBuildingController alloc] init] autorelease];
+}
+
+
+#pragma mark --
+#pragma mark KVO Callback
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+	NSLog(@"KVO Update: %@", keyPath);
+	if ([keyPath isEqual:@"body.currentBuilding"]) {
+		NSLog(@"ugh1");
+		Session *session = [Session sharedInstance];
+		NSLog(@"ugh2");
+		if (session.body.currentBuilding) {
+			NSLog(@"currentBuilding is not nil");
+			self.sectionHeaders = [session.body.currentBuilding sectionHeadersForTableView:self.tableView];
+			self.navigationItem.title = session.body.currentBuilding.name;
+			[self.tableView reloadData];
+		}
+		NSLog(@"ugh3");
+	}
+	NSLog(@"ugh4");
 }
 
 

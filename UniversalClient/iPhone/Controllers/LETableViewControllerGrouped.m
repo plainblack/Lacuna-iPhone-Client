@@ -49,7 +49,7 @@
 #pragma mark Table view data source
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	id object = [sectionHeaders objectAtIndex:section];
+	id object = [self.sectionHeaders objectAtIndex:section];
 	
 	if (object == [NSNull null]) {
 		return nil;

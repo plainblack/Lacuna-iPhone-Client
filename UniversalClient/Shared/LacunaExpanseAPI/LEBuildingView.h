@@ -12,13 +12,13 @@
 
 @interface LEBuildingView : LERequest {
 	NSString *buildingId;
-	NSMutableDictionary *building;
+	NSMutableDictionary *result;
 	NSString *url;
 }
 
 
 @property(nonatomic, retain) NSString *buildingId;
-@property(nonatomic, retain) NSMutableDictionary *building;
+@property(nonatomic, retain) NSMutableDictionary *result;
 @property(nonatomic, retain) NSString *url;
 
 

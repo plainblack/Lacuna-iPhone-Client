@@ -143,6 +143,11 @@
 		F6E768AA11D6BD9300778C1D /* StoredResource.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E768A911D6BD9300778C1D /* StoredResource.m */; };
 		F6E768B411D6C6E500778C1D /* NoLimitResource.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E768B311D6C6E500778C1D /* NoLimitResource.m */; };
 		F6F5427D11A9D7D4006F347B /* LEBodyStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */; };
+		F6FD9E6B11D79FA0003785AD /* Building.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FD9E6A11D79FA0003785AD /* Building.m */; };
+		F6FD9E6E11D7A05D003785AD /* ResourceGeneration.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FD9E6D11D7A05D003785AD /* ResourceGeneration.m */; };
+		F6FD9E7B11D7A41E003785AD /* ResourceStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FD9E7A11D7A41E003785AD /* ResourceStorage.m */; };
+		F6FD9E7E11D7A42C003785AD /* ResourceCost.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FD9E7D11D7A42C003785AD /* ResourceCost.m */; };
+		F6FD9E8711D7A6F3003785AD /* TimedActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FD9E8611D7A6F3003785AD /* TimedActivity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -403,6 +408,16 @@
 		F6E768B311D6C6E500778C1D /* NoLimitResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoLimitResource.m; sourceTree = "<group>"; };
 		F6F5427B11A9D7D4006F347B /* LEBodyStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBodyStatus.h; sourceTree = "<group>"; };
 		F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBodyStatus.m; sourceTree = "<group>"; };
+		F6FD9E6911D79FA0003785AD /* Building.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Building.h; sourceTree = "<group>"; };
+		F6FD9E6A11D79FA0003785AD /* Building.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Building.m; sourceTree = "<group>"; };
+		F6FD9E6C11D7A05D003785AD /* ResourceGeneration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceGeneration.h; sourceTree = "<group>"; };
+		F6FD9E6D11D7A05D003785AD /* ResourceGeneration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceGeneration.m; sourceTree = "<group>"; };
+		F6FD9E7911D7A41E003785AD /* ResourceStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceStorage.h; sourceTree = "<group>"; };
+		F6FD9E7A11D7A41E003785AD /* ResourceStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceStorage.m; sourceTree = "<group>"; };
+		F6FD9E7C11D7A42C003785AD /* ResourceCost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceCost.h; sourceTree = "<group>"; };
+		F6FD9E7D11D7A42C003785AD /* ResourceCost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceCost.m; sourceTree = "<group>"; };
+		F6FD9E8511D7A6F3003785AD /* TimedActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimedActivity.h; sourceTree = "<group>"; };
+		F6FD9E8611D7A6F3003785AD /* TimedActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimedActivity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -723,6 +738,16 @@
 				F6E768A911D6BD9300778C1D /* StoredResource.m */,
 				F6E768B211D6C6E500778C1D /* NoLimitResource.h */,
 				F6E768B311D6C6E500778C1D /* NoLimitResource.m */,
+				F6FD9E6911D79FA0003785AD /* Building.h */,
+				F6FD9E6A11D79FA0003785AD /* Building.m */,
+				F6FD9E6C11D7A05D003785AD /* ResourceGeneration.h */,
+				F6FD9E6D11D7A05D003785AD /* ResourceGeneration.m */,
+				F6FD9E7911D7A41E003785AD /* ResourceStorage.h */,
+				F6FD9E7A11D7A41E003785AD /* ResourceStorage.m */,
+				F6FD9E7C11D7A42C003785AD /* ResourceCost.h */,
+				F6FD9E7D11D7A42C003785AD /* ResourceCost.m */,
+				F6FD9E8511D7A6F3003785AD /* TimedActivity.h */,
+				F6FD9E8611D7A6F3003785AD /* TimedActivity.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -995,6 +1020,11 @@
 				F6E767C611D6A4D400778C1D /* Body.m in Sources */,
 				F6E768AA11D6BD9300778C1D /* StoredResource.m in Sources */,
 				F6E768B411D6C6E500778C1D /* NoLimitResource.m in Sources */,
+				F6FD9E6B11D79FA0003785AD /* Building.m in Sources */,
+				F6FD9E6E11D7A05D003785AD /* ResourceGeneration.m in Sources */,
+				F6FD9E7B11D7A41E003785AD /* ResourceStorage.m in Sources */,
+				F6FD9E7E11D7A42C003785AD /* ResourceCost.m in Sources */,
+				F6FD9E8711D7A6F3003785AD /* TimedActivity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

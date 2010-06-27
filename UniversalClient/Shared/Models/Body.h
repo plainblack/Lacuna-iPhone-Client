@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "StoredResource.h"
 #import "NoLimitResource.h"
+#import "Building.h"
 
 
 @interface Body : NSObject {
@@ -37,6 +38,7 @@
 	StoredResource *water;
 	NSMutableDictionary *buildingMap;
 	NSString *surfaceImageName;
+	Building *currentBuilding;
 }
 
 
@@ -65,11 +67,13 @@
 @property (nonatomic, retain) StoredResource *water;
 @property (nonatomic, retain) NSMutableDictionary *buildingMap;
 @property (nonatomic, retain) NSString *surfaceImageName;
+@property (nonatomic, retain) Building *currentBuilding;
 
 
 - (void)parseData:(NSDictionary *)bodyData;
 - (void)tick:(NSTimeInterval)interval;
 - (void)loadBuildingMap;
+- (void)loadBuilding:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl;
 
 
 @end

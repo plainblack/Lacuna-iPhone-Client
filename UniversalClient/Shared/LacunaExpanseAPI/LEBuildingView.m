@@ -15,7 +15,7 @@
 
 
 @synthesize buildingId;
-@synthesize building;
+@synthesize result;
 @synthesize url;
 
 
@@ -32,9 +32,7 @@
 
 
 - (void)processSuccess {
-	NSDictionary *result = [self.response objectForKey:@"result"];
-	
-	self.building = [result objectForKey:@"building"];
+	self.result = [self.response objectForKey:@"result"];
 }
 
 
@@ -50,7 +48,7 @@
 
 - (void)dealloc {
 	self.buildingId = nil;
-	self.building = nil;
+	self.result = nil;
 	self.url = nil;
 	[super dealloc];
 }
