@@ -6,12 +6,12 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "LEGetBuilding.h"
+#import "LEBuildingView.h"
 #import "Session.h"
 #import "LEMacros.h"
 
 
-@implementation LEGetBuilding
+@implementation LEBuildingView
 
 
 @synthesize buildingId;

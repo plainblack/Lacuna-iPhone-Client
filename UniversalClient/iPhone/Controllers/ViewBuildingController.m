@@ -10,7 +10,7 @@
 #import "LEMacros.h"
 #import "Util.h"
 #import "LEViewSectionTab.h"
-#import "LEGetBuilding.h"
+#import "LEBuildingView.h"
 #import "LEUpgradeBuilding.h"
 #import "LETableViewCellButton.h"
 #import "LETableViewCellBuildingStats.h"
@@ -96,7 +96,7 @@ typedef enum {
 		self.buildingId = [self.buildingData objectForKey:@"id"];
 	}
 
-	[[LEGetBuilding alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
+	[[LEBuildingView alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
 	self.navigationItem.title = @"Loading";
 }
 
@@ -462,7 +462,7 @@ typedef enum {
 #pragma mark LETableViewBuildProgressCellDelegate Methods
 
 - (void)progressComplete {
-	[[LEGetBuilding alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
+	[[LEBuildingView alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
 }
 
 
@@ -479,7 +479,7 @@ typedef enum {
 #pragma mark -
 #pragma mark Callbacks
 
-- (id)bodyDataLoaded:(LEGetBuilding *)request {
+- (id)bodyDataLoaded:(LEBuildingView *)request {
 	self.buildingData = request.building;
 	self.resultData = [request.response objectForKey:@"result"];
 	
@@ -594,7 +594,7 @@ typedef enum {
 
 
 - (id)upgradedBuilding:(LEUpgradeBuilding *)request {
-	[[LEGetBuilding alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
+	[[LEBuildingView alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
 	
 	self.navigationItem.title = @"Refreshing";
 	
@@ -602,7 +602,7 @@ typedef enum {
 }
 
 - (id)buildingRestrictCoverageChanged:(LEBuildingRestrictCoverage *)request {
-	[[LEGetBuilding alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
+	[[LEBuildingView alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
 	
 	return nil;
 }
@@ -618,21 +618,21 @@ typedef enum {
 
 
 - (id)subsidizedRecycling:(LEBuildingSubsidizeRecycling *)request {
-	[[LEGetBuilding alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
+	[[LEBuildingView alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
 	self.navigationItem.title = @"Loading";
 	return nil;
 }
 
 
 - (id)subsidizedBuildQueue:(LEBuildingSubsidizeBuildQueue *)request {
-	[[LEGetBuilding alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
+	[[LEBuildingView alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
 	self.navigationItem.title = @"Loading";
 	return nil;
 }
 
 
 - (id)throwingParty:(LEBuildingThrowParty *)request {
-	[[LEGetBuilding alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
+	[[LEBuildingView alloc] initWithCallback:@selector(bodyDataLoaded:) target:self buildingId:self.buildingId url:self.urlPart];
 	self.navigationItem.title = @"Loading";
 	return nil;
 }

@@ -269,45 +269,20 @@
 								<string>28EEBF621118D79A00187D67</string>
 								<string>F6E4D6681168D4B200980B59</string>
 								<string>F6E4D6691168D4B200980B59</string>
-								<string>F634BB3E116C309B0084A8B2</string>
 								<string>19C28FACFE9D520D11CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>35</integer>
-									<integer>4</integer>
-									<integer>3</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>37</integer>
-									<integer>4</integer>
-									<integer>3</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>38</integer>
-									<integer>4</integer>
-									<integer>3</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>163</integer>
-									<integer>154</integer>
-									<integer>64</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>164</integer>
-									<integer>154</integer>
+									<integer>124</integer>
+									<integer>67</integer>
 									<integer>64</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {301, 1146}}</string>
+							<string>{{0, 1435}, {301, 1146}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -344,7 +319,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ViewBodyMapController.m</string>
+								<string>LEBuildingView.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -352,11 +327,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ViewBodyMapController.m</string>
+										<string>LEBuildingView.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F6FD9E5411D79BE8003785AD</string>
+										<string>F6FD9E6711D79F20003785AD</string>
 										<key>history</key>
 										<array>
 											<string>F6885F7E1168421D00080696</string>
@@ -545,7 +520,6 @@
 											<string>F6E3F06E11B4813800E7BC86</string>
 											<string>F6E3F06F11B4813800E7BC86</string>
 											<string>F63FB1D011B5EAD7007A3315</string>
-											<string>F6E3E56E11BAF86600A031CF</string>
 											<string>F6E3E57A11BB092600A031CF</string>
 											<string>F6E3E57B11BB092600A031CF</string>
 											<string>F6E3E59B11BB1A8D00A031CF</string>
@@ -628,7 +602,9 @@
 											<string>F6FD9E4011D79B38003785AD</string>
 											<string>F6FD9E4111D79B38003785AD</string>
 											<string>F6FD9E5211D79BE8003785AD</string>
-											<string>F6FD9E5311D79BE8003785AD</string>
+											<string>F6FD9E5A11D79F0A003785AD</string>
+											<string>F6FD9E5B11D79F0A003785AD</string>
+											<string>F6FD9E5C11D79F0A003785AD</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -1077,7 +1053,7 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>NoLimitResource.m</string>
+										<string>LEBuildingView.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -1086,7 +1062,7 @@
 										<key>Frame</key>
 										<string>{{0, 0}, {781, 212}}</string>
 										<key>RubberWindowFrame</key>
-										<string>340 895 781 470 0 0 2560 1418 </string>
+										<string>343 894 781 470 0 0 2560 1418 </string>
 									</dict>
 									<key>Module</key>
 									<string>PBXNavigatorGroup</string>
@@ -1112,7 +1088,7 @@
 								<key>Frame</key>
 								<string>{{0, 217}, {781, 212}}</string>
 								<key>RubberWindowFrame</key>
-								<string>340 895 781 470 0 0 2560 1418 </string>
+								<string>343 894 781 470 0 0 2560 1418 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXProjectFindModule</string>
@@ -1141,7 +1117,7 @@
 				<string>1CD0528E0623707200166675</string>
 			</array>
 			<key>WindowString</key>
-			<string>340 895 781 470 0 0 2560 1418 </string>
+			<string>343 894 781 470 0 0 2560 1418 </string>
 			<key>WindowToolGUID</key>
 			<string>1C530D57069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>

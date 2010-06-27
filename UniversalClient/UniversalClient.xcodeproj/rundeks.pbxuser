@@ -443,6 +443,16 @@
 			F6FD9E5211D79BE8003785AD /* PBXTextBookmark */ = F6FD9E5211D79BE8003785AD /* PBXTextBookmark */;
 			F6FD9E5311D79BE8003785AD /* PBXTextBookmark */ = F6FD9E5311D79BE8003785AD /* PBXTextBookmark */;
 			F6FD9E5411D79BE8003785AD /* PBXTextBookmark */ = F6FD9E5411D79BE8003785AD /* PBXTextBookmark */;
+			F6FD9E5511D79EFC003785AD /* PBXTextBookmark */ = F6FD9E5511D79EFC003785AD /* PBXTextBookmark */;
+			F6FD9E5611D79EFC003785AD /* PBXTextBookmark */ = F6FD9E5611D79EFC003785AD /* PBXTextBookmark */;
+			F6FD9E5711D79EFC003785AD /* PBXTextBookmark */ = F6FD9E5711D79EFC003785AD /* PBXTextBookmark */;
+			F6FD9E5811D79EFC003785AD /* PBXBookmark */ = F6FD9E5811D79EFC003785AD /* PBXBookmark */;
+			F6FD9E5911D79EFC003785AD /* PBXTextBookmark */ = F6FD9E5911D79EFC003785AD /* PBXTextBookmark */;
+			F6FD9E5A11D79F0A003785AD /* PBXTextBookmark */ = F6FD9E5A11D79F0A003785AD /* PBXTextBookmark */;
+			F6FD9E5B11D79F0A003785AD /* PBXTextBookmark */ = F6FD9E5B11D79F0A003785AD /* PBXTextBookmark */;
+			F6FD9E5C11D79F0A003785AD /* PBXTextBookmark */ = F6FD9E5C11D79F0A003785AD /* PBXTextBookmark */;
+			F6FD9E5D11D79F0A003785AD /* PBXTextBookmark */ = F6FD9E5D11D79F0A003785AD /* PBXTextBookmark */;
+			F6FD9E6711D79F20003785AD /* PBXTextBookmark */ = F6FD9E6711D79F20003785AD /* PBXTextBookmark */;
 			F6FF4F1D11C52F1500E25238 = F6FF4F1D11C52F1500E25238 /* PBXTextBookmark */;
 			F6FF4F1F11C52F1500E25238 = F6FF4F1F11C52F1500E25238 /* PBXTextBookmark */;
 			F6FFCF1F11D187E600C5E6E7 = F6FFCF1F11D187E600C5E6E7 /* PlistBookmark */;
@@ -524,9 +534,9 @@
 	};
 	F603A91811780A0400BAC73A /* ViewBodyMapController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1503, 2509}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1503, 2535}}";
 			sepNavSelRange = "{3902, 0}";
-			sepNavVisRange = "{2428, 2157}";
+			sepNavVisRange = "{2428, 2205}";
 		};
 	};
 	F603A92411780D8700BAC73A /* PBXBookmark */ = {
@@ -2547,11 +2557,18 @@
 			sepNavVisRange = "{0, 592}";
 		};
 	};
-	F6AC49FF116C0F9B001B967A /* LEGetBuilding.m */ = {
+	F6AC49FE116C0F9B001B967A /* LEBuildingView.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {957, 702}}";
+			sepNavIntBoundsRect = "{{0, 0}, {943, 755}}";
+			sepNavSelRange = "{602, 0}";
+			sepNavVisRange = "{0, 602}";
+		};
+	};
+	F6AC49FF116C0F9B001B967A /* LEBuildingView.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {957, 780}}";
 			sepNavSelRange = "{681, 0}";
-			sepNavVisRange = "{568, 262}";
+			sepNavVisRange = "{0, 1008}";
 		};
 	};
 	F6AC4A00116C0F9B001B967A /* LEBodyGetBuildings.h */ = {
@@ -3507,10 +3524,10 @@
 	};
 	F6E3E56E11BAF86600A031CF /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = F6AC49FF116C0F9B001B967A /* LEGetBuilding.m */;
+		fRef = F6AC49FF116C0F9B001B967A /* LEBuildingView.m */;
 		name = "LEGetBuilding.m: 35";
 		rLen = 0;
-		rLoc = 681;
+		rLoc = 683;
 		rType = 0;
 		vrLen = 1008;
 		vrLoc = 0;
@@ -4123,7 +4140,7 @@
 		fRef = F69809A61179FFFB00BD2096 /* ViewBuildingController.m */;
 		name = "ViewBuildingController.m: 356";
 		rLen = 0;
-		rLoc = 14340;
+		rLoc = 256;
 		rType = 0;
 		vrLen = 2882;
 		vrLoc = 11551;
@@ -4201,9 +4218,9 @@
 	};
 	F6E767C511D6A4D400778C1D /* Body.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1146, 1846}}";
-			sepNavSelRange = "{3513, 0}";
-			sepNavVisRange = "{1776, 2110}";
+			sepNavIntBoundsRect = "{{0, 0}, {908, 1586}}";
+			sepNavSelRange = "{3881, 0}";
+			sepNavVisRange = "{1981, 944}";
 			sepNavWindowFrame = "{{84, 792}, {750, 558}}";
 		};
 	};
@@ -4302,7 +4319,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {720, 949}}";
 			sepNavSelRange = "{982, 0}";
-			sepNavVisRange = "{799, 280}";
+			sepNavVisRange = "{799, 369}";
 		};
 	};
 	F6E7693B11D6E54800778C1D /* PBXTextBookmark */ = {
@@ -4961,6 +4978,100 @@
 		rType = 0;
 		vrLen = 2157;
 		vrLoc = 2428;
+	};
+	F6FD9E5511D79EFC003785AD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6E767C511D6A4D400778C1D /* Body.m */;
+		name = "Body.m: 141";
+		rLen = 0;
+		rLoc = 3881;
+		rType = 0;
+		vrLen = 944;
+		vrLoc = 1981;
+	};
+	F6FD9E5611D79EFC003785AD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6E768B311D6C6E500778C1D /* NoLimitResource.m */;
+		name = "NoLimitResource.m: 50";
+		rLen = 0;
+		rLoc = 982;
+		rType = 0;
+		vrLen = 369;
+		vrLoc = 799;
+	};
+	F6FD9E5711D79EFC003785AD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6AC49FF116C0F9B001B967A /* LEBuildingView.m */;
+		name = "LEGetBuilding.m: 35";
+		rLen = 0;
+		rLoc = 683;
+		rType = 0;
+		vrLen = 281;
+		vrLoc = 567;
+	};
+	F6FD9E5811D79EFC003785AD /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = F6AC49FE116C0F9B001B967A /* LEBuildingView.h */;
+	};
+	F6FD9E5911D79EFC003785AD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6AC49FE116C0F9B001B967A /* LEBuildingView.h */;
+		name = "LEGetBuilding.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 258;
+		vrLoc = 0;
+	};
+	F6FD9E5A11D79F0A003785AD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F603A91811780A0400BAC73A /* ViewBodyMapController.m */;
+		name = "ViewBodyMapController.m: 87";
+		rLen = 0;
+		rLoc = 3902;
+		rType = 0;
+		vrLen = 2205;
+		vrLoc = 2428;
+	};
+	F6FD9E5B11D79F0A003785AD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6AC49FF116C0F9B001B967A /* LEBuildingView.m */;
+		name = "LEGetBuilding.m: 35";
+		rLen = 0;
+		rLoc = 683;
+		rType = 0;
+		vrLen = 1008;
+		vrLoc = 0;
+	};
+	F6FD9E5C11D79F0A003785AD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6AC49FE116C0F9B001B967A /* LEBuildingView.h */;
+		name = "LEGetBuilding.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 601;
+		vrLoc = 0;
+	};
+	F6FD9E5D11D79F0A003785AD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6AC49FE116C0F9B001B967A /* LEBuildingView.h */;
+		name = "LEGetBuilding.h: 13";
+		rLen = 14;
+		rLoc = 207;
+		rType = 0;
+		vrLen = 601;
+		vrLoc = 0;
+	};
+	F6FD9E6711D79F20003785AD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6AC49FE116C0F9B001B967A /* LEBuildingView.h */;
+		name = "LEBuildingView.h: 29";
+		rLen = 0;
+		rLoc = 602;
+		rType = 0;
+		vrLen = 602;
+		vrLoc = 0;
 	};
 	F6FF4F1D11C52F1500E25238 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
