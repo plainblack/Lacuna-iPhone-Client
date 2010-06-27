@@ -90,7 +90,6 @@
 		F6AC4A1F116C0F9B001B967A /* LEEmpireLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC49F5116C0F9B001B967A /* LEEmpireLogin.m */; };
 		F6AC4A20116C0F9B001B967A /* LEEmpireLogout.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC49F7116C0F9B001B967A /* LEEmpireLogout.m */; };
 		F6AC4A21116C0F9B001B967A /* LEEmpireViewProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC49F9116C0F9B001B967A /* LEEmpireViewProfile.m */; };
-		F6AC4A22116C0F9B001B967A /* LEGetBody.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC49FB116C0F9B001B967A /* LEGetBody.m */; };
 		F6AC4A23116C0F9B001B967A /* LEGetBuildables.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC49FD116C0F9B001B967A /* LEGetBuildables.m */; };
 		F6AC4A24116C0F9B001B967A /* LEGetBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC49FF116C0F9B001B967A /* LEGetBuilding.m */; };
 		F6AC4A25116C0F9B001B967A /* LEGetBuildings.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC4A01116C0F9B001B967A /* LEGetBuildings.m */; };
@@ -141,6 +140,8 @@
 		F6E766BE11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E766BD11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.m */; };
 		F6E7671111D68C6400778C1D /* Empire.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E7671011D68C6400778C1D /* Empire.m */; };
 		F6E767C611D6A4D400778C1D /* Body.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E767C511D6A4D400778C1D /* Body.m */; };
+		F6E768AA11D6BD9300778C1D /* StoredResource.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E768A911D6BD9300778C1D /* StoredResource.m */; };
+		F6E768B411D6C6E500778C1D /* NoLimitResource.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E768B311D6C6E500778C1D /* NoLimitResource.m */; };
 		F6F5427D11A9D7D4006F347B /* LEBodyStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */; };
 /* End PBXBuildFile section */
 
@@ -296,8 +297,6 @@
 		F6AC49F7116C0F9B001B967A /* LEEmpireLogout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireLogout.m; sourceTree = "<group>"; };
 		F6AC49F8116C0F9B001B967A /* LEEmpireViewProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireViewProfile.h; sourceTree = "<group>"; };
 		F6AC49F9116C0F9B001B967A /* LEEmpireViewProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireViewProfile.m; sourceTree = "<group>"; };
-		F6AC49FA116C0F9B001B967A /* LEGetBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEGetBody.h; sourceTree = "<group>"; };
-		F6AC49FB116C0F9B001B967A /* LEGetBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEGetBody.m; sourceTree = "<group>"; };
 		F6AC49FC116C0F9B001B967A /* LEGetBuildables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEGetBuildables.h; sourceTree = "<group>"; };
 		F6AC49FD116C0F9B001B967A /* LEGetBuildables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEGetBuildables.m; sourceTree = "<group>"; };
 		F6AC49FE116C0F9B001B967A /* LEGetBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEGetBuilding.h; sourceTree = "<group>"; };
@@ -398,6 +397,10 @@
 		F6E7671011D68C6400778C1D /* Empire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Empire.m; sourceTree = "<group>"; };
 		F6E767C411D6A4D400778C1D /* Body.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Body.h; sourceTree = "<group>"; };
 		F6E767C511D6A4D400778C1D /* Body.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Body.m; sourceTree = "<group>"; };
+		F6E768A811D6BD9300778C1D /* StoredResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoredResource.h; sourceTree = "<group>"; };
+		F6E768A911D6BD9300778C1D /* StoredResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoredResource.m; sourceTree = "<group>"; };
+		F6E768B211D6C6E500778C1D /* NoLimitResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoLimitResource.h; sourceTree = "<group>"; };
+		F6E768B311D6C6E500778C1D /* NoLimitResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoLimitResource.m; sourceTree = "<group>"; };
 		F6F5427B11A9D7D4006F347B /* LEBodyStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBodyStatus.h; sourceTree = "<group>"; };
 		F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBodyStatus.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -666,8 +669,6 @@
 				F6E3F01D11B46BBB00E7BC86 /* LEEmpireViewBoosts.m */,
 				F6AC49F8116C0F9B001B967A /* LEEmpireViewProfile.h */,
 				F6AC49F9116C0F9B001B967A /* LEEmpireViewProfile.m */,
-				F6AC49FA116C0F9B001B967A /* LEGetBody.h */,
-				F6AC49FB116C0F9B001B967A /* LEGetBody.m */,
 				F6AC49FC116C0F9B001B967A /* LEGetBuildables.h */,
 				F6AC49FD116C0F9B001B967A /* LEGetBuildables.m */,
 				F6AC49FE116C0F9B001B967A /* LEGetBuilding.h */,
@@ -718,6 +719,10 @@
 				F6E7671011D68C6400778C1D /* Empire.m */,
 				F6E767C411D6A4D400778C1D /* Body.h */,
 				F6E767C511D6A4D400778C1D /* Body.m */,
+				F6E768A811D6BD9300778C1D /* StoredResource.h */,
+				F6E768A911D6BD9300778C1D /* StoredResource.m */,
+				F6E768B211D6C6E500778C1D /* NoLimitResource.h */,
+				F6E768B311D6C6E500778C1D /* NoLimitResource.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -889,7 +894,6 @@
 				F6AC4A1F116C0F9B001B967A /* LEEmpireLogin.m in Sources */,
 				F6AC4A20116C0F9B001B967A /* LEEmpireLogout.m in Sources */,
 				F6AC4A21116C0F9B001B967A /* LEEmpireViewProfile.m in Sources */,
-				F6AC4A22116C0F9B001B967A /* LEGetBody.m in Sources */,
 				F6AC4A23116C0F9B001B967A /* LEGetBuildables.m in Sources */,
 				F6AC4A24116C0F9B001B967A /* LEGetBuilding.m in Sources */,
 				F6AC4A25116C0F9B001B967A /* LEGetBuildings.m in Sources */,
@@ -989,6 +993,8 @@
 				F6E766BE11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.m in Sources */,
 				F6E7671111D68C6400778C1D /* Empire.m in Sources */,
 				F6E767C611D6A4D400778C1D /* Body.m in Sources */,
+				F6E768AA11D6BD9300778C1D /* StoredResource.m in Sources */,
+				F6E768B411D6C6E500778C1D /* NoLimitResource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -85,7 +85,6 @@
 #pragma mark -
 #pragma mark KVO Methods
 
-
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ( [keyPath isEqual:@"numNewMessages"]) {
 		Empire *empire = (Empire *)object;
@@ -98,14 +97,12 @@
 		}
 	} else if ( [keyPath isEqual:@"isLoggedIn"]) {
 		Session *session = (Session *)object;
-		NSLog(@"change: %@", change);
 		if (!session.isLoggedIn) {
 			[self.myWorldsNavigationController popToRootViewControllerAnimated:NO];
 			[self.myWorldController clear];
 			[self.mailNavigationController popToRootViewControllerAnimated:NO];
 			[self.mailboxController clear];
 		} else {
-			NSLog(@"Observing");
 			if(session.empire.numNewMessages > 0) {
 				self.mailTabBarItem.badgeValue = [NSString stringWithFormat:@"%i", session.empire.numNewMessages];
 			} else {

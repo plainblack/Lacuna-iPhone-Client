@@ -231,7 +231,6 @@
 		}
 		self.speciesSelector.selectedSegmentIndex = UISegmentedControlNoSegment;
 	} else {
-		NSLog(@"Empire ID: %@", request.empireId);
 		self.empireId = request.empireId;
 		self.nameCell.textField.enabled = NO;
 		self.passwordCell.textField.enabled = NO;

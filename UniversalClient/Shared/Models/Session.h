@@ -18,6 +18,8 @@
 	BOOL isLoggedIn;
 	NSMutableArray *savedEmpireList;
 	NSString *serverVersion;
+	NSTimer *timer;
+	NSDate *lastTick;
 }
 
 @property(nonatomic, retain) NSString *sessionId;
@@ -26,6 +28,7 @@
 @property(nonatomic, assign) BOOL isLoggedIn;
 @property(nonatomic, retain) NSMutableArray *savedEmpireList;
 @property(nonatomic, retain) NSString *serverVersion;
+@property(nonatomic, retain) NSDate *lastTick;
 
 
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password;

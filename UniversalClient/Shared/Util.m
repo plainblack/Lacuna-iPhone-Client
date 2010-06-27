@@ -11,22 +11,6 @@
 
 @implementation Util
 
-+ (NSString *)prettyDuration:(NSInteger)seconds {
-	NSInteger minutes = seconds / 60;
-	seconds = seconds % 60;
-	NSInteger hours = minutes / 60;
-	minutes = minutes % 60;
-	NSInteger days = hours / 24;
-	hours = hours %24;
-	
-	if (days) {
-		return [NSString stringWithFormat:@"%iD, %02i:%02i:%02i", days, hours, minutes, seconds];
-	} else {
-		return [NSString stringWithFormat:@"%02i:%02i:%02i", hours, minutes, seconds];
-	}
-}
-
-
 + (CGFloat)heightForText:(NSString *)text inFrame:(CGRect)frame withFont:(UIFont *)font {
 	if (!text || (id)text == [NSNull null]) {
 		text = @"";
@@ -59,16 +43,43 @@
 }
 
 
-+ (NSString *)prettyNumber:(NSNumber *)number {
-	NSInteger value = [number intValue];
-	if (value > 2000000000) {
-		return [NSString stringWithFormat:@"%iB", (value/1000000000)];
-	} else if (value > 2000000) {
-		return [NSString stringWithFormat:@"%iM", (value/1000000)];
-	} else if (value > 2000) {
-		return [NSString stringWithFormat:@"%iK", (value/1000)];
++ (NSNumber *)asNumber:(NSString *)string {
+	NSNumberFormatter *f = [[[NSNumberFormatter alloc] init] autorelease];
+	[f setNumberStyle:NSNumberFormatterDecimalStyle];
+	return [f numberFromString:string];
+}
+
+
++ (NSString *)prettyDuration:(NSInteger)seconds {
+	NSInteger minutes = seconds / 60;
+	seconds = seconds % 60;
+	NSInteger hours = minutes / 60;
+	minutes = minutes % 60;
+	NSInteger days = hours / 24;
+	hours = hours %24;
+	
+	if (days) {
+		return [NSString stringWithFormat:@"%iD, %02i:%02i:%02i", days, hours, minutes, seconds];
 	} else {
-		return [NSString stringWithFormat:@"%i", value];
+		return [NSString stringWithFormat:@"%02i:%02i:%02i", hours, minutes, seconds];
+	}
+}
+
+
++ (NSString *)prettyNSNumber:(NSNumber *)number {
+	return [self prettyNSInteger:[number intValue]];
+}
+
+
++ (NSString *)prettyNSInteger:(NSInteger)number {
+	if (number > 2000000000) {
+		return [NSString stringWithFormat:@"%iB", (number/1000000000)];
+	} else if (number > 2000000) {
+		return [NSString stringWithFormat:@"%iM", (number/1000000)];
+	} else if (number > 2000) {
+		return [NSString stringWithFormat:@"%iK", (number/1000)];
+	} else {
+		return [NSString stringWithFormat:@"%i", number];
 	}
 }
 
@@ -81,14 +92,6 @@
 	
 	return newImage;
 }
-
-
-+ (NSNumber *)asNumber:(NSString *)string {
-	NSNumberFormatter *f = [[[NSNumberFormatter alloc] init] autorelease];
-	[f setNumberStyle:NSNumberFormatterDecimalStyle];
-	return [f numberFromString:string];
-}
-
 
 
 @end

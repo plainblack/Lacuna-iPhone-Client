@@ -14,9 +14,8 @@
 @interface LETableViewCellCurrentResources (PrivateMethods)
 
 
-- (void)setTotalLabel:(UILabel *)totalLabel current:(NSNumber *)current capacity:(NSNumber *)capacity;
-- (void)setNormalPerHourLabel:(UILabel *)perHourLabel perHour:(NSNumber *)perHour;
-- (void)setOppositePerHourLabel:(UILabel *)perHourLabel perHour:(NSNumber *)perHour;
+- (void)setTotalLabel:(UILabel *)totalLabel current:(NSNumber *)current capacity:(NSInteger)capacity;
+- (void)setPerHourLabel:(UILabel *)perHourLabel perHour:(NSInteger)perHour;
 
 
 @end
@@ -76,49 +75,34 @@
 #pragma mark -
 #pragma mark Instance Methods
 
-- (void)setEnergyCurrent:(NSNumber *)current capacity:(NSNumber *)capacity perHour:(NSNumber *)perHour {
-	[self setTotalLabel:energyTotalLabel current:current capacity:capacity];
-	[self setNormalPerHourLabel:energyPerHourLabel perHour:perHour];
-}
 
+- (void)showBodyData:(Body *)body {
+	[self setTotalLabel:energyTotalLabel current:body.energy.current capacity:body.energy.max];
+	[self setPerHourLabel:energyPerHourLabel perHour:body.energy.perHour];
 
-- (void)setFoodCurrent:(NSNumber *)current capacity:(NSNumber *)capacity perHour:(NSNumber *)perHour {
-	[self setTotalLabel:foodTotalLabel current:current capacity:capacity];
-	[self setNormalPerHourLabel:foodPerHourLabel perHour:perHour];
-}
+	[self setTotalLabel:foodTotalLabel current:body.food.current capacity:body.food.max];
+	[self setPerHourLabel:foodPerHourLabel perHour:body.food.perHour];
 
+	self.happinessTotalLabel.text = [NSString stringWithFormat:@"%@", [Util prettyNSNumber:body.happiness.current]];
+	[self setPerHourLabel:happinessPerHourLabel perHour:body.happiness.perHour];
 
-- (void)setHappinessCurrent:(NSNumber *)current perHour:(NSNumber *)perHour {
-	self.happinessTotalLabel.text = [NSString stringWithFormat:@"%@", [Util prettyNumber:current]];
-	[self setNormalPerHourLabel:happinessPerHourLabel perHour:perHour];
-}
+	[self setTotalLabel:oreTotalLabel current:body.ore.current capacity:body.ore.max];
+	[self setPerHourLabel:orePerHourLabel perHour:body.ore.perHour];
 
+	[self setTotalLabel:wasteTotalLabel current:body.waste.current capacity:body.waste.max];
+	[self setPerHourLabel:wastePerHourLabel perHour:body.waste.perHour];
 
-- (void)setOreCurrent:(NSNumber *)current capacity:(NSNumber *)capacity perHour:(NSNumber *)perHour {
-	[self setTotalLabel:oreTotalLabel current:current capacity:capacity];
-	[self setNormalPerHourLabel:orePerHourLabel perHour:perHour];
-}
-
-
-- (void)setWasteCurrent:(NSNumber *)current capacity:(NSNumber *)capacity perHour:(NSNumber *)perHour {
-	[self setTotalLabel:wasteTotalLabel current:current capacity:capacity];
-	[self setNormalPerHourLabel:wastePerHourLabel perHour:perHour];
-	//[self setOppositePerHourLabel:wastePerHourLabel perHour:perHour];
-}
-
-
-- (void)setWaterCurrent:(NSNumber *)current capacity:(NSNumber *)capacity perHour:(NSNumber *)perHour {
-	[self setTotalLabel:waterTotalLabel current:current capacity:capacity];
-	[self setNormalPerHourLabel:waterPerHourLabel perHour:perHour];
+	[self setTotalLabel:waterTotalLabel current:body.water.current capacity:body.water.max];
+	[self setPerHourLabel:waterPerHourLabel perHour:body.water.perHour];
 }
 
 
 #pragma mark -
 #pragma mark Private Methods
 
-- (void)setTotalLabel:(UILabel *)totalLabel current:(NSNumber *)current capacity:(NSNumber *)capacity {
-	totalLabel.text = [NSString stringWithFormat:@"%@/%@", [Util prettyNumber:current], [Util prettyNumber:capacity]];
-	if (intv_(current) == intv_(capacity)) {
+- (void)setTotalLabel:(UILabel *)totalLabel current:(NSNumber *)current capacity:(NSInteger)capacity {
+	totalLabel.text = [NSString stringWithFormat:@"%@/%@", [Util prettyNSNumber:current], [Util prettyNSInteger:capacity]];
+	if (intv_(current) == capacity) {
 		totalLabel.textColor = [UIColor redColor];
 	} else {
 		totalLabel.textColor = [UIColor blackColor];
@@ -127,22 +111,12 @@
 }
 
 
-- (void)setNormalPerHourLabel:(UILabel *)perHourLabel perHour:(NSNumber *)perHour {
-	perHourLabel.text = [NSString stringWithFormat:@"%@/hr", [Util prettyNumber:perHour]];
-	if ([perHour intValue] < 0) {
+- (void)setPerHourLabel:(UILabel *)perHourLabel perHour:(NSInteger)perHour {
+	perHourLabel.text = [NSString stringWithFormat:@"%@/hr", [Util prettyNSInteger:perHour]];
+	if (perHour < 0) {
 		perHourLabel.textColor = [UIColor redColor];
 	} else {
 		perHourLabel.textColor = [UIColor blackColor];
-	}
-}
-
-
-- (void)setOppositePerHourLabel:(UILabel *)perHourLabel perHour:(NSNumber *)perHour {
-	perHourLabel.text = [NSString stringWithFormat:@"%@/hr", [Util prettyNumber:perHour]];
-	if ([perHour intValue] < 0) {
-		perHourLabel.textColor = [UIColor blackColor];
-	} else {
-		perHourLabel.textColor = [UIColor redColor];
 	}
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Body.h"
 
 
 @interface LETableViewCellCurrentResources : UITableViewCell {
@@ -39,12 +40,7 @@
 @property(nonatomic, retain) IBOutlet UILabel *waterPerHourLabel;
 
 
-- (void)setEnergyCurrent:(NSNumber *)current capacity:(NSNumber *)capacity perHour:(NSNumber *)perHour;
-- (void)setFoodCurrent:(NSNumber *)current capacity:(NSNumber *)capacity perHour:(NSNumber *)perHour;
-- (void)setHappinessCurrent:(NSNumber *)current perHour:(NSNumber *)perHour;
-- (void)setOreCurrent:(NSNumber *)current capacity:(NSNumber *)capacity perHour:(NSNumber *)perHour;
-- (void)setWasteCurrent:(NSNumber *)current capacity:(NSNumber *)capacity perHour:(NSNumber *)perHour;
-- (void)setWaterCurrent:(NSNumber *)current capacity:(NSNumber *)capacity perHour:(NSNumber *)perHour;
+- (void)showBodyData:(Body *)body;
 
 
 + (LETableViewCellCurrentResources *)getCellForTableView:(UITableView *)tableView;

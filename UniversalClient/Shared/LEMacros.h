@@ -14,8 +14,11 @@
 #define NSRangeZero NSMakeRange(0,0)
 
 //Supported Server Version
-#define SERVER_MAJOR = 2
-#define SERVER_MINOR = 0
+#define SERVER_MAJOR 2
+#define SERVER_MINOR 0
+
+//Time defs
+#define SEC_IN_HOUR (1.0 * 60.0 * 60.0) // 1hr, 60 min, 60 sec
 
 //#define CELL_BACKGROUND_COLOR [UIColor colorWithRed:(244/255.0) green:(215/255.0) blue:(78/255.0) alpha:1.0]
 #define CELL_BACKGROUND_IMAGE [UIImage imageNamed:@"assets/ui/bkg.png"]

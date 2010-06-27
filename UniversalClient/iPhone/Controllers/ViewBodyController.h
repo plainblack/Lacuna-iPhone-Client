@@ -12,15 +12,10 @@
 
 @interface ViewBodyController : LETableViewControllerGrouped {
 	NSString *bodyId;
-	NSDictionary *bodyData;
-	NSTimer *timer;
-	BOOL ownBody;
 }
 
 
 @property(nonatomic, retain) NSString *bodyId;
-@property(nonatomic, retain) NSDictionary *bodyData;
-@property(nonatomic, retain) NSTimer *timer;
 
 
 - (void)clear;

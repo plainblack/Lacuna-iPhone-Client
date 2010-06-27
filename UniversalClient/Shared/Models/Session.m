@@ -28,6 +28,7 @@ static Session *sharedSession = nil;
 @synthesize serverVersion;
 @synthesize empire;
 @synthesize body;
+@synthesize lastTick;
 
 
 #pragma mark --
@@ -81,6 +82,8 @@ static Session *sharedSession = nil;
 	if (!self.savedEmpireList) {
 		self.savedEmpireList = [NSMutableArray arrayWithCapacity:1];
 	}
+	
+	self->timer = [[NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES] retain];
 
 	return self;
 }
@@ -92,6 +95,10 @@ static Session *sharedSession = nil;
 	self.body = nil;
 	self.savedEmpireList = nil;
 	self.serverVersion = nil;
+	self.lastTick = nil;
+	[self->timer invalidate];
+	[self->timer release];
+	self->timer = nil;
 	[super dealloc];
 }
 
@@ -156,6 +163,15 @@ static Session *sharedSession = nil;
 #pragma mark --
 #pragma mark Callback methods
 
+- (void)handleTimer:(NSTimer *)theTimer {
+	NSDate *now = [NSDate date];
+	if(self.body) {
+		[self.body tick:[now timeIntervalSinceDate: self.lastTick]];
+	}
+	self.lastTick = now;
+}
+
+
 - (id)loggedIn:(LEEmpireLogin *)request {
 	if ([request wasError]) {
 		[request markErrorHandled];
@@ -208,7 +224,15 @@ static Session *sharedSession = nil;
 
 
 - (id)bodyLoaded:(LEBodyStatus *)request {
-	NSLog(@"Body Loaded: %@", request);
+	if (self.body) {
+		[self.body parseData:request.body];
+	} else {
+		Body *newBody = [[[Body alloc] init] autorelease];
+		[newBody parseData:request.body];
+		self.body = newBody;
+	}
+
+	
 	return nil;
 }
 
