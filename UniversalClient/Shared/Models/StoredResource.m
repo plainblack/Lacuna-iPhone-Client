@@ -34,7 +34,7 @@
 #pragma mark --
 #pragma mark Instance Methods
 
-- (NSNumber *)tick:(NSTimeInterval)interval {
+- (NSNumber *)tick:(NSInteger)interval {
 	double generated = ([self.current doubleValue] + ([self.perSec doubleValue] * interval));
 	if (generated > self.max) {
 		self.current = [NSNumber numberWithInt:self.max];
@@ -54,9 +54,9 @@
 	
 	resource.current = [data objectForKey:[NSString stringWithFormat:@"%@_stored", prefix]];
 	NSString *tmp = [NSString stringWithFormat:@"%@_capacity", prefix];
-	resource.max = intv_([data objectForKey:tmp]);
+	resource.max = _intv([data objectForKey:tmp]);
 	tmp = [NSString stringWithFormat:@"%@_hour", prefix];
-	resource.perHour = intv_([data objectForKey:tmp]);
+	resource.perHour = _intv([data objectForKey:tmp]);
 	resource.perSec = [NSNumber numberWithFloat:resource.perHour / SEC_IN_HOUR];
 	resource.lastTick = [NSDate date];
 	

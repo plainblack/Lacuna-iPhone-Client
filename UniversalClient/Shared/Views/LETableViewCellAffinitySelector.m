@@ -80,7 +80,7 @@
 #pragma mark Action Methods
 
 - (IBAction)decreaseValue {
-	if (intv_(value) == 2) {
+	if (_intv(value) == 2) {
 		UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Are you sure"
 													 message:@"Setting an affinity to 1 puts you are a significant disadvantage and should only be done by expert players."
 													delegate:self
@@ -106,8 +106,8 @@
 
 - (void)updateValueLabel {
 	self.valueLabel.text = [value stringValue];
-	[self.minusButton setEnabled:(intv_(value) > 1)];
-	[self.plusButton setEnabled:(intv_(value) < 7)];
+	[self.minusButton setEnabled:(_intv(value) > 1)];
+	[self.plusButton setEnabled:(_intv(value) < 7)];
 }
 
 

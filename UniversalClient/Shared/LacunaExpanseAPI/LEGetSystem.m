@@ -25,7 +25,7 @@
 }
 
 - (id)params {
-	return array_([Session sharedInstance].sessionId, self.systemId);
+	return _array([Session sharedInstance].sessionId, self.systemId);
 }
 
 
@@ -43,7 +43,7 @@
 	for(NSString *bodyId in bodyDict) {
 		NSMutableDictionary *body = [bodyDict objectForKey:bodyId];
 		[body setObject:bodyId forKey:@"id"];
-		int orbit = intv_([body objectForKey:@"orbit"]);
+		int orbit = _intv([body objectForKey:@"orbit"]);
 		[tmp replaceObjectAtIndex:orbit	withObject:body];
 	}
 	self.bodies = tmp;

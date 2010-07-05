@@ -7,10 +7,10 @@
 //
 #import	<UIKit/UIKit.h>
 
-#define array_(__args...) [NSArray arrayWithObjects:__args, nil]
-#define boolv_(__o) [__o] boolValue]
-#define dict_(__args...) [NSDictionary dictionaryWithObjectsAndKeys:__args, nil]
-#define intv_(__o) [__o intValue]
+#define _array(__args...) [NSMutableArray arrayWithObjects:__args, nil]
+#define _boolv(__o) [__o] boolValue]
+#define _dict(__args...) [NSMutableDictionary dictionaryWithObjectsAndKeys:__args, nil]
+#define _intv(__o) [__o intValue]
 #define NSRangeZero NSMakeRange(0,0)
 
 //Supported Server Version

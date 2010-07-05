@@ -32,7 +32,7 @@
 	self.nameCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
 	self.nameCell.label.text = @"Name";
 	
-	self.sectionHeaders = array_([LEViewSectionTab tableView:self.tableView createWithText:@"Body name"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Body name"]);
 }
 
 

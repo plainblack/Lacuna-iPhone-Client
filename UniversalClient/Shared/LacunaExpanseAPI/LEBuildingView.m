@@ -16,18 +16,18 @@
 
 @synthesize buildingId;
 @synthesize result;
-@synthesize url;
+@synthesize buildingUrl;
 
 
-- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId url:(NSString *)inUrl {
+- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId url:(NSString *)inBuildingUrl {
 	self.buildingId = inBuildingId;
-	self.url = inUrl;
+	self.buildingUrl = inBuildingUrl;
 	return [self initWithCallback:inCallback target:(NSObject *)inTarget];
 }
 
 
 - (id)params {
-	return array_([Session sharedInstance].sessionId, self.buildingId);
+	return _array([Session sharedInstance].sessionId, self.buildingId);
 }
 
 
@@ -37,7 +37,7 @@
 
 
 - (NSString *)serviceUrl {
-	return self.url;
+	return self.buildingUrl;
 }
 
 
@@ -49,7 +49,7 @@
 - (void)dealloc {
 	self.buildingId = nil;
 	self.result = nil;
-	self.url = nil;
+	self.buildingUrl = nil;
 	[super dealloc];
 }
 

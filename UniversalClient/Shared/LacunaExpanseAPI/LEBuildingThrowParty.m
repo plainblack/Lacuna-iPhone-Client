@@ -26,7 +26,7 @@
 
 
 - (id)params {
-	return array_([Session sharedInstance].sessionId, self.buildingId);
+	return _array([Session sharedInstance].sessionId, self.buildingId);
 }
 
 

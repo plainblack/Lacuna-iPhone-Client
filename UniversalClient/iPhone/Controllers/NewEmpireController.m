@@ -46,7 +46,7 @@
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)] autorelease];
 	self.hidesBottomBarWhenPushed = YES;
-	self.sectionHeaders = array_([LEViewSectionTab tableView:self.tableView createWithText:@"Empire"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Empire"]);
 	
 	self.nameCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
 	self.nameCell.label.text = @"Name";
@@ -65,7 +65,7 @@
 	self.speciesCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
 	self.speciesCell.selectionStyle = UITableViewCellSelectionStyleNone;
 	self.speciesCell.backgroundColor = CELL_BACKGROUND_COLOR;
-	self.speciesSelector = [[[UISegmentedControl alloc] initWithItems:array_(@"Human", @"Custom")] autorelease];
+	self.speciesSelector = [[[UISegmentedControl alloc] initWithItems:_array(@"Human", @"Custom")] autorelease];
 	[self.speciesSelector addTarget:self action:@selector(speciesSelected) forControlEvents:UIControlEventValueChanged];
 	self.speciesSelector.tintColor = LE_BLUE;
 	self.speciesSelector.segmentedControlStyle = UISegmentedControlStyleBar;

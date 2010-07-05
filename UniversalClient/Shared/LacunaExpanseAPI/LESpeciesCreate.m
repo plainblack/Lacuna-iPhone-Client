@@ -60,8 +60,8 @@
 
 
 - (id)params {
-	NSDictionary *speciesParams = dict_(name, @"name", description, @"description", habitableOrbits, @"habitable_orbits", constructionAffinity, @"manufacturing_affinity", deceptionAffinity, @"deception_affinity", researchAffinity, @"research_affinity", managementAffinity, @"management_affinity", farmingAffinity, @"farming_affinity", miningAffinity, @"mining_affinity", scienceAffinity, @"science_affinity", environmentalAffinity, @"environmental_affinity", politicalAffinity, @"political_affinity", tradeAffinity, @"trade_affinity", growthAffinity, @"growth_affinity");
-	NSArray *tmp = array_(self.empireId, speciesParams);
+	NSDictionary *speciesParams = _dict(name, @"name", description, @"description", habitableOrbits, @"habitable_orbits", constructionAffinity, @"manufacturing_affinity", deceptionAffinity, @"deception_affinity", researchAffinity, @"research_affinity", managementAffinity, @"management_affinity", farmingAffinity, @"farming_affinity", miningAffinity, @"mining_affinity", scienceAffinity, @"science_affinity", environmentalAffinity, @"environmental_affinity", politicalAffinity, @"political_affinity", tradeAffinity, @"trade_affinity", growthAffinity, @"growth_affinity");
+	NSArray *tmp = _array(self.empireId, speciesParams);
 	NSLog(@"Species Params: %@", speciesParams);
 	NSLog(@"Creating species: %@", tmp);
 	return tmp;

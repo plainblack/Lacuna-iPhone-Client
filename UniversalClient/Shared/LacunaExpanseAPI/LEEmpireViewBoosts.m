@@ -27,7 +27,7 @@
 
 - (id)params {
 	Session *session = [Session sharedInstance];
-	return array_(session.sessionId);
+	return _array(session.sessionId);
 }
 
 

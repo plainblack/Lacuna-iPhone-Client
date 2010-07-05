@@ -99,7 +99,7 @@
 		NSLog(@"Archive");
 		NSDictionary *headers = [self.messageHeaders objectAtIndex:index];
 		NSString *messageId = [headers objectForKey:@"id"];
-		[[[LEInboxArchive alloc] initWithCallback:@selector(messageArchived:) target:self messageIds:array_(messageId)] autorelease];
+		[[[LEInboxArchive alloc] initWithCallback:@selector(messageArchived:) target:self messageIds:_array(messageId)] autorelease];
 		[self.messageHeaders removeObjectAtIndex:index];
 	}
 }

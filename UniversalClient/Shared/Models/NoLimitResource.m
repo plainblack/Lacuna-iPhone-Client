@@ -33,7 +33,7 @@
 #pragma mark --
 #pragma mark Instance Methods
 
-- (void)tick:(NSTimeInterval)interval {
+- (void)tick:(NSInteger)interval {
 	double tmp = ([self.current doubleValue] + ([self.perSec doubleValue] * interval));
 	self.current = [NSNumber numberWithDouble:tmp];
 }

@@ -58,12 +58,12 @@
 
 - (void)parseData:(NSDictionary *)empireData {
 	self.id = [empireData objectForKey:@"id"];
-	self.isIsolationist = intv_([empireData objectForKey:@"is_isolationist"]);
+	self.isIsolationist = _intv([empireData objectForKey:@"is_isolationist"]);
 	self.name = [empireData objectForKey:@"name"];
 	self.statusMessage = [empireData objectForKey:@"status_message"];
 	self.homePlanetId = [empireData objectForKey:@"home_planet_id"];
-	self.essentia = intv_([empireData objectForKey:@"essentia"]);
-	self.numNewMessages = intv_([empireData objectForKey:@"has_new_messages"]);
+	self.essentia = _intv([empireData objectForKey:@"essentia"]);
+	self.numNewMessages = _intv([empireData objectForKey:@"has_new_messages"]);
 	self.planets = [empireData objectForKey:@"planets"];
 	
 	NSDictionary *newestMessage = [empireData objectForKey:@"most_recent_message"];

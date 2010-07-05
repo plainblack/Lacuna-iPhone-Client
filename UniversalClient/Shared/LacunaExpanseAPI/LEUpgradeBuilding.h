@@ -13,11 +13,13 @@
 @interface LEUpgradeBuilding : LERequest {
 	NSString *buildingId;
 	NSString *buildingUrl;
+	NSDictionary *buildingData;
 }
 
 
 @property(nonatomic, retain) NSString *buildingId;
 @property(nonatomic, retain) NSString *buildingUrl;
+@property(nonatomic, retain) NSDictionary *buildingData;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl;

@@ -34,7 +34,7 @@
 
 
 - (id)params {
-	return array_([Session sharedInstance].sessionId, self.buildingId, self.water, self.ore, self.energy, [NSNumber numberWithBool:self.subsidized]);
+	return _array([Session sharedInstance].sessionId, self.buildingId, self.water, self.ore, self.energy, [NSNumber numberWithBool:self.subsidized]);
 }
 
 

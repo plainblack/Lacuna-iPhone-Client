@@ -30,7 +30,7 @@
 
 
 - (id)params {
-	return array_([Session sharedInstance].sessionId, self.buildingId, self.spyId, self.assignment);
+	return _array([Session sharedInstance].sessionId, self.buildingId, self.spyId, self.assignment);
 }
 
 

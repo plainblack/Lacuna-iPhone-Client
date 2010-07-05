@@ -25,7 +25,7 @@
 @property (nonatomic, retain) NSDate *lastTick;
 
 
-- (NSNumber *)tick:(NSTimeInterval)interval;
+- (NSNumber *)tick:(NSInteger)interval;
 
 
 + (StoredResource *)createFromData:(NSDictionary *)data withPrefix:(NSString *)prefix;

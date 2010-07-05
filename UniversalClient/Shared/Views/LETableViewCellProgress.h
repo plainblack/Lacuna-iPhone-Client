@@ -7,31 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
-
-
-@protocol LETableViewCellProgressDelegate
-- (void)progressComplete;
-@end
+#import "TimedActivity.h"
 
 
 @interface LETableViewCellProgress : UITableViewCell {
 	UIProgressView *progressView;
 	UILabel *secondsLabel;
-	id<LETableViewCellProgressDelegate> delegate;
-	NSInteger totalTime;
-	NSInteger remainingTime;
-	NSTimer *timer;
+	TimedActivity *timedActivity;
 }
 
 
 @property(nonatomic, retain) IBOutlet UIProgressView *progressView;
 @property(nonatomic, retain) IBOutlet UILabel *secondsLabel;
-@property(nonatomic, assign) id<LETableViewCellProgressDelegate> delegate;
-@property(nonatomic, assign) NSTimer *timer;
+@property(nonatomic, retain) TimedActivity *timedActivity;
 
 
-- (void)setTotalTime:(NSInteger)totalTime remainingTime:(NSInteger)remainingTime;
-- (void)handleTimer:(NSTimer *)theTimer;
+- (void)bindToTimedActivity:(TimedActivity *)timedActivity;
 
 
 + (LETableViewCellProgress *)getCellForTableView:(UITableView *)tableView;

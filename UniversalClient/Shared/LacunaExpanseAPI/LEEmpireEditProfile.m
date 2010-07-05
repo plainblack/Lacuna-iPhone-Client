@@ -30,7 +30,7 @@
 
 - (id)params {
 	Session *session = [Session sharedInstance];
-	return array_(session.sessionId, profile);
+	return _array(session.sessionId, profile);
 }
 
 

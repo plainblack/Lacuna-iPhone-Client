@@ -24,7 +24,7 @@
 
 
 - (id)params {
-	return array_(self.sessionId);
+	return _array(self.sessionId);
 }
 
 

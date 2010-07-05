@@ -16,8 +16,7 @@
 
 @synthesize progressView;
 @synthesize secondsLabel;
-@synthesize delegate;
-@synthesize timer;
+@synthesize timedActivity;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -37,11 +36,9 @@
 
 
 - (void)dealloc {
-	[self.timer invalidate];
-	self.timer = nil;
 	self.progressView = nil;
 	self.secondsLabel = nil;
-	self.delegate = nil;
+	self.timedActivity = nil;
     [super dealloc];
 }
 
@@ -49,27 +46,15 @@
 #pragma mark -
 #pragma mark Instance Methods
 
-- (void)setTotalTime:(NSInteger)inTotalTime remainingTime:(NSInteger)inRemainingTime {
-	[self.timer invalidate];
-	totalTime = inTotalTime + 2;
-	remainingTime = inRemainingTime + 2;
-	[self handleTimer:nil];
-	self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
-}
-
-
-- (void)handleTimer:(NSTimer *)theTimer {
-	remainingTime--;
-	if (remainingTime > 0){
-		CGFloat progress = (totalTime - (float)remainingTime) / totalTime;
-		self.progressView.progress = progress;
-		self.secondsLabel.text = [Util prettyDuration:remainingTime];
+- (void)bindToTimedActivity:(TimedActivity *)inTimedActivity {
+	self.timedActivity = inTimedActivity;
+	if (self.timedActivity.secondsRemaining > 0){
+		self.progressView.progress = [self.timedActivity progress];
+		self.secondsLabel.text = [Util prettyDuration:self.timedActivity.secondsRemaining];
 	} else {
 		self.progressView.progress = 1.0;
-		[self.timer invalidate];
-		self.timer = nil;
-		[delegate progressComplete];
 	}
+	[self.timedActivity addObserver:self forKeyPath:@"secondsRemaining" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 }
 
 
@@ -108,6 +93,23 @@
 
 + (CGFloat)getHeightForTableView:(UITableView *)tableView {
 	return 50.0;
+}
+
+
+#pragma mark -
+#pragma mark KVO Methods
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+	if ([keyPath isEqual:@"secondsRemaining"]) {
+		TimedActivity *watchedTimedActivity = (TimedActivity *)object;
+		if (watchedTimedActivity.secondsRemaining > 0){
+			self.progressView.progress = [watchedTimedActivity progress];
+			self.secondsLabel.text = [Util prettyDuration:watchedTimedActivity.secondsRemaining];
+		} else {
+			self.progressView.progress = 1.0;
+			[watchedTimedActivity removeObserver:self forKeyPath:@"secondsRemaining"];
+		}
+	}
 }
 
 

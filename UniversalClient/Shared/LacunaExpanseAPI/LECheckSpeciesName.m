@@ -23,12 +23,12 @@
 
 
 - (BOOL)nameIsAvailable {
-	return intv_([self.response objectForKey:@"result"]) == 1;
+	return _intv([self.response objectForKey:@"result"]) == 1;
 }
 
 
 - (id)params {
-	return array_(self.name);
+	return _array(self.name);
 }
 
 

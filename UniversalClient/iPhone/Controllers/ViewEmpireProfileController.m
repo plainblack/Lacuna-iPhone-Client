@@ -51,7 +51,7 @@ typedef enum {
     self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
 	self.navigationItem.title = @"Loading";
 	
-	self.sectionHeaders = array_([LEViewSectionTab tableView:self.tableView createWithText:@"Empire"],
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Empire"],
 								 [LEViewSectionTab tableView:self.tableView createWithText:@"Medals"]);
 }
 

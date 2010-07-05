@@ -45,7 +45,7 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-	self.listChooser = [[[UISegmentedControl alloc] initWithItems:array_(@"Buildable", @"All")] autorelease];
+	self.listChooser = [[[UISegmentedControl alloc] initWithItems:_array(@"Buildable", @"All")] autorelease];
 	[self.listChooser addTarget:self action:@selector(switchList) forControlEvents:UIControlEventValueChanged];
 	self.listChooser.segmentedControlStyle = UISegmentedControlStyleBar;
 	self.listChooser.selectedSegmentIndex = 0;
@@ -109,7 +109,7 @@ typedef enum {
 			NSDictionary *stats = [building objectForKey:@"production"];
 			LETableViewCellBuildingStats *buildingStatsCell = [LETableViewCellBuildingStats getCellForTableView:tableView];
 			[buildingStatsCell setBuildingImage:[UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/100/%@.png", [building objectForKey:@"image"]]]];
-			[buildingStatsCell setBuildingName:[building objectForKey:@"name"] buildingLevel:[NSNumber numberWithInt:1]];
+			[buildingStatsCell setBuildingName:[building objectForKey:@"name"] buildingLevel:1];
 			[buildingStatsCell setEnergyPerHour:[stats objectForKey:@"energy_hour"]];
 			[buildingStatsCell setFoodPerHour:[stats objectForKey:@"food_hour"]];
 			[buildingStatsCell setHappinessPerHour: [stats objectForKey:@"happiness_hour"]];

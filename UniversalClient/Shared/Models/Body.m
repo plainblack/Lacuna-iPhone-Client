@@ -10,6 +10,7 @@
 #import "LEMacros.h"
 #import "LEBodyGetBuildings.h"
 #import "LEBuildingView.h"
+#import "BuildingUtil.h"
 
 
 @implementation Body
@@ -71,6 +72,7 @@
 	self.water = nil;
 	self.buildingMap = nil;
 	self.surfaceImageName = nil;
+	[self.currentBuilding removeObserver:self forKeyPath:@"needsReload"];
 	self.currentBuilding = nil;
 	[super dealloc];
 }
@@ -81,23 +83,23 @@
 
 - (void)parseData:(NSDictionary *)bodyData {
 	self.id = [bodyData objectForKey:@"id"];
-	self.x = intv_([bodyData objectForKey:@"x"]);
-	self.y = intv_([bodyData objectForKey:@"y"]);
+	self.x = _intv([bodyData objectForKey:@"x"]);
+	self.y = _intv([bodyData objectForKey:@"y"]);
 	self.starId = [bodyData objectForKey:@"star_id"];
 	self.starName = [bodyData objectForKey:@"star_name"];
-	self.orbit = intv_([bodyData objectForKey:@"orbit"]);
+	self.orbit = _intv([bodyData objectForKey:@"orbit"]);
 	self.type = [bodyData objectForKey:@"id"];
 	self.name = [bodyData objectForKey:@"name"];
 	self.imageName = [bodyData objectForKey:@"image"];
-	self.size = intv_([bodyData objectForKey:@"size"]);
-	self.planetWater = intv_([bodyData objectForKey:@"water"]);
+	self.size = _intv([bodyData objectForKey:@"size"]);
+	self.planetWater = _intv([bodyData objectForKey:@"water"]);
 	self.ores = [bodyData objectForKey:@"ores"];
 	NSDictionary *empireData = [bodyData objectForKey:@"empire"];
 	self.empireId = [empireData objectForKey:@"id"];
 	self.empireName = [empireData objectForKey:@"name"];
 	self.alignment = [empireData objectForKey:@"alignment"];
-	self.needsSurfaceRefresh = intv_([bodyData objectForKey:@"needs_surface_refresh"]);
-	self.buildingCount = intv_([bodyData objectForKey:@"alignment"]);
+	self.needsSurfaceRefresh = _intv([bodyData objectForKey:@"needs_surface_refresh"]);
+	self.buildingCount = _intv([bodyData objectForKey:@"alignment"]);
 	self.happiness = [NoLimitResource createFromData:bodyData withPrefix:@"happiness"];
 	self.energy = [StoredResource createFromData:bodyData withPrefix:@"energy"];
 	self.food = [StoredResource createFromData:bodyData withPrefix:@"food"];
@@ -107,7 +109,7 @@
 }
 
 
-- (void)tick:(NSTimeInterval)interval {
+- (void)tick:(NSInteger)interval {
 	[self.energy tick:interval];
 	[self.food tick:interval];
 	[self.happiness tick:interval];
@@ -131,8 +133,14 @@
 
 
 - (void)loadBuilding:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl {
-	self.currentBuilding = nil;
+	[self clearBuilding];
 	[[LEBuildingView alloc] initWithCallback:@selector(buildingLoaded:) target:self buildingId:buildingId url:buildingUrl];
+}
+
+
+- (void)clearBuilding {
+	[self.currentBuilding removeObserver:self forKeyPath:@"needsReload"];
+	self.currentBuilding = nil;
 }
 
 
@@ -147,11 +155,21 @@
 
 
 - (id)buildingLoaded:(LEBuildingView *)request {
-	NSLog(@"buildingLoaded: %@", request);
-	Building *building = [[[Building alloc] init] autorelease];
-	[building parseData:request.result];
+	Building *building = [BuildingUtil createBuilding:request];
+	[building addObserver:self forKeyPath:@"needsReload" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 	self.currentBuilding = building;
 	return nil;
+}
+
+
+#pragma mark --
+#pragma mark KVO Callback
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+	if ([keyPath isEqual:@"needsReload"]) {
+		Building *building = (Building *)object;
+		[self loadBuilding:building.id buildingUrl:building.buildingUrl];
+	}
 }
 
 

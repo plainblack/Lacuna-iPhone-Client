@@ -47,8 +47,8 @@
 	self.scrollView.backgroundColor = [UIColor colorWithPatternImage:surfaceImage];
 
 	for (NSDictionary *building in self.buildings) {
-		NSInteger mapX = intv_([building objectForKey:@"x"]);
-		NSInteger mapY = intv_([building objectForKey:@"y"]);
+		NSInteger mapX = _intv([building objectForKey:@"x"]);
+		NSInteger mapY = _intv([building objectForKey:@"y"]);
 		NSString *imageName = [building objectForKey:@"image"];
 		UIImage* image = [UIImage imageNamed:[NSString stringWithFormat:@"assets/planet_side/100/%@.png", imageName]];
 		UIImageView *imageView = [[UIImageView alloc] initWithImage:image];

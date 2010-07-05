@@ -71,9 +71,10 @@
 
 
 - (void)parseData:(NSDictionary *)bodyData;
-- (void)tick:(NSTimeInterval)interval;
+- (void)tick:(NSInteger)interval;
 - (void)loadBuildingMap;
 - (void)loadBuilding:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl;
+- (void)clearBuilding;
 
 
 @end

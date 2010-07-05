@@ -23,7 +23,7 @@
 @property (nonatomic, retain) NSDate *lastTick;
 
 
-- (void)tick:(NSTimeInterval)interval;
+- (void)tick:(NSInteger)interval;
 - (void)addToCurrent:(NSNumber *)adjustment;
 - (void)subtractFromCurrent:(NSNumber *)adjustment;
 

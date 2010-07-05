@@ -17,8 +17,8 @@
 @interface RecycleController : LETableViewControllerGrouped {
 	NSString *buildingId;
 	NSString *urlPart;
-	NSNumber *secondsPerResource;
-	NSNumber *seconds;
+	NSInteger secondsPerResource;
+	NSInteger seconds;
 	LETableViewCellNumberEntry *energyCell;
 	LETableViewCellNumberEntry *oreCell;
 	LETableViewCellNumberEntry *waterCell;
@@ -28,8 +28,8 @@
 
 @property(nonatomic, retain) NSString *buildingId;
 @property(nonatomic, retain) NSString *urlPart;
-@property(nonatomic, retain) NSNumber *secondsPerResource;
-@property(nonatomic, retain) NSNumber *seconds;
+@property(nonatomic, assign) NSInteger secondsPerResource;
+@property(nonatomic, assign) NSInteger seconds;
 @property(nonatomic, retain) LETableViewCellNumberEntry *energyCell;
 @property(nonatomic, retain) LETableViewCellNumberEntry *oreCell;
 @property(nonatomic, retain) LETableViewCellNumberEntry *waterCell;

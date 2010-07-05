@@ -32,7 +32,7 @@
 
 
 - (id)params {
-	return array_([Session sharedInstance].sessionId, self.bodyId, self.x, self.y);
+	return _array([Session sharedInstance].sessionId, self.bodyId, self.x, self.y);
 }
 
 

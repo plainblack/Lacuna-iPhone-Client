@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ResourceCost.h"
 
 
 @interface LETableViewCellCost : UITableViewCell {
@@ -32,6 +33,7 @@
 - (void)setOreCost:(NSNumber *)cost;
 - (void)setWasteCost:(NSNumber *)cost;
 - (void)setWaterCost:(NSNumber *)cost;
+- (void)setResourceCost:(ResourceCost *)resourceCost;
 
 
 + (LETableViewCellCost *)getCellForTableView:(UITableView *)tableView;

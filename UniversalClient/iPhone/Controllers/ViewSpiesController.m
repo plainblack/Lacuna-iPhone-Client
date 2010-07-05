@@ -47,7 +47,7 @@ typedef enum {
 	self.navigationItem.title = @"Spies";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
-	self.sectionHeaders = array_([LEViewSectionTab tableView:self.tableView createWithText:@"Spies"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Spies"]);
 }
 
 
@@ -95,7 +95,7 @@ typedef enum {
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		case ROW_ASSIGN_BUTTON:
-			if (intv_([spy objectForKey:@"is_available"]) == 1) {
+			if (_intv([spy objectForKey:@"is_available"]) == 1) {
 				return [LETableViewCellButton getHeightForTableView:tableView];
 			} else {
 				return [LETableViewCellLabeledText getHeightForTableView:tableView];
@@ -134,7 +134,7 @@ typedef enum {
 			cell = renameButtonCell;
 			break;
 		case ROW_ASSIGN_BUTTON:
-			if (intv_([spy objectForKey:@"is_available"]) == 1) {
+			if (_intv([spy objectForKey:@"is_available"]) == 1) {
 				LETableViewCellButton *assignButtonCell = [LETableViewCellButton getCellForTableView:tableView];
 				assignButtonCell.textLabel.text = @"Assign spy";
 				cell = assignButtonCell;
@@ -173,7 +173,7 @@ typedef enum {
 			[self.navigationController pushViewController:renameSpyController animated:YES];
 			break;
 		case ROW_ASSIGN_BUTTON:
-			if (intv_([spy objectForKey:@"is_available"]) == 1) {
+			if (_intv([spy objectForKey:@"is_available"]) == 1) {
 				AssignSpyController *assignSpyController = [AssignSpyController create];
 				assignSpyController.buildingId = self.buildingId;
 				assignSpyController.spyData = spy;
@@ -250,7 +250,7 @@ typedef enum {
 	}
 	if (spyToRemove) {
 		[self.spies removeObject:spyToRemove];
-		NSInteger currentSpyCount = intv_([self.spiesData objectForKey:@"current"]);
+		NSInteger currentSpyCount = _intv([self.spiesData objectForKey:@"current"]);
 		currentSpyCount -= 1;
 		[self.spiesData setObject:[NSNumber numberWithInt:currentSpyCount] forKey:@"current"];
 	}

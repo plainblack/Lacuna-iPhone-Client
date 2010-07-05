@@ -25,7 +25,7 @@
 
 
 - (id)params {
-	return array_([Session sharedInstance].sessionId, self.messageId);
+	return _array([Session sharedInstance].sessionId, self.messageId);
 }
 
 

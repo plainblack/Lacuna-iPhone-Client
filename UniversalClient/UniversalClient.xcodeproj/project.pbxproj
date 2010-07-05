@@ -22,6 +22,12 @@
 		F603A8EF1177F7F200BAC73A /* LETableViewCellCurrentResources.m in Sources */ = {isa = PBXBuildFile; fileRef = F603A8EE1177F7F200BAC73A /* LETableViewCellCurrentResources.m */; };
 		F603A91911780A0400BAC73A /* ViewBodyMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = F603A91811780A0400BAC73A /* ViewBodyMapController.m */; };
 		F6132E5B119E3A78000F99A9 /* LETableViewCellNumberEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = F6132E5A119E3A78000F99A9 /* LETableViewCellNumberEntry.m */; };
+		F61D0C2311E2355600B06382 /* WasteRecycling.m in Sources */ = {isa = PBXBuildFile; fileRef = F61D0C2211E2355600B06382 /* WasteRecycling.m */; };
+		F61D0C2611E235C100B06382 /* BuildingUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = F61D0C2511E235C100B06382 /* BuildingUtil.m */; };
+		F61D0D3E11E24B8100B06382 /* Network19.m in Sources */ = {isa = PBXBuildFile; fileRef = F61D0D3D11E24B8100B06382 /* Network19.m */; };
+		F61D0D6D11E24E9E00B06382 /* Intelligence.m in Sources */ = {isa = PBXBuildFile; fileRef = F61D0D6C11E24E9E00B06382 /* Intelligence.m */; };
+		F61D0DE711E2602400B06382 /* Park.m in Sources */ = {isa = PBXBuildFile; fileRef = F61D0DE611E2602400B06382 /* Park.m */; };
+		F61D0E2F11E2656B00B06382 /* Development.m in Sources */ = {isa = PBXBuildFile; fileRef = F61D0E2E11E2656B00B06382 /* Development.m */; };
 		F631A3D311754AEF005E40CC /* ViewBodyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F631A3D211754AEF005E40CC /* ViewBodyController.m */; };
 		F631A3F311755489005E40CC /* ViewBodyController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F631A3F211755489005E40CC /* ViewBodyController.xib */; };
 		F634BADF116C27BE0084A8B2 /* icon_57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = F634BADE116C27BE0084A8B2 /* icon_57x57.png */; };
@@ -176,6 +182,18 @@
 		F603A91811780A0400BAC73A /* ViewBodyMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewBodyMapController.m; sourceTree = "<group>"; };
 		F6132E59119E3A78000F99A9 /* LETableViewCellNumberEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellNumberEntry.h; sourceTree = "<group>"; };
 		F6132E5A119E3A78000F99A9 /* LETableViewCellNumberEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellNumberEntry.m; sourceTree = "<group>"; };
+		F61D0C2111E2355600B06382 /* WasteRecycling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WasteRecycling.h; sourceTree = "<group>"; };
+		F61D0C2211E2355600B06382 /* WasteRecycling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WasteRecycling.m; sourceTree = "<group>"; };
+		F61D0C2411E235C100B06382 /* BuildingUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingUtil.h; sourceTree = "<group>"; };
+		F61D0C2511E235C100B06382 /* BuildingUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildingUtil.m; sourceTree = "<group>"; };
+		F61D0D3C11E24B8100B06382 /* Network19.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Network19.h; sourceTree = "<group>"; };
+		F61D0D3D11E24B8100B06382 /* Network19.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Network19.m; sourceTree = "<group>"; };
+		F61D0D6B11E24E9E00B06382 /* Intelligence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Intelligence.h; sourceTree = "<group>"; };
+		F61D0D6C11E24E9E00B06382 /* Intelligence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Intelligence.m; sourceTree = "<group>"; };
+		F61D0DE511E2602400B06382 /* Park.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Park.h; sourceTree = "<group>"; };
+		F61D0DE611E2602400B06382 /* Park.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Park.m; sourceTree = "<group>"; };
+		F61D0E2D11E2656B00B06382 /* Development.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Development.h; sourceTree = "<group>"; };
+		F61D0E2E11E2656B00B06382 /* Development.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Development.m; sourceTree = "<group>"; };
 		F631A3D111754AEF005E40CC /* ViewBodyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewBodyController.h; sourceTree = "<group>"; };
 		F631A3D211754AEF005E40CC /* ViewBodyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewBodyController.m; sourceTree = "<group>"; };
 		F631A3F211755489005E40CC /* ViewBodyController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewBodyController.xib; sourceTree = "<group>"; };
@@ -748,6 +766,18 @@
 				F6FD9E7D11D7A42C003785AD /* ResourceCost.m */,
 				F6FD9E8511D7A6F3003785AD /* TimedActivity.h */,
 				F6FD9E8611D7A6F3003785AD /* TimedActivity.m */,
+				F61D0C2111E2355600B06382 /* WasteRecycling.h */,
+				F61D0C2211E2355600B06382 /* WasteRecycling.m */,
+				F61D0C2411E235C100B06382 /* BuildingUtil.h */,
+				F61D0C2511E235C100B06382 /* BuildingUtil.m */,
+				F61D0D3C11E24B8100B06382 /* Network19.h */,
+				F61D0D3D11E24B8100B06382 /* Network19.m */,
+				F61D0D6B11E24E9E00B06382 /* Intelligence.h */,
+				F61D0D6C11E24E9E00B06382 /* Intelligence.m */,
+				F61D0DE511E2602400B06382 /* Park.h */,
+				F61D0DE611E2602400B06382 /* Park.m */,
+				F61D0E2D11E2656B00B06382 /* Development.h */,
+				F61D0E2E11E2656B00B06382 /* Development.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -1025,6 +1055,12 @@
 				F6FD9E7B11D7A41E003785AD /* ResourceStorage.m in Sources */,
 				F6FD9E7E11D7A42C003785AD /* ResourceCost.m in Sources */,
 				F6FD9E8711D7A6F3003785AD /* TimedActivity.m in Sources */,
+				F61D0C2311E2355600B06382 /* WasteRecycling.m in Sources */,
+				F61D0C2611E235C100B06382 /* BuildingUtil.m in Sources */,
+				F61D0D3E11E24B8100B06382 /* Network19.m in Sources */,
+				F61D0D6D11E24E9E00B06382 /* Intelligence.m in Sources */,
+				F61D0DE711E2602400B06382 /* Park.m in Sources */,
+				F61D0E2F11E2656B00B06382 /* Development.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,6 +16,7 @@
 
 @synthesize buildingId;
 @synthesize buildingUrl;
+@synthesize buildingData;
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl {
@@ -26,12 +27,12 @@
 
 
 - (id)params {
-	return array_([Session sharedInstance].sessionId, self.buildingId);
+	return _array([Session sharedInstance].sessionId, self.buildingId);
 }
 
 
 - (void)processSuccess {
-	//Does nothing
+	self.buildingData = [[self.response objectForKey:@"result"] objectForKey:@"building"];
 }
 
 
@@ -48,6 +49,7 @@
 - (void)dealloc {
 	self.buildingId = nil;
 	self.buildingUrl = nil;
+	self.buildingData = nil;
 	[super dealloc];
 }
 

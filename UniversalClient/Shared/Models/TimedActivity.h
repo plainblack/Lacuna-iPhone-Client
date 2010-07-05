@@ -24,6 +24,8 @@
 
 
 - (void)parseData:(NSDictionary *)data;
+- (CGFloat)progress;
+- (void)tick:(NSInteger)interval;
 
 
 @end

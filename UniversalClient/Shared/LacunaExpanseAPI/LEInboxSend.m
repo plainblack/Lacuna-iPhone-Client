@@ -31,7 +31,7 @@
 
 
 - (id)params {
-	return array_([Session sharedInstance].sessionId, self.recipients, self.subject, self.body, self.options); //KEVIN IS THIS REALLY AN ARRAY OF ARRAY THINGY?
+	return _array([Session sharedInstance].sessionId, self.recipients, self.subject, self.body, self.options); //KEVIN IS THIS REALLY AN ARRAY OF ARRAY THINGY?
 }
 
 

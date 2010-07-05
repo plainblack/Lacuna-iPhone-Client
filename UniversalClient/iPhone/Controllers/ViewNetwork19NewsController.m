@@ -30,7 +30,7 @@
 	self.navigationItem.title = @"Network 19 News";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
-	self.sectionHeaders = array_([LEViewSectionTab tableView:self.tableView createWithText:@"News"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"News"]);
 }
 
 

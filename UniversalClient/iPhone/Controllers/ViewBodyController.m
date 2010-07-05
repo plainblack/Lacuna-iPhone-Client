@@ -84,7 +84,7 @@ typedef enum {
 	self.navigationItem.title = @"Loading";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 
-	self.sectionHeaders = array_([LEViewSectionTab tableView:self.tableView createWithText:@"Body"],
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Body"],
 								 [LEViewSectionTab tableView:self.tableView createWithText:@"Actions"],
 								 [LEViewSectionTab tableView:self.tableView createWithText:@"Composition"]);
 }
@@ -102,7 +102,6 @@ typedef enum {
 	[session addObserver:self forKeyPath:@"body" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 	[session addObserver:self forKeyPath:@"lastTick" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 	[session loadBody:self.bodyId];
-	//Register as a listener
 }
 
 
@@ -419,8 +418,12 @@ typedef enum {
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ([keyPath isEqual:@"body"]) {
+		Session *session = [Session sharedInstance];
+		self.navigationItem.title = session.body.name;
 		[self.tableView reloadData];
 	} else if ([keyPath isEqual:@"lastTick"]) {
+		Session *session = [Session sharedInstance];
+		self.navigationItem.title = session.body.name;
 		[self.tableView reloadData];
 	}
 }

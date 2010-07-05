@@ -46,7 +46,7 @@
 	
 	self.navigationItem.title = [NSString stringWithFormat:@"Edit %@", self.textName];
 	
-	self.sectionHeaders = array_([LEViewSectionTab tableView:self.tableView createWithText:self.textName]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:self.textName]);
 }
 
 

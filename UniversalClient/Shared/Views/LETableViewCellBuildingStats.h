@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ResourceGeneration.h"
 
 
 @interface LETableViewCellBuildingStats : UITableViewCell {
@@ -38,8 +39,8 @@
 - (void)setWastePerHour:(NSNumber *)perHour;
 - (void)setWaterPerHour:(NSNumber *)perHour;
 - (void)setBuildingImage:(UIImage *)buildingImage;
-- (void)setBuildingName:(NSString *)name buildingLevel:(NSNumber *)level;
-
+- (void)setBuildingName:(NSString *)name buildingLevel:(NSInteger)level;
+- (void)setResourceGeneration:(ResourceGeneration *)resourceGeneration;
 
 + (LETableViewCellBuildingStats *)getCellForTableView:(UITableView *)tableView;
 + (CGFloat)getHeightForTableView:(UITableView *)tableView;

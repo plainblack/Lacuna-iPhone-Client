@@ -26,7 +26,7 @@
 
 
 - (id)params {
-	return array_(self.sessionId);
+	return _array(self.sessionId);
 }
 
 
@@ -44,7 +44,7 @@
 		[medalDictionary setObject:medalId forKey:@"id"];
 		[medalArray addObject:medalDictionary];
 	}
-	[medalArray sortUsingDescriptors:array_([[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES])];
+	[medalArray sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES])];
 
 	newEmpire.medals = medalArray;
 	self.empire = newEmpire;

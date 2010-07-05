@@ -29,7 +29,7 @@
 
 
 - (id)params {
-	NSArray *params = array_([Session sharedInstance].sessionId, self.bodyId, self.x, self.y);
+	NSArray *params = _array([Session sharedInstance].sessionId, self.bodyId, self.x, self.y);
 	return params;
 }
 
@@ -45,7 +45,7 @@
 		[self.buildables addObject:building];
 	}
 	
-	[self.buildables sortUsingDescriptors:array_([[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES])];
+	[self.buildables sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES])];
 	
 	[result objectForKey:@"building"];
 }

@@ -8,10 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "LETableViewControllerGrouped.h"
-#import "LETableViewCellProgress.h"
 
 
-@interface ViewBuildingController : LETableViewControllerGrouped <LETableViewCellProgressDelegate, UIActionSheetDelegate> {
+@interface ViewBuildingController : LETableViewControllerGrouped {
 	NSString *buildingId;
 	NSString *urlPart;
 	NSMutableDictionary *buildingsByLoc;

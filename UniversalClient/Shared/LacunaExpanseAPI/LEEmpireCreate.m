@@ -29,7 +29,7 @@
 }
 
 - (id)params {
-	return dict_(self.name, @"name", self.password, @"password", self.password1, @"password1");
+	return _dict(self.name, @"name", self.password, @"password", self.password1, @"password1");
 }
 
 

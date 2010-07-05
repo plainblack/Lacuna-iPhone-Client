@@ -41,10 +41,23 @@
 
 - (void)parseData:(NSDictionary *)data {
 	if (data && (id)data != [NSNull null]) {
-		self.secondsRemaining = intv_([data objectForKey:@"seconds_remaining"]);
-		self.startDate = [data objectForKey:@"start"];
-		self.endDate = [data objectForKey:@"end"];
-		self.totalSeconds = [self.endDate timeIntervalSinceDate:self.startDate];
+		self.secondsRemaining = _intv([data objectForKey:@"seconds_remaining"]) + 20;
+		self.startDate = [Util date:[data objectForKey:@"start"]];
+		self.endDate = [Util date:[data objectForKey:@"end"]];
+		self.totalSeconds = [self.endDate timeIntervalSinceDate:self.startDate] + 20;
+	}
+}
+
+
+- (CGFloat)progress {
+	return ( (self.totalSeconds - self.secondsRemaining) / (CGFloat)self.totalSeconds);
+}
+
+
+- (void)tick:(NSInteger)interval {
+	self.secondsRemaining -= interval;
+	if (self.secondsRemaining < 0) {
+		self.secondsRemaining = 0;
 	}
 }
 

@@ -24,7 +24,7 @@
 
 
 - (id)params {
-	return array_(self.empireId);
+	return _array(self.empireId);
 }
 
 

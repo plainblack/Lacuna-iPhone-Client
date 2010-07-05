@@ -39,7 +39,7 @@
 
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
-	self.pageSegmentedControl = [[[UISegmentedControl alloc] initWithItems:array_([UIImage imageNamed:@"/assets/ui/up.png"], [UIImage imageNamed:@"/assets/ui/down.png"])] autorelease];
+	self.pageSegmentedControl = [[[UISegmentedControl alloc] initWithItems:_array([UIImage imageNamed:@"/assets/ui/up.png"], [UIImage imageNamed:@"/assets/ui/down.png"])] autorelease];
 	[self.pageSegmentedControl addTarget:self action:@selector(switchPage) forControlEvents:UIControlEventValueChanged]; 
 	self.pageSegmentedControl.momentary = YES;
 	self.pageSegmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
@@ -52,7 +52,7 @@
 	UIBarButtonItem *fixed = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil] autorelease];
 	UIBarButtonItem *trash_placeholder = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil] autorelease];
 	trash_placeholder.width = 25.0;
-	self.mailboxSegmentedControl = [[[UISegmentedControl alloc] initWithItems:array_(@"Inbox", @"Archived", @"Sent")] autorelease]; 
+	self.mailboxSegmentedControl = [[[UISegmentedControl alloc] initWithItems:_array(@"Inbox", @"Archived", @"Sent")] autorelease]; 
 	[self.mailboxSegmentedControl addTarget:self action:@selector(switchMailBox) forControlEvents:UIControlEventValueChanged]; 
 	self.mailboxSegmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 	self.mailboxSegmentedControl.tintColor = LE_BLUE;
@@ -60,8 +60,8 @@
 	
 	fixed.width = 10.0;
 	
-	self.inboxBarButtonItems = array_(fixed, trash, flexable, mailboxChooser, flexable, compose, fixed);
-	self.otherMailboxBarButtonItems = array_(fixed, trash_placeholder, flexable, mailboxChooser, flexable, compose, fixed);
+	self.inboxBarButtonItems = _array(fixed, trash, flexable, mailboxChooser, flexable, compose, fixed);
+	self.otherMailboxBarButtonItems = _array(fixed, trash_placeholder, flexable, mailboxChooser, flexable, compose, fixed);
 
 	self.toolbarItems = self.inboxBarButtonItems;
 }
@@ -138,7 +138,7 @@
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.text = [message objectForKey:@"subject"];
 	cell.detailTextLabel.text = [NSString stringWithFormat:@"From: %@", [message objectForKey:@"from"]];
-	if (intv_([message objectForKey:@"has_read"])) {
+	if (_intv([message objectForKey:@"has_read"])) {
 		cell.textLabel.textColor = [UIColor blackColor];
 		cell.detailTextLabel.textColor = [UIColor blackColor];
 	} else {

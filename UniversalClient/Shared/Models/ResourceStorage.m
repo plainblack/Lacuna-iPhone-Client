@@ -24,7 +24,7 @@
 #pragma mark NSObject Methods
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"{ energy:%@, food:%@, ore:%i, waste:%i, water: %i }",
+	return [NSString stringWithFormat:@"{ energy:%i, food:%i, ore:%i, waste:%i, water: %i }",
 			self.energy, self.food, self.ore, self.waste, self.water];
 }
 
@@ -34,11 +34,11 @@
 
 - (void) parseData:(NSDictionary *)data {
 	if (data && (id)data != [NSNull null]) {
-		self.energy = intv_([data objectForKey:@"%energy_hour"]);
-		self.food = intv_([data objectForKey:@"%food_hour"]);
-		self.ore = intv_([data objectForKey:@"%ore_hour"]);
-		self.waste = intv_([data objectForKey:@"%waste_hour"]);
-		self.water = intv_([data objectForKey:@"%water_hour"]);
+		self.energy = _intv([data objectForKey:@"energy_capacity"]);
+		self.food = _intv([data objectForKey:@"food_capacity"]);
+		self.ore = _intv([data objectForKey:@"ore_capacity"]);
+		self.waste = _intv([data objectForKey:@"waste_capacity"]);
+		self.water = _intv([data objectForKey:@"water_capacity"]);
 	}
 }
 

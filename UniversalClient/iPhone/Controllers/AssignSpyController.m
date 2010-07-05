@@ -49,7 +49,7 @@ typedef enum {
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	self.possibleAssignments = [self.possibleAssignments sortedArrayUsingSelector:@selector(compare:)];
-	self.sectionHeaders = array_([LEViewSectionTab tableView:self.tableView createWithText:[self.spyData objectForKey:@"name"]]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:[self.spyData objectForKey:@"name"]]);
 }
 
 

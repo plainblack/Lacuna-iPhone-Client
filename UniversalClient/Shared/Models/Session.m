@@ -166,7 +166,9 @@ static Session *sharedSession = nil;
 - (void)handleTimer:(NSTimer *)theTimer {
 	NSDate *now = [NSDate date];
 	if(self.body) {
-		[self.body tick:[now timeIntervalSinceDate: self.lastTick]];
+		NSTimeInterval interval = [now timeIntervalSinceDate: self.lastTick];
+		NSInteger intervalInt = round(interval);
+		[self.body tick:intervalInt];
 	}
 	self.lastTick = now;
 }
@@ -217,6 +219,7 @@ static Session *sharedSession = nil;
 		self.sessionId = nil;
 		self.empire = nil;
 		self.isLoggedIn = FALSE;
+		self.body = nil;
 	}
 	
 	return nil;
@@ -225,8 +228,10 @@ static Session *sharedSession = nil;
 
 - (id)bodyLoaded:(LEBodyStatus *)request {
 	if (self.body) {
+		NSLog(@"Updating body");
 		[self.body parseData:request.body];
 	} else {
+		NSLog(@"Creating body");
 		Body *newBody = [[[Body alloc] init] autorelease];
 		[newBody parseData:request.body];
 		self.body = newBody;
@@ -235,5 +240,4 @@ static Session *sharedSession = nil;
 	
 	return nil;
 }
-
 @end

@@ -11,8 +11,8 @@
 
 
 @interface LETableViewCellBuildingStats (PrivateMethods)
-- (void)setNormalPerHourLabel:(UILabel *)perHourLabel perHour:(NSNumber *)perHour;
-- (void)setOppositePerHourLabel:(UILabel *)perHourLabel perHour:(NSNumber *)perHour;
+- (void)setNormalPerHourLabel:(UILabel *)perHourLabel perHour:(NSInteger)perHour;
+- (void)setOppositePerHourLabel:(UILabel *)perHourLabel perHour:(NSInteger)perHour;
 @end
 
 
@@ -63,32 +63,32 @@
 
 
 - (void)setEnergyPerHour:(NSNumber *)perHour {
-	[self setNormalPerHourLabel:energyPerHourLabel perHour:perHour];
+	[self setNormalPerHourLabel:energyPerHourLabel perHour:_intv(perHour)];
 }
 
 
 - (void)setFoodPerHour:(NSNumber *)perHour {
-	[self setNormalPerHourLabel:foodPerHourLabel perHour:perHour];
+	[self setNormalPerHourLabel:foodPerHourLabel perHour:_intv(perHour)];
 }
 
 
 - (void)setHappinessPerHour:(NSNumber *)perHour {
-	[self setNormalPerHourLabel:happinessPerHourLabel perHour:perHour];
+	[self setNormalPerHourLabel:happinessPerHourLabel perHour:_intv(perHour)];
 }
 
 
 - (void)setOrePerHour:(NSNumber *)perHour {
-	[self setNormalPerHourLabel:orePerHourLabel perHour:perHour];
+	[self setNormalPerHourLabel:orePerHourLabel perHour:_intv(perHour)];
 }
 
 
 - (void)setWastePerHour:(NSNumber *)perHour {
-	[self setOppositePerHourLabel:wastePerHourLabel perHour:perHour];
+	[self setOppositePerHourLabel:wastePerHourLabel perHour:_intv(perHour)];
 }
 
 
 - (void)setWaterPerHour:(NSNumber *)perHour {
-	[self setNormalPerHourLabel:waterPerHourLabel perHour:perHour];
+	[self setNormalPerHourLabel:waterPerHourLabel perHour:_intv(perHour)];
 }
 
 
@@ -97,8 +97,18 @@
 }
 
 
-- (void)setBuildingName:(NSString *)name buildingLevel:(NSNumber *)level {
-	self.buildingNameAndLevelLabel.text = [NSString stringWithFormat:@"%@ (%@)", name, level];
+- (void)setBuildingName:(NSString *)name buildingLevel:(NSInteger)level {
+	self.buildingNameAndLevelLabel.text = [NSString stringWithFormat:@"%@ (%i)", name, level];
+}
+
+
+- (void)setResourceGeneration:(ResourceGeneration *)resourceGeneration {
+	[self setNormalPerHourLabel:energyPerHourLabel perHour:resourceGeneration.energy];
+	[self setNormalPerHourLabel:foodPerHourLabel perHour:resourceGeneration.food];
+	[self setNormalPerHourLabel:happinessPerHourLabel perHour:resourceGeneration.happiness];
+	[self setNormalPerHourLabel:orePerHourLabel perHour:resourceGeneration.ore];
+	[self setOppositePerHourLabel:wastePerHourLabel perHour:resourceGeneration.waste];
+	[self setNormalPerHourLabel:waterPerHourLabel perHour:resourceGeneration.water];
 }
 
 
@@ -106,9 +116,9 @@
 #pragma mark Private Methods
 
 
-- (void)setNormalPerHourLabel:(UILabel *)perHourLabel perHour:(NSNumber *)perHour {
-	perHourLabel.text = [NSString stringWithFormat:@"%@/hr", perHour];
-	if ([perHour intValue] < 0) {
+- (void)setNormalPerHourLabel:(UILabel *)perHourLabel perHour:(NSInteger)perHour {
+	perHourLabel.text = [NSString stringWithFormat:@"%i/hr", perHour];
+	if (perHour < 0) {
 		perHourLabel.textColor = [UIColor redColor];
 	} else {
 		perHourLabel.textColor = [UIColor blackColor];
@@ -116,9 +126,9 @@
 }
 
 
-- (void)setOppositePerHourLabel:(UILabel *)perHourLabel perHour:(NSNumber *)perHour {
-	perHourLabel.text = [NSString stringWithFormat:@"%@/hr", perHour];
-	if ([perHour intValue] <= 0) {
+- (void)setOppositePerHourLabel:(UILabel *)perHourLabel perHour:(NSInteger)perHour {
+	perHourLabel.text = [NSString stringWithFormat:@"%i/hr", perHour];
+	if (perHour <= 0) {
 		perHourLabel.textColor = [UIColor blackColor];
 	} else {
 		perHourLabel.textColor = [UIColor redColor];

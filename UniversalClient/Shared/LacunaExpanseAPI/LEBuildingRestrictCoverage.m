@@ -28,16 +28,16 @@
 
 - (id)params {
 	if (self.isRestricted) {
-		return array_([Session sharedInstance].sessionId, self.buildingId, [NSNumber numberWithInt:1]);
+		return _array([Session sharedInstance].sessionId, self.buildingId, [NSNumber numberWithInt:1]);
 	} else {
-		return array_([Session sharedInstance].sessionId, self.buildingId, [NSNumber numberWithInt:0]);
+		return _array([Session sharedInstance].sessionId, self.buildingId, [NSNumber numberWithInt:0]);
 	}
 
 }
 
 
 - (void)processSuccess {
-	NSLog(@"Restrict News[%@]: %@", self.buildingId, self.response);
+	//Does nothing special for now.
 }
 
 

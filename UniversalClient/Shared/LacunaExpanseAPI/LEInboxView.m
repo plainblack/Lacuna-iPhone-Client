@@ -25,7 +25,7 @@
 
 
 - (id)params {
-	NSArray *params = array_([Session sharedInstance].sessionId, dict_(self.page, @"page_number"));
+	NSArray *params = _array([Session sharedInstance].sessionId, _dict(self.page, @"page_number"));
 	return params;
 }
 

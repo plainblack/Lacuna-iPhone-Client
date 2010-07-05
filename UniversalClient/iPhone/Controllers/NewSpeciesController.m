@@ -116,7 +116,7 @@
 	points = 33;
 	self.navigationItem.title = [NSString stringWithFormat:@"%i / 45 points", points];
 	
-	self.sectionHeaders = array_([LEViewSectionTab tableView:self.tableView createWithText:@"Species"],
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Species"],
 								 [LEViewSectionTab tableView:self.tableView createWithText:@"Habital Orbits"],
 								 [LEViewSectionTab tableView:self.tableView createWithText:@"Affinities"]);
 }
