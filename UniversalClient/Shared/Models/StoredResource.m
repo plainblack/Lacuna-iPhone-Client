@@ -17,16 +17,20 @@
 @synthesize max;
 @synthesize perHour;
 @synthesize perSec;
-@synthesize lastTick;
 
 
 #pragma mark --
 #pragma mark NSObject Methods
 
+- (NSString *)description {
+	return [NSString stringWithFormat:@"{ current:%@, max:%i, perHour:%i, perSec:%@ }",
+			self.current, self.max, self.perHour, self.perSec];
+}
+
+
 - (void)dealloc {
 	self.current = nil;
 	self.perSec = nil;
-	self.lastTick = nil;
 	[super dealloc];
 }
 
@@ -46,21 +50,13 @@
 }
 
 
-#pragma mark --
-#pragma mark Class Methods
-
-+ (StoredResource *)createFromData:(NSDictionary *)data withPrefix:(NSString *)prefix {
-	StoredResource *resource = [[[StoredResource alloc] init] autorelease];
-	
-	resource.current = [data objectForKey:[NSString stringWithFormat:@"%@_stored", prefix]];
+- (void)parseFromData:(NSDictionary *)data withPrefix:(NSString *)prefix {
+	self.current = [data objectForKey:[NSString stringWithFormat:@"%@_stored", prefix]];
 	NSString *tmp = [NSString stringWithFormat:@"%@_capacity", prefix];
-	resource.max = _intv([data objectForKey:tmp]);
+	self.max = _intv([data objectForKey:tmp]);
 	tmp = [NSString stringWithFormat:@"%@_hour", prefix];
-	resource.perHour = _intv([data objectForKey:tmp]);
-	resource.perSec = [NSNumber numberWithFloat:resource.perHour / SEC_IN_HOUR];
-	resource.lastTick = [NSDate date];
-	
-	return resource;
+	self.perHour = _intv([data objectForKey:tmp]);
+	self.perSec = [NSNumber numberWithFloat:((CGFloat)self.perHour / SEC_IN_HOUR)];
 }
 
 

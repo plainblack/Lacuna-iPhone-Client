@@ -16,16 +16,20 @@
 @synthesize current;
 @synthesize perHour;
 @synthesize perSec;
-@synthesize lastTick;
 
 
 #pragma mark --
 #pragma mark NSObject Methods
 
+- (NSString *)description {
+	return [NSString stringWithFormat:@"{ current:%@, perHour:%i, perSec:%@ }",
+			self.current, self.perHour, self.perSec];
+}
+
+
 - (void)dealloc {
 	self.current = nil;
 	self.perSec = nil;
-	self.lastTick = nil;
 	[super dealloc];
 }
 
@@ -51,21 +55,12 @@
 }
 
 
-
-#pragma mark --
-#pragma mark Class Methods
-
-+ (NoLimitResource *)createFromData:(NSDictionary *)data withPrefix:(NSString *)prefix{
-	NoLimitResource *resource = [[[NoLimitResource alloc] init] autorelease];
-	
+- (void)parseFromData:(NSDictionary *)data withPrefix:(NSString *)prefix{
 	NSNumberFormatter *f = [[[NSNumberFormatter alloc] init] autorelease];
 	[f setNumberStyle:NSNumberFormatterDecimalStyle];
-	resource.current = [f numberFromString:[data objectForKey:[NSString stringWithFormat:@"%@", prefix]]];
-	resource.perHour = [[f numberFromString:[data objectForKey:[NSString stringWithFormat:@"%@_hour", prefix]]] intValue];
-	resource.perSec = [NSNumber numberWithFloat:resource.perHour / SEC_IN_HOUR];
-	resource.lastTick = [NSDate date];
-
-	return resource;
+	self.current = [f numberFromString:[data objectForKey:[NSString stringWithFormat:@"%@", prefix]]];
+	self.perHour = [[f numberFromString:[data objectForKey:[NSString stringWithFormat:@"%@_hour", prefix]]] intValue];
+	self.perSec = [NSNumber numberWithFloat:self.perHour / SEC_IN_HOUR];
 }
 
 

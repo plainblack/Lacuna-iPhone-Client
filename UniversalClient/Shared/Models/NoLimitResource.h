@@ -13,22 +13,20 @@
 	NSNumber *current;
 	NSInteger perHour;
 	NSNumber *perSec;
-	NSDate *lastTick;
 }
 
 
 @property (nonatomic, retain) NSNumber *current;
 @property (nonatomic, assign) NSInteger perHour;
 @property (nonatomic, retain) NSNumber *perSec;
-@property (nonatomic, retain) NSDate *lastTick;
 
 
 - (void)tick:(NSInteger)interval;
 - (void)addToCurrent:(NSNumber *)adjustment;
 - (void)subtractFromCurrent:(NSNumber *)adjustment;
+- (void)parseFromData:(NSDictionary *)data withPrefix:(NSString *)prefix;
 
 
-+ (NoLimitResource *)createFromData:(NSDictionary *)data withPrefix:(NSString *)prefix;
 
 
 @end

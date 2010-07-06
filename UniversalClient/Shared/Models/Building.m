@@ -323,14 +323,18 @@
 			[[[LEUpgradeBuilding alloc] initWithCallback:@selector(upgradedBuilding:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
 			break;
 		case BUILDING_ROW_DEMOLISH_BUTTON:
-			; //DO NOT REMOVE
-			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Demolish building?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
-			actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-			//[actionSheet showFromTabBar:self.tabBarController.tabBar];
-			[actionSheet release];
+			[[[LEBuildingDemolish alloc] initWithCallback:@selector(buildingDemolished:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
 			break;
 	}
 	return nil;
+}
+
+
+- (BOOL)isDemolishCell:(NSIndexPath *)indexPath {
+	NSDictionary *section = [self.sections objectAtIndex:indexPath.section];
+	NSArray *rows = [section objectForKey:@"rows"];
+	
+	return (_intv([rows objectAtIndex:indexPath.row]) == BUILDING_ROW_DEMOLISH_BUTTON);
 }
 
 
@@ -495,16 +499,6 @@
 }
 
  
-#pragma mark -
-#pragma mark UIActionSheetDelegate Methods
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
-		[[[LEBuildingDemolish alloc] initWithCallback:@selector(buildingDemolished:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
-	}
-}
-
-
 #pragma mark -
 #pragma mark LETableViewBuildProgressCellDelegate Methods
 

@@ -83,6 +83,7 @@ static Session *sharedSession = nil;
 		self.savedEmpireList = [NSMutableArray arrayWithCapacity:1];
 	}
 	
+	self.lastTick = [NSDate date];
 	self->timer = [[NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES] retain];
 
 	return self;

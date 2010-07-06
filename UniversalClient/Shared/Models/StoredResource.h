@@ -14,7 +14,6 @@
 	NSInteger max;
 	NSInteger perHour;
 	NSNumber *perSec;
-	NSDate *lastTick;
 }
 
 
@@ -22,13 +21,10 @@
 @property (nonatomic, assign) NSInteger max;
 @property (nonatomic, assign) NSInteger perHour;
 @property (nonatomic, retain) NSNumber *perSec;
-@property (nonatomic, retain) NSDate *lastTick;
 
 
 - (NSNumber *)tick:(NSInteger)interval;
-
-
-+ (StoredResource *)createFromData:(NSDictionary *)data withPrefix:(NSString *)prefix;
+- (void)parseFromData:(NSDictionary *)data withPrefix:(NSString *)prefix;
 
 
 @end

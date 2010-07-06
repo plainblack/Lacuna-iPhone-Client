@@ -29,6 +29,13 @@
 #import "Session.h"
 
 
+@interface ViewBuildingController (PrivateMethods) 
+
+- (void)callCellSelected;
+
+@end
+
+
 @implementation ViewBuildingController
 
 
@@ -36,6 +43,8 @@
 @synthesize urlPart;
 @synthesize buildingsByLoc;
 @synthesize buttonsByLoc;
+@synthesize selectedTableView;
+@synthesize selectedIndexPath;
 
 
 #pragma mark -
@@ -123,11 +132,28 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	Session *session = [Session sharedInstance];
 	if (session.body.currentBuilding) {
-		UIViewController *subViewController = [session.body.currentBuilding tableView:tableView didSelectRowAtIndexPath:indexPath];
-		if (subViewController) {
-			[self.navigationController pushViewController:subViewController animated:YES];
+		self.selectedTableView = tableView;
+		self.selectedIndexPath = indexPath;
+		if ([session.body.currentBuilding isDemolishCell:indexPath]) {
+			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Demolish building?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+			actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+			[actionSheet showFromTabBar:self.tabBarController.tabBar];
+			[actionSheet release];
+		} else {
+			[self callCellSelected];
 		}
 	}
+}
+
+
+- (void)callCellSelected {
+	Session *session = [Session sharedInstance];
+	UIViewController *subViewController = [session.body.currentBuilding tableView:self.selectedTableView didSelectRowAtIndexPath:self.selectedIndexPath];
+	if (subViewController) {
+		[self.navigationController pushViewController:subViewController animated:YES];
+	}
+	self.selectedIndexPath = nil;
+	self.selectedTableView = nil;
 }
 
 
@@ -144,6 +170,8 @@
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
 	[super viewDidUnload];
+	self.selectedTableView = nil;
+	self.selectedIndexPath = nil;
 }
 
 
@@ -153,6 +181,17 @@
 	self.buttonsByLoc = nil;
 	self.buildingsByLoc = nil;
     [super dealloc];
+}
+
+
+#pragma mark -
+#pragma mark UIActionSheetDelegate Methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
+		[self callCellSelected];
+	}
+	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
 

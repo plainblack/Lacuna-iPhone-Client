@@ -100,12 +100,30 @@
 	self.alignment = [empireData objectForKey:@"alignment"];
 	self.needsSurfaceRefresh = _intv([bodyData objectForKey:@"needs_surface_refresh"]);
 	self.buildingCount = _intv([bodyData objectForKey:@"alignment"]);
-	self.happiness = [NoLimitResource createFromData:bodyData withPrefix:@"happiness"];
-	self.energy = [StoredResource createFromData:bodyData withPrefix:@"energy"];
-	self.food = [StoredResource createFromData:bodyData withPrefix:@"food"];
-	self.ore = [StoredResource createFromData:bodyData withPrefix:@"ore"];
-	self.waste = [StoredResource createFromData:bodyData withPrefix:@"waste"];
-	self.water = [StoredResource createFromData:bodyData withPrefix:@"water"];
+	if (!self.happiness) {
+		self.happiness = [[[NoLimitResource alloc] init] autorelease];
+	}
+	[self.happiness parseFromData:bodyData withPrefix:@"happiness"];
+	if (!self.energy) {
+		self.energy = [[[StoredResource alloc] init] autorelease];
+	}
+	[self.energy parseFromData:bodyData withPrefix:@"energy"];
+	if (!self.food) {
+		self.food = [[[StoredResource alloc] init] autorelease];
+	}
+	[self.food parseFromData:bodyData withPrefix:@"food"];
+	if (!self.ore) {
+		self.ore = [[[StoredResource alloc] init] autorelease];
+	}
+	[self.ore parseFromData:bodyData withPrefix:@"ore"];
+	if (!self.waste) {
+		self.waste = [[[StoredResource alloc] init] autorelease];
+	}
+	[self.waste parseFromData:bodyData withPrefix:@"waste"];
+	if (!self.water) {
+		self.water = [[[StoredResource alloc] init] autorelease];
+	}
+	[self.water parseFromData:bodyData withPrefix:@"water"];
 }
 
 

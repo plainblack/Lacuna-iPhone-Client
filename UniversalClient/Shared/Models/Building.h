@@ -14,7 +14,7 @@
 #import "BuildingUtil.h"
 
 
-@interface Building : NSObject <UIActionSheetDelegate> {
+@interface Building : NSObject {
 	NSString *id;
 	NSString *buildingUrl;
 	NSString *name;
@@ -76,6 +76,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex;
 - (UIViewController *)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 - (UIViewController *)tableView:(UITableView *)tableView didSelectBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex;
+- (BOOL)isDemolishCell:(NSIndexPath *)indexPath;
 
 	
 @end
