@@ -10,6 +10,13 @@
 #import "LEMacros.h"
 
 
+@interface NoLimitResource (PrivateMethods)
+
+- (NSNumber *)getAsNSNumber:(id)object;
+
+@end
+
+
 @implementation NoLimitResource
 
 
@@ -56,11 +63,27 @@
 
 
 - (void)parseFromData:(NSDictionary *)data withPrefix:(NSString *)prefix{
+	
+	self.current = [self getAsNSNumber:[data objectForKey:[NSString stringWithFormat:@"%@", prefix]]];
+	self.perHour = [[self getAsNSNumber:[data objectForKey:[NSString stringWithFormat:@"%@_hour", prefix]]] intValue];
+	self.perSec = [NSNumber numberWithFloat:self.perHour / SEC_IN_HOUR];
+}
+
+
+#pragma mark --
+#pragma mark PrivateMethods
+
+- (NSNumber *)getAsNSNumber:(id)object {
 	NSNumberFormatter *f = [[[NSNumberFormatter alloc] init] autorelease];
 	[f setNumberStyle:NSNumberFormatterDecimalStyle];
-	self.current = [f numberFromString:[data objectForKey:[NSString stringWithFormat:@"%@", prefix]]];
-	self.perHour = [[f numberFromString:[data objectForKey:[NSString stringWithFormat:@"%@_hour", prefix]]] intValue];
-	self.perSec = [NSNumber numberWithFloat:self.perHour / SEC_IN_HOUR];
+	if ([object isKindOfClass:[NSString class]]) {
+		return [f numberFromString:object];
+	} else if ([object isKindOfClass:[NSNumber class]]) {
+		return object;
+	} else {
+		NSLog(@"WTF HOW DO I HANDLE THIS: %@", object);
+		return nil;
+	}
 }
 
 

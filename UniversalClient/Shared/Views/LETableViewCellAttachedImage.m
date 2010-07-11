@@ -57,10 +57,12 @@
 	if (self.link) {
 		self.selectionStyle = UITableViewCellSelectionStyleBlue;
 		self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		self.nameLabel.font = BUTTON_TEXT_FONT;
 		self.nameLabel.textColor = BUTTON_TEXT_COLOR;
 	} else {
 		self.selectionStyle = UITableViewCellSelectionStyleNone;
 		self.accessoryType = UITableViewCellAccessoryNone;
+		self.nameLabel.font = TEXT_FONT;
 		self.nameLabel.textColor = TEXT_COLOR;
 	}
 }

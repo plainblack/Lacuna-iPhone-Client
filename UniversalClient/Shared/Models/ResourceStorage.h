@@ -15,6 +15,7 @@
 	NSInteger ore;
 	NSInteger waste;
 	NSInteger water;
+	BOOL hasStorage;
 }
 
 
@@ -23,9 +24,10 @@
 @property (nonatomic, assign) NSInteger ore;
 @property (nonatomic, assign) NSInteger waste;
 @property (nonatomic, assign) NSInteger water;
+@property (nonatomic, assign) BOOL hasStorage;
 
 
-- (void) parseData:(NSDictionary *)data;
+- (void)parseData:(NSDictionary *)data;
 
 
 @end

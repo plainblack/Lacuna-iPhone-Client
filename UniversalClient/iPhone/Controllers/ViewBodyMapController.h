@@ -14,12 +14,14 @@
 
 @interface ViewBodyMapController : UIViewController {
 	UIScrollView *scrollView;
+	UIView *backgroundView;
 	NSMutableDictionary *buttonsByLoc;
 	NSMutableDictionary *locsByButton;
 }
 
 
 @property(nonatomic, retain) IBOutlet UIScrollView *scrollView;
+@property(nonatomic, retain) IBOutlet UIView *backgroundView;
 
 
 @end

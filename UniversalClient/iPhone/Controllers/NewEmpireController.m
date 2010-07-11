@@ -67,7 +67,7 @@
 	self.speciesCell.backgroundColor = CELL_BACKGROUND_COLOR;
 	self.speciesSelector = [[[UISegmentedControl alloc] initWithItems:_array(@"Human", @"Custom")] autorelease];
 	[self.speciesSelector addTarget:self action:@selector(speciesSelected) forControlEvents:UIControlEventValueChanged];
-	self.speciesSelector.tintColor = LE_BLUE;
+	self.speciesSelector.tintColor = TINT_COLOR;
 	self.speciesSelector.segmentedControlStyle = UISegmentedControlStyleBar;
 	self.speciesSelector.center = self.speciesCell.center;
 	self.speciesSelector.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;

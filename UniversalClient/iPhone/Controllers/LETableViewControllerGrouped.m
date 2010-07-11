@@ -37,7 +37,7 @@
 	self.view.autoresizesSubviews = YES;
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	self.tableView.backgroundColor = [UIColor clearColor];
-	self.tableView.separatorColor = LE_BLUE;
+	self.tableView.separatorColor = SEPARATOR_COLOR;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -49,19 +49,40 @@
 #pragma mark Table view data source
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	id object = [self.sectionHeaders objectAtIndex:section];
-	
-	if (object == [NSNull null]) {
-		return nil;
+	if ([self.sectionHeaders count] > section) {
+		id object = [self.sectionHeaders objectAtIndex:section];
+		
+		if (object == [NSNull null]) {
+			return nil;
+		} else {
+			return object;
+		}
 	} else {
-		return object;
+		return nil;
 	}
+
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 	return [LEViewSectionTab getHeight];
 }
+
+
+#pragma mark -
+#pragma mark Table view delegate source
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+	/*
+	Removed for now. This is not working correctly need to research this more.
+	if (indexPath.row == 0) {
+		cell.backgroundColor = TOP_CELL_BACKGROUND_COLOR;
+	} else {
+		cell.backgroundColor = CELL_BACKGROUND_COLOR;
+	}
+	*/
+}
+
 
 #pragma mark -
 #pragma mark Memory management

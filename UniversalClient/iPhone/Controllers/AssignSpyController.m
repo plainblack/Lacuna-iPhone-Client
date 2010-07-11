@@ -8,9 +8,10 @@
 
 #import "AssignSpyController.h"
 #import "LEMacros.h"
-#import "LEBuildingAssignSpy.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellSpyInfo.h"
+#import "Intelligence.h"
+#import "Spy.h"
 
 
 typedef enum {
@@ -21,10 +22,8 @@ typedef enum {
 @implementation AssignSpyController
 
 
-@synthesize buildingId;
-@synthesize spyData;
-@synthesize urlPart;
-@synthesize possibleAssignments;
+@synthesize intelligenceBuilding;
+@synthesize spy;
 @synthesize assignmentPicker;
 
 
@@ -43,13 +42,21 @@ typedef enum {
 	self.assignmentPicker.delegate = self;
 	self.assignmentPicker.showsSelectionIndicator = YES;
 	
-	self.sectionHeaders = [NSArray array];
+	self.tableView.tableFooterView = self.assignmentPicker;
+	
+	self.sectionHeaders = _array([NSNull null]);
 }
+
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	self.possibleAssignments = [self.possibleAssignments sortedArrayUsingSelector:@selector(compare:)];
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:[self.spyData objectForKey:@"name"]]);
+	[self.spy addObserver:self forKeyPath:@"assignment" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+}
+
+
+- (void)viewDidDisappear:(BOOL)animated {
+	[super viewDidDisappear:YES];
+	[self.spy removeObserver:self forKeyPath:@"assignment"];
 }
 
 
@@ -58,7 +65,7 @@ typedef enum {
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-	if (self.spyData) {
+	if (self.spy) {
 		return 1;
 	}  else {
 		return 0;
@@ -67,28 +74,10 @@ typedef enum {
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if (self.spyData) {
+	if (self.spy) {
 		return 1;
 	} else {
 		return 0;
-	}
-}
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-	if (section == 0) {
-		return self.assignmentPicker.bounds.size.height;
-	} else {
-		return 0;
-	}
-}
-
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-	if (section == 0) {
-		return self.assignmentPicker;
-	} else {
-		return nil;
 	}
 }
 
@@ -113,7 +102,7 @@ typedef enum {
 		case ROW_SPY_INFO:
 			; //DO NOT REMOVE
 			LETableViewCellSpyInfo *spyInfoCell = [LETableViewCellSpyInfo getCellForTableView:tableView];
-			[spyInfoCell setData:self.spyData];
+			[spyInfoCell setData:self.spy];
 			cell = spyInfoCell;
 			break;
 		default:
@@ -133,12 +122,12 @@ typedef enum {
 
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return [self.possibleAssignments count];
+    return [self.intelligenceBuilding.possibleAssignments count];
 }
 
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-	return [self.possibleAssignments objectAtIndex:row];
+	return [self.intelligenceBuilding.possibleAssignments objectAtIndex:row];
 }
 
 
@@ -159,10 +148,8 @@ typedef enum {
 
 
 - (void)dealloc {
-	self.buildingId = nil;
-	self.spyData = nil;
-	self.urlPart = nil;
-	self.possibleAssignments = nil;
+	self.intelligenceBuilding = nil;
+	self.spy = nil;
     [super dealloc];
 }
 
@@ -177,17 +164,8 @@ typedef enum {
 
 - (void)save {
 	NSInteger row = [self.assignmentPicker selectedRowInComponent:0];
-	NSString *assignment = [self.possibleAssignments objectAtIndex:row];
-	[[[LEBuildingAssignSpy alloc] initWithCallback:@selector(spyAssigned:) target:self buildingId:self.buildingId buildingUrl:self.urlPart spyId:[self.spyData objectForKey:@"id"] assignment:assignment] autorelease];
-}
-
-
-#pragma mark -
-#pragma mark Callback Methods
-
-- (id)spyAssigned:(LEBuildingAssignSpy *)request {
-	[[self navigationController] popViewControllerAnimated:YES];
-	return nil;
+	NSString *assignment = [self.intelligenceBuilding.possibleAssignments objectAtIndex:row];
+	[self.intelligenceBuilding spy:self.spy assign:assignment];
 }
 
 
@@ -196,6 +174,16 @@ typedef enum {
 
 + (AssignSpyController *)create {
 	return [[[AssignSpyController alloc] init] autorelease];
+}
+
+
+#pragma mark --
+#pragma mark KVO Methods
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+	if ([keyPath isEqual:@"assignment"]) {
+		[self.navigationController popViewControllerAnimated:YES];
+	}
 }
 
 

@@ -10,22 +10,17 @@
 #import "LETableViewControllerGrouped.h"
 
 
+@class Intelligence;
+
+
 @interface ViewSpiesController : LETableViewControllerGrouped {
-	NSString *buildingId;
-	NSMutableDictionary *spiesData;
-	NSString *urlPart;
-	NSMutableArray *spies;
-	NSTimer *reloadTimer;
-	NSArray *possibleAssignments;
+	Intelligence *intelligenceBuilding;
+	NSDate *spiesLastUpdated;
 }
 
 
-@property(nonatomic, retain) NSString *buildingId;
-@property(nonatomic, retain) NSMutableDictionary *spiesData;
-@property(nonatomic, retain) NSString *urlPart;
-@property(nonatomic, retain) NSMutableArray *spies;
-@property(nonatomic, retain) NSTimer *reloadTimer;
-@property(nonatomic, retain) NSArray *possibleAssignments;
+@property (nonatomic, retain) Intelligence *intelligenceBuilding;
+@property (nonatomic, retain) NSDate *spiesLastUpdated;
 
 
 + (ViewSpiesController *) create;

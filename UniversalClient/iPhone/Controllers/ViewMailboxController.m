@@ -35,7 +35,7 @@
 	self.view.autoresizesSubviews = YES;
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	[self.navigationController setToolbarHidden:NO animated:NO];
-	[self.navigationController.toolbar setTintColor:LE_BLUE];
+	[self.navigationController.toolbar setTintColor:TINT_COLOR];
 
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
@@ -55,7 +55,7 @@
 	self.mailboxSegmentedControl = [[[UISegmentedControl alloc] initWithItems:_array(@"Inbox", @"Archived", @"Sent")] autorelease]; 
 	[self.mailboxSegmentedControl addTarget:self action:@selector(switchMailBox) forControlEvents:UIControlEventValueChanged]; 
 	self.mailboxSegmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-	self.mailboxSegmentedControl.tintColor = LE_BLUE;
+	self.mailboxSegmentedControl.tintColor = TINT_COLOR;
 	UIBarButtonItem *mailboxChooser = [[[UIBarButtonItem alloc] initWithCustomView:self.mailboxSegmentedControl] autorelease];
 	
 	fixed.width = 10.0;

@@ -45,6 +45,7 @@
 @synthesize buttonsByLoc;
 @synthesize selectedTableView;
 @synthesize selectedIndexPath;
+@synthesize watchedBuilding;
 
 
 #pragma mark -
@@ -75,10 +76,13 @@
 	[super viewDidDisappear:animated];
 	
 	Session *session = [Session sharedInstance];
-	if (session.body.currentBuilding) {
-		[session.body clearBuilding];
-	}
 	[session.body removeObserver:self forKeyPath:@"currentBuilding"];
+	if (isNotNull(self.watchedBuilding)) {
+		[self.watchedBuilding removeObserver:self forKeyPath:@"needsRefresh"];
+		[self.watchedBuilding removeObserver:self forKeyPath:@"pendingBuild"];
+		[self.watchedBuilding removeObserver:self forKeyPath:@"demolished"];
+		self.watchedBuilding = nil;
+	}
 }
 
 #pragma mark -
@@ -208,6 +212,13 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ([keyPath isEqual:@"currentBuilding"]) {
+		
+		if (isNotNull(self.watchedBuilding)) {
+			[self.watchedBuilding removeObserver:self forKeyPath:@"needsRefresh"];
+			[self.watchedBuilding removeObserver:self forKeyPath:@"pendingBuild"];
+			[self.watchedBuilding removeObserver:self forKeyPath:@"demolished"];
+		}
+		
 		Building *newBuilding = (Building *)[change objectForKey:NSKeyValueChangeNewKey];
 		if (newBuilding && ((id)newBuilding != [NSNull null])) {
 			[newBuilding addObserver:self forKeyPath:@"needsRefresh" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
@@ -216,12 +227,8 @@
 			self.sectionHeaders = [newBuilding sectionHeadersForTableView:self.tableView];
 			self.navigationItem.title = newBuilding.name;
 		}
-		Building *oldBuilding = (Building *)[change objectForKey:NSKeyValueChangeOldKey];
-		if (oldBuilding && ((id)oldBuilding != [NSNull null])) {
-			[oldBuilding removeObserver:self forKeyPath:@"needsRefresh"];
-			[oldBuilding removeObserver:self forKeyPath:@"pendingBuild"];
-			[oldBuilding removeObserver:self forKeyPath:@"demolished"];
-		}
+		self.watchedBuilding = newBuilding;
+
 		[self.tableView reloadData];
 	} else if ([keyPath isEqual:@"needsRefresh"]) {
 		[self.tableView reloadData];

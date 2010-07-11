@@ -9,6 +9,7 @@
 #import "NewBuildingController.h"
 #import "LEMacros.h"
 #import "Util.h"
+#import "Session.h"
 #import "LETableViewCellBuildingStats.h"
 #import "LETableViewCellCost.h"
 #import "LETableViewCellButton.h"
@@ -102,6 +103,7 @@ typedef enum {
 	NSDictionary *building = [self.buildables objectAtIndex:indexPath.section];
 	NSDictionary *build = [building objectForKey:@"build"];
     UITableViewCell *cell;
+	Session *session = [Session sharedInstance];
 
 	switch (indexPath.row) {
 		case ROW_BUILDING_STATS:
@@ -109,6 +111,7 @@ typedef enum {
 			NSDictionary *stats = [building objectForKey:@"production"];
 			LETableViewCellBuildingStats *buildingStatsCell = [LETableViewCellBuildingStats getCellForTableView:tableView];
 			[buildingStatsCell setBuildingImage:[UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/100/%@.png", [building objectForKey:@"image"]]]];
+			[buildingStatsCell setBuildingBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"assets/planet_side/%@.jpg", session.body.surfaceImageName]]];
 			[buildingStatsCell setBuildingName:[building objectForKey:@"name"] buildingLevel:1];
 			[buildingStatsCell setEnergyPerHour:[stats objectForKey:@"energy_hour"]];
 			[buildingStatsCell setFoodPerHour:[stats objectForKey:@"food_hour"]];

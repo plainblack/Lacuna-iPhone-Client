@@ -43,7 +43,7 @@ typedef enum {
     self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
 	self.navigationItem.title = @"Empire";
 	self.tableView.backgroundColor = [UIColor clearColor];
-	self.tableView.separatorColor = LE_BLUE;
+	self.tableView.separatorColor = SEPARATOR_COLOR;
 
 	self.empireNameCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
 	self.empireNameCell.label.text = @"Name";
@@ -222,7 +222,7 @@ typedef enum {
 			; //DO NOT REMOVE
 			NewEmpireController *newEmpireController = [NewEmpireController create];
 			UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:newEmpireController];
-			navController.navigationBar.tintColor = LE_BLUE;
+			navController.navigationBar.tintColor = TINT_COLOR;
 
 			[self presentModalViewController:navController animated:YES];
 

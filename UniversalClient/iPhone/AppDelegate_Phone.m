@@ -30,7 +30,13 @@
 	
     // Override point for customization after application launch
 	
-	[window addSubview:tabBarController.view];
+	for (UIViewController *viewController in self.tabBarController.viewControllers) {
+		if ([viewController isKindOfClass:[UINavigationController class]]) {
+			((UINavigationController *)viewController).navigationBar.tintColor = TINT_COLOR;
+		}
+	}
+	
+	[window addSubview:self.tabBarController.view];
     [window makeKeyAndVisible];
 
 	[application setStatusBarStyle:UIStatusBarStyleBlackOpaque];

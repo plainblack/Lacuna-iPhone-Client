@@ -22,6 +22,7 @@
 		F603A8EF1177F7F200BAC73A /* LETableViewCellCurrentResources.m in Sources */ = {isa = PBXBuildFile; fileRef = F603A8EE1177F7F200BAC73A /* LETableViewCellCurrentResources.m */; };
 		F603A91911780A0400BAC73A /* ViewBodyMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = F603A91811780A0400BAC73A /* ViewBodyMapController.m */; };
 		F6132E5B119E3A78000F99A9 /* LETableViewCellNumberEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = F6132E5A119E3A78000F99A9 /* LETableViewCellNumberEntry.m */; };
+		F614450B11E961D40052D010 /* Spy.m in Sources */ = {isa = PBXBuildFile; fileRef = F614450A11E961D40052D010 /* Spy.m */; };
 		F61D0C2311E2355600B06382 /* WasteRecycling.m in Sources */ = {isa = PBXBuildFile; fileRef = F61D0C2211E2355600B06382 /* WasteRecycling.m */; };
 		F61D0C2611E235C100B06382 /* BuildingUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = F61D0C2511E235C100B06382 /* BuildingUtil.m */; };
 		F61D0D3E11E24B8100B06382 /* Network19.m in Sources */ = {isa = PBXBuildFile; fileRef = F61D0D3D11E24B8100B06382 /* Network19.m */; };
@@ -44,6 +45,7 @@
 		F678F75511A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.m in Sources */ = {isa = PBXBuildFile; fileRef = F678F75411A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.m */; };
 		F67E11DA118A701A00D964FD /* AssignSpyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F67E11D9118A701A00D964FD /* AssignSpyController.m */; };
 		F67E11F1118A75BB00D964FD /* LETableViewCellSpyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F67E11F0118A75BB00D964FD /* LETableViewCellSpyInfo.m */; };
+		F683BC2511E40311009E64BF /* assets in Resources */ = {isa = PBXBuildFile; fileRef = F683B6A111E40310009E64BF /* assets */; };
 		F6863C16118E475A00861037 /* LETableViewCellAttachedLink.m in Sources */ = {isa = PBXBuildFile; fileRef = F6863C15118E475A00861037 /* LETableViewCellAttachedLink.m */; };
 		F6864F9B1183A131009826A7 /* ViewNetwork19NewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6864F9A1183A131009826A7 /* ViewNetwork19NewsController.m */; };
 		F6864F9E1183A3FB009826A7 /* LEBuildingViewNews.m in Sources */ = {isa = PBXBuildFile; fileRef = F6864F9D1183A3FB009826A7 /* LEBuildingViewNews.m */; };
@@ -55,7 +57,6 @@
 		F6882D52116EB6BF009B624B /* LETableViewCellLabeledParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = F6882D51116EB6BF009B624B /* LETableViewCellLabeledParagraph.m */; };
 		F6882DF7116EC6E7009B624B /* LETableViewCellMedal.m in Sources */ = {isa = PBXBuildFile; fileRef = F6882DF6116EC6E7009B624B /* LETableViewCellMedal.m */; };
 		F688A34911939EEB0062DF8A /* ViewAttachedMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = F688A34711939EEB0062DF8A /* ViewAttachedMapController.m */; };
-		F688C4C11193A9160062DF8A /* assets in Resources */ = {isa = PBXBuildFile; fileRef = F688B98F1193A9150062DF8A /* assets */; };
 		F68DC4FB11CD1B0D00144A49 /* EmpireProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F68DC4FA11CD1B0D00144A49 /* EmpireProfile.m */; };
 		F697BA09119CE035004B2119 /* RecycleController.m in Sources */ = {isa = PBXBuildFile; fileRef = F697BA08119CE035004B2119 /* RecycleController.m */; };
 		F697BA0C119CE6BD004B2119 /* LEBuildingRecycle.m in Sources */ = {isa = PBXBuildFile; fileRef = F697BA0B119CE6BD004B2119 /* LEBuildingRecycle.m */; };
@@ -134,6 +135,7 @@
 		F6E3E57F11BB0A3200A031CF /* EditEmpireProfileText.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3E57E11BB0A3200A031CF /* EditEmpireProfileText.m */; };
 		F6E3E58211BB0EA500A031CF /* LEEmpireEditProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3E58111BB0EA500A031CF /* LEEmpireEditProfile.m */; };
 		F6E3E5E011BB1E8500A031CF /* LETableViewCellTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3E5DF11BB1E8500A031CF /* LETableViewCellTextView.m */; };
+		F6E3EFB011EA16C4005E1276 /* LETableViewCellBuildingStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3EFAF11EA16C4005E1276 /* LETableViewCellBuildingStorage.m */; };
 		F6E3EFBC11B4389A00E7BC86 /* LEBuildingThrowParty.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3EFBB11B4389A00E7BC86 /* LEBuildingThrowParty.m */; };
 		F6E3EFCA11B4440200E7BC86 /* LEBuildingDemolish.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3EFC911B4440200E7BC86 /* LEBuildingDemolish.m */; };
 		F6E3EFF011B45BA000E7BC86 /* ViewEmpireBoostsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3EFEF11B45BA000E7BC86 /* ViewEmpireBoostsController.m */; };
@@ -182,6 +184,8 @@
 		F603A91811780A0400BAC73A /* ViewBodyMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewBodyMapController.m; sourceTree = "<group>"; };
 		F6132E59119E3A78000F99A9 /* LETableViewCellNumberEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellNumberEntry.h; sourceTree = "<group>"; };
 		F6132E5A119E3A78000F99A9 /* LETableViewCellNumberEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellNumberEntry.m; sourceTree = "<group>"; };
+		F614450911E961D40052D010 /* Spy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spy.h; sourceTree = "<group>"; };
+		F614450A11E961D40052D010 /* Spy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spy.m; sourceTree = "<group>"; };
 		F61D0C2111E2355600B06382 /* WasteRecycling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WasteRecycling.h; sourceTree = "<group>"; };
 		F61D0C2211E2355600B06382 /* WasteRecycling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WasteRecycling.m; sourceTree = "<group>"; };
 		F61D0C2411E235C100B06382 /* BuildingUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingUtil.h; sourceTree = "<group>"; };
@@ -219,6 +223,7 @@
 		F67E11D9118A701A00D964FD /* AssignSpyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssignSpyController.m; sourceTree = "<group>"; };
 		F67E11EF118A75BB00D964FD /* LETableViewCellSpyInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellSpyInfo.h; sourceTree = "<group>"; };
 		F67E11F0118A75BB00D964FD /* LETableViewCellSpyInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellSpyInfo.m; sourceTree = "<group>"; };
+		F683B6A111E40310009E64BF /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		F6863C14118E475A00861037 /* LETableViewCellAttachedLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellAttachedLink.h; sourceTree = "<group>"; };
 		F6863C15118E475A00861037 /* LETableViewCellAttachedLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellAttachedLink.m; sourceTree = "<group>"; };
 		F6864F991183A131009826A7 /* ViewNetwork19NewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewNetwork19NewsController.h; sourceTree = "<group>"; };
@@ -241,7 +246,6 @@
 		F6882DF6116EC6E7009B624B /* LETableViewCellMedal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellMedal.m; sourceTree = "<group>"; };
 		F688A34611939EEB0062DF8A /* ViewAttachedMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewAttachedMapController.h; sourceTree = "<group>"; };
 		F688A34711939EEB0062DF8A /* ViewAttachedMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewAttachedMapController.m; sourceTree = "<group>"; };
-		F688B98F1193A9150062DF8A /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		F68DC4F911CD1B0D00144A49 /* EmpireProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmpireProfile.h; sourceTree = "<group>"; };
 		F68DC4FA11CD1B0D00144A49 /* EmpireProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmpireProfile.m; sourceTree = "<group>"; };
 		F697BA07119CE035004B2119 /* RecycleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecycleController.h; sourceTree = "<group>"; };
@@ -396,6 +400,8 @@
 		F6E3E58111BB0EA500A031CF /* LEEmpireEditProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireEditProfile.m; sourceTree = "<group>"; };
 		F6E3E5DE11BB1E8500A031CF /* LETableViewCellTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellTextView.h; sourceTree = "<group>"; };
 		F6E3E5DF11BB1E8500A031CF /* LETableViewCellTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellTextView.m; sourceTree = "<group>"; };
+		F6E3EFAE11EA16C4005E1276 /* LETableViewCellBuildingStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellBuildingStorage.h; sourceTree = "<group>"; };
+		F6E3EFAF11EA16C4005E1276 /* LETableViewCellBuildingStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellBuildingStorage.m; sourceTree = "<group>"; };
 		F6E3EFBA11B4389A00E7BC86 /* LEBuildingThrowParty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingThrowParty.h; sourceTree = "<group>"; };
 		F6E3EFBB11B4389A00E7BC86 /* LEBuildingThrowParty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingThrowParty.m; sourceTree = "<group>"; };
 		F6E3EFC811B4440200E7BC86 /* LEBuildingDemolish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingDemolish.h; sourceTree = "<group>"; };
@@ -499,7 +505,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				F688B98F1193A9150062DF8A /* assets */,
+				F683B6A111E40310009E64BF /* assets */,
 				29B97317FDCFA39411CA2CEA /* iPad */,
 				2860E386111B897F00E27156 /* iPhone */,
 				28EEBF621118D79A00187D67 /* Shared */,
@@ -591,12 +597,14 @@
 				F634BB51116C31BD0084A8B2 /* LETableViewCellTextEntry.h */,
 				F634BB52116C31BD0084A8B2 /* LETableViewCellTextEntry.m */,
 				F634BB54116C31E50084A8B2 /* LETableViewCellTextEntry.xib */,
+				F6E3E5DE11BB1E8500A031CF /* LETableViewCellTextView.h */,
+				F6E3E5DF11BB1E8500A031CF /* LETableViewCellTextView.m */,
 				F69809C3117A156E00BD2096 /* LETableViewCellUnbuildable.h */,
 				F69809C4117A156E00BD2096 /* LETableViewCellUnbuildable.m */,
 				F6DD2062116D5B3C0013C58D /* LEViewSectionTab.h */,
 				F6DD2063116D5B3C0013C58D /* LEViewSectionTab.m */,
-				F6E3E5DE11BB1E8500A031CF /* LETableViewCellTextView.h */,
-				F6E3E5DF11BB1E8500A031CF /* LETableViewCellTextView.m */,
+				F6E3EFAE11EA16C4005E1276 /* LETableViewCellBuildingStorage.h */,
+				F6E3EFAF11EA16C4005E1276 /* LETableViewCellBuildingStorage.m */,
 			);
 			name = Views;
 			path = Shared/Views;
@@ -742,42 +750,44 @@
 		F6E4D6691168D4B200980B59 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F6AC4A32116C0FAE001B967A /* Mailbox.h */,
-				F6AC4A33116C0FAE001B967A /* Mailbox.m */,
-				F6AC4A34116C0FAE001B967A /* Session.h */,
-				F6AC4A35116C0FAE001B967A /* Session.m */,
-				F68DC4F911CD1B0D00144A49 /* EmpireProfile.h */,
-				F68DC4FA11CD1B0D00144A49 /* EmpireProfile.m */,
-				F6E7670F11D68C6400778C1D /* Empire.h */,
-				F6E7671011D68C6400778C1D /* Empire.m */,
 				F6E767C411D6A4D400778C1D /* Body.h */,
 				F6E767C511D6A4D400778C1D /* Body.m */,
-				F6E768A811D6BD9300778C1D /* StoredResource.h */,
-				F6E768A911D6BD9300778C1D /* StoredResource.m */,
-				F6E768B211D6C6E500778C1D /* NoLimitResource.h */,
-				F6E768B311D6C6E500778C1D /* NoLimitResource.m */,
 				F6FD9E6911D79FA0003785AD /* Building.h */,
 				F6FD9E6A11D79FA0003785AD /* Building.m */,
+				F61D0C2411E235C100B06382 /* BuildingUtil.h */,
+				F61D0C2511E235C100B06382 /* BuildingUtil.m */,
+				F61D0E2D11E2656B00B06382 /* Development.h */,
+				F61D0E2E11E2656B00B06382 /* Development.m */,
+				F6E7670F11D68C6400778C1D /* Empire.h */,
+				F6E7671011D68C6400778C1D /* Empire.m */,
+				F68DC4F911CD1B0D00144A49 /* EmpireProfile.h */,
+				F68DC4FA11CD1B0D00144A49 /* EmpireProfile.m */,
+				F61D0D6B11E24E9E00B06382 /* Intelligence.h */,
+				F61D0D6C11E24E9E00B06382 /* Intelligence.m */,
+				F6AC4A32116C0FAE001B967A /* Mailbox.h */,
+				F6AC4A33116C0FAE001B967A /* Mailbox.m */,
+				F61D0D3C11E24B8100B06382 /* Network19.h */,
+				F61D0D3D11E24B8100B06382 /* Network19.m */,
+				F6E768B211D6C6E500778C1D /* NoLimitResource.h */,
+				F6E768B311D6C6E500778C1D /* NoLimitResource.m */,
+				F61D0DE511E2602400B06382 /* Park.h */,
+				F61D0DE611E2602400B06382 /* Park.m */,
+				F6FD9E7C11D7A42C003785AD /* ResourceCost.h */,
+				F6FD9E7D11D7A42C003785AD /* ResourceCost.m */,
 				F6FD9E6C11D7A05D003785AD /* ResourceGeneration.h */,
 				F6FD9E6D11D7A05D003785AD /* ResourceGeneration.m */,
 				F6FD9E7911D7A41E003785AD /* ResourceStorage.h */,
 				F6FD9E7A11D7A41E003785AD /* ResourceStorage.m */,
-				F6FD9E7C11D7A42C003785AD /* ResourceCost.h */,
-				F6FD9E7D11D7A42C003785AD /* ResourceCost.m */,
+				F6AC4A34116C0FAE001B967A /* Session.h */,
+				F6AC4A35116C0FAE001B967A /* Session.m */,
+				F6E768A811D6BD9300778C1D /* StoredResource.h */,
+				F6E768A911D6BD9300778C1D /* StoredResource.m */,
 				F6FD9E8511D7A6F3003785AD /* TimedActivity.h */,
 				F6FD9E8611D7A6F3003785AD /* TimedActivity.m */,
 				F61D0C2111E2355600B06382 /* WasteRecycling.h */,
 				F61D0C2211E2355600B06382 /* WasteRecycling.m */,
-				F61D0C2411E235C100B06382 /* BuildingUtil.h */,
-				F61D0C2511E235C100B06382 /* BuildingUtil.m */,
-				F61D0D3C11E24B8100B06382 /* Network19.h */,
-				F61D0D3D11E24B8100B06382 /* Network19.m */,
-				F61D0D6B11E24E9E00B06382 /* Intelligence.h */,
-				F61D0D6C11E24E9E00B06382 /* Intelligence.m */,
-				F61D0DE511E2602400B06382 /* Park.h */,
-				F61D0DE611E2602400B06382 /* Park.m */,
-				F61D0E2D11E2656B00B06382 /* Development.h */,
-				F61D0E2E11E2656B00B06382 /* Development.m */,
+				F614450911E961D40052D010 /* Spy.h */,
+				F614450A11E961D40052D010 /* Spy.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -788,6 +798,11 @@
 			children = (
 				F67E11D8118A701A00D964FD /* AssignSpyController.h */,
 				F67E11D9118A701A00D964FD /* AssignSpyController.m */,
+				F6E3E57D11BB0A3200A031CF /* EditEmpireProfileText.h */,
+				F6E3E57E11BB0A3200A031CF /* EditEmpireProfileText.m */,
+				F6993B0B11C5CDF8003A7316 /* EditSavedEmpire.h */,
+				F6993B0C11C5CDF8003A7316 /* EditSavedEmpire.m */,
+				F6993B0D11C5CDF8003A7316 /* EditSavedEmpire.xib */,
 				F69D2893117242B400D7277E /* LETableViewControllerGrouped.h */,
 				F69D2894117242B400D7277E /* LETableViewControllerGrouped.m */,
 				F634BAE3116C2CB90084A8B2 /* LoginController.h */,
@@ -836,11 +851,6 @@
 				F6864F9A1183A131009826A7 /* ViewNetwork19NewsController.m */,
 				F6A9C5E91184C1CC001F0D9C /* ViewSpiesController.h */,
 				F6A9C5EA1184C1CC001F0D9C /* ViewSpiesController.m */,
-				F6E3E57D11BB0A3200A031CF /* EditEmpireProfileText.h */,
-				F6E3E57E11BB0A3200A031CF /* EditEmpireProfileText.m */,
-				F6993B0B11C5CDF8003A7316 /* EditSavedEmpire.h */,
-				F6993B0C11C5CDF8003A7316 /* EditSavedEmpire.m */,
-				F6993B0D11C5CDF8003A7316 /* EditSavedEmpire.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -920,11 +930,11 @@
 				F6980AD0117A600E00BD2096 /* ViewMailboxController.xib in Resources */,
 				F6980B06117A6CF900BD2096 /* ViewMailMessageController.xib in Resources */,
 				F69B7FFE118FB51B0049D4A1 /* ViewAttachedTableController.xib in Resources */,
-				F688C4C11193A9160062DF8A /* assets in Resources */,
 				F65D35B91195E00400454C2B /* iTunesArtwork in Resources */,
 				F65D36681195F05B00454C2B /* Entitlements.plist in Resources */,
 				F6724F56119F74F200D57E0D /* PickNumericValueController.xib in Resources */,
 				F6993B0F11C5CDF8003A7316 /* EditSavedEmpire.xib in Resources */,
+				F683BC2511E40311009E64BF /* assets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1061,6 +1071,8 @@
 				F61D0D6D11E24E9E00B06382 /* Intelligence.m in Sources */,
 				F61D0DE711E2602400B06382 /* Park.m in Sources */,
 				F61D0E2F11E2656B00B06382 /* Development.m in Sources */,
+				F614450B11E961D40052D010 /* Spy.m in Sources */,
+				F6E3EFB011EA16C4005E1276 /* LETableViewCellBuildingStorage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1081,7 +1093,7 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "UniversalClient-Info.plist";
 				PRODUCT_NAME = UniversalClient;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "033CEE26-E0FC-429F-AE61-EB2EA2559848";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C1035F83-69A0-4344-B8D3-48812CFFC03A";
 				SDKROOT = iphoneos4.0;
 			};
 			name = Debug;
@@ -1164,7 +1176,7 @@
 				INFOPLIST_FILE = "UniversalClient-Info.plist";
 				PRODUCT_NAME = UniversalClient;
 				PROVISIONING_PROFILE = "1D0D270A-6AF7-4BE6-9068-339FE078CBF6";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AF7D1230-F3F7-477E-9DC4-75B1D845409B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "29BAD16A-21DE-4551-A07A-0F27776995B6";
 				SDKROOT = iphoneos4.0;
 				VALIDATE_PRODUCT = YES;
 			};

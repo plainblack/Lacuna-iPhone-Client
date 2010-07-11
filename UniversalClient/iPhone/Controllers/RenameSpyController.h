@@ -11,17 +11,19 @@
 #import "LETableViewCellTextEntry.h"
 
 
+@class Intelligence;
+@class Spy;
+
+
 @interface RenameSpyController : LETableViewControllerGrouped {
-	NSString *buildingId;
-	NSString *spyId;
-	NSString *urlPart;
+	Intelligence *intelligenceBuilding;
+	Spy *spy;
 	LETableViewCellTextEntry *nameCell;
 }
 
 
-@property(nonatomic, retain) NSString *buildingId;
-@property(nonatomic, retain) NSString *spyId;
-@property(nonatomic, retain) NSString *urlPart;
+@property(nonatomic, retain) Intelligence *intelligenceBuilding;
+@property(nonatomic, retain) Spy *spy;
 @property(nonatomic, retain) LETableViewCellTextEntry *nameCell;
 
 

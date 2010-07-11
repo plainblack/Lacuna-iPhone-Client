@@ -10,19 +10,19 @@
 #import "LETableViewControllerGrouped.h"
 
 
+@class Intelligence;
+@class Spy;
+
+
 @interface AssignSpyController : LETableViewControllerGrouped <UIPickerViewDelegate, UIPickerViewDataSource> {
-	NSString *buildingId;
-	NSMutableDictionary *spyData;
-	NSString *urlPart;
-	NSArray *possibleAssignments;
+	Intelligence *intelligenceBuilding;
+	Spy *spy;
 	UIPickerView *assignmentPicker;
 }
 
 
-@property(nonatomic, retain) NSString *buildingId;
-@property(nonatomic, retain) NSMutableDictionary *spyData;
-@property(nonatomic, retain) NSString *urlPart;
-@property(nonatomic, retain) NSArray *possibleAssignments;
+@property(nonatomic, retain) Intelligence *intelligenceBuilding;
+@property(nonatomic, retain) Spy *spy;
 @property(nonatomic, retain) UIPickerView *assignmentPicker;
 
 

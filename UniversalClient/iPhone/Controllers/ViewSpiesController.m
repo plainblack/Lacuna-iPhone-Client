@@ -9,33 +9,29 @@
 #import "ViewSpiesController.h"
 #import "LEMacros.h"
 #import "LEViewSectionTab.h"
-#import "LEBuildingViewSpies.h"
 #import "LETableViewCellButton.h"
 #import "LETableViewCellLabeledText.h"
-#import "LEBuildingBurnSpy.h"
 #import "RenameSpyController.h"
 #import "AssignSpyController.h"
 #import "LETableViewCellSpyInfo.h"
 #import "Util.h"
+#import "Intelligence.h"
+#import "Spy.h"
 
 
 typedef enum {
 	ROW_SPY_INFO,
-	ROW_BURN_BUTTON,
+	ROW_ASSIGN_BUTTON,
 	ROW_RENAME_BUTTON,
-	ROW_ASSIGN_BUTTON
+	ROW_BURN_BUTTON
 } ROW;
 
 
 @implementation ViewSpiesController
 
 
-@synthesize buildingId;
-@synthesize spiesData;
-@synthesize urlPart;
-@synthesize spies;
-@synthesize reloadTimer;
-@synthesize possibleAssignments;
+@synthesize intelligenceBuilding;
+@synthesize spiesLastUpdated;
 
 
 #pragma mark -
@@ -47,26 +43,36 @@ typedef enum {
 	self.navigationItem.title = @"Spies";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Spies"]);
+	self.sectionHeaders = [NSArray array];
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	[[[LEBuildingViewSpies alloc] initWithCallback:@selector(spiesLoaded:) target:self buildingId:self.buildingId buildingUrl:self.urlPart] autorelease];
+	[self.intelligenceBuilding addObserver:self forKeyPath:@"spiesUpdated" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+	if (!self.intelligenceBuilding.spies) {
+		[self.intelligenceBuilding loadSpies];
+	} else {
+		if (self.spiesLastUpdated) {
+			if ([self.spiesLastUpdated compare:self.intelligenceBuilding.spiesUpdated] == NSOrderedAscending) {
+				[self.tableView reloadData];
+				self.spiesLastUpdated = self.intelligenceBuilding.spiesUpdated;
+			}
+		} else {
+			self.spiesLastUpdated = self.intelligenceBuilding.spiesUpdated;
+		}
+	}
 }
 
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-	self.reloadTimer = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
 }
 
 
 - (void)viewDidDisappear:(BOOL)animated {
-	[self.reloadTimer invalidate]; 
-	self.reloadTimer = nil;
     [super viewDidDisappear:animated];
+	[self.intelligenceBuilding removeObserver:self forKeyPath:@"spiesUpdated"];
 }
 
 
@@ -74,8 +80,11 @@ typedef enum {
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
-    return [self.spies count];
+	if (self.intelligenceBuilding && self.intelligenceBuilding.spies) {
+		return [self.intelligenceBuilding.spies count];
+	} else {
+		return 0;
+	}
 }
 
 
@@ -85,7 +94,7 @@ typedef enum {
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSDictionary *spy = [self.spies objectAtIndex:indexPath.section];
+	Spy *spy = [self.intelligenceBuilding.spies objectAtIndex:indexPath.section];
 	switch (indexPath.row) {
 		case ROW_SPY_INFO:
 			return [LETableViewCellSpyInfo getHeightForTableView:tableView];
@@ -95,7 +104,7 @@ typedef enum {
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		case ROW_ASSIGN_BUTTON:
-			if (_intv([spy objectForKey:@"is_available"]) == 1) {
+			if (spy.isAvailable) {
 				return [LETableViewCellButton getHeightForTableView:tableView];
 			} else {
 				return [LETableViewCellLabeledText getHeightForTableView:tableView];
@@ -110,7 +119,7 @@ typedef enum {
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSDictionary *spy = [self.spies objectAtIndex:indexPath.section];
+	Spy *spy = [self.intelligenceBuilding.spies objectAtIndex:indexPath.section];
     
     UITableViewCell *cell;
 	
@@ -134,14 +143,15 @@ typedef enum {
 			cell = renameButtonCell;
 			break;
 		case ROW_ASSIGN_BUTTON:
-			if (_intv([spy objectForKey:@"is_available"]) == 1) {
+			if (spy.isAvailable) {
 				LETableViewCellButton *assignButtonCell = [LETableViewCellButton getCellForTableView:tableView];
 				assignButtonCell.textLabel.text = @"Assign spy";
 				cell = assignButtonCell;
 			} else {
 				LETableViewCellLabeledText *assignedCell = [LETableViewCellLabeledText getCellForTableView:tableView];
-				assignedCell.label.text = @"Busy until";
-				assignedCell.content.text = [Util prettyDate:[spy objectForKey:@"available_on"]];
+				assignedCell.label.text = @"Busy for";
+				//assignedCell.content.text = [Util formatDate:spy.assignmentEnds];
+				assignedCell.content.text = [Util prettyDuration:spy.secondsRemaining];
 				cell = assignedCell;
 			}
 			break;
@@ -158,27 +168,24 @@ typedef enum {
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSMutableDictionary *spy = [self.spies objectAtIndex:indexPath.section];
+	Spy *spy = [self.intelligenceBuilding.spies objectAtIndex:indexPath.section];
 	switch (indexPath.row) {
 		case ROW_BURN_BUTTON:
-			[[[LEBuildingBurnSpy alloc] initWithCallback:@selector(spyBurnt:) target:self buildingId:self.buildingId buildingUrl:self.urlPart spyId:[spy objectForKey:@"id"]] autorelease];
+			[self.intelligenceBuilding burnSpy:spy];
 			break;
 		case ROW_RENAME_BUTTON:
 			; //DO NOT REMOVE
 			RenameSpyController *renameSpyController = [RenameSpyController create];
-			renameSpyController.buildingId = self.buildingId;
-			renameSpyController.spyId = [spy objectForKey:@"id"];
-			renameSpyController.urlPart = self.urlPart;
-			renameSpyController.nameCell.textField.text = [spy objectForKey:@"name"];
+			renameSpyController.intelligenceBuilding = self.intelligenceBuilding;
+			renameSpyController.spy = spy;
+			renameSpyController.nameCell.textField.text = spy.name;
 			[self.navigationController pushViewController:renameSpyController animated:YES];
 			break;
 		case ROW_ASSIGN_BUTTON:
-			if (_intv([spy objectForKey:@"is_available"]) == 1) {
+			if (spy.isAvailable) {
 				AssignSpyController *assignSpyController = [AssignSpyController create];
-				assignSpyController.buildingId = self.buildingId;
-				assignSpyController.spyData = spy;
-				assignSpyController.urlPart = self.urlPart;
-				assignSpyController.possibleAssignments = self.possibleAssignments;
+				assignSpyController.intelligenceBuilding = self.intelligenceBuilding;
+				assignSpyController.spy = spy;
 				[self.navigationController pushViewController:assignSpyController animated:YES];
 			}
 			break;
@@ -199,64 +206,14 @@ typedef enum {
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
-	[self.reloadTimer invalidate]; 
-	self.reloadTimer = nil;
-	self.spies = nil;
-	self.possibleAssignments = nil;
 	[super viewDidUnload];
 }
 
 
 - (void)dealloc {
-	self.buildingId = nil;
-	self.spiesData = nil;
-	self.urlPart = nil;
+	self.intelligenceBuilding = nil;
+	self.spiesLastUpdated = nil;
     [super dealloc];
-}
-
-
-#pragma mark -
-#pragma mark Callback Methods
-
-- (void)handleTimer:(NSTimer *)theTimer {
-	NSLog(@"handleTimer");
-	if (theTimer == self.reloadTimer) {
-		[[[LEBuildingViewSpies alloc] initWithCallback:@selector(spiesLoaded:) target:self buildingId:self.buildingId buildingUrl:self.urlPart] autorelease];
-	}
-}
-
-
-- (id)spiesLoaded:(LEBuildingViewSpies *)request {
-	self.spies = request.spies;
-	self.possibleAssignments = request.possibleAssignments;
-	NSLog(@"SPIES: %@", self.spies);
-	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[self.spies count]];
-	for (NSDictionary *spy in self.spies) {
-		[tmp addObject:[LEViewSectionTab tableView:self.tableView createWithText:[spy objectForKey:@"name"]]];
-	}
-	self.sectionHeaders = tmp;
-	[self.tableView reloadData];
-	
-	return nil;
-}
-
-
-- (id)spyBurnt:(LEBuildingBurnSpy *)request {
-	NSDictionary *spyToRemove;
-	for (NSDictionary *spy in self.spies) {
-		if ([[spy objectForKey:@"id"] isEqualToString:request.spyId]) {
-			spyToRemove = spy;
-		}
-	}
-	if (spyToRemove) {
-		[self.spies removeObject:spyToRemove];
-		NSInteger currentSpyCount = _intv([self.spiesData objectForKey:@"current"]);
-		currentSpyCount -= 1;
-		[self.spiesData setObject:[NSNumber numberWithInt:currentSpyCount] forKey:@"current"];
-	}
-	[self.tableView reloadData];
-	
-	return nil;
 }
 
 
@@ -265,6 +222,17 @@ typedef enum {
 
 + (ViewSpiesController *)create {
 	return [[[ViewSpiesController alloc] init] autorelease];
+}
+
+
+#pragma mark -
+#pragma mark KVO Methods
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+	if ([keyPath isEqual:@"spiesUpdated"]) {
+		[self.tableView reloadData];
+		self.spiesLastUpdated = self.intelligenceBuilding.spiesUpdated;
+	}
 }
 
 

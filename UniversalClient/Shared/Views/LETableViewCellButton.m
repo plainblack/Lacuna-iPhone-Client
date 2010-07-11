@@ -46,7 +46,7 @@
 		cell.textLabel.textAlignment = UITextAlignmentCenter;
 		
 		//Set Font stuff
-		cell.textLabel.font = TEXT_FONT;
+		cell.textLabel.font = BUTTON_TEXT_FONT;
 		cell.textLabel.textColor = BUTTON_TEXT_COLOR;
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		

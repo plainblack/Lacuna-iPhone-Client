@@ -25,6 +25,7 @@
 @synthesize orePerHourLabel;
 @synthesize wastePerHourLabel;
 @synthesize waterPerHourLabel;
+@synthesize buildingBackgroundImageView;
 @synthesize buildingImageView;
 @synthesize buildingNameAndLevelLabel;
 
@@ -52,6 +53,7 @@
 	self.orePerHourLabel = nil;
 	self.wastePerHourLabel = nil;
 	self.waterPerHourLabel = nil;
+	self.buildingBackgroundImageView = nil;
 	self.buildingImageView = nil;
 	self.buildingNameAndLevelLabel = nil;
     [super dealloc];
@@ -92,6 +94,11 @@
 }
 
 
+- (void)setBuildingBackgroundImage:(UIImage *)buildingBackgroundImage {
+	self.buildingBackgroundImageView.image = buildingBackgroundImage;
+}
+
+
 - (void)setBuildingImage:(UIImage *)buildingImage {
 	self.buildingImageView.image = buildingImage;
 }
@@ -119,9 +126,9 @@
 - (void)setNormalPerHourLabel:(UILabel *)perHourLabel perHour:(NSInteger)perHour {
 	perHourLabel.text = [NSString stringWithFormat:@"%i/hr", perHour];
 	if (perHour < 0) {
-		perHourLabel.textColor = [UIColor redColor];
+		perHourLabel.textColor = WARNING_COLOR;
 	} else {
-		perHourLabel.textColor = [UIColor blackColor];
+		perHourLabel.textColor = TEXT_SMALL_COLOR;
 	}
 }
 
@@ -129,9 +136,9 @@
 - (void)setOppositePerHourLabel:(UILabel *)perHourLabel perHour:(NSInteger)perHour {
 	perHourLabel.text = [NSString stringWithFormat:@"%i/hr", perHour];
 	if (perHour <= 0) {
-		perHourLabel.textColor = [UIColor blackColor];
+		perHourLabel.textColor = TEXT_SMALL_COLOR;
 	} else {
-		perHourLabel.textColor = [UIColor redColor];
+		perHourLabel.textColor = WARNING_COLOR;
 	}
 }
 
@@ -148,6 +155,9 @@
 		cell.backgroundColor = CELL_BACKGROUND_COLOR;
 		cell.autoresizesSubviews = YES;
 		
+		cell.buildingBackgroundImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(10, 34, 50, 50)] autorelease];
+		cell.buildingBackgroundImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+		[cell.contentView addSubview:cell.buildingBackgroundImageView];
 		cell.buildingImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(10, 34, 50, 50)] autorelease];
 		cell.buildingImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.buildingImageView];

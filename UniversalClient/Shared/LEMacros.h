@@ -12,6 +12,7 @@
 #define _dict(__args...) [NSMutableDictionary dictionaryWithObjectsAndKeys:__args, nil]
 #define _intv(__o) [__o intValue]
 #define NSRangeZero NSMakeRange(0,0)
+#define isNotNull(__o) (__o && ((id)__o != [NSNull null]))
 
 //Supported Server Version
 #define SERVER_MAJOR 2
@@ -20,20 +21,26 @@
 //Time defs
 #define SEC_IN_HOUR (1.0 * 60.0 * 60.0) // 1hr, 60 min, 60 sec
 
-//#define CELL_BACKGROUND_COLOR [UIColor colorWithRed:(244/255.0) green:(215/255.0) blue:(78/255.0) alpha:1.0]
-#define CELL_BACKGROUND_IMAGE [UIImage imageNamed:@"assets/ui/bkg.png"]
+//#define CELL_BACKGROUND_IMAGE [UIImage imageNamed:@"assets/ui/bkg.png"]
+#define CELL_BACKGROUND_IMAGE [UIImage imageNamed:@"assets/iphone ui/cell-bkg.png"]
 #define CELL_BACKGROUND_COLOR [UIColor colorWithPatternImage:CELL_BACKGROUND_IMAGE]
+#define TOP_CELL_BACKGROUND_IMAGE [UIImage imageNamed:@"assets/iphone ui/cell-bkg-top.png"]
+#define TOP_CELL_BACKGROUND_COLOR [UIColor colorWithPatternImage:TOP_CELL_BACKGROUND_IMAGE]
 #define LE_BLUE [UIColor colorWithRed:82.0/255.0 green:172.0/255.0 blue:1.0 alpha:1.0]
+#define TINT_COLOR [UIColor colorWithRed:11.0/255.0 green:82.0/255.0 blue:163.0/255.0 alpha:1.0]
+#define SEPARATOR_COLOR [UIColor whiteColor]
 
 //FONT SETTINGS
-#define LABEL_COLOR [UIColor colorWithWhite:0.4 alpha:1.0]
-#define LABEL_SMALL_COLOR [UIColor colorWithWhite:0.4 alpha:1.0]
-#define TEXT_COLOR [UIColor blackColor]
-#define TEXT_SMALL_COLOR [UIColor blackColor]
-#define PARAGRAPH_COLOR [UIColor blackColor]
-#define TEXT_ENTRY_COLOR [UIColor blackColor]
-#define BUTTON_TEXT_COLOR [UIColor blueColor];
-#define HEADER_TEXT_COLOR [UIColor whiteColor];
+#define LABEL_COLOR [UIColor colorWithWhite:0.7 alpha:1.0]
+#define LABEL_SMALL_COLOR [UIColor colorWithWhite:0.7 alpha:1.0]
+#define TEXT_COLOR [UIColor whiteColor]
+#define TEXT_SMALL_COLOR [UIColor whiteColor]
+#define PARAGRAPH_COLOR [UIColor whiteColor]
+#define TEXT_ENTRY_COLOR [UIColor whiteColor]
+#define BUTTON_TEXT_COLOR [UIColor colorWithRed:1.0 green:192.0/255.0 blue:0.0 alpha:1.0]
+#define HEADER_TEXT_COLOR [UIColor colorWithRed:1.0 green:192.0/255.0 blue:0.0 alpha:1.0]
+#define WARNING_COLOR [UIColor colorWithRed:1.0 green:0.6 blue:0.6 alpha:1.0]
+#define MAIL_TEXT_COLOR [UIColor blackColor]
 
 #define LABEL_FONT [UIFont fontWithName:@"Verdana" size:12.0]
 #define LABEL_SMALL_FONT [UIFont fontWithName:@"Verdana" size:10.0]
@@ -42,7 +49,8 @@
 #define TEXT_FONT [UIFont fontWithName:@"Verdana" size:16.0]
 #define TEXT_SMALL_FONT [UIFont fontWithName:@"Verdana" size:10.0]
 #define TEXT_ENTRY_FONT [UIFont fontWithName:@"Verdana" size:18.0]
-#define HEADER_TEXT_FONT [UIFont fontWithName:@"Verdana" size:18.0];
+#define HEADER_TEXT_FONT [UIFont fontWithName:@"Verdana-Bold" size:18.0]
+#define BUTTON_TEXT_FONT [UIFont fontWithName:@"Verdana-Bold" size:16.0]
 
 //Settins
 #define NUM_ORBITS 7

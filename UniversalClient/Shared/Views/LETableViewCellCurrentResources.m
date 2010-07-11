@@ -103,9 +103,9 @@
 - (void)setTotalLabel:(UILabel *)totalLabel current:(NSNumber *)current capacity:(NSInteger)capacity {
 	totalLabel.text = [NSString stringWithFormat:@"%@/%@", [Util prettyNSNumber:current], [Util prettyNSInteger:capacity]];
 	if (_intv(current) == capacity) {
-		totalLabel.textColor = [UIColor redColor];
+		totalLabel.textColor = WARNING_COLOR;
 	} else {
-		totalLabel.textColor = [UIColor blackColor];
+		totalLabel.textColor = TEXT_SMALL_COLOR;
 	}
 
 }
@@ -114,9 +114,9 @@
 - (void)setPerHourLabel:(UILabel *)perHourLabel perHour:(NSInteger)perHour {
 	perHourLabel.text = [NSString stringWithFormat:@"%@/hr", [Util prettyNSInteger:perHour]];
 	if (perHour < 0) {
-		perHourLabel.textColor = [UIColor redColor];
+		perHourLabel.textColor = WARNING_COLOR;
 	} else {
-		perHourLabel.textColor = [UIColor blackColor];
+		perHourLabel.textColor = TEXT_SMALL_COLOR;
 	}
 }
 

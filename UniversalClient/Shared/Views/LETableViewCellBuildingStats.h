@@ -18,6 +18,7 @@
 	UILabel *wastePerHourLabel;
 	UILabel *waterPerHourLabel;
 	UIImageView *buildingImageView;
+	UIImageView *buildingBackgroundImageView;
 	UILabel *buildingNameAndLevelLabel;
 }
 
@@ -29,6 +30,7 @@
 @property(nonatomic, retain) IBOutlet UILabel *wastePerHourLabel;
 @property(nonatomic, retain) IBOutlet UILabel *waterPerHourLabel;
 @property(nonatomic, retain) IBOutlet UIImageView *buildingImageView;
+@property(nonatomic, retain) IBOutlet UIImageView *buildingBackgroundImageView;
 @property(nonatomic, retain) IBOutlet UILabel *buildingNameAndLevelLabel;
 
 
@@ -39,6 +41,7 @@
 - (void)setWastePerHour:(NSNumber *)perHour;
 - (void)setWaterPerHour:(NSNumber *)perHour;
 - (void)setBuildingImage:(UIImage *)buildingImage;
+- (void)setBuildingBackgroundImage:(UIImage *)buildingImage;
 - (void)setBuildingName:(NSString *)name buildingLevel:(NSInteger)level;
 - (void)setResourceGeneration:(ResourceGeneration *)resourceGeneration;
 

@@ -13,6 +13,12 @@
 #import "LETableViewCellCost.h"
 #import "LEBuildingTrainSpy.h"
 #import "ViewSpiesController.h"
+#import "LEBuildingAssignSpy.h"
+#import "LEBuildingBurnSpy.h"
+#import "LEBuildingNameSpy.h"
+#import "LEBuildingViewSpies.h"
+#import "Spy.h"
+
 
 
 @implementation Intelligence
@@ -20,6 +26,9 @@
 @synthesize maxSpies;
 @synthesize numSpies;
 @synthesize spyTrainingCost;
+@synthesize spies;
+@synthesize possibleAssignments;
+@synthesize spiesUpdated;
 
 
 #pragma mark --
@@ -27,6 +36,9 @@
 
 - (void)dealloc {
 	self.spyTrainingCost = nil;
+	self.spies = nil;
+	self.possibleAssignments = nil;
+	self.spiesUpdated = nil;
 	[super dealloc];
 }
 
@@ -35,8 +47,20 @@
 #pragma mark Overriden Building Methods
 
 - (void)tick:(NSInteger)interval {
-	//Tick spies once I have list of spies
 	[super tick:interval];
+	BOOL reloadSpies = NO;
+	
+	for (Spy *spy in self.spies) {
+		if ([spy tick:interval]) {
+			reloadSpies = YES;
+		}
+	}
+
+	if (reloadSpies) {
+		[self loadSpies];
+	}
+
+	self.spiesUpdated = [NSDate date];
 }
 
 
@@ -47,18 +71,17 @@
 	if (!self.spyTrainingCost) {
 		self.spyTrainingCost = [[[ResourceCost alloc] init] autorelease];
 	}
-	NSLog(@"Parsing spy training cost!");
 	[self.spyTrainingCost parseData:[spyData objectForKey:@"training_costs"]];
 	
 	NSMutableArray *rows = [NSMutableArray arrayWithCapacity:5];
 	[rows addObject:[NSNumber numberWithInt:BUILDING_ROW_NUM_SPIES]];
 	[rows addObject:[NSNumber numberWithInt:BUILDING_ROW_SPY_BUILD_COST]];
-	
+	[rows addObject:[NSNumber numberWithInt:BUILDING_ROW_VIEW_SPIES_BUTTON]];
+
 	if (self.numSpies < self.maxSpies) {
 		[rows addObject:[NSNumber numberWithInt:BUILDING_ROW_BUILD_SPY_BUTTON]];
 	}
 	
-	[rows addObject:[NSNumber numberWithInt:BUILDING_ROW_VIEW_SPIES_BUTTON]];
 	[tmpSections addObject:_dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Spies", @"name", rows, @"rows")];
 }
 
@@ -128,9 +151,7 @@
 		case BUILDING_ROW_VIEW_SPIES_BUTTON:
 			; //DO NOT REMOVE
 			ViewSpiesController *viewSpiesController = [ViewSpiesController create];
-			viewSpiesController.buildingId = self.id;
-			//viewSpiesController.spiesData = [self.resultData objectForKey:@"spies"];
-			viewSpiesController.urlPart = self.buildingUrl;
+			viewSpiesController.intelligenceBuilding = self;
 			return viewSpiesController;
 			break;
 		default:
@@ -141,6 +162,29 @@
 
 
 #pragma mark --
+#pragma mark Instance Methods
+
+- (void)loadSpies {
+	[[[LEBuildingViewSpies alloc] initWithCallback:@selector(spiesLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+}
+
+
+- (void)burnSpy:(Spy *)spy {
+	[[[LEBuildingBurnSpy alloc] initWithCallback:@selector(spyBurnt:) target:self buildingId:self.id buildingUrl:self.buildingUrl spyId:spy.id] autorelease];
+}
+
+
+- (void)spy:(Spy *)spy rename:(NSString *)newName {
+	[[[LEBuildingNameSpy alloc] initWithCallback:@selector(spyRenamed:) target:self buildingId:self.id buildingUrl:self.buildingUrl	spyId:spy.id name:newName] autorelease];
+}
+
+
+- (void)spy:(Spy *)spy assign:(NSString *)assignment {
+	[[[LEBuildingAssignSpy alloc] initWithCallback:@selector(spyAssigned:) target:self buildingId:self.id buildingUrl:self.buildingUrl spyId:spy.id assignment:assignment] autorelease];
+}
+
+
+#pragma mark -
 #pragma mark Callback Methods
 
 - (id)spyTrained:(LEBuildingTrainSpy *)request {
@@ -149,6 +193,68 @@
 		NSLog(@"KEVIN ADD ALERT!!");
 	}
 	self.needsRefresh = YES;
+	
+	self.spiesUpdated = [NSDate date];
+	return nil;
+}
+
+
+- (id)spiesLoaded:(LEBuildingViewSpies *)request {
+	NSMutableArray *tmpSpies = [NSMutableArray arrayWithCapacity:[request.spies count]];
+	for (NSDictionary *spyData in request.spies) {
+		Spy *tmpSpy = [[[Spy alloc] init] autorelease];
+		[tmpSpy parseData:spyData];
+		[tmpSpies addObject:tmpSpy];
+	}
+	
+	self.possibleAssignments = request.possibleAssignments;
+	self.spies = tmpSpies;
+	
+	self.spiesUpdated = [NSDate date];
+	return nil;
+}
+
+
+- (id)spyBurnt:(LEBuildingBurnSpy *)request {
+	Spy *spyToRemove;
+	for (Spy *newSpy in self.spies) {
+		if ([newSpy.id isEqualToString:request.spyId]) {
+			spyToRemove = newSpy;
+		}
+	}
+	if (spyToRemove) {
+		[self.spies removeObject:spyToRemove];
+	}
+	
+	self.spiesUpdated = [NSDate date];
+	return nil;
+}
+
+
+- (id)spyRenamed:(LEBuildingNameSpy *)request {
+	Spy *renamedSpy;
+	for (Spy *spy in self.spies) {
+		if ([spy.id isEqualToString:request.spyId]) {
+			renamedSpy = spy;
+		}
+	}
+	
+	self.spiesUpdated = [NSDate date];
+	renamedSpy.name = request.name;
+	return nil;
+}
+
+
+- (id)spyAssigned:(LEBuildingAssignSpy *)request {
+	Spy *assignedSpy;
+	for (Spy *spy in self.spies) {
+		if ([spy.id isEqualToString:request.spyId]) {
+			assignedSpy = spy;
+		}
+	}
+	
+	self.spiesUpdated = [NSDate date];
+	assignedSpy.assignment = request.assignment;
 	return nil;
 }
 

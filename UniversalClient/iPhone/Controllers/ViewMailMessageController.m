@@ -171,6 +171,7 @@ typedef enum {
 			LETableViewCellLabeledText *fromCell = [LETableViewCellLabeledText getCellForTableView:tableView];
 			fromCell.label.text = @"To";
 			fromCell.content.text = [self.mailbox.messageDetails objectForKey:@"to"];
+			fromCell.content.textColor = MAIL_TEXT_COLOR;
 			cell = fromCell;
 			break;
 		case ROW_TO:
@@ -178,6 +179,7 @@ typedef enum {
 			LETableViewCellLabeledText *toCell = [LETableViewCellLabeledText getCellForTableView:tableView];
 			toCell.label.text = @"From";
 			toCell.content.text = [self.mailbox.messageDetails objectForKey:@"from"];
+			toCell.content.textColor = MAIL_TEXT_COLOR;
 			cell = toCell;
 			break;
 		case ROW_SUBJECT:
@@ -185,6 +187,7 @@ typedef enum {
 			LETableViewCellLabeledText *subjectCell = [LETableViewCellLabeledText getCellForTableView:tableView];
 			subjectCell.label.text = @"Subject";
 			subjectCell.content.text = [self.mailbox.messageDetails objectForKey:@"subject"];
+			subjectCell.content.textColor = MAIL_TEXT_COLOR;
 			cell = subjectCell;
 			break;
 		case ROW_BODY:
@@ -196,6 +199,7 @@ typedef enum {
 			} else {
 				bodyCell.content.text = @"Loading";
 			}
+			bodyCell.content.textColor = MAIL_TEXT_COLOR;
 			cell = bodyCell;
 			break;
 		default:

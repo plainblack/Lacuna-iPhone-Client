@@ -104,7 +104,7 @@
 
 
 - (void)setCostLabel:(UILabel *)costLabel cost:(NSInteger)cost {
-	costLabel.text = [NSString stringWithFormat:@"%i", cost];
+	costLabel.text = [NSString stringWithFormat:@"%@", [Util prettyNSInteger:cost]];
 }
 
 

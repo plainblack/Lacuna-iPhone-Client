@@ -66,6 +66,7 @@ typedef enum {
 
 
 @synthesize bodyId;
+@synthesize watchedBody;
 
 
 #pragma mark -
@@ -79,10 +80,11 @@ typedef enum {
 	self.view.autoresizesSubviews = YES;
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	self.tableView.backgroundColor = [UIColor clearColor];
-	self.tableView.separatorColor = LE_BLUE;
+	self.tableView.separatorColor = SEPARATOR_COLOR;
 	
 	self.navigationItem.title = @"Loading";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadBody)] autorelease];
 
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Body"],
 								 [LEViewSectionTab tableView:self.tableView createWithText:@"Actions"],
@@ -101,12 +103,16 @@ typedef enum {
 	
 	[session addObserver:self forKeyPath:@"body" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 	[session addObserver:self forKeyPath:@"lastTick" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-	[session loadBody:self.bodyId];
+
+	if (![session.body.id isEqualToString:self.bodyId]) {
+		[session loadBody:self.bodyId];
+	}
 }
 
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+	[self.tableView reloadData];
 }
 
 
@@ -119,6 +125,11 @@ typedef enum {
 - (void)viewDidDisappear:(BOOL)animated {
 	Session *session = [Session sharedInstance];
 	[session removeObserver:self forKeyPath:@"body"];
+	[session removeObserver:self forKeyPath:@"lastTick"];
+	if (isNotNull(self.watchedBody)) {
+		[self.watchedBody addObserver:self forKeyPath:@"needsRefresh" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+		self.watchedBody = nil;
+	}
     [super viewDidDisappear:animated];
 }
 
@@ -332,7 +343,7 @@ typedef enum {
 					break;
 				case COMPOSITION_ROW_WATER:
 					compositionCell.label.text = @"Water";
-					compositionCell.content.text = [NSString stringWithFormat:@"%@", session.body.planetWater];
+					compositionCell.content.text = [NSString stringWithFormat:@"%i", session.body.planetWater];
 					break;
 				default:
 					compositionCell.label.text = @"UNKNOWN";
@@ -406,6 +417,15 @@ typedef enum {
 
 
 #pragma mark -
+#pragma mark Callback Methods
+
+- (void)loadBody {
+	Session *session = [Session sharedInstance];
+	[session loadBody:self.bodyId];
+}
+
+
+#pragma mark -
 #pragma mark Class Methods
 
 + (ViewBodyController *)create {
@@ -418,12 +438,24 @@ typedef enum {
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ([keyPath isEqual:@"body"]) {
+		if (isNotNull(self.watchedBody)) {
+			[self.watchedBody removeObserver:self forKeyPath:@"needsRefresh"];
+		}
+		
+		Body *newBody = (Body *)[change objectForKey:NSKeyValueChangeNewKey];
+		if (isNotNull(newBody)) {
+			[newBody addObserver:self forKeyPath:@"needsRefresh" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+		}
+		self.watchedBody = newBody;
+		
 		Session *session = [Session sharedInstance];
 		self.navigationItem.title = session.body.name;
 		[self.tableView reloadData];
 	} else if ([keyPath isEqual:@"lastTick"]) {
 		Session *session = [Session sharedInstance];
 		self.navigationItem.title = session.body.name;
+		[self.tableView reloadData];
+	} else if ([keyPath isEqual:@"newsRefresh"]) {
 		[self.tableView reloadData];
 	}
 }

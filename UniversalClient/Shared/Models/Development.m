@@ -100,7 +100,8 @@
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			NSDictionary *buildQueueItem = [self.buildQueue objectAtIndex:rowIndex];
 			LETableViewCellLabeledText *buildQueueItemCell = [LETableViewCellLabeledText getCellForTableView:tableView];
-			buildQueueItemCell.textLabel.text = [NSString stringWithFormat:@"%@ to level %@: %@", [buildQueueItem objectForKey:@"name"], [buildQueueItem objectForKey:@"to_level"], [Util prettyDuration:_intv([buildQueueItem objectForKey:@"seconds_remaining"])]];
+			buildQueueItemCell.label.text = [NSString stringWithFormat:@"Level %@", [buildQueueItem objectForKey:@"to_level"]];
+			buildQueueItemCell.content.text = [NSString stringWithFormat:@"%@: %@", [buildQueueItem objectForKey:@"name"], [Util prettyDuration:_intv([buildQueueItem objectForKey:@"seconds_remaining"])]];
 			cell = buildQueueItemCell;
 			break;
 		default:

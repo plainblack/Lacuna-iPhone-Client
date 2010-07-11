@@ -10,14 +10,15 @@
 #import "LEMacros.h"
 #import "LEViewSectionTab.h"
 #import "LEBuildingNameSpy.h"
+#import "Intelligence.h"
+#import "Spy.h"
 
 
 @implementation RenameSpyController
 
 
-@synthesize buildingId;
-@synthesize spyId;
-@synthesize urlPart;
+@synthesize intelligenceBuilding;
+@synthesize spy;
 @synthesize nameCell;
 
 
@@ -33,8 +34,21 @@
 	
 	self.nameCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
 	self.nameCell.label.text = @"Name";
+	self.nameCell.textField.text = spy.name;
 	
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Body name"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Rename Spy"]);
+}
+
+
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	[self.spy addObserver:self forKeyPath:@"name" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+}
+
+
+- (void)viewDidDisappear:(BOOL)animated {
+	[super viewDidDisappear:animated];
+	[self.spy removeObserver:self forKeyPath:@"name"];
 }
 
 
@@ -76,9 +90,8 @@
 
 
 - (void)dealloc {
-	self.buildingId = nil;
-	self.spyId = nil;
-	self.urlPart = nil;
+	self.intelligenceBuilding = nil;
+	self.spy = nil;
 	self.nameCell = nil;
     [super dealloc];
 }
@@ -93,16 +106,7 @@
 
 
 - (void)save {
-	[[LEBuildingNameSpy alloc] initWithCallback:@selector(spyRenamed:) target:self buildingId:self.buildingId buildingUrl:self.urlPart spyId:self.spyId	name:self.nameCell.textField.text];
-}
-
-
-#pragma mark -
-#pragma mark Callback Methods
-
-- (id)spyRenamed:(LEBuildingNameSpy *)request {
-	[[self navigationController] popViewControllerAnimated:YES];
-	return nil;
+	[self.intelligenceBuilding spy:self.spy rename:self.nameCell.textField.text];
 }
 
 
@@ -111,6 +115,16 @@
 
 + (RenameSpyController *)create {
 	return [[[RenameSpyController alloc] init] autorelease];
+}
+
+
+#pragma mark --
+#pragma mark KVO Methods
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+	if ([keyPath isEqual:@"name"]) {
+		[self.navigationController popViewControllerAnimated:YES];
+	}
 }
 
 

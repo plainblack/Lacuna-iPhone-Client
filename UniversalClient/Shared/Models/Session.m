@@ -113,6 +113,8 @@ static Session *sharedSession = nil;
 
 - (void)logout {
 	[[[LEEmpireLogout alloc] initWithCallback:@selector(loggedOut:) target:self sessionId:self.sessionId] autorelease];
+	self.empire = nil;
+	self.body = nil;
 }
 
 
@@ -151,6 +153,12 @@ static Session *sharedSession = nil;
 		NSDictionary *empireStatus = [status objectForKey:@"empire"];
 		if (empireStatus) {
 			[self.empire parseData:empireStatus];
+		}
+
+		NSDictionary *bodyStatus = [status objectForKey:@"body"];
+		if (bodyStatus) {
+			NSLog(@"Session updating body");
+			[self.body parseData:bodyStatus];
 		}
 	}
 }

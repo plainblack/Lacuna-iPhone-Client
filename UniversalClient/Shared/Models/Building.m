@@ -9,6 +9,7 @@
 #import "Building.h"
 #import "BuildingUtil.h"
 #import "LEMacros.h"
+#import "Session.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellLabeledText.h"
 #import "LETableViewCellButton.h"
@@ -16,6 +17,7 @@
 #import "LETableViewCellCost.h"
 #import "LETableViewCellUnbuildable.h"
 #import "LETableViewCellProgress.h"
+#import "LETableViewCellBuildingStorage.h"
 #import "LEUpgradeBuilding.h"
 #import "LEBuildingDemolish.h"
 #import "LEBuildingRestrictCoverage.h"
@@ -135,19 +137,32 @@
 	
 	
 	NSMutableArray *tmpSections = [NSMutableArray arrayWithCapacity:5];
-	[tmpSections addObject:_dict([NSNumber numberWithInt:BUILDING_SECTION_BUILDING], @"type", @"Building", @"name", _array([NSNumber numberWithInt:BUILDING_ROW_BUILDING_STATS]), @"rows")];
+	if (self.resourceCapacity.hasStorage) {
+		[tmpSections addObject:_dict([NSNumber numberWithInt:BUILDING_SECTION_BUILDING], @"type", @"Building", @"name", _array([NSNumber numberWithInt:BUILDING_ROW_BUILDING_STATS], [NSNumber numberWithInt:BUILDING_ROW_STORAGE]), @"rows")];
+	} else {
+		[tmpSections addObject:_dict([NSNumber numberWithInt:BUILDING_SECTION_BUILDING], @"type", @"Building", @"name", _array([NSNumber numberWithInt:BUILDING_ROW_BUILDING_STATS]), @"rows")];
+	}
+
 
 	[self parseAdditionalData:data tmpSections:tmpSections];
 	
-	if (self.pendingBuild && (id)self.pendingBuild != [NSNull null]) {
-		[tmpSections addObject:_dict([NSNumber numberWithInt:BUILDING_SECTION_UPGRADE], @"type", @"Upgrade", @"name", _array([NSNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_STATS], [NSNumber numberWithInt:BUILDING_ROW_UPGRADE_PROGRESS]), @"rows")];
-	} else {
-		if (self.canUpgrade) {
-			[tmpSections addObject:_dict([NSNumber numberWithInt:BUILDING_SECTION_UPGRADE], @"type", @"Upgrade", @"name", _array([NSNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_STATS], [NSNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_COST], [NSNumber numberWithInt:BUILDING_ROW_UPGRADE_BUTTON], [NSNumber numberWithInt:BUILDING_ROW_DEMOLISH_BUTTON]), @"rows")];
-		} else {
-			[tmpSections addObject:_dict([NSNumber numberWithInt:BUILDING_SECTION_UPGRADE], @"type", @"Upgrade", @"name", _array([NSNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_STATS], [NSNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_COST], [NSNumber numberWithInt:BUILDING_ROW_UPGRADE_CANNOT], [NSNumber numberWithInt:BUILDING_ROW_DEMOLISH_BUTTON]), @"rows")];
-		}
+	NSMutableArray *tmpArray = _array([NSNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_STATS]);
+	if (self.upgradedResourceStorage.hasStorage) {
+		[tmpArray addObject:[NSNumber numberWithInt:BUILDING_ROW_UPGRADE_STORAGE]];
 	}
+
+	if (self.pendingBuild && (id)self.pendingBuild != [NSNull null]) {
+		[tmpArray addObject:[NSNumber numberWithInt:BUILDING_ROW_UPGRADE_PROGRESS]];
+	} else {
+		[tmpArray addObject:[NSNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_COST]];
+		if (self.canUpgrade) {
+			[tmpArray addObject:[NSNumber numberWithInt:BUILDING_ROW_UPGRADE_BUTTON]];
+		} else {
+			[tmpArray addObject:[NSNumber numberWithInt:BUILDING_ROW_UPGRADE_CANNOT]];
+		}
+		[tmpArray addObject:[NSNumber numberWithInt:BUILDING_ROW_DEMOLISH_BUTTON]];
+	}
+	[tmpSections addObject:_dict([NSNumber numberWithInt:BUILDING_SECTION_UPGRADE], @"type", @"Upgrade", @"name", tmpArray, @"rows")];
 	
 	self.sections = tmpSections;
 	
@@ -218,6 +233,10 @@
 		case BUILDING_ROW_EMPTY:
 			return [LETableViewCellLabeledText getHeightForTableView:tableView];
 			break;
+		case BUILDING_ROW_STORAGE:
+		case BUILDING_ROW_UPGRADE_STORAGE:
+			return [LETableViewCellBuildingStorage getHeightForTableView:tableView];
+			break;
 		default:
 			return tableView.rowHeight;
 			break;
@@ -234,12 +253,14 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex {
+	Session *session = [Session sharedInstance];
 	UITableViewCell *cell = nil;
 	switch (buildingRow) {
 		case BUILDING_ROW_BUILDING_STATS:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellBuildingStats *statsCell = [LETableViewCellBuildingStats getCellForTableView:tableView];
 			[statsCell setBuildingImage:[UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/100/%@.png", self.imageName]]];
+			[statsCell setBuildingBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"assets/planet_side/%@.jpg", session.body.surfaceImageName]]];
 			[statsCell setBuildingName:self.name buildingLevel:self.level];
 			[statsCell setResourceGeneration:self.resourcesPerHour];
 			cell = statsCell;
@@ -248,6 +269,7 @@
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellBuildingStats *upgradeStatsCell = [LETableViewCellBuildingStats getCellForTableView:tableView];
 			[upgradeStatsCell setBuildingImage:[UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/100/%@.png", self.upgradedImageName]]];
+			[upgradeStatsCell setBuildingBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"assets/planet_side/%@.jpg", session.body.surfaceImageName]]];
 			[upgradeStatsCell setBuildingName:self.name buildingLevel:self.level+1];
 			[upgradeStatsCell setResourceGeneration:self.upgradedResourcePerHour];
 			cell = upgradeStatsCell;
@@ -294,13 +316,27 @@
 		case BUILDING_ROW_EMPTY:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellLabeledText *emptyCell = [LETableViewCellLabeledText getCellForTableView:tableView];
-			emptyCell.textLabel.text = @"Empty";
+			emptyCell.label.text = @"";
+			emptyCell.content.text = @"Empty";
 			cell = emptyCell;
+			break;
+		case BUILDING_ROW_STORAGE:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellBuildingStorage *storageCell = [LETableViewCellBuildingStorage getCellForTableView:tableView];
+			[storageCell setResourceStorage:self.resourceCapacity];
+			cell = storageCell;
+			break;
+		case BUILDING_ROW_UPGRADE_STORAGE:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellBuildingStorage *upgradeStorageCell = [LETableViewCellBuildingStorage getCellForTableView:tableView];
+			[upgradeStorageCell setResourceStorage:self.upgradedResourceStorage];
+			cell = upgradeStorageCell;
 			break;
 		default:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellLabeledText *defaultCell = [LETableViewCellLabeledText getCellForTableView:tableView];
-			defaultCell.textLabel.text = @"TBD";
+			defaultCell.label.text = @"";
+			defaultCell.content.text = @"TBD";
 			cell = defaultCell;
 			break;
 	}

@@ -42,6 +42,7 @@
 @synthesize buildingMap;
 @synthesize surfaceImageName;
 @synthesize currentBuilding;
+@synthesize needsRefresh;
 
 
 #pragma mark --
@@ -93,7 +94,7 @@
 	self.imageName = [bodyData objectForKey:@"image"];
 	self.size = _intv([bodyData objectForKey:@"size"]);
 	self.planetWater = _intv([bodyData objectForKey:@"water"]);
-	self.ores = [bodyData objectForKey:@"ores"];
+	self.ores = [bodyData objectForKey:@"ore"];
 	NSDictionary *empireData = [bodyData objectForKey:@"empire"];
 	self.empireId = [empireData objectForKey:@"id"];
 	self.empireName = [empireData objectForKey:@"name"];
@@ -124,6 +125,7 @@
 		self.water = [[[StoredResource alloc] init] autorelease];
 	}
 	[self.water parseFromData:bodyData withPrefix:@"water"];
+	self.needsRefresh = YES;
 }
 
 

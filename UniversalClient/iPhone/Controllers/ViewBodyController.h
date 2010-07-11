@@ -9,13 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "LETableViewControllerGrouped.h"
 
+@class Body;
+
 
 @interface ViewBodyController : LETableViewControllerGrouped {
 	NSString *bodyId;
+	Body *watchedBody;
 }
 
 
 @property(nonatomic, retain) NSString *bodyId;
+@property(nonatomic, retain) Body *watchedBody;
 
 
 - (void)clear;

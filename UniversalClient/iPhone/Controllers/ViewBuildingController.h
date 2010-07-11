@@ -10,6 +10,9 @@
 #import "LETableViewControllerGrouped.h"
 
 
+@class Building;
+
+
 @interface ViewBuildingController : LETableViewControllerGrouped <UIActionSheetDelegate> {
 	NSString *buildingId;
 	NSString *urlPart;
@@ -17,6 +20,7 @@
 	NSMutableDictionary *buttonsByLoc;
 	UITableView *selectedTableView;
 	NSIndexPath *selectedIndexPath;
+	Building *watchedBuilding;
 }
 
 
@@ -26,6 +30,7 @@
 @property(nonatomic, retain) NSMutableDictionary *buttonsByLoc;
 @property(nonatomic, retain) UITableView *selectedTableView;
 @property(nonatomic, retain) NSIndexPath *selectedIndexPath;
+@property(nonatomic, retain) Building *watchedBuilding;
 
 
 + (ViewBuildingController *)create;

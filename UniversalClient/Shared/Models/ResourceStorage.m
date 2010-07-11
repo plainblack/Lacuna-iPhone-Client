@@ -18,6 +18,7 @@
 @synthesize ore;
 @synthesize waste;
 @synthesize water;
+@synthesize hasStorage;
 
 
 #pragma mark --
@@ -39,7 +40,12 @@
 		self.ore = _intv([data objectForKey:@"ore_capacity"]);
 		self.waste = _intv([data objectForKey:@"waste_capacity"]);
 		self.water = _intv([data objectForKey:@"water_capacity"]);
+		self.hasStorage = (self.energy+self.food+self.ore+self.waste+self.water)>0;
+	} else {
+		self.hasStorage = NO;
 	}
+
+
 }
 
 

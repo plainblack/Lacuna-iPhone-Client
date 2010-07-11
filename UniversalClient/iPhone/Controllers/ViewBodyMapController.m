@@ -19,6 +19,7 @@
 
 
 @synthesize scrollView;
+@synthesize backgroundView;
 
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
@@ -38,6 +39,12 @@
 	self.scrollView.contentSize = CGSizeMake(BODY_BUILDINGS_NUM_ROWS * BODY_BUILDINGS_CELL_WIDTH, BODY_BUILDINGS_NUM_COLS * BODY_BUILDINGS_CELL_HEIGHT);
 	self.scrollView.contentOffset = CGPointMake(BODY_BUILDINGS_NUM_ROWS * BODY_BUILDINGS_CELL_WIDTH/2 - self.scrollView.center.x, BODY_BUILDINGS_NUM_COLS * BODY_BUILDINGS_CELL_HEIGHT/2 - self.scrollView.center.y);
 	
+	
+	self.backgroundView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.contentSize.width, self.scrollView.contentSize.height)] autorelease];
+	self.backgroundView.contentMode = UIViewContentModeScaleAspectFill;
+	self.backgroundView.autoresizingMask = UIViewAutoresizingNone;
+	[self.scrollView addSubview:self.backgroundView];
+
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
 	buttonsByLoc = [[NSMutableDictionary alloc] initWithCapacity:BODY_BUILDINGS_NUM_ROWS*BODY_BUILDINGS_NUM_COLS];
@@ -73,7 +80,7 @@
 	
 	if (session.body.surfaceImageName) {
 		UIImage *surfaceImage = [UIImage imageNamed:[NSString stringWithFormat:@"assets/planet_side/%@.jpg", session.body.surfaceImageName]];
-		self.scrollView.backgroundColor = [UIColor colorWithPatternImage:surfaceImage];
+		self.backgroundView.backgroundColor = [UIColor colorWithPatternImage:surfaceImage];
 	}
 }
 
@@ -111,6 +118,7 @@
 - (void)viewDidUnload {
     // Release any retained subviews of the main view.
 	self.scrollView = nil;
+	self.backgroundView = nil;
 	[buttonsByLoc release];
 	buttonsByLoc = nil;
 	[locsByButton release];
@@ -169,7 +177,7 @@
 	if ([keyPath isEqual:@"body.buildingMap"]) {
 		Session *session = [Session sharedInstance];
 		UIImage *surfaceImage = [UIImage imageNamed:[NSString stringWithFormat:@"assets/planet_side/%@.jpg", session.body.surfaceImageName]];
-		self.scrollView.backgroundColor = [UIColor colorWithPatternImage:surfaceImage];
+		self.backgroundView.backgroundColor = [UIColor colorWithPatternImage:surfaceImage];
 		
 		for (int x=BODY_BUILDINGS_MIN_X; x<=BODY_BUILDINGS_MAX_X; x++) {
 			for (int y=BODY_BUILDINGS_MIN_Y; y<=BODY_BUILDINGS_MAX_Y; y++) {
