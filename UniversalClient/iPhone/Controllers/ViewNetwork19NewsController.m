@@ -10,6 +10,7 @@
 #import "LEMacros.h";
 #import "LEViewSectionTab.h"
 #import "LETableViewCellNewsItem.h"
+#import "LETableViewCellLabeledText.h"
 #import "LEBuildingViewNews.h"
 
 
@@ -55,24 +56,51 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    return [self.newsItems count];
+	NSInteger count = [self.newsItems count];
+	if (count > 0) {
+		return count;
+	} else {
+		return 1;
+	}
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSDictionary *newsItem = [self.newsItems objectAtIndex:indexPath.row];
-	return [LETableViewCellNewsItem getHeightForTableView:tableView text:[newsItem objectForKey:@"headline"]];
+	NSInteger count = [self.newsItems count];
+	if (count > 0) {
+		NSDictionary *newsItem = [self.newsItems objectAtIndex:indexPath.row];
+		return [LETableViewCellNewsItem getHeightForTableView:tableView text:[newsItem objectForKey:@"headline"]];
+	} else {
+		return [LETableViewCellLabeledText getHeightForTableView:tableView];
+	}
+
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSDictionary *newsItem = [self.newsItems objectAtIndex:indexPath.row];
-    
-	LETableViewCellNewsItem *newsItemCell = [LETableViewCellNewsItem getCellForTableView:tableView];
-	[newsItemCell displayNewsItem:newsItem];
-	return newsItemCell;
+	NSInteger count = [self.newsItems count];
+	if (count > 0) {
+		NSDictionary *newsItem = [self.newsItems objectAtIndex:indexPath.row];
+		
+		LETableViewCellNewsItem *newsItemCell = [LETableViewCellNewsItem getCellForTableView:tableView];
+		[newsItemCell displayNewsItem:newsItem];
+		return newsItemCell;
+	} else {
+		if (self.newsItems) {
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellLabeledText *emptyCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			emptyCell.label.text = @"";
+			emptyCell.content.text = @"Empty";
+			return emptyCell;
+		} else {
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			loadingCell.label.text = @"";
+			loadingCell.content.text = @"Loading";
+			return loadingCell;
+		}
+	}
 }
 
 

@@ -31,8 +31,10 @@
 #define SEPARATOR_COLOR [UIColor whiteColor]
 
 //FONT SETTINGS
-#define LABEL_COLOR [UIColor colorWithWhite:0.7 alpha:1.0]
-#define LABEL_SMALL_COLOR [UIColor colorWithWhite:0.7 alpha:1.0]
+//#define LABEL_COLOR [UIColor colorWithWhite:0.7 alpha:1.0]
+//#define LABEL_SMALL_COLOR [UIColor colorWithWhite:0.7 alpha:1.0]
+#define LABEL_COLOR [UIColor blackColor]
+#define LABEL_SMALL_COLOR [UIColor blackColor]
 #define TEXT_COLOR [UIColor whiteColor]
 #define TEXT_SMALL_COLOR [UIColor whiteColor]
 #define PARAGRAPH_COLOR [UIColor whiteColor]

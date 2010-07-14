@@ -38,7 +38,7 @@ static int numRequests = 0;
 	handledError = NO;
 	
 	self.protocol = @"https";
-	self.serverName = @"alpha.lacunaexpanse.com";
+	self.serverName = @"pt.lacunaexpanse.com";
 	
 	callback = inCallback;
 	target = inTarget;
