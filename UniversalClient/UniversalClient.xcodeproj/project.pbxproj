@@ -40,6 +40,10 @@
 		F65D35B91195E00400454C2B /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F65D35B81195E00400454C2B /* iTunesArtwork */; };
 		F65D36681195F05B00454C2B /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = F65D36671195F05B00454C2B /* Entitlements.plist */; };
 		F65DC32611EE09AE00A0A782 /* PlanetaryCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = F65DC32511EE09AE00A0A782 /* PlanetaryCommand.m */; };
+		F65DC34311EE133E00A0A782 /* Security.m in Sources */ = {isa = PBXBuildFile; fileRef = F65DC34211EE133E00A0A782 /* Security.m */; };
+		F65DC36111EE4E2E00A0A782 /* LEBuildingViewPrisoners.m in Sources */ = {isa = PBXBuildFile; fileRef = F65DC36011EE4E2E00A0A782 /* LEBuildingViewPrisoners.m */; };
+		F65DC36E11EE533500A0A782 /* ViewPrisonersController.m in Sources */ = {isa = PBXBuildFile; fileRef = F65DC36D11EE533500A0A782 /* ViewPrisonersController.m */; };
+		F65DC38911EE58FB00A0A782 /* Prisoner.m in Sources */ = {isa = PBXBuildFile; fileRef = F65DC38811EE58FB00A0A782 /* Prisoner.m */; };
 		F6724F55119F74F200D57E0D /* PickNumericValueController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6724F53119F74F200D57E0D /* PickNumericValueController.m */; };
 		F6724F56119F74F200D57E0D /* PickNumericValueController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6724F54119F74F200D57E0D /* PickNumericValueController.xib */; };
 		F678F71F11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = F678F71E11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.m */; };
@@ -215,6 +219,14 @@
 		F65D36671195F05B00454C2B /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		F65DC32411EE09AE00A0A782 /* PlanetaryCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanetaryCommand.h; sourceTree = "<group>"; };
 		F65DC32511EE09AE00A0A782 /* PlanetaryCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanetaryCommand.m; sourceTree = "<group>"; };
+		F65DC34111EE133E00A0A782 /* Security.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Security.h; sourceTree = "<group>"; };
+		F65DC34211EE133E00A0A782 /* Security.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Security.m; sourceTree = "<group>"; };
+		F65DC35F11EE4E2E00A0A782 /* LEBuildingViewPrisoners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewPrisoners.h; sourceTree = "<group>"; };
+		F65DC36011EE4E2E00A0A782 /* LEBuildingViewPrisoners.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewPrisoners.m; sourceTree = "<group>"; };
+		F65DC36C11EE533500A0A782 /* ViewPrisonersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewPrisonersController.h; sourceTree = "<group>"; };
+		F65DC36D11EE533500A0A782 /* ViewPrisonersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewPrisonersController.m; sourceTree = "<group>"; };
+		F65DC38711EE58FB00A0A782 /* Prisoner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prisoner.h; sourceTree = "<group>"; };
+		F65DC38811EE58FB00A0A782 /* Prisoner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Prisoner.m; sourceTree = "<group>"; };
 		F6724F52119F74F200D57E0D /* PickNumericValueController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickNumericValueController.h; sourceTree = "<group>"; };
 		F6724F53119F74F200D57E0D /* PickNumericValueController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickNumericValueController.m; sourceTree = "<group>"; };
 		F6724F54119F74F200D57E0D /* PickNumericValueController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickNumericValueController.xib; sourceTree = "<group>"; };
@@ -745,6 +757,8 @@
 				F6AC4A19116C0F9B001B967A /* LEUpgradeBuilding.m */,
 				F6E766BC11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.h */,
 				F6E766BD11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.m */,
+				F65DC35F11EE4E2E00A0A782 /* LEBuildingViewPrisoners.h */,
+				F65DC36011EE4E2E00A0A782 /* LEBuildingViewPrisoners.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -793,6 +807,10 @@
 				F614450A11E961D40052D010 /* Spy.m */,
 				F65DC32411EE09AE00A0A782 /* PlanetaryCommand.h */,
 				F65DC32511EE09AE00A0A782 /* PlanetaryCommand.m */,
+				F65DC34111EE133E00A0A782 /* Security.h */,
+				F65DC34211EE133E00A0A782 /* Security.m */,
+				F65DC38711EE58FB00A0A782 /* Prisoner.h */,
+				F65DC38811EE58FB00A0A782 /* Prisoner.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -856,6 +874,8 @@
 				F6864F9A1183A131009826A7 /* ViewNetwork19NewsController.m */,
 				F6A9C5E91184C1CC001F0D9C /* ViewSpiesController.h */,
 				F6A9C5EA1184C1CC001F0D9C /* ViewSpiesController.m */,
+				F65DC36C11EE533500A0A782 /* ViewPrisonersController.h */,
+				F65DC36D11EE533500A0A782 /* ViewPrisonersController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1079,6 +1099,10 @@
 				F614450B11E961D40052D010 /* Spy.m in Sources */,
 				F6E3EFB011EA16C4005E1276 /* LETableViewCellBuildingStorage.m in Sources */,
 				F65DC32611EE09AE00A0A782 /* PlanetaryCommand.m in Sources */,
+				F65DC34311EE133E00A0A782 /* Security.m in Sources */,
+				F65DC36111EE4E2E00A0A782 /* LEBuildingViewPrisoners.m in Sources */,
+				F65DC36E11EE533500A0A782 /* ViewPrisonersController.m in Sources */,
+				F65DC38911EE58FB00A0A782 /* Prisoner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
