@@ -138,9 +138,9 @@
 	
 	NSMutableArray *tmpSections = [NSMutableArray arrayWithCapacity:5];
 	if (self.resourceCapacity.hasStorage) {
-		[tmpSections addObject:_dict([NSNumber numberWithInt:BUILDING_SECTION_BUILDING], @"type", @"Building", @"name", _array([NSNumber numberWithInt:BUILDING_ROW_BUILDING_STATS], [NSNumber numberWithInt:BUILDING_ROW_STORAGE]), @"rows")];
+		[tmpSections addObject:_dict([NSNumber numberWithInt:BUILDING_SECTION_BUILDING], @"type", @"Production", @"name", _array([NSNumber numberWithInt:BUILDING_ROW_BUILDING_STATS], [NSNumber numberWithInt:BUILDING_ROW_STORAGE]), @"rows")];
 	} else {
-		[tmpSections addObject:_dict([NSNumber numberWithInt:BUILDING_SECTION_BUILDING], @"type", @"Building", @"name", _array([NSNumber numberWithInt:BUILDING_ROW_BUILDING_STATS]), @"rows")];
+		[tmpSections addObject:_dict([NSNumber numberWithInt:BUILDING_SECTION_BUILDING], @"type", @"Production", @"name", _array([NSNumber numberWithInt:BUILDING_ROW_BUILDING_STATS]), @"rows")];
 	}
 
 
@@ -212,23 +212,23 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForBuildingRow:(BUILDING_ROW)buildingRow {
 	switch (buildingRow) {
 		case BUILDING_ROW_BUILDING_STATS:
-			return 100.0;
+			return [LETableViewCellBuildingStats getHeightForTableView:tableView];
 			break;
 		case BUILDING_ROW_UPGRADE_BUILDING_STATS:
-			return 100.0;
+			return [LETableViewCellBuildingStats getHeightForTableView:tableView];
 			break;
 		case BUILDING_ROW_UPGRADE_BUILDING_COST:
-			return 65.0;
+			return [LETableViewCellCost getHeightForTableView:tableView];
 			break;
 		case BUILDING_ROW_UPGRADE_BUTTON:
 		case BUILDING_ROW_DEMOLISH_BUTTON:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		case BUILDING_ROW_UPGRADE_CANNOT:
-			return 88.0;
+			return [LETableViewCellUnbuildable getHeightForTableView:tableView];
 			break;
 		case BUILDING_ROW_UPGRADE_PROGRESS:
-			return 50.0;
+			return [LETableViewCellProgress getHeightForTableView:tableView];
 			break;
 		case BUILDING_ROW_EMPTY:
 			return [LETableViewCellLabeledText getHeightForTableView:tableView];
@@ -261,7 +261,7 @@
 			LETableViewCellBuildingStats *statsCell = [LETableViewCellBuildingStats getCellForTableView:tableView];
 			[statsCell setBuildingImage:[UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/100/%@.png", self.imageName]]];
 			[statsCell setBuildingBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"assets/planet_side/%@.jpg", session.body.surfaceImageName]]];
-			[statsCell setBuildingName:self.name buildingLevel:self.level];
+			[statsCell setBuildingLevel:self.level];
 			[statsCell setResourceGeneration:self.resourcesPerHour];
 			cell = statsCell;
 			break;
@@ -270,7 +270,7 @@
 			LETableViewCellBuildingStats *upgradeStatsCell = [LETableViewCellBuildingStats getCellForTableView:tableView];
 			[upgradeStatsCell setBuildingImage:[UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/100/%@.png", self.upgradedImageName]]];
 			[upgradeStatsCell setBuildingBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"assets/planet_side/%@.jpg", session.body.surfaceImageName]]];
-			[upgradeStatsCell setBuildingName:self.name buildingLevel:self.level+1];
+			[upgradeStatsCell setBuildingLevel:self.level+1];
 			[upgradeStatsCell setResourceGeneration:self.upgradedResourcePerHour];
 			cell = upgradeStatsCell;
 			break;

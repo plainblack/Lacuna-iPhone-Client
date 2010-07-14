@@ -16,6 +16,7 @@
 #import "LETableViewCellUnbuildable.h"
 #import "LEGetBuildables.h"
 #import "LEBuildBuilding.h"
+#import "LEViewSectionTab.h"
 
 
 typedef enum {
@@ -112,7 +113,7 @@ typedef enum {
 			LETableViewCellBuildingStats *buildingStatsCell = [LETableViewCellBuildingStats getCellForTableView:tableView];
 			[buildingStatsCell setBuildingImage:[UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/100/%@.png", [building objectForKey:@"image"]]]];
 			[buildingStatsCell setBuildingBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"assets/planet_side/%@.jpg", session.body.surfaceImageName]]];
-			[buildingStatsCell setBuildingName:[building objectForKey:@"name"] buildingLevel:1];
+			[buildingStatsCell setBuildingLevel:1];
 			[buildingStatsCell setEnergyPerHour:[stats objectForKey:@"energy_hour"]];
 			[buildingStatsCell setFoodPerHour:[stats objectForKey:@"food_hour"]];
 			[buildingStatsCell setHappinessPerHour: [stats objectForKey:@"happiness_hour"]];
@@ -224,6 +225,12 @@ typedef enum {
 		self.buildables = [NSArray array];
 	}
 	
+	NSMutableArray *tmpSectionHeaders = [NSMutableArray arrayWithCapacity:[self.buildables count]];
+	for (NSDictionary *buildable in self.buildables) {
+		[tmpSectionHeaders addObject:[LEViewSectionTab tableView:self.tableView createWithText:[buildable objectForKey:@"name"]]];
+	}
+	self.sectionHeaders = tmpSectionHeaders;
+
 	[self.tableView reloadData];
 }
 
@@ -244,6 +251,13 @@ typedef enum {
 	} else if (self.listChooser.selectedSegmentIndex == 2) {
 		self.buildables = [NSArray array];
 	}
+	
+	
+	NSMutableArray *tmpSectionHeaders = [NSMutableArray arrayWithCapacity:[self.buildables count]];
+	for (NSDictionary *buildable in self.buildables) {
+		[tmpSectionHeaders addObject:[LEViewSectionTab tableView:self.tableView createWithText:[buildable objectForKey:@"name"]]];
+	}
+	self.sectionHeaders = tmpSectionHeaders;
 	
 	[self.tableView reloadData];
 	
