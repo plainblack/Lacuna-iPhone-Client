@@ -13,6 +13,7 @@
 #import "Intelligence.h"
 #import "Park.h"
 #import "Network19.h"
+#import "PlanetaryCommand.h"
 #import "WasteRecycling.h"
 
 
@@ -29,6 +30,8 @@
 		building = [[[Network19 alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:PARK_URL]) {
 		building = [[[Park alloc] init] autorelease];
+	} else if ([request.buildingUrl isEqualToString:PLANETARY_COMMAND_URL]) {
+		building = [[[PlanetaryCommand alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:WASTE_RECYCLING_URL]) {
 		building = [[[WasteRecycling alloc] init] autorelease];
 	} else {

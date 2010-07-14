@@ -65,7 +65,7 @@
 		tmpLabel.font = TEXT_FONT;
 		tmpLabel.textColor = TEXT_COLOR;
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
-		tmpLabel.text = @"Unbuildable";
+		tmpLabel.text = @"Not Buildable";
 		[cell.contentView addSubview:tmpLabel];
 
 		cell.reasonLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 25, 310, 52)] autorelease];

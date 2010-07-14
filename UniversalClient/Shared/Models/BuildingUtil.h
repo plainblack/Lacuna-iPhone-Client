@@ -12,6 +12,7 @@
 #define INTELLIGENCE_URL @"/intelligence"
 #define NETWORK_19_URL @"/network19"
 #define PARK_URL @"/park"
+#define PLANETARY_COMMAND_URL @"/planetarycommand"
 #define WASTE_RECYCLING_URL @"/wasterecycling"
 
 typedef enum {
@@ -45,7 +46,8 @@ typedef enum {
 	BUILDING_ROW_SUBSIDIZE_BUILD_QUEUE,
 	BUILDING_ROW_EMPTY,
 	BUILDING_ROW_STORAGE,
-	BUILDING_ROW_UPGRADE_STORAGE
+	BUILDING_ROW_UPGRADE_STORAGE,
+	BUILDING_ROW_NEXT_COLONY_COST
 } BUILDING_ROW;
 
 

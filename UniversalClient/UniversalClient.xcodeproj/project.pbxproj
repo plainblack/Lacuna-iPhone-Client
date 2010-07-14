@@ -39,6 +39,7 @@
 		F645746C118DD62A000897C4 /* LETableViewCellAttachedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F645746B118DD62A000897C4 /* LETableViewCellAttachedImage.m */; };
 		F65D35B91195E00400454C2B /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F65D35B81195E00400454C2B /* iTunesArtwork */; };
 		F65D36681195F05B00454C2B /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = F65D36671195F05B00454C2B /* Entitlements.plist */; };
+		F65DC32611EE09AE00A0A782 /* PlanetaryCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = F65DC32511EE09AE00A0A782 /* PlanetaryCommand.m */; };
 		F6724F55119F74F200D57E0D /* PickNumericValueController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6724F53119F74F200D57E0D /* PickNumericValueController.m */; };
 		F6724F56119F74F200D57E0D /* PickNumericValueController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6724F54119F74F200D57E0D /* PickNumericValueController.xib */; };
 		F678F71F11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = F678F71E11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.m */; };
@@ -212,6 +213,8 @@
 		F645746B118DD62A000897C4 /* LETableViewCellAttachedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellAttachedImage.m; sourceTree = "<group>"; };
 		F65D35B81195E00400454C2B /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		F65D36671195F05B00454C2B /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		F65DC32411EE09AE00A0A782 /* PlanetaryCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanetaryCommand.h; sourceTree = "<group>"; };
+		F65DC32511EE09AE00A0A782 /* PlanetaryCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanetaryCommand.m; sourceTree = "<group>"; };
 		F6724F52119F74F200D57E0D /* PickNumericValueController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickNumericValueController.h; sourceTree = "<group>"; };
 		F6724F53119F74F200D57E0D /* PickNumericValueController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickNumericValueController.m; sourceTree = "<group>"; };
 		F6724F54119F74F200D57E0D /* PickNumericValueController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickNumericValueController.xib; sourceTree = "<group>"; };
@@ -788,6 +791,8 @@
 				F61D0C2211E2355600B06382 /* WasteRecycling.m */,
 				F614450911E961D40052D010 /* Spy.h */,
 				F614450A11E961D40052D010 /* Spy.m */,
+				F65DC32411EE09AE00A0A782 /* PlanetaryCommand.h */,
+				F65DC32511EE09AE00A0A782 /* PlanetaryCommand.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -1073,6 +1078,7 @@
 				F61D0E2F11E2656B00B06382 /* Development.m in Sources */,
 				F614450B11E961D40052D010 /* Spy.m in Sources */,
 				F6E3EFB011EA16C4005E1276 /* LETableViewCellBuildingStorage.m in Sources */,
+				F65DC32611EE09AE00A0A782 /* PlanetaryCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
