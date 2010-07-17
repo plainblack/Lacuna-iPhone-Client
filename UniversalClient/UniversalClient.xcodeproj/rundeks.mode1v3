@@ -277,13 +277,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>153</integer>
-									<integer>149</integer>
-									<integer>100</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>154</integer>
+									<integer>159</integer>
 									<integer>149</integer>
 									<integer>100</integer>
 									<integer>0</integer>
@@ -294,32 +288,9 @@
 									<integer>100</integer>
 									<integer>0</integer>
 								</array>
-								<array>
-									<integer>162</integer>
-									<integer>149</integer>
-									<integer>100</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>168</integer>
-									<integer>149</integer>
-									<integer>100</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>170</integer>
-									<integer>149</integer>
-									<integer>100</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>208</integer>
-									<integer>100</integer>
-									<integer>0</integer>
-								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 2078}, {301, 1146}}</string>
+							<string>{{0, 2417}, {301, 1146}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -356,7 +327,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>LETableViewCellAttachedImage.m</string>
+								<string>LETableViewCellBuildingStats.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -364,11 +335,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>LETableViewCellAttachedImage.m</string>
+										<string>LETableViewCellBuildingStats.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F6C391CC11F25B1A004FB38F</string>
+										<string>F6C391D611F25BFC004FB38F</string>
 										<key>history</key>
 										<array>
 											<string>F6885F7E1168421D00080696</string>
@@ -628,7 +599,6 @@
 											<string>F65DC2AA11EDF94000A0A782</string>
 											<string>F65DC2D411EDFAC000A0A782</string>
 											<string>F65DC2D511EDFAC000A0A782</string>
-											<string>F65DC2E111EDFB4400A0A782</string>
 											<string>F65DC30411EDFE5A00A0A782</string>
 											<string>F65DC31911EE04BD00A0A782</string>
 											<string>F65DC33A11EE0BF700A0A782</string>
@@ -684,11 +654,12 @@
 											<string>F6C3919C11F252C4004FB38F</string>
 											<string>F6C391C511F25B1A004FB38F</string>
 											<string>F6C391C611F25B1A004FB38F</string>
-											<string>F6C391C711F25B1A004FB38F</string>
 											<string>F6C391C811F25B1A004FB38F</string>
 											<string>F6C391C911F25B1A004FB38F</string>
 											<string>F6C391CA11F25B1A004FB38F</string>
-											<string>F6C391CB11F25B1A004FB38F</string>
+											<string>F6C391D011F25BAE004FB38F</string>
+											<string>F6C391D111F25BAE004FB38F</string>
+											<string>F6C391C711F25B1A004FB38F</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -886,14 +857,14 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>F6C391CD11F25B1A004FB38F</string>
+		<string>F6C391D711F25BFC004FB38F</string>
 		<string>F6C3906011F1E312004FB38F</string>
 		<string>F6C3905E11F1E1D9004FB38F</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>F6885F691168335B00080696</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/rundeks/dev/iphone/Lacuna-iPhone-Client/UniversalClient/UniversalClient.xcodeproj</string>
+		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
 	<string>385 212 1327 1205 0 0 2560 1418 </string>
