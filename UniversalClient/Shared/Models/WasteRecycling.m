@@ -53,6 +53,12 @@
 	self.maxResources = _intv([recycleData objectForKey:@"max_recycle"]);
 	self.secondsRemaining = _intv([recycleData objectForKey:@"seconds_remaining"]);
 	
+	for (NSMutableDictionary *section in tmpSections) {
+		if (_intv([section objectForKey:@"type"]) == BUILDING_SECTION_BUILDING) {
+			[[section objectForKey:@"rows"] addObject:[NSNumber numberWithInt:BUILDING_ROW_MAX_RECYCLE]];
+		}
+	}
+	
 	NSMutableArray *rows = [NSMutableArray arrayWithCapacity:2];
 	
 	if (self.canRecycle) {
@@ -68,6 +74,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForBuildingRow:(BUILDING_ROW)buildingRow {
 	switch (buildingRow) {
+		case BUILDING_ROW_MAX_RECYCLE:
+			return [LETableViewCellLabeledText getHeightForTableView:tableView];
+			break;
 		case BUILDING_ROW_RECYCLE:
 		case BUILDING_ROW_SUBSIDIZE:
 			return [LETableViewCellButton getHeightForTableView:tableView];
@@ -85,6 +94,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex {
 	UITableViewCell *cell = nil;
 	switch (buildingRow) {
+		case BUILDING_ROW_MAX_RECYCLE:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellLabeledText *maxRecycleCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			maxRecycleCell.label.text = @"Max Recycle";
+			maxRecycleCell.content.text = [Util prettyNSInteger:self.maxResources];
+			cell = maxRecycleCell;
+			break;
 		case BUILDING_ROW_RECYCLE:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellButton *recycleButtonCell = [LETableViewCellButton getCellForTableView:tableView];
@@ -118,8 +134,7 @@
 		case BUILDING_ROW_RECYCLE:
 			; //DO NOT REMOVE
 			RecycleController *recycleController = [RecycleController create];
-			recycleController.buildingId = self.id;
-			recycleController.urlPart = self.buildingUrl;
+			recycleController.wasteRecycling = self;
 			recycleController.secondsPerResource = self.secondsPerResource;
 			return recycleController;
 			break;

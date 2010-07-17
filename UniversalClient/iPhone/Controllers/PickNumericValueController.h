@@ -21,6 +21,7 @@
 	UILabel *titleLabel;
 	UIPickerView *numberPicker;
 	id<PickNumericValueControllerDelegate> delegate;
+	NSInteger maxValue;
 }
 
 
@@ -31,10 +32,11 @@
 
 -(IBAction) save;
 -(IBAction) cancel;
+-(IBAction) max;
 -(void) setValue:(NSNumber *)value;
 
 
-+(PickNumericValueController *) createWithDelegate:(id<PickNumericValueControllerDelegate>)delegate;
++(PickNumericValueController *) createWithDelegate:(id<PickNumericValueControllerDelegate>)delegate maxValue:(NSInteger)maxValue;
 
 
 @end

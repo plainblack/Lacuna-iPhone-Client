@@ -14,9 +14,13 @@
 #import "LETableViewCellLabeledText.h"
 #import "LETableViewCellLabeledSwitch.h"
 #import "Util.h"
+#import "WasteRecycling.h"
+#import "Session.h";
 
 
 typedef enum {
+	ROW_MAX,
+	ROW_CURRENT,
 	ROW_ENERGY,
 	ROW_ORE,
 	ROW_WATER,
@@ -28,8 +32,7 @@ typedef enum {
 @implementation RecycleController
 
 
-@synthesize buildingId;
-@synthesize urlPart;
+@synthesize wasteRecycling;
 @synthesize secondsPerResource;
 @synthesize seconds;
 @synthesize energyCell;
@@ -49,11 +52,17 @@ typedef enum {
 	
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Recycle"]);
 	
-	self.energyCell = [LETableViewCellNumberEntry getCellForTableView:self.tableView viewController:self];
+	Session *session = [Session sharedInstance];
+	NSInteger maxValue = self.wasteRecycling.maxResources;
+	if (_intv(session.body.waste.current) < maxValue) {
+		maxValue = _intv(session.body.waste.current);
+	}
+	
+	self.energyCell = [LETableViewCellNumberEntry getCellForTableView:self.tableView viewController:self maxValue:maxValue];
 	[self.energyCell setNumericValue:[NSNumber numberWithInt:0]];
-	self.oreCell = [LETableViewCellNumberEntry getCellForTableView:self.tableView viewController:self];
+	self.oreCell = [LETableViewCellNumberEntry getCellForTableView:self.tableView viewController:self maxValue:maxValue];
 	[self.oreCell setNumericValue:[NSNumber numberWithInt:0]];
-	self.waterCell = [LETableViewCellNumberEntry getCellForTableView:self.tableView viewController:self];
+	self.waterCell = [LETableViewCellNumberEntry getCellForTableView:self.tableView viewController:self maxValue:maxValue];
 	[self.waterCell setNumericValue:[NSNumber numberWithInt:0]];
 	self.subsidizedCell = [LETableViewCellLabeledSwitch getCellForTableView:self.tableView];
 	self.seconds = 0;
@@ -73,7 +82,7 @@ typedef enum {
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return 5;
+	return 7;
 }
 
 
@@ -87,6 +96,8 @@ typedef enum {
 		case ROW_SUBSIDIZED:
 			return [LETableViewCellLabeledSwitch getHeightForTableView:tableView];
 			break;
+		case ROW_MAX:
+		case ROW_CURRENT:
 		case ROW_TIME:
 			return [LETableViewCellLabeledText getHeightForTableView:tableView];
 			break;
@@ -126,6 +137,21 @@ typedef enum {
 			timeCell.content.text = [Util prettyDuration:self.seconds];
 			cell = timeCell;
 			break;
+		case ROW_MAX:
+			; //DO NOT REMOVE
+			LETableViewCellLabeledText *maxRecycleCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			maxRecycleCell.label.text = @"Max Recycle";
+			maxRecycleCell.content.text = [Util prettyNSInteger:self.wasteRecycling.maxResources];
+			cell = maxRecycleCell;
+			break;
+		case ROW_CURRENT:
+			; //DO NOT REMOVE
+			Session *session = [Session sharedInstance];
+			LETableViewCellLabeledText *currentWasteCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			currentWasteCell.label.text = @"Current Waste";
+			currentWasteCell.content.text = [Util prettyNSNumber:session.body.waste.current];
+			cell = currentWasteCell;
+			break;
 		default:
 			cell = nil;
 			break;
@@ -159,8 +185,7 @@ typedef enum {
 
 
 - (void)dealloc {
-	self.buildingId = nil;
-	self.urlPart = nil;
+	self.wasteRecycling = nil;
     [super dealloc];
 }
 
@@ -174,7 +199,7 @@ typedef enum {
 
 
 - (void)save {
-	[[[LEBuildingRecycle alloc] initWithCallback:@selector(recyclStarted:) target:self buildingId:self.buildingId buildingUrl:self.urlPart energy:[self.energyCell numericValue] ore:[self.oreCell numericValue] water:[self.waterCell numericValue] subsidized:[self.subsidizedCell isSelected]] autorelease];
+	[[[LEBuildingRecycle alloc] initWithCallback:@selector(recyclStarted:) target:self buildingId:self.wasteRecycling.id buildingUrl:self.wasteRecycling.buildingUrl energy:[self.energyCell numericValue] ore:[self.oreCell numericValue] water:[self.waterCell numericValue] subsidized:[self.subsidizedCell isSelected]] autorelease];
 }
 
 

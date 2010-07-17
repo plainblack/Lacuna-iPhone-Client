@@ -40,6 +40,7 @@
 	self.tableView.separatorColor = SEPARATOR_COLOR;
 }
 
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;
 }

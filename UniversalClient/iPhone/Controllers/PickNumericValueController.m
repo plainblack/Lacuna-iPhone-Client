@@ -7,6 +7,7 @@
 //
 
 #import "PickNumericValueController.h"
+#import "LEMacros.h"
 
 
 @implementation PickNumericValueController
@@ -16,22 +17,19 @@
 @synthesize numberPicker;
 @synthesize delegate;
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
 
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	
+	self.view.autoresizesSubviews = YES;
+	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	self.view.backgroundColor = CELL_BACKGROUND_COLOR;
 }
-*/
+
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return YES;
+}
 
 
 - (void)didReceiveMemoryWarning {
@@ -94,6 +92,11 @@
 }
 
 
+-(IBAction) max {
+	[self setValue:[NSNumber numberWithInt:self->maxValue]];
+}
+
+
 -(void) setValue:(NSNumber *)value {
 	NSInteger tmp = [value intValue];
 	
@@ -109,9 +112,10 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+(PickNumericValueController *) createWithDelegate:(id<PickNumericValueControllerDelegate>)delegate {
++(PickNumericValueController *) createWithDelegate:(id<PickNumericValueControllerDelegate>)delegate maxValue:(NSInteger)maxValue {
 	PickNumericValueController *pickNumericValueController = [[[PickNumericValueController alloc] initWithNibName:@"PickNumericValueController" bundle:nil] autorelease];
 	pickNumericValueController.delegate = delegate;
+	pickNumericValueController->maxValue = maxValue;
 	return pickNumericValueController;
 }
 

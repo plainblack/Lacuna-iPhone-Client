@@ -50,8 +50,13 @@
 #pragma mark PickNumericValueController Methods
 
 - (void)newNumericValue:(NSNumber *)value {
-	[self setNumericValue:value];
-	[self.numberButton setTitle:[value stringValue] forState:UIControlStateNormal];
+	if (self->maxValue < _intv(value)) {
+		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Amount Invalid" message:[NSString stringWithFormat:@"You entered %@ which is above the maximum amount of %i.", value, self->maxValue] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+		[av show];
+	} else {
+		[self setNumericValue:value];
+		[self.numberButton setTitle:[value stringValue] forState:UIControlStateNormal];
+	}
 }
 
 
@@ -59,7 +64,7 @@
 #pragma mark Instance Methods
 
 - (IBAction)editNumericValue {
-	PickNumericValueController *pickNumericValueController = [PickNumericValueController createWithDelegate:self];
+	PickNumericValueController *pickNumericValueController = [PickNumericValueController createWithDelegate:self maxValue:self->maxValue];
 	[self.viewController presentModalViewController:pickNumericValueController animated:YES];
 	[pickNumericValueController setValue:self.numericValue];
 	pickNumericValueController.titleLabel.text = self.label.text;
@@ -69,12 +74,13 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (LETableViewCellNumberEntry *)getCellForTableView:(UITableView *)tableView viewController:(UIViewController *)viewController {
++ (LETableViewCellNumberEntry *)getCellForTableView:(UITableView *)tableView viewController:(UIViewController *)viewController maxValue:(NSInteger)inMaxValue {
     static NSString *CellIdentifier = @"NumberEntryCell";
 	
 	LETableViewCellNumberEntry *cell = (LETableViewCellNumberEntry *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
 		cell = [[LETableViewCellNumberEntry alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+		cell->maxValue = inMaxValue;
 		cell.backgroundColor = CELL_BACKGROUND_COLOR;
 		cell.autoresizesSubviews = YES;
 		

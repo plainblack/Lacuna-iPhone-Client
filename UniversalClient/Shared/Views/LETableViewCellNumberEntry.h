@@ -15,6 +15,7 @@
 	UIButton *numberButton;
 	UIViewController *viewController;
 	NSNumber *numericValue;
+	NSInteger maxValue;
 }
 
 
@@ -27,7 +28,7 @@
 - (IBAction)editNumericValue;
 
 
-+ (LETableViewCellNumberEntry *)getCellForTableView:(UITableView *)tableView viewController:(UIViewController *)viewController;
++ (LETableViewCellNumberEntry *)getCellForTableView:(UITableView *)tableView viewController:(UIViewController *)viewController maxValue:(NSInteger)maxValue;
 + (CGFloat)getHeightForTableView:(UITableView *)tableView;
 
 

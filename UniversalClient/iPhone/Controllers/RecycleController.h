@@ -12,11 +12,11 @@
 
 @class LETableViewCellNumberEntry;
 @class LETableViewCellLabeledSwitch;
+@class WasteRecycling;
 
 
 @interface RecycleController : LETableViewControllerGrouped {
-	NSString *buildingId;
-	NSString *urlPart;
+	WasteRecycling *wasteRecycling;
 	NSInteger secondsPerResource;
 	NSInteger seconds;
 	LETableViewCellNumberEntry *energyCell;
@@ -26,8 +26,7 @@
 }
 
 
-@property(nonatomic, retain) NSString *buildingId;
-@property(nonatomic, retain) NSString *urlPart;
+@property(nonatomic, retain) WasteRecycling *wasteRecycling;
 @property(nonatomic, assign) NSInteger secondsPerResource;
 @property(nonatomic, assign) NSInteger seconds;
 @property(nonatomic, retain) LETableViewCellNumberEntry *energyCell;
