@@ -43,6 +43,7 @@
 #define HEADER_TEXT_COLOR [UIColor colorWithRed:1.0 green:192.0/255.0 blue:0.0 alpha:1.0]
 #define WARNING_COLOR [UIColor colorWithRed:1.0 green:0.6 blue:0.6 alpha:1.0]
 #define MAIL_TEXT_COLOR [UIColor blackColor]
+#define UNREAD_MAIL_TEXT_COLOR [UIColor colorWithRed:0.0 green:0.5 blue:0.0 alpha:1.0]
 
 #define LABEL_FONT [UIFont fontWithName:@"Verdana" size:12.0]
 #define LABEL_SMALL_FONT [UIFont fontWithName:@"Verdana" size:10.0]

@@ -268,7 +268,7 @@
 								<string>2860E386111B897F00E27156</string>
 								<string>F6E4D66A1168D4CD00980B59</string>
 								<string>28EEBF621118D79A00187D67</string>
-								<string>F6E4D6691168D4B200980B59</string>
+								<string>F634BB3E116C309B0084A8B2</string>
 								<string>19C28FACFE9D520D11CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
 							</array>
@@ -281,20 +281,43 @@
 									<integer>0</integer>
 								</array>
 								<array>
-									<integer>68</integer>
+									<integer>61</integer>
 									<integer>14</integer>
 									<integer>13</integer>
 									<integer>0</integer>
 								</array>
 								<array>
-									<integer>69</integer>
-									<integer>14</integer>
-									<integer>13</integer>
+									<integer>103</integer>
+									<integer>81</integer>
+									<integer>76</integer>
+									<integer>0</integer>
+								</array>
+								<array>
+									<integer>104</integer>
+									<integer>81</integer>
+									<integer>76</integer>
+									<integer>0</integer>
+								</array>
+								<array>
+									<integer>130</integer>
+									<integer>81</integer>
+									<integer>76</integer>
+									<integer>0</integer>
+								</array>
+								<array>
+									<integer>131</integer>
+									<integer>81</integer>
+									<integer>76</integer>
+									<integer>0</integer>
+								</array>
+								<array>
+									<integer>136</integer>
+									<integer>76</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 428}, {301, 1146}}</string>
+							<string>{{0, 669}, {301, 1146}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -331,7 +354,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ViewSpiesController.h</string>
+								<string>LETableViewCellMailSelect.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -339,11 +362,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ViewSpiesController.h</string>
+										<string>LETableViewCellMailSelect.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F6C3905F11F1E312004FB38F</string>
+										<string>F6C390BF11F1ECAE004FB38F</string>
 										<key>history</key>
 										<array>
 											<string>F6885F7E1168421D00080696</string>
@@ -431,7 +454,6 @@
 											<string>F69D287E1172389C00D7277E</string>
 											<string>F69D28801172389C00D7277E</string>
 											<string>F69D28811172389C00D7277E</string>
-											<string>F69D29C2117274A800D7277E</string>
 											<string>F603A8D41177F73E00BAC73A</string>
 											<string>F603A92411780D8700BAC73A</string>
 											<string>F69809F4117A3D6900BD2096</string>
@@ -481,7 +503,6 @@
 											<string>F607B25111A4D9CA00AE69D8</string>
 											<string>F6E62B4111A61E5500B2B0F2</string>
 											<string>F6F5428E11A9F1A8006F347B</string>
-											<string>F6833D0311ACADF300B7D5E3</string>
 											<string>F6833D0A11ACAFFD00B7D5E3</string>
 											<string>F6833D0B11ACAFFD00B7D5E3</string>
 											<string>F61BC6DC11B095D8003EB90C</string>
@@ -580,7 +601,6 @@
 											<string>F61D0F9811E2BC2F00B06382</string>
 											<string>F61D0FD211E2C2B800B06382</string>
 											<string>F61D0FD311E2C2B800B06382</string>
-											<string>F683BC2D11E407EF009E64BF</string>
 											<string>F683BC2E11E407EF009E64BF</string>
 											<string>F683BC3011E407EF009E64BF</string>
 											<string>F683BC3211E407EF009E64BF</string>
@@ -589,7 +609,6 @@
 											<string>F683BC6211E40DE1009E64BF</string>
 											<string>F683BCA011E413FF009E64BF</string>
 											<string>F610969211E54BAF0084EDE1</string>
-											<string>F610969311E54BAF0084EDE1</string>
 											<string>F610969411E54BAF0084EDE1</string>
 											<string>F610969711E54BAF0084EDE1</string>
 											<string>F61096BE11E551680084EDE1</string>
@@ -620,7 +639,6 @@
 											<string>F63F2C4B11EA5D1E00573C71</string>
 											<string>F63F2C6511EA5FD400573C71</string>
 											<string>F63F2C7111EA604900573C71</string>
-											<string>F643130A11EAB834001594E6</string>
 											<string>F6DDF20A11ED430A001C9704</string>
 											<string>F65DC2AA11EDF94000A0A782</string>
 											<string>F65DC2D411EDFAC000A0A782</string>
@@ -655,9 +673,16 @@
 											<string>F6C3904D11F1E1D9004FB38F</string>
 											<string>F6C3904E11F1E1D9004FB38F</string>
 											<string>F6C3904F11F1E1D9004FB38F</string>
-											<string>F6C3905011F1E1D9004FB38F</string>
 											<string>F6C3905111F1E1D9004FB38F</string>
-											<string>F6C3905211F1E1D9004FB38F</string>
+											<string>F6C3907311F1E82A004FB38F</string>
+											<string>F6C3907411F1E82A004FB38F</string>
+											<string>F6C3907511F1E82A004FB38F</string>
+											<string>F6C3907611F1E82A004FB38F</string>
+											<string>F6C3907711F1E82A004FB38F</string>
+											<string>F6C3908611F1E904004FB38F</string>
+											<string>F6C3909011F1EAB8004FB38F</string>
+											<string>F6C3909111F1EAB8004FB38F</string>
+											<string>F6C3909211F1EAB8004FB38F</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -855,14 +880,14 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>F6C390C011F1ECAE004FB38F</string>
 		<string>F6C3906011F1E312004FB38F</string>
-		<string>F6C3905D11F1E1D9004FB38F</string>
 		<string>F6C3905E11F1E1D9004FB38F</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>F6885F691168335B00080696</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/rundeks/dev/iphone/Lacuna-iPhone-Client/UniversalClient/UniversalClient.xcodeproj</string>
+		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
 	<string>384 213 1327 1205 0 0 2560 1418 </string>
@@ -886,7 +911,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>ViewMailboxController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -903,6 +928,8 @@
 							<string>224pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>

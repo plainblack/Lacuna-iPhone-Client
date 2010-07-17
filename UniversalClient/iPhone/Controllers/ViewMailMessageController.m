@@ -9,7 +9,6 @@
 #import "ViewMailMessageController.h"
 #import "LEMacros.h"
 #import "Mailbox.h"
-#import "LETableViewCellLabeledText.h"
 #import "LETableViewCellParagraph.h"
 #import "NewMailMessageController.h"
 #import "LETableViewCellAttachedImage.h"
@@ -17,12 +16,13 @@
 #import "LETableViewCellButton.h"
 #import "ViewAttachedTableController.h"
 #import "ViewAttachedMapController.h"
+#import "LETableViewCellMailHeaders.h"
+
+#define STARTING_NUM_ROWS 2
 
 
 typedef enum {
-	ROW_FROM,
-	ROW_TO,
-	ROW_SUBJECT,
+	ROW_HEADERS,
 	ROW_BODY
 } ROW;
 
@@ -71,7 +71,7 @@ typedef enum {
 						 fixed,
 						 nil];
 
-	numRows = 4;
+	numRows = STARTING_NUM_ROWS;
 }
 
 
@@ -116,17 +116,9 @@ typedef enum {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	switch (indexPath.row) {
-		case ROW_FROM:
+		case ROW_HEADERS:
 			; //DO NOT REMOVE
-			return [LETableViewCellLabeledText getHeightForTableView:tableView];
-			break;
-		case ROW_TO:
-			; //DO NOT REMOVE
-			return [LETableViewCellLabeledText getHeightForTableView:tableView];
-			break;
-		case ROW_SUBJECT:
-			; //DO NOT REMOVE
-			return [LETableViewCellLabeledText getHeightForTableView:tableView];
+			return [LETableViewCellMailHeaders getHeightForTableView:tableView];
 			break;
 		case ROW_BODY:
 			; //DO NOT REMOVE
@@ -141,7 +133,7 @@ typedef enum {
 			; //DO NOT REMOVE
 			NSDictionary *attachements = [self.mailbox.messageDetails objectForKey:@"attachments"];
 			
-			NSInteger attachmentIndex = indexPath.row - 4;
+			NSInteger attachmentIndex = indexPath.row - STARTING_NUM_ROWS;
 			NSString *key = [[attachements allKeys] objectAtIndex:attachmentIndex];
 			
 			if ([key isEqualToString:@"image"]) {
@@ -166,29 +158,11 @@ typedef enum {
 	UITableViewCell *cell;
 	
 	switch (indexPath.row) {
-		case ROW_FROM:
+		case ROW_HEADERS:
 			; //DO NOT REMOVE
-			LETableViewCellLabeledText *fromCell = [LETableViewCellLabeledText getCellForTableView:tableView];
-			fromCell.label.text = @"To";
-			fromCell.content.text = [self.mailbox.messageDetails objectForKey:@"to"];
-			fromCell.content.textColor = MAIL_TEXT_COLOR;
-			cell = fromCell;
-			break;
-		case ROW_TO:
-			; //DO NOT REMOVE
-			LETableViewCellLabeledText *toCell = [LETableViewCellLabeledText getCellForTableView:tableView];
-			toCell.label.text = @"From";
-			toCell.content.text = [self.mailbox.messageDetails objectForKey:@"from"];
-			toCell.content.textColor = MAIL_TEXT_COLOR;
-			cell = toCell;
-			break;
-		case ROW_SUBJECT:
-			; //DO NOT REMOVE
-			LETableViewCellLabeledText *subjectCell = [LETableViewCellLabeledText getCellForTableView:tableView];
-			subjectCell.label.text = @"Subject";
-			subjectCell.content.text = [self.mailbox.messageDetails objectForKey:@"subject"];
-			subjectCell.content.textColor = MAIL_TEXT_COLOR;
-			cell = subjectCell;
+			LETableViewCellMailHeaders *headersCell = [LETableViewCellMailHeaders getCellForTableView:tableView];
+			[headersCell setMessage:self.mailbox.messageDetails];
+			cell = headersCell;
 			break;
 		case ROW_BODY:
 			; //DO NOT REMOVE
@@ -206,7 +180,7 @@ typedef enum {
 			; //DO NOT REMOVE
 			NSDictionary *attachements = [self.mailbox.messageDetails objectForKey:@"attachments"];
 			
-			NSInteger attachmentIndex = indexPath.row - 4;
+			NSInteger attachmentIndex = indexPath.row - STARTING_NUM_ROWS;
 			NSString *key = [[attachements allKeys] objectAtIndex:attachmentIndex];
 			
 			if ([key isEqualToString:@"image"]) {
@@ -239,35 +213,37 @@ typedef enum {
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSDictionary *attachements = [self.mailbox.messageDetails objectForKey:@"attachments"];
-	NSInteger attachmentIndex = indexPath.row - 4;
-	NSString *key = [[attachements allKeys] objectAtIndex:attachmentIndex];
-	
-	if ([key isEqualToString:@"image"]) {
-		NSDictionary *attachment = [attachements objectForKey:key];
-		NSString *link = [attachment objectForKey:@"link"];
-		if (link) {
-			[[UIApplication sharedApplication] openURL:[NSURL URLWithString:link]];
+	if (indexPath.row >= STARTING_NUM_ROWS) {
+		NSDictionary *attachements = [self.mailbox.messageDetails objectForKey:@"attachments"];
+		NSInteger attachmentIndex = indexPath.row - STARTING_NUM_ROWS;
+		NSString *key = [[attachements allKeys] objectAtIndex:attachmentIndex];
+		
+		if ([key isEqualToString:@"image"]) {
+			NSDictionary *attachment = [attachements objectForKey:key];
+			NSString *link = [attachment objectForKey:@"link"];
+			if (link) {
+				[[UIApplication sharedApplication] openURL:[NSURL URLWithString:link]];
+			}
+		} else if ([key isEqualToString:@"link"]) {
+			NSDictionary *attachment = [attachements objectForKey:key];
+			NSString *link = [attachment objectForKey:@"url"];
+			if (link) {
+				[[UIApplication sharedApplication] openURL:[NSURL URLWithString:link]];
+			}
+		} else if ([key isEqualToString:@"table"]) {
+			NSArray *attachment = [attachements objectForKey:key];
+			NSLog(@"Table: %@", attachment);
+			ViewAttachedTableController *viewAttachedTableController = [[ViewAttachedTableController alloc] initWithNibName:@"ViewAttachedTableController" bundle:nil];
+			[viewAttachedTableController setAttachedTable:attachment];
+			[[self navigationController] pushViewController:viewAttachedTableController animated:YES];
+			[viewAttachedTableController release];
+		} else if ([key isEqualToString:@"map"]) {
+			NSDictionary *attachment = [attachements objectForKey:key];
+			ViewAttachedMapController *viewAttachedMapController = [[ViewAttachedMapController alloc] init];
+			[viewAttachedMapController setAttachedMap:attachment];
+			[[self navigationController] pushViewController:viewAttachedMapController animated:YES];
+			[viewAttachedMapController release];
 		}
-	} else if ([key isEqualToString:@"link"]) {
-		NSDictionary *attachment = [attachements objectForKey:key];
-		NSString *link = [attachment objectForKey:@"url"];
-		if (link) {
-			[[UIApplication sharedApplication] openURL:[NSURL URLWithString:link]];
-		}
-	} else if ([key isEqualToString:@"table"]) {
-		NSArray *attachment = [attachements objectForKey:key];
-		NSLog(@"Table: %@", attachment);
-		ViewAttachedTableController *viewAttachedTableController = [[ViewAttachedTableController alloc] initWithNibName:@"ViewAttachedTableController" bundle:nil];
-		[viewAttachedTableController setAttachedTable:attachment];
-		[[self navigationController] pushViewController:viewAttachedTableController animated:YES];
-		[viewAttachedTableController release];
-	} else if ([key isEqualToString:@"map"]) {
-		NSDictionary *attachment = [attachements objectForKey:key];
-		ViewAttachedMapController *viewAttachedMapController = [[ViewAttachedMapController alloc] init];
-		[viewAttachedMapController setAttachedMap:attachment];
-		[[self navigationController] pushViewController:viewAttachedMapController animated:YES];
-		[viewAttachedMapController release];
 	}
 }
 
@@ -346,9 +322,9 @@ typedef enum {
 		NSDictionary *attachements = [self.mailbox.messageDetails objectForKey:@"attachments"];
 
 		if (attachements && (id)attachements != [NSNull null]) {
-			numRows = 4 + [attachements count];
+			numRows = STARTING_NUM_ROWS + [attachements count];
 		} else {
-			numRows = 4;
+			numRows = STARTING_NUM_ROWS;
 		}
 		
 		[self.tableView reloadData];

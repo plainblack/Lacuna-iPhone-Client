@@ -12,6 +12,7 @@
 #import "Session.h"
 #import "ViewMailMessageController.h"
 #import "NewMailMessageController.h"
+#import "LETableViewCellMailSelect.h"
 
 
 @implementation ViewMailboxController
@@ -123,28 +124,17 @@
 }
 
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	return [LETableViewCellMailSelect getHeightForTableView:tableView];
+}
+
+
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *CellIdentifier = @"MailMessageCell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-    }
-	
 	NSDictionary *message = [self.mailbox.messageHeaders objectAtIndex:indexPath.row];
-    
-	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.text = [message objectForKey:@"subject"];
-	cell.detailTextLabel.text = [NSString stringWithFormat:@"From: %@", [message objectForKey:@"from"]];
-	if (_intv([message objectForKey:@"has_read"])) {
-		cell.textLabel.textColor = [UIColor blackColor];
-		cell.detailTextLabel.textColor = [UIColor blackColor];
-	} else {
-		cell.textLabel.textColor = [UIColor colorWithRed:0.0 green:0.5 blue:0.0 alpha:1.0];
-		cell.detailTextLabel.textColor = [UIColor colorWithRed:0.0 green:0.5 blue:0.0 alpha:1.0];
-	}
+
+	LETableViewCellMailSelect *cell = [LETableViewCellMailSelect getCellForTableView:tableView];
+	[cell setMessage:message];
 	
     return cell;
 }
