@@ -89,8 +89,8 @@
 		
 		UIImageView *tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(9, 7, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpImageView.contentMode = UIViewContentModeCenter;
-		tmpImageView.image = [UIImage imageNamed:@"/assets/ui/s/energy.png"];
+		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
+		tmpImageView.image = ENERGY_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		cell.energyStorageLabel = [[[UILabel alloc] initWithFrame:CGRectMake(34, 8, 70, 20)] autorelease];
 		cell.energyStorageLabel.backgroundColor = [UIColor clearColor];
@@ -102,8 +102,8 @@
 		
 		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(122, 7, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpImageView.contentMode = UIViewContentModeCenter;
-		tmpImageView.image = [UIImage imageNamed:@"/assets/ui/s/food.png"];
+		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
+		tmpImageView.image = FOOD_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		cell.foodStorageLabel = [[[UILabel alloc] initWithFrame:CGRectMake(147, 8, 70, 20)] autorelease];
 		cell.foodStorageLabel.backgroundColor = [UIColor clearColor];
@@ -115,8 +115,8 @@
 		
 		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(218, 7, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpImageView.contentMode = UIViewContentModeCenter;
-		tmpImageView.image = [UIImage imageNamed:@"/assets/ui/s/ore.png"];
+		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
+		tmpImageView.image = ORE_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		cell.oreStorageLabel = [[[UILabel alloc] initWithFrame:CGRectMake(243, 8, 70, 20)] autorelease];
 		cell.oreStorageLabel.backgroundColor = [UIColor clearColor];
@@ -128,8 +128,8 @@
 		
 		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(9, 35, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpImageView.contentMode = UIViewContentModeCenter;
-		tmpImageView.image = [UIImage imageNamed:@"/assets/ui/s/waste.png"];
+		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
+		tmpImageView.image = WASTE_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		cell.wasteStorageLabel = [[[UILabel alloc] initWithFrame:CGRectMake(34, 36, 70, 20)] autorelease];
 		cell.wasteStorageLabel.backgroundColor = [UIColor clearColor];
@@ -141,8 +141,8 @@
 		
 		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(122, 35, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpImageView.contentMode = UIViewContentModeCenter;
-		tmpImageView.image = [UIImage imageNamed:@"/assets/ui/s/water.png"];
+		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
+		tmpImageView.image = WATER_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		cell.waterStorageLabel = [[[UILabel alloc] initWithFrame:CGRectMake(147, 36, 70, 20)] autorelease];
 		cell.waterStorageLabel.backgroundColor = [UIColor clearColor];

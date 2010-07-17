@@ -80,7 +80,7 @@
 		cell.backgroundColor = CELL_BACKGROUND_COLOR;
 		cell.autoresizesSubviews = YES;
 		
-		UIImage *image = [UIImage imageNamed:@"/assets/ui/l/time.png"];
+		UIImage *image = TIME_ICON;
 		cell.imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
 		cell.imageView.frame = CGRectMake(110, 10, 100, 100);
 		cell.imageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;

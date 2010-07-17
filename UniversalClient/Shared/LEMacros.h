@@ -21,7 +21,16 @@
 //Time defs
 #define SEC_IN_HOUR (1.0 * 60.0 * 60.0) // 1hr, 60 min, 60 sec
 
-//#define CELL_BACKGROUND_IMAGE [UIImage imageNamed:@"assets/ui/bkg.png"]
+//Images
+#define ENERGY_ICON [UIImage imageNamed:@"assets/iphone ui/energy.png"]
+#define FOOD_ICON [UIImage imageNamed:@"assets/iphone ui/food.png"]
+#define HAPPINESS_ICON [UIImage imageNamed:@"assets/iphone ui/happiness.png"]
+#define ORE_ICON [UIImage imageNamed:@"assets/iphone ui/ore.png"]
+#define TIME_ICON [UIImage imageNamed:@"assets/iphone ui/time.png"]
+#define WASTE_ICON [UIImage imageNamed:@"assets/iphone ui/waste.png"]
+#define WATER_ICON [UIImage imageNamed:@"assets/iphone ui/water.png"]
+
+//Colors
 #define CELL_BACKGROUND_IMAGE [UIImage imageNamed:@"assets/iphone ui/cell-bkg.png"]
 #define CELL_BACKGROUND_COLOR [UIColor colorWithPatternImage:CELL_BACKGROUND_IMAGE]
 #define TOP_CELL_BACKGROUND_IMAGE [UIImage imageNamed:@"assets/iphone ui/cell-bkg-top.png"]

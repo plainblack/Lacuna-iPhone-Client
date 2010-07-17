@@ -122,8 +122,8 @@
 		
 		UIImageView *tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(9, 7, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpImageView.contentMode = UIViewContentModeCenter;
-		tmpImageView.image = [UIImage imageNamed:@"/assets/ui/s/energy.png"];
+		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
+		tmpImageView.image = ENERGY_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		cell.energyCostLabel = [[[UILabel alloc] initWithFrame:CGRectMake(34, 8, 70, 20)] autorelease];
 		cell.energyCostLabel.backgroundColor = [UIColor clearColor];
@@ -135,8 +135,8 @@
 		
 		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(122, 7, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpImageView.contentMode = UIViewContentModeCenter;
-		tmpImageView.image = [UIImage imageNamed:@"/assets/ui/s/food.png"];
+		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
+		tmpImageView.image = FOOD_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		cell.foodCostLabel = [[[UILabel alloc] initWithFrame:CGRectMake(147, 8, 70, 20)] autorelease];
 		cell.foodCostLabel.backgroundColor = [UIColor clearColor];
@@ -148,8 +148,8 @@
 
 		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(218, 7, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpImageView.contentMode = UIViewContentModeCenter;
-		tmpImageView.image = [UIImage imageNamed:@"/assets/ui/s/ore.png"];
+		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
+		tmpImageView.image = ORE_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		cell.oreCostLabel = [[[UILabel alloc] initWithFrame:CGRectMake(243, 8, 70, 20)] autorelease];
 		cell.oreCostLabel.backgroundColor = [UIColor clearColor];
@@ -161,8 +161,8 @@
 		
 		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(9, 35, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpImageView.contentMode = UIViewContentModeCenter;
-		tmpImageView.image = [UIImage imageNamed:@"/assets/ui/s/time.png"];
+		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
+		tmpImageView.image = TIME_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		cell.timeCostLabel = [[[UILabel alloc] initWithFrame:CGRectMake(34, 36, 70, 20)] autorelease];
 		cell.timeCostLabel.backgroundColor = [UIColor clearColor];
@@ -174,8 +174,8 @@
 		
 		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(122, 35, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpImageView.contentMode = UIViewContentModeCenter;
-		tmpImageView.image = [UIImage imageNamed:@"/assets/ui/s/waste.png"];
+		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
+		tmpImageView.image = WASTE_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		cell.wasteCostLabel = [[[UILabel alloc] initWithFrame:CGRectMake(147, 36, 70, 20)] autorelease];
 		cell.wasteCostLabel.backgroundColor = [UIColor clearColor];
@@ -187,8 +187,8 @@
 		
 		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(218, 35, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpImageView.contentMode = UIViewContentModeCenter;
-		tmpImageView.image = [UIImage imageNamed:@"/assets/ui/s/water.png"];
+		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
+		tmpImageView.image = WATER_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		cell.waterCostLabel = [[[UILabel alloc] initWithFrame:CGRectMake(243, 36, 70, 20)] autorelease];
 		cell.waterCostLabel.backgroundColor = [UIColor clearColor];

@@ -147,8 +147,8 @@
 		//ICON
 		UIImageView *tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(83, 9, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpImageView.contentMode = UIViewContentModeCenter;
-		tmpImageView.image = [UIImage imageNamed:@"/assets/ui/s/energy.png"];
+		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
+		tmpImageView.image = ENERGY_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		//PER HOUR
 		cell.energyPerHourLabel = [[[UILabel alloc] initWithFrame:CGRectMake(108, 10, 45, 20)] autorelease];
@@ -173,8 +173,8 @@
 		//ICON
 		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(239, 9, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpImageView.contentMode = UIViewContentModeCenter;
-		tmpImageView.image = [UIImage imageNamed:@"/assets/ui/s/food.png"];
+		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
+		tmpImageView.image = FOOD_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		//PER HOUR
 		cell.foodPerHourLabel = [[[UILabel alloc] initWithFrame:CGRectMake(264, 10, 45, 20)] autorelease];
@@ -199,8 +199,8 @@
 		//ICON
 		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(83, 38, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpImageView.contentMode = UIViewContentModeCenter;
-		tmpImageView.image = [UIImage imageNamed:@"/assets/ui/s/happiness.png"];
+		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
+		tmpImageView.image = HAPPINESS_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		//PER HOUR
 		cell.happinessPerHourLabel = [[[UILabel alloc] initWithFrame:CGRectMake(108, 39, 45, 20)] autorelease];
@@ -225,8 +225,8 @@
 		//ICON
 		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(239, 38, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpImageView.contentMode = UIViewContentModeCenter;
-		tmpImageView.image = [UIImage imageNamed:@"/assets/ui/s/ore.png"];
+		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
+		tmpImageView.image = ORE_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		//PER HOUR
 		cell.orePerHourLabel = [[[UILabel alloc] initWithFrame:CGRectMake(264, 39, 45, 20)] autorelease];
@@ -251,8 +251,8 @@
 		//ICON
 		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(83, 68, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpImageView.contentMode = UIViewContentModeCenter;
-		tmpImageView.image = [UIImage imageNamed:@"/assets/ui/s/waste.png"];
+		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
+		tmpImageView.image = WASTE_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		//PER HOUR
 		cell.wastePerHourLabel = [[[UILabel alloc] initWithFrame:CGRectMake(108, 69, 45, 20)] autorelease];
@@ -277,8 +277,8 @@
 		//ICON
 		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(239, 68, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpImageView.contentMode = UIViewContentModeCenter;
-		tmpImageView.image = [UIImage imageNamed:@"/assets/ui/s/water.png"];
+		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
+		tmpImageView.image = WATER_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		//PER HOUR
 		cell.waterPerHourLabel = [[[UILabel alloc] initWithFrame:CGRectMake(264, 69, 45, 20)] autorelease];

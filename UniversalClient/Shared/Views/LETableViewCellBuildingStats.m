@@ -172,8 +172,8 @@
 		
 		UIImageView *tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(145, 34, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpImageView.contentMode = UIViewContentModeCenter;
-		tmpImageView.image = [UIImage imageNamed:@"/assets/ui/s/energy.png"];
+		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
+		tmpImageView.image = ENERGY_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		cell.energyPerHourLabel = [[[UILabel alloc] initWithFrame:CGRectMake(170, 35, 45, 20)] autorelease];
 		cell.energyPerHourLabel.backgroundColor = [UIColor clearColor];
@@ -185,8 +185,8 @@
 		
 		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(223, 34, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpImageView.contentMode = UIViewContentModeCenter;
-		tmpImageView.image = [UIImage imageNamed:@"/assets/ui/s/food.png"];
+		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
+		tmpImageView.image = FOOD_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		cell.foodPerHourLabel = [[[UILabel alloc] initWithFrame:CGRectMake(248, 35, 45, 20)] autorelease];
 		cell.foodPerHourLabel.backgroundColor = [UIColor clearColor];
@@ -198,8 +198,8 @@
 		
 		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(145, 62, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpImageView.contentMode = UIViewContentModeCenter;
-		tmpImageView.image = [UIImage imageNamed:@"/assets/ui/s/ore.png"];
+		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
+		tmpImageView.image = ORE_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		cell.orePerHourLabel = [[[UILabel alloc] initWithFrame:CGRectMake(170, 63, 45, 20)] autorelease];
 		cell.orePerHourLabel.backgroundColor = [UIColor clearColor];
@@ -211,8 +211,8 @@
 		
 		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(223, 62, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpImageView.contentMode = UIViewContentModeCenter;
-		tmpImageView.image = [UIImage imageNamed:@"/assets/ui/s/water.png"];
+		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
+		tmpImageView.image = WATER_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		cell.waterPerHourLabel = [[[UILabel alloc] initWithFrame:CGRectMake(248, 63, 45, 20)] autorelease];
 		cell.waterPerHourLabel.backgroundColor = [UIColor clearColor];
@@ -224,8 +224,8 @@
 		
 		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(145, 90, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpImageView.contentMode = UIViewContentModeCenter;
-		tmpImageView.image = [UIImage imageNamed:@"/assets/ui/s/waste.png"];
+		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
+		tmpImageView.image = WASTE_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		cell.wastePerHourLabel = [[[UILabel alloc] initWithFrame:CGRectMake(170, 91, 45, 20)] autorelease];
 		cell.wastePerHourLabel.backgroundColor = [UIColor clearColor];
@@ -237,8 +237,8 @@
 		
 		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(223, 90, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpImageView.contentMode = UIViewContentModeCenter;
-		tmpImageView.image = [UIImage imageNamed:@"/assets/ui/s/happiness.png"];
+		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
+		tmpImageView.image = HAPPINESS_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		cell.happinessPerHourLabel = [[[UILabel alloc] initWithFrame:CGRectMake(248, 91, 45, 20)] autorelease];
 		cell.happinessPerHourLabel.backgroundColor = [UIColor clearColor];
