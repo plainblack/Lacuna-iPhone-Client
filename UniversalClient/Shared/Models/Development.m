@@ -12,6 +12,7 @@
 #import "LETableViewCellButton.h"
 #import "LETableViewCellLabeledText.h"
 #import "LEBuildingSubsidizeBuildQueue.h"
+#import "LETableViewCellBuildQueueItem.h"
 
 
 @implementation Development
@@ -78,7 +79,7 @@
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		case BUILDING_ROW_BUILD_QUEUE_ITEM:
-			return [LETableViewCellLabeledText getHeightForTableView:tableView];
+			return [LETableViewCellBuildQueueItem getHeightForTableView:tableView];
 			break;
 		default:
 			return [super tableView:tableView heightForBuildingRow:buildingRow];
@@ -99,9 +100,8 @@
 		case BUILDING_ROW_BUILD_QUEUE_ITEM:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			NSDictionary *buildQueueItem = [self.buildQueue objectAtIndex:rowIndex];
-			LETableViewCellLabeledText *buildQueueItemCell = [LETableViewCellLabeledText getCellForTableView:tableView];
-			buildQueueItemCell.label.text = [NSString stringWithFormat:@"Level %@", [buildQueueItem objectForKey:@"to_level"]];
-			buildQueueItemCell.content.text = [NSString stringWithFormat:@"%@: %@", [buildQueueItem objectForKey:@"name"], [Util prettyDuration:_intv([buildQueueItem objectForKey:@"seconds_remaining"])]];
+			LETableViewCellBuildQueueItem *buildQueueItemCell = [LETableViewCellBuildQueueItem getCellForTableView:tableView];
+			[buildQueueItemCell setData:buildQueueItem];
 			cell = buildQueueItemCell;
 			break;
 		default:

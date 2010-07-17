@@ -123,6 +123,7 @@
 		F6AC4A5C116C10A9001B967A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6AC4A5B116C10A9001B967A /* Security.framework */; };
 		F6C3906311F1E36C004FB38F /* LETableViewCellMailSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */; };
 		F6C390C311F1ED14004FB38F /* LETableViewCellMailHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C390C211F1ED14004FB38F /* LETableViewCellMailHeaders.m */; };
+		F6C390EE11F23D54004FB38F /* LETableViewCellBuildQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C390ED11F23D54004FB38F /* LETableViewCellBuildQueueItem.m */; };
 		F6DD1FDC116D33FC0013C58D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F6DD1FDB116D33FC0013C58D /* Default.png */; };
 		F6DD2026116D561F0013C58D /* LETableViewCellButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DD2025116D561F0013C58D /* LETableViewCellButton.m */; };
 		F6DD2064116D5B3C0013C58D /* LEViewSectionTab.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DD2063116D5B3C0013C58D /* LEViewSectionTab.m */; };
@@ -382,6 +383,8 @@
 		F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellMailSelect.m; sourceTree = "<group>"; };
 		F6C390C111F1ED14004FB38F /* LETableViewCellMailHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellMailHeaders.h; sourceTree = "<group>"; };
 		F6C390C211F1ED14004FB38F /* LETableViewCellMailHeaders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellMailHeaders.m; sourceTree = "<group>"; };
+		F6C390EC11F23D54004FB38F /* LETableViewCellBuildQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellBuildQueueItem.h; sourceTree = "<group>"; };
+		F6C390ED11F23D54004FB38F /* LETableViewCellBuildQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellBuildQueueItem.m; sourceTree = "<group>"; };
 		F6DD1FDB116D33FC0013C58D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		F6DD2024116D561F0013C58D /* LETableViewCellButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellButton.h; sourceTree = "<group>"; };
 		F6DD2025116D561F0013C58D /* LETableViewCellButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellButton.m; sourceTree = "<group>"; };
@@ -630,6 +633,8 @@
 				F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */,
 				F6C390C111F1ED14004FB38F /* LETableViewCellMailHeaders.h */,
 				F6C390C211F1ED14004FB38F /* LETableViewCellMailHeaders.m */,
+				F6C390EC11F23D54004FB38F /* LETableViewCellBuildQueueItem.h */,
+				F6C390ED11F23D54004FB38F /* LETableViewCellBuildQueueItem.m */,
 			);
 			name = Views;
 			path = Shared/Views;
@@ -1115,6 +1120,7 @@
 				F65DC38911EE58FB00A0A782 /* Prisoner.m in Sources */,
 				F6C3906311F1E36C004FB38F /* LETableViewCellMailSelect.m in Sources */,
 				F6C390C311F1ED14004FB38F /* LETableViewCellMailHeaders.m in Sources */,
+				F6C390EE11F23D54004FB38F /* LETableViewCellBuildQueueItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

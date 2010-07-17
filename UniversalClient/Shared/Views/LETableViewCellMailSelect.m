@@ -76,7 +76,7 @@
 #pragma mark Class Methods
 
 + (LETableViewCellMailSelect *)getCellForTableView:(UITableView *)tableView {
-	static NSString *CellIdentifier = @"LabeledTextCell";
+	static NSString *CellIdentifier = @"MailSelectCell";
 	
 	LETableViewCellMailSelect *cell = (LETableViewCellMailSelect *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -101,7 +101,7 @@
 		cell.fromLabel.textColor = MAIL_TEXT_COLOR;
 		cell.fromLabel.text = @"from:";
 		[cell.contentView addSubview:cell.fromLabel];
-		cell.fromText = [[[UILabel alloc] initWithFrame:CGRectMake(50, 25, 310, 15)] autorelease];
+		cell.fromText = [[[UILabel alloc] initWithFrame:CGRectMake(50, 25, 265, 15)] autorelease];
 		cell.fromText.backgroundColor = [UIColor clearColor];
 		cell.fromText.textAlignment = UITextAlignmentLeft;
 		cell.fromText.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
@@ -117,7 +117,7 @@
 		cell.dateLabel.textColor = MAIL_TEXT_COLOR;
 		cell.dateLabel.text = @"sent:";
 		[cell.contentView addSubview:cell.dateLabel];
-		cell.dateText = [[[UILabel alloc] initWithFrame:CGRectMake(50, 40, 310, 15)] autorelease];
+		cell.dateText = [[[UILabel alloc] initWithFrame:CGRectMake(50, 40, 265, 15)] autorelease];
 		cell.dateText.backgroundColor = [UIColor clearColor];
 		cell.dateText.textAlignment = UITextAlignmentLeft;
 		cell.dateText.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;

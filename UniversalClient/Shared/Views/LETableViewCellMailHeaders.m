@@ -81,7 +81,7 @@
 #pragma mark Class Methods
 
 + (LETableViewCellMailHeaders *)getCellForTableView:(UITableView *)tableView {
-	static NSString *CellIdentifier = @"LabeledTextCell";
+	static NSString *CellIdentifier = @"MailHeadersCell";
 	
 	LETableViewCellMailHeaders *cell = (LETableViewCellMailHeaders *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -106,7 +106,7 @@
 		cell.toLabel.textColor = MAIL_TEXT_COLOR;
 		cell.toLabel.text = @"to:";
 		[cell.contentView addSubview:cell.toLabel];
-		cell.toText = [[[UILabel alloc] initWithFrame:CGRectMake(55, 25, 310, 15)] autorelease];
+		cell.toText = [[[UILabel alloc] initWithFrame:CGRectMake(55, 25, 265, 15)] autorelease];
 		cell.toText.backgroundColor = [UIColor clearColor];
 		cell.toText.textAlignment = UITextAlignmentLeft;
 		cell.toText.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
@@ -122,7 +122,7 @@
 		cell.fromLabel.textColor = MAIL_TEXT_COLOR;
 		cell.fromLabel.text = @"from:";
 		[cell.contentView addSubview:cell.fromLabel];
-		cell.fromText = [[[UILabel alloc] initWithFrame:CGRectMake(55, 40, 310, 15)] autorelease];
+		cell.fromText = [[[UILabel alloc] initWithFrame:CGRectMake(55, 40, 265, 15)] autorelease];
 		cell.fromText.backgroundColor = [UIColor clearColor];
 		cell.fromText.textAlignment = UITextAlignmentLeft;
 		cell.fromText.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
@@ -138,7 +138,7 @@
 		cell.dateLabel.textColor = MAIL_TEXT_COLOR;
 		cell.dateLabel.text = @"sent:";
 		[cell.contentView addSubview:cell.dateLabel];
-		cell.dateText = [[[UILabel alloc] initWithFrame:CGRectMake(55, 55, 310, 15)] autorelease];
+		cell.dateText = [[[UILabel alloc] initWithFrame:CGRectMake(55, 55, 265, 15)] autorelease];
 		cell.dateText.backgroundColor = [UIColor clearColor];
 		cell.dateText.textAlignment = UITextAlignmentLeft;
 		cell.dateText.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;

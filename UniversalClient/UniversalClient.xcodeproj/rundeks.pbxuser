@@ -925,8 +925,8 @@
 		isa = PBXTextBookmark;
 		fRef = F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */;
 		name = "ViewMailMessageController.m: 257";
-		rLen = 95;
-		rLoc = 9349;
+		rLen = 0;
+		rLoc = 9179;
 		rType = 0;
 		vrLen = 2243;
 		vrLoc = 8079;
@@ -2615,9 +2615,9 @@
 	};
 	F69809A61179FFFB00BD2096 /* ViewBuildingController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1349, 3393}}";
-			sepNavSelRange = "{2875, 322}";
-			sepNavVisRange = "{2603, 2105}";
+			sepNavIntBoundsRect = "{{0, 0}, {1349, 3198}}";
+			sepNavSelRange = "{3896, 13}";
+			sepNavVisRange = "{3607, 696}";
 			sepNavWindowFrame = "{{38, 834}, {750, 558}}";
 		};
 	};
@@ -2672,9 +2672,9 @@
 	};
 	F69809C4117A156E00BD2096 /* LETableViewCellUnbuildable.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {922, 1040}}";
+			sepNavIntBoundsRect = "{{0, 0}, {943, 1222}}";
 			sepNavSelRange = "{1800, 0}";
-			sepNavVisRange = "{1410, 786}";
+			sepNavVisRange = "{628, 1921}";
 		};
 	};
 	F69809F4117A3D6900BD2096 /* PBXTextBookmark */ = {
@@ -2741,23 +2741,23 @@
 	};
 	F6980ACD117A600E00BD2096 /* ViewMailboxController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1300, 3302}}";
-			sepNavSelRange = "{5241, 0}";
-			sepNavVisRange = "{4741, 2149}";
+			sepNavIntBoundsRect = "{{0, 0}, {908, 3926}}";
+			sepNavSelRange = "{5639, 0}";
+			sepNavVisRange = "{4992, 552}";
 		};
 	};
 	F6980B02117A6CF900BD2096 /* ViewMailMessageController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {943, 750}}";
+			sepNavIntBoundsRect = "{{0, 0}, {943, 834}}";
 			sepNavSelRange = "{250, 25}";
 			sepNavVisRange = "{0, 641}";
 		};
 	};
 	F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1321, 4927}}";
-			sepNavSelRange = "{9193, 7}";
-			sepNavVisRange = "{8807, 743}";
+			sepNavIntBoundsRect = "{{0, 0}, {1321, 4576}}";
+			sepNavSelRange = "{9176, 0}";
+			sepNavVisRange = "{741, 2634}";
 			sepNavWindowFrame = "{{15, 68}, {750, 810}}";
 		};
 	};
@@ -3158,8 +3158,8 @@
 	F6AC49E6116C0F7E001B967A /* LEMacros.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {943, 923}}";
-			sepNavSelRange = "{2076, 0}";
-			sepNavVisRange = "{32, 2970}";
+			sepNavSelRange = "{2407, 15}";
+			sepNavVisRange = "{119, 2884}";
 		};
 	};
 	F6AC49E7116C0F7E001B967A /* Util.h */ = {
@@ -4307,16 +4307,16 @@
 	};
 	F6C3906111F1E36C004FB38F /* LETableViewCellMailSelect.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {943, 811}}";
-			sepNavSelRange = "{387, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {943, 809}}";
+			sepNavSelRange = "{229, 540}";
 			sepNavVisRange = "{0, 774}";
 		};
 	};
 	F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {943, 1729}}";
-			sepNavSelRange = "{2828, 0}";
-			sepNavVisRange = "{0, 1502}";
+			sepNavIntBoundsRect = "{{0, 0}, {943, 1833}}";
+			sepNavSelRange = "{4314, 0}";
+			sepNavVisRange = "{1828, 3029}";
 		};
 	};
 	F6C3906C11F1E812004FB38F /* XCBuildMessageTextBookmark */ = {
@@ -4403,7 +4403,7 @@
 		fRef = F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */;
 		name = "LETableViewCellMailSelect.m: 74";
 		rLen = 0;
-		rLoc = 2148;
+		rLoc = 2147;
 		rType = 0;
 		vrLen = 2578;
 		vrLoc = 839;
@@ -4453,7 +4453,7 @@
 		fRef = F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */;
 		name = "LETableViewCellMailSelect.m: 74";
 		rLen = 0;
-		rLoc = 2148;
+		rLoc = 2147;
 		rType = 0;
 		vrLen = 2579;
 		vrLoc = 838;
@@ -4463,7 +4463,7 @@
 		fRef = F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */;
 		name = "LETableViewCellMailSelect.m: 98";
 		rLen = 0;
-		rLoc = 4552;
+		rLoc = 4551;
 		rType = 0;
 		vrLen = 2504;
 		vrLoc = 1102;
@@ -4473,7 +4473,7 @@
 		fRef = F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */;
 		name = "LETableViewCellMailSelect.m: 97";
 		rLen = 0;
-		rLoc = 4443;
+		rLoc = 4442;
 		rType = 0;
 		vrLen = 2501;
 		vrLoc = 1102;
@@ -4543,7 +4543,7 @@
 		fRef = F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */;
 		name = "LETableViewCellMailSelect.m: 109";
 		rLen = 0;
-		rLoc = 4191;
+		rLoc = 4190;
 		rType = 0;
 		vrLen = 1814;
 		vrLoc = 251;
@@ -4573,7 +4573,7 @@
 		fRef = F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */;
 		name = "LETableViewCellMailSelect.m: 119";
 		rLen = 0;
-		rLoc = 4306;
+		rLoc = 4305;
 		rType = 0;
 		vrLen = 3025;
 		vrLoc = 1797;
@@ -4583,7 +4583,7 @@
 		fRef = F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */;
 		name = "LETableViewCellMailSelect.m: 119";
 		rLen = 0;
-		rLoc = 4310;
+		rLoc = 4309;
 		rType = 0;
 		vrLen = 3061;
 		vrLoc = 1755;
@@ -4593,7 +4593,7 @@
 		fRef = F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */;
 		name = "LETableViewCellMailSelect.m: 111";
 		rLen = 0;
-		rLoc = 3830;
+		rLoc = 3829;
 		rType = 0;
 		vrLen = 3062;
 		vrLoc = 1755;
@@ -4603,7 +4603,7 @@
 		fRef = F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */;
 		name = "LETableViewCellMailSelect.m: 111";
 		rLen = 0;
-		rLoc = 3828;
+		rLoc = 3827;
 		rType = 0;
 		vrLen = 3062;
 		vrLoc = 1755;
@@ -4613,7 +4613,7 @@
 		fRef = F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */;
 		name = "LETableViewCellMailSelect.m: 119";
 		rLen = 0;
-		rLoc = 4306;
+		rLoc = 4305;
 		rType = 0;
 		vrLen = 3026;
 		vrLoc = 1797;
@@ -4623,7 +4623,7 @@
 		fRef = F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */;
 		name = "LETableViewCellMailSelect.m: 95";
 		rLen = 0;
-		rLoc = 2903;
+		rLoc = 2902;
 		rType = 0;
 		vrLen = 3036;
 		vrLoc = 1797;
@@ -4633,7 +4633,7 @@
 		fRef = F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */;
 		name = "LETableViewCellMailSelect.m: 114";
 		rLen = 0;
-		rLoc = 4077;
+		rLoc = 4076;
 		rType = 0;
 		vrLen = 3038;
 		vrLoc = 1797;
@@ -4643,7 +4643,7 @@
 		fRef = F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */;
 		name = "LETableViewCellMailSelect.m: 95";
 		rLen = 0;
-		rLoc = 2905;
+		rLoc = 2904;
 		rType = 0;
 		vrLen = 3038;
 		vrLoc = 1797;
@@ -4653,7 +4653,7 @@
 		fRef = F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */;
 		name = "LETableViewCellMailSelect.m: 111";
 		rLen = 0;
-		rLoc = 3830;
+		rLoc = 3829;
 		rType = 0;
 		vrLen = 3038;
 		vrLoc = 1797;
@@ -4670,16 +4670,30 @@
 	};
 	F6C390C111F1ED14004FB38F /* LETableViewCellMailHeaders.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {943, 811}}";
-			sepNavSelRange = "{465, 0}";
-			sepNavVisRange = "{0, 853}";
+			sepNavIntBoundsRect = "{{0, 0}, {943, 809}}";
+			sepNavSelRange = "{478, 0}";
+			sepNavVisRange = "{0, 870}";
 		};
 	};
 	F6C390C211F1ED14004FB38F /* LETableViewCellMailHeaders.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {943, 1729}}";
-			sepNavSelRange = "{2161, 0}";
-			sepNavVisRange = "{146, 1644}";
+			sepNavIntBoundsRect = "{{0, 0}, {943, 2080}}";
+			sepNavSelRange = "{5170, 0}";
+			sepNavVisRange = "{2241, 3317}";
+		};
+	};
+	F6C390EC11F23D54004FB38F /* LETableViewCellBuildQueueItem.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {943, 809}}";
+			sepNavSelRange = "{237, 120}";
+			sepNavVisRange = "{0, 810}";
+		};
+	};
+	F6C390ED11F23D54004FB38F /* LETableViewCellBuildQueueItem.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {943, 1638}}";
+			sepNavSelRange = "{3841, 0}";
+			sepNavVisRange = "{1283, 3120}";
 		};
 	};
 	F6D2BAC611BB37F600C3091D /* PBXTextBookmark */ = {
@@ -5039,7 +5053,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1433, 2431}}";
 			sepNavSelRange = "{1824, 30}";
-			sepNavVisRange = "{1088, 3092}";
+			sepNavVisRange = "{1088, 3038}";
 		};
 	};
 	F6E3EFB811EA1BEC005E1276 /* PBXTextBookmark */ = {
