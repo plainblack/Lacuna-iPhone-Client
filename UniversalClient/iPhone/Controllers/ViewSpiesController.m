@@ -32,6 +32,7 @@ typedef enum {
 
 @synthesize intelligenceBuilding;
 @synthesize spiesLastUpdated;
+@synthesize selectedSpy;
 
 
 #pragma mark -
@@ -171,7 +172,11 @@ typedef enum {
 	Spy *spy = [self.intelligenceBuilding.spies objectAtIndex:indexPath.section];
 	switch (indexPath.row) {
 		case ROW_BURN_BUTTON:
-			[self.intelligenceBuilding burnSpy:spy];
+			self.selectedSpy = spy;
+			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Burn spy?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+			actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+			[actionSheet showFromTabBar:self.tabBarController.tabBar];
+			[actionSheet release];
 			break;
 		case ROW_RENAME_BUTTON:
 			; //DO NOT REMOVE
@@ -213,7 +218,20 @@ typedef enum {
 - (void)dealloc {
 	self.intelligenceBuilding = nil;
 	self.spiesLastUpdated = nil;
+	self.selectedSpy = nil;
     [super dealloc];
+}
+
+
+#pragma mark -
+#pragma mark UIActionSheetDelegate Methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
+		[self.intelligenceBuilding burnSpy:self.selectedSpy];
+		self.selectedSpy = nil;
+	}
+	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
 
