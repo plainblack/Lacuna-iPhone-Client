@@ -16,6 +16,7 @@
 #import "LETableViewCellCurrentResources.h"
 #import "ViewBodyMapController.h"
 #import "RenameBodyController.h"
+#import "LETableViewCellDictionary.h"
 
 
 typedef enum {
@@ -36,6 +37,7 @@ typedef enum {
 	ACTION_ROW_RENAME_BODY
 } ACTION_ROW;
 
+/*
 typedef enum {
 	COMPOSITION_ROW_SIZE,
 	COMPOSITION_ROW_ANTHRACITE,
@@ -60,8 +62,15 @@ typedef enum {
 	COMPOSITION_ROW_ZIRCON,
 	COMPOSITION_ROW_WATER
 } COMPOSITION_ROW;
+*/
 
+typedef enum {
+	COMPOSITION_ROW_SIZE,
+	COMPOSITION_ROW_WATER,
+	COMPOSITION_ROW_ORE
+} COMPOSITION_ROW;
 
+	
 @implementation ViewBodyController
 
 
@@ -171,7 +180,7 @@ typedef enum {
 				return 2;
 				break;
 			case SECTION_COMPOSITION:
-				return 22;
+				return 3;
 				break;
 			default:
 				return 0;
@@ -199,7 +208,16 @@ typedef enum {
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		case SECTION_COMPOSITION:
-			return [LETableViewCellLabeledText getHeightForTableView:tableView];
+			switch (indexPath.row) {
+				case COMPOSITION_ROW_ORE:
+					; //DON'T REMOVE
+					Session *session = [Session sharedInstance];
+					return [LETableViewCellDictionary getHeightForTableView:tableView numItems:[session.body.ores count]];
+					break;
+				default:
+					return [LETableViewCellLabeledText getHeightForTableView:tableView];
+					break;
+			}
 			break;
 		default:
 			return 5.0;
@@ -253,14 +271,28 @@ typedef enum {
 			}
 			break;
 		case SECTION_COMPOSITION:
-			; //DO NOT REMOVE
-			LETableViewCellLabeledText *compositionCell = [LETableViewCellLabeledText getCellForTableView:tableView];
 			switch (indexPath.row) {
 				case COMPOSITION_ROW_SIZE:
-					compositionCell.label.text = @"Size";
-					compositionCell.content.text = [NSString stringWithFormat:@"%i", session.body.size];
+					; //DO NOT REMOVE
+					LETableViewCellLabeledText *sizeCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+					sizeCell.label.text = @"Size";
+					sizeCell.content.text = [NSString stringWithFormat:@"%i", session.body.size];
+					cell = sizeCell;
 					break;
+				case COMPOSITION_ROW_ORE:
+					; //DO NOT REMOVE
+					LETableViewCellDictionary *oresCell = [LETableViewCellDictionary getCellForTableView:tableView];
+					[oresCell setHeading:@"Ore" Data:session.body.ores];
+					cell = oresCell;
 					break;
+				case COMPOSITION_ROW_WATER:
+					; //DO NOT REMOVE
+					LETableViewCellLabeledText *waterCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+					waterCell.label.text = @"Water";
+					waterCell.content.text = [NSString stringWithFormat:@"%i", session.body.planetWater];
+					cell = waterCell;
+					break;
+/*
 				case COMPOSITION_ROW_ANTHRACITE:
 					compositionCell.label.text = @"Anthracite";
 					compositionCell.content.text = [NSString stringWithFormat:@"%@", [session.body.ores objectForKey:@"anthracite"]];
@@ -341,15 +373,11 @@ typedef enum {
 					compositionCell.label.text = @"Zircon";
 					compositionCell.content.text = [NSString stringWithFormat:@"%@", [session.body.ores objectForKey:@"zircon"]];
 					break;
-				case COMPOSITION_ROW_WATER:
-					compositionCell.label.text = @"Water";
-					compositionCell.content.text = [NSString stringWithFormat:@"%i", session.body.planetWater];
-					break;
+*/
 				default:
-					compositionCell.label.text = @"UNKNOWN";
+					cell = nil;
 					break;
 			}
-			cell = compositionCell;
 			break;
 		default:
 			break;

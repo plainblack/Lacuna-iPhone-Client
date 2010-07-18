@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 
 #define DEVELOPMENT_URL @"/development"
+#define FOOD_RESERVE_URL @"/foodreserve"
 #define INTELLIGENCE_URL @"/intelligence"
 #define NETWORK_19_URL @"/network19"
+#define ORE_STORAGE_URL @"/orestorage"
 #define PARK_URL @"/park"
 #define PLANETARY_COMMAND_URL @"/planetarycommand"
 #define SECURITY_URL @"/security"
@@ -50,7 +52,9 @@ typedef enum {
 	BUILDING_ROW_UPGRADE_STORAGE,
 	BUILDING_ROW_NEXT_COLONY_COST,
 	BUILDING_ROW_VIEW_PRISONERS,
-	BUILDING_ROW_MAX_RECYCLE
+	BUILDING_ROW_MAX_RECYCLE,
+	BUILDING_ROW_STORED_FOOD,
+	BUILDING_ROW_STORED_ORE
 } BUILDING_ROW;
 
 

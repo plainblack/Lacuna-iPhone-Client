@@ -37,6 +37,8 @@
 		F634BB53116C31BD0084A8B2 /* LETableViewCellTextEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = F634BB52116C31BD0084A8B2 /* LETableViewCellTextEntry.m */; };
 		F634BB55116C31E50084A8B2 /* LETableViewCellTextEntry.xib in Resources */ = {isa = PBXBuildFile; fileRef = F634BB54116C31E50084A8B2 /* LETableViewCellTextEntry.xib */; };
 		F645746C118DD62A000897C4 /* LETableViewCellAttachedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F645746B118DD62A000897C4 /* LETableViewCellAttachedImage.m */; };
+		F64C43D911F3B50E002981EC /* FoodReserve.m in Sources */ = {isa = PBXBuildFile; fileRef = F64C43D811F3B50E002981EC /* FoodReserve.m */; };
+		F64C43DC11F3B527002981EC /* OreStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = F64C43DB11F3B527002981EC /* OreStorage.m */; };
 		F65D35B91195E00400454C2B /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F65D35B81195E00400454C2B /* iTunesArtwork */; };
 		F65D36681195F05B00454C2B /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = F65D36671195F05B00454C2B /* Entitlements.plist */; };
 		F65DC32611EE09AE00A0A782 /* PlanetaryCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = F65DC32511EE09AE00A0A782 /* PlanetaryCommand.m */; };
@@ -158,6 +160,7 @@
 		F6E767C611D6A4D400778C1D /* Body.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E767C511D6A4D400778C1D /* Body.m */; };
 		F6E768AA11D6BD9300778C1D /* StoredResource.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E768A911D6BD9300778C1D /* StoredResource.m */; };
 		F6E768B411D6C6E500778C1D /* NoLimitResource.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E768B311D6C6E500778C1D /* NoLimitResource.m */; };
+		F6EEE87511F388E80095BCA4 /* LETableViewCellDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EEE87411F388E80095BCA4 /* LETableViewCellDictionary.m */; };
 		F6F5427D11A9D7D4006F347B /* LEBodyStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */; };
 		F6FD9E6B11D79FA0003785AD /* Building.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FD9E6A11D79FA0003785AD /* Building.m */; };
 		F6FD9E6E11D7A05D003785AD /* ResourceGeneration.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FD9E6D11D7A05D003785AD /* ResourceGeneration.m */; };
@@ -218,6 +221,10 @@
 		F634BB54116C31E50084A8B2 /* LETableViewCellTextEntry.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LETableViewCellTextEntry.xib; sourceTree = "<group>"; };
 		F645746A118DD62A000897C4 /* LETableViewCellAttachedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellAttachedImage.h; sourceTree = "<group>"; };
 		F645746B118DD62A000897C4 /* LETableViewCellAttachedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellAttachedImage.m; sourceTree = "<group>"; };
+		F64C43D711F3B50E002981EC /* FoodReserve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodReserve.h; sourceTree = "<group>"; };
+		F64C43D811F3B50E002981EC /* FoodReserve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodReserve.m; sourceTree = "<group>"; };
+		F64C43DA11F3B527002981EC /* OreStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OreStorage.h; sourceTree = "<group>"; };
+		F64C43DB11F3B527002981EC /* OreStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OreStorage.m; sourceTree = "<group>"; };
 		F65D35B81195E00400454C2B /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		F65D36671195F05B00454C2B /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		F65DC32411EE09AE00A0A782 /* PlanetaryCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanetaryCommand.h; sourceTree = "<group>"; };
@@ -454,6 +461,8 @@
 		F6E768A911D6BD9300778C1D /* StoredResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoredResource.m; sourceTree = "<group>"; };
 		F6E768B211D6C6E500778C1D /* NoLimitResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoLimitResource.h; sourceTree = "<group>"; };
 		F6E768B311D6C6E500778C1D /* NoLimitResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoLimitResource.m; sourceTree = "<group>"; };
+		F6EEE87311F388E80095BCA4 /* LETableViewCellDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellDictionary.h; sourceTree = "<group>"; };
+		F6EEE87411F388E80095BCA4 /* LETableViewCellDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellDictionary.m; sourceTree = "<group>"; };
 		F6F5427B11A9D7D4006F347B /* LEBodyStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBodyStatus.h; sourceTree = "<group>"; };
 		F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBodyStatus.m; sourceTree = "<group>"; };
 		F6FD9E6911D79FA0003785AD /* Building.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Building.h; sourceTree = "<group>"; };
@@ -635,6 +644,8 @@
 				F69809C4117A156E00BD2096 /* LETableViewCellUnbuildable.m */,
 				F6DD2062116D5B3C0013C58D /* LEViewSectionTab.h */,
 				F6DD2063116D5B3C0013C58D /* LEViewSectionTab.m */,
+				F6EEE87311F388E80095BCA4 /* LETableViewCellDictionary.h */,
+				F6EEE87411F388E80095BCA4 /* LETableViewCellDictionary.m */,
 			);
 			name = Views;
 			path = Shared/Views;
@@ -826,6 +837,10 @@
 				F6FD9E8611D7A6F3003785AD /* TimedActivity.m */,
 				F61D0C2111E2355600B06382 /* WasteRecycling.h */,
 				F61D0C2211E2355600B06382 /* WasteRecycling.m */,
+				F64C43D711F3B50E002981EC /* FoodReserve.h */,
+				F64C43D811F3B50E002981EC /* FoodReserve.m */,
+				F64C43DA11F3B527002981EC /* OreStorage.h */,
+				F64C43DB11F3B527002981EC /* OreStorage.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -1121,6 +1136,9 @@
 				F6C3906311F1E36C004FB38F /* LETableViewCellMailSelect.m in Sources */,
 				F6C390C311F1ED14004FB38F /* LETableViewCellMailHeaders.m in Sources */,
 				F6C390EE11F23D54004FB38F /* LETableViewCellBuildQueueItem.m in Sources */,
+				F6EEE87511F388E80095BCA4 /* LETableViewCellDictionary.m in Sources */,
+				F64C43D911F3B50E002981EC /* FoodReserve.m in Sources */,
+				F64C43DC11F3B527002981EC /* OreStorage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

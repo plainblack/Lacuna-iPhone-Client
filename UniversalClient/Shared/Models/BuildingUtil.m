@@ -10,9 +10,11 @@
 #import "LEBuildingView.h"
 #import "Building.h"
 #import "Development.h"
+#import "FoodReserve.h"
 #import "Intelligence.h"
-#import "Park.h"
 #import "Network19.h"
+#import "OreStorage.h"
+#import "Park.h"
 #import "PlanetaryCommand.h"
 #import "Security.h"
 #import "WasteRecycling.h"
@@ -25,10 +27,14 @@
 	Building *building = nil;
 	if ([request.buildingUrl isEqualToString:DEVELOPMENT_URL]) {
 		building = [[[Development alloc] init] autorelease];
+	} else if ([request.buildingUrl isEqualToString:FOOD_RESERVE_URL]) {
+		building = [[[FoodReserve alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:INTELLIGENCE_URL]) {
 		building = [[[Intelligence alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:NETWORK_19_URL]) {
 		building = [[[Network19 alloc] init] autorelease];
+	} else if ([request.buildingUrl isEqualToString:ORE_STORAGE_URL]) {
+		building = [[[OreStorage alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:PARK_URL]) {
 		building = [[[Park alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:PLANETARY_COMMAND_URL]) {
