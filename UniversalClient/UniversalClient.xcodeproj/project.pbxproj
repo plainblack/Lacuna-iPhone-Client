@@ -39,6 +39,8 @@
 		F645746C118DD62A000897C4 /* LETableViewCellAttachedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F645746B118DD62A000897C4 /* LETableViewCellAttachedImage.m */; };
 		F64C43D911F3B50E002981EC /* FoodReserve.m in Sources */ = {isa = PBXBuildFile; fileRef = F64C43D811F3B50E002981EC /* FoodReserve.m */; };
 		F64C43DC11F3B527002981EC /* OreStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = F64C43DB11F3B527002981EC /* OreStorage.m */; };
+		F64C43F611F3C37A002981EC /* Archaeology.m in Sources */ = {isa = PBXBuildFile; fileRef = F64C43F511F3C37A002981EC /* Archaeology.m */; };
+		F64C441911F3C6F8002981EC /* NewBuildingTypeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F64C441811F3C6F8002981EC /* NewBuildingTypeController.m */; };
 		F65D35B91195E00400454C2B /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F65D35B81195E00400454C2B /* iTunesArtwork */; };
 		F65D36681195F05B00454C2B /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = F65D36671195F05B00454C2B /* Entitlements.plist */; };
 		F65DC32611EE09AE00A0A782 /* PlanetaryCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = F65DC32511EE09AE00A0A782 /* PlanetaryCommand.m */; };
@@ -225,6 +227,10 @@
 		F64C43D811F3B50E002981EC /* FoodReserve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodReserve.m; sourceTree = "<group>"; };
 		F64C43DA11F3B527002981EC /* OreStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OreStorage.h; sourceTree = "<group>"; };
 		F64C43DB11F3B527002981EC /* OreStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OreStorage.m; sourceTree = "<group>"; };
+		F64C43F411F3C37A002981EC /* Archaeology.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Archaeology.h; sourceTree = "<group>"; };
+		F64C43F511F3C37A002981EC /* Archaeology.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Archaeology.m; sourceTree = "<group>"; };
+		F64C441711F3C6F8002981EC /* NewBuildingTypeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewBuildingTypeController.h; sourceTree = "<group>"; };
+		F64C441811F3C6F8002981EC /* NewBuildingTypeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewBuildingTypeController.m; sourceTree = "<group>"; };
 		F65D35B81195E00400454C2B /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		F65D36671195F05B00454C2B /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		F65DC32411EE09AE00A0A782 /* PlanetaryCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanetaryCommand.h; sourceTree = "<group>"; };
@@ -841,6 +847,8 @@
 				F64C43D811F3B50E002981EC /* FoodReserve.m */,
 				F64C43DA11F3B527002981EC /* OreStorage.h */,
 				F64C43DB11F3B527002981EC /* OreStorage.m */,
+				F64C43F411F3C37A002981EC /* Archaeology.h */,
+				F64C43F511F3C37A002981EC /* Archaeology.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -906,6 +914,8 @@
 				F6A9C5EA1184C1CC001F0D9C /* ViewSpiesController.m */,
 				F65DC36C11EE533500A0A782 /* ViewPrisonersController.h */,
 				F65DC36D11EE533500A0A782 /* ViewPrisonersController.m */,
+				F64C441711F3C6F8002981EC /* NewBuildingTypeController.h */,
+				F64C441811F3C6F8002981EC /* NewBuildingTypeController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1139,6 +1149,8 @@
 				F6EEE87511F388E80095BCA4 /* LETableViewCellDictionary.m in Sources */,
 				F64C43D911F3B50E002981EC /* FoodReserve.m in Sources */,
 				F64C43DC11F3B527002981EC /* OreStorage.m in Sources */,
+				F64C43F611F3C37A002981EC /* Archaeology.m in Sources */,
+				F64C441911F3C6F8002981EC /* NewBuildingTypeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

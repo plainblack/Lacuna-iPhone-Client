@@ -38,6 +38,7 @@ typedef enum {
 @synthesize x;
 @synthesize y;
 @synthesize leGetBuildables;
+@synthesize tag;
 
 
 #pragma mark -
@@ -57,7 +58,7 @@ typedef enum {
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	self.leGetBuildables = [[[LEGetBuildables alloc] initWithCallback:@selector(buildableLoaded:) target:self bodyId:self.bodyId x:x y:y] autorelease];
+	self.leGetBuildables = [[[LEGetBuildables alloc] initWithCallback:@selector(buildableLoaded:) target:self bodyId:self.bodyId x:x y:y tag:tag] autorelease];
 }
 
 
@@ -203,6 +204,7 @@ typedef enum {
 	self.buttonsByLoc = nil;
 	[leGetBuildables cancel];
 	self.leGetBuildables = nil;
+	self.tag = nil;
 	[super viewDidUnload];
 }
 

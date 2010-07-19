@@ -218,6 +218,18 @@
 			F64C43F011F3B821002981EC /* PBXTextBookmark */ = F64C43F011F3B821002981EC /* PBXTextBookmark */;
 			F64C43F111F3B821002981EC /* PBXTextBookmark */ = F64C43F111F3B821002981EC /* PBXTextBookmark */;
 			F64C43F211F3B821002981EC /* PBXTextBookmark */ = F64C43F211F3B821002981EC /* PBXTextBookmark */;
+			F64C43FB11F3C4F5002981EC /* PBXTextBookmark */ = F64C43FB11F3C4F5002981EC /* PBXTextBookmark */;
+			F64C43FC11F3C4F5002981EC /* PBXTextBookmark */ = F64C43FC11F3C4F5002981EC /* PBXTextBookmark */;
+			F64C43FD11F3C4F5002981EC /* PBXTextBookmark */ = F64C43FD11F3C4F5002981EC /* PBXTextBookmark */;
+			F64C43FE11F3C4F5002981EC /* PBXTextBookmark */ = F64C43FE11F3C4F5002981EC /* PBXTextBookmark */;
+			F64C43FF11F3C4F5002981EC /* PBXTextBookmark */ = F64C43FF11F3C4F5002981EC /* PBXTextBookmark */;
+			F64C440011F3C4F5002981EC /* PBXTextBookmark */ = F64C440011F3C4F5002981EC /* PBXTextBookmark */;
+			F64C440111F3C4F5002981EC /* PBXTextBookmark */ = F64C440111F3C4F5002981EC /* PBXTextBookmark */;
+			F64C440211F3C4F5002981EC /* PBXTextBookmark */ = F64C440211F3C4F5002981EC /* PBXTextBookmark */;
+			F64C440311F3C4F5002981EC /* PBXTextBookmark */ = F64C440311F3C4F5002981EC /* PBXTextBookmark */;
+			F64C441011F3C5C5002981EC /* PBXTextBookmark */ = F64C441011F3C5C5002981EC /* PBXTextBookmark */;
+			F64C441111F3C5C5002981EC /* PBXTextBookmark */ = F64C441111F3C5C5002981EC /* PBXTextBookmark */;
+			F64C441511F3C60D002981EC /* PBXTextBookmark */ = F64C441511F3C60D002981EC /* PBXTextBookmark */;
 			F65D35A71195B38000454C2B = F65D35A71195B38000454C2B /* PBXTextBookmark */;
 			F65D35CC1195E50E00454C2B = F65D35CC1195E50E00454C2B /* PBXTextBookmark */;
 			F65D35CD1195E50E00454C2B = F65D35CD1195E50E00454C2B /* PBXBookmark */;
@@ -789,16 +801,16 @@
 	};
 	F61D0C2411E235C100B06382 /* BuildingUtil.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {943, 936}}";
-			sepNavSelRange = "{346, 0}";
-			sepNavVisRange = "{83, 1548}";
+			sepNavIntBoundsRect = "{{0, 0}, {943, 1014}}";
+			sepNavSelRange = "{1629, 27}";
+			sepNavVisRange = "{367, 1456}";
 		};
 	};
 	F61D0C2511E235C100B06382 /* BuildingUtil.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {943, 813}}";
-			sepNavSelRange = "{1083, 0}";
-			sepNavVisRange = "{0, 1817}";
+			sepNavSelRange = "{647, 0}";
+			sepNavVisRange = "{0, 1965}";
 		};
 	};
 	F61D0C3B11E2380700B06382 /* PBXTextBookmark */ = {
@@ -931,7 +943,7 @@
 	};
 	F61D0DE511E2602400B06382 /* Park.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {943, 743}}";
+			sepNavIntBoundsRect = "{{0, 0}, {943, 813}}";
 			sepNavSelRange = "{207, 0}";
 			sepNavVisRange = "{0, 469}";
 		};
@@ -939,8 +951,8 @@
 	F61D0DE611E2602400B06382 /* Park.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1132, 1742}}";
-			sepNavSelRange = "{3313, 0}";
-			sepNavVisRange = "{760, 2233}";
+			sepNavSelRange = "{397, 3393}";
+			sepNavVisRange = "{1879, 1916}";
 		};
 	};
 	F61D0DF411E261A400B06382 /* PBXTextBookmark */ = {
@@ -1579,7 +1591,7 @@
 		fRef = F61D0C2411E235C100B06382 /* BuildingUtil.h */;
 		name = "BuildingUtil.h: 15";
 		rLen = 0;
-		rLoc = 346;
+		rLoc = 386;
 		rType = 0;
 		vrLen = 1548;
 		vrLoc = 83;
@@ -1589,7 +1601,7 @@
 		fRef = F61D0C2511E235C100B06382 /* BuildingUtil.m */;
 		name = "BuildingUtil.m: 36";
 		rLen = 0;
-		rLoc = 1083;
+		rLoc = 1231;
 		rType = 0;
 		vrLen = 1817;
 		vrLoc = 0;
@@ -1613,6 +1625,140 @@
 		rType = 0;
 		vrLen = 2431;
 		vrLoc = 1137;
+	};
+	F64C43F411F3C37A002981EC /* Archaeology.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {943, 813}}";
+			sepNavSelRange = "{307, 0}";
+			sepNavVisRange = "{0, 314}";
+		};
+	};
+	F64C43F511F3C37A002981EC /* Archaeology.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {950, 1547}}";
+			sepNavSelRange = "{3371, 0}";
+			sepNavVisRange = "{1425, 1953}";
+		};
+	};
+	F64C43FB11F3C4F5002981EC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6EEE87411F388E80095BCA4 /* LETableViewCellDictionary.m */;
+		name = "LETableViewCellDictionary.m: 80";
+		rLen = 0;
+		rLoc = 2291;
+		rType = 0;
+		vrLen = 2572;
+		vrLoc = 989;
+	};
+	F64C43FC11F3C4F5002981EC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F64C43DA11F3B527002981EC /* OreStorage.h */;
+		name = "OreStorage.h: 14";
+		rLen = 101;
+		rLoc = 223;
+		rType = 0;
+		vrLen = 329;
+		vrLoc = 0;
+	};
+	F64C43FD11F3C4F5002981EC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F61D0DE511E2602400B06382 /* Park.h */;
+		name = "Park.h: 13";
+		rLen = 0;
+		rLoc = 207;
+		rType = 0;
+		vrLen = 469;
+		vrLoc = 0;
+	};
+	F64C43FE11F3C4F5002981EC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F61D0DE611E2602400B06382 /* Park.m */;
+		name = "Park.m: 22";
+		rLen = 3393;
+		rLoc = 397;
+		rType = 0;
+		vrLen = 1916;
+		vrLoc = 1879;
+	};
+	F64C43FF11F3C4F5002981EC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F64C43F411F3C37A002981EC /* Archaeology.h */;
+		name = "Archaeology.h: 18";
+		rLen = 0;
+		rLoc = 307;
+		rType = 0;
+		vrLen = 314;
+		vrLoc = 0;
+	};
+	F64C440011F3C4F5002981EC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F64C43F511F3C37A002981EC /* Archaeology.m */;
+		name = "Archaeology.m: 40";
+		rLen = 0;
+		rLoc = 879;
+		rType = 0;
+		vrLen = 1888;
+		vrLoc = 156;
+	};
+	F64C440111F3C4F5002981EC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F61D0C2411E235C100B06382 /* BuildingUtil.h */;
+		name = "BuildingUtil.h: 61";
+		rLen = 27;
+		rLoc = 1629;
+		rType = 0;
+		vrLen = 1456;
+		vrLoc = 367;
+	};
+	F64C440211F3C4F5002981EC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F61D0C2511E235C100B06382 /* BuildingUtil.m */;
+		name = "BuildingUtil.m: 30";
+		rLen = 0;
+		rLoc = 647;
+		rType = 0;
+		vrLen = 1965;
+		vrLoc = 0;
+	};
+	F64C440311F3C4F5002981EC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F61D0C2511E235C100B06382 /* BuildingUtil.m */;
+		name = "BuildingUtil.m: 30";
+		rLen = 0;
+		rLoc = 647;
+		rType = 0;
+		vrLen = 1965;
+		vrLoc = 0;
+	};
+	F64C441011F3C5C5002981EC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F61D0C2511E235C100B06382 /* BuildingUtil.m */;
+		name = "BuildingUtil.m: 30";
+		rLen = 0;
+		rLoc = 647;
+		rType = 0;
+		vrLen = 1965;
+		vrLoc = 0;
+	};
+	F64C441111F3C5C5002981EC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F64C43F511F3C37A002981EC /* Archaeology.m */;
+		name = "Archaeology.m: 95";
+		rLen = 0;
+		rLoc = 3371;
+		rType = 0;
+		vrLen = 2298;
+		vrLoc = 533;
+	};
+	F64C441511F3C60D002981EC /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F64C43F511F3C37A002981EC /* Archaeology.m */;
+		name = "Archaeology.m: 116";
+		rLen = 0;
+		rLoc = 3371;
+		rType = 0;
+		vrLen = 1953;
+		vrLoc = 1425;
 	};
 	F65D35A71195B38000454C2B /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1764,7 +1910,7 @@
 		fRef = F61D0C2511E235C100B06382 /* BuildingUtil.m */;
 		name = "BuildingUtil.m: 17";
 		rLen = 0;
-		rLoc = 389;
+		rLoc = 413;
 		rType = 0;
 		vrLen = 1522;
 		vrLoc = 0;
@@ -4342,7 +4488,7 @@
 		fRef = F61D0C2411E235C100B06382 /* BuildingUtil.h */;
 		name = "BuildingUtil.h: 53";
 		rLen = 0;
-		rLoc = 1532;
+		rLoc = 1573;
 		rType = 0;
 		vrLen = 1478;
 		vrLoc = 22;
@@ -5578,7 +5724,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {943, 1534}}";
 			sepNavSelRange = "{2291, 0}";
-			sepNavVisRange = "{1137, 2431}";
+			sepNavVisRange = "{989, 2572}";
 		};
 	};
 	F6EEE88C11F38EF10095BCA4 /* PBXTextBookmark */ = {

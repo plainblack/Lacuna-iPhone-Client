@@ -18,18 +18,20 @@
 @synthesize buildables;
 @synthesize x;
 @synthesize y;
+@synthesize tag;
 
 
-- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget bodyId:(NSString *)inBodyId x:(NSNumber *)inX y:(NSNumber *)inY {
+- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget bodyId:(NSString *)inBodyId x:(NSNumber *)inX y:(NSNumber *)inY  tag:(NSString *)inTag{
 	self.bodyId = inBodyId;
 	self.x = inX;
 	self.y = inY;
+	self.tag = inTag;
 	return [self initWithCallback:inCallback target:(NSObject *)inTarget];
 }
 
 
 - (id)params {
-	NSArray *params = _array([Session sharedInstance].sessionId, self.bodyId, self.x, self.y);
+	NSArray *params = _array([Session sharedInstance].sessionId, self.bodyId, self.x, self.y, self.tag);
 	return params;
 }
 
@@ -66,6 +68,7 @@
 	self.buildables = nil;
 	self.x = nil;
 	self.y = nil;
+	self.tag = nil;
 	[super dealloc];
 }
 

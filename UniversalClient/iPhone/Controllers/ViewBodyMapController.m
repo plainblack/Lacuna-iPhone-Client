@@ -11,7 +11,7 @@
 #import "Util.h"
 #import "LEBodyGetBuildings.h"
 #import "ViewBuildingController.h"
-#import "NewBuildingController.h"
+#import "NewBuildingTypeController.h"
 #import "Session.h"
 
 
@@ -157,7 +157,12 @@
 		viewBuildingController.buttonsByLoc = buttonsByLoc;
 		[[self navigationController] pushViewController:viewBuildingController animated:YES];
 	} else {
-		Session *session = [Session sharedInstance];
+		NewBuildingTypeController *newBuildingTypeController = [NewBuildingTypeController create];
+		newBuildingTypeController.buttonsByLoc = buttonsByLoc;
+		newBuildingTypeController.x = x;
+		newBuildingTypeController.y	= y;
+		[[self navigationController] pushViewController:newBuildingTypeController animated:YES];
+		/*
 		NewBuildingController *newBuildingController = [NewBuildingController create];
 		newBuildingController.bodyId = session.body.id;
 		newBuildingController.buildingsByLoc = session.body.buildingMap;
@@ -165,6 +170,7 @@
 		newBuildingController.x = x;
 		newBuildingController.y	= y;
 		[[self navigationController] pushViewController:newBuildingController animated:YES];
+		*/
 	}
 
 }

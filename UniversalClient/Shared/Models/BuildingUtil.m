@@ -9,6 +9,7 @@
 #import "BuildingUtil.h"
 #import "LEBuildingView.h"
 #import "Building.h"
+#import "Archaeology.h"
 #import "Development.h"
 #import "FoodReserve.h"
 #import "Intelligence.h"
@@ -25,7 +26,9 @@
 
 + (Building *)createBuilding:(LEBuildingView *)request {
 	Building *building = nil;
-	if ([request.buildingUrl isEqualToString:DEVELOPMENT_URL]) {
+	if ([request.buildingUrl isEqualToString:ARCHAEOLOGY_URL]) {
+		building = [[[Archaeology alloc] init] autorelease];
+	} else if ([request.buildingUrl isEqualToString:DEVELOPMENT_URL]) {
 		building = [[[Development alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:FOOD_RESERVE_URL]) {
 		building = [[[FoodReserve alloc] init] autorelease];
