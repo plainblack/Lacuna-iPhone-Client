@@ -268,8 +268,6 @@ typedef enum {
 
 
 - (id)buildingBuilt:(LEBuildBuilding *)request {
-	NSLog(@"Building Built: %@", request);
-	
 	if (![request wasError]) {
 		NSDictionary *buildingBuilding = [self.buildables objectAtIndex:selectedBuilding];
 		NSString *image = [buildingBuilding objectForKey:@"image"];
@@ -289,7 +287,8 @@ typedef enum {
 		UIImage *tmp = [UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/100/%@.png", [building objectForKey:@"image"]]];
 		tmp = [Util imageWithImage:tmp scaledToSize:CGSizeMake(BODY_BUILDINGS_CELL_WIDTH, BODY_BUILDINGS_CELL_HEIGHT)];
 		[button setBackgroundImage:tmp forState:UIControlStateNormal];
-		[self.navigationController popViewControllerAnimated:TRUE];
+		//[self.navigationController popViewControllerAnimated:TRUE];
+		[self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:([self.navigationController.viewControllers count]-3)] animated:YES];
 	}
 	
 	return nil;

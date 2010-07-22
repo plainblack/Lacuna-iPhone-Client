@@ -164,6 +164,14 @@
 		F6E768B411D6C6E500778C1D /* NoLimitResource.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E768B311D6C6E500778C1D /* NoLimitResource.m */; };
 		F6EEE87511F388E80095BCA4 /* LETableViewCellDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EEE87411F388E80095BCA4 /* LETableViewCellDictionary.m */; };
 		F6F5427D11A9D7D4006F347B /* LEBodyStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */; };
+		F6FB458211F5158C00E24EAC /* LEBuildingGlyphSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB458111F5158C00E24EAC /* LEBuildingGlyphSearch.m */; };
+		F6FB458511F5159800E24EAC /* LEBuildingGlyphs.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB458411F5159800E24EAC /* LEBuildingGlyphs.m */; };
+		F6FB458811F515A700E24EAC /* LEBuildingGlyphAssemble.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB458711F515A700E24EAC /* LEBuildingGlyphAssemble.m */; };
+		F6FB458B11F517FE00E24EAC /* Glyph.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB458A11F517FE00E24EAC /* Glyph.m */; };
+		F6FB45A311F52C1F00E24EAC /* SearchForGlyphController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB45A111F52C1F00E24EAC /* SearchForGlyphController.m */; };
+		F6FB45A411F52C1F00E24EAC /* SearchForGlyphController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6FB45A211F52C1F00E24EAC /* SearchForGlyphController.xib */; };
+		F6FB45D111F53D9F00E24EAC /* AssembleGlyphsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB45CF11F53D9F00E24EAC /* AssembleGlyphsController.m */; };
+		F6FB45D211F53D9F00E24EAC /* AssembleGlyphsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6FB45D011F53D9F00E24EAC /* AssembleGlyphsController.xib */; };
 		F6FD9E6B11D79FA0003785AD /* Building.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FD9E6A11D79FA0003785AD /* Building.m */; };
 		F6FD9E6E11D7A05D003785AD /* ResourceGeneration.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FD9E6D11D7A05D003785AD /* ResourceGeneration.m */; };
 		F6FD9E7B11D7A41E003785AD /* ResourceStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FD9E7A11D7A41E003785AD /* ResourceStorage.m */; };
@@ -471,6 +479,20 @@
 		F6EEE87411F388E80095BCA4 /* LETableViewCellDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellDictionary.m; sourceTree = "<group>"; };
 		F6F5427B11A9D7D4006F347B /* LEBodyStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBodyStatus.h; sourceTree = "<group>"; };
 		F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBodyStatus.m; sourceTree = "<group>"; };
+		F6FB458011F5158C00E24EAC /* LEBuildingGlyphSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGlyphSearch.h; sourceTree = "<group>"; };
+		F6FB458111F5158C00E24EAC /* LEBuildingGlyphSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGlyphSearch.m; sourceTree = "<group>"; };
+		F6FB458311F5159800E24EAC /* LEBuildingGlyphs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGlyphs.h; sourceTree = "<group>"; };
+		F6FB458411F5159800E24EAC /* LEBuildingGlyphs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGlyphs.m; sourceTree = "<group>"; };
+		F6FB458611F515A700E24EAC /* LEBuildingGlyphAssemble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGlyphAssemble.h; sourceTree = "<group>"; };
+		F6FB458711F515A700E24EAC /* LEBuildingGlyphAssemble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGlyphAssemble.m; sourceTree = "<group>"; };
+		F6FB458911F517FE00E24EAC /* Glyph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Glyph.h; sourceTree = "<group>"; };
+		F6FB458A11F517FE00E24EAC /* Glyph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Glyph.m; sourceTree = "<group>"; };
+		F6FB45A011F52C1F00E24EAC /* SearchForGlyphController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchForGlyphController.h; sourceTree = "<group>"; };
+		F6FB45A111F52C1F00E24EAC /* SearchForGlyphController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchForGlyphController.m; sourceTree = "<group>"; };
+		F6FB45A211F52C1F00E24EAC /* SearchForGlyphController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchForGlyphController.xib; sourceTree = "<group>"; };
+		F6FB45CE11F53D9F00E24EAC /* AssembleGlyphsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssembleGlyphsController.h; sourceTree = "<group>"; };
+		F6FB45CF11F53D9F00E24EAC /* AssembleGlyphsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssembleGlyphsController.m; sourceTree = "<group>"; };
+		F6FB45D011F53D9F00E24EAC /* AssembleGlyphsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssembleGlyphsController.xib; sourceTree = "<group>"; };
 		F6FD9E6911D79FA0003785AD /* Building.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Building.h; sourceTree = "<group>"; };
 		F6FD9E6A11D79FA0003785AD /* Building.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Building.m; sourceTree = "<group>"; };
 		F6FD9E6C11D7A05D003785AD /* ResourceGeneration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceGeneration.h; sourceTree = "<group>"; };
@@ -791,6 +813,12 @@
 				F6E766BD11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.m */,
 				F65DC35F11EE4E2E00A0A782 /* LEBuildingViewPrisoners.h */,
 				F65DC36011EE4E2E00A0A782 /* LEBuildingViewPrisoners.m */,
+				F6FB458011F5158C00E24EAC /* LEBuildingGlyphSearch.h */,
+				F6FB458111F5158C00E24EAC /* LEBuildingGlyphSearch.m */,
+				F6FB458311F5159800E24EAC /* LEBuildingGlyphs.h */,
+				F6FB458411F5159800E24EAC /* LEBuildingGlyphs.m */,
+				F6FB458611F515A700E24EAC /* LEBuildingGlyphAssemble.h */,
+				F6FB458711F515A700E24EAC /* LEBuildingGlyphAssemble.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -849,6 +877,8 @@
 				F64C43DB11F3B527002981EC /* OreStorage.m */,
 				F64C43F411F3C37A002981EC /* Archaeology.h */,
 				F64C43F511F3C37A002981EC /* Archaeology.m */,
+				F6FB458911F517FE00E24EAC /* Glyph.h */,
+				F6FB458A11F517FE00E24EAC /* Glyph.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -916,6 +946,12 @@
 				F65DC36D11EE533500A0A782 /* ViewPrisonersController.m */,
 				F64C441711F3C6F8002981EC /* NewBuildingTypeController.h */,
 				F64C441811F3C6F8002981EC /* NewBuildingTypeController.m */,
+				F6FB45A011F52C1F00E24EAC /* SearchForGlyphController.h */,
+				F6FB45A111F52C1F00E24EAC /* SearchForGlyphController.m */,
+				F6FB45A211F52C1F00E24EAC /* SearchForGlyphController.xib */,
+				F6FB45CE11F53D9F00E24EAC /* AssembleGlyphsController.h */,
+				F6FB45CF11F53D9F00E24EAC /* AssembleGlyphsController.m */,
+				F6FB45D011F53D9F00E24EAC /* AssembleGlyphsController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1000,6 +1036,8 @@
 				F6724F56119F74F200D57E0D /* PickNumericValueController.xib in Resources */,
 				F6993B0F11C5CDF8003A7316 /* EditSavedEmpire.xib in Resources */,
 				F683BC2511E40311009E64BF /* assets in Resources */,
+				F6FB45A411F52C1F00E24EAC /* SearchForGlyphController.xib in Resources */,
+				F6FB45D211F53D9F00E24EAC /* AssembleGlyphsController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1151,6 +1189,12 @@
 				F64C43DC11F3B527002981EC /* OreStorage.m in Sources */,
 				F64C43F611F3C37A002981EC /* Archaeology.m in Sources */,
 				F64C441911F3C6F8002981EC /* NewBuildingTypeController.m in Sources */,
+				F6FB458211F5158C00E24EAC /* LEBuildingGlyphSearch.m in Sources */,
+				F6FB458511F5159800E24EAC /* LEBuildingGlyphs.m in Sources */,
+				F6FB458811F515A700E24EAC /* LEBuildingGlyphAssemble.m in Sources */,
+				F6FB458B11F517FE00E24EAC /* Glyph.m in Sources */,
+				F6FB45A311F52C1F00E24EAC /* SearchForGlyphController.m in Sources */,
+				F6FB45D111F53D9F00E24EAC /* AssembleGlyphsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

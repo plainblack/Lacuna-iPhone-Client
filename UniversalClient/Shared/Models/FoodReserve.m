@@ -31,7 +31,12 @@
 
 - (void)parseAdditionalData:(NSDictionary *)data tmpSections:(NSMutableArray *)tmpSections {
 	self.storedFood = [data objectForKey:@"food_stored"];
-	[tmpSections addObject:_dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSNumber numberWithInt:BUILDING_ROW_STORED_FOOD]), @"rows")];
+
+	for (NSMutableDictionary *section in tmpSections) {
+		if (_intv([section objectForKey:@"type"]) == BUILDING_SECTION_BUILDING) {
+			[[section objectForKey:@"rows"] addObject:[NSNumber numberWithInt:BUILDING_ROW_STORED_FOOD]];
+		}
+	}
 }
 
 
@@ -53,7 +58,7 @@
 		case BUILDING_ROW_STORED_FOOD:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellDictionary *storedFoodCell = [LETableViewCellDictionary getCellForTableView:tableView];
-			[storedFoodCell setHeading:@"Food" Data:self.storedFood];
+			[storedFoodCell setHeading:@"Stored Food" Data:self.storedFood];
 			cell = storedFoodCell;
 			break;
 		default:

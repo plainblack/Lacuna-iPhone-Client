@@ -32,7 +32,12 @@
 - (void)parseAdditionalData:(NSDictionary *)data tmpSections:(NSMutableArray *)tmpSections {
 	self.storedOre = [data objectForKey:@"ore_stored"];
 	
-	[tmpSections addObject:_dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Storage", @"name", _array([NSNumber numberWithInt:BUILDING_ROW_STORED_ORE]), @"rows")];
+	
+	for (NSMutableDictionary *section in tmpSections) {
+		if (_intv([section objectForKey:@"type"]) == BUILDING_SECTION_BUILDING) {
+			[[section objectForKey:@"rows"] addObject:[NSNumber numberWithInt:BUILDING_ROW_STORED_ORE]];
+		}
+	}
 }
 
 
@@ -54,7 +59,7 @@
 		case BUILDING_ROW_STORED_ORE:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellDictionary *storedOreCell = [LETableViewCellDictionary getCellForTableView:tableView];
-			[storedOreCell setHeading:@"Ore" Data:self.storedOre];
+			[storedOreCell setHeading:@"Stored Ore" Data:self.storedOre];
 			cell = storedOreCell;
 			break;
 		default:
