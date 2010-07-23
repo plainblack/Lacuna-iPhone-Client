@@ -44,8 +44,8 @@
 
 
 - (void)viewDidDisappear:(BOOL)animated {
-	[self.archaeology removeObserver:self forKeyPath:@"glyphs"];
 	[super viewDidDisappear:animated];
+	[self.archaeology removeObserver:self forKeyPath:@"glyphs"];
 }
 
 
@@ -85,7 +85,6 @@
 	} else {
 		return @"Loading";
 	}
-
 }
 
 

@@ -15,7 +15,6 @@
 
 @synthesize archaeology;
 @synthesize orePicker;
-@synthesize oreTypes;
 
 
 #pragma mark -
@@ -36,7 +35,14 @@
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	self.view.backgroundColor = [UIColor clearColor];
 	
-	self.oreTypes = [self.archaeology getAvailableOreTypes];
+	[self.archaeology addObserver:self forKeyPath:@"availableOreTypes" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+	[self.archaeology loadAvailableOreTypes];
+}
+
+
+- (void)viewDidDisappear:(BOOL)animated {
+	[super viewDidDisappear:animated];
+	[self.archaeology removeObserver:self forKeyPath:@"availableOreTypes"];
 }
 
 
@@ -54,7 +60,12 @@
 
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-	return [self.oreTypes count];
+	if (self.archaeology.availableOreTypes) {
+		return [self.archaeology.availableOreTypes count];
+	} else {
+		return 1;
+	}
+
 }
 
 
@@ -62,7 +73,12 @@
 #pragma mark UIPickerViewDelegate Methods
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-	return [self.oreTypes objectAtIndex:row];
+	if (self.archaeology.availableOreTypes) {
+		NSDictionary *oreTypeData = [self.archaeology.availableOreTypes objectAtIndex:row];
+		return [NSString stringWithFormat:@"%@ (%@)", [oreTypeData objectForKey:@"type"], [oreTypeData objectForKey:@"amount"] ];
+	} else {
+		return @"Loading";
+	}
 }
 
 
@@ -83,7 +99,6 @@
 - (void)dealloc {
     [super dealloc];
 	self.archaeology = nil;
-	self.oreTypes = nil;
 }
 
 
@@ -91,9 +106,10 @@
 #pragma mark Instance Methods
 
 - (IBAction)search {
-	NSString *selectedOreType = [[self.oreTypes objectAtIndex:[self.orePicker selectedRowInComponent:0]] lowercaseString];
+	NSString *selectedOreType = [[self.archaeology.availableOreTypes objectAtIndex:[self.orePicker selectedRowInComponent:0]] objectForKey:@"type"];
 	NSLog(@"Selected Ore Type: %@", selectedOreType);
 	[self.archaeology searchForGlyph:selectedOreType];
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 
@@ -104,5 +120,16 @@
 	SearchForGlyphController *searchForGlyphController = [[[SearchForGlyphController alloc] initWithNibName:@"SearchForGlyphController" bundle:nil] autorelease];
 	return searchForGlyphController;
 }
+
+
+#pragma mark -
+#pragma mark KVO Methods
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+	if ([keyPath isEqual:@"availableOreTypes"]) {
+		[self.orePicker reloadAllComponents];
+	}
+}
+
 
 @end

@@ -15,13 +15,11 @@
 @interface SearchForGlyphController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate> {
 	Archaeology *archaeology;
 	UIPickerView *orePicker;
-	NSArray *oreTypes;
 }
 
 
 @property (nonatomic, retain) Archaeology *archaeology;
 @property (nonatomic, retain) IBOutlet UIPickerView *orePicker;
-@property (nonatomic, retain) NSArray *oreTypes;
 
 
 - (IBAction)search;

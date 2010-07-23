@@ -15,6 +15,7 @@
 #import "LEBuildingGlyphs.h"
 #import "LEBuildingGlyphAssemble.h"
 #import "LEBuildingGlyphSearch.h"
+#import "LEBuildingGetOresAvailableForProcessing.h"
 #import "SearchForGlyphController.h"
 #import "AssembleGlyphsController.h"
 
@@ -23,6 +24,7 @@
 
 
 @synthesize glyphs;
+@synthesize availableOreTypes;
 @synthesize itemName;
 @synthesize secondsRemaining;
 
@@ -32,6 +34,7 @@
 
 - (void)dealloc {
 	self.glyphs = nil;
+	self.availableOreTypes = nil;
 	self.itemName = nil;
 	[super dealloc];
 }
@@ -158,8 +161,14 @@
 }
 
 
+/*
 - (NSArray *)getAvailableOreTypes {
 	return _array(@"Anthracite", @"Bauxite", @"Beryl", @"Chalcopyrite", @"Chromite", @"Fluorite", @"Galena", @"Gold", @"Goethite", @"Gypsum", @"Halite", @"Kerogen", @"Magnetite", @"Methane", @"Monazite", @"Rutile", @"Sulfur", @"Trona", @"Uraninite", @"Zircon");
+}
+*/
+
+- (void)loadAvailableOreTypes {
+	[[[LEBuildingGetOresAvailableForProcessing alloc] initWithCallback:@selector(oresAvailableForProcessingLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
 }
 
 
@@ -194,6 +203,14 @@
 		[tmp addObject:glyph];
 	}
 	self.glyphs = tmp;
+	
+	return nil;
+}
+
+
+- (id)oresAvailableForProcessingLoaded:(LEBuildingGetOresAvailableForProcessing *)request {
+	NSLog(@"oresAvailableForProcessingLoaded: %@", request.response);
+	self.availableOreTypes = request.oreTypes;
 	
 	return nil;
 }

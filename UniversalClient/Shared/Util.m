@@ -72,9 +72,7 @@
 
 
 + (NSString *)prettyNSInteger:(NSInteger)number {
-	if (number >= 10000000000) {
-		return [NSString stringWithFormat:@"%iB", (number/1000000000)];
-	} else if (number >= 10000000) {
+	if (number >= 10000000) {
 		return [NSString stringWithFormat:@"%iM", (number/1000000)];
 	} else if (number >= 10000) {
 		return [NSString stringWithFormat:@"%iK", (number/1000)];

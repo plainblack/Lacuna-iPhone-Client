@@ -12,18 +12,20 @@
 
 @interface Archaeology : Building {
 	NSMutableArray *glyphs;
+	NSMutableArray *availableOreTypes;
 	NSString *itemName;
 	NSInteger secondsRemaining;
 }
 
 
 @property (nonatomic, retain) NSMutableArray *glyphs;
+@property (nonatomic, retain) NSMutableArray *availableOreTypes;
 @property (nonatomic, retain) NSString *itemName;
 @property (nonatomic, assign) NSInteger secondsRemaining;
 
 
 - (void)assembleGlyphs:(NSArray *)glyphs;
-- (NSArray *)getAvailableOreTypes;
+- (void)loadAvailableOreTypes;
 - (void)loadGlyphs;
 - (void)searchForGlyph:(NSString *)oreType;
 
