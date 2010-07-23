@@ -55,21 +55,25 @@
 }
 
 
-- (void)parseAdditionalData:(NSDictionary *)data tmpSections:(NSMutableArray *)tmpSections {
+- (void)parseAdditionalData:(NSDictionary *)data {
 	self.costToSubsidize = _intv([data objectForKey:@"subsidy_cost"]); 
 	self.buildQueue = [data objectForKey:@"build_queue"];
-	
-	NSMutableArray *rows = [NSMutableArray arrayWithCapacity:2];
+}
+
+
+- (void)generateSections {
+	NSMutableArray *buildQueueRows = [NSMutableArray arrayWithCapacity:2];
 	NSInteger buildQueueSize = [buildQueue count];
 	if (buildQueueSize > 0) {
 		for (int i=0; i<buildQueueSize; i++) {
-			[rows addObject:[NSNumber numberWithInt:BUILDING_ROW_BUILD_QUEUE_ITEM]];
+			[buildQueueRows addObject:[NSNumber numberWithInt:BUILDING_ROW_BUILD_QUEUE_ITEM]];
 		}
-		[rows addObject:[NSNumber numberWithInt:BUILDING_ROW_SUBSIDIZE_BUILD_QUEUE]];
+		[buildQueueRows addObject:[NSNumber numberWithInt:BUILDING_ROW_SUBSIDIZE_BUILD_QUEUE]];
 	} else {
-		[rows addObject:[NSNumber numberWithInt:BUILDING_ROW_EMPTY]];
+		[buildQueueRows addObject:[NSNumber numberWithInt:BUILDING_ROW_EMPTY]];
 	}
-	[tmpSections addObject:_dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Build Queue", @"name", rows, @"rows")];
+
+	self.sections = _array([self generateProductionSection], _dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Build Queue", @"name", buildQueueRows, @"rows"), [self generateUpgradeSection]);
 }
 
 

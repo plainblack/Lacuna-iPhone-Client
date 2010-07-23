@@ -47,19 +47,23 @@
 }
 
 
-- (void)parseAdditionalData:(NSDictionary *)data tmpSections:(NSMutableArray *)tmpSections {
+- (void)parseAdditionalData:(NSDictionary *)data {
 	NSDictionary *partyData = [data objectForKey:@"party"];
 	self.canThrowParty = [[partyData objectForKey:@"can_throw"] boolValue];
 	self.secondsRemaining = _intv([partyData objectForKey:@"seconds_remaining"]);
 	self.happinessPerParty = [partyData objectForKey:@"happiness_from_party"];
+}
+
+
+- (void)generateSections {
 	
-	NSMutableArray *rows = [NSMutableArray arrayWithCapacity:2];
+	NSMutableArray *partyRows = [NSMutableArray arrayWithCapacity:2];
 	if (self.canThrowParty) {
-		[rows addObject:[NSNumber numberWithInt:BUILDING_ROW_THROW_PARTY]];
+		[partyRows addObject:[NSNumber numberWithInt:BUILDING_ROW_THROW_PARTY]];
 	} else {
-		[rows addObject:[NSNumber numberWithInt:BUILDING_ROW_PARTY_PENDING]];
+		[partyRows addObject:[NSNumber numberWithInt:BUILDING_ROW_PARTY_PENDING]];
 	}
-	[tmpSections addObject:_dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Party", @"name", rows, @"rows")];
+	self.sections = _array([self generateProductionSection], _dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Party", @"name", partyRows, @"rows"), [self generateUpgradeSection]);
 }
 
 

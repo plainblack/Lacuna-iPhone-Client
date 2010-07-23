@@ -28,17 +28,20 @@
 }
 
 
-- (void)parseAdditionalData:(NSDictionary *)data tmpSections:(NSMutableArray *)tmpSections {
+- (void)parseAdditionalData:(NSDictionary *)data {
 	self.restrictingCoverage = [[data objectForKey:@"restrict_coverage"] boolValue];
+}
 
-	NSMutableArray *rows = [NSMutableArray arrayWithCapacity:2];
-	[rows addObject:[NSNumber numberWithInt:BUILDING_ROW_VIEW_NETWORK_19]];
+
+- (void)generateSections {
+	NSMutableArray *network19Rows = [NSMutableArray arrayWithCapacity:2];
+	[network19Rows addObject:[NSNumber numberWithInt:BUILDING_ROW_VIEW_NETWORK_19]];
 	if (self.restrictingCoverage) {
-		[rows addObject:[NSNumber numberWithInt:BUILDING_ROW_RESTRICTED_NETWORK_19]];
+		[network19Rows addObject:[NSNumber numberWithInt:BUILDING_ROW_RESTRICTED_NETWORK_19]];
 	} else {
-		[rows addObject:[NSNumber numberWithInt:BUILDING_ROW_UNRESTRICTED_NETWORK_19]];
+		[network19Rows addObject:[NSNumber numberWithInt:BUILDING_ROW_UNRESTRICTED_NETWORK_19]];
 	}
-	[tmpSections addObject:_dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", rows, @"rows")];
+	self.sections = _array([self generateProductionSection], _dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", network19Rows, @"rows"), [self generateUpgradeSection]);
 }
 
 

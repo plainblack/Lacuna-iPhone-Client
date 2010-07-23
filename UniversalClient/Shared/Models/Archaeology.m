@@ -64,22 +64,26 @@
 }
 
 
-- (void)parseAdditionalData:(NSDictionary *)data tmpSections:(NSMutableArray *)tmpSections {
+- (void)parseAdditionalData:(NSDictionary *)data {
 	NSLog(@"Archaeology raw data: %@", data);
 	NSDictionary *workData = [data objectForKey:@"work"];
 	if (workData) {
 		self.secondsRemaining = _intv([workData objectForKey:@"seconds_remaining"]);
 	}
+}
+
+
+- (void)generateSections {
 	
-	
-	NSMutableArray *rows = [NSMutableArray arrayWithCapacity:2];
+	NSMutableArray *glyphRows = [NSMutableArray arrayWithCapacity:2];
 	if (self.secondsRemaining > 0) {
-		[rows addObject:[NSNumber numberWithInt:BUILDING_ROW_GLYPH_SEARCHING]];
+		[glyphRows addObject:[NSNumber numberWithInt:BUILDING_ROW_GLYPH_SEARCHING]];
 	} else {
-		[rows addObject:[NSNumber numberWithInt:BUILDING_ROW_GLYPH_SEARCH]];
+		[glyphRows addObject:[NSNumber numberWithInt:BUILDING_ROW_GLYPH_SEARCH]];
 	}
-	[rows addObject:[NSNumber numberWithInt:BUILDING_ROW_GLYPH_ASSEMBLE]];
-	[tmpSections addObject:_dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Glyphs", @"name", rows, @"rows")];
+	[glyphRows addObject:[NSNumber numberWithInt:BUILDING_ROW_GLYPH_ASSEMBLE]];
+
+	self.sections = _array([self generateProductionSection], _dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Glyphs", @"name", glyphRows, @"rows"), [self generateUpgradeSection]);
 }
 
 

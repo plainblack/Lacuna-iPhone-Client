@@ -29,14 +29,16 @@
 #pragma mark --
 #pragma mark Overriden Building Methods
 
-- (void)parseAdditionalData:(NSDictionary *)data tmpSections:(NSMutableArray *)tmpSections {
+- (void)parseAdditionalData:(NSDictionary *)data {
 	self.storedFood = [data objectForKey:@"food_stored"];
+}
 
-	for (NSMutableDictionary *section in tmpSections) {
-		if (_intv([section objectForKey:@"type"]) == BUILDING_SECTION_BUILDING) {
-			[[section objectForKey:@"rows"] addObject:[NSNumber numberWithInt:BUILDING_ROW_STORED_FOOD]];
-		}
-	}
+
+- (void)generateSections {
+	NSMutableDictionary *productionSection = [self generateProductionSection];
+	[[productionSection objectForKey:@"rows"] addObject:[NSNumber numberWithInt:BUILDING_ROW_STORED_FOOD]];
+	
+	self.sections = _array(productionSection, [self generateUpgradeSection]);
 }
 
 

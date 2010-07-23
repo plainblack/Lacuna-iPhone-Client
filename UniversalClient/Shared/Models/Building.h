@@ -64,7 +64,10 @@
 
 
 - (void)parseData:(NSDictionary *)data;
-- (void)parseAdditionalData:(NSDictionary *)data tmpSections:(NSMutableArray *)tmpSections;
+- (void)parseAdditionalData:(NSDictionary *)data;
+- (void)generateSections;
+- (NSMutableDictionary *)generateProductionSection;
+- (NSMutableDictionary *)generateUpgradeSection;
 - (void)tick:(NSInteger)interval;
 
 - (NSInteger)sectionCount;

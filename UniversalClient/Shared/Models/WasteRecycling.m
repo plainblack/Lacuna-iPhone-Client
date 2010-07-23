@@ -34,11 +34,7 @@
 		if (self.secondsRemaining <= 0) {
 			self.secondsRemaining = 0;
 			self.canRecycle = YES;
-			for (NSMutableDictionary *section in self.sections) {
-				if ([[section objectForKey:@"name"] isEqualToString:@"Actions"]) {
-					[section setObject:_array([NSNumber numberWithInt:BUILDING_ROW_RECYCLE]) forKey:@"rows"];
-				}
-			}
+			[self generateSections];
 		}
 		self.needsRefresh = YES;
 	}
@@ -46,29 +42,27 @@
 }
 
 
-- (void)parseAdditionalData:(NSDictionary *)data tmpSections:(NSMutableArray *)tmpSections {
+- (void)parseAdditionalData:(NSDictionary *)data {
 	NSDictionary *recycleData = [data objectForKey:@"recycle"];
 	self.canRecycle = [[recycleData objectForKey:@"can"] boolValue];
 	self.secondsPerResource = _intv([recycleData objectForKey:@"seconds_per_resource"]);
 	self.maxResources = _intv([recycleData objectForKey:@"max_recycle"]);
 	self.secondsRemaining = _intv([recycleData objectForKey:@"seconds_remaining"]);
-	
-	for (NSMutableDictionary *section in tmpSections) {
-		if (_intv([section objectForKey:@"type"]) == BUILDING_SECTION_BUILDING) {
-			[[section objectForKey:@"rows"] addObject:[NSNumber numberWithInt:BUILDING_ROW_MAX_RECYCLE]];
-		}
-	}
-	
-	NSMutableArray *rows = [NSMutableArray arrayWithCapacity:2];
-	
+}
+
+
+- (void)generateSections {
+	NSMutableDictionary *productionSection = [self generateProductionSection];
+	[[productionSection objectForKey:@"rows"] addObject:[NSNumber numberWithInt:BUILDING_ROW_MAX_RECYCLE]];
+
+	NSMutableArray *actionRows = [NSMutableArray arrayWithCapacity:2];
 	if (self.canRecycle) {
-		[rows addObject:[NSNumber numberWithInt:BUILDING_ROW_RECYCLE]];
+		[actionRows addObject:[NSNumber numberWithInt:BUILDING_ROW_RECYCLE]];
 	} else {
-		[rows addObject:[NSNumber numberWithInt:BUILDING_ROW_RECYCLE_PENDING]];
-		[rows addObject:[NSNumber numberWithInt:BUILDING_ROW_SUBSIDIZE]];
+		[actionRows addObject:[NSNumber numberWithInt:BUILDING_ROW_RECYCLE_PENDING]];
+		[actionRows addObject:[NSNumber numberWithInt:BUILDING_ROW_SUBSIDIZE]];
 	}
-	
-	[tmpSections addObject:_dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", rows, @"rows")];
+	self.sections = _array(productionSection, _dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", actionRows, @"rows"), [self generateUpgradeSection]);
 }
 
 

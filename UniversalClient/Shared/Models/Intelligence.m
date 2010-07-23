@@ -64,7 +64,7 @@
 }
 
 
-- (void)parseAdditionalData:(NSDictionary *)data tmpSections:(NSMutableArray *)tmpSections {
+- (void)parseAdditionalData:(NSDictionary *)data {
 	NSDictionary *spyData = [data objectForKey:@"spies"];
 	self.maxSpies = _intv([spyData objectForKey:@"maximum"]);
 	self.numSpies = _intv([spyData objectForKey:@"current"]);
@@ -72,17 +72,20 @@
 		self.spyTrainingCost = [[[ResourceCost alloc] init] autorelease];
 	}
 	[self.spyTrainingCost parseData:[spyData objectForKey:@"training_costs"]];
-	
-	NSMutableArray *rows = [NSMutableArray arrayWithCapacity:5];
-	[rows addObject:[NSNumber numberWithInt:BUILDING_ROW_NUM_SPIES]];
-	[rows addObject:[NSNumber numberWithInt:BUILDING_ROW_SPY_BUILD_COST]];
-	[rows addObject:[NSNumber numberWithInt:BUILDING_ROW_VIEW_SPIES_BUTTON]];
+}
 
-	if (self.numSpies < self.maxSpies) {
-		[rows addObject:[NSNumber numberWithInt:BUILDING_ROW_BUILD_SPY_BUTTON]];
-	}
+
+- (void)generateSections {
+	NSMutableArray *spyRows = [NSMutableArray arrayWithCapacity:5];
+	[spyRows addObject:[NSNumber numberWithInt:BUILDING_ROW_NUM_SPIES]];
+	[spyRows addObject:[NSNumber numberWithInt:BUILDING_ROW_SPY_BUILD_COST]];
+	[spyRows addObject:[NSNumber numberWithInt:BUILDING_ROW_VIEW_SPIES_BUTTON]];
 	
-	[tmpSections addObject:_dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Spies", @"name", rows, @"rows")];
+	if (self.numSpies < self.maxSpies) {
+		[spyRows addObject:[NSNumber numberWithInt:BUILDING_ROW_BUILD_SPY_BUTTON]];
+	}
+
+	self.sections = _array([self generateProductionSection], _dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Spies", @"name", spyRows, @"rows"), [self generateUpgradeSection]);
 }
 
 

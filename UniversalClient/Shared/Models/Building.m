@@ -136,41 +136,50 @@
 	}
 	
 	
-	NSMutableArray *tmpSections = [NSMutableArray arrayWithCapacity:5];
-	if (self.resourceCapacity.hasStorage) {
-		[tmpSections addObject:_dict([NSNumber numberWithInt:BUILDING_SECTION_BUILDING], @"type", @"Production", @"name", _array([NSNumber numberWithInt:BUILDING_ROW_BUILDING_STATS], [NSNumber numberWithInt:BUILDING_ROW_STORAGE]), @"rows")];
-	} else {
-		[tmpSections addObject:_dict([NSNumber numberWithInt:BUILDING_SECTION_BUILDING], @"type", @"Production", @"name", _array([NSNumber numberWithInt:BUILDING_ROW_BUILDING_STATS]), @"rows")];
-	}
-
-
-	[self parseAdditionalData:data tmpSections:tmpSections];
+	[self parseAdditionalData:data];
 	
-	NSMutableArray *tmpArray = _array([NSNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_STATS]);
-	if (self.upgradedResourceStorage.hasStorage) {
-		[tmpArray addObject:[NSNumber numberWithInt:BUILDING_ROW_UPGRADE_STORAGE]];
-	}
-
-	if (self.pendingBuild && (id)self.pendingBuild != [NSNull null]) {
-		[tmpArray addObject:[NSNumber numberWithInt:BUILDING_ROW_UPGRADE_PROGRESS]];
-	} else {
-		[tmpArray addObject:[NSNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_COST]];
-		if (self.canUpgrade) {
-			[tmpArray addObject:[NSNumber numberWithInt:BUILDING_ROW_UPGRADE_BUTTON]];
-		} else {
-			[tmpArray addObject:[NSNumber numberWithInt:BUILDING_ROW_UPGRADE_CANNOT]];
-		}
-		[tmpArray addObject:[NSNumber numberWithInt:BUILDING_ROW_DEMOLISH_BUTTON]];
-	}
-	[tmpSections addObject:_dict([NSNumber numberWithInt:BUILDING_SECTION_UPGRADE], @"type", @"Upgrade", @"name", tmpArray, @"rows")];
-	
-	self.sections = tmpSections;
-	
+	[self generateSections];
 }
 
 
-- (void)parseAdditionalData:(NSDictionary *)data tmpSections:(NSMutableArray *)tmpSections {
+- (void)parseAdditionalData:(NSDictionary *)data {
 	//Does nothing. You should override this for building specific functions
+}
+
+
+- (void)generateSections {
+	self.sections = _array([self generateProductionSection], [self generateUpgradeSection]);
+}
+
+
+- (NSMutableDictionary *)generateProductionSection {
+	if (self.resourceCapacity.hasStorage) {
+		return _dict([NSNumber numberWithInt:BUILDING_SECTION_BUILDING], @"type", @"Production", @"name", _array([NSNumber numberWithInt:BUILDING_ROW_BUILDING_STATS], [NSNumber numberWithInt:BUILDING_ROW_STORAGE]), @"rows");
+	} else {
+		return _dict([NSNumber numberWithInt:BUILDING_SECTION_BUILDING], @"type", @"Production", @"name", _array([NSNumber numberWithInt:BUILDING_ROW_BUILDING_STATS]), @"rows");
+	}
+}
+
+
+- (NSMutableDictionary *)generateUpgradeSection {
+	NSMutableArray *rowArray = _array([NSNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_STATS]);
+	if (self.upgradedResourceStorage.hasStorage) {
+		[rowArray addObject:[NSNumber numberWithInt:BUILDING_ROW_UPGRADE_STORAGE]];
+	}
+	
+	if (self.pendingBuild && (id)self.pendingBuild != [NSNull null]) {
+		[rowArray addObject:[NSNumber numberWithInt:BUILDING_ROW_UPGRADE_PROGRESS]];
+	} else {
+		[rowArray addObject:[NSNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_COST]];
+		if (self.canUpgrade) {
+			[rowArray addObject:[NSNumber numberWithInt:BUILDING_ROW_UPGRADE_BUTTON]];
+		} else {
+			[rowArray addObject:[NSNumber numberWithInt:BUILDING_ROW_UPGRADE_CANNOT]];
+		}
+		[rowArray addObject:[NSNumber numberWithInt:BUILDING_ROW_DEMOLISH_BUTTON]];
+	}
+
+	return _dict([NSNumber numberWithInt:BUILDING_SECTION_UPGRADE], @"type", @"Upgrade", @"name", rowArray, @"rows");
 }
 
 

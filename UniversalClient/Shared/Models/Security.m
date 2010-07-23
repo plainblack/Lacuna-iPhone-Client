@@ -50,8 +50,13 @@
 }
 
 
-- (void)parseAdditionalData:(NSDictionary *)data tmpSections:(NSMutableArray *)tmpSections {
-	[tmpSections addObject:_dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSNumber numberWithInt:BUILDING_ROW_VIEW_PRISONERS]), @"rows")];
+- (void)parseAdditionalData:(NSDictionary *)data {
+	//Nothing to do this time!
+}
+
+
+- (void)generateSections {
+	self.sections = _array([self generateProductionSection], _dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSNumber numberWithInt:BUILDING_ROW_VIEW_PRISONERS]), @"rows"), [self generateUpgradeSection]);
 }
 
 
