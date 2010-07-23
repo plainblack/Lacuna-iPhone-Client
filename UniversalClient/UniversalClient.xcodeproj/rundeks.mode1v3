@@ -277,68 +277,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>188</integer>
-									<integer>185</integer>
-									<integer>85</integer>
+									<integer>79</integer>
+									<integer>15</integer>
+									<integer>14</integer>
 									<integer>0</integer>
 								</array>
 								<array>
-									<integer>189</integer>
-									<integer>185</integer>
-									<integer>85</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>193</integer>
-									<integer>185</integer>
-									<integer>85</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>199</integer>
-									<integer>185</integer>
-									<integer>85</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>203</integer>
-									<integer>185</integer>
-									<integer>85</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>207</integer>
-									<integer>185</integer>
-									<integer>85</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>209</integer>
-									<integer>185</integer>
-									<integer>85</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>219</integer>
-									<integer>185</integer>
-									<integer>85</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>229</integer>
-									<integer>185</integer>
-									<integer>85</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>231</integer>
-									<integer>185</integer>
-									<integer>85</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>233</integer>
-									<integer>185</integer>
+									<integer>182</integer>
+									<integer>88</integer>
 									<integer>85</integer>
 									<integer>0</integer>
 								</array>
@@ -350,7 +296,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 3059}, {301, 1146}}</string>
+							<string>{{0, 2160}, {301, 1146}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -380,12 +326,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>WasteRecycling.m</string>
+								<string>LEBuildingGlyphAssemble.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -393,11 +341,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>WasteRecycling.m</string>
+										<string>LEBuildingGlyphAssemble.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F62130FF11F92FC0006B80C5</string>
+										<string>F621311511F93336006B80C5</string>
 										<key>history</key>
 										<array>
 											<string>F6885F7E1168421D00080696</string>
@@ -703,7 +651,6 @@
 											<string>F6FB460911F545F800E24EAC</string>
 											<string>F6FB460A11F545F800E24EAC</string>
 											<string>F6FB460B11F545F800E24EAC</string>
-											<string>F6FB460C11F545F800E24EAC</string>
 											<string>F6FB460F11F545F800E24EAC</string>
 											<string>F6FB461011F545F800E24EAC</string>
 											<string>F6FB461111F545F800E24EAC</string>
@@ -725,15 +672,12 @@
 											<string>F62130A811F9121D006B80C5</string>
 											<string>F62130A911F9121D006B80C5</string>
 											<string>F62130AA11F9121D006B80C5</string>
-											<string>F62130AB11F9121D006B80C5</string>
 											<string>F62130AD11F9121D006B80C5</string>
 											<string>F62130AF11F9121D006B80C5</string>
 											<string>F62130BA11F91278006B80C5</string>
 											<string>F62130BB11F91278006B80C5</string>
-											<string>F62130D411F92799006B80C5</string>
 											<string>F62130D511F92799006B80C5</string>
 											<string>F62130F411F92FC0006B80C5</string>
-											<string>F62130F511F92FC0006B80C5</string>
 											<string>F62130F611F92FC0006B80C5</string>
 											<string>F62130F711F92FC0006B80C5</string>
 											<string>F62130F811F92FC0006B80C5</string>
@@ -742,7 +686,11 @@
 											<string>F62130FB11F92FC0006B80C5</string>
 											<string>F62130FC11F92FC0006B80C5</string>
 											<string>F62130FD11F92FC0006B80C5</string>
-											<string>F62130FE11F92FC0006B80C5</string>
+											<string>F621310511F93239006B80C5</string>
+											<string>F621310611F93239006B80C5</string>
+											<string>F621310F11F93303006B80C5</string>
+											<string>F621311011F93303006B80C5</string>
+											<string>F6FB460C11F545F800E24EAC</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -764,8 +712,6 @@
 							<string>803pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -942,7 +888,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>F621310011F92FC0006B80C5</string>
+		<string>F621311611F93336006B80C5</string>
 		<string>F62130B611F9121D006B80C5</string>
 		<string>F62130B711F9121D006B80C5</string>
 		<string>1CD10A99069EF8BA00B06720</string>

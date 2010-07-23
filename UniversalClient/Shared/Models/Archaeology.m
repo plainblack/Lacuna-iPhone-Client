@@ -165,12 +165,6 @@
 }
 
 
-/*
-- (NSArray *)getAvailableOreTypes {
-	return _array(@"Anthracite", @"Bauxite", @"Beryl", @"Chalcopyrite", @"Chromite", @"Fluorite", @"Galena", @"Gold", @"Goethite", @"Gypsum", @"Halite", @"Kerogen", @"Magnetite", @"Methane", @"Monazite", @"Rutile", @"Sulfur", @"Trona", @"Uraninite", @"Zircon");
-}
-*/
-
 - (void)loadAvailableOreTypes {
 	[[[LEBuildingGetOresAvailableForProcessing alloc] initWithCallback:@selector(oresAvailableForProcessingLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
 }

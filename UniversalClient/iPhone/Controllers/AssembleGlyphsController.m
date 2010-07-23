@@ -68,7 +68,7 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
 	if (self.archaeology.glyphs) {
-		return [self.archaeology.glyphs count];
+		return [self.archaeology.glyphs count] + 1;
 	} else {
 		return 1;
 	}
@@ -80,8 +80,12 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
 	if (self.archaeology.glyphs) {
-		Glyph *glyph = [self.archaeology.glyphs objectAtIndex:row];
-		return glyph.type;
+		if (row == 0) {
+			return @"";
+		} else {
+			Glyph *glyph = [self.archaeology.glyphs objectAtIndex:(row-1)];
+			return glyph.type;
+		}
 	} else {
 		return @"Loading";
 	}

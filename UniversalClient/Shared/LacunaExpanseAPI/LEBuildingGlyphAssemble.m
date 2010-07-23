@@ -29,7 +29,11 @@
 
 
 - (id)params {
-	return _array([Session sharedInstance].sessionId, self.buildingId, self.itemName);
+	NSMutableArray *params = _array([Session sharedInstance].sessionId, self.buildingId, self.glyphIds);
+	
+	NSLog(@"Params: %@", params);
+	
+	return params;
 }
 
 
