@@ -9,6 +9,7 @@
 #import "AssembleGlyphsController.h"
 #import "Archaeology.h"
 #import "Glyph.h"
+#import "LEMacros.h"
 
 
 @implementation AssembleGlyphsController
@@ -24,10 +25,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.navigationItem.title = @"Search for glyph";
+	self.navigationItem.title = @"Assemble glyphs";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Assemble" style:UIBarButtonItemStylePlain target:self action:@selector(assemble)] autorelease];
-	
 }
 
 
@@ -78,14 +78,34 @@
 #pragma mark -
 #pragma mark UIPickerViewDelegate Methods
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
+    return 70.0f;
+}
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
 	if (self.archaeology.glyphs) {
+		UIImageView *glyphImageView;
+		if (view && [view isKindOfClass:[UIImageView class]] ) {
+			glyphImageView = (UIImageView *)view;
+		} else {
+			glyphImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 60.0f, 60.0f)];
+		}
 		if (row == 0) {
-			return @"";
+			glyphImageView.image = nil;
 		} else {
 			Glyph *glyph = [self.archaeology.glyphs objectAtIndex:(row-1)];
-			return glyph.type;
+			glyphImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"assets/glyphs/%@.png", glyph.type]];
 		}
+		return glyphImageView;
+	} else {
+		return nil;
+	}
+}
+
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+	if (self.archaeology.glyphs) {
+		return nil;
 	} else {
 		return @"Loading";
 	}
@@ -128,6 +148,22 @@
 	}
 	NSLog(@"Selected Glyphs: %@", glyphIds);
 	[self.archaeology assembleGlyphs:glyphIds];
+	self.archaeology.delegate = self;
+}
+
+
+#pragma mark --
+#pragma mark Archaeology Delegate Methods
+
+- (void) assembleyComplete {
+	[archaeology loadGlyphs];
+
+	if (isNotNull(self.archaeology.itemName)) {
+		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Glyphs Assembled" message:[NSString stringWithFormat:@"You assembled a free %@.", self.archaeology.itemName] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+		[av show];
+	}
+	
+	[self.glyphPicker reloadAllComponents];
 }
 
 

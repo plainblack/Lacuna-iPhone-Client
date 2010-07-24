@@ -27,6 +27,7 @@
 @synthesize availableOreTypes;
 @synthesize itemName;
 @synthesize secondsRemaining;
+@synthesize delegate;
 
 
 #pragma mark --
@@ -36,6 +37,7 @@
 	self.glyphs = nil;
 	self.availableOreTypes = nil;
 	self.itemName = nil;
+	self.delegate = nil;
 	[super dealloc];
 }
 
@@ -65,7 +67,6 @@
 
 
 - (void)parseAdditionalData:(NSDictionary *)data {
-	NSLog(@"Archaeology raw data: %@", data);
 	NSDictionary *workData = [data objectForKey:@"work"];
 	if (workData) {
 		self.secondsRemaining = _intv([workData objectForKey:@"seconds_remaining"]);
@@ -186,12 +187,12 @@
 - (id)glyphAssembeled:(LEBuildingGlyphAssemble *)request {
 	NSLog(@"glyphAssembled: %@", request.response);
 	self.itemName = request.itemName;
+	[self.delegate assembleyComplete];
 	return nil;
 }
 
 
 - (id)glyphsLoaded:(LEBuildingGlyphs *)request {
-	NSLog(@"glyphsLoaded: %@", request.response);
 	Glyph *glyph;
 	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[request.glyphs count]];
 	

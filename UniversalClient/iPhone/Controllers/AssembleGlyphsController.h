@@ -7,12 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Archaeology.h"
 
 
-@class Archaeology;
-
-
-@interface AssembleGlyphsController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate> {
+@interface AssembleGlyphsController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, ArchaeologyDelegate> {
 	Archaeology *archaeology;
 	UIPickerView *glyphPicker;
 }
