@@ -92,14 +92,14 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForBuildingRow:(BUILDING_ROW)buildingRow {
 	switch (buildingRow) {
 		case BUILDING_ROW_SPY_BUILD_COST:
-			return 65.0;
+			return [LETableViewCellCost getHeightForTableView:tableView];
 			break;
 		case BUILDING_ROW_BUILD_SPY_BUTTON:
 		case BUILDING_ROW_VIEW_SPIES_BUTTON:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		case BUILDING_ROW_NUM_SPIES:
-			return tableView.rowHeight;
+			return [LETableViewCellLabeledText getHeightForTableView:tableView];
 			break;
 		default:
 			return [super tableView:tableView heightForBuildingRow:buildingRow];

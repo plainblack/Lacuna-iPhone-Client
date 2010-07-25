@@ -87,12 +87,21 @@
 		cell.backgroundColor = CELL_BACKGROUND_COLOR;
 		cell.autoresizesSubviews = YES;
 		
-		UIImageView *tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(9, 7, 22, 22)] autorelease];
+		UILabel *storageLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 95, 22)] autorelease];
+		storageLabel.backgroundColor = [UIColor clearColor];
+		storageLabel.textAlignment = UITextAlignmentRight;
+		storageLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
+		storageLabel.font = LABEL_FONT;
+		storageLabel.textColor = LABEL_COLOR;
+		storageLabel.text = @"Storage";
+		[cell.contentView addSubview:storageLabel];
+
+		UIImageView *tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(9, 22, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
 		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
 		tmpImageView.image = ENERGY_ICON;
 		[cell.contentView addSubview:tmpImageView];
-		cell.energyStorageLabel = [[[UILabel alloc] initWithFrame:CGRectMake(34, 8, 70, 20)] autorelease];
+		cell.energyStorageLabel = [[[UILabel alloc] initWithFrame:CGRectMake(34, 23, 70, 20)] autorelease];
 		cell.energyStorageLabel.backgroundColor = [UIColor clearColor];
 		cell.energyStorageLabel.textAlignment = UITextAlignmentLeft;
 		cell.energyStorageLabel.font = TEXT_SMALL_FONT;
@@ -100,12 +109,12 @@
 		cell.energyStorageLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.energyStorageLabel];
 		
-		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(122, 7, 22, 22)] autorelease];
+		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(122, 22, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
 		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
 		tmpImageView.image = FOOD_ICON;
 		[cell.contentView addSubview:tmpImageView];
-		cell.foodStorageLabel = [[[UILabel alloc] initWithFrame:CGRectMake(147, 8, 70, 20)] autorelease];
+		cell.foodStorageLabel = [[[UILabel alloc] initWithFrame:CGRectMake(147, 23, 70, 20)] autorelease];
 		cell.foodStorageLabel.backgroundColor = [UIColor clearColor];
 		cell.foodStorageLabel.textAlignment = UITextAlignmentLeft;
 		cell.foodStorageLabel.font = TEXT_SMALL_FONT;
@@ -113,12 +122,12 @@
 		cell.foodStorageLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.foodStorageLabel];
 		
-		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(218, 7, 22, 22)] autorelease];
+		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(218, 22, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
 		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
 		tmpImageView.image = ORE_ICON;
 		[cell.contentView addSubview:tmpImageView];
-		cell.oreStorageLabel = [[[UILabel alloc] initWithFrame:CGRectMake(243, 8, 70, 20)] autorelease];
+		cell.oreStorageLabel = [[[UILabel alloc] initWithFrame:CGRectMake(243, 23, 70, 20)] autorelease];
 		cell.oreStorageLabel.backgroundColor = [UIColor clearColor];
 		cell.oreStorageLabel.textAlignment = UITextAlignmentLeft;
 		cell.oreStorageLabel.font = TEXT_SMALL_FONT;
@@ -126,12 +135,12 @@
 		cell.oreStorageLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.oreStorageLabel];
 		
-		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(9, 35, 22, 22)] autorelease];
+		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(9, 50, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
 		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
 		tmpImageView.image = WASTE_ICON;
 		[cell.contentView addSubview:tmpImageView];
-		cell.wasteStorageLabel = [[[UILabel alloc] initWithFrame:CGRectMake(34, 36, 70, 20)] autorelease];
+		cell.wasteStorageLabel = [[[UILabel alloc] initWithFrame:CGRectMake(34, 51, 70, 20)] autorelease];
 		cell.wasteStorageLabel.backgroundColor = [UIColor clearColor];
 		cell.wasteStorageLabel.textAlignment = UITextAlignmentLeft;
 		cell.wasteStorageLabel.font = TEXT_SMALL_FONT;
@@ -139,12 +148,12 @@
 		cell.wasteStorageLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.wasteStorageLabel];
 		
-		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(122, 35, 22, 22)] autorelease];
+		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(122, 50, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
 		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
 		tmpImageView.image = WATER_ICON;
 		[cell.contentView addSubview:tmpImageView];
-		cell.waterStorageLabel = [[[UILabel alloc] initWithFrame:CGRectMake(147, 36, 70, 20)] autorelease];
+		cell.waterStorageLabel = [[[UILabel alloc] initWithFrame:CGRectMake(147, 51, 70, 20)] autorelease];
 		cell.waterStorageLabel.backgroundColor = [UIColor clearColor];
 		cell.waterStorageLabel.textAlignment = UITextAlignmentLeft;
 		cell.waterStorageLabel.font = TEXT_SMALL_FONT;
@@ -161,7 +170,7 @@
 
 
 + (CGFloat)getHeightForTableView:(UITableView *)tableView {
-	return 65.0;
+	return 80.0;
 }
 
 

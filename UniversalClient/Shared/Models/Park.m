@@ -73,7 +73,7 @@
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		case BUILDING_ROW_PARTY_PENDING:
-			return tableView.rowHeight;
+			return [LETableViewCellLabeledText getHeightForTableView:tableView];
 			break;
 		default:
 			return [super tableView:tableView heightForBuildingRow:buildingRow];
