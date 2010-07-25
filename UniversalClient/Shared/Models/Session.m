@@ -115,8 +115,8 @@ static Session *sharedSession = nil;
 	[[[LEEmpireLogout alloc] initWithCallback:@selector(loggedOut:) target:self sessionId:self.sessionId] autorelease];
 	self.sessionId = nil;
 	self.empire = nil;
-	self.isLoggedIn = FALSE;
 	self.body = nil;
+	self.isLoggedIn = FALSE;
 }
 
 

@@ -218,6 +218,8 @@
 - (id)searchedForGlyph:(LEBuildingGlyphSearch *)request {
 	NSLog(@"searchedForGlyph: %@", request.response);
 	self.secondsRemaining = request.secondsRemaining;
+	[self generateSections];
+	self.needsRefresh;
 	return nil;
 }
 
