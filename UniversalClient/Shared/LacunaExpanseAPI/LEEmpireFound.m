@@ -26,7 +26,7 @@
 
 
 - (id)params {
-	return _array(self.empireId);
+	return _array(self.empireId, API_KEY);
 }
 
 

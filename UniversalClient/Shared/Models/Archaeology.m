@@ -51,7 +51,6 @@
 #pragma mark Overriden Building Methods
 
 - (void)tick:(NSInteger)interval {
-	NSLog(@"Archaeology Tick");
 	if (self.secondsRemaining > 0) {
 		self.secondsRemaining -= interval;
 		
@@ -182,10 +181,9 @@
 
 
 #pragma mark --
-#pragma mark Instance Methods
+#pragma mark Callback Methods
 
 - (id)glyphAssembeled:(LEBuildingGlyphAssemble *)request {
-	NSLog(@"glyphAssembled: %@", request.response);
 	self.itemName = request.itemName;
 	[self.delegate assembleyComplete];
 	return nil;
@@ -208,7 +206,6 @@
 
 
 - (id)oresAvailableForProcessingLoaded:(LEBuildingGetOresAvailableForProcessing *)request {
-	NSLog(@"oresAvailableForProcessingLoaded: %@", request.response);
 	self.availableOreTypes = request.oreTypes;
 	
 	return nil;
@@ -216,7 +213,6 @@
 
 
 - (id)searchedForGlyph:(LEBuildingGlyphSearch *)request {
-	NSLog(@"searchedForGlyph: %@", request.response);
 	self.secondsRemaining = request.secondsRemaining;
 	[self generateSections];
 	self.needsRefresh;

@@ -17,6 +17,7 @@
 //Supported Server Version
 #define SERVER_MAJOR 2
 #define SERVER_MINOR 0
+#define API_KEY @"iOS"
 
 //Time defs
 #define SEC_IN_HOUR (1.0 * 60.0 * 60.0) // 1hr, 60 min, 60 sec

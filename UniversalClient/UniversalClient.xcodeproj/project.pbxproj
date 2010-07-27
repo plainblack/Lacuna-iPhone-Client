@@ -164,6 +164,9 @@
 		F6E768AA11D6BD9300778C1D /* StoredResource.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E768A911D6BD9300778C1D /* StoredResource.m */; };
 		F6E768B411D6C6E500778C1D /* NoLimitResource.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E768B311D6C6E500778C1D /* NoLimitResource.m */; };
 		F6EEE87511F388E80095BCA4 /* LETableViewCellDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EEE87411F388E80095BCA4 /* LETableViewCellDictionary.m */; };
+		F6EF714211FE76EA00A93226 /* SpacePort.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF714111FE76EA00A93226 /* SpacePort.m */; };
+		F6EF714F11FE7D1C00A93226 /* LEBuildingViewAllShips.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF714E11FE7D1C00A93226 /* LEBuildingViewAllShips.m */; };
+		F6EF716A11FE810900A93226 /* Ship.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF716911FE810900A93226 /* Ship.m */; };
 		F6F5427D11A9D7D4006F347B /* LEBodyStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */; };
 		F6FB458211F5158C00E24EAC /* LEBuildingGlyphSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB458111F5158C00E24EAC /* LEBuildingGlyphSearch.m */; };
 		F6FB458511F5159800E24EAC /* LEBuildingGlyphs.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB458411F5159800E24EAC /* LEBuildingGlyphs.m */; };
@@ -480,6 +483,12 @@
 		F6E768B311D6C6E500778C1D /* NoLimitResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoLimitResource.m; sourceTree = "<group>"; };
 		F6EEE87311F388E80095BCA4 /* LETableViewCellDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellDictionary.h; sourceTree = "<group>"; };
 		F6EEE87411F388E80095BCA4 /* LETableViewCellDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellDictionary.m; sourceTree = "<group>"; };
+		F6EF714011FE76EA00A93226 /* SpacePort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpacePort.h; sourceTree = "<group>"; };
+		F6EF714111FE76EA00A93226 /* SpacePort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpacePort.m; sourceTree = "<group>"; };
+		F6EF714D11FE7D1C00A93226 /* LEBuildingViewAllShips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewAllShips.h; sourceTree = "<group>"; };
+		F6EF714E11FE7D1C00A93226 /* LEBuildingViewAllShips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewAllShips.m; sourceTree = "<group>"; };
+		F6EF716811FE810900A93226 /* Ship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ship.h; sourceTree = "<group>"; };
+		F6EF716911FE810900A93226 /* Ship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ship.m; sourceTree = "<group>"; };
 		F6F5427B11A9D7D4006F347B /* LEBodyStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBodyStatus.h; sourceTree = "<group>"; };
 		F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBodyStatus.m; sourceTree = "<group>"; };
 		F6FB458011F5158C00E24EAC /* LEBuildingGlyphSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGlyphSearch.h; sourceTree = "<group>"; };
@@ -642,6 +651,8 @@
 				F69809C1117A155800BD2096 /* LETableViewCellCost.m */,
 				F603A8ED1177F7F200BAC73A /* LETableViewCellCurrentResources.h */,
 				F603A8EE1177F7F200BAC73A /* LETableViewCellCurrentResources.m */,
+				F6EEE87311F388E80095BCA4 /* LETableViewCellDictionary.h */,
+				F6EEE87411F388E80095BCA4 /* LETableViewCellDictionary.m */,
 				F6882D50116EB6BF009B624B /* LETableViewCellLabeledParagraph.h */,
 				F6882D51116EB6BF009B624B /* LETableViewCellLabeledParagraph.m */,
 				F678F71D11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.h */,
@@ -675,8 +686,6 @@
 				F69809C4117A156E00BD2096 /* LETableViewCellUnbuildable.m */,
 				F6DD2062116D5B3C0013C58D /* LEViewSectionTab.h */,
 				F6DD2063116D5B3C0013C58D /* LEViewSectionTab.m */,
-				F6EEE87311F388E80095BCA4 /* LETableViewCellDictionary.h */,
-				F6EEE87411F388E80095BCA4 /* LETableViewCellDictionary.m */,
 			);
 			name = Views;
 			path = Shared/Views;
@@ -728,6 +737,8 @@
 		F6E4D6681168D4B200980B59 /* LacunaExpanseAPI */ = {
 			isa = PBXGroup;
 			children = (
+				F6AC4A00116C0F9B001B967A /* LEBodyGetBuildings.h */,
+				F6AC4A01116C0F9B001B967A /* LEBodyGetBuildings.m */,
 				F6F5427B11A9D7D4006F347B /* LEBodyStatus.h */,
 				F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */,
 				F6AC49EA116C0F9B001B967A /* LEBuildBuilding.h */,
@@ -738,20 +749,36 @@
 				F6A9C5B21184BB6D001F0D9C /* LEBuildingBurnSpy.m */,
 				F6E3EFC811B4440200E7BC86 /* LEBuildingDemolish.h */,
 				F6E3EFC911B4440200E7BC86 /* LEBuildingDemolish.m */,
+				F621306A11F8F4C1006B80C5 /* LEBuildingGetOresAvailableForProcessing.h */,
+				F621306B11F8F4C1006B80C5 /* LEBuildingGetOresAvailableForProcessing.m */,
+				F6FB458611F515A700E24EAC /* LEBuildingGlyphAssemble.h */,
+				F6FB458711F515A700E24EAC /* LEBuildingGlyphAssemble.m */,
+				F6FB458311F5159800E24EAC /* LEBuildingGlyphs.h */,
+				F6FB458411F5159800E24EAC /* LEBuildingGlyphs.m */,
+				F6FB458011F5158C00E24EAC /* LEBuildingGlyphSearch.h */,
+				F6FB458111F5158C00E24EAC /* LEBuildingGlyphSearch.m */,
 				F6A9C5B41184BB80001F0D9C /* LEBuildingNameSpy.h */,
 				F6A9C5B51184BB80001F0D9C /* LEBuildingNameSpy.m */,
 				F697BA0A119CE6BD004B2119 /* LEBuildingRecycle.h */,
 				F697BA0B119CE6BD004B2119 /* LEBuildingRecycle.m */,
 				F68650061183D2A4009826A7 /* LEBuildingRestrictCoverage.h */,
 				F68650071183D2A4009826A7 /* LEBuildingRestrictCoverage.m */,
+				F6E766BC11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.h */,
+				F6E766BD11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.m */,
 				F678F75311A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.h */,
 				F678F75411A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.m */,
 				F6E3EFBA11B4389A00E7BC86 /* LEBuildingThrowParty.h */,
 				F6E3EFBB11B4389A00E7BC86 /* LEBuildingThrowParty.m */,
 				F6A9C5931184A3B6001F0D9C /* LEBuildingTrainSpy.h */,
 				F6A9C5941184A3B6001F0D9C /* LEBuildingTrainSpy.m */,
+				F6AC49FE116C0F9B001B967A /* LEBuildingView.h */,
+				F6AC49FF116C0F9B001B967A /* LEBuildingView.m */,
+				F6EF714D11FE7D1C00A93226 /* LEBuildingViewAllShips.h */,
+				F6EF714E11FE7D1C00A93226 /* LEBuildingViewAllShips.m */,
 				F6864F9C1183A3FB009826A7 /* LEBuildingViewNews.h */,
 				F6864F9D1183A3FB009826A7 /* LEBuildingViewNews.m */,
+				F65DC35F11EE4E2E00A0A782 /* LEBuildingViewPrisoners.h */,
+				F65DC36011EE4E2E00A0A782 /* LEBuildingViewPrisoners.m */,
 				F6A9C5AE1184BB3C001F0D9C /* LEBuildingViewSpies.h */,
 				F6A9C5AF1184BB3C001F0D9C /* LEBuildingViewSpies.m */,
 				F6AC49EC116C0F9B001B967A /* LECheckEmpireName.h */,
@@ -784,10 +811,6 @@
 				F6AC49F9116C0F9B001B967A /* LEEmpireViewProfile.m */,
 				F6AC49FC116C0F9B001B967A /* LEGetBuildables.h */,
 				F6AC49FD116C0F9B001B967A /* LEGetBuildables.m */,
-				F6AC49FE116C0F9B001B967A /* LEBuildingView.h */,
-				F6AC49FF116C0F9B001B967A /* LEBuildingView.m */,
-				F6AC4A00116C0F9B001B967A /* LEBodyGetBuildings.h */,
-				F6AC4A01116C0F9B001B967A /* LEBodyGetBuildings.m */,
 				F6AC4A02116C0F9B001B967A /* LEGetSystem.h */,
 				F6AC4A03116C0F9B001B967A /* LEGetSystem.m */,
 				F6AC4A04116C0F9B001B967A /* LEInboxArchive.h */,
@@ -812,18 +835,6 @@
 				F6AC4A17116C0F9B001B967A /* LESpeciesSetHuman.m */,
 				F6AC4A18116C0F9B001B967A /* LEUpgradeBuilding.h */,
 				F6AC4A19116C0F9B001B967A /* LEUpgradeBuilding.m */,
-				F6E766BC11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.h */,
-				F6E766BD11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.m */,
-				F65DC35F11EE4E2E00A0A782 /* LEBuildingViewPrisoners.h */,
-				F65DC36011EE4E2E00A0A782 /* LEBuildingViewPrisoners.m */,
-				F6FB458011F5158C00E24EAC /* LEBuildingGlyphSearch.h */,
-				F6FB458111F5158C00E24EAC /* LEBuildingGlyphSearch.m */,
-				F6FB458311F5159800E24EAC /* LEBuildingGlyphs.h */,
-				F6FB458411F5159800E24EAC /* LEBuildingGlyphs.m */,
-				F6FB458611F515A700E24EAC /* LEBuildingGlyphAssemble.h */,
-				F6FB458711F515A700E24EAC /* LEBuildingGlyphAssemble.m */,
-				F621306A11F8F4C1006B80C5 /* LEBuildingGetOresAvailableForProcessing.h */,
-				F621306B11F8F4C1006B80C5 /* LEBuildingGetOresAvailableForProcessing.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -832,6 +843,8 @@
 		F6E4D6691168D4B200980B59 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F64C43F411F3C37A002981EC /* Archaeology.h */,
+				F64C43F511F3C37A002981EC /* Archaeology.m */,
 				F6E767C411D6A4D400778C1D /* Body.h */,
 				F6E767C511D6A4D400778C1D /* Body.m */,
 				F6FD9E6911D79FA0003785AD /* Building.h */,
@@ -844,6 +857,10 @@
 				F6E7671011D68C6400778C1D /* Empire.m */,
 				F68DC4F911CD1B0D00144A49 /* EmpireProfile.h */,
 				F68DC4FA11CD1B0D00144A49 /* EmpireProfile.m */,
+				F64C43D711F3B50E002981EC /* FoodReserve.h */,
+				F64C43D811F3B50E002981EC /* FoodReserve.m */,
+				F6FB458911F517FE00E24EAC /* Glyph.h */,
+				F6FB458A11F517FE00E24EAC /* Glyph.m */,
 				F61D0D6B11E24E9E00B06382 /* Intelligence.h */,
 				F61D0D6C11E24E9E00B06382 /* Intelligence.m */,
 				F6AC4A32116C0FAE001B967A /* Mailbox.h */,
@@ -852,6 +869,8 @@
 				F61D0D3D11E24B8100B06382 /* Network19.m */,
 				F6E768B211D6C6E500778C1D /* NoLimitResource.h */,
 				F6E768B311D6C6E500778C1D /* NoLimitResource.m */,
+				F64C43DA11F3B527002981EC /* OreStorage.h */,
+				F64C43DB11F3B527002981EC /* OreStorage.m */,
 				F61D0DE511E2602400B06382 /* Park.h */,
 				F61D0DE611E2602400B06382 /* Park.m */,
 				F65DC32411EE09AE00A0A782 /* PlanetaryCommand.h */,
@@ -868,6 +887,10 @@
 				F65DC34211EE133E00A0A782 /* Security.m */,
 				F6AC4A34116C0FAE001B967A /* Session.h */,
 				F6AC4A35116C0FAE001B967A /* Session.m */,
+				F6EF716811FE810900A93226 /* Ship.h */,
+				F6EF716911FE810900A93226 /* Ship.m */,
+				F6EF714011FE76EA00A93226 /* SpacePort.h */,
+				F6EF714111FE76EA00A93226 /* SpacePort.m */,
 				F614450911E961D40052D010 /* Spy.h */,
 				F614450A11E961D40052D010 /* Spy.m */,
 				F6E768A811D6BD9300778C1D /* StoredResource.h */,
@@ -876,14 +899,6 @@
 				F6FD9E8611D7A6F3003785AD /* TimedActivity.m */,
 				F61D0C2111E2355600B06382 /* WasteRecycling.h */,
 				F61D0C2211E2355600B06382 /* WasteRecycling.m */,
-				F64C43D711F3B50E002981EC /* FoodReserve.h */,
-				F64C43D811F3B50E002981EC /* FoodReserve.m */,
-				F64C43DA11F3B527002981EC /* OreStorage.h */,
-				F64C43DB11F3B527002981EC /* OreStorage.m */,
-				F64C43F411F3C37A002981EC /* Archaeology.h */,
-				F64C43F511F3C37A002981EC /* Archaeology.m */,
-				F6FB458911F517FE00E24EAC /* Glyph.h */,
-				F6FB458A11F517FE00E24EAC /* Glyph.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -1201,6 +1216,9 @@
 				F6FB45A311F52C1F00E24EAC /* SearchForGlyphController.m in Sources */,
 				F6FB45D111F53D9F00E24EAC /* AssembleGlyphsController.m in Sources */,
 				F621306C11F8F4C1006B80C5 /* LEBuildingGetOresAvailableForProcessing.m in Sources */,
+				F6EF714211FE76EA00A93226 /* SpacePort.m in Sources */,
+				F6EF714F11FE7D1C00A93226 /* LEBuildingViewAllShips.m in Sources */,
+				F6EF716A11FE810900A93226 /* Ship.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

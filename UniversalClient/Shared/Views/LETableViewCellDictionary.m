@@ -110,7 +110,11 @@
 
 
 + (CGFloat)getHeightForTableView:(UITableView *)tableView numItems:(NSInteger)numItems {
-	return 20 + (15 * numItems);
+	if (numItems > 1) {
+		return 20.0 + (15.0 * numItems);
+	} else {
+		return 35.0;
+	}
 }
 
 

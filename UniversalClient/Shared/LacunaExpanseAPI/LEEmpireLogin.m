@@ -28,7 +28,7 @@
 
 
 - (id)params {
-	return _array(self.username, self.password);
+	return _array(self.username, self.password, API_KEY);
 }
 
 

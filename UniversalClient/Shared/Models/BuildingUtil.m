@@ -18,6 +18,7 @@
 #import "Park.h"
 #import "PlanetaryCommand.h"
 #import "Security.h"
+#import "SpacePort.h"
 #import "WasteRecycling.h"
 
 
@@ -44,6 +45,8 @@
 		building = [[[PlanetaryCommand alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:SECURITY_URL]) {
 		building = [[[Security alloc] init] autorelease];
+	} else if ([request.buildingUrl isEqualToString:SPACE_PORT_URL]) {
+		building = [[[SpacePort alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:WASTE_RECYCLING_URL]) {
 		building = [[[WasteRecycling alloc] init] autorelease];
 	} else {

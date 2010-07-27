@@ -38,9 +38,9 @@
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
 		activeArchitecturePreference = armv6;
-		activeBuildConfigurationName = Distribution;
+		activeBuildConfigurationName = Debug;
 		activeExecutable = F6885F4D1168330600080696 /* UniversalClient */;
-		activeSDKPreference = iphoneos4.0;
+		activeSDKPreference = iphonesimulator4.0;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* UniversalClient */;
 		addToTargets = (
 			1D6058900D05DD3D006BFB54 /* UniversalClient */,
@@ -448,6 +448,11 @@
 			F6EF712511FE6C5000A93226 /* PBXTextBookmark */ = F6EF712511FE6C5000A93226 /* PBXTextBookmark */;
 			F6EF712611FE6C5000A93226 /* PlistBookmark */ = F6EF712611FE6C5000A93226 /* PlistBookmark */;
 			F6EF712711FE6C5000A93226 /* PlistBookmark */ = F6EF712711FE6C5000A93226 /* PlistBookmark */;
+			F6EF713011FE75FB00A93226 /* PlistBookmark */ = F6EF713011FE75FB00A93226 /* PlistBookmark */;
+			F6EF713111FE75FB00A93226 /* PBXTextBookmark */ = F6EF713111FE75FB00A93226 /* PBXTextBookmark */;
+			F6EF713211FE75FB00A93226 /* PBXTextBookmark */ = F6EF713211FE75FB00A93226 /* PBXTextBookmark */;
+			F6EF713311FE75FB00A93226 /* PBXTextBookmark */ = F6EF713311FE75FB00A93226 /* PBXTextBookmark */;
+			F6EF713411FE75FB00A93226 /* PBXTextBookmark */ = F6EF713411FE75FB00A93226 /* PBXTextBookmark */;
 			F6F0F46311FA4E4A00D5FE40 = F6F0F46311FA4E4A00D5FE40 /* PBXTextBookmark */;
 			F6F0F46411FA4E4A00D5FE40 = F6F0F46411FA4E4A00D5FE40 /* PBXTextBookmark */;
 			F6F0F46511FA4E4A00D5FE40 = F6F0F46511FA4E4A00D5FE40 /* PBXTextBookmark */;
@@ -684,15 +689,15 @@
 	};
 	F614450911E961D40052D010 /* Spy.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {943, 796}}";
-			sepNavSelRange = "{1366, 78}";
+			sepNavIntBoundsRect = "{{0, 0}, {943, 744}}";
+			sepNavSelRange = "{1366, 43}";
 			sepNavVisRange = "{0, 1450}";
 		};
 	};
 	F614450A11E961D40052D010 /* Spy.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1965, 1261}}";
-			sepNavSelRange = "{178, 0}";
+			sepNavSelRange = "{581, 2199}";
 			sepNavVisRange = "{659, 2126}";
 		};
 	};
@@ -759,16 +764,16 @@
 	};
 	F61D0C2411E235C100B06382 /* BuildingUtil.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {943, 1014}}";
-			sepNavSelRange = "{1633, 28}";
-			sepNavVisRange = "{406, 1421}";
+			sepNavIntBoundsRect = "{{0, 0}, {943, 1053}}";
+			sepNavSelRange = "{1752, 0}";
+			sepNavVisRange = "{645, 1273}";
 		};
 	};
 	F61D0C2511E235C100B06382 /* BuildingUtil.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {943, 813}}";
-			sepNavSelRange = "{647, 0}";
-			sepNavVisRange = "{0, 1965}";
+			sepNavIntBoundsRect = "{{0, 0}, {943, 806}}";
+			sepNavSelRange = "{1772, 0}";
+			sepNavVisRange = "{0, 2099}";
 		};
 	};
 	F61D0C3B11E2380700B06382 /* PBXTextBookmark */ = {
@@ -991,16 +996,16 @@
 	};
 	F621306A11F8F4C1006B80C5 /* LEBuildingGetOresAvailableForProcessing.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1006, 771}}";
-			sepNavSelRange = "{502, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {1006, 721}}";
+			sepNavSelRange = "{283, 383}";
 			sepNavVisRange = "{0, 671}";
 		};
 	};
 	F621306B11F8F4C1006B80C5 /* LEBuildingGetOresAvailableForProcessing.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1069, 806}}";
-			sepNavSelRange = "{1229, 0}";
-			sepNavVisRange = "{989, 322}";
+			sepNavIntBoundsRect = "{{0, 0}, {1069, 884}}";
+			sepNavSelRange = "{313, 1185}";
+			sepNavVisRange = "{254, 1251}";
 		};
 	};
 	F62130A411F9121D006B80C5 /* PBXTextBookmark */ = {
@@ -1351,7 +1356,7 @@
 		fRef = F61D0C2411E235C100B06382 /* BuildingUtil.h */;
 		name = "BuildingUtil.h: 61";
 		rLen = 28;
-		rLoc = 1633;
+		rLoc = 1670;
 		rType = 0;
 		vrLen = 1421;
 		vrLoc = 406;
@@ -1444,8 +1449,8 @@
 	F64C43DB11F3B527002981EC /* OreStorage.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {943, 1014}}";
-			sepNavSelRange = "{482, 0}";
-			sepNavVisRange = "{313, 1501}";
+			sepNavSelRange = "{995, 92}";
+			sepNavVisRange = "{285, 1529}";
 		};
 	};
 	F64C43EA11F3B821002981EC /* PBXTextBookmark */ = {
@@ -1470,16 +1475,16 @@
 	};
 	F64C43F411F3C37A002981EC /* Archaeology.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {943, 710}}";
-			sepNavSelRange = "{199, 19}";
+			sepNavIntBoundsRect = "{{0, 0}, {943, 721}}";
+			sepNavSelRange = "{292, 582}";
 			sepNavVisRange = "{0, 879}";
 		};
 	};
 	F64C43F511F3C37A002981EC /* Archaeology.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1405, 2782}}";
-			sepNavSelRange = "{6627, 0}";
-			sepNavVisRange = "{3971, 1935}";
+			sepNavIntBoundsRect = "{{0, 0}, {1405, 2912}}";
+			sepNavSelRange = "{5585, 194}";
+			sepNavVisRange = "{2559, 2142}";
 		};
 	};
 	F64C43FB11F3C4F5002981EC /* PBXTextBookmark */ = {
@@ -1517,7 +1522,7 @@
 		fRef = F61D0C2511E235C100B06382 /* BuildingUtil.m */;
 		name = "BuildingUtil.m: 30";
 		rLen = 0;
-		rLoc = 647;
+		rLoc = 669;
 		rType = 0;
 		vrLen = 1965;
 		vrLoc = 0;
@@ -2930,7 +2935,7 @@
 	};
 	F69D29BB11726B6E00D7277E /* LESpeciesPointsUpdateDelegate.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {943, 786}}";
+			sepNavIntBoundsRect = "{{0, 0}, {943, 744}}";
 			sepNavSelRange = "{259, 0}";
 			sepNavVisRange = "{0, 264}";
 		};
@@ -3149,9 +3154,9 @@
 	};
 	F6AC49E6116C0F7E001B967A /* LEMacros.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {943, 1053}}";
-			sepNavSelRange = "{420, 9}";
-			sepNavVisRange = "{0, 2473}";
+			sepNavIntBoundsRect = "{{0, 0}, {943, 1040}}";
+			sepNavSelRange = "{553, 7}";
+			sepNavVisRange = "{0, 2584}";
 		};
 	};
 	F6AC49E7116C0F7E001B967A /* Util.h */ = {
@@ -3205,9 +3210,9 @@
 	};
 	F6AC49F3116C0F9B001B967A /* LEEmpireFound.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {908, 767}}";
-			sepNavSelRange = "{508, 0}";
-			sepNavVisRange = "{383, 338}";
+			sepNavIntBoundsRect = "{{0, 0}, {943, 767}}";
+			sepNavSelRange = "{531, 0}";
+			sepNavVisRange = "{0, 937}";
 		};
 	};
 	F6AC49F4116C0F9B001B967A /* LEEmpireLogin.h */ = {
@@ -3220,8 +3225,8 @@
 	F6AC49F5116C0F9B001B967A /* LEEmpireLogin.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {999, 832}}";
-			sepNavSelRange = "{595, 0}";
-			sepNavVisRange = "{470, 362}";
+			sepNavSelRange = "{633, 0}";
+			sepNavVisRange = "{121, 1013}";
 		};
 	};
 	F6AC49F6116C0F9B001B967A /* LEEmpireLogout.h */ = {
@@ -4497,7 +4502,7 @@
 		fRef = F64C43F511F3C37A002981EC /* Archaeology.m */;
 		name = "Archaeology.m: 221";
 		rLen = 0;
-		rLoc = 6589;
+		rLoc = 6393;
 		rType = 0;
 		vrLen = 1612;
 		vrLoc = 5001;
@@ -4507,7 +4512,7 @@
 		fRef = F64C43F511F3C37A002981EC /* Archaeology.m */;
 		name = "Archaeology.m: 222";
 		rLen = 0;
-		rLoc = 6627;
+		rLoc = 6431;
 		rType = 0;
 		vrLen = 1617;
 		vrLoc = 5033;
@@ -5217,7 +5222,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {943, 1079}}";
 			sepNavSelRange = "{2263, 208}";
-			sepNavVisRange = "{214, 2048}";
+			sepNavVisRange = "{237, 2024}";
 		};
 	};
 	F6E767C511D6A4D400778C1D /* Body.m */ = {
@@ -5326,9 +5331,9 @@
 	};
 	F6EEE87411F388E80095BCA4 /* LETableViewCellDictionary.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {908, 1508}}";
-			sepNavSelRange = "{1023, 4}";
-			sepNavVisRange = "{954, 666}";
+			sepNavIntBoundsRect = "{{0, 0}, {943, 1586}}";
+			sepNavSelRange = "{3613, 0}";
+			sepNavVisRange = "{1726, 1896}";
 		};
 	};
 	F6EEE88D11F38EF10095BCA4 /* PlistBookmark */ = {
@@ -5398,7 +5403,7 @@
 		fRef = F64C43F511F3C37A002981EC /* Archaeology.m */;
 		name = "Archaeology.m: 222";
 		rLen = 0;
-		rLoc = 6627;
+		rLoc = 6431;
 		rType = 0;
 		vrLen = 1935;
 		vrLoc = 3971;
@@ -5426,6 +5431,100 @@
 		name = "/Users/rundeks/dev/iphone/Lacuna-iPhone-Client/UniversalClient/UniversalClient-Info.plist";
 		rLen = 0;
 		rLoc = 9223372036854775807;
+	};
+	F6EF713011FE75FB00A93226 /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* UniversalClient-Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			LSRequiresIPhoneOS,
+		);
+		name = "/Users/rundeks/dev/iphone/Lacuna-iPhone-Client/UniversalClient/UniversalClient-Info.plist";
+		rLen = 0;
+		rLoc = 9223372036854775807;
+	};
+	F6EF713111FE75FB00A93226 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6AC49E6116C0F7E001B967A /* LEMacros.h */;
+		name = "LEMacros.h: 20";
+		rLen = 7;
+		rLoc = 553;
+		rType = 0;
+		vrLen = 2584;
+		vrLoc = 0;
+	};
+	F6EF713211FE75FB00A93226 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6AC49F5116C0F9B001B967A /* LEEmpireLogin.m */;
+		name = "LEEmpireLogin.m: 31";
+		rLen = 0;
+		rLoc = 633;
+		rType = 0;
+		vrLen = 1013;
+		vrLoc = 121;
+	};
+	F6EF713311FE75FB00A93226 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6AC49F3116C0F9B001B967A /* LEEmpireFound.m */;
+		name = "LEEmpireFound.m: 29";
+		rLen = 0;
+		rLoc = 508;
+		rType = 0;
+		vrLen = 934;
+		vrLoc = 0;
+	};
+	F6EF713411FE75FB00A93226 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6AC49F3116C0F9B001B967A /* LEEmpireFound.m */;
+		name = "LEEmpireFound.m: 29";
+		rLen = 0;
+		rLoc = 531;
+		rType = 0;
+		vrLen = 937;
+		vrLoc = 0;
+	};
+	F6EF714011FE76EA00A93226 /* SpacePort.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {943, 721}}";
+			sepNavSelRange = "{344, 0}";
+			sepNavVisRange = "{0, 352}";
+		};
+	};
+	F6EF714111FE76EA00A93226 /* SpacePort.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1314, 1729}}";
+			sepNavSelRange = "{3470, 0}";
+			sepNavVisRange = "{1862, 1630}";
+		};
+	};
+	F6EF714D11FE7D1C00A93226 /* LEBuildingViewAllShips.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1006, 721}}";
+			sepNavSelRange = "{313, 0}";
+			sepNavVisRange = "{0, 617}";
+		};
+	};
+	F6EF714E11FE7D1C00A93226 /* LEBuildingViewAllShips.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1069, 923}}";
+			sepNavSelRange = "{820, 0}";
+			sepNavVisRange = "{178, 1317}";
+		};
+	};
+	F6EF716811FE810900A93226 /* Ship.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {943, 744}}";
+			sepNavSelRange = "{579, 0}";
+			sepNavVisRange = "{0, 630}";
+		};
+	};
+	F6EF716911FE810900A93226 /* Ship.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {943, 744}}";
+			sepNavSelRange = "{1009, 0}";
+			sepNavVisRange = "{0, 1016}";
+		};
 	};
 	F6F0F46311FA4E4A00D5FE40 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -5519,7 +5618,7 @@
 	};
 	F6F5427B11A9D7D4006F347B /* LEBodyStatus.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {943, 761}}";
+			sepNavIntBoundsRect = "{{0, 0}, {943, 744}}";
 			sepNavSelRange = "{263, 4}";
 			sepNavVisRange = "{0, 477}";
 		};

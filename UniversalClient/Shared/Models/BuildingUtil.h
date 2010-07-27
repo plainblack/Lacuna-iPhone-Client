@@ -17,6 +17,7 @@
 #define PARK_URL @"/park"
 #define PLANETARY_COMMAND_URL @"/planetarycommand"
 #define SECURITY_URL @"/security"
+#define SPACE_PORT_URL @"/spaceport"
 #define WASTE_RECYCLING_URL @"/wasterecycling"
 
 typedef enum {
@@ -58,7 +59,9 @@ typedef enum {
 	BUILDING_ROW_STORED_ORE,
 	BUILDING_ROW_GLYPH_SEARCH,
 	BUILDING_ROW_GLYPH_ASSEMBLE,
-	BUILDING_ROW_GLYPH_SEARCHING
+	BUILDING_ROW_GLYPH_SEARCHING,
+	BUILDING_ROW_DOCKED_SHIPS,
+	BUILDING_ROW_VIEW_SHIPS
 } BUILDING_ROW;
 
 
