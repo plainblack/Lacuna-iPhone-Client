@@ -229,6 +229,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -265,25 +267,19 @@
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>F683B6A111E40310009E64BF</string>
-								<string>2860E386111B897F00E27156</string>
-								<string>F6E4D66A1168D4CD00980B59</string>
-								<string>F6E4D66B1168D4CD00980B59</string>
-								<string>28EEBF621118D79A00187D67</string>
-								<string>F6E4D6691168D4B200980B59</string>
 								<string>19C28FACFE9D520D11CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>139</integer>
-									<integer>89</integer>
-									<integer>85</integer>
+									<integer>19</integer>
+									<integer>18</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 553}, {301, 1146}}</string>
+							<string>{{0, 0}, {301, 1146}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -318,7 +314,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>Archaeology.m</string>
+								<string>UniversalClient-Info.plist</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -326,11 +322,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>Archaeology.m</string>
+										<string>UniversalClient-Info.plist</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F6DDDA3211FCA1BB00E03A6C</string>
+										<string>F6EF712711FE6C5000A93226</string>
 										<key>history</key>
 										<array>
 											<string>F6885F7E1168421D00080696</string>
@@ -607,7 +603,6 @@
 											<string>F6C391D011F25BAE004FB38F</string>
 											<string>F6C391D111F25BAE004FB38F</string>
 											<string>F6A02C9A11F2B8A5001D5FCC</string>
-											<string>F6EEE88D11F38EF10095BCA4</string>
 											<string>F6EEE88E11F38EF10095BCA4</string>
 											<string>F6EEE88F11F38EF10095BCA4</string>
 											<string>F6EEE89011F38EF10095BCA4</string>
@@ -675,7 +670,8 @@
 											<string>F680944611FBF6C100EA7C8A</string>
 											<string>F6DDDA1F11FC96CD00E03A6C</string>
 											<string>F6DDDA2011FC96CD00E03A6C</string>
-											<string>F6DDDA2111FC96CD00E03A6C</string>
+											<string>F6EF712511FE6C5000A93226</string>
+											<string>F6EF712611FE6C5000A93226</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -687,18 +683,16 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1004, 783}}</string>
+								<string>{{0, 0}, {1004, 776}}</string>
 								<key>RubberWindowFrame</key>
 								<string>406 203 1327 1205 0 0 2560 1418 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>783pt</string>
+							<string>776pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -709,14 +703,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 788}, {1004, 376}}</string>
+								<string>{{0, 781}, {1004, 383}}</string>
 								<key>RubberWindowFrame</key>
 								<string>406 203 1327 1205 0 0 2560 1418 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>376pt</string>
+							<string>383pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -735,9 +729,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>F6DDDA1811FC837500E03A6C</string>
+				<string>F6EF712811FE6C5000A93226</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>F6DDDA1911FC837500E03A6C</string>
+				<string>F6EF712911FE6C5000A93226</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -875,11 +869,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>F6DDDA2F11FC9FDA00E03A6C</string>
-		<string>F6DDDA2B11FC96CD00E03A6C</string>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>F6885F691168335B00080696</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/rundeks/dev/iphone/Lacuna-iPhone-Client/UniversalClient/UniversalClient.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -960,7 +950,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>F6885F691168335B00080696</string>
-				<string>F6DDDA1A11FC837500E03A6C</string>
+				<string>F6EF712A11FE6C5000A93226</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
