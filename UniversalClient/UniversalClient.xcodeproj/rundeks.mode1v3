@@ -264,10 +264,6 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
-								<string>F683B6A111E40310009E64BF</string>
-								<string>2860E386111B897F00E27156</string>
-								<string>F6E4D66A1168D4CD00980B59</string>
-								<string>F6E4D66B1168D4CD00980B59</string>
 								<string>28EEBF621118D79A00187D67</string>
 								<string>F6E4D6681168D4B200980B59</string>
 								<string>F6E4D6691168D4B200980B59</string>
@@ -277,14 +273,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>194</integer>
-									<integer>92</integer>
-									<integer>89</integer>
+									<integer>109</integer>
+									<integer>7</integer>
+									<integer>4</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 3382}, {301, 1146}}</string>
+							<string>{{0, 0}, {301, 1146}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -321,7 +317,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>LEBuildingNameShip.m</string>
+								<string>ViewBodyMapController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -329,11 +325,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>LEBuildingNameShip.m</string>
+										<string>ViewBodyMapController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F6D5A04B1201312D009DDA28</string>
+										<string>F6D5A05C12013475009DDA28</string>
 										<key>history</key>
 										<array>
 											<string>F6885F7E1168421D00080696</string>
@@ -602,7 +598,6 @@
 											<string>F64C43FC11F3C4F5002981EC</string>
 											<string>F64C43FD11F3C4F5002981EC</string>
 											<string>F64C443F11F3CF5B002981EC</string>
-											<string>F64C444311F3CF5B002981EC</string>
 											<string>F6FB460911F545F800E24EAC</string>
 											<string>F6FB460A11F545F800E24EAC</string>
 											<string>F6FB460B11F545F800E24EAC</string>
@@ -693,7 +688,8 @@
 											<string>F6D5A03C12013021009DDA28</string>
 											<string>F6D5A04012013073009DDA28</string>
 											<string>F6D5A045120130A8009DDA28</string>
-											<string>F6D5A046120130A8009DDA28</string>
+											<string>F6D5A05A12013475009DDA28</string>
+											<string>F6D5A05B12013475009DDA28</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -891,7 +887,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>F6D5A048120130A8009DDA28</string>
 		<string>F6D59FEF120127E0009DDA28</string>
 		<string>F6D59FF0120127E0009DDA28</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
@@ -1143,7 +1138,7 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ViewNetwork19NewsController.m</string>
+										<string>ViewBodyMapController.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>

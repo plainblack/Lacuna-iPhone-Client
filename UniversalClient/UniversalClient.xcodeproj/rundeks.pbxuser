@@ -426,6 +426,13 @@
 			F6D5A0491201312C009DDA28 /* PBXTextBookmark */ = F6D5A0491201312C009DDA28 /* PBXTextBookmark */;
 			F6D5A04A1201312C009DDA28 /* PBXTextBookmark */ = F6D5A04A1201312C009DDA28 /* PBXTextBookmark */;
 			F6D5A04B1201312D009DDA28 /* PBXTextBookmark */ = F6D5A04B1201312D009DDA28 /* PBXTextBookmark */;
+			F6D5A05612013474009DDA28 /* PBXTextBookmark */ = F6D5A05612013474009DDA28 /* PBXTextBookmark */;
+			F6D5A05712013474009DDA28 /* PBXTextBookmark */ = F6D5A05712013474009DDA28 /* PBXTextBookmark */;
+			F6D5A05812013474009DDA28 /* PBXTextBookmark */ = F6D5A05812013474009DDA28 /* PBXTextBookmark */;
+			F6D5A05912013474009DDA28 /* PBXTextBookmark */ = F6D5A05912013474009DDA28 /* PBXTextBookmark */;
+			F6D5A05A12013475009DDA28 /* PBXTextBookmark */ = F6D5A05A12013475009DDA28 /* PBXTextBookmark */;
+			F6D5A05B12013475009DDA28 /* PBXTextBookmark */ = F6D5A05B12013475009DDA28 /* PBXTextBookmark */;
+			F6D5A05C12013475009DDA28 /* PBXTextBookmark */ = F6D5A05C12013475009DDA28 /* PBXTextBookmark */;
 			F6D9BDCF11FFD07700138A8C = F6D9BDCF11FFD07700138A8C /* PBXTextBookmark */;
 			F6D9BDD011FFD07700138A8C = F6D9BDD011FFD07700138A8C /* PlistBookmark */;
 			F6D9BDD111FFD07700138A8C = F6D9BDD111FFD07700138A8C /* PBXTextBookmark */;
@@ -617,9 +624,9 @@
 	};
 	F603A91811780A0400BAC73A /* ViewBodyMapController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1503, 2691}}";
-			sepNavSelRange = "{6105, 0}";
-			sepNavVisRange = "{0, 2740}";
+			sepNavIntBoundsRect = "{{0, 0}, {1503, 2769}}";
+			sepNavSelRange = "{4491, 0}";
+			sepNavVisRange = "{3542, 1523}";
 		};
 	};
 	F603A92411780D8700BAC73A /* PBXBookmark */ = {
@@ -1540,7 +1547,7 @@
 		fRef = F603A91811780A0400BAC73A /* ViewBodyMapController.m */;
 		name = "ViewBodyMapController.m: 160";
 		rLen = 0;
-		rLoc = 6105;
+		rLoc = 6130;
 		rType = 0;
 		vrLen = 2740;
 		vrLoc = 0;
@@ -4615,7 +4622,7 @@
 	F6D5A00D12012E5A009DDA28 /* LEBuildingNameShip.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1433, 780}}";
-			sepNavSelRange = "{991, 0}";
+			sepNavSelRange = "{940, 0}";
 			sepNavVisRange = "{51, 1074}";
 		};
 	};
@@ -4968,6 +4975,70 @@
 		rType = 0;
 		vrLen = 1074;
 		vrLoc = 51;
+	};
+	F6D5A05612013474009DDA28 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6EF714011FE76EA00A93226 /* SpacePort.h */;
+		name = "SpacePort.h: 28";
+		rLen = 0;
+		rLoc = 511;
+		rType = 0;
+		vrLen = 312;
+		vrLoc = 294;
+	};
+	F6D5A05712013474009DDA28 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6864F9A1183A131009826A7 /* ViewNetwork19NewsController.m */;
+		name = "ViewNetwork19NewsController.m: 100";
+		rLen = 10;
+		rLoc = 2988;
+		rType = 0;
+		vrLen = 515;
+		vrLoc = 2694;
+	};
+	F6D5A05812013474009DDA28 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F603A91811780A0400BAC73A /* ViewBodyMapController.m */;
+		rLen = 19;
+		rLoc = 7051;
+		rType = 0;
+	};
+	F6D5A05912013474009DDA28 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F603A91811780A0400BAC73A /* ViewBodyMapController.m */;
+		name = "ViewBodyMapController.m: 184";
+		rLen = 0;
+		rLoc = 6945;
+		rType = 0;
+		vrLen = 1040;
+		vrLoc = 6855;
+	};
+	F6D5A05A12013475009DDA28 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6D5A00D12012E5A009DDA28 /* LEBuildingNameShip.m */;
+		name = "LEBuildingNameShip.m: 41";
+		rLen = 0;
+		rLoc = 940;
+		rType = 0;
+		vrLen = 1074;
+		vrLoc = 51;
+	};
+	F6D5A05B12013475009DDA28 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F603A91811780A0400BAC73A /* ViewBodyMapController.m */;
+		rLen = 19;
+		rLoc = 4069;
+		rType = 0;
+	};
+	F6D5A05C12013475009DDA28 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F603A91811780A0400BAC73A /* ViewBodyMapController.m */;
+		name = "ViewBodyMapController.m: 104";
+		rLen = 0;
+		rLoc = 4491;
+		rType = 0;
+		vrLen = 1523;
+		vrLoc = 3542;
 	};
 	F6D9BDCF11FFD07700138A8C /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -5947,7 +6018,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {908, 429}}";
 			sepNavSelRange = "{511, 0}";
-			sepNavVisRange = "{294, 307}";
+			sepNavVisRange = "{294, 312}";
 		};
 	};
 	F6EF714111FE76EA00A93226 /* SpacePort.m */ = {

@@ -99,7 +99,9 @@
 - (void)viewDidDisappear:(BOOL)animated {
 	[super viewDidDisappear:animated];
 	Session *session = [Session sharedInstance];
-	[session removeObserver:self forKeyPath:@"body.buildingMap"];
+	if (session.body) {
+		[session removeObserver:self forKeyPath:@"body.buildingMap"];
+	}
 }
 
 
