@@ -1,24 +1,23 @@
 //
-//  RenameSpyController.m
+//  RenameShipController.m
 //  UniversalClient
 //
-//  Created by Kevin Runde on 4/25/10.
+//  Created by Kevin Runde on 7/28/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
-#import "RenameSpyController.h"
+#import "RenameShipController.h"
 #import "LEMacros.h"
 #import "LEViewSectionTab.h"
-#import "LEBuildingNameSpy.h"
-#import "Intelligence.h"
-#import "Spy.h"
+#import "SpacePort.h"
+#import "Ship.h"
 
 
-@implementation RenameSpyController
+@implementation RenameShipController
 
 
-@synthesize intelligenceBuilding;
-@synthesize spy;
+@synthesize spacePort;
+@synthesize ship;
 @synthesize nameCell;
 
 
@@ -27,28 +26,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-	self.navigationItem.title = @"Rename Spy";
+	
+	self.navigationItem.title = @"Rename Ship";
 	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)] autorelease];
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)] autorelease];
 	
 	self.nameCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
 	self.nameCell.label.text = @"Name";
-	self.nameCell.textField.text = spy.name;
+	self.nameCell.textField.text = self.ship.name;
 	
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Rename Spy"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Rename Ship"]);
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
-	[self.spy addObserver:self forKeyPath:@"name" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+    [super viewWillAppear:animated];
+	[self.ship addObserver:self forKeyPath:@"name" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
 }
 
 
-- (void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear:animated];
-	[self.spy removeObserver:self forKeyPath:@"name"];
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+	[self.ship removeObserver:self forKeyPath:@"name"];
 }
 
 
@@ -67,7 +66,7 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return self.nameCell;
+	return self.nameCell;
 }
 
 
@@ -88,8 +87,8 @@
 
 
 - (void)dealloc {
-	self.intelligenceBuilding = nil;
-	self.spy = nil;
+	self.spacePort = nil;
+	self.ship = nil;
 	self.nameCell = nil;
     [super dealloc];
 }
@@ -104,15 +103,15 @@
 
 
 - (void)save {
-	[self.intelligenceBuilding spy:self.spy rename:self.nameCell.textField.text];
+	[self.spacePort ship:self.ship rename:self.nameCell.textField.text];
 }
 
 
 #pragma mark -
 #pragma mark Class Methods
 
-+ (RenameSpyController *)create {
-	return [[[RenameSpyController alloc] init] autorelease];
++ (RenameShipController *)create {
+	return [[[RenameShipController alloc] init] autorelease];
 }
 
 

@@ -13,13 +13,13 @@
 @interface LEBuildingViewAllShips : LERequest {
 	NSString *buildingId;
 	NSString *buildingUrl;
-	NSArray *ships;
+	NSMutableArray *ships;
 }
 
 
 @property(nonatomic, retain) NSString *buildingId;
 @property(nonatomic, retain) NSString *buildingUrl;
-@property(nonatomic, retain) NSArray *ships;
+@property(nonatomic, retain) NSMutableArray *ships;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl;

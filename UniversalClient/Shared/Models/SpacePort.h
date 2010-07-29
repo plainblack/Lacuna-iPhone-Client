@@ -10,15 +10,23 @@
 #import "Building.h"
 
 
+@class Ship;
+
 @interface SpacePort : Building {
 	NSMutableDictionary *dockedShips;
+	NSMutableArray *ships;
+	NSDate *shipsUpdated;
 }
 
 
 @property (nonatomic, retain) NSMutableDictionary *dockedShips;
+@property (nonatomic, retain) NSMutableArray *ships;
+@property (nonatomic, retain) NSDate *shipsUpdated;
 
 
 - (void)loadShips;
+- (void)scuttleShip:(Ship *)ship;
+- (void)ship:(Ship *)ship rename:(NSString *)newName;
 
 
 @end

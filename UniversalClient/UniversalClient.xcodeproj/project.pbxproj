@@ -129,6 +129,10 @@
 		F6C3906311F1E36C004FB38F /* LETableViewCellMailSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */; };
 		F6C390C311F1ED14004FB38F /* LETableViewCellMailHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C390C211F1ED14004FB38F /* LETableViewCellMailHeaders.m */; };
 		F6C390EE11F23D54004FB38F /* LETableViewCellBuildQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C390ED11F23D54004FB38F /* LETableViewCellBuildQueueItem.m */; };
+		F6D59F9D120120EE009DDA28 /* ViewShipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D59F9C120120EE009DDA28 /* ViewShipsController.m */; };
+		F6D59FF412012AA9009DDA28 /* RenameShipController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D59FF312012AA9009DDA28 /* RenameShipController.m */; };
+		F6D5A00B12012E43009DDA28 /* LEBuildingScuttleShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D5A00A12012E43009DDA28 /* LEBuildingScuttleShip.m */; };
+		F6D5A00E12012E5A009DDA28 /* LEBuildingNameShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D5A00D12012E5A009DDA28 /* LEBuildingNameShip.m */; };
 		F6DD1FDC116D33FC0013C58D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F6DD1FDB116D33FC0013C58D /* Default.png */; };
 		F6DD2026116D561F0013C58D /* LETableViewCellButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DD2025116D561F0013C58D /* LETableViewCellButton.m */; };
 		F6DD2064116D5B3C0013C58D /* LEViewSectionTab.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DD2063116D5B3C0013C58D /* LEViewSectionTab.m */; };
@@ -412,6 +416,14 @@
 		F6C390C211F1ED14004FB38F /* LETableViewCellMailHeaders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellMailHeaders.m; sourceTree = "<group>"; };
 		F6C390EC11F23D54004FB38F /* LETableViewCellBuildQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellBuildQueueItem.h; sourceTree = "<group>"; };
 		F6C390ED11F23D54004FB38F /* LETableViewCellBuildQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellBuildQueueItem.m; sourceTree = "<group>"; };
+		F6D59F9B120120EE009DDA28 /* ViewShipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewShipsController.h; sourceTree = "<group>"; };
+		F6D59F9C120120EE009DDA28 /* ViewShipsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewShipsController.m; sourceTree = "<group>"; };
+		F6D59FF212012AA9009DDA28 /* RenameShipController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenameShipController.h; sourceTree = "<group>"; };
+		F6D59FF312012AA9009DDA28 /* RenameShipController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenameShipController.m; sourceTree = "<group>"; };
+		F6D5A00912012E43009DDA28 /* LEBuildingScuttleShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingScuttleShip.h; sourceTree = "<group>"; };
+		F6D5A00A12012E43009DDA28 /* LEBuildingScuttleShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingScuttleShip.m; sourceTree = "<group>"; };
+		F6D5A00C12012E5A009DDA28 /* LEBuildingNameShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingNameShip.h; sourceTree = "<group>"; };
+		F6D5A00D12012E5A009DDA28 /* LEBuildingNameShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingNameShip.m; sourceTree = "<group>"; };
 		F6DD1FDB116D33FC0013C58D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		F6DD2024116D561F0013C58D /* LETableViewCellButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellButton.h; sourceTree = "<group>"; };
 		F6DD2025116D561F0013C58D /* LETableViewCellButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellButton.m; sourceTree = "<group>"; };
@@ -835,6 +847,10 @@
 				F6AC4A17116C0F9B001B967A /* LESpeciesSetHuman.m */,
 				F6AC4A18116C0F9B001B967A /* LEUpgradeBuilding.h */,
 				F6AC4A19116C0F9B001B967A /* LEUpgradeBuilding.m */,
+				F6D5A00912012E43009DDA28 /* LEBuildingScuttleShip.h */,
+				F6D5A00A12012E43009DDA28 /* LEBuildingScuttleShip.m */,
+				F6D5A00C12012E5A009DDA28 /* LEBuildingNameShip.h */,
+				F6D5A00D12012E5A009DDA28 /* LEBuildingNameShip.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -972,6 +988,10 @@
 				F6FB45CE11F53D9F00E24EAC /* AssembleGlyphsController.h */,
 				F6FB45CF11F53D9F00E24EAC /* AssembleGlyphsController.m */,
 				F6FB45D011F53D9F00E24EAC /* AssembleGlyphsController.xib */,
+				F6D59F9B120120EE009DDA28 /* ViewShipsController.h */,
+				F6D59F9C120120EE009DDA28 /* ViewShipsController.m */,
+				F6D59FF212012AA9009DDA28 /* RenameShipController.h */,
+				F6D59FF312012AA9009DDA28 /* RenameShipController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1219,6 +1239,10 @@
 				F6EF714211FE76EA00A93226 /* SpacePort.m in Sources */,
 				F6EF714F11FE7D1C00A93226 /* LEBuildingViewAllShips.m in Sources */,
 				F6EF716A11FE810900A93226 /* Ship.m in Sources */,
+				F6D59F9D120120EE009DDA28 /* ViewShipsController.m in Sources */,
+				F6D59FF412012AA9009DDA28 /* RenameShipController.m in Sources */,
+				F6D5A00B12012E43009DDA28 /* LEBuildingScuttleShip.m in Sources */,
+				F6D5A00E12012E5A009DDA28 /* LEBuildingNameShip.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1321,8 +1345,8 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "UniversalClient-Info.plist";
 				PRODUCT_NAME = UniversalClient;
-				PROVISIONING_PROFILE = "1D0D270A-6AF7-4BE6-9068-339FE078CBF6";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "29BAD16A-21DE-4551-A07A-0F27776995B6";
+				PROVISIONING_PROFILE = "33536A0E-4499-42F4-8F50-2263175F90B2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "33536A0E-4499-42F4-8F50-2263175F90B2";
 				SDKROOT = iphoneos4.0;
 				VALIDATE_PRODUCT = YES;
 			};

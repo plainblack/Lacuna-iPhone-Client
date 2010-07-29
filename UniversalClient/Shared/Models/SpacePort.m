@@ -7,24 +7,32 @@
 //
 
 #import "SpacePort.h"
+#import "Ship.h"
 #import "LEMacros.h"
 #import "Util.h"
 #import "LETableViewCellButton.h"
 #import "LETableViewCellDictionary.h"
 #import "LEBuildingViewAllShips.h"
+#import "ViewShipsController.h"
+#import "LEBuildingNameShip.h"
+#import "LEBuildingScuttleShip.h"
 
 
 @implementation SpacePort
 
 
 @synthesize dockedShips;
+@synthesize ships;
+@synthesize shipsUpdated;
 
 
 #pragma mark --
 #pragma mark Object Methods
 
 - (void)dealloc {
-	self.dockedShips;
+	self.dockedShips = nil;
+	self.ships = nil;
+	self.shipsUpdated = nil;
 	[super dealloc];
 }
 
@@ -103,8 +111,9 @@
 	switch (buildingRow) {
 		case BUILDING_ROW_VIEW_SHIPS:
 			; //DO NOT REMOVE
-			[self loadShips];
-			return nil;
+			ViewShipsController *viewShipsController = [ViewShipsController create];
+			viewShipsController.spacePort = self;
+			return viewShipsController;
 			break;
 		default:
 			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];
@@ -121,10 +130,52 @@
 }
 
 
+- (void)scuttleShip:(Ship *)ship {
+	[[[LEBuildingScuttleShip alloc] initWithCallback:@selector(shipScuttled:) target:self buildingId:self.id buildingUrl:self.buildingUrl shipId:ship.id] autorelease];
+}
+
+
+- (void)ship:(Ship *)ship rename:(NSString *)newName {
+	[[[LEBuildingNameShip alloc] initWithCallback:@selector(shipRenamed:) target:self buildingId:self.id buildingUrl:self.buildingUrl shipId:ship.id name:newName] autorelease];
+}
+
+
 #pragma mark --
 #pragma mark Callback Methods
 
 - (id)shipsLoaded:(LEBuildingViewAllShips *)request {
+	self.ships = request.ships;
+	self.shipsUpdated = [NSDate date];
+	return nil;
+}
+
+
+- (id)shipScuttled:(LEBuildingScuttleShip *)request {
+	Ship *shipToRemove;
+	for (Ship *newShip in self.ships) {
+		if ([newShip.id isEqualToString:request.shipId]) {
+			shipToRemove = newShip;
+		}
+	}
+	if (shipToRemove) {
+		[self.ships removeObject:shipToRemove];
+	}
+	
+	self.shipsUpdated = [NSDate date];
+	return nil;
+}
+
+
+- (id)shipRenamed:(LEBuildingNameShip *)request {
+	Ship *renamedShip;
+	for (Ship *ship in self.ships) {
+		if ([ship.id isEqualToString:request.shipId]) {
+			renamedShip = ship;
+		}
+	}
+	
+	renamedShip.name = request.name;
+	self.shipsUpdated = [NSDate date];
 	return nil;
 }
 
