@@ -329,7 +329,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F6D5A05C12013475009DDA28</string>
+										<string>F6DEC03E1202433700716CE7</string>
 										<key>history</key>
 										<array>
 											<string>F6885F7E1168421D00080696</string>
@@ -689,7 +689,7 @@
 											<string>F6D5A04012013073009DDA28</string>
 											<string>F6D5A045120130A8009DDA28</string>
 											<string>F6D5A05A12013475009DDA28</string>
-											<string>F6D5A05B12013475009DDA28</string>
+											<string>F6D5A10B12013621009DDA28</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -701,14 +701,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1004, 748}}</string>
+								<string>{{0, 0}, {1004, 741}}</string>
 								<key>RubberWindowFrame</key>
 								<string>406 203 1327 1205 0 0 2560 1418 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>748pt</string>
+							<string>741pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -721,14 +721,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 753}, {1004, 411}}</string>
+								<string>{{0, 746}, {1004, 418}}</string>
 								<key>RubberWindowFrame</key>
 								<string>406 203 1327 1205 0 0 2560 1418 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>411pt</string>
+							<string>418pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -747,9 +747,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>F6D59FEB120127E0009DDA28</string>
+				<string>F6DEC03F1202433700716CE7</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>F6D59FEC120127E0009DDA28</string>
+				<string>F6DEC0401202433700716CE7</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -887,10 +887,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>F6D59FEF120127E0009DDA28</string>
-		<string>F6D59FF0120127E0009DDA28</string>
-		<string>1C530D57069F1CE1000CFCEE</string>
-		<string>F6E766FF11D68BAE00778C1D</string>
+		<string>F6DEC0491202433700716CE7</string>
+		<string>F6DEC04A1202433700716CE7</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>F6885F691168335B00080696</string>
 		<string>/Users/rundeks/dev/iphone/Lacuna-iPhone-Client/UniversalClient/UniversalClient.xcodeproj</string>
@@ -918,7 +916,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>SpacePort.h</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -935,8 +933,6 @@
 							<string>224pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -976,7 +972,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>F6885F691168335B00080696</string>
-				<string>F6D59FB712012572009DDA28</string>
+				<string>F6DEC0411202433700716CE7</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -1100,13 +1096,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>F6D59FB812012572009DDA28</string>
+				<string>F6DEC0421202433700716CE7</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>F6D59FB912012572009DDA28</string>
-				<string>F6D59FBA12012572009DDA28</string>
-				<string>F6D59FBB12012572009DDA28</string>
-				<string>F6D59FBC12012572009DDA28</string>
-				<string>F6D59FBD12012572009DDA28</string>
+				<string>F6DEC0431202433700716CE7</string>
+				<string>F6DEC0441202433700716CE7</string>
+				<string>F6DEC0451202433700716CE7</string>
+				<string>F6DEC0461202433700716CE7</string>
+				<string>F6DEC0471202433700716CE7</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -1262,7 +1258,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>F6D59FED120127E0009DDA28</string>
+				<string>F6DEC0481202433700716CE7</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>

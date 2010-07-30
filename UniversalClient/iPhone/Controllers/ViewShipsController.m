@@ -11,8 +11,9 @@
 #import "Util.h"
 #import	"SpacePort.h"
 #import "Ship.h"
-#import "LETableViewCellLabeledText.h"
+#import "LETableViewCellShip.h"
 #import "LETableViewCellButton.h"
+#import "LETableViewCellLabeledText.h"
 #import "RenameShipController.h"
 
 
@@ -95,7 +96,7 @@ typedef enum {
 	if (self.spacePort && self.spacePort.ships) {
 		switch (indexPath.row) {
 			case ROW_SHIP_INFO:
-				return [LETableViewCellLabeledText getHeightForTableView:tableView];
+				return [LETableViewCellShip getHeightForTableView:tableView];
 				break;
 			case ROW_RENAME_BUTTON:
 			case ROW_SCUTTLE_BUTTON:
@@ -121,9 +122,8 @@ typedef enum {
 		switch (indexPath.row) {
 			case ROW_SHIP_INFO:
 				; //DO NOT REMOVE
-				LETableViewCellLabeledText *infoCell = [LETableViewCellLabeledText getCellForTableView:tableView];
-				infoCell.label.text =currentShip.type;
-				infoCell.content.text = currentShip.name;
+				LETableViewCellShip *infoCell = [LETableViewCellShip getCellForTableView:tableView];
+				[infoCell setShip:currentShip];
 				cell = infoCell;
 				break;
 			case ROW_RENAME_BUTTON:

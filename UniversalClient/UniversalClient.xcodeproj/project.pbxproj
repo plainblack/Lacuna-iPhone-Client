@@ -149,6 +149,7 @@
 		F6DD2118116D73F50013C58D /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DD210B116D73F50013C58D /* SBJsonParser.m */; };
 		F6DD2119116D73F50013C58D /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DD210D116D73F50013C58D /* SBJsonWriter.m */; };
 		F6DD2141116D75770013C58D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6DD2140116D75770013C58D /* CoreLocation.framework */; };
+		F6DEC052120247BF00716CE7 /* LETableViewCellShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DEC051120247BF00716CE7 /* LETableViewCellShip.m */; };
 		F6E3E57F11BB0A3200A031CF /* EditEmpireProfileText.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3E57E11BB0A3200A031CF /* EditEmpireProfileText.m */; };
 		F6E3E58211BB0EA500A031CF /* LEEmpireEditProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3E58111BB0EA500A031CF /* LEEmpireEditProfile.m */; };
 		F6E3E5E011BB1E8500A031CF /* LETableViewCellTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3E5DF11BB1E8500A031CF /* LETableViewCellTextView.m */; };
@@ -457,6 +458,8 @@
 		F6DD210C116D73F50013C58D /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		F6DD210D116D73F50013C58D /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		F6DD2140116D75770013C58D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		F6DEC050120247BF00716CE7 /* LETableViewCellShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellShip.h; sourceTree = "<group>"; };
+		F6DEC051120247BF00716CE7 /* LETableViewCellShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellShip.m; sourceTree = "<group>"; };
 		F6E3E57D11BB0A3200A031CF /* EditEmpireProfileText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditEmpireProfileText.h; sourceTree = "<group>"; };
 		F6E3E57E11BB0A3200A031CF /* EditEmpireProfileText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditEmpireProfileText.m; sourceTree = "<group>"; };
 		F6E3E58011BB0EA500A031CF /* LEEmpireEditProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireEditProfile.h; sourceTree = "<group>"; };
@@ -698,6 +701,8 @@
 				F69809C4117A156E00BD2096 /* LETableViewCellUnbuildable.m */,
 				F6DD2062116D5B3C0013C58D /* LEViewSectionTab.h */,
 				F6DD2063116D5B3C0013C58D /* LEViewSectionTab.m */,
+				F6DEC050120247BF00716CE7 /* LETableViewCellShip.h */,
+				F6DEC051120247BF00716CE7 /* LETableViewCellShip.m */,
 			);
 			name = Views;
 			path = Shared/Views;
@@ -1243,6 +1248,7 @@
 				F6D59FF412012AA9009DDA28 /* RenameShipController.m in Sources */,
 				F6D5A00B12012E43009DDA28 /* LEBuildingScuttleShip.m in Sources */,
 				F6D5A00E12012E5A009DDA28 /* LEBuildingNameShip.m in Sources */,
+				F6DEC052120247BF00716CE7 /* LETableViewCellShip.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
