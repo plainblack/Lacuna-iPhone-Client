@@ -16,15 +16,20 @@
 	NSMutableDictionary *dockedShips;
 	NSMutableArray *ships;
 	NSDate *shipsUpdated;
+	NSMutableArray *travellingShips;
+	NSDate *travellingShipsUpdated;
 }
 
 
 @property (nonatomic, retain) NSMutableDictionary *dockedShips;
 @property (nonatomic, retain) NSMutableArray *ships;
 @property (nonatomic, retain) NSDate *shipsUpdated;
+@property (nonatomic, retain) NSMutableArray *travellingShips;
+@property (nonatomic, retain) NSDate *travellingShipsUpdated;
 
 
 - (void)loadShips;
+- (void)loadTravellingShips;
 - (void)scuttleShip:(Ship *)ship;
 - (void)ship:(Ship *)ship rename:(NSString *)newName;
 

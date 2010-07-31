@@ -11,6 +11,7 @@
 
 @class Ship;
 
+
 @interface LETableViewCellShip : UITableViewCell {
 	UILabel *nameLabel;
 	UILabel *taskLabel;

@@ -57,7 +57,6 @@
 	self.speedLabel.text = [Util prettyNSInteger:ship.speed];
 	self.holdSizeLabel.text = [Util prettyNSInteger:ship.holdSize];
 	NSString *shipImageName = [NSString stringWithFormat:@"assets/ships/%@.png", ship.type];
-	NSLog(@"Ship Image Name: %@", shipImageName);
 	self.shipImageView.image = [UIImage imageNamed:shipImageName];
 }
 

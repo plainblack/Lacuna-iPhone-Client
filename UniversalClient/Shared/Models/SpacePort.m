@@ -16,6 +16,8 @@
 #import "ViewShipsController.h"
 #import "LEBuildingNameShip.h"
 #import "LEBuildingScuttleShip.h"
+#import "LEBuildingViewShipsTravelling.h"
+#import "ViewTravellingShipsController.h"
 
 
 @implementation SpacePort
@@ -24,6 +26,8 @@
 @synthesize dockedShips;
 @synthesize ships;
 @synthesize shipsUpdated;
+@synthesize travellingShips;
+@synthesize travellingShipsUpdated;
 
 
 #pragma mark --
@@ -33,6 +37,8 @@
 	self.dockedShips = nil;
 	self.ships = nil;
 	self.shipsUpdated = nil;
+	self.travellingShips = nil;
+	self.travellingShipsUpdated = nil;
 	[super dealloc];
 }
 
@@ -63,6 +69,7 @@
 
 	NSMutableArray *actionRows = [NSMutableArray arrayWithCapacity:1];
 	[actionRows addObject:[NSNumber numberWithInt:BUILDING_ROW_VIEW_SHIPS]];
+	[actionRows addObject:[NSNumber numberWithInt:BUILDING_ROW_VIEW_TRAVELLING_SHIPS]];
 	
 	self.sections = _array(productionSection, _dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", actionRows, @"rows"), [self generateUpgradeSection]);
 }
@@ -73,6 +80,7 @@
 		case BUILDING_ROW_DOCKED_SHIPS:
 			return [LETableViewCellDictionary getHeightForTableView:tableView numItems:[self.dockedShips count]];
 			break;
+		case BUILDING_ROW_VIEW_TRAVELLING_SHIPS:
 		case BUILDING_ROW_VIEW_SHIPS:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
@@ -94,9 +102,15 @@
 			break;
 		case BUILDING_ROW_VIEW_SHIPS:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
-			LETableViewCellButton *buttonCell = [LETableViewCellButton getCellForTableView:tableView];
-			buttonCell.textLabel.text = @"View Ships";
-			cell = buttonCell;
+			LETableViewCellButton *viewShipsCell = [LETableViewCellButton getCellForTableView:tableView];
+			viewShipsCell.textLabel.text = @"View Ships";
+			cell = viewShipsCell;
+			break;
+		case BUILDING_ROW_VIEW_TRAVELLING_SHIPS:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *viewTravellingShipsCell = [LETableViewCellButton getCellForTableView:tableView];
+			viewTravellingShipsCell.textLabel.text = @"View Ships In Transit";
+			cell = viewTravellingShipsCell;
 			break;
 		default:
 			cell = [super tableView:tableView cellForBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex];
@@ -115,6 +129,12 @@
 			viewShipsController.spacePort = self;
 			return viewShipsController;
 			break;
+		case BUILDING_ROW_VIEW_TRAVELLING_SHIPS:
+			; //DO NOT REMOVE
+			ViewTravellingShipsController *viewTravellingShipsController = [ViewTravellingShipsController create];
+			viewTravellingShipsController.spacePort = self;
+			return viewTravellingShipsController;
+			break;
 		default:
 			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];
 			break;
@@ -127,6 +147,11 @@
 
 - (void)loadShips {
 	[[[LEBuildingViewAllShips alloc] initWithCallback:@selector(shipsLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+}
+
+
+- (void)loadTravellingShips {
+	[[[LEBuildingViewShipsTravelling alloc] initWithCallback:@selector(travellingShipsLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
 }
 
 
@@ -146,6 +171,13 @@
 - (id)shipsLoaded:(LEBuildingViewAllShips *)request {
 	self.ships = request.ships;
 	self.shipsUpdated = [NSDate date];
+	return nil;
+}
+
+
+- (id)travellingShipsLoaded:(LEBuildingViewShipsTravelling *)request {
+	self.travellingShips = request.travellingShips;
+	self.travellingShipsUpdated = [NSDate date];
 	return nil;
 }
 
