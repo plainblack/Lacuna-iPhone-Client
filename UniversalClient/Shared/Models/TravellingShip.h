@@ -25,12 +25,12 @@
 @property (nonatomic, retain) NSString *id;
 @property (nonatomic, retain) NSString *type;
 @property (nonatomic, retain) NSDate *dateArrives;
-@property (nonatomic, assign) NSString *fromId;
-@property (nonatomic, assign) NSString *fromType;
-@property (nonatomic, assign) NSString *fromName;
-@property (nonatomic, assign) NSString *toId;
-@property (nonatomic, assign) NSString *toType;
-@property (nonatomic, assign) NSString *toName;
+@property (nonatomic, retain) NSString *fromId;
+@property (nonatomic, retain) NSString *fromType;
+@property (nonatomic, retain) NSString *fromName;
+@property (nonatomic, retain) NSString *toId;
+@property (nonatomic, retain) NSString *toType;
+@property (nonatomic, retain) NSString *toName;
 
 
 - (void)parseData:(NSDictionary *)spyData;

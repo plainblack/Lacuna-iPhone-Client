@@ -277,30 +277,6 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>86</integer>
-									<integer>15</integer>
-									<integer>14</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>315</integer>
-									<integer>258</integer>
-									<integer>91</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>316</integer>
-									<integer>258</integer>
-									<integer>91</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>317</integer>
-									<integer>258</integer>
-									<integer>91</integer>
-									<integer>0</integer>
-								</array>
-								<array>
 									<integer>318</integer>
 									<integer>258</integer>
 									<integer>91</integer>
@@ -308,7 +284,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 802}, {301, 1146}}</string>
+							<string>{{0, 4651}, {301, 1146}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -327,7 +303,7 @@
 							<real>301</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>406 203 1327 1205 0 0 2560 1418 </string>
+						<string>406 201 1327 1205 0 0 2560 1418 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -345,7 +321,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ViewTravellingShipsController.m</string>
+								<string>LETableViewCellTravellingShip.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -353,11 +329,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ViewTravellingShipsController.m</string>
+										<string>LETableViewCellTravellingShip.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>F6DB90F71203A2D1003293A7</string>
+										<string>F6DB91071203C5BF003293A7</string>
 										<key>history</key>
 										<array>
 											<string>F6885F7E1168421D00080696</string>
@@ -720,8 +696,6 @@
 											<string>F6DEC0A31202728600716CE7</string>
 											<string>F6EB02821202FE57001BFD68</string>
 											<string>F6EB02831202FE57001BFD68</string>
-											<string>F6EB02841202FE57001BFD68</string>
-											<string>F6EB02851202FE57001BFD68</string>
 											<string>F6EB02861202FE57001BFD68</string>
 											<string>F6EB02871202FE57001BFD68</string>
 											<string>F6EB02881202FE57001BFD68</string>
@@ -734,9 +708,11 @@
 											<string>F6EB028F1202FE57001BFD68</string>
 											<string>F6DB90F21203A2D1003293A7</string>
 											<string>F6DB90F31203A2D1003293A7</string>
-											<string>F6DB90F41203A2D1003293A7</string>
-											<string>F6DB90F51203A2D1003293A7</string>
-											<string>F6DB90F61203A2D1003293A7</string>
+											<string>F6DB91021203C5BF003293A7</string>
+											<string>F6DB91031203C5BF003293A7</string>
+											<string>F6DB91041203C5BF003293A7</string>
+											<string>F6DB91051203C5BF003293A7</string>
+											<string>F6DB91061203C5BF003293A7</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -750,7 +726,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1004, 725}}</string>
 								<key>RubberWindowFrame</key>
-								<string>406 203 1327 1205 0 0 2560 1418 </string>
+								<string>406 201 1327 1205 0 0 2560 1418 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -770,7 +746,7 @@
 								<key>Frame</key>
 								<string>{{0, 730}, {1004, 434}}</string>
 								<key>RubberWindowFrame</key>
-								<string>406 203 1327 1205 0 0 2560 1418 </string>
+								<string>406 201 1327 1205 0 0 2560 1418 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -934,7 +910,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>F6DB90F81203A2D1003293A7</string>
+		<string>F6DB91081203C5BF003293A7</string>
 		<string>F6DB90F91203A2D1003293A7</string>
 		<string>F6DB90E412039043003293A7</string>
 		<string>1CD10A99069EF8BA00B06720</string>
@@ -943,7 +919,7 @@
 		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
-	<string>406 203 1327 1205 0 0 2560 1418 </string>
+	<string>406 201 1327 1205 0 0 2560 1418 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>

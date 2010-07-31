@@ -61,9 +61,9 @@
 	self.fromType = [fromData objectForKey:@"type"];
 	self.fromName = [fromData objectForKey:@"name"];
 	NSDictionary *toData = [shipData objectForKey:@"to"];
-	self.fromId = [toData objectForKey:@"id"];
-	self.fromType = [toData objectForKey:@"type"];
-	self.fromName = [toData objectForKey:@"name"];
+	self.toId = [toData objectForKey:@"id"];
+	self.toType = [toData objectForKey:@"type"];
+	self.toName = [toData objectForKey:@"name"];
 }
 
 

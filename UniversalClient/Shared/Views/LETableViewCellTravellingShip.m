@@ -82,7 +82,7 @@
 		cell.dateArrivesLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.dateArrivesLabel];
 		
-		UILabel *tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, 35, 60, 20)] autorelease];
+		UILabel *tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, 35, 40, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
 		tmpLabel.textAlignment = UITextAlignmentRight;
 		tmpLabel.font = LABEL_FONT;
@@ -90,7 +90,7 @@
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		tmpLabel.text = @"From";
 		[cell.contentView addSubview:tmpLabel];
-		cell.fromLabel = [[[UILabel alloc] initWithFrame:CGRectMake(185, 35, 100, 20)] autorelease];
+		cell.fromLabel = [[[UILabel alloc] initWithFrame:CGRectMake(165, 35, 120, 20)] autorelease];
 		cell.fromLabel.backgroundColor = [UIColor clearColor];
 		cell.fromLabel.textAlignment = UITextAlignmentLeft;
 		cell.fromLabel.font = TEXT_SMALL_FONT;
@@ -98,7 +98,7 @@
 		cell.fromLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.fromLabel];
 		
-		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, 55, 60, 20)] autorelease];
+		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, 55, 40, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
 		tmpLabel.textAlignment = UITextAlignmentRight;
 		tmpLabel.font = LABEL_FONT;
@@ -106,7 +106,7 @@
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		tmpLabel.text = @"To";
 		[cell.contentView addSubview:tmpLabel];
-		cell.toLabel = [[[UILabel alloc] initWithFrame:CGRectMake(185, 55, 100, 20)] autorelease];
+		cell.toLabel = [[[UILabel alloc] initWithFrame:CGRectMake(165, 55, 120, 20)] autorelease];
 		cell.toLabel.backgroundColor = [UIColor clearColor];
 		cell.toLabel.textAlignment = UITextAlignmentLeft;
 		cell.toLabel.font = TEXT_SMALL_FONT;
