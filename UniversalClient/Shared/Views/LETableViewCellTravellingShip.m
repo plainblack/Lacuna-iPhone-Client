@@ -62,7 +62,7 @@
 #pragma mark Class Methods
 
 + (LETableViewCellTravellingShip *)getCellForTableView:(UITableView *)tableView {
-    static NSString *CellIdentifier = @"ShipCell";
+    static NSString *CellIdentifier = @"TravellingShipCell";
 	
 	LETableViewCellTravellingShip *cell = (LETableViewCellTravellingShip *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {

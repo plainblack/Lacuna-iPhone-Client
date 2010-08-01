@@ -29,6 +29,16 @@
 		F61D0D6D11E24E9E00B06382 /* Intelligence.m in Sources */ = {isa = PBXBuildFile; fileRef = F61D0D6C11E24E9E00B06382 /* Intelligence.m */; };
 		F61D0DE711E2602400B06382 /* Park.m in Sources */ = {isa = PBXBuildFile; fileRef = F61D0DE611E2602400B06382 /* Park.m */; };
 		F61D0E2F11E2656B00B06382 /* Development.m in Sources */ = {isa = PBXBuildFile; fileRef = F61D0E2E11E2656B00B06382 /* Development.m */; };
+		F61F657E1204A7190007427A /* Shipyard.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F657D1204A7190007427A /* Shipyard.m */; };
+		F61F65811204B1240007427A /* LEBuildingGetBuildableShips.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F65801204B1240007427A /* LEBuildingGetBuildableShips.m */; };
+		F61F65841204B1320007427A /* LEBuildingViewShipBuildQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F65831204B1320007427A /* LEBuildingViewShipBuildQueue.m */; };
+		F61F65871204B1440007427A /* LEBuildingBuildShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F65861204B1440007427A /* LEBuildingBuildShip.m */; };
+		F61F658A1204B4A30007427A /* BuildableShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F65891204B4A30007427A /* BuildableShip.m */; };
+		F61F658D1204B4B40007427A /* ShipBuildQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F658C1204B4B40007427A /* ShipBuildQueueItem.m */; };
+		F61F65D01204C6030007427A /* ViewShipBuildQueueController.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F65CF1204C6030007427A /* ViewShipBuildQueueController.m */; };
+		F61F65D31204C90D0007427A /* BuildShipController.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F65D21204C90D0007427A /* BuildShipController.m */; };
+		F61F66EA120504FE0007427A /* LETableViewCellShipBuildQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F66E9120504FE0007427A /* LETableViewCellShipBuildQueueItem.m */; };
+		F61F66ED1205050D0007427A /* LETableViewCellBuildableShipInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F66EC1205050D0007427A /* LETableViewCellBuildableShipInfo.m */; };
 		F621306C11F8F4C1006B80C5 /* LEBuildingGetOresAvailableForProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = F621306B11F8F4C1006B80C5 /* LEBuildingGetOresAvailableForProcessing.m */; };
 		F631A3D311754AEF005E40CC /* ViewBodyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F631A3D211754AEF005E40CC /* ViewBodyController.m */; };
 		F631A3F311755489005E40CC /* ViewBodyController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F631A3F211755489005E40CC /* ViewBodyController.xib */; };
@@ -232,6 +242,26 @@
 		F61D0DE611E2602400B06382 /* Park.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Park.m; sourceTree = "<group>"; };
 		F61D0E2D11E2656B00B06382 /* Development.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Development.h; sourceTree = "<group>"; };
 		F61D0E2E11E2656B00B06382 /* Development.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Development.m; sourceTree = "<group>"; };
+		F61F657C1204A7190007427A /* Shipyard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shipyard.h; sourceTree = "<group>"; };
+		F61F657D1204A7190007427A /* Shipyard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shipyard.m; sourceTree = "<group>"; };
+		F61F657F1204B1240007427A /* LEBuildingGetBuildableShips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetBuildableShips.h; sourceTree = "<group>"; };
+		F61F65801204B1240007427A /* LEBuildingGetBuildableShips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetBuildableShips.m; sourceTree = "<group>"; };
+		F61F65821204B1320007427A /* LEBuildingViewShipBuildQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewShipBuildQueue.h; sourceTree = "<group>"; };
+		F61F65831204B1320007427A /* LEBuildingViewShipBuildQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewShipBuildQueue.m; sourceTree = "<group>"; };
+		F61F65851204B1440007427A /* LEBuildingBuildShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingBuildShip.h; sourceTree = "<group>"; };
+		F61F65861204B1440007427A /* LEBuildingBuildShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingBuildShip.m; sourceTree = "<group>"; };
+		F61F65881204B4A30007427A /* BuildableShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildableShip.h; sourceTree = "<group>"; };
+		F61F65891204B4A30007427A /* BuildableShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildableShip.m; sourceTree = "<group>"; };
+		F61F658B1204B4B40007427A /* ShipBuildQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipBuildQueueItem.h; sourceTree = "<group>"; };
+		F61F658C1204B4B40007427A /* ShipBuildQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShipBuildQueueItem.m; sourceTree = "<group>"; };
+		F61F65CE1204C6030007427A /* ViewShipBuildQueueController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewShipBuildQueueController.h; sourceTree = "<group>"; };
+		F61F65CF1204C6030007427A /* ViewShipBuildQueueController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewShipBuildQueueController.m; sourceTree = "<group>"; };
+		F61F65D11204C90D0007427A /* BuildShipController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildShipController.h; sourceTree = "<group>"; };
+		F61F65D21204C90D0007427A /* BuildShipController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildShipController.m; sourceTree = "<group>"; };
+		F61F66E8120504FE0007427A /* LETableViewCellShipBuildQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellShipBuildQueueItem.h; sourceTree = "<group>"; };
+		F61F66E9120504FE0007427A /* LETableViewCellShipBuildQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellShipBuildQueueItem.m; sourceTree = "<group>"; };
+		F61F66EB1205050D0007427A /* LETableViewCellBuildableShipInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellBuildableShipInfo.h; sourceTree = "<group>"; };
+		F61F66EC1205050D0007427A /* LETableViewCellBuildableShipInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellBuildableShipInfo.m; sourceTree = "<group>"; };
 		F621306A11F8F4C1006B80C5 /* LEBuildingGetOresAvailableForProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetOresAvailableForProcessing.h; sourceTree = "<group>"; };
 		F621306B11F8F4C1006B80C5 /* LEBuildingGetOresAvailableForProcessing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetOresAvailableForProcessing.m; sourceTree = "<group>"; };
 		F631A3D111754AEF005E40CC /* ViewBodyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewBodyController.h; sourceTree = "<group>"; };
@@ -717,6 +747,10 @@
 				F6DEC051120247BF00716CE7 /* LETableViewCellShip.m */,
 				F6DB90E512039C33003293A7 /* LETableViewCellTravellingShip.h */,
 				F6DB90E612039C33003293A7 /* LETableViewCellTravellingShip.m */,
+				F61F66E8120504FE0007427A /* LETableViewCellShipBuildQueueItem.h */,
+				F61F66E9120504FE0007427A /* LETableViewCellShipBuildQueueItem.m */,
+				F61F66EB1205050D0007427A /* LETableViewCellBuildableShipInfo.h */,
+				F61F66EC1205050D0007427A /* LETableViewCellBuildableShipInfo.m */,
 			);
 			name = Views;
 			path = Shared/Views;
@@ -776,10 +810,14 @@
 				F6AC49EB116C0F9B001B967A /* LEBuildBuilding.m */,
 				F6A9C5B71184BBA1001F0D9C /* LEBuildingAssignSpy.h */,
 				F6A9C5B81184BBA1001F0D9C /* LEBuildingAssignSpy.m */,
+				F61F65851204B1440007427A /* LEBuildingBuildShip.h */,
+				F61F65861204B1440007427A /* LEBuildingBuildShip.m */,
 				F6A9C5B11184BB6D001F0D9C /* LEBuildingBurnSpy.h */,
 				F6A9C5B21184BB6D001F0D9C /* LEBuildingBurnSpy.m */,
 				F6E3EFC811B4440200E7BC86 /* LEBuildingDemolish.h */,
 				F6E3EFC911B4440200E7BC86 /* LEBuildingDemolish.m */,
+				F61F657F1204B1240007427A /* LEBuildingGetBuildableShips.h */,
+				F61F65801204B1240007427A /* LEBuildingGetBuildableShips.m */,
 				F621306A11F8F4C1006B80C5 /* LEBuildingGetOresAvailableForProcessing.h */,
 				F621306B11F8F4C1006B80C5 /* LEBuildingGetOresAvailableForProcessing.m */,
 				F6FB458611F515A700E24EAC /* LEBuildingGlyphAssemble.h */,
@@ -788,12 +826,16 @@
 				F6FB458411F5159800E24EAC /* LEBuildingGlyphs.m */,
 				F6FB458011F5158C00E24EAC /* LEBuildingGlyphSearch.h */,
 				F6FB458111F5158C00E24EAC /* LEBuildingGlyphSearch.m */,
+				F6D5A00C12012E5A009DDA28 /* LEBuildingNameShip.h */,
+				F6D5A00D12012E5A009DDA28 /* LEBuildingNameShip.m */,
 				F6A9C5B41184BB80001F0D9C /* LEBuildingNameSpy.h */,
 				F6A9C5B51184BB80001F0D9C /* LEBuildingNameSpy.m */,
 				F697BA0A119CE6BD004B2119 /* LEBuildingRecycle.h */,
 				F697BA0B119CE6BD004B2119 /* LEBuildingRecycle.m */,
 				F68650061183D2A4009826A7 /* LEBuildingRestrictCoverage.h */,
 				F68650071183D2A4009826A7 /* LEBuildingRestrictCoverage.m */,
+				F6D5A00912012E43009DDA28 /* LEBuildingScuttleShip.h */,
+				F6D5A00A12012E43009DDA28 /* LEBuildingScuttleShip.m */,
 				F6E766BC11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.h */,
 				F6E766BD11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.m */,
 				F678F75311A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.h */,
@@ -810,6 +852,10 @@
 				F6864F9D1183A3FB009826A7 /* LEBuildingViewNews.m */,
 				F65DC35F11EE4E2E00A0A782 /* LEBuildingViewPrisoners.h */,
 				F65DC36011EE4E2E00A0A782 /* LEBuildingViewPrisoners.m */,
+				F61F65821204B1320007427A /* LEBuildingViewShipBuildQueue.h */,
+				F61F65831204B1320007427A /* LEBuildingViewShipBuildQueue.m */,
+				F6EB025B1202F500001BFD68 /* LEBuildingViewShipsTravelling.h */,
+				F6EB025C1202F500001BFD68 /* LEBuildingViewShipsTravelling.m */,
 				F6A9C5AE1184BB3C001F0D9C /* LEBuildingViewSpies.h */,
 				F6A9C5AF1184BB3C001F0D9C /* LEBuildingViewSpies.m */,
 				F6AC49EC116C0F9B001B967A /* LECheckEmpireName.h */,
@@ -866,12 +912,6 @@
 				F6AC4A17116C0F9B001B967A /* LESpeciesSetHuman.m */,
 				F6AC4A18116C0F9B001B967A /* LEUpgradeBuilding.h */,
 				F6AC4A19116C0F9B001B967A /* LEUpgradeBuilding.m */,
-				F6D5A00912012E43009DDA28 /* LEBuildingScuttleShip.h */,
-				F6D5A00A12012E43009DDA28 /* LEBuildingScuttleShip.m */,
-				F6D5A00C12012E5A009DDA28 /* LEBuildingNameShip.h */,
-				F6D5A00D12012E5A009DDA28 /* LEBuildingNameShip.m */,
-				F6EB025B1202F500001BFD68 /* LEBuildingViewShipsTravelling.h */,
-				F6EB025C1202F500001BFD68 /* LEBuildingViewShipsTravelling.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -884,6 +924,8 @@
 				F64C43F511F3C37A002981EC /* Archaeology.m */,
 				F6E767C411D6A4D400778C1D /* Body.h */,
 				F6E767C511D6A4D400778C1D /* Body.m */,
+				F61F65881204B4A30007427A /* BuildableShip.h */,
+				F61F65891204B4A30007427A /* BuildableShip.m */,
 				F6FD9E6911D79FA0003785AD /* Building.h */,
 				F6FD9E6A11D79FA0003785AD /* Building.m */,
 				F61D0C2411E235C100B06382 /* BuildingUtil.h */,
@@ -926,6 +968,10 @@
 				F6AC4A35116C0FAE001B967A /* Session.m */,
 				F6EF716811FE810900A93226 /* Ship.h */,
 				F6EF716911FE810900A93226 /* Ship.m */,
+				F61F658B1204B4B40007427A /* ShipBuildQueueItem.h */,
+				F61F658C1204B4B40007427A /* ShipBuildQueueItem.m */,
+				F61F657C1204A7190007427A /* Shipyard.h */,
+				F61F657D1204A7190007427A /* Shipyard.m */,
 				F6EF714011FE76EA00A93226 /* SpacePort.h */,
 				F6EF714111FE76EA00A93226 /* SpacePort.m */,
 				F614450911E961D40052D010 /* Spy.h */,
@@ -934,10 +980,10 @@
 				F6E768A911D6BD9300778C1D /* StoredResource.m */,
 				F6FD9E8511D7A6F3003785AD /* TimedActivity.h */,
 				F6FD9E8611D7A6F3003785AD /* TimedActivity.m */,
-				F61D0C2111E2355600B06382 /* WasteRecycling.h */,
-				F61D0C2211E2355600B06382 /* WasteRecycling.m */,
 				F6EB02541202F2FC001BFD68 /* TravellingShip.h */,
 				F6EB02551202F2FC001BFD68 /* TravellingShip.m */,
+				F61D0C2111E2355600B06382 /* WasteRecycling.h */,
+				F61D0C2211E2355600B06382 /* WasteRecycling.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -1017,6 +1063,10 @@
 				F6D59FF312012AA9009DDA28 /* RenameShipController.m */,
 				F6EB02641202FB01001BFD68 /* ViewTravellingShipsController.h */,
 				F6EB02651202FB01001BFD68 /* ViewTravellingShipsController.m */,
+				F61F65CE1204C6030007427A /* ViewShipBuildQueueController.h */,
+				F61F65CF1204C6030007427A /* ViewShipBuildQueueController.m */,
+				F61F65D11204C90D0007427A /* BuildShipController.h */,
+				F61F65D21204C90D0007427A /* BuildShipController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1273,6 +1323,16 @@
 				F6EB025D1202F500001BFD68 /* LEBuildingViewShipsTravelling.m in Sources */,
 				F6EB02661202FB01001BFD68 /* ViewTravellingShipsController.m in Sources */,
 				F6DB90E712039C33003293A7 /* LETableViewCellTravellingShip.m in Sources */,
+				F61F657E1204A7190007427A /* Shipyard.m in Sources */,
+				F61F65811204B1240007427A /* LEBuildingGetBuildableShips.m in Sources */,
+				F61F65841204B1320007427A /* LEBuildingViewShipBuildQueue.m in Sources */,
+				F61F65871204B1440007427A /* LEBuildingBuildShip.m in Sources */,
+				F61F658A1204B4A30007427A /* BuildableShip.m in Sources */,
+				F61F658D1204B4B40007427A /* ShipBuildQueueItem.m in Sources */,
+				F61F65D01204C6030007427A /* ViewShipBuildQueueController.m in Sources */,
+				F61F65D31204C90D0007427A /* BuildShipController.m in Sources */,
+				F61F66EA120504FE0007427A /* LETableViewCellShipBuildQueueItem.m in Sources */,
+				F61F66ED1205050D0007427A /* LETableViewCellBuildableShipInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1367,7 +1427,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Kevin Runde";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kevin Runde";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1375,8 +1434,7 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "UniversalClient-Info.plist";
 				PRODUCT_NAME = UniversalClient;
-				PROVISIONING_PROFILE = "33536A0E-4499-42F4-8F50-2263175F90B2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "33536A0E-4499-42F4-8F50-2263175F90B2";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "59B1EFD6-83C3-489E-890C-8C97C5291C55";
 				SDKROOT = iphoneos4.0;
 				VALIDATE_PRODUCT = YES;
 			};

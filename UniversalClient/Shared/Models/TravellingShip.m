@@ -52,7 +52,6 @@
 #pragma mark Instance Methods
 
 - (void)parseData:(NSDictionary *)shipData {
-	NSLog(@"Ship: %@", shipData);
 	self.id = [shipData objectForKey:@"id"];
 	self.type = [shipData objectForKey:@"type"];
 	self.dateArrives = [Util date:[shipData objectForKey:@"date_arrives"]];

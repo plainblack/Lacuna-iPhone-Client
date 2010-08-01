@@ -12,6 +12,7 @@
 
 @class Ship;
 
+
 @interface SpacePort : Building {
 	NSMutableDictionary *dockedShips;
 	NSMutableArray *ships;

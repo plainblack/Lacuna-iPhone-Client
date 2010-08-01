@@ -8,7 +8,7 @@
 #import	<UIKit/UIKit.h>
 
 #define _array(__args...) [NSMutableArray arrayWithObjects:__args, nil]
-#define _boolv(__o) [__o] boolValue]
+#define _boolv(__o) [__o boolValue]
 #define _dict(__args...) [NSMutableDictionary dictionaryWithObjectsAndKeys:__args, nil]
 #define _intv(__o) [__o intValue]
 #define NSRangeZero NSMakeRange(0,0)
