@@ -14,6 +14,7 @@
 #import "FoodReserve.h"
 #import "Intelligence.h"
 #import "Network19.h"
+#import "Observatory.h"
 #import "OreStorage.h"
 #import "Park.h"
 #import "PlanetaryCommand.h"
@@ -38,6 +39,8 @@
 		building = [[[Intelligence alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:NETWORK_19_URL]) {
 		building = [[[Network19 alloc] init] autorelease];
+	} else if ([request.buildingUrl isEqualToString:OBSERVATORY_URL]) {
+		building = [[[Observatory alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:ORE_STORAGE_URL]) {
 		building = [[[OreStorage alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:PARK_URL]) {

@@ -39,6 +39,12 @@
 		F61F65D31204C90D0007427A /* BuildShipController.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F65D21204C90D0007427A /* BuildShipController.m */; };
 		F61F66EA120504FE0007427A /* LETableViewCellShipBuildQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F66E9120504FE0007427A /* LETableViewCellShipBuildQueueItem.m */; };
 		F61F66ED1205050D0007427A /* LETableViewCellBuildableShipInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F66EC1205050D0007427A /* LETableViewCellBuildableShipInfo.m */; };
+		F61F672712050DE90007427A /* Observatory.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F672612050DE90007427A /* Observatory.m */; };
+		F61F672A120510CD0007427A /* LEBuildingViewProbedStars.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F6729120510CD0007427A /* LEBuildingViewProbedStars.m */; };
+		F61F672D120510E40007427A /* LEBuildingAbandonProbe.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F672C120510E40007427A /* LEBuildingAbandonProbe.m */; };
+		F61F6730120512AA0007427A /* Star.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F672F120512AA0007427A /* Star.m */; };
+		F61F675B120515410007427A /* ViewProbedStarsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F675A120515410007427A /* ViewProbedStarsController.m */; };
+		F61F6764120518C20007427A /* LETableViewCellStar.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F6763120518C20007427A /* LETableViewCellStar.m */; };
 		F621306C11F8F4C1006B80C5 /* LEBuildingGetOresAvailableForProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = F621306B11F8F4C1006B80C5 /* LEBuildingGetOresAvailableForProcessing.m */; };
 		F631A3D311754AEF005E40CC /* ViewBodyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F631A3D211754AEF005E40CC /* ViewBodyController.m */; };
 		F631A3F311755489005E40CC /* ViewBodyController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F631A3F211755489005E40CC /* ViewBodyController.xib */; };
@@ -262,6 +268,18 @@
 		F61F66E9120504FE0007427A /* LETableViewCellShipBuildQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellShipBuildQueueItem.m; sourceTree = "<group>"; };
 		F61F66EB1205050D0007427A /* LETableViewCellBuildableShipInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellBuildableShipInfo.h; sourceTree = "<group>"; };
 		F61F66EC1205050D0007427A /* LETableViewCellBuildableShipInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellBuildableShipInfo.m; sourceTree = "<group>"; };
+		F61F672512050DE90007427A /* Observatory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Observatory.h; sourceTree = "<group>"; };
+		F61F672612050DE90007427A /* Observatory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Observatory.m; sourceTree = "<group>"; };
+		F61F6728120510CD0007427A /* LEBuildingViewProbedStars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewProbedStars.h; sourceTree = "<group>"; };
+		F61F6729120510CD0007427A /* LEBuildingViewProbedStars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewProbedStars.m; sourceTree = "<group>"; };
+		F61F672B120510E40007427A /* LEBuildingAbandonProbe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingAbandonProbe.h; sourceTree = "<group>"; };
+		F61F672C120510E40007427A /* LEBuildingAbandonProbe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingAbandonProbe.m; sourceTree = "<group>"; };
+		F61F672E120512AA0007427A /* Star.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Star.h; sourceTree = "<group>"; };
+		F61F672F120512AA0007427A /* Star.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Star.m; sourceTree = "<group>"; };
+		F61F6759120515410007427A /* ViewProbedStarsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewProbedStarsController.h; sourceTree = "<group>"; };
+		F61F675A120515410007427A /* ViewProbedStarsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewProbedStarsController.m; sourceTree = "<group>"; };
+		F61F6762120518C20007427A /* LETableViewCellStar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellStar.h; sourceTree = "<group>"; };
+		F61F6763120518C20007427A /* LETableViewCellStar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellStar.m; sourceTree = "<group>"; };
 		F621306A11F8F4C1006B80C5 /* LEBuildingGetOresAvailableForProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetOresAvailableForProcessing.h; sourceTree = "<group>"; };
 		F621306B11F8F4C1006B80C5 /* LEBuildingGetOresAvailableForProcessing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetOresAvailableForProcessing.m; sourceTree = "<group>"; };
 		F631A3D111754AEF005E40CC /* ViewBodyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewBodyController.h; sourceTree = "<group>"; };
@@ -751,6 +769,8 @@
 				F61F66E9120504FE0007427A /* LETableViewCellShipBuildQueueItem.m */,
 				F61F66EB1205050D0007427A /* LETableViewCellBuildableShipInfo.h */,
 				F61F66EC1205050D0007427A /* LETableViewCellBuildableShipInfo.m */,
+				F61F6762120518C20007427A /* LETableViewCellStar.h */,
+				F61F6763120518C20007427A /* LETableViewCellStar.m */,
 			);
 			name = Views;
 			path = Shared/Views;
@@ -912,6 +932,10 @@
 				F6AC4A17116C0F9B001B967A /* LESpeciesSetHuman.m */,
 				F6AC4A18116C0F9B001B967A /* LEUpgradeBuilding.h */,
 				F6AC4A19116C0F9B001B967A /* LEUpgradeBuilding.m */,
+				F61F6728120510CD0007427A /* LEBuildingViewProbedStars.h */,
+				F61F6729120510CD0007427A /* LEBuildingViewProbedStars.m */,
+				F61F672B120510E40007427A /* LEBuildingAbandonProbe.h */,
+				F61F672C120510E40007427A /* LEBuildingAbandonProbe.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -984,6 +1008,10 @@
 				F6EB02551202F2FC001BFD68 /* TravellingShip.m */,
 				F61D0C2111E2355600B06382 /* WasteRecycling.h */,
 				F61D0C2211E2355600B06382 /* WasteRecycling.m */,
+				F61F672512050DE90007427A /* Observatory.h */,
+				F61F672612050DE90007427A /* Observatory.m */,
+				F61F672E120512AA0007427A /* Star.h */,
+				F61F672F120512AA0007427A /* Star.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -1067,6 +1095,8 @@
 				F61F65CF1204C6030007427A /* ViewShipBuildQueueController.m */,
 				F61F65D11204C90D0007427A /* BuildShipController.h */,
 				F61F65D21204C90D0007427A /* BuildShipController.m */,
+				F61F6759120515410007427A /* ViewProbedStarsController.h */,
+				F61F675A120515410007427A /* ViewProbedStarsController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1333,6 +1363,12 @@
 				F61F65D31204C90D0007427A /* BuildShipController.m in Sources */,
 				F61F66EA120504FE0007427A /* LETableViewCellShipBuildQueueItem.m in Sources */,
 				F61F66ED1205050D0007427A /* LETableViewCellBuildableShipInfo.m in Sources */,
+				F61F672712050DE90007427A /* Observatory.m in Sources */,
+				F61F672A120510CD0007427A /* LEBuildingViewProbedStars.m in Sources */,
+				F61F672D120510E40007427A /* LEBuildingAbandonProbe.m in Sources */,
+				F61F6730120512AA0007427A /* Star.m in Sources */,
+				F61F675B120515410007427A /* ViewProbedStarsController.m in Sources */,
+				F61F6764120518C20007427A /* LETableViewCellStar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

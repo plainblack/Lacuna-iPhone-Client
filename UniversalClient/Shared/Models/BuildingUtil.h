@@ -13,6 +13,7 @@
 #define FOOD_RESERVE_URL @"/foodreserve"
 #define INTELLIGENCE_URL @"/intelligence"
 #define NETWORK_19_URL @"/network19"
+#define OBSERVATORY_URL @"/observatory"
 #define ORE_STORAGE_URL @"/orestorage"
 #define PARK_URL @"/park"
 #define PLANETARY_COMMAND_URL @"/planetarycommand"
@@ -65,7 +66,8 @@ typedef enum {
 	BUILDING_ROW_VIEW_SHIPS,
 	BUILDING_ROW_VIEW_TRAVELLING_SHIPS,
 	BUILDING_ROW_VIEW_SHIP_BUILD_QUEUE,
-	BUILDING_ROW_BUILD_SHIP
+	BUILDING_ROW_BUILD_SHIP,
+	BUILDING_ROW_VIEW_PROBED_STARS
 } BUILDING_ROW;
 
 
