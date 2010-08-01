@@ -180,6 +180,15 @@
 		F6E3F02711B46BEE00E7BC86 /* LEEmpireBoostHappiness.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F02611B46BEE00E7BC86 /* LEEmpireBoostHappiness.m */; };
 		F6E3F02A11B46BF800E7BC86 /* LEEmpireBoostOre.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F02911B46BF800E7BC86 /* LEEmpireBoostOre.m */; };
 		F6E3F02D11B46C0600E7BC86 /* LEEmpireBoostWater.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F02C11B46C0600E7BC86 /* LEEmpireBoostWater.m */; };
+		F6E5E5AB1205A9A000365AA2 /* MiningMinistry.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5E5AA1205A9A000365AA2 /* MiningMinistry.m */; };
+		F6E5E5DB1205BE1C00365AA2 /* MiningPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5E5DA1205BE1C00365AA2 /* MiningPlatform.m */; };
+		F6E5E5DE1205C08C00365AA2 /* LEBuildingViewPlatforms.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5E5DD1205C08C00365AA2 /* LEBuildingViewPlatforms.m */; };
+		F6E5E5E91205C40600365AA2 /* ViewMiningPlatformsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5E5E81205C40600365AA2 /* ViewMiningPlatformsController.m */; };
+		F6E5E6071205C9B700365AA2 /* LEBuildingAbandonPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5E6061205C9B700365AA2 /* LEBuildingAbandonPlatform.m */; };
+		F6E5E62C1205CD9C00365AA2 /* LEBuildingViewFleetShips.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5E62B1205CD9C00365AA2 /* LEBuildingViewFleetShips.m */; };
+		F6E5E62F1205CDB600365AA2 /* LEBuildingAddShipToFleet.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5E62E1205CDB600365AA2 /* LEBuildingAddShipToFleet.m */; };
+		F6E5E6321205CDC200365AA2 /* LEBuildingRemoveShipFromFleet.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5E6311205CDC200365AA2 /* LEBuildingRemoveShipFromFleet.m */; };
+		F6E5E6401205CF4000365AA2 /* ViewMiningFleetShipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5E63F1205CF4000365AA2 /* ViewMiningFleetShipsController.m */; };
 		F6E766BE11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E766BD11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.m */; };
 		F6E7671111D68C6400778C1D /* Empire.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E7671011D68C6400778C1D /* Empire.m */; };
 		F6E767C611D6A4D400778C1D /* Body.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E767C511D6A4D400778C1D /* Body.m */; };
@@ -540,6 +549,24 @@
 		F6E3F02911B46BF800E7BC86 /* LEEmpireBoostOre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireBoostOre.m; sourceTree = "<group>"; };
 		F6E3F02B11B46C0600E7BC86 /* LEEmpireBoostWater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireBoostWater.h; sourceTree = "<group>"; };
 		F6E3F02C11B46C0600E7BC86 /* LEEmpireBoostWater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireBoostWater.m; sourceTree = "<group>"; };
+		F6E5E5A91205A9A000365AA2 /* MiningMinistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiningMinistry.h; sourceTree = "<group>"; };
+		F6E5E5AA1205A9A000365AA2 /* MiningMinistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MiningMinistry.m; sourceTree = "<group>"; };
+		F6E5E5D91205BE1C00365AA2 /* MiningPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiningPlatform.h; sourceTree = "<group>"; };
+		F6E5E5DA1205BE1C00365AA2 /* MiningPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MiningPlatform.m; sourceTree = "<group>"; };
+		F6E5E5DC1205C08C00365AA2 /* LEBuildingViewPlatforms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewPlatforms.h; sourceTree = "<group>"; };
+		F6E5E5DD1205C08C00365AA2 /* LEBuildingViewPlatforms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewPlatforms.m; sourceTree = "<group>"; };
+		F6E5E5E71205C40600365AA2 /* ViewMiningPlatformsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMiningPlatformsController.h; sourceTree = "<group>"; };
+		F6E5E5E81205C40600365AA2 /* ViewMiningPlatformsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMiningPlatformsController.m; sourceTree = "<group>"; };
+		F6E5E6051205C9B700365AA2 /* LEBuildingAbandonPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingAbandonPlatform.h; sourceTree = "<group>"; };
+		F6E5E6061205C9B700365AA2 /* LEBuildingAbandonPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingAbandonPlatform.m; sourceTree = "<group>"; };
+		F6E5E62A1205CD9C00365AA2 /* LEBuildingViewFleetShips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewFleetShips.h; sourceTree = "<group>"; };
+		F6E5E62B1205CD9C00365AA2 /* LEBuildingViewFleetShips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewFleetShips.m; sourceTree = "<group>"; };
+		F6E5E62D1205CDB600365AA2 /* LEBuildingAddShipToFleet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingAddShipToFleet.h; sourceTree = "<group>"; };
+		F6E5E62E1205CDB600365AA2 /* LEBuildingAddShipToFleet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingAddShipToFleet.m; sourceTree = "<group>"; };
+		F6E5E6301205CDC200365AA2 /* LEBuildingRemoveShipFromFleet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingRemoveShipFromFleet.h; sourceTree = "<group>"; };
+		F6E5E6311205CDC200365AA2 /* LEBuildingRemoveShipFromFleet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingRemoveShipFromFleet.m; sourceTree = "<group>"; };
+		F6E5E63E1205CF4000365AA2 /* ViewMiningFleetShipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMiningFleetShipsController.h; sourceTree = "<group>"; };
+		F6E5E63F1205CF4000365AA2 /* ViewMiningFleetShipsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMiningFleetShipsController.m; sourceTree = "<group>"; };
 		F6E766BC11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingSubsidizeBuildQueue.h; sourceTree = "<group>"; };
 		F6E766BD11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingSubsidizeBuildQueue.m; sourceTree = "<group>"; };
 		F6E7670F11D68C6400778C1D /* Empire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Empire.h; sourceTree = "<group>"; };
@@ -936,6 +963,16 @@
 				F61F6729120510CD0007427A /* LEBuildingViewProbedStars.m */,
 				F61F672B120510E40007427A /* LEBuildingAbandonProbe.h */,
 				F61F672C120510E40007427A /* LEBuildingAbandonProbe.m */,
+				F6E5E5DC1205C08C00365AA2 /* LEBuildingViewPlatforms.h */,
+				F6E5E5DD1205C08C00365AA2 /* LEBuildingViewPlatforms.m */,
+				F6E5E6051205C9B700365AA2 /* LEBuildingAbandonPlatform.h */,
+				F6E5E6061205C9B700365AA2 /* LEBuildingAbandonPlatform.m */,
+				F6E5E62A1205CD9C00365AA2 /* LEBuildingViewFleetShips.h */,
+				F6E5E62B1205CD9C00365AA2 /* LEBuildingViewFleetShips.m */,
+				F6E5E62D1205CDB600365AA2 /* LEBuildingAddShipToFleet.h */,
+				F6E5E62E1205CDB600365AA2 /* LEBuildingAddShipToFleet.m */,
+				F6E5E6301205CDC200365AA2 /* LEBuildingRemoveShipFromFleet.h */,
+				F6E5E6311205CDC200365AA2 /* LEBuildingRemoveShipFromFleet.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -1012,6 +1049,10 @@
 				F61F672612050DE90007427A /* Observatory.m */,
 				F61F672E120512AA0007427A /* Star.h */,
 				F61F672F120512AA0007427A /* Star.m */,
+				F6E5E5A91205A9A000365AA2 /* MiningMinistry.h */,
+				F6E5E5AA1205A9A000365AA2 /* MiningMinistry.m */,
+				F6E5E5D91205BE1C00365AA2 /* MiningPlatform.h */,
+				F6E5E5DA1205BE1C00365AA2 /* MiningPlatform.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -1097,6 +1138,10 @@
 				F61F65D21204C90D0007427A /* BuildShipController.m */,
 				F61F6759120515410007427A /* ViewProbedStarsController.h */,
 				F61F675A120515410007427A /* ViewProbedStarsController.m */,
+				F6E5E5E71205C40600365AA2 /* ViewMiningPlatformsController.h */,
+				F6E5E5E81205C40600365AA2 /* ViewMiningPlatformsController.m */,
+				F6E5E63E1205CF4000365AA2 /* ViewMiningFleetShipsController.h */,
+				F6E5E63F1205CF4000365AA2 /* ViewMiningFleetShipsController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1369,6 +1414,15 @@
 				F61F6730120512AA0007427A /* Star.m in Sources */,
 				F61F675B120515410007427A /* ViewProbedStarsController.m in Sources */,
 				F61F6764120518C20007427A /* LETableViewCellStar.m in Sources */,
+				F6E5E5AB1205A9A000365AA2 /* MiningMinistry.m in Sources */,
+				F6E5E5DB1205BE1C00365AA2 /* MiningPlatform.m in Sources */,
+				F6E5E5DE1205C08C00365AA2 /* LEBuildingViewPlatforms.m in Sources */,
+				F6E5E5E91205C40600365AA2 /* ViewMiningPlatformsController.m in Sources */,
+				F6E5E6071205C9B700365AA2 /* LEBuildingAbandonPlatform.m in Sources */,
+				F6E5E62C1205CD9C00365AA2 /* LEBuildingViewFleetShips.m in Sources */,
+				F6E5E62F1205CDB600365AA2 /* LEBuildingAddShipToFleet.m in Sources */,
+				F6E5E6321205CDC200365AA2 /* LEBuildingRemoveShipFromFleet.m in Sources */,
+				F6E5E6401205CF4000365AA2 /* ViewMiningFleetShipsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

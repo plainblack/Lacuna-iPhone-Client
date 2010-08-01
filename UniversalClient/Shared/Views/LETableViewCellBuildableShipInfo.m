@@ -15,6 +15,7 @@
 @implementation LETableViewCellBuildableShipInfo
 
 
+@synthesize typeLabel;
 @synthesize holdSizeLabel;
 @synthesize speedLabel;
 @synthesize shipImageView;
@@ -37,6 +38,7 @@
 
 
 - (void)dealloc {
+	self.typeLabel = nil;
 	self.holdSizeLabel = nil;
 	self.speedLabel = nil;
 	self.shipImageView = nil;
@@ -48,6 +50,7 @@
 #pragma mark Instance Methods
 
 - (void)setBuildableShip:(BuildableShip *)buildableShip {
+	self.typeLabel.text = buildableShip.type;
 	self.holdSizeLabel.text = [NSString stringWithFormat:@"%@", [buildableShip.attributes objectForKey:@"hold_size"]];
 	self.speedLabel.text = [NSString stringWithFormat:@"%@", [buildableShip.attributes objectForKey:@"speed"]];
 	NSString *shipImageName = [NSString stringWithFormat:@"assets/ships/%@.png", buildableShip.type];
@@ -67,11 +70,19 @@
 		cell.backgroundColor = CELL_BACKGROUND_COLOR;
 		cell.autoresizesSubviews = YES;
 		
-		cell.shipImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 50, 50)] autorelease];
+		cell.shipImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 100, 100)] autorelease];
 		cell.shipImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.shipImageView];
 		
-		UILabel *tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(70, 10, 70, 20)] autorelease];
+		cell.typeLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, 10, 190, 20)] autorelease];
+		cell.typeLabel.backgroundColor = [UIColor clearColor];
+		cell.typeLabel.textAlignment = UITextAlignmentLeft;
+		cell.typeLabel.font = TEXT_SMALL_FONT;
+		cell.typeLabel.textColor = TEXT_SMALL_COLOR;
+		cell.typeLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+		[cell.contentView addSubview:cell.typeLabel];
+		
+		UILabel *tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, 30, 60, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
 		tmpLabel.textAlignment = UITextAlignmentRight;
 		tmpLabel.font = LABEL_FONT;
@@ -79,7 +90,7 @@
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		tmpLabel.text = @"Hold Size";
 		[cell.contentView addSubview:tmpLabel];
-		cell.holdSizeLabel = [[[UILabel alloc] initWithFrame:CGRectMake(145, 10, 140, 20)] autorelease];
+		cell.holdSizeLabel = [[[UILabel alloc] initWithFrame:CGRectMake(185, 30, 130, 20)] autorelease];
 		cell.holdSizeLabel.backgroundColor = [UIColor clearColor];
 		cell.holdSizeLabel.textAlignment = UITextAlignmentLeft;
 		cell.holdSizeLabel.font = TEXT_SMALL_FONT;
@@ -87,7 +98,7 @@
 		cell.holdSizeLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.holdSizeLabel];
 		
-		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(70, 35, 70, 20)] autorelease];
+		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, 50, 60, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
 		tmpLabel.textAlignment = UITextAlignmentRight;
 		tmpLabel.font = LABEL_FONT;
@@ -95,7 +106,7 @@
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		tmpLabel.text = @"Speed";
 		[cell.contentView addSubview:tmpLabel];
-		cell.speedLabel = [[[UILabel alloc] initWithFrame:CGRectMake(145, 35, 140, 20)] autorelease];
+		cell.speedLabel = [[[UILabel alloc] initWithFrame:CGRectMake(185, 50, 130, 20)] autorelease];
 		cell.speedLabel.backgroundColor = [UIColor clearColor];
 		cell.speedLabel.textAlignment = UITextAlignmentLeft;
 		cell.speedLabel.font = TEXT_SMALL_FONT;
@@ -112,7 +123,7 @@
 
 
 + (CGFloat)getHeightForTableView:(UITableView *)tableView {
-	return 70.0;
+	return 120.0;
 }
 
 

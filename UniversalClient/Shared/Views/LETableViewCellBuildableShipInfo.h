@@ -13,12 +13,14 @@
 
 
 @interface LETableViewCellBuildableShipInfo : UITableViewCell {
+	UILabel *typeLabel;
 	UILabel *holdSizeLabel;
 	UILabel *speedLabel;
 	UIImageView *shipImageView;
 }
 
 
+@property(nonatomic, retain) IBOutlet UILabel *typeLabel;
 @property(nonatomic, retain) IBOutlet UILabel *holdSizeLabel;
 @property(nonatomic, retain) IBOutlet UILabel *speedLabel;
 @property(nonatomic, retain) IBOutlet UIImageView *shipImageView;

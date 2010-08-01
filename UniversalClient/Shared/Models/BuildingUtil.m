@@ -13,6 +13,7 @@
 #import "Development.h"
 #import "FoodReserve.h"
 #import "Intelligence.h"
+#import "MiningMinistry.h"
 #import "Network19.h"
 #import "Observatory.h"
 #import "OreStorage.h"
@@ -37,6 +38,8 @@
 		building = [[[FoodReserve alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:INTELLIGENCE_URL]) {
 		building = [[[Intelligence alloc] init] autorelease];
+	} else if ([request.buildingUrl isEqualToString:MINING_MINISTRY_URL]) {
+		building = [[[MiningMinistry alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:NETWORK_19_URL]) {
 		building = [[[Network19 alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:OBSERVATORY_URL]) {
