@@ -16,6 +16,7 @@
 
 
 @synthesize nameLabel;
+@synthesize typeLabel;
 @synthesize taskLabel;
 @synthesize speedLabel;
 @synthesize holdSizeLabel;
@@ -40,6 +41,7 @@
 
 - (void)dealloc {
 	self.nameLabel = nil;
+	self.typeLabel = nil;
 	self.taskLabel = nil;
 	self.speedLabel = nil;
 	self.holdSizeLabel = nil;
@@ -53,6 +55,7 @@
 
 - (void)setShip:(Ship *)ship {
 	self.nameLabel.text = ship.name;
+	self.typeLabel.text = [Util prettyCodeValue:ship.type];
 	self.taskLabel.text = ship.task;
 	self.speedLabel.text = [Util prettyNSInteger:ship.speed];
 	self.holdSizeLabel.text = [Util prettyNSInteger:ship.holdSize];
@@ -85,7 +88,15 @@
 		cell.nameLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.nameLabel];
 		
-		UILabel *tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, 35, 60, 20)] autorelease];
+		cell.typeLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, 30, 165, 20)] autorelease];
+		cell.typeLabel.backgroundColor = [UIColor clearColor];
+		cell.typeLabel.textAlignment = UITextAlignmentLeft;
+		cell.typeLabel.font = TEXT_SMALL_FONT;
+		cell.typeLabel.textColor = TEXT_SMALL_COLOR;
+		cell.typeLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+		[cell.contentView addSubview:cell.typeLabel];
+		
+		UILabel *tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, 45, 60, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
 		tmpLabel.textAlignment = UITextAlignmentRight;
 		tmpLabel.font = LABEL_FONT;
@@ -93,7 +104,7 @@
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		tmpLabel.text = @"Task";
 		[cell.contentView addSubview:tmpLabel];
-		cell.taskLabel = [[[UILabel alloc] initWithFrame:CGRectMake(185, 35, 100, 20)] autorelease];
+		cell.taskLabel = [[[UILabel alloc] initWithFrame:CGRectMake(185, 45, 165, 20)] autorelease];
 		cell.taskLabel.backgroundColor = [UIColor clearColor];
 		cell.taskLabel.textAlignment = UITextAlignmentLeft;
 		cell.taskLabel.font = TEXT_SMALL_FONT;
@@ -101,7 +112,7 @@
 		cell.taskLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.taskLabel];
 		
-		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, 55, 60, 20)] autorelease];
+		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, 60, 60, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
 		tmpLabel.textAlignment = UITextAlignmentRight;
 		tmpLabel.font = LABEL_FONT;
@@ -109,7 +120,7 @@
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		tmpLabel.text = @"Speed";
 		[cell.contentView addSubview:tmpLabel];
-		cell.speedLabel = [[[UILabel alloc] initWithFrame:CGRectMake(185, 55, 100, 20)] autorelease];
+		cell.speedLabel = [[[UILabel alloc] initWithFrame:CGRectMake(185, 60, 100, 20)] autorelease];
 		cell.speedLabel.backgroundColor = [UIColor clearColor];
 		cell.speedLabel.textAlignment = UITextAlignmentLeft;
 		cell.speedLabel.font = TEXT_SMALL_FONT;

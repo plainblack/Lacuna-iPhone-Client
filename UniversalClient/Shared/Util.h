@@ -26,6 +26,7 @@
 + (NSString *)prettyDuration:(NSInteger)seconds;
 + (NSString *)prettyNSNumber:(NSNumber *)number;
 + (NSString *)prettyNSInteger:(NSInteger)number;
++ (NSString *)prettyCodeValue:(NSString *)originalString;
 
 + (UIImage *)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize;
 

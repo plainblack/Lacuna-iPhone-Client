@@ -13,11 +13,13 @@
 
 
 @interface LETableViewCellShipBuildQueueItem : UITableViewCell {
+	UILabel *typeLabel;
 	UILabel *dateCompleteLabel;
 	UIImageView *shipImageView;
 }
 
 
+@property(nonatomic, retain) IBOutlet UILabel *typeLabel;
 @property(nonatomic, retain) IBOutlet UILabel *dateCompleteLabel;
 @property(nonatomic, retain) IBOutlet UIImageView *shipImageView;
 

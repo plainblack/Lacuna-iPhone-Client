@@ -57,7 +57,13 @@
 
 
 - (void)parseAdditionalData:(NSDictionary *)data {
-	self.dockedShips = [data objectForKey:@"docked_ships"];
+	NSDictionary *dockedShipData = [data objectForKey:@"docked_ships"];
+	self.dockedShips = [NSMutableDictionary dictionaryWithCapacity:[dockedShipData count]];
+	
+	[dockedShipData enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+		[self.dockedShips setObject:obj forKey:[Util prettyCodeValue:key]];
+	}];
+	
 	NSLog(@"Docked Ships: %@", self.dockedShips);
 }
 

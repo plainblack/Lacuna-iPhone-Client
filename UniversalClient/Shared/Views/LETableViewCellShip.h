@@ -14,6 +14,7 @@
 
 @interface LETableViewCellShip : UITableViewCell {
 	UILabel *nameLabel;
+	UILabel *typeLabel;
 	UILabel *taskLabel;
 	UILabel *speedLabel;
 	UILabel *holdSizeLabel;
@@ -22,6 +23,7 @@
 
 
 @property(nonatomic, retain) IBOutlet UILabel *nameLabel;
+@property(nonatomic, retain) IBOutlet UILabel *typeLabel;
 @property(nonatomic, retain) IBOutlet UILabel *taskLabel;
 @property(nonatomic, retain) IBOutlet UILabel *speedLabel;
 @property(nonatomic, retain) IBOutlet UILabel *holdSizeLabel;

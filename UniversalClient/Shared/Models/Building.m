@@ -132,7 +132,7 @@
 		}
 		[self.upgradedResourceStorage parseData:[upgradeData objectForKey:@"production"]];
 		
-		self.upgradedImageName = [buildingData objectForKey:@"image"];
+		self.upgradedImageName = [upgradeData objectForKey:@"image"];
 	}
 	
 	

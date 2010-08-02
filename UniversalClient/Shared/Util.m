@@ -92,6 +92,12 @@
 }
 
 
++ (NSString *)prettyCodeValue:(NSString *)originalString {
+	return [[originalString stringByReplacingOccurrencesOfString:@"_" withString:@" "] capitalizedString];
+	
+}
+
+
 + (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize {
 	UIGraphicsBeginImageContext( newSize );
 	[image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];

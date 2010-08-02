@@ -15,6 +15,7 @@
 @implementation LETableViewCellShipBuildQueueItem
 
 
+@synthesize typeLabel;
 @synthesize dateCompleteLabel;
 @synthesize shipImageView;
 
@@ -36,6 +37,7 @@
 
 
 - (void)dealloc {
+	self.typeLabel = nil;
 	self.dateCompleteLabel = nil;
 	self.shipImageView = nil;
     [super dealloc];
@@ -46,6 +48,7 @@
 #pragma mark Instance Methods
 
 - (void)setShipBuildQueueItem:(ShipBuildQueueItem *)shipBuildQueueItem {
+	self.typeLabel.text = [Util prettyCodeValue:shipBuildQueueItem.type];
 	self.dateCompleteLabel.text = [Util formatDate:shipBuildQueueItem.dateCompleted];
 	NSString *shipImageName = [NSString stringWithFormat:@"assets/ships/%@.png", shipBuildQueueItem.type];
 	self.shipImageView.image = [UIImage imageNamed:shipImageName];
@@ -68,11 +71,19 @@
 		cell.shipImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.shipImageView];
 		
-		cell.dateCompleteLabel = [[[UILabel alloc] initWithFrame:CGRectMake(90, 10, 225, 75)] autorelease];
+		cell.typeLabel = [[[UILabel alloc] initWithFrame:CGRectMake(90, 10, 225, 25)] autorelease];
+		cell.typeLabel.backgroundColor = [UIColor clearColor];
+		cell.typeLabel.textAlignment = UITextAlignmentLeft;
+		cell.typeLabel.font = TEXT_FONT;
+		cell.typeLabel.textColor = TEXT_COLOR;
+		cell.typeLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
+		[cell.contentView addSubview:cell.typeLabel];
+
+		cell.dateCompleteLabel = [[[UILabel alloc] initWithFrame:CGRectMake(90, 35, 225, 20)] autorelease];
 		cell.dateCompleteLabel.backgroundColor = [UIColor clearColor];
 		cell.dateCompleteLabel.textAlignment = UITextAlignmentLeft;
-		cell.dateCompleteLabel.font = TEXT_FONT;
-		cell.dateCompleteLabel.textColor = TEXT_COLOR;
+		cell.dateCompleteLabel.font = TEXT_SMALL_FONT;
+		cell.dateCompleteLabel.textColor = TEXT_SMALL_COLOR;
 		cell.dateCompleteLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.dateCompleteLabel];
 		

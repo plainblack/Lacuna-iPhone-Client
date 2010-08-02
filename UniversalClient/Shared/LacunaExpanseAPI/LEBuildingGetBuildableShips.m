@@ -35,6 +35,7 @@
 
 - (void)processSuccess {
 	NSDictionary *result = [self.response objectForKey:@"result"];
+	NSLog(@"Buildable Ship Data: %@", result);
 	self.docksAvailable = _intv([result objectForKey:@"docks_available"]);
 	
 	NSMutableDictionary *shipsTravellingData = [result objectForKey:@"buildable"];

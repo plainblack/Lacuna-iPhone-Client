@@ -38,7 +38,12 @@
 		self.energy = _intv([data objectForKey:@"energy"]);
 		self.food = _intv([data objectForKey:@"food"]);
 		self.ore = _intv([data objectForKey:@"ore"]);
-		self.time = _intv([data objectForKey:@"time"]);
+		if ([data objectForKey:@"time"]) {
+			self.time = _intv([data objectForKey:@"time"]);
+		} else {
+			self.time = _intv([data objectForKey:@"seconds"]);
+		}
+
 		self.waste = _intv([data objectForKey:@"waste"]);
 		self.water = _intv([data objectForKey:@"water"]);
 	}

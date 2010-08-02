@@ -50,7 +50,7 @@
 #pragma mark Instance Methods
 
 - (void)setBuildableShip:(BuildableShip *)buildableShip {
-	self.typeLabel.text = buildableShip.type;
+	self.typeLabel.text = [Util prettyCodeValue:buildableShip.type];
 	self.holdSizeLabel.text = [NSString stringWithFormat:@"%@", [buildableShip.attributes objectForKey:@"hold_size"]];
 	self.speedLabel.text = [NSString stringWithFormat:@"%@", [buildableShip.attributes objectForKey:@"speed"]];
 	NSString *shipImageName = [NSString stringWithFormat:@"assets/ships/%@.png", buildableShip.type];
