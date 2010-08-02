@@ -14,16 +14,18 @@
 
 @interface LETableViewCellTravellingShip : UITableViewCell {
 	UILabel *dateArrivesLabel;
+	UILabel *typeLabel;
 	UILabel *fromLabel;
 	UILabel *toLabel;
 	UIImageView *shipImageView;
 }
 
 
-@property(nonatomic, retain) IBOutlet UILabel *dateArrivesLabel;
-@property(nonatomic, retain) IBOutlet UILabel *fromLabel;
-@property(nonatomic, retain) IBOutlet UILabel *toLabel;
-@property(nonatomic, retain) IBOutlet UIImageView *shipImageView;
+@property (nonatomic, retain) IBOutlet UILabel *dateArrivesLabel;
+@property (nonatomic, retain) IBOutlet UILabel *typeLabel;
+@property (nonatomic, retain) IBOutlet UILabel *fromLabel;
+@property (nonatomic, retain) IBOutlet UILabel *toLabel;
+@property (nonatomic, retain) IBOutlet UIImageView *shipImageView;
 
 
 - (void)setTravellingShip:(TravellingShip *)travellingShip;

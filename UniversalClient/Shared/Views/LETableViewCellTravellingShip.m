@@ -16,6 +16,7 @@
 
 
 @synthesize dateArrivesLabel;
+@synthesize typeLabel;
 @synthesize fromLabel;
 @synthesize toLabel;
 @synthesize shipImageView;
@@ -39,6 +40,7 @@
 
 - (void)dealloc {
 	self.dateArrivesLabel = nil;
+	self.typeLabel = nil;
 	self.fromLabel = nil;
 	self.toLabel = nil;
 	self.shipImageView = nil;
@@ -51,6 +53,7 @@
 
 - (void)setTravellingShip:(TravellingShip *)travellingShip {
 	self.dateArrivesLabel.text = [Util formatDate:travellingShip.dateArrives];
+	self.typeLabel.text = [Util prettyCodeValue:travellingShip.type];
 	self.fromLabel.text = [NSString stringWithFormat:@"%@: %@", travellingShip.fromType, travellingShip.fromName];
 	self.toLabel.text = [NSString stringWithFormat:@"%@: %@", travellingShip.toType, travellingShip.toName];
 	NSString *shipImageName = [NSString stringWithFormat:@"assets/ships/%@.png", travellingShip.type];
@@ -82,7 +85,15 @@
 		cell.dateArrivesLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.dateArrivesLabel];
 		
-		UILabel *tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, 35, 40, 20)] autorelease];
+		cell.typeLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, 35, 165, 20)] autorelease];
+		cell.typeLabel.backgroundColor = [UIColor clearColor];
+		cell.typeLabel.textAlignment = UITextAlignmentLeft;
+		cell.typeLabel.font = TEXT_SMALL_FONT;
+		cell.typeLabel.textColor = TEXT_SMALL_COLOR;
+		cell.typeLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+		[cell.contentView addSubview:cell.typeLabel];
+
+		UILabel *tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, 55, 40, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
 		tmpLabel.textAlignment = UITextAlignmentRight;
 		tmpLabel.font = LABEL_FONT;
@@ -90,7 +101,7 @@
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		tmpLabel.text = @"From";
 		[cell.contentView addSubview:tmpLabel];
-		cell.fromLabel = [[[UILabel alloc] initWithFrame:CGRectMake(165, 35, 120, 20)] autorelease];
+		cell.fromLabel = [[[UILabel alloc] initWithFrame:CGRectMake(165, 55, 120, 20)] autorelease];
 		cell.fromLabel.backgroundColor = [UIColor clearColor];
 		cell.fromLabel.textAlignment = UITextAlignmentLeft;
 		cell.fromLabel.font = TEXT_SMALL_FONT;
@@ -98,7 +109,7 @@
 		cell.fromLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.fromLabel];
 		
-		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, 55, 40, 20)] autorelease];
+		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, 75, 40, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
 		tmpLabel.textAlignment = UITextAlignmentRight;
 		tmpLabel.font = LABEL_FONT;
@@ -106,7 +117,7 @@
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		tmpLabel.text = @"To";
 		[cell.contentView addSubview:tmpLabel];
-		cell.toLabel = [[[UILabel alloc] initWithFrame:CGRectMake(165, 55, 120, 20)] autorelease];
+		cell.toLabel = [[[UILabel alloc] initWithFrame:CGRectMake(165, 75, 120, 20)] autorelease];
 		cell.toLabel.backgroundColor = [UIColor clearColor];
 		cell.toLabel.textAlignment = UITextAlignmentLeft;
 		cell.toLabel.font = TEXT_SMALL_FONT;
