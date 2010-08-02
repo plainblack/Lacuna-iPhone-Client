@@ -27,9 +27,17 @@ typedef enum {
 } ROW;
 
 
+@interface ViewSpiesController (PrivateMethods)
+
+- (void)togglePageButtons;
+
+@end
+
+
 @implementation ViewSpiesController
 
 
+@synthesize pageSegmentedControl;
 @synthesize intelligenceBuilding;
 @synthesize spiesLastUpdated;
 @synthesize selectedSpy;
@@ -44,6 +52,13 @@ typedef enum {
 	self.navigationItem.title = @"Spies";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
+	self.pageSegmentedControl = [[[UISegmentedControl alloc] initWithItems:_array([UIImage imageNamed:@"assets/iphone ui/up.png"], [UIImage imageNamed:@"assets/iphone ui/down.png"])] autorelease];
+	[self.pageSegmentedControl addTarget:self action:@selector(switchPage) forControlEvents:UIControlEventValueChanged]; 
+	self.pageSegmentedControl.momentary = YES;
+	self.pageSegmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
+	UIBarButtonItem *rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.pageSegmentedControl] autorelease];
+	self.navigationItem.rightBarButtonItem = rightBarButtonItem; 
+
 	self.sectionHeaders = [NSArray array];
 }
 
@@ -52,7 +67,7 @@ typedef enum {
     [super viewWillAppear:animated];
 	[self.intelligenceBuilding addObserver:self forKeyPath:@"spiesUpdated" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
 	if (!self.intelligenceBuilding.spies) {
-		[self.intelligenceBuilding loadSpies];
+		[self.intelligenceBuilding loadSpiesForPage:1];
 	} else {
 		if (self.spiesLastUpdated) {
 			if ([self.spiesLastUpdated compare:self.intelligenceBuilding.spiesUpdated] == NSOrderedAscending) {
@@ -63,6 +78,11 @@ typedef enum {
 			self.spiesLastUpdated = self.intelligenceBuilding.spiesUpdated;
 		}
 	}
+
+	
+	[self.pageSegmentedControl setEnabled:[self.intelligenceBuilding hasPreviousSpyPage] forSegmentAtIndex:0];
+	[self.pageSegmentedControl setEnabled:[self.intelligenceBuilding hasNextSpyPage] forSegmentAtIndex:1];
+
 }
 
 
@@ -223,6 +243,25 @@ typedef enum {
 }
 
 
+#pragma mark --
+#pragma mark Callback Methods
+
+- (void) switchPage {
+	switch (self.pageSegmentedControl.selectedSegmentIndex) {
+		case 0:
+			[self.intelligenceBuilding loadSpiesForPage:(self.intelligenceBuilding.spyPageNumber-1)];
+			break;
+		case 1:
+			[self.intelligenceBuilding loadSpiesForPage:(self.intelligenceBuilding.spyPageNumber+1)];
+			break;
+		default:
+			NSLog(@"Invalid switchPage");
+			break;
+	}
+}
+
+
+
 #pragma mark -
 #pragma mark UIActionSheetDelegate Methods
 
@@ -232,6 +271,16 @@ typedef enum {
 		self.selectedSpy = nil;
 	}
 	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+}
+
+
+#pragma mark --
+#pragma mark Private Methods
+
+- (void)togglePageButtons {
+	[self.pageSegmentedControl setEnabled:[self.intelligenceBuilding hasPreviousSpyPage] forSegmentAtIndex:0];
+	[self.pageSegmentedControl setEnabled:[self.intelligenceBuilding hasNextSpyPage] forSegmentAtIndex:1];
+	
 }
 
 
@@ -248,6 +297,7 @@ typedef enum {
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ([keyPath isEqual:@"spiesUpdated"]) {
+		[self togglePageButtons];
 		[self.tableView reloadData];
 		self.spiesLastUpdated = self.intelligenceBuilding.spiesUpdated;
 	}

@@ -8,6 +8,7 @@
 
 #import "Intelligence.h"
 #import "LEMacros.h"
+#import "Util.h"
 #import "LETableViewCellButton.h"
 #import "LETableViewCellLabeledText.h"
 #import "LETableViewCellCost.h"
@@ -29,6 +30,7 @@
 @synthesize spies;
 @synthesize possibleAssignments;
 @synthesize spiesUpdated;
+@synthesize spyPageNumber;
 
 
 #pragma mark --
@@ -57,7 +59,7 @@
 	}
 
 	if (reloadSpies) {
-		[self loadSpies];
+		[self loadSpiesForPage:self.spyPageNumber];
 	}
 
 	self.spiesUpdated = [NSDate date];
@@ -167,8 +169,10 @@
 #pragma mark --
 #pragma mark Instance Methods
 
-- (void)loadSpies {
-	[[[LEBuildingViewSpies alloc] initWithCallback:@selector(spiesLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+- (void)loadSpiesForPage:(NSInteger)pageNumber {
+	self.spyPageNumber = pageNumber;
+	[[[LEBuildingViewSpies alloc] initWithCallback:@selector(spiesLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl pageNumber:pageNumber] autorelease];
+
 }
 
 
@@ -184,6 +188,16 @@
 
 - (void)spy:(Spy *)spy assign:(NSString *)assignment {
 	[[[LEBuildingAssignSpy alloc] initWithCallback:@selector(spyAssigned:) target:self buildingId:self.id buildingUrl:self.buildingUrl spyId:spy.id assignment:assignment] autorelease];
+}
+
+
+-(bool)hasPreviousSpyPage {
+	return (self.spyPageNumber > 1);
+}
+
+
+- (bool)hasNextSpyPage {
+	return (self.spyPageNumber < [Util numPagesForCount:self.numSpies]);
 }
 
 

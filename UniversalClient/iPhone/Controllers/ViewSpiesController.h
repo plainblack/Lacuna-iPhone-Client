@@ -15,12 +15,14 @@
 
 
 @interface ViewSpiesController : LETableViewControllerGrouped <UIActionSheetDelegate> {
+	UISegmentedControl *pageSegmentedControl;
 	Intelligence *intelligenceBuilding;
 	NSDate *spiesLastUpdated;
 	Spy *selectedSpy;
 }
 
 
+@property (nonatomic, retain) UISegmentedControl *pageSegmentedControl;
 @property (nonatomic, retain) Intelligence *intelligenceBuilding;
 @property (nonatomic, retain) NSDate *spiesLastUpdated;
 @property (nonatomic, retain) Spy *selectedSpy;

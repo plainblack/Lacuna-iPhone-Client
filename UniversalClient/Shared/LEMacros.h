@@ -79,3 +79,5 @@
 #define BODY_BUILDINGS_MIN_Y -5
 #define BODY_BUILDINGS_MAX_Y 5
 
+//Items Per Page
+#define ITEMS_PER_PAGE 25

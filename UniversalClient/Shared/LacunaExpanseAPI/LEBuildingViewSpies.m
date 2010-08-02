@@ -16,19 +16,21 @@
 
 @synthesize buildingId;
 @synthesize buildingUrl;
+@synthesize pageNumber;
 @synthesize spies;
 @synthesize possibleAssignments;
 
 
-- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl {
+- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl pageNumber:(NSInteger)inPageNumber {
 	self.buildingId = inBuildingId;
 	self.buildingUrl = inBuildingUrl;
+	self.pageNumber = inPageNumber;
 	return [self initWithCallback:inCallback target:(NSObject *)inTarget];
 }
 
 
 - (id)params {
-	return _array([Session sharedInstance].sessionId, self.buildingId);
+	return _array([Session sharedInstance].sessionId, self.buildingId, [NSNumber numberWithInt:self.pageNumber]);
 }
 
 

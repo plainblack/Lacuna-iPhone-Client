@@ -7,6 +7,7 @@
 //
 
 #import "Util.h"
+#import "LEMacros.h"
 
 
 @implementation Util
@@ -21,6 +22,15 @@
 				   constrainedToSize:cellSize
 					   lineBreakMode:UILineBreakModeWordWrap];
 	return cellSize.height + 10;
+}
+
+
++ (NSInteger)numPagesForCount:(NSInteger)count {
+	NSInteger tmp = count / ITEMS_PER_PAGE;
+	if (count % ITEMS_PER_PAGE > 0) {
+		tmp++;
+	}
+	return tmp;
 }
 
 

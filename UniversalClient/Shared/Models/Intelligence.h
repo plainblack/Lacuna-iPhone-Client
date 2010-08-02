@@ -20,6 +20,7 @@
 	NSMutableArray *spies;
 	NSArray *possibleAssignments;
 	NSDate *spiesUpdated;
+	NSInteger spyPageNumber;
 }
 
 
@@ -29,12 +30,15 @@
 @property (nonatomic, retain) NSMutableArray *spies;
 @property (nonatomic, retain) NSArray *possibleAssignments;
 @property (nonatomic, retain) NSDate *spiesUpdated;
+@property (nonatomic, assign) NSInteger spyPageNumber;
 
 
-- (void)loadSpies;
+- (void)loadSpiesForPage:(NSInteger)pageNumber;
 - (void)burnSpy:(Spy *)spy;
 - (void)spy:(Spy *)spy rename:(NSString *)newName;
 - (void)spy:(Spy *)spy assign:(NSString *)assignment;
+- (bool)hasPreviousSpyPage;
+- (bool)hasNextSpyPage;
 
 
 @end

@@ -16,6 +16,8 @@
 
 + (CGFloat)heightForText:(NSString *)text inFrame:(CGRect)frame withFont:(UIFont *)font;
 
++ (NSInteger)numPagesForCount:(NSInteger)count;
+
 + (NSDate *)date:(NSString *)serverDateString;
 + (NSString *)formatDate:(NSDate *)serverDate;
 + (NSString *)prettyDate:(NSString *)serverDateString;
