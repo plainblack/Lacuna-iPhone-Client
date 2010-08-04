@@ -10,6 +10,9 @@
 #import "Building.h"
 
 
+@class Ship;
+
+
 @interface MiningMinistry : Building {
 	NSMutableArray *platforms;
 	NSMutableArray *fleetShips;
@@ -23,8 +26,8 @@
 - (void)loadPlatforms;
 - (void)loadFleetShips;
 - (void)abandonPlatformAtAsteroid:(NSString *)platformId;
-- (void)addCargoShipToFleet:(NSString *)shipId;
-- (void)removeCargoShipToFleet:(NSString *)shipId;
+- (void)addCargoShipToFleet:(Ship *)ship;
+- (void)removeCargoShipFromFleet:(Ship *)ship;
 
 
 @end

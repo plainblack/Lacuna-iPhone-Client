@@ -10,6 +10,13 @@
 #import "LEMacros.h"
 
 
+@interface MiningPlatform (PrivateMethods)
+
+- (void)add:(NSNumber *)number toDictionary:(NSMutableDictionary *)dict withKey:(NSString *)key;
+
+@end
+
+
 @implementation MiningPlatform
 
 
@@ -17,7 +24,6 @@
 @synthesize asteroidId;
 @synthesize asteroidName;
 @synthesize oresPerHour;
-@synthesize productionCapacity;
 @synthesize shippingCapacity;
 
 
@@ -34,8 +40,8 @@
 
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"id:%@, asteroidId:%@, asteroidName:%@, oresPerHour:%@, productionCapacity:%i shippingCapacity:%i",
-			self.id, self.asteroidId, self.asteroidName, self.oresPerHour, self.productionCapacity, self.shippingCapacity];
+	return [NSString stringWithFormat:@"id:%@, asteroidId:%@, asteroidName:%@, oresPerHour:%@, shippingCapacity:%i",
+			self.id, self.asteroidId, self.asteroidName, self.oresPerHour, self.shippingCapacity];
 }
 
 
@@ -43,6 +49,8 @@
 #pragma mark Instance Methods
 
 - (void)parseData:(NSDictionary *)data {
+	NSLog(@"Platform Data: %@", data);
+	
 	self.id = [data objectForKey:@"id"];
 	NSDictionary *asteroidData = [data objectForKey:@"asteroid"];
 	self.asteroidId = [asteroidData objectForKey:@"id"];
@@ -54,30 +62,38 @@
 		[self.oresPerHour removeAllObjects];
 	}
 	
-	[self.oresPerHour setObject:[data objectForKey:@"rutile_hour"] forKey:@"rutile"];
-	[self.oresPerHour setObject:[data objectForKey:@"chromite_hour"] forKey:@"chromite"];
-	[self.oresPerHour setObject:[data objectForKey:@"chalcopyrite_hour"] forKey:@"chalcopyrite"];
-	[self.oresPerHour setObject:[data objectForKey:@"galena_hour"] forKey:@"galena"];
-	[self.oresPerHour setObject:[data objectForKey:@"gold_hour"] forKey:@"gold"];
-	[self.oresPerHour setObject:[data objectForKey:@"uraninite_hour"] forKey:@"uraninite"];
-	[self.oresPerHour setObject:[data objectForKey:@"bauxite_hour"] forKey:@"bauxite"];
-	[self.oresPerHour setObject:[data objectForKey:@"goethite_hour"] forKey:@"goethite"];
-	[self.oresPerHour setObject:[data objectForKey:@"halite_hour"] forKey:@"halite"];
-	[self.oresPerHour setObject:[data objectForKey:@"gypsum_hour"] forKey:@"gypsum"];
-	[self.oresPerHour setObject:[data objectForKey:@"trona_hour"] forKey:@"trona"];
-	[self.oresPerHour setObject:[data objectForKey:@"kerogen_hour"] forKey:@"kerogen"];
-	[self.oresPerHour setObject:[data objectForKey:@"methane_hour"] forKey:@"methane"];
-	[self.oresPerHour setObject:[data objectForKey:@"anthracite_hour"] forKey:@"anthracite"];
-	[self.oresPerHour setObject:[data objectForKey:@"sulfur_hour"] forKey:@"sulfur"];
-	[self.oresPerHour setObject:[data objectForKey:@"zircon_hour"] forKey:@"zircon"];
-	[self.oresPerHour setObject:[data objectForKey:@"monazite_hour"] forKey:@"monazite"];
-	[self.oresPerHour setObject:[data objectForKey:@"fluorite_hour"] forKey:@"fluorite"];
-	[self.oresPerHour setObject:[data objectForKey:@"beryl_hour"] forKey:@"beryl"];
-	[self.oresPerHour setObject:[data objectForKey:@"magnetite_hour"] forKey:@"magnetite"];
+	[self add:[data objectForKey:@"rutile_hour"] toDictionary:self.oresPerHour withKey:@"rutile"];
+	[self add:[data objectForKey:@"chromite_hour"] toDictionary:self.oresPerHour withKey:@"chromite"];
+	[self add:[data objectForKey:@"chalcopyrite_hour"] toDictionary:self.oresPerHour withKey:@"chalcopyrite"];
+	[self add:[data objectForKey:@"galena_hour"] toDictionary:self.oresPerHour withKey:@"galena"];
+	[self add:[data objectForKey:@"gold_hour"] toDictionary:self.oresPerHour withKey:@"gold"];
+	[self add:[data objectForKey:@"uraninite_hour"] toDictionary:self.oresPerHour withKey:@"uraninite"];
+	[self add:[data objectForKey:@"bauxite_hour"] toDictionary:self.oresPerHour withKey:@"bauxite"];
+	[self add:[data objectForKey:@"goethite_hour"] toDictionary:self.oresPerHour withKey:@"goethite"];
+	[self add:[data objectForKey:@"halite_hour"] toDictionary:self.oresPerHour withKey:@"halite"];
+	[self add:[data objectForKey:@"gypsum_hour"] toDictionary:self.oresPerHour withKey:@"gypsum"];
+	[self add:[data objectForKey:@"trona_hour"] toDictionary:self.oresPerHour withKey:@"trona"];
+	[self add:[data objectForKey:@"kerogen_hour"] toDictionary:self.oresPerHour withKey:@"kerogen"];
+	[self add:[data objectForKey:@"methane_hour"] toDictionary:self.oresPerHour withKey:@"methane"];
+	[self add:[data objectForKey:@"anthracite_hour"] toDictionary:self.oresPerHour withKey:@"anthracite"];
+	[self add:[data objectForKey:@"sulfur_hour"] toDictionary:self.oresPerHour withKey:@"sulfur"];
+	[self add:[data objectForKey:@"zircon_hour"] toDictionary:self.oresPerHour withKey:@"zircon"];
+	[self add:[data objectForKey:@"monazite_hour"] toDictionary:self.oresPerHour withKey:@"monazite"];
+	[self add:[data objectForKey:@"fluorite_hour"] toDictionary:self.oresPerHour withKey:@"fluorite"];
+	[self add:[data objectForKey:@"beryl_hour"] toDictionary:self.oresPerHour withKey:@"beryl"];
+	[self add:[data objectForKey:@"magnetite_hour"] toDictionary:self.oresPerHour withKey:@"magnetite"];
 
-	
-	self.productionCapacity = _intv([data objectForKey:@"y"]);
-	self.shippingCapacity = _intv([data objectForKey:@"z"]);
+	self.shippingCapacity = _intv([data objectForKey:@"shipping_capacity"]);
+}
+
+
+#pragma mark --
+#pragma mark Private Methods
+
+- (void)add:(NSNumber *)number toDictionary:(NSMutableDictionary *)dict withKey:(NSString *)key {
+	if (_intv(number) > 0) {
+		[dict setObject:number forKey:key];
+	}
 }
 
 

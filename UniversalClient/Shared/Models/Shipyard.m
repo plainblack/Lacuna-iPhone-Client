@@ -147,8 +147,8 @@
 
 
 - (id)buildableShipsLoaded:(LEBuildingGetBuildableShips *)request {
-	self.buildableShips = request.buildableShips;
 	self.docksAvailable = request.docksAvailable;
+	self.buildableShips = request.buildableShips;
 	return nil;
 }
 

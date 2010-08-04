@@ -14,7 +14,6 @@
 	NSString *asteroidId;
 	NSString *asteroidName;
 	NSMutableDictionary *oresPerHour;
-	NSInteger productionCapacity;
 	NSInteger shippingCapacity;
 }
 
@@ -23,7 +22,6 @@
 @property (nonatomic, retain) NSString *asteroidId;
 @property (nonatomic, retain) NSString *asteroidName;
 @property (nonatomic, retain) NSMutableDictionary *oresPerHour;
-@property (nonatomic, assign) NSInteger productionCapacity;
 @property (nonatomic, assign) NSInteger shippingCapacity;
 
 

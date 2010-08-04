@@ -7,6 +7,7 @@
 //
 
 #import "MiningMinistry.h"
+#import "Ship.h"
 #import "LEMacros.h"
 #import "LETableViewCellButton.h"
 #import "LEBuildingViewPlatforms.h"
@@ -137,13 +138,14 @@
 }
 
 
-- (void)addCargoShipToFleet:(NSString *)shipId {
-	[[[LEBuildingAddShipToFleet alloc] initWithCallback:@selector(shipAddedToFleet:) target:self buildingId:self.id buildingUrl:self.buildingUrl shipId:shipId] autorelease];
+- (void)addCargoShipToFleet:(Ship *)ship {
+	[[[LEBuildingAddShipToFleet alloc] initWithCallback:@selector(shipAddedToFleet:) target:self buildingId:self.id buildingUrl:self.buildingUrl shipId:ship.id] autorelease];
+	ship.task = @"Mining";
 }
 
 
-- (void)removeCargoShipToFleet:(NSString *)shipId {
-	[[[LEBuildingRemoveShipFromFleet alloc] initWithCallback:@selector(shipRemovedFromFleet:) target:self buildingId:self.id buildingUrl:self.buildingUrl shipId:shipId] autorelease];
+- (void)removeCargoShipFromFleet:(Ship *)ship {
+	[[[LEBuildingRemoveShipFromFleet alloc] initWithCallback:@selector(shipRemovedFromFleet:) target:self buildingId:self.id buildingUrl:self.buildingUrl shipId:ship.id] autorelease];
 }
 
 
@@ -172,6 +174,8 @@
 
 
 - (id)shipRemovedFromFleet:(LEBuildingRemoveShipFromFleet *)request {
+	NSLog(@"shipRemovedFromFleet: %@", request.response);
+	[self loadFleetShips];
 	return nil;
 }
 

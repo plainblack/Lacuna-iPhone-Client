@@ -25,6 +25,7 @@
 + (NSNumber *)asNumber:(NSString *)string;
 + (NSString *)prettyDuration:(NSInteger)seconds;
 + (NSString *)prettyNSNumber:(NSNumber *)number;
+//+ (NSString *)prettyNSDecimalNumber:(NSDecimalNumber *)number;
 + (NSString *)prettyNSInteger:(NSInteger)number;
 + (NSString *)prettyCodeValue:(NSString *)originalString;
 

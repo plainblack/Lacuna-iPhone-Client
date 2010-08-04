@@ -47,6 +47,15 @@
 #pragma mark Instance Methods
 
 - (void)setHeading:(NSString *)heading Data:(NSDictionary *)data {
+	[self.keys enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		[obj removeFromSuperview];
+	}];
+	[self.keys removeAllObjects];
+	[self.values enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		[obj removeFromSuperview];
+	}];
+	[self.values removeAllObjects];
+	
 	self.headingLabel.text = heading;
 	
 	NSArray *tmp = [[data allKeys] sortedArrayUsingSelector:@selector(compare:)];

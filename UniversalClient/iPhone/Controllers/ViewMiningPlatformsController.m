@@ -17,7 +17,6 @@
 
 typedef enum {
 	ROW_PLATFORM_LOCATION,
-	ROW_PRODUCTION_CAPACITY,
 	ROW_SHIPPING_CAPACTITY,
 	ROW_ORE_PER_HOUR,
 	ROW_ABANDON_PLATFORM
@@ -79,7 +78,7 @@ typedef enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (self.miningMinistry && self.miningMinistry.platforms) {
 		if ([self.miningMinistry.platforms count] > 0) {
-			return 2;
+			return 4;
 		} else {
 			return 1;
 		}
@@ -96,9 +95,6 @@ typedef enum {
 			MiningPlatform *miningPlatform = [self.miningMinistry.platforms objectAtIndex:indexPath.section];
 			switch (indexPath.row) {
 				case ROW_PLATFORM_LOCATION:
-					return [LETableViewCellLabeledText getHeightForTableView:tableView];
-					break;
-				case ROW_PRODUCTION_CAPACITY:
 					return [LETableViewCellLabeledText getHeightForTableView:tableView];
 					break;
 				case ROW_SHIPPING_CAPACTITY:
@@ -140,18 +136,11 @@ typedef enum {
 					locationCell.content.text = miningPlatform.asteroidName;
 					cell = locationCell;
 					break;
-				case ROW_PRODUCTION_CAPACITY:
-					; //DO NOT REMOVE
-					LETableViewCellLabeledText *productionCapacityCell = [LETableViewCellLabeledText getCellForTableView:tableView];
-					productionCapacityCell.label.text = @"Production";
-					productionCapacityCell.content.text = [NSString stringWithFormat:@"%i%", miningPlatform.productionCapacity];
-					cell = productionCapacityCell;
-					break;
 				case ROW_SHIPPING_CAPACTITY:
 					; //DO NOT REMOVE
 					LETableViewCellLabeledText *shippingCapacityCell = [LETableViewCellLabeledText getCellForTableView:tableView];
 					shippingCapacityCell.label.text = @"Shipping";
-					shippingCapacityCell.content.text = [NSString stringWithFormat:@"%i%", miningPlatform.shippingCapacity];
+					shippingCapacityCell.content.text = [NSString stringWithFormat:@"%i%%", miningPlatform.shippingCapacity];
 					cell = shippingCapacityCell;
 					break;
 				case ROW_ORE_PER_HOUR:

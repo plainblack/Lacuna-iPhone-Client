@@ -11,8 +11,8 @@
 
 @interface LETableViewCellDictionary : UITableViewCell {
 	UILabel *headingLabel;
+	NSMutableArray *dataLabels;
 	NSMutableArray *keys;
-	NSMutableArray *values;
 }
 
 

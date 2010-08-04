@@ -9,8 +9,20 @@
 #import "Util.h"
 #import "LEMacros.h"
 
+/*
+NSDecimalNumber *ONE_THOUSAND = [NSDecimalNumber decimalNumberWithString:@"1000"];
+NSDecimalNumber *TEN_THOUSAND = [NSDecimalNumber decimalNumberWithString:@"10000"];
+NSDecimalNumber *ONE_HUNDRED_THOUSAND = [NSDecimalNumber decimalNumberWithString:@"100000"];
+NSDecimalNumber *ONE_MILLION = [NSDecimalNumber decimalNumberWithString:@"1000000"];
+NSDecimalNumber *TEN_MILLION = [NSDecimalNumber decimalNumberWithString:@"10000000"];
+NSDecimalNumber *ONE_HUNDRED_MILLION = [NSDecimalNumber decimalNumberWithString:@"100000000"];
+NSDecimalNumber *ONE_BILLION = [NSDecimalNumber decimalNumberWithString:@"1000000000"];
+NSDecimalNumber *TEN_BILLION = [NSDecimalNumber decimalNumberWithString:@"10000000000"];
+NSDecimalNumber *ONE_HUNDRED_BILLION = [NSDecimalNumber decimalNumberWithString:@"100000000000"];
+*/
 
 @implementation Util
+
 
 + (CGFloat)heightForText:(NSString *)text inFrame:(CGRect)frame withFont:(UIFont *)font {
 	if (!text || (id)text == [NSNull null]) {
@@ -79,6 +91,33 @@
 + (NSString *)prettyNSNumber:(NSNumber *)number {
 	return [self prettyNSInteger:[number intValue]];
 }
+
+
+/*
++ (NSString *)prettyNSDecimalNumber:(NSDecimalNumber *)number {
+	if ([number compare:ONE_HUNDRED_BILLION] != NSOrderedDescending || [number compare:ONE_HUNDRED_BILLION] != NSOrderedSame) {
+		return @"WIP";
+	} else if ([number compare:TEN_BILLION] != NSOrderedDescending || [number compare:TEN_BILLION] != NSOrderedSame) {
+		return @"WIP";
+	} else if ([number compare:ONE_BILLION] != NSOrderedDescending || [number compare:ONE_BILLION] != NSOrderedSame) {
+		return @"WIP";
+	} else if ([number compare:ONE_HUNDRED_MILLION] != NSOrderedDescending || [number compare:ONE_HUNDRED_MILLION] != NSOrderedSame) {
+		return @"WIP";
+	} else if ([number compare:TEN_MILLION] != NSOrderedDescending || [number compare:TEN_MILLION] != NSOrderedSame) {
+		return @"WIP";
+	} else if ([number compare:ONE_MILLION] != NSOrderedDescending || [number compare:ONE_MILLION] != NSOrderedSame) {
+		return @"WIP";
+	} else if ([number compare:ONE_HUNDRED_THOUSAND] != NSOrderedDescending || [number compare:ONE_HUNDRED_THOUSAND] != NSOrderedSame) {
+		return @"WIP";
+	} else if ([number compare:TEN_THOUSAND] != NSOrderedDescending || [number compare:TEN_THOUSAND] != NSOrderedSame) {
+		return @"WIP";
+	} else if ([number compare:ONE_THOUSAND] != NSOrderedDescending || [number compare:ONE_THOUSAND] != NSOrderedSame) {
+		return @"WIP";
+	}else {
+		return @"WIP";
+	}
+}
+*/
 
 
 + (NSString *)prettyNSInteger:(NSInteger)number {

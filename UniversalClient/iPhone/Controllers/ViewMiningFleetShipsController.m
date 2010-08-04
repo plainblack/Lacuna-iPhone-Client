@@ -128,8 +128,11 @@ typedef enum {
 				case ROW_ADD_OR_REMOVE:
 					; //DO NOT REMOVE
 					LETableViewCellButton *addRemoveCell = [LETableViewCellButton getCellForTableView:tableView];
-					addRemoveCell.textLabel.text = @"Add to Fleet";
-					//addRemoveCell.textLabel.text = @"Remove from Fleet";
+					if ([ship.task isEqualToString:@"Mining"]) {
+						addRemoveCell.textLabel.text = @"Remove from Fleet";
+					} else {
+						addRemoveCell.textLabel.text = @"Add to Fleet";
+					}
 					cell = addRemoveCell;
 					break;
 				default:
@@ -163,8 +166,12 @@ typedef enum {
 			Ship *ship = [self.miningMinistry.fleetShips objectAtIndex:indexPath.section];
 			switch (indexPath.row) {
 				case ROW_ADD_OR_REMOVE:
-					[self.miningMinistry addCargoShipToFleet:ship.id];
-					//[self.miningMinistry removeCargoShipFromFleet:ship.id];
+					if ([ship.task isEqualToString:@"Mining"]) {
+						[self.miningMinistry removeCargoShipFromFleet:ship];
+					} else {
+						[self.miningMinistry addCargoShipToFleet:ship];
+					}
+					[self.tableView reloadData];
 					break;
 			}
 		}

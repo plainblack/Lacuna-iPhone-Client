@@ -37,6 +37,7 @@
 	NSDictionary *result = [self.response objectForKey:@"result"];
 	NSLog(@"Buildable Ship Data: %@", result);
 	self.docksAvailable = _intv([result objectForKey:@"docks_available"]);
+	NSLog(@"docksAvailable: %i", self.docksAvailable);
 	
 	NSMutableDictionary *shipsTravellingData = [result objectForKey:@"buildable"];
 	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[shipsTravellingData count]];
