@@ -89,7 +89,7 @@
 	self.starId = [bodyData objectForKey:@"star_id"];
 	self.starName = [bodyData objectForKey:@"star_name"];
 	self.orbit = _intv([bodyData objectForKey:@"orbit"]);
-	self.type = [bodyData objectForKey:@"id"];
+	self.type = [[bodyData objectForKey:@"type"] capitalizedString];
 	self.name = [bodyData objectForKey:@"name"];
 	self.imageName = [bodyData objectForKey:@"image"];
 	self.size = _intv([bodyData objectForKey:@"size"]);

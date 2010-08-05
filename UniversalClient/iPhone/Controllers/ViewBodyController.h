@@ -13,11 +13,17 @@
 
 
 @interface ViewBodyController : LETableViewControllerGrouped {
+	UISegmentedControl *pageSegmentedControl;
+	NSArray *bodyIds;
+	NSInteger currentBodyIndex;
 	NSString *bodyId;
 	Body *watchedBody;
 }
 
 
+@property (nonatomic, retain) UISegmentedControl *pageSegmentedControl;
+@property(nonatomic, retain) NSArray *bodyIds;
+@property(nonatomic, assign) NSInteger currentBodyIndex;
 @property(nonatomic, retain) NSString *bodyId;
 @property(nonatomic, retain) Body *watchedBody;
 

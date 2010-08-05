@@ -37,33 +37,6 @@ typedef enum {
 	ACTION_ROW_RENAME_BODY
 } ACTION_ROW;
 
-/*
-typedef enum {
-	COMPOSITION_ROW_SIZE,
-	COMPOSITION_ROW_ANTHRACITE,
-	COMPOSITION_ROW_BAUXITE,
-	COMPOSITION_ROW_BERYL,
-	COMPOSITION_ROW_CHALCOPYRITE,
-	COMPOSITION_ROW_CHROMITE,
-	COMPOSITION_ROW_FLUORITE,
-	COMPOSITION_ROW_GALENA,
-	COMPOSITION_ROW_GOETHITE,
-	COMPOSITION_ROW_GOLD,
-	COMPOSITION_ROW_GYPSUM,
-	COMPOSITION_ROW_HALITE,
-	COMPOSITION_ROW_KEROGEN,
-	COMPOSITION_ROW_MAGNETITE,
-	COMPOSITION_ROW_METHANE,
-	COMPOSITION_ROW_MONAZITE,
-	COMPOSITION_ROW_RUTILE,
-	COMPOSITION_ROW_SULFUR,
-	COMPOSITION_ROW_TRONA,
-	COMPOSITION_ROW_URANINITE,
-	COMPOSITION_ROW_ZIRCON,
-	COMPOSITION_ROW_WATER
-} COMPOSITION_ROW;
-*/
-
 typedef enum {
 	COMPOSITION_ROW_SIZE,
 	COMPOSITION_ROW_WATER,
@@ -71,9 +44,19 @@ typedef enum {
 } COMPOSITION_ROW;
 
 	
+@interface ViewBodyController (PrivateMethods)
+
+- (void)togglePageButtons;
+
+@end
+
+
 @implementation ViewBodyController
 
 
+@synthesize pageSegmentedControl;
+@synthesize bodyIds;
+@synthesize currentBodyIndex;
 @synthesize bodyId;
 @synthesize watchedBody;
 
@@ -95,6 +78,14 @@ typedef enum {
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadBody)] autorelease];
 
+	self.pageSegmentedControl = [[[UISegmentedControl alloc] initWithItems:_array([UIImage imageNamed:@"assets/iphone ui/up.png"], [UIImage imageNamed:@"assets/iphone ui/down.png"])] autorelease];
+	[self.pageSegmentedControl addTarget:self action:@selector(switchPage) forControlEvents:UIControlEventValueChanged]; 
+	self.pageSegmentedControl.momentary = YES;
+	self.pageSegmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
+	UIBarButtonItem *rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.pageSegmentedControl] autorelease];
+	self.navigationItem.rightBarButtonItem = rightBarButtonItem; 
+	[self togglePageButtons];
+	
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Body"],
 								 [LEViewSectionTab tableView:self.tableView createWithText:@"Actions"],
 								 [LEViewSectionTab tableView:self.tableView createWithText:@"Composition"]);
@@ -108,14 +99,33 @@ typedef enum {
 	if (!self.bodyId) {
 		self.bodyId = session.empire.homePlanetId;
 	}
+	if (!self.bodyIds) {
+		NSLog(@"How do we use: %@", session.empire.planets);
+		NSLog(@"TURN THE ABOVE INTO ARRAY OF IDS I CAN USE");
+		NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[session.empire.planets count]];
+		[session.empire.planets enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+			[tmp addObject:key];
+			if ([key isEqualToString:self.bodyId]) {
+				self.currentBodyIndex = [tmp count]-1;
+			}
+		}];
+		self.bodyIds = tmp;
+	}
 	self.navigationItem.title = @"Loading";
 	
 	[session addObserver:self forKeyPath:@"body" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 	[session addObserver:self forKeyPath:@"lastTick" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 
-	if (![session.body.id isEqualToString:self.bodyId]) {
-		[session loadBody:self.bodyId];
+	if (self.bodyIds) {
+		if (![session.body.id isEqualToString:[self.bodyIds objectAtIndex:self.currentBodyIndex]]) {
+			[session loadBody:[self.bodyIds objectAtIndex:self.currentBodyIndex]];
+		}
+	} else {
+		if (![session.body.id isEqualToString:self.bodyId]) {
+			[session loadBody:self.bodyId];
+		}
 	}
+
 }
 
 
@@ -263,7 +273,7 @@ typedef enum {
 				case ACTION_ROW_RENAME_BODY:
 					; //DO NOT REMOVE
 					LETableViewCellButton *renameBodyCell = [LETableViewCellButton getCellForTableView:tableView];
-					renameBodyCell.textLabel.text = @"Rename Body";
+					renameBodyCell.textLabel.text = [NSString stringWithFormat:@"Rename %@", session.body.type];
 					cell = renameBodyCell;
 					break;
 				default:
@@ -292,88 +302,6 @@ typedef enum {
 					waterCell.content.text = [NSString stringWithFormat:@"%i", session.body.planetWater];
 					cell = waterCell;
 					break;
-/*
-				case COMPOSITION_ROW_ANTHRACITE:
-					compositionCell.label.text = @"Anthracite";
-					compositionCell.content.text = [NSString stringWithFormat:@"%@", [session.body.ores objectForKey:@"anthracite"]];
-					break;
-				case COMPOSITION_ROW_BAUXITE:
-					compositionCell.label.text = @"Bauxite";
-					compositionCell.content.text = [NSString stringWithFormat:@"%@", [session.body.ores objectForKey:@"bauxite"]];
-					break;
-				case COMPOSITION_ROW_BERYL:
-					compositionCell.label.text = @"Beryl";
-					compositionCell.content.text = [NSString stringWithFormat:@"%@", [session.body.ores objectForKey:@"beryl"]];
-					break;
-				case COMPOSITION_ROW_CHALCOPYRITE:
-					compositionCell.label.text = @"Chalcopyrite";
-					compositionCell.content.text = [NSString stringWithFormat:@"%@", [session.body.ores objectForKey:@"chalcopyrite"]];
-					break;
-				case COMPOSITION_ROW_CHROMITE:
-					compositionCell.label.text = @"Chromite";
-					compositionCell.content.text = [NSString stringWithFormat:@"%@", [session.body.ores objectForKey:@"chromite"]];
-					break;
-				case COMPOSITION_ROW_FLUORITE:
-					compositionCell.label.text = @"Fluorite";
-					compositionCell.content.text = [NSString stringWithFormat:@"%@", [session.body.ores objectForKey:@"fluorite"]];
-					break;
-				case COMPOSITION_ROW_GALENA:
-					compositionCell.label.text = @"Galena";
-					compositionCell.content.text = [NSString stringWithFormat:@"%@", [session.body.ores objectForKey:@"galena"]];
-					break;
-				case COMPOSITION_ROW_GOETHITE:
-					compositionCell.label.text = @"Goethite";
-					compositionCell.content.text = [NSString stringWithFormat:@"%@", [session.body.ores objectForKey:@"goethite"]];
-					break;
-				case COMPOSITION_ROW_GOLD:
-					compositionCell.label.text = @"Gold";
-					compositionCell.content.text = [NSString stringWithFormat:@"%@", [session.body.ores objectForKey:@"gold"]];
-					break;
-				case COMPOSITION_ROW_GYPSUM:
-					compositionCell.label.text = @"Gypsum";
-					compositionCell.content.text = [NSString stringWithFormat:@"%@", [session.body.ores objectForKey:@"gypsum"]];
-					break;
-				case COMPOSITION_ROW_HALITE:
-					compositionCell.label.text = @"Halite";
-					compositionCell.content.text = [NSString stringWithFormat:@"%@", [session.body.ores objectForKey:@"halite"]];
-					break;
-				case COMPOSITION_ROW_KEROGEN:
-					compositionCell.label.text = @"Kerogen";
-					compositionCell.content.text = [NSString stringWithFormat:@"%@", [session.body.ores objectForKey:@"kerogen"]];
-					break;
-				case COMPOSITION_ROW_MAGNETITE:
-					compositionCell.label.text = @"Magnetite";
-					compositionCell.content.text = [NSString stringWithFormat:@"%@", [session.body.ores objectForKey:@"magnetite"]];
-					break;
-				case COMPOSITION_ROW_METHANE:
-					compositionCell.label.text = @"Methane";
-					compositionCell.content.text = [NSString stringWithFormat:@"%@", [session.body.ores objectForKey:@"methane"]];
-					break;
-				case COMPOSITION_ROW_MONAZITE:
-					compositionCell.label.text = @"Monazite";
-					compositionCell.content.text = [NSString stringWithFormat:@"%@", [session.body.ores objectForKey:@"monazite"]];
-					break;
-				case COMPOSITION_ROW_RUTILE:
-					compositionCell.label.text = @"Rutile";
-					compositionCell.content.text = [NSString stringWithFormat:@"%@", [session.body.ores objectForKey:@"rutile"]];
-					break;
-				case COMPOSITION_ROW_SULFUR:
-					compositionCell.label.text = @"Sulfur";
-					compositionCell.content.text = [NSString stringWithFormat:@"%@", [session.body.ores objectForKey:@"sulfur"]];
-					break;
-				case COMPOSITION_ROW_TRONA:
-					compositionCell.label.text = @"Trona";
-					compositionCell.content.text = [NSString stringWithFormat:@"%@", [session.body.ores objectForKey:@"trona"]];
-					break;
-				case COMPOSITION_ROW_URANINITE:
-					compositionCell.label.text = @"Uraninite";
-					compositionCell.content.text = [NSString stringWithFormat:@"%@", [session.body.ores objectForKey:@"uraninite"]];
-					break;
-				case COMPOSITION_ROW_ZIRCON:
-					compositionCell.label.text = @"Zircon";
-					compositionCell.content.text = [NSString stringWithFormat:@"%@", [session.body.ores objectForKey:@"zircon"]];
-					break;
-*/
 				default:
 					cell = nil;
 					break;
@@ -404,7 +332,11 @@ typedef enum {
 				; //DO NOT REMOVE
 				Session *session = [Session sharedInstance];
 				RenameBodyController *renameBodyController = [RenameBodyController create];
-				renameBodyController.bodyId = self.bodyId;
+				if (self.bodyIds) {
+					renameBodyController.bodyId = [self.bodyIds objectAtIndex:self.currentBodyIndex];
+				} else {
+					renameBodyController.bodyId = self.bodyId;
+				}
 				renameBodyController.nameCell.textField.text = session.body.name;
 				[[self navigationController] pushViewController:renameBodyController animated:YES];
 				break;
@@ -425,11 +357,13 @@ typedef enum {
 }
 
 - (void)viewDidUnload {
+	self.pageSegmentedControl = nil;
 	[super viewDidUnload];
 }
 
 
 - (void)dealloc {
+	self.bodyIds = nil;
 	self.bodyId = nil;
     [super dealloc];
 }
@@ -439,6 +373,7 @@ typedef enum {
 #pragma mark Instance Methods
 
 - (void)clear {
+	self.bodyIds = nil;
 	self.bodyId = nil;
 	[self.tableView reloadData];
 }
@@ -449,11 +384,53 @@ typedef enum {
 
 - (void)loadBody {
 	Session *session = [Session sharedInstance];
-	[session loadBody:self.bodyId];
+	if (self.bodyIds) {
+		[session loadBody:[self.bodyIds objectAtIndex:self.currentBodyIndex]];
+	} else {
+		[session loadBody:self.bodyId];
+	}
 }
 
 
-#pragma mark -
+#pragma mark --
+#pragma mark Private Methods
+
+- (void)togglePageButtons {
+	NSLog(@"currentBodyIndex: %i", self.currentBodyIndex);
+	NSLog(@"Max Index: %i", (self.bodyIds.count - 1));
+	if (self.bodyIds) {
+		[self.pageSegmentedControl setEnabled:(self.currentBodyIndex > 0) forSegmentAtIndex:0];
+		[self.pageSegmentedControl setEnabled:(self.currentBodyIndex < (self.bodyIds.count - 1)) forSegmentAtIndex:1];
+	} else {
+		[self.pageSegmentedControl setEnabled:NO forSegmentAtIndex:0];
+		[self.pageSegmentedControl setEnabled:NO forSegmentAtIndex:1];
+	}
+
+}
+
+
+- (void) switchPage {
+	Session *session = [Session sharedInstance];
+	switch (self.pageSegmentedControl.selectedSegmentIndex) {
+		case 0:
+			NSLog(@"NSLog Previous Body");
+			self.currentBodyIndex--;
+			[session loadBody:[self.bodyIds objectAtIndex:self.currentBodyIndex]];
+			break;
+		case 1:
+			NSLog(@"NSLog Next Body");
+			self.currentBodyIndex++;
+			[session loadBody:[self.bodyIds objectAtIndex:self.currentBodyIndex]];
+			break;
+		default:
+			NSLog(@"Invalid switchPage");
+			break;
+	}
+	NSLog(@"currentBodyIndex: %i", self.currentBodyIndex);
+}
+
+
+#pragma mark --
 #pragma mark Class Methods
 
 + (ViewBodyController *)create {
@@ -466,6 +443,7 @@ typedef enum {
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ([keyPath isEqual:@"body"]) {
+		NSLog(@"LOADED NEW BODY");
 		if (isNotNull(self.watchedBody)) {
 			[self.watchedBody removeObserver:self forKeyPath:@"needsRefresh"];
 		}
@@ -478,13 +456,18 @@ typedef enum {
 		
 		Session *session = [Session sharedInstance];
 		self.navigationItem.title = session.body.name;
+		self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:newBody.type],
+									 [LEViewSectionTab tableView:self.tableView createWithText:@"Actions"],
+									 [LEViewSectionTab tableView:self.tableView createWithText:@"Composition"]);
+		[self togglePageButtons];
 		[self.tableView reloadData];
 	} else if ([keyPath isEqual:@"lastTick"]) {
-		Session *session = [Session sharedInstance];
-		self.navigationItem.title = session.body.name;
+		self.navigationItem.title = self.watchedBody.name;
 		[self.tableView reloadData];
-	} else if ([keyPath isEqual:@"newsRefresh"]) {
+	} else if ([keyPath isEqual:@"needsRefresh"]) {
+		self.navigationItem.title = self.watchedBody.name;
 		[self.tableView reloadData];
+		[self togglePageButtons];
 	}
 }
 

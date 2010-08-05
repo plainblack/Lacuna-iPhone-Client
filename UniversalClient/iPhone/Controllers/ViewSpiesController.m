@@ -229,8 +229,7 @@ typedef enum {
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
+	self.pageSegmentedControl = nil;
 	[super viewDidUnload];
 }
 
@@ -280,7 +279,6 @@ typedef enum {
 - (void)togglePageButtons {
 	[self.pageSegmentedControl setEnabled:[self.intelligenceBuilding hasPreviousSpyPage] forSegmentAtIndex:0];
 	[self.pageSegmentedControl setEnabled:[self.intelligenceBuilding hasNextSpyPage] forSegmentAtIndex:1];
-	
 }
 
 

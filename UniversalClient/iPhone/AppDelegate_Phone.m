@@ -108,6 +108,8 @@
 			[self.myWorldController clear];
 			[self.mailNavigationController popToRootViewControllerAnimated:NO];
 			[self.mailboxController clear];
+			self.mailTabBarItem.badgeValue = nil;
+			[session.empire removeObserver:self forKeyPath:@"numNewMessages"];
 		} else {
 			if(session.empire.numNewMessages > 0) {
 				self.mailTabBarItem.badgeValue = [NSString stringWithFormat:@"%i", session.empire.numNewMessages];

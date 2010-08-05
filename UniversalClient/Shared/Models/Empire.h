@@ -22,7 +22,7 @@
 	NSDate *lastMessageAt;
 	NSInteger numNewMessages;
 	NSInteger essentia;
-	NSArray *planets;
+	NSDictionary *planets;
 	EmpireProfile *profile;
 }
 
@@ -35,7 +35,7 @@
 @property(nonatomic, retain) NSDate *lastMessageAt;
 @property (nonatomic, assign) NSInteger numNewMessages;
 @property (nonatomic, assign) NSInteger essentia;
-@property (nonatomic, retain) NSArray *planets;
+@property (nonatomic, retain) NSDictionary *planets;
 @property (nonatomic, retain) EmpireProfile *profile;
 
 
