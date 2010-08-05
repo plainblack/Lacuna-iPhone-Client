@@ -180,6 +180,7 @@
 		F6E3F02711B46BEE00E7BC86 /* LEEmpireBoostHappiness.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F02611B46BEE00E7BC86 /* LEEmpireBoostHappiness.m */; };
 		F6E3F02A11B46BF800E7BC86 /* LEEmpireBoostOre.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F02911B46BF800E7BC86 /* LEEmpireBoostOre.m */; };
 		F6E3F02D11B46C0600E7BC86 /* LEEmpireBoostWater.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F02C11B46C0600E7BC86 /* LEEmpireBoostWater.m */; };
+		F6E57AC5120A40270030330F /* LEBuildingRepair.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E57AC4120A40270030330F /* LEBuildingRepair.m */; };
 		F6E5E5AB1205A9A000365AA2 /* MiningMinistry.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5E5AA1205A9A000365AA2 /* MiningMinistry.m */; };
 		F6E5E5DB1205BE1C00365AA2 /* MiningPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5E5DA1205BE1C00365AA2 /* MiningPlatform.m */; };
 		F6E5E5DE1205C08C00365AA2 /* LEBuildingViewPlatforms.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5E5DD1205C08C00365AA2 /* LEBuildingViewPlatforms.m */; };
@@ -549,6 +550,8 @@
 		F6E3F02911B46BF800E7BC86 /* LEEmpireBoostOre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireBoostOre.m; sourceTree = "<group>"; };
 		F6E3F02B11B46C0600E7BC86 /* LEEmpireBoostWater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireBoostWater.h; sourceTree = "<group>"; };
 		F6E3F02C11B46C0600E7BC86 /* LEEmpireBoostWater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireBoostWater.m; sourceTree = "<group>"; };
+		F6E57AC3120A40270030330F /* LEBuildingRepair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingRepair.h; sourceTree = "<group>"; };
+		F6E57AC4120A40270030330F /* LEBuildingRepair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingRepair.m; sourceTree = "<group>"; };
 		F6E5E5A91205A9A000365AA2 /* MiningMinistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiningMinistry.h; sourceTree = "<group>"; };
 		F6E5E5AA1205A9A000365AA2 /* MiningMinistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MiningMinistry.m; sourceTree = "<group>"; };
 		F6E5E5D91205BE1C00365AA2 /* MiningPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiningPlatform.h; sourceTree = "<group>"; };
@@ -973,6 +976,8 @@
 				F6E5E62E1205CDB600365AA2 /* LEBuildingAddShipToFleet.m */,
 				F6E5E6301205CDC200365AA2 /* LEBuildingRemoveShipFromFleet.h */,
 				F6E5E6311205CDC200365AA2 /* LEBuildingRemoveShipFromFleet.m */,
+				F6E57AC3120A40270030330F /* LEBuildingRepair.h */,
+				F6E57AC4120A40270030330F /* LEBuildingRepair.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -1423,6 +1428,7 @@
 				F6E5E62F1205CDB600365AA2 /* LEBuildingAddShipToFleet.m in Sources */,
 				F6E5E6321205CDC200365AA2 /* LEBuildingRemoveShipFromFleet.m in Sources */,
 				F6E5E6401205CF4000365AA2 /* ViewMiningFleetShipsController.m in Sources */,
+				F6E57AC5120A40270030330F /* LEBuildingRepair.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

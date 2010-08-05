@@ -25,6 +25,7 @@
 #import "LEBuildingSubsidizeBuildQueue.h"
 #import "LEBuildingThrowParty.h"
 #import "ViewSpiesController.h"
+#import "LEBuildingRepair.h"
 
 @implementation Building
 
@@ -408,6 +409,9 @@
 		case BUILDING_ROW_DEMOLISH_BUTTON:
 			[[[LEBuildingDemolish alloc] initWithCallback:@selector(buildingDemolished:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
 			break;
+		case BUILDING_ROW_REPAIR_BUTTON:
+			[[[LEBuildingRepair alloc] initWithCallback:@selector(buildingRepaired:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+			break;
 	}
 	return nil;
 }
@@ -462,7 +466,13 @@
 	return nil;
 }
 
- 
+
+- (id)buildingRepaired:(LEBuildingRepair *)request {
+	self.needsReload = YES;
+	return nil;
+}
+
+
 #pragma mark -
 #pragma mark LETableViewBuildProgressCellDelegate Methods
 

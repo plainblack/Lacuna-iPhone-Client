@@ -126,7 +126,7 @@
 		storageLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
 		storageLabel.font = LABEL_FONT;
 		storageLabel.textColor = LABEL_COLOR;
-		storageLabel.text = @"Build Cost";
+		storageLabel.text = @"Cost";
 		[cell.contentView addSubview:storageLabel];
 		
 		UIImageView *tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(9, 22, 22, 22)] autorelease];
