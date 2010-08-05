@@ -46,6 +46,8 @@
 @synthesize upgradedResourcePerHour;
 @synthesize upgradedResourceStorage;
 @synthesize upgradedImageName;
+@synthesize efficiency;
+@synthesize repairCost;
 @synthesize sections;
 @synthesize demolished;
 @synthesize needsReload;
@@ -69,6 +71,7 @@
 	self.upgradedResourcePerHour = nil;
 	self.upgradedResourceStorage = nil;
 	self.upgradedImageName = nil;
+	self.repairCost = nil;
 	self.sections = nil;
 	[super dealloc];
 }
@@ -135,6 +138,11 @@
 		self.upgradedImageName = [upgradeData objectForKey:@"image"];
 	}
 	
+	self.efficiency = _intv([buildingData objectForKey:@"efficiency"]);
+	if (!self.repairCost) {
+		self.repairCost = [[[ResourceCost alloc] init] autorelease];
+	}
+	[self.repairCost parseData:[buildingData objectForKey:@"repair_costs"]];
 	
 	[self parseAdditionalData:data];
 	
@@ -148,7 +156,7 @@
 
 
 - (void)generateSections {
-	self.sections = _array([self generateProductionSection], [self generateUpgradeSection]);
+	self.sections = _array([self generateProductionSection], [self generateHealthSection], [self generateUpgradeSection]);
 }
 
 
@@ -158,6 +166,16 @@
 	} else {
 		return _dict([NSNumber numberWithInt:BUILDING_SECTION_BUILDING], @"type", @"Production", @"name", _array([NSNumber numberWithInt:BUILDING_ROW_BUILDING_STATS]), @"rows");
 	}
+}
+
+
+- (NSMutableDictionary *)generateHealthSection {
+	if (self.efficiency < 100) {
+		return _dict([NSNumber numberWithInt:BUILDING_SECTION_HEALTH], @"type", @"Health", @"name", _array([NSNumber numberWithInt:BUILDING_ROW_EFFICENCY], [NSNumber numberWithInt:BUILDING_ROW_REPAIR_COST], [NSNumber numberWithInt:BUILDING_ROW_REPAIR_BUTTON]), @"rows");
+	} else {
+		return _dict([NSNumber numberWithInt:BUILDING_SECTION_HEALTH], @"type", @"Health", @"name", _array([NSNumber numberWithInt:BUILDING_ROW_EFFICENCY]), @"rows");
+	}
+
 }
 
 
@@ -221,16 +239,16 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForBuildingRow:(BUILDING_ROW)buildingRow {
 	switch (buildingRow) {
 		case BUILDING_ROW_BUILDING_STATS:
-			return [LETableViewCellBuildingStats getHeightForTableView:tableView];
-			break;
 		case BUILDING_ROW_UPGRADE_BUILDING_STATS:
 			return [LETableViewCellBuildingStats getHeightForTableView:tableView];
 			break;
 		case BUILDING_ROW_UPGRADE_BUILDING_COST:
+		case BUILDING_ROW_REPAIR_COST:
 			return [LETableViewCellCost getHeightForTableView:tableView];
 			break;
 		case BUILDING_ROW_UPGRADE_BUTTON:
 		case BUILDING_ROW_DEMOLISH_BUTTON:
+		case BUILDING_ROW_REPAIR_BUTTON:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		case BUILDING_ROW_UPGRADE_CANNOT:
@@ -240,6 +258,7 @@
 			return [LETableViewCellProgress getHeightForTableView:tableView];
 			break;
 		case BUILDING_ROW_EMPTY:
+		case BUILDING_ROW_EFFICENCY:
 			return [LETableViewCellLabeledText getHeightForTableView:tableView];
 			break;
 		case BUILDING_ROW_STORAGE:
@@ -340,6 +359,25 @@
 			LETableViewCellBuildingStorage *upgradeStorageCell = [LETableViewCellBuildingStorage getCellForTableView:tableView];
 			[upgradeStorageCell setResourceStorage:self.upgradedResourceStorage];
 			cell = upgradeStorageCell;
+			break;
+		case BUILDING_ROW_EFFICENCY:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellLabeledText *efficencyCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			efficencyCell.label.text = @"Efficency";
+			efficencyCell.content.text = [NSString stringWithFormat:@"%i%%", self.efficiency];
+			cell = efficencyCell;
+			break;
+		case BUILDING_ROW_REPAIR_COST:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellCost *repairCostCell = [LETableViewCellCost getCellForTableView:tableView];
+			[repairCostCell setResourceCost:self.repairCost];
+			cell = repairCostCell;
+			break;
+		case BUILDING_ROW_REPAIR_BUTTON:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *repairButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			repairButtonCell.textLabel.text = @"Repair";
+			cell = repairButtonCell;
 			break;
 		default:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE

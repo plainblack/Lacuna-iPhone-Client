@@ -31,7 +31,7 @@
 	NSMutableDictionary *productionSection = [self generateProductionSection];
 	[[productionSection objectForKey:@"rows"] addObject:[NSNumber numberWithInt:BUILDING_ROW_NEXT_COLONY_COST]];
 	
-	self.sections = _array(productionSection, [self generateUpgradeSection]);
+	self.sections = _array(productionSection, [self generateHealthSection], [self generateUpgradeSection]);
 }
 
 

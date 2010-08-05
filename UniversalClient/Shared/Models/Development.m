@@ -73,7 +73,7 @@
 		[buildQueueRows addObject:[NSNumber numberWithInt:BUILDING_ROW_EMPTY]];
 	}
 
-	self.sections = _array([self generateProductionSection], _dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Build Queue", @"name", buildQueueRows, @"rows"), [self generateUpgradeSection]);
+	self.sections = _array([self generateProductionSection], [self generateHealthSection], _dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Build Queue", @"name", buildQueueRows, @"rows"), [self generateUpgradeSection]);
 }
 
 

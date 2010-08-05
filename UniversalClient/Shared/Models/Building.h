@@ -32,6 +32,8 @@
 	ResourceGeneration *upgradedResourcePerHour;
 	ResourceStorage *upgradedResourceStorage;
 	NSString *upgradedImageName;
+	NSInteger efficiency;
+	ResourceCost *repairCost;
 	NSMutableArray *sections;
 	NSInteger subsidyBuildQueueCost;
 	BOOL demolished;
@@ -57,6 +59,8 @@
 @property (nonatomic, retain) ResourceGeneration *upgradedResourcePerHour;
 @property (nonatomic, retain) ResourceStorage *upgradedResourceStorage;
 @property (nonatomic, retain) NSString *upgradedImageName;
+@property (nonatomic, assign) NSInteger efficiency;
+@property (nonatomic, retain) ResourceCost *repairCost;
 @property (nonatomic, retain) NSMutableArray *sections;
 @property (nonatomic, assign) BOOL demolished;
 @property (nonatomic, assign) BOOL needsReload;
@@ -67,6 +71,7 @@
 - (void)parseAdditionalData:(NSDictionary *)data;
 - (void)generateSections;
 - (NSMutableDictionary *)generateProductionSection;
+- (NSMutableDictionary *)generateHealthSection;
 - (NSMutableDictionary *)generateUpgradeSection;
 - (void)tick:(NSInteger)interval;
 

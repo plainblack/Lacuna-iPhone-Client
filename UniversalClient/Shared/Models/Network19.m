@@ -41,7 +41,7 @@
 	} else {
 		[network19Rows addObject:[NSNumber numberWithInt:BUILDING_ROW_UNRESTRICTED_NETWORK_19]];
 	}
-	self.sections = _array([self generateProductionSection], _dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", network19Rows, @"rows"), [self generateUpgradeSection]);
+	self.sections = _array([self generateProductionSection], [self generateHealthSection], _dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", network19Rows, @"rows"), [self generateUpgradeSection]);
 }
 
 

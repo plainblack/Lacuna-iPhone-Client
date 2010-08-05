@@ -83,7 +83,7 @@
 	}
 	[glyphRows addObject:[NSNumber numberWithInt:BUILDING_ROW_GLYPH_ASSEMBLE]];
 
-	self.sections = _array([self generateProductionSection], _dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Glyphs", @"name", glyphRows, @"rows"), [self generateUpgradeSection]);
+	self.sections = _array([self generateProductionSection], [self generateHealthSection], _dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Glyphs", @"name", glyphRows, @"rows"), [self generateUpgradeSection]);
 }
 
 

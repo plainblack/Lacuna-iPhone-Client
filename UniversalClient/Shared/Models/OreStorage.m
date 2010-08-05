@@ -40,7 +40,7 @@
 	NSMutableDictionary *productionSection = [self generateProductionSection];
 	[[productionSection objectForKey:@"rows"] addObject:[NSNumber numberWithInt:BUILDING_ROW_STORED_ORE]];
 	
-	self.sections = _array(productionSection, [self generateUpgradeSection]);
+	self.sections = _array(productionSection, [self generateHealthSection], [self generateUpgradeSection]);
 }
 
 
