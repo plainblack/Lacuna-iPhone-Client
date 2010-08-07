@@ -10,6 +10,7 @@
 #import "LEMacros.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellLabeledText.h"
+#import "LETableViewCellButton.h"
 #import "Util.h"
 #import "Security.h"
 #import "Prisoner.h"
@@ -17,7 +18,9 @@
 
 typedef enum {
 	ROW_PRISONER_NAME,
-	ROW_PRISONER_SENTENCE
+	ROW_PRISONER_SENTENCE,
+	ROW_PRISONER_RELEASE,
+	ROW_PRISONER_EXECUTE
 } ROW;
 
 
@@ -26,6 +29,7 @@ typedef enum {
 
 @synthesize securityBuilding;
 @synthesize prisonersLastUpdated;
+@synthesize selectedPrisoner;
 
 
 #pragma mark -
@@ -75,58 +79,127 @@ typedef enum {
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	if (self.securityBuilding && self.securityBuilding.prisoners) {
-		return [self.securityBuilding.prisoners count];
+		if ([self.securityBuilding.prisoners count] > 0) {
+			return [self.securityBuilding.prisoners count];
+		} else {
+			return 1;
+		}
 	} else {
-		return 0;
+		return 1;
 	}
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+	if (self.securityBuilding && self.securityBuilding.prisoners) {
+		if ([self.securityBuilding.prisoners count] > 0) {
+			return 4;
+		} else {
+			return 1;
+		}
+	} else {
+		return 1;
+	}
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	switch (indexPath.row) {
-		case ROW_PRISONER_NAME:
-		case ROW_PRISONER_SENTENCE:
+	if (self.securityBuilding && self.securityBuilding.prisoners) {
+		if ([self.securityBuilding.prisoners count] > 0) {
+			switch (indexPath.row) {
+				case ROW_PRISONER_NAME:
+				case ROW_PRISONER_SENTENCE:
+					return [LETableViewCellLabeledText getHeightForTableView:tableView];
+					break;
+				case ROW_PRISONER_EXECUTE:
+				case ROW_PRISONER_RELEASE:
+					return [LETableViewCellButton getHeightForTableView:tableView];
+				default:
+					return tableView.rowHeight;
+					break;
+			}
+		} else {
 			return [LETableViewCellLabeledText getHeightForTableView:tableView];
-			break;
-		default:
-			return tableView.rowHeight;
-			break;
+		}
+	} else {
+		return [LETableViewCellLabeledText getHeightForTableView:tableView];
 	}
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	Prisoner *prisoner = [self.securityBuilding.prisoners objectAtIndex:indexPath.section];
     
     UITableViewCell *cell;
 	
-	switch (indexPath.row) {
-		case ROW_PRISONER_NAME:
-			; //DO NOT REMOVE
-			LETableViewCellLabeledText *prisonerNameCell = [LETableViewCellLabeledText getCellForTableView:tableView];
-			prisonerNameCell.label.text = @"Name";
-			prisonerNameCell.content.text = prisoner.name;
-			cell = prisonerNameCell;
-			break;
-		case ROW_PRISONER_SENTENCE:
-			; //DO NOT REMOVE
-			LETableViewCellLabeledText *prisonerSentenceCell = [LETableViewCellLabeledText getCellForTableView:tableView];
-			prisonerSentenceCell.label.text = @"Expires";
-			prisonerSentenceCell.content.text = [Util formatDate:prisoner.sentenceExpiresOn];
-			cell = prisonerSentenceCell;
-			break;
-		default:
-			cell = nil;
-			break;
+	if (self.securityBuilding && self.securityBuilding.prisoners) {
+		if ([self.securityBuilding.prisoners count] > 0) {
+			Prisoner *prisoner = [self.securityBuilding.prisoners objectAtIndex:indexPath.section];
+			switch (indexPath.row) {
+				case ROW_PRISONER_NAME:
+					; //DO NOT REMOVE
+					LETableViewCellLabeledText *prisonerNameCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+					prisonerNameCell.label.text = @"Name";
+					prisonerNameCell.content.text = prisoner.name;
+					cell = prisonerNameCell;
+					break;
+				case ROW_PRISONER_SENTENCE:
+					; //DO NOT REMOVE
+					LETableViewCellLabeledText *prisonerSentenceCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+					prisonerSentenceCell.label.text = @"Expires";
+					prisonerSentenceCell.content.text = [Util formatDate:prisoner.sentenceExpiresOn];
+					cell = prisonerSentenceCell;
+					break;
+				case ROW_PRISONER_EXECUTE:
+					; //DO NOT REMOVE
+					LETableViewCellButton *executeButton = [LETableViewCellButton getCellForTableView:tableView];
+					executeButton.textLabel.text = @"Execute";
+					cell = executeButton;
+					break;
+				case ROW_PRISONER_RELEASE:
+					; //DO NOT REMOVE
+					LETableViewCellButton *releaseButton = [LETableViewCellButton getCellForTableView:tableView];
+					releaseButton.textLabel.text = @"Release";
+					cell = releaseButton;
+					break;
+				default:
+					cell = nil;
+					break;
+			}
+		} else {
+			LETableViewCellLabeledText *emptyCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			emptyCell.label.text = @"Prisoners";
+			emptyCell.content.text = @"None";
+			cell = emptyCell;
+		}
+	} else {
+		LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+		loadingCell.label.text = @"Prisoners";
+		loadingCell.content.text = @"Loading";
+		cell = loadingCell;
 	}
     
     return cell;
+}
+
+
+#pragma mark -
+#pragma mark Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	Prisoner *prisoner = [self.securityBuilding.prisoners objectAtIndex:indexPath.section];
+	switch (indexPath.row) {
+		case ROW_PRISONER_EXECUTE:
+			self.selectedPrisoner = prisoner;
+			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Execute spy, this will make your people unhappy?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+			actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+			[actionSheet showFromTabBar:self.tabBarController.tabBar];
+			[actionSheet release];
+			break;
+		case ROW_PRISONER_RELEASE:
+			[self.securityBuilding releasePrisoner:prisoner.id];
+			break;
+	}
 }
 
 
@@ -150,7 +223,20 @@ typedef enum {
 - (void)dealloc {
 	self.securityBuilding = nil;
 	self.prisonersLastUpdated = nil;
+	self.selectedPrisoner = nil;
     [super dealloc];
+}
+
+
+
+#pragma mark -
+#pragma mark UIActionSheetDelegate Methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
+		[self.securityBuilding executePrisoner:self.selectedPrisoner.id];
+		self.selectedPrisoner = nil;
+	}
 }
 
 

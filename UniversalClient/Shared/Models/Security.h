@@ -13,14 +13,21 @@
 @interface Security : Building {
 	NSMutableArray *prisoners;
 	NSDate *prisonersUpdated;
+	NSMutableArray *foreignSpies;
+	NSDate *foreignSpiesUpdated;
 }
 
 
 @property (nonatomic, retain) NSMutableArray *prisoners;
 @property (nonatomic, retain) NSDate *prisonersUpdated;
+@property (nonatomic, retain) NSMutableArray *foreignSpies;
+@property (nonatomic, retain) NSDate *foreignSpiesUpdated;
 
 
 - (void)loadPrisoners;
+- (void)loadForeignSpies;
+- (void)executePrisoner:(NSString *)prisonerId;
+- (void)releasePrisoner:(NSString *)prisonerId;
 
 
 @end

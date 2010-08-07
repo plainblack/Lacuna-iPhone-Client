@@ -100,8 +100,6 @@ typedef enum {
 		self.bodyId = session.empire.homePlanetId;
 	}
 	if (!self.bodyIds) {
-		NSLog(@"How do we use: %@", session.empire.planets);
-		NSLog(@"TURN THE ABOVE INTO ARRAY OF IDS I CAN USE");
 		NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[session.empire.planets count]];
 		[session.empire.planets enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
 			[tmp addObject:key];
@@ -396,8 +394,6 @@ typedef enum {
 #pragma mark Private Methods
 
 - (void)togglePageButtons {
-	NSLog(@"currentBodyIndex: %i", self.currentBodyIndex);
-	NSLog(@"Max Index: %i", (self.bodyIds.count - 1));
 	if (self.bodyIds) {
 		[self.pageSegmentedControl setEnabled:(self.currentBodyIndex > 0) forSegmentAtIndex:0];
 		[self.pageSegmentedControl setEnabled:(self.currentBodyIndex < (self.bodyIds.count - 1)) forSegmentAtIndex:1];
@@ -426,7 +422,6 @@ typedef enum {
 			NSLog(@"Invalid switchPage");
 			break;
 	}
-	NSLog(@"currentBodyIndex: %i", self.currentBodyIndex);
 }
 
 

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LETableViewControllerGrouped.h"
+#import "Prisoner.h"
 
 
 @class Security;
@@ -16,11 +17,13 @@
 @interface ViewPrisonersController : LETableViewControllerGrouped {
 	Security *securityBuilding;
 	NSDate *prisonersLastUpdated;
+	Prisoner *selectedPrisoner;
 }
 
 
 @property (nonatomic, retain) Security *securityBuilding;
 @property (nonatomic, retain) NSDate *prisonersLastUpdated;
+@property (nonatomic, retain) Prisoner *selectedPrisoner;
 
 
 + (ViewPrisonersController *) create;

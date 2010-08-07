@@ -167,6 +167,9 @@ static Session *sharedSession = nil;
 
 
 - (void) loadBody:(NSString *)bodyId {
+	if (self.body) {
+		self.body.buildingMap = nil;
+	}
 	[[[LEBodyStatus alloc] initWithCallback:@selector(bodyLoaded:) target:self bodyId:bodyId] autorelease];
 }
 

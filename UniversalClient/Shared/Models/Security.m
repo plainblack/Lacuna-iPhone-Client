@@ -9,15 +9,22 @@
 #import "Security.h"
 #import "LEMacros.h"
 #import "LETableViewCellButton.h"
+#import "LEBuildingExecutePrisoner.h"
+#import "LEBuildingReleasePrisoner.h"
+#import "LEBuildingViewForeignSpies.h"
 #import "LEBuildingViewPrisoners.h"
 #import "ViewPrisonersController.h"
+#import "ViewForeignSpiesController.h"
 #import "Prisoner.h"
 
 
 @implementation Security
 
+
 @synthesize prisoners;
 @synthesize prisonersUpdated;
+@synthesize foreignSpies;
+@synthesize foreignSpiesUpdated;
 
 
 #pragma mark --
@@ -25,6 +32,9 @@
 
 - (void)dealloc {
 	self.prisoners = nil;
+	self.prisonersUpdated = nil;
+	self.foreignSpies = nil;
+	self.foreignSpiesUpdated = nil;
 	[super dealloc];
 }
 
@@ -56,13 +66,14 @@
 
 
 - (void)generateSections {
-	self.sections = _array([self generateProductionSection], [self generateHealthSection], _dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSNumber numberWithInt:BUILDING_ROW_VIEW_PRISONERS]), @"rows"), [self generateUpgradeSection]);
+	self.sections = _array([self generateProductionSection], _dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSNumber numberWithInt:BUILDING_ROW_VIEW_PRISONERS], [NSNumber numberWithInt:BUILDING_ROW_VIEW_FOREIGN_SPIES]), @"rows"), [self generateHealthSection], [self generateUpgradeSection]);
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForBuildingRow:(BUILDING_ROW)buildingRow {
 	switch (buildingRow) {
 		case BUILDING_ROW_VIEW_PRISONERS:
+		case BUILDING_ROW_VIEW_FOREIGN_SPIES:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		default:
@@ -81,6 +92,12 @@
 			viewPrisionersButtonCell.textLabel.text = @"View Prisoners";
 			cell = viewPrisionersButtonCell;
 			break;
+		case BUILDING_ROW_VIEW_FOREIGN_SPIES:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *viewForeignSpiesButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			viewForeignSpiesButtonCell.textLabel.text = @"View Foreign Spies";
+			cell = viewForeignSpiesButtonCell;
+			break;
 		default:
 			cell = [super tableView:tableView cellForBuildingRow:buildingRow rowIndex:rowIndex];
 			break;
@@ -98,6 +115,12 @@
 			viewPrisonersController.securityBuilding = self;
 			return viewPrisonersController;
 			break;
+		case BUILDING_ROW_VIEW_FOREIGN_SPIES:
+			; //DO NOT REMOVE
+			ViewForeignSpiesController *viewForeignSpiesController = [ViewForeignSpiesController create];
+			viewForeignSpiesController.securityBuilding = self;
+			return viewForeignSpiesController;
+			break;
 		default:
 			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];
 			break;
@@ -113,6 +136,21 @@
 }
 
 
+- (void)loadForeignSpies {
+	[[[LEBuildingViewForeignSpies alloc] initWithCallback:@selector(foreignSpiesLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl pageNumber:0] autorelease];
+}
+
+
+- (void)executePrisoner:(NSString *)prisonerId {
+	[[[LEBuildingExecutePrisoner alloc] initWithCallback:@selector(executedPrisoner:) target:self buildingId:self.id buildingUrl:self.buildingUrl prisonerId:prisonerId] autorelease];
+}
+
+
+- (void)releasePrisoner:(NSString *)prisonerId {
+	[[[LEBuildingReleasePrisoner alloc] initWithCallback:@selector(releasedPrisoner:) target:self buildingId:self.id buildingUrl:self.buildingUrl prisonerId:prisonerId] autorelease];
+}
+
+
 #pragma mark -
 #pragma mark Callback Methods
 
@@ -123,9 +161,55 @@
 		[tmpPrisoner parseData:prisonerData];
 		[tmpPrisoners addObject:tmpPrisoner];
 	}
-
+	
 	self.prisoners = tmpPrisoners;
 	self.prisonersUpdated = [NSDate date];
+	return nil;
+}
+
+- (id)foreignSpiesLoaded:(LEBuildingViewForeignSpies *)request {
+	self.foreignSpies = request.foreignSpies;
+	self.foreignSpiesUpdated = [NSDate date];
+	return nil;
+}
+
+- (id)executedPrisoner:(LEBuildingExecutePrisoner *)request {
+	__block Prisoner *foundPrisoner;
+	
+	[self.prisoners enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		Prisoner *currentPrisoner = obj;
+		if ([currentPrisoner.id isEqualToString:request.prisonerId]) {
+			foundPrisoner = currentPrisoner;
+			*stop = YES;
+		}
+	}];
+	
+	if (foundPrisoner) {
+		[self.prisoners removeObject:foundPrisoner];
+		self.prisonersUpdated = [NSDate date];
+	}
+	
+	return nil;
+}
+
+
+- (id)releasedPrisoner:(LEBuildingReleasePrisoner *)request {
+	__block Prisoner *foundPrisoner;
+	
+	[self.prisoners enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		Prisoner *currentPrisoner = obj;
+		if ([currentPrisoner.id isEqualToString:request.prisonerId]) {
+			foundPrisoner = currentPrisoner;
+			*stop = YES;
+		}
+	}];
+	
+	
+	if (foundPrisoner) {
+		[self.prisoners removeObject:foundPrisoner];
+		self.prisonersUpdated = [NSDate date];
+	}
+	
 	return nil;
 }
 

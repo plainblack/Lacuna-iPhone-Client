@@ -56,7 +56,7 @@
 	[actionRows addObject:[NSNumber numberWithInt:BUILDING_ROW_VIEW_PLATFORMS]];
 	[actionRows addObject:[NSNumber numberWithInt:BUILDING_ROW_VIEW_FLEET_SHIPS]];
 	
-	self.sections = _array(productionSection, [self generateHealthSection], _dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", actionRows, @"rows"), [self generateUpgradeSection]);
+	self.sections = _array(productionSection, _dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", actionRows, @"rows"), [self generateHealthSection], [self generateUpgradeSection]);
 }
 
 

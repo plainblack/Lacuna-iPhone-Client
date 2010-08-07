@@ -63,7 +63,7 @@
 	} else {
 		[partyRows addObject:[NSNumber numberWithInt:BUILDING_ROW_PARTY_PENDING]];
 	}
-	self.sections = _array([self generateProductionSection], [self generateHealthSection], _dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Party", @"name", partyRows, @"rows"), [self generateUpgradeSection]);
+	self.sections = _array([self generateProductionSection], _dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Party", @"name", partyRows, @"rows"), [self generateHealthSection], [self generateUpgradeSection]);
 }
 
 

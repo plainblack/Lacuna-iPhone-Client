@@ -145,6 +145,10 @@
 		F6C3906311F1E36C004FB38F /* LETableViewCellMailSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */; };
 		F6C390C311F1ED14004FB38F /* LETableViewCellMailHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C390C211F1ED14004FB38F /* LETableViewCellMailHeaders.m */; };
 		F6C390EE11F23D54004FB38F /* LETableViewCellBuildQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C390ED11F23D54004FB38F /* LETableViewCellBuildQueueItem.m */; };
+		F6D48578120CD80D00D77FC3 /* LEBuildingViewForeignSpies.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D48577120CD80D00D77FC3 /* LEBuildingViewForeignSpies.m */; };
+		F6D4857B120CD82100D77FC3 /* LEBuildingExecutePrisoner.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D4857A120CD82100D77FC3 /* LEBuildingExecutePrisoner.m */; };
+		F6D4857E120CD83600D77FC3 /* LEBuildingReleasePrisoner.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D4857D120CD83600D77FC3 /* LEBuildingReleasePrisoner.m */; };
+		F6D485B8120CDEA000D77FC3 /* ViewForeignSpiesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D485B7120CDEA000D77FC3 /* ViewForeignSpiesController.m */; };
 		F6D59F9D120120EE009DDA28 /* ViewShipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D59F9C120120EE009DDA28 /* ViewShipsController.m */; };
 		F6D59FF412012AA9009DDA28 /* RenameShipController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D59FF312012AA9009DDA28 /* RenameShipController.m */; };
 		F6D5A00B12012E43009DDA28 /* LEBuildingScuttleShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D5A00A12012E43009DDA28 /* LEBuildingScuttleShip.m */; };
@@ -479,6 +483,14 @@
 		F6C390C211F1ED14004FB38F /* LETableViewCellMailHeaders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellMailHeaders.m; sourceTree = "<group>"; };
 		F6C390EC11F23D54004FB38F /* LETableViewCellBuildQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellBuildQueueItem.h; sourceTree = "<group>"; };
 		F6C390ED11F23D54004FB38F /* LETableViewCellBuildQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellBuildQueueItem.m; sourceTree = "<group>"; };
+		F6D48576120CD80D00D77FC3 /* LEBuildingViewForeignSpies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewForeignSpies.h; sourceTree = "<group>"; };
+		F6D48577120CD80D00D77FC3 /* LEBuildingViewForeignSpies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewForeignSpies.m; sourceTree = "<group>"; };
+		F6D48579120CD82100D77FC3 /* LEBuildingExecutePrisoner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingExecutePrisoner.h; sourceTree = "<group>"; };
+		F6D4857A120CD82100D77FC3 /* LEBuildingExecutePrisoner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingExecutePrisoner.m; sourceTree = "<group>"; };
+		F6D4857C120CD83600D77FC3 /* LEBuildingReleasePrisoner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingReleasePrisoner.h; sourceTree = "<group>"; };
+		F6D4857D120CD83600D77FC3 /* LEBuildingReleasePrisoner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingReleasePrisoner.m; sourceTree = "<group>"; };
+		F6D485B6120CDEA000D77FC3 /* ViewForeignSpiesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewForeignSpiesController.h; sourceTree = "<group>"; };
+		F6D485B7120CDEA000D77FC3 /* ViewForeignSpiesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewForeignSpiesController.m; sourceTree = "<group>"; };
 		F6D59F9B120120EE009DDA28 /* ViewShipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewShipsController.h; sourceTree = "<group>"; };
 		F6D59F9C120120EE009DDA28 /* ViewShipsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewShipsController.m; sourceTree = "<group>"; };
 		F6D59FF212012AA9009DDA28 /* RenameShipController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenameShipController.h; sourceTree = "<group>"; };
@@ -978,6 +990,12 @@
 				F6E5E6311205CDC200365AA2 /* LEBuildingRemoveShipFromFleet.m */,
 				F6E57AC3120A40270030330F /* LEBuildingRepair.h */,
 				F6E57AC4120A40270030330F /* LEBuildingRepair.m */,
+				F6D48576120CD80D00D77FC3 /* LEBuildingViewForeignSpies.h */,
+				F6D48577120CD80D00D77FC3 /* LEBuildingViewForeignSpies.m */,
+				F6D48579120CD82100D77FC3 /* LEBuildingExecutePrisoner.h */,
+				F6D4857A120CD82100D77FC3 /* LEBuildingExecutePrisoner.m */,
+				F6D4857C120CD83600D77FC3 /* LEBuildingReleasePrisoner.h */,
+				F6D4857D120CD83600D77FC3 /* LEBuildingReleasePrisoner.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -1147,6 +1165,8 @@
 				F6E5E5E81205C40600365AA2 /* ViewMiningPlatformsController.m */,
 				F6E5E63E1205CF4000365AA2 /* ViewMiningFleetShipsController.h */,
 				F6E5E63F1205CF4000365AA2 /* ViewMiningFleetShipsController.m */,
+				F6D485B6120CDEA000D77FC3 /* ViewForeignSpiesController.h */,
+				F6D485B7120CDEA000D77FC3 /* ViewForeignSpiesController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1429,6 +1449,10 @@
 				F6E5E6321205CDC200365AA2 /* LEBuildingRemoveShipFromFleet.m in Sources */,
 				F6E5E6401205CF4000365AA2 /* ViewMiningFleetShipsController.m in Sources */,
 				F6E57AC5120A40270030330F /* LEBuildingRepair.m in Sources */,
+				F6D48578120CD80D00D77FC3 /* LEBuildingViewForeignSpies.m in Sources */,
+				F6D4857B120CD82100D77FC3 /* LEBuildingExecutePrisoner.m in Sources */,
+				F6D4857E120CD83600D77FC3 /* LEBuildingReleasePrisoner.m in Sources */,
+				F6D485B8120CDEA000D77FC3 /* ViewForeignSpiesController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
