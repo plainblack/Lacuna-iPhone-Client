@@ -8,6 +8,7 @@
 
 #import "MiningMinistry.h"
 #import "Ship.h"
+#import "MiningPlatform.h"
 #import "LEMacros.h"
 #import "LETableViewCellButton.h"
 #import "LEBuildingViewPlatforms.h"
@@ -133,19 +134,50 @@
 }
 
 
-- (void)abandonPlatformAtAsteroid:(NSString *)asteroidId {
-	[[[LEBuildingAbandonPlatform alloc] initWithCallback:@selector(platformAbandoned:) target:self buildingId:self.id buildingUrl:self.buildingUrl asteroidId:asteroidId] autorelease];
+- (void)abandonPlatformAtAsteroid:(MiningPlatform *)miningPlatform {
+	[[[LEBuildingAbandonPlatform alloc] initWithCallback:@selector(platformAbandoned:) target:self buildingId:self.id buildingUrl:self.buildingUrl platformId:miningPlatform.id] autorelease];
+	__block MiningPlatform *foundMiningPlatform;
+	
+	[self.fleetShips enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		MiningPlatform *currentMiningPlatform = obj;
+		if ([currentMiningPlatform.id isEqualToString:miningPlatform.id]) {
+			foundMiningPlatform = currentMiningPlatform;
+			*stop = YES;
+		}
+	}];
+	
+	
+	if (foundMiningPlatform) {
+		[self.platforms removeObject:foundMiningPlatform];
+		self.needsRefresh = YES;
+	}
 }
 
 
 - (void)addCargoShipToFleet:(Ship *)ship {
 	[[[LEBuildingAddShipToFleet alloc] initWithCallback:@selector(shipAddedToFleet:) target:self buildingId:self.id buildingUrl:self.buildingUrl shipId:ship.id] autorelease];
 	ship.task = @"Mining";
+	self.needsRefresh = YES;
 }
 
 
 - (void)removeCargoShipFromFleet:(Ship *)ship {
 	[[[LEBuildingRemoveShipFromFleet alloc] initWithCallback:@selector(shipRemovedFromFleet:) target:self buildingId:self.id buildingUrl:self.buildingUrl shipId:ship.id] autorelease];
+	__block Ship *foundShip;
+	
+	[self.fleetShips enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		Ship *currentShip = obj;
+		if ([currentShip.id isEqualToString:ship.id]) {
+			foundShip = currentShip;
+			*stop = YES;
+		}
+	}];
+	
+	
+	if (foundShip) {
+		[self.fleetShips removeObject:foundShip];
+		self.needsRefresh = YES;
+	}
 }
 
 
@@ -174,8 +206,6 @@
 
 
 - (id)shipRemovedFromFleet:(LEBuildingRemoveShipFromFleet *)request {
-	NSLog(@"shipRemovedFromFleet: %@", request.response);
-	[self loadFleetShips];
 	return nil;
 }
 

@@ -226,9 +226,8 @@ typedef enum {
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
-		[self.miningMinistry abandonPlatformAtAsteroid:self.selectedMiningPlatform.asteroidId];
+		[self.miningMinistry abandonPlatformAtAsteroid:self.selectedMiningPlatform];
 		self.selectedMiningPlatform = nil;
-		[self.navigationController popViewControllerAnimated:YES];
 	}
 }
 

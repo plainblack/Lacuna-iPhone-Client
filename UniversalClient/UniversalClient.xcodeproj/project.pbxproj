@@ -1554,7 +1554,7 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "UniversalClient-Info.plist";
 				PRODUCT_NAME = UniversalClient;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "68EFD0EE-C26F-4E0C-9400-8873D3BD29A8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B59771EA-D525-4E2E-A034-5654074B6B52";
 				SDKROOT = iphoneos4.0;
 				VALIDATE_PRODUCT = YES;
 			};

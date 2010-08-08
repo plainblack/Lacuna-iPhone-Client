@@ -14,7 +14,7 @@
 @class Security;
 
 
-@interface ViewPrisonersController : LETableViewControllerGrouped {
+@interface ViewPrisonersController : LETableViewControllerGrouped <UIActionSheetDelegate> {
 	Security *securityBuilding;
 	NSDate *prisonersLastUpdated;
 	Prisoner *selectedPrisoner;

@@ -13,16 +13,16 @@
 @interface LEBuildingAbandonPlatform : LERequest {
 	NSString *buildingId;
 	NSString *buildingUrl;
-	NSString *asteroidId;
+	NSString *platformId;
 }
 
 
 @property (nonatomic, retain) NSString *buildingId;
 @property (nonatomic, retain) NSString *buildingUrl;
-@property (nonatomic, retain) NSString *asteroidId;
+@property (nonatomic, retain) NSString *platformId;
 
 
-- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl asteroidId:(NSString *)asteroidId;
+- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl platformId:(NSString *)platformId;
 
 
 @end

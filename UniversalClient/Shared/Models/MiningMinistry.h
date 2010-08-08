@@ -11,6 +11,7 @@
 
 
 @class Ship;
+@class MiningPlatform;
 
 
 @interface MiningMinistry : Building {
@@ -25,7 +26,7 @@
 
 - (void)loadPlatforms;
 - (void)loadFleetShips;
-- (void)abandonPlatformAtAsteroid:(NSString *)platformId;
+- (void)abandonPlatformAtAsteroid:(MiningPlatform *)miningPlatform;
 - (void)addCargoShipToFleet:(Ship *)ship;
 - (void)removeCargoShipFromFleet:(Ship *)ship;
 

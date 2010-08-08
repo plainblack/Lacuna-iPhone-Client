@@ -16,19 +16,19 @@
 
 @synthesize buildingId;
 @synthesize buildingUrl;
-@synthesize asteroidId;
+@synthesize platformId;
 
 
-- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl asteroidId:(NSString *)inAsteroidId {
+- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl platformId:(NSString *)inPlatformId {
 	self.buildingId = inBuildingId;
 	self.buildingUrl = inBuildingUrl;
-	self.asteroidId = inAsteroidId;
+	self.platformId = inPlatformId;
 	return [self initWithCallback:inCallback target:(NSObject *)inTarget];
 }
 
 
 - (id)params {
-	return _array([Session sharedInstance].sessionId, self.buildingId, self.asteroidId);
+	return _array([Session sharedInstance].sessionId, self.buildingId, self.platformId);
 }
 
 
@@ -50,7 +50,7 @@
 - (void)dealloc {
 	self.buildingId = nil;
 	self.buildingUrl = nil;
-	self.asteroidId = nil;
+	self.platformId = nil;
 	[super dealloc];
 }
 
