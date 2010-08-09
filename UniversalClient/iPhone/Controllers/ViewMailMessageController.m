@@ -53,7 +53,7 @@ typedef enum {
 	self.navigationItem.title = @"Loading";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
-	self.messageSegmentedControl = [[[UISegmentedControl alloc] initWithItems:_array([UIImage imageNamed:@"assets/iphone ui/up.png"], [UIImage imageNamed:@"assets/iphone ui/down.png"])] autorelease];
+	self.messageSegmentedControl = [[[UISegmentedControl alloc] initWithItems:_array(UP_ARROW_ICON, DOWN_ARROW_ICON)] autorelease];
 	[self.messageSegmentedControl addTarget:self action:@selector(switchMessage) forControlEvents:UIControlEventValueChanged]; 
 	self.messageSegmentedControl.momentary = YES;
 	self.messageSegmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 

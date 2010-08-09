@@ -15,7 +15,7 @@
 @class Spy;
 
 
-@interface RenameSpyController : LETableViewControllerGrouped {
+@interface RenameSpyController : LETableViewControllerGrouped <UITextFieldDelegate> {
 	Intelligence *intelligenceBuilding;
 	Spy *spy;
 	LETableViewCellTextEntry *nameCell;

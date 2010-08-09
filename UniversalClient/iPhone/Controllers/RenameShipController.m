@@ -32,6 +32,7 @@
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)] autorelease];
 	
 	self.nameCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
+	self.nameCell.delegate = self;
 	self.nameCell.label.text = @"Name";
 	self.nameCell.textField.text = self.ship.name;
 	
@@ -104,6 +105,20 @@
 
 - (void)save {
 	[self.spacePort ship:self.ship rename:self.nameCell.textField.text];
+}
+
+
+#pragma mark -
+#pragma mark UITextFieldDelegate methods
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	if (textField == self.nameCell.textField) {
+		[self.nameCell resignFirstResponder];
+		[self save];
+	}
+	
+	return YES;
 }
 
 

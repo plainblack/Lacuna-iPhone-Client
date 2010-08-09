@@ -8,6 +8,7 @@
 
 #import "RenameBodyController.h"
 #import "LEMacros.h"
+#import "Session.h"
 #import "LEViewSectionTab.h"
 #import "LERenameBody.h"
 
@@ -15,7 +16,7 @@
 @implementation RenameBodyController
 
 
-@synthesize bodyId;
+@synthesize body;
 @synthesize nameCell;
 
 
@@ -30,7 +31,10 @@
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)] autorelease];
 	
 	self.nameCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
+	self.nameCell.delegate = self;
 	self.nameCell.label.text = @"Name";
+	self.nameCell.textField.text = self.body.name;
+
 	
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Body name"]);
 }
@@ -75,7 +79,7 @@
 
 
 - (void)dealloc {
-	self.bodyId = nil;
+	self.body = nil;
 	self.nameCell = nil;
     [super dealloc];
 }
@@ -90,7 +94,9 @@
 
 
 - (void)save {
-	[[[LERenameBody alloc] initWithCallback:@selector(bodyRenamed:) target:self forBody:self.bodyId newName:self.nameCell.textField.text] autorelease];
+	[[[LERenameBody alloc] initWithCallback:@selector(bodyRenamed:) target:self forBody:self.body.id newName:self.nameCell.textField.text] autorelease];
+	self.body.name = self.nameCell.textField.text;
+	self.body.needsRefresh = YES;
 }
 
 
@@ -100,6 +106,20 @@
 - (id)bodyRenamed:(LERenameBody *)request {
 	[[self navigationController] popViewControllerAnimated:YES];
 	return nil;
+}
+
+
+#pragma mark -
+#pragma mark UITextFieldDelegate methods
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	if (textField == self.nameCell.textField) {
+		[self.nameCell resignFirstResponder];
+		[self save];
+	}
+	
+	return YES;
 }
 
 

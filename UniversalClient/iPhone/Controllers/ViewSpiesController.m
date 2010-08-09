@@ -52,7 +52,7 @@ typedef enum {
 	self.navigationItem.title = @"Spies";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
-	self.pageSegmentedControl = [[[UISegmentedControl alloc] initWithItems:_array([UIImage imageNamed:@"assets/iphone ui/up.png"], [UIImage imageNamed:@"assets/iphone ui/down.png"])] autorelease];
+	self.pageSegmentedControl = [[[UISegmentedControl alloc] initWithItems:_array(UP_ARROW_ICON, DOWN_ARROW_ICON)] autorelease];
 	[self.pageSegmentedControl addTarget:self action:@selector(switchPage) forControlEvents:UIControlEventValueChanged]; 
 	self.pageSegmentedControl.momentary = YES;
 	self.pageSegmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 

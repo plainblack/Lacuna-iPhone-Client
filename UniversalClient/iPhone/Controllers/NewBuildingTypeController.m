@@ -15,8 +15,8 @@
 
 
 typedef enum {
-	SECTION_INFRASTRUCTURE,
 	SECTION_RESOURCES,
+	SECTION_INFRASTRUCTURE,
 	SECTION_ALL
 } SECTION;
 
@@ -24,7 +24,8 @@ typedef enum {
 	INFRASTRCUTURE_ROW_INTELLIGENCE,
 	INFRASTRCUTURE_ROW_HAPPINESS,
 	INFRASTRCUTURE_ROW_SHIPS,
-	INFRASTRCUTURE_ROW_COLONIZATION
+	INFRASTRCUTURE_ROW_COLONIZATION,
+	INFRASTRCUTURE_ROW_ALL
 } INFRASTRCUTURE_ROW;
 
 typedef enum {
@@ -32,7 +33,8 @@ typedef enum {
 	RESOURCE_ROW_FOOD,
 	RESOURCE_ROW_ORE,
 	RESOURCE_ROW_WASTE,
-	RESOURCE_ROW_WATER
+	RESOURCE_ROW_WATER,
+	RESOURCE_ROW_ALL
 } RESOURCE_ROW;
 
 typedef enum {
@@ -56,7 +58,7 @@ typedef enum {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Infrastructure"], [LEViewSectionTab tableView:self.tableView createWithText:@"Resources"], [LEViewSectionTab tableView:self.tableView createWithText:@"All"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Resources"], [LEViewSectionTab tableView:self.tableView createWithText:@"Infrastructure"], [LEViewSectionTab tableView:self.tableView createWithText:@"All"]);
 }
 
 
@@ -71,10 +73,10 @@ typedef enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
 		case SECTION_INFRASTRUCTURE:
-			return 4;
+			return 5;
 			break;
 		case SECTION_RESOURCES:
-			return 5;
+			return 6;
 			break;
 		case SECTION_ALL:
 			return 2;
@@ -119,6 +121,12 @@ typedef enum {
 					colonizationButtonCell.textLabel.text = @"Colonization";
 					cell = colonizationButtonCell;
 					break;
+				case INFRASTRCUTURE_ROW_ALL:
+					; //DO NOT REMOVE
+					LETableViewCellButton *infrastructureAllButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+					infrastructureAllButtonCell.textLabel.text = @"ALL Infrastructure";
+					cell = infrastructureAllButtonCell;
+					break;
 				default:
 					cell = nil;
 					break;
@@ -156,6 +164,12 @@ typedef enum {
 					waterButtonCell.textLabel.text = @"Water";
 					cell = waterButtonCell;
 					break;
+				case RESOURCE_ROW_ALL:
+					; //DO NOT REMOVE
+					LETableViewCellButton *allResourcesButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+					allResourcesButtonCell.textLabel.text = @"ALL Resources";
+					cell = allResourcesButtonCell;
+					break;
 				default:
 					cell = nil;
 					break;
@@ -175,7 +189,7 @@ typedef enum {
 					NSLog(@"Row All");
 					; //DO NOT REMOVE
 					LETableViewCellButton *allButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-					allButtonCell.textLabel.text = @"ALL";
+					allButtonCell.textLabel.text = @"ALL Buildings";
 					cell = allButtonCell;
 					break;
 				default:
@@ -213,6 +227,9 @@ typedef enum {
 				case INFRASTRCUTURE_ROW_COLONIZATION:
 					tag = @"Colonization";
 					break;
+				case INFRASTRCUTURE_ROW_ALL:
+					tag = @"Infrastructure";
+					break;
 				default:
 					tag = @"Infrastructure";
 					break;
@@ -234,6 +251,9 @@ typedef enum {
 					break;
 				case RESOURCE_ROW_WATER:
 					tag = @"Water";
+					break;
+				case RESOURCE_ROW_ALL:
+					tag = @"Resources";
 					break;
 				default:
 					tag = @"Resources";

@@ -78,7 +78,7 @@ typedef enum {
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadBody)] autorelease];
 
-	self.pageSegmentedControl = [[[UISegmentedControl alloc] initWithItems:_array([UIImage imageNamed:@"assets/iphone ui/up.png"], [UIImage imageNamed:@"assets/iphone ui/down.png"])] autorelease];
+	self.pageSegmentedControl = [[[UISegmentedControl alloc] initWithItems:_array(UP_ARROW_ICON, DOWN_ARROW_ICON)] autorelease];
 	[self.pageSegmentedControl addTarget:self action:@selector(switchPage) forControlEvents:UIControlEventValueChanged]; 
 	self.pageSegmentedControl.momentary = YES;
 	self.pageSegmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
@@ -330,12 +330,7 @@ typedef enum {
 				; //DO NOT REMOVE
 				Session *session = [Session sharedInstance];
 				RenameBodyController *renameBodyController = [RenameBodyController create];
-				if (self.bodyIds) {
-					renameBodyController.bodyId = [self.bodyIds objectAtIndex:self.currentBodyIndex];
-				} else {
-					renameBodyController.bodyId = self.bodyId;
-				}
-				renameBodyController.nameCell.textField.text = session.body.name;
+				renameBodyController.body = session.body;
 				[[self navigationController] pushViewController:renameBodyController animated:YES];
 				break;
 			default:

@@ -11,13 +11,16 @@
 #import "LETableViewCellTextEntry.h"
 
 
-@interface RenameBodyController : LETableViewControllerGrouped {
-	NSString *bodyId;
+@class Body;
+
+
+@interface RenameBodyController : LETableViewControllerGrouped <UITextFieldDelegate> {
+	Body *body;
 	LETableViewCellTextEntry *nameCell;
 }
 
 
-@property(nonatomic, retain) NSString *bodyId;
+@property(nonatomic, retain) Body *body;
 @property(nonatomic, retain) LETableViewCellTextEntry *nameCell;
 
 
