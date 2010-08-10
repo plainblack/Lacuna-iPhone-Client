@@ -10,8 +10,9 @@
 #import "LETableViewControllerGrouped.h"
 
 
-@interface ViewEmpireBoostsController : LETableViewControllerGrouped {
+@interface ViewEmpireBoostsController : LETableViewControllerGrouped <UIActionSheetDelegate> {
 	NSMutableDictionary *empireBoosts;
+	NSInteger selectedRow;
 }
 
 

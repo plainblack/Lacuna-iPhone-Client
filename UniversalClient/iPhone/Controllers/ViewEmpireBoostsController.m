@@ -17,6 +17,7 @@
 #import "LEEmpireBoostHappiness.h"
 #import "LEEmpireBoostOre.h"
 #import "LEEmpireBoostWater.h"
+#import "LEEmpireBoostStorage.h"
 #import "Util.h"
 
 
@@ -25,7 +26,8 @@ typedef enum {
 	EMPIRE_BOOST_ROW_FOOD,
 	EMPIRE_BOOST_ROW_HAPPINESS,
 	EMPIRE_BOOST_ROW_ORE,
-	EMPIRE_BOOST_ROW_WATER
+	EMPIRE_BOOST_ROW_WATER,
+	EMPIRE_BOOST_ROW_STORAGE
 } EMPIRE_ROW;
 
 
@@ -75,7 +77,7 @@ typedef enum {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (self.empireBoosts) {
-		return 5;
+		return 6;
 	} else {
 		return 0;
 	}
@@ -102,6 +104,9 @@ typedef enum {
 		case EMPIRE_BOOST_ROW_WATER:
 			cell = [self setupCellForTableView:tableView boostEndDate:[self.empireBoosts objectForKey:@"water"] name:@"Water"];
 			break;
+		case EMPIRE_BOOST_ROW_STORAGE:
+			cell = [self setupCellForTableView:tableView boostEndDate:[self.empireBoosts objectForKey:@"storage"] name:@"Storage"];
+			break;
 		default:
 			cell = nil;
 			break;
@@ -115,32 +120,33 @@ typedef enum {
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	NSString *msg = nil;
 	switch (indexPath.row) {
 		case EMPIRE_BOOST_ROW_ENERGY:
-			if (![self isBoosting:[self.empireBoosts objectForKey:@"energy"]]) {
-				[[[LEEmpireBoostEnergy alloc] initWithCallback:@selector(boostedEnergy:) target:self] autorelease];
-			}
+			msg = [NSString stringWithFormat:@"Are you sure you want to spend 2 essentia to boost your Energy Production by 25%?"];
 			break;
 		case EMPIRE_BOOST_ROW_FOOD:
-			if (![self isBoosting:[self.empireBoosts objectForKey:@"food"]]) {
-				[[[LEEmpireBoostFood alloc] initWithCallback:@selector(boostedFood:) target:self] autorelease];
-			}
+			msg = [NSString stringWithFormat:@"Are you sure you want to spend 2 essentia to boost your Food Production by 25%?"];
 			break;
 		case EMPIRE_BOOST_ROW_HAPPINESS:
-			if (![self isBoosting:[self.empireBoosts objectForKey:@"happiness"]]) {
-				[[[LEEmpireBoostHappiness alloc] initWithCallback:@selector(boostedHappiness:) target:self] autorelease];
-			}
+			msg = [NSString stringWithFormat:@"Are you sure you want to spend 2 essentia to boost your Happiness Production by 25%?"];
 			break;
 		case EMPIRE_BOOST_ROW_ORE:
-			if (![self isBoosting:[self.empireBoosts objectForKey:@"ore"]]) {
-				[[[LEEmpireBoostOre alloc] initWithCallback:@selector(boostedOre:) target:self] autorelease];
-			}
+			msg = [NSString stringWithFormat:@"Are you sure you want to spend 2 essentia to boost your Ore Production by 25%?"];
 			break;
 		case EMPIRE_BOOST_ROW_WATER:
-			if (![self isBoosting:[self.empireBoosts objectForKey:@"water"]]) {
-				[[[LEEmpireBoostWater alloc] initWithCallback:@selector(boostedWater:) target:self] autorelease];
-			}
+			msg = [NSString stringWithFormat:@"Are you sure you want to spend 2 essentia to boost your Water Production by 25%?"];
 			break;
+		case EMPIRE_BOOST_ROW_STORAGE:
+			msg = [NSString stringWithFormat:@"Are you sure you want to spend 2 essentia to boost your Storage Capacity by 25%?"];
+			break;
+	}
+	if (msg) {
+		self->selectedRow = indexPath.row;
+		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:msg delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+		actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+		[actionSheet showFromTabBar:self.tabBarController.tabBar];
+		[actionSheet release];
 	}
 }
 
@@ -178,7 +184,7 @@ typedef enum {
 		return energyPendingCell;
 	} else {
 		LETableViewCellButton *energyButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-		energyButtonCell.textLabel.text = [NSString stringWithFormat:@"Boost %@", name];
+		energyButtonCell.textLabel.text = [NSString stringWithFormat:@"Purchase %@ Boost", name];
 		return energyButtonCell;
 	}
 }
@@ -187,6 +193,48 @@ typedef enum {
 - (BOOL)isBoosting:(NSDate *)boostEndDate {
 	NSDate *now = [NSDate date];
 	return [boostEndDate compare:now] == NSOrderedDescending;
+}
+
+
+#pragma mark -
+#pragma mark UIActionSheetDelegate Methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
+		switch (self->selectedRow) {
+			case EMPIRE_BOOST_ROW_ENERGY:
+				if (![self isBoosting:[self.empireBoosts objectForKey:@"energy"]]) {
+					[[[LEEmpireBoostEnergy alloc] initWithCallback:@selector(boostedEnergy:) target:self] autorelease];
+				}
+				break;
+			case EMPIRE_BOOST_ROW_FOOD:
+				if (![self isBoosting:[self.empireBoosts objectForKey:@"food"]]) {
+					[[[LEEmpireBoostFood alloc] initWithCallback:@selector(boostedFood:) target:self] autorelease];
+				}
+				break;
+			case EMPIRE_BOOST_ROW_HAPPINESS:
+				if (![self isBoosting:[self.empireBoosts objectForKey:@"happiness"]]) {
+					[[[LEEmpireBoostHappiness alloc] initWithCallback:@selector(boostedHappiness:) target:self] autorelease];
+				}
+				break;
+			case EMPIRE_BOOST_ROW_ORE:
+				if (![self isBoosting:[self.empireBoosts objectForKey:@"ore"]]) {
+					[[[LEEmpireBoostOre alloc] initWithCallback:@selector(boostedOre:) target:self] autorelease];
+				}
+				break;
+			case EMPIRE_BOOST_ROW_WATER:
+				if (![self isBoosting:[self.empireBoosts objectForKey:@"water"]]) {
+					[[[LEEmpireBoostWater alloc] initWithCallback:@selector(boostedWater:) target:self] autorelease];
+				}
+				break;
+			case EMPIRE_BOOST_ROW_STORAGE:
+				if (![self isBoosting:[self.empireBoosts objectForKey:@"storage"]]) {
+					[[[LEEmpireBoostStorage alloc] initWithCallback:@selector(boostedStorage:) target:self] autorelease];
+				}
+				break;
+		}
+	}
+	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
 
@@ -231,6 +279,13 @@ typedef enum {
 
 - (id)boostedWater:(LEEmpireBoostWater *)request {
 	[self.empireBoosts setObject:request.boostEndDate forKey:@"water"];
+	[self.tableView reloadData];
+	return nil;
+}
+
+
+- (id)boostedStorage:(LEEmpireBoostStorage *)request {
+	[self.empireBoosts setObject:request.boostEndDate forKey:@"storage"];
 	[self.tableView reloadData];
 	return nil;
 }

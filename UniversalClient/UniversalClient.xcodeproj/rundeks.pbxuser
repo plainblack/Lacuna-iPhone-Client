@@ -440,6 +440,17 @@
 			F6D9BDD111FFD07700138A8C = F6D9BDD111FFD07700138A8C /* PBXTextBookmark */;
 			F6DB8ACE12116C8B00F3AB4B /* PBXTextBookmark */ = F6DB8ACE12116C8B00F3AB4B /* PBXTextBookmark */;
 			F6DB8AD612116F2700F3AB4B /* PBXTextBookmark */ = F6DB8AD612116F2700F3AB4B /* PBXTextBookmark */;
+			F6DB8AF01211751A00F3AB4B /* PBXTextBookmark */ = F6DB8AF01211751A00F3AB4B /* PBXTextBookmark */;
+			F6DB8AF11211751A00F3AB4B /* PBXTextBookmark */ = F6DB8AF11211751A00F3AB4B /* PBXTextBookmark */;
+			F6DB8AF41211751B00F3AB4B /* PBXTextBookmark */ = F6DB8AF41211751B00F3AB4B /* PBXTextBookmark */;
+			F6DB8AF51211751B00F3AB4B /* PBXTextBookmark */ = F6DB8AF51211751B00F3AB4B /* PBXTextBookmark */;
+			F6DB8AF61211751B00F3AB4B /* PBXTextBookmark */ = F6DB8AF61211751B00F3AB4B /* PBXTextBookmark */;
+			F6DB8AF71211751B00F3AB4B /* PBXTextBookmark */ = F6DB8AF71211751B00F3AB4B /* PBXTextBookmark */;
+			F6DB8AF81211751B00F3AB4B /* PBXTextBookmark */ = F6DB8AF81211751B00F3AB4B /* PBXTextBookmark */;
+			F6DB8AF91211751B00F3AB4B /* PBXTextBookmark */ = F6DB8AF91211751B00F3AB4B /* PBXTextBookmark */;
+			F6DB8AFA1211751B00F3AB4B /* PBXTextBookmark */ = F6DB8AFA1211751B00F3AB4B /* PBXTextBookmark */;
+			F6DB8AFB1211751B00F3AB4B /* PBXTextBookmark */ = F6DB8AFB1211751B00F3AB4B /* PBXTextBookmark */;
+			F6DB8AFC1211751B00F3AB4B /* PBXTextBookmark */ = F6DB8AFC1211751B00F3AB4B /* PBXTextBookmark */;
 			F6DD2151116D76100013C58D = F6DD2151116D76100013C58D /* PBXTextBookmark */;
 			F6DD2152116D76100013C58D = F6DD2152116D76100013C58D /* PBXTextBookmark */;
 			F6DD42891210179A009C4A34 = F6DD42891210179A009C4A34 /* PBXTextBookmark */;
@@ -3571,9 +3582,9 @@
 	};
 	F6A9C5EA1184C1CC001F0D9C /* ViewSpiesController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1132, 4368}}";
-			sepNavSelRange = "{389, 0}";
-			sepNavVisRange = "{0, 704}";
+			sepNavIntBoundsRect = "{{0, 0}, {1286, 4225}}";
+			sepNavSelRange = "{8074, 398}";
+			sepNavVisRange = "{8026, 494}";
 		};
 	};
 	F6A9C6051184CE50001F0D9C /* PBXTextBookmark */ = {
@@ -5457,6 +5468,127 @@
 		vrLen = 1137;
 		vrLoc = 8340;
 	};
+	F6DB8AE31211718D00F3AB4B /* LEEmpireBoostStorage.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {943, 483}}";
+			sepNavSelRange = "{400, 0}";
+			sepNavVisRange = "{0, 405}";
+		};
+	};
+	F6DB8AE41211718D00F3AB4B /* LEEmpireBoostStorage.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {943, 715}}";
+			sepNavSelRange = "{811, 0}";
+			sepNavVisRange = "{273, 616}";
+		};
+	};
+	F6DB8AF01211751A00F3AB4B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6A9C5EA1184C1CC001F0D9C /* ViewSpiesController.m */;
+		rLen = 13;
+		rLoc = 5840;
+		rType = 0;
+	};
+	F6DB8AF11211751A00F3AB4B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6A9C5EA1184C1CC001F0D9C /* ViewSpiesController.m */;
+		name = "ViewSpiesController.m: 268";
+		rLen = 398;
+		rLoc = 8074;
+		rType = 0;
+		vrLen = 494;
+		vrLoc = 8026;
+	};
+	F6DB8AF41211751B00F3AB4B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F631A3D211754AEF005E40CC /* ViewBodyController.m */;
+		name = "ViewBodyController.m: 99";
+		rLen = 0;
+		rLoc = 2820;
+		rType = 0;
+		vrLen = 1137;
+		vrLoc = 8340;
+	};
+	F6DB8AF51211751B00F3AB4B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6E3F01F11B46BD500E7BC86 /* LEEmpireBoostEnergy.h */;
+		name = "LEEmpireBoostEnergy.h: 14";
+		rLen = 155;
+		rLoc = 243;
+		rType = 0;
+		vrLen = 403;
+		vrLoc = 0;
+	};
+	F6DB8AF61211751B00F3AB4B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6DB8AE31211718D00F3AB4B /* LEEmpireBoostStorage.h */;
+		name = "LEEmpireBoostStorage.h: 24";
+		rLen = 0;
+		rLoc = 400;
+		rType = 0;
+		vrLen = 405;
+		vrLoc = 0;
+	};
+	F6DB8AF71211751B00F3AB4B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6E3F02011B46BD500E7BC86 /* LEEmpireBoostEnergy.m */;
+		name = "LEEmpireBoostEnergy.m: 16";
+		rLen = 611;
+		rLoc = 268;
+		rType = 0;
+		vrLen = 614;
+		vrLoc = 270;
+	};
+	F6DB8AF81211751B00F3AB4B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6DB8AE41211718D00F3AB4B /* LEEmpireBoostStorage.m */;
+		name = "LEEmpireBoostStorage.m: 44";
+		rLen = 0;
+		rLoc = 811;
+		rType = 0;
+		vrLen = 616;
+		vrLoc = 273;
+	};
+	F6DB8AF91211751B00F3AB4B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6E3EFEE11B45BA000E7BC86 /* ViewEmpireBoostsController.h */;
+		name = "ViewEmpireBoostsController.h: 13";
+		rLen = 0;
+		rLoc = 307;
+		rType = 0;
+		vrLen = 658;
+		vrLoc = 0;
+	};
+	F6DB8AFA1211751B00F3AB4B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6A9C5EA1184C1CC001F0D9C /* ViewSpiesController.m */;
+		name = "ViewSpiesController.m: 194";
+		rLen = 0;
+		rLoc = 5760;
+		rType = 0;
+		vrLen = 1408;
+		vrLoc = 5285;
+	};
+	F6DB8AFB1211751B00F3AB4B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6E3EFEF11B45BA000E7BC86 /* ViewEmpireBoostsController.m */;
+		name = "ViewEmpireBoostsController.m: 190";
+		rLen = 0;
+		rLoc = 5684;
+		rType = 0;
+		vrLen = 1002;
+		vrLoc = 5881;
+	};
+	F6DB8AFC1211751B00F3AB4B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6E3EFEF11B45BA000E7BC86 /* ViewEmpireBoostsController.m */;
+		name = "ViewEmpireBoostsController.m: 304";
+		rLen = 0;
+		rLoc = 9019;
+		rType = 0;
+		vrLen = 840;
+		vrLoc = 8179;
+	};
 	F6DB90E512039C33003293A7 /* LETableViewCellTravellingShip.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {943, 638}}";
@@ -6052,7 +6184,7 @@
 		fRef = F6E3EFEF11B45BA000E7BC86 /* ViewEmpireBoostsController.m */;
 		name = "ViewEmpireBoostsController.m: 177";
 		rLen = 0;
-		rLoc = 4968;
+		rLoc = 5463;
 		rType = 0;
 		vrLen = 1693;
 		vrLoc = 4156;
@@ -6141,16 +6273,16 @@
 	};
 	F6E3EFEE11B45BA000E7BC86 /* ViewEmpireBoostsController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {943, 772}}";
-			sepNavSelRange = "{518, 43}";
-			sepNavVisRange = "{0, 610}";
+			sepNavIntBoundsRect = "{{0, 0}, {943, 483}}";
+			sepNavSelRange = "{307, 0}";
+			sepNavVisRange = "{0, 658}";
 		};
 	};
 	F6E3EFEF11B45BA000E7BC86 /* ViewEmpireBoostsController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1181, 3380}}";
-			sepNavSelRange = "{1075, 0}";
-			sepNavVisRange = "{840, 571}";
+			sepNavIntBoundsRect = "{{0, 0}, {1181, 4303}}";
+			sepNavSelRange = "{9019, 0}";
+			sepNavVisRange = "{8179, 840}";
 		};
 	};
 	F6E3F01C11B46BBB00E7BC86 /* LEEmpireViewBoosts.h */ = {
@@ -6169,16 +6301,16 @@
 	};
 	F6E3F01F11B46BD500E7BC86 /* LEEmpireBoostEnergy.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {943, 871}}";
-			sepNavSelRange = "{394, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {943, 483}}";
+			sepNavSelRange = "{243, 155}";
 			sepNavVisRange = "{0, 403}";
 		};
 	};
 	F6E3F02011B46BD500E7BC86 /* LEEmpireBoostEnergy.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {908, 715}}";
-			sepNavSelRange = "{511, 0}";
-			sepNavVisRange = "{376, 330}";
+			sepNavIntBoundsRect = "{{0, 0}, {943, 715}}";
+			sepNavSelRange = "{268, 611}";
+			sepNavVisRange = "{270, 614}";
 		};
 	};
 	F6E3F02211B46BE300E7BC86 /* LEEmpireBoostFood.h */ = {
@@ -7592,7 +7724,7 @@
 		fRef = F6E3EFEE11B45BA000E7BC86 /* ViewEmpireBoostsController.h */;
 		name = "ViewEmpireBoostsController.h: 22";
 		rLen = 43;
-		rLoc = 518;
+		rLoc = 566;
 		rType = 0;
 		vrLen = 610;
 		vrLoc = 0;
