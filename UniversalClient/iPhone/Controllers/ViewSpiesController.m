@@ -13,6 +13,7 @@
 #import "LETableViewCellLabeledText.h"
 #import "RenameSpyController.h"
 #import "AssignSpyController.h"
+#import "AssignSpyControllerV2.h"
 #import "LETableViewCellSpyInfo.h"
 #import "Util.h"
 #import "Intelligence.h"
@@ -208,8 +209,14 @@ typedef enum {
 			break;
 		case ROW_ASSIGN_BUTTON:
 			if (spy.isAvailable) {
+				/*
 				AssignSpyController *assignSpyController = [AssignSpyController create];
 				assignSpyController.intelligenceBuilding = self.intelligenceBuilding;
+				assignSpyController.spy = spy;
+				[self.navigationController pushViewController:assignSpyController animated:YES];
+				*/
+				AssignSpyControllerV2 *assignSpyController = [AssignSpyControllerV2 create];
+				assignSpyController.intelligence = self.intelligenceBuilding;
 				assignSpyController.spy = spy;
 				[self.navigationController pushViewController:assignSpyController animated:YES];
 			}

@@ -145,6 +145,8 @@
 		F6C3906311F1E36C004FB38F /* LETableViewCellMailSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */; };
 		F6C390C311F1ED14004FB38F /* LETableViewCellMailHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C390C211F1ED14004FB38F /* LETableViewCellMailHeaders.m */; };
 		F6C390EE11F23D54004FB38F /* LETableViewCellBuildQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C390ED11F23D54004FB38F /* LETableViewCellBuildQueueItem.m */; };
+		F6CF29E21210E1F400D4A9AC /* AssignSpyControllerV2.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CF29E01210E1F400D4A9AC /* AssignSpyControllerV2.m */; };
+		F6CF29E31210E1F400D4A9AC /* AssignViewControllerV2.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6CF29E11210E1F400D4A9AC /* AssignViewControllerV2.xib */; };
 		F6D48578120CD80D00D77FC3 /* LEBuildingViewForeignSpies.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D48577120CD80D00D77FC3 /* LEBuildingViewForeignSpies.m */; };
 		F6D4857B120CD82100D77FC3 /* LEBuildingExecutePrisoner.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D4857A120CD82100D77FC3 /* LEBuildingExecutePrisoner.m */; };
 		F6D4857E120CD83600D77FC3 /* LEBuildingReleasePrisoner.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D4857D120CD83600D77FC3 /* LEBuildingReleasePrisoner.m */; };
@@ -483,6 +485,9 @@
 		F6C390C211F1ED14004FB38F /* LETableViewCellMailHeaders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellMailHeaders.m; sourceTree = "<group>"; };
 		F6C390EC11F23D54004FB38F /* LETableViewCellBuildQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellBuildQueueItem.h; sourceTree = "<group>"; };
 		F6C390ED11F23D54004FB38F /* LETableViewCellBuildQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellBuildQueueItem.m; sourceTree = "<group>"; };
+		F6CF29DF1210E1F400D4A9AC /* AssignSpyControllerV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssignSpyControllerV2.h; sourceTree = "<group>"; };
+		F6CF29E01210E1F400D4A9AC /* AssignSpyControllerV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssignSpyControllerV2.m; sourceTree = "<group>"; };
+		F6CF29E11210E1F400D4A9AC /* AssignViewControllerV2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssignViewControllerV2.xib; sourceTree = "<group>"; };
 		F6D48576120CD80D00D77FC3 /* LEBuildingViewForeignSpies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewForeignSpies.h; sourceTree = "<group>"; };
 		F6D48577120CD80D00D77FC3 /* LEBuildingViewForeignSpies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewForeignSpies.m; sourceTree = "<group>"; };
 		F6D48579120CD82100D77FC3 /* LEBuildingExecutePrisoner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingExecutePrisoner.h; sourceTree = "<group>"; };
@@ -1167,6 +1172,9 @@
 				F6A9C5EA1184C1CC001F0D9C /* ViewSpiesController.m */,
 				F6EB02641202FB01001BFD68 /* ViewTravellingShipsController.h */,
 				F6EB02651202FB01001BFD68 /* ViewTravellingShipsController.m */,
+				F6CF29DF1210E1F400D4A9AC /* AssignSpyControllerV2.h */,
+				F6CF29E01210E1F400D4A9AC /* AssignSpyControllerV2.m */,
+				F6CF29E11210E1F400D4A9AC /* AssignViewControllerV2.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1253,6 +1261,7 @@
 				F683BC2511E40311009E64BF /* assets in Resources */,
 				F6FB45A411F52C1F00E24EAC /* SearchForGlyphController.xib in Resources */,
 				F6FB45D211F53D9F00E24EAC /* AssembleGlyphsController.xib in Resources */,
+				F6CF29E31210E1F400D4A9AC /* AssignViewControllerV2.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1453,6 +1462,7 @@
 				F6D4857B120CD82100D77FC3 /* LEBuildingExecutePrisoner.m in Sources */,
 				F6D4857E120CD83600D77FC3 /* LEBuildingReleasePrisoner.m in Sources */,
 				F6D485B8120CDEA000D77FC3 /* ViewForeignSpiesController.m in Sources */,
+				F6CF29E21210E1F400D4A9AC /* AssignSpyControllerV2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

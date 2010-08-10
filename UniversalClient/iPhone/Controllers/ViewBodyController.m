@@ -84,7 +84,6 @@ typedef enum {
 	self.pageSegmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
 	UIBarButtonItem *rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.pageSegmentedControl] autorelease];
 	self.navigationItem.rightBarButtonItem = rightBarButtonItem; 
-	[self togglePageButtons];
 	
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Body"],
 								 [LEViewSectionTab tableView:self.tableView createWithText:@"Actions"],
@@ -94,6 +93,8 @@ typedef enum {
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+
+	[self togglePageButtons];
 
 	Session *session = [Session sharedInstance];
 	if (!self.bodyId) {
