@@ -579,6 +579,17 @@
 			F6FABFEA12137FDF00523FFE /* PBXTextBookmark */ = F6FABFEA12137FDF00523FFE /* PBXTextBookmark */;
 			F6FABFF71213803F00523FFE /* PBXTextBookmark */ = F6FABFF71213803F00523FFE /* PBXTextBookmark */;
 			F6FABFFC121380A400523FFE /* PBXTextBookmark */ = F6FABFFC121380A400523FFE /* PBXTextBookmark */;
+			F6FAC016121386E000523FFE /* PBXTextBookmark */ = F6FAC016121386E000523FFE /* PBXTextBookmark */;
+			F6FAC017121386E000523FFE /* PBXTextBookmark */ = F6FAC017121386E000523FFE /* PBXTextBookmark */;
+			F6FAC018121386E000523FFE /* PBXTextBookmark */ = F6FAC018121386E000523FFE /* PBXTextBookmark */;
+			F6FAC019121386E000523FFE /* PBXTextBookmark */ = F6FAC019121386E000523FFE /* PBXTextBookmark */;
+			F6FAC01A121386E000523FFE /* PBXTextBookmark */ = F6FAC01A121386E000523FFE /* PBXTextBookmark */;
+			F6FAC01B121386E000523FFE /* PBXTextBookmark */ = F6FAC01B121386E000523FFE /* PBXTextBookmark */;
+			F6FAC01C121386E000523FFE /* PBXTextBookmark */ = F6FAC01C121386E000523FFE /* PBXTextBookmark */;
+			F6FAC01D121386E000523FFE /* PBXTextBookmark */ = F6FAC01D121386E000523FFE /* PBXTextBookmark */;
+			F6FAC01E121386E000523FFE /* PBXTextBookmark */ = F6FAC01E121386E000523FFE /* PBXTextBookmark */;
+			F6FAC01F121386E000523FFE /* PBXTextBookmark */ = F6FAC01F121386E000523FFE /* PBXTextBookmark */;
+			F6FAC020121386E000523FFE /* PBXTextBookmark */ = F6FAC020121386E000523FFE /* PBXTextBookmark */;
 			F6FB460911F545F800E24EAC = F6FB460911F545F800E24EAC /* PBXTextBookmark */;
 			F6FB460A11F545F800E24EAC = F6FB460A11F545F800E24EAC /* PBXTextBookmark */;
 			F6FB460B11F545F800E24EAC = F6FB460B11F545F800E24EAC /* PBXTextBookmark */;
@@ -699,7 +710,7 @@
 		fRef = F678F71E11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.m */;
 		name = "LETableViewCellLabeledSwitch.m: 75";
 		rLen = 0;
-		rLoc = 2446;
+		rLoc = 2489;
 		rType = 0;
 		vrLen = 997;
 		vrLoc = 1543;
@@ -744,9 +755,9 @@
 	};
 	F6132E5A119E3A78000F99A9 /* LETableViewCellNumberEntry.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1909, 1729}}";
-			sepNavSelRange = "{1997, 0}";
-			sepNavVisRange = "{1511, 1556}";
+			sepNavIntBoundsRect = "{{0, 0}, {1909, 1638}}";
+			sepNavSelRange = "{2082, 0}";
+			sepNavVisRange = "{1556, 1620}";
 		};
 	};
 	F6132E75119E3E07000F99A9 /* PBXTextBookmark */ = {
@@ -1871,9 +1882,9 @@
 	};
 	F634BB52116C31BD0084A8B2 /* LETableViewCellTextEntry.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {943, 3172}}";
-			sepNavSelRange = "{2612, 0}";
-			sepNavVisRange = "{2202, 969}";
+			sepNavIntBoundsRect = "{{0, 0}, {1083, 3029}}";
+			sepNavSelRange = "{2610, 163}";
+			sepNavVisRange = "{2476, 1038}";
 		};
 	};
 	F63B0BF211F69EF1009BC7E3 /* PBXTextBookmark */ = {
@@ -2427,9 +2438,9 @@
 	};
 	F678F71E11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1153, 1261}}";
-			sepNavSelRange = "{1061, 0}";
-			sepNavVisRange = "{866, 1580}";
+			sepNavIntBoundsRect = "{{0, 0}, {1055, 1391}}";
+			sepNavSelRange = "{1170, 0}";
+			sepNavVisRange = "{821, 1152}";
 		};
 	};
 	F678F72A11A37420006E4BA1 /* PBXTextBookmark */ = {
@@ -2947,9 +2958,9 @@
 	};
 	F6882D40116EB44F009B624B /* LETableViewCellLabeledText.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {943, 1274}}";
-			sepNavSelRange = "{901, 0}";
-			sepNavVisRange = "{695, 1204}";
+			sepNavIntBoundsRect = "{{0, 0}, {943, 1079}}";
+			sepNavSelRange = "{2173, 0}";
+			sepNavVisRange = "{904, 1390}";
 		};
 	};
 	F6882D50116EB6BF009B624B /* LETableViewCellLabeledParagraph.h */ = {
@@ -3417,9 +3428,9 @@
 	};
 	F69D299111725FA400D7277E /* NewSpeciesController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {908, 4342}}";
-			sepNavSelRange = "{4183, 0}";
-			sepNavVisRange = "{4057, 514}";
+			sepNavIntBoundsRect = "{{0, 0}, {1300, 4420}}";
+			sepNavSelRange = "{8568, 21}";
+			sepNavVisRange = "{2759, 1501}";
 		};
 	};
 	F69D29B51172654500D7277E /* LETableViewCellOrbitSelector.h */ = {
@@ -3601,9 +3612,9 @@
 	};
 	F6A9C6341184DF55001F0D9C /* RenameSpyController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {943, 1976}}";
-			sepNavSelRange = "{3069, 15}";
-			sepNavVisRange = "{2630, 753}";
+			sepNavIntBoundsRect = "{{0, 0}, {1251, 1846}}";
+			sepNavSelRange = "{1404, 115}";
+			sepNavVisRange = "{1194, 886}";
 		};
 	};
 	F6A9C6361184DF61001F0D9C /* RenameBodyController.h */ = {
@@ -3615,9 +3626,9 @@
 	};
 	F6A9C6371184DF61001F0D9C /* RenameBodyController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1251, 1664}}";
-			sepNavSelRange = "{2542, 0}";
-			sepNavVisRange = "{1928, 846}";
+			sepNavIntBoundsRect = "{{0, 0}, {1251, 1729}}";
+			sepNavSelRange = "{1261, 0}";
+			sepNavVisRange = "{244, 1016}";
 		};
 	};
 	F6AC49E6116C0F7E001B967A /* LEMacros.h */ = {
@@ -4843,7 +4854,7 @@
 		fRef = F6E3E5DF11BB1E8500A031CF /* LETableViewCellTextView.m */;
 		name = "LETableViewCellTextView.m: 160";
 		rLen = 0;
-		rLoc = 3417;
+		rLoc = 3579;
 		rType = 0;
 		vrLen = 1841;
 		vrLoc = 2269;
@@ -5134,16 +5145,16 @@
 	};
 	F6D59FF212012AA9009DDA28 /* RenameShipController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {943, 528}}";
+			sepNavIntBoundsRect = "{{0, 0}, {943, 449}}";
 			sepNavSelRange = "{646, 0}";
 			sepNavVisRange = "{0, 646}";
 		};
 	};
 	F6D59FF312012AA9009DDA28 /* RenameShipController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {950, 1989}}";
-			sepNavSelRange = "{2903, 0}";
-			sepNavVisRange = "{2597, 746}";
+			sepNavIntBoundsRect = "{{0, 0}, {1251, 1833}}";
+			sepNavSelRange = "{1493, 0}";
+			sepNavVisRange = "{462, 1291}";
 		};
 	};
 	F6D5A00912012E43009DDA28 /* LEBuildingScuttleShip.h */ = {
@@ -5749,7 +5760,7 @@
 		fRef = F6882D40116EB44F009B624B /* LETableViewCellLabeledText.m */;
 		name = "LETableViewCellLabeledText.m: 63";
 		rLen = 0;
-		rLoc = 1967;
+		rLoc = 1753;
 		rType = 0;
 		vrLen = 1500;
 		vrLoc = 797;
@@ -5769,7 +5780,7 @@
 		fRef = F634BB52116C31BD0084A8B2 /* LETableViewCellTextEntry.m */;
 		name = "LETableViewCellTextEntry.m: 145";
 		rLen = 0;
-		rLoc = 2612;
+		rLoc = 2775;
 		rType = 0;
 		vrLen = 969;
 		vrLoc = 2202;
@@ -5819,7 +5830,7 @@
 		fRef = F6A9C6341184DF55001F0D9C /* RenameSpyController.m */;
 		name = "RenameSpyController.m: 127";
 		rLen = 15;
-		rLoc = 3069;
+		rLoc = 3184;
 		rType = 0;
 		vrLen = 753;
 		vrLoc = 2630;
@@ -5829,7 +5840,7 @@
 		fRef = F6D59FF312012AA9009DDA28 /* RenameShipController.m */;
 		name = "RenameShipController.m: 119";
 		rLen = 0;
-		rLoc = 2903;
+		rLoc = 3018;
 		rType = 0;
 		vrLen = 746;
 		vrLoc = 2597;
@@ -5859,7 +5870,7 @@
 		fRef = F6A9C6371184DF61001F0D9C /* RenameBodyController.m */;
 		name = "RenameBodyController.m: 99";
 		rLen = 0;
-		rLoc = 2542;
+		rLoc = 2657;
 		rType = 0;
 		vrLen = 846;
 		vrLoc = 1928;
@@ -6105,9 +6116,9 @@
 	};
 	F6E3E5DF11BB1E8500A031CF /* LETableViewCellTextView.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {943, 2470}}";
-			sepNavSelRange = "{3417, 0}";
-			sepNavVisRange = "{2269, 1841}";
+			sepNavIntBoundsRect = "{{0, 0}, {943, 2756}}";
+			sepNavSelRange = "{218, 23}";
+			sepNavVisRange = "{0, 707}";
 		};
 	};
 	F6E3E5FB11BB209800A031CF /* PBXTextBookmark */ = {
@@ -7461,7 +7472,7 @@
 		fRef = F678F71E11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.m */;
 		name = "LETableViewCellLabeledSwitch.m: 75";
 		rLen = 0;
-		rLoc = 2446;
+		rLoc = 2489;
 		rType = 0;
 		vrLen = 1589;
 		vrLoc = 957;
@@ -7471,7 +7482,7 @@
 		fRef = F678F71E11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.m */;
 		name = "LETableViewCellLabeledSwitch.m: 79";
 		rLen = 0;
-		rLoc = 2812;
+		rLoc = 2855;
 		rType = 0;
 		vrLen = 1573;
 		vrLoc = 1257;
@@ -7481,7 +7492,7 @@
 		fRef = F678F71E11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.m */;
 		name = "LETableViewCellLabeledSwitch.m: 57";
 		rLen = 0;
-		rLoc = 1132;
+		rLoc = 1175;
 		rType = 0;
 		vrLen = 905;
 		vrLoc = 731;
@@ -7495,6 +7506,116 @@
 		rType = 0;
 		vrLen = 1271;
 		vrLoc = 770;
+	};
+	F6FAC016121386E000523FFE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6132E5A119E3A78000F99A9 /* LETableViewCellNumberEntry.m */;
+		name = "LETableViewCellNumberEntry.m: 78";
+		rLen = 0;
+		rLoc = 2082;
+		rType = 0;
+		vrLen = 1620;
+		vrLoc = 1556;
+	};
+	F6FAC017121386E000523FFE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6882D40116EB44F009B624B /* LETableViewCellLabeledText.m */;
+		name = "LETableViewCellLabeledText.m: 71";
+		rLen = 0;
+		rLoc = 2173;
+		rType = 0;
+		vrLen = 1390;
+		vrLoc = 904;
+	};
+	F6FAC018121386E000523FFE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F634BB52116C31BD0084A8B2 /* LETableViewCellTextEntry.m */;
+		name = "LETableViewCellTextEntry.m: 143";
+		rLen = 163;
+		rLoc = 2610;
+		rType = 0;
+		vrLen = 1038;
+		vrLoc = 2476;
+	};
+	F6FAC019121386E000523FFE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6E3E5DF11BB1E8500A031CF /* LETableViewCellTextView.m */;
+		name = "LETableViewCellTextView.m: 13";
+		rLen = 23;
+		rLoc = 218;
+		rType = 0;
+		vrLen = 707;
+		vrLoc = 0;
+	};
+	F6FAC01A121386E000523FFE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F69D299111725FA400D7277E /* NewSpeciesController.m */;
+		name = "NewSpeciesController.m: 299";
+		rLen = 21;
+		rLoc = 8568;
+		rType = 0;
+		vrLen = 1501;
+		vrLoc = 2759;
+	};
+	F6FAC01B121386E000523FFE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6D59FF212012AA9009DDA28 /* RenameShipController.h */;
+		name = "RenameShipController.h: 34";
+		rLen = 0;
+		rLoc = 646;
+		rType = 0;
+		vrLen = 646;
+		vrLoc = 0;
+	};
+	F6FAC01C121386E000523FFE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6A9C6341184DF55001F0D9C /* RenameSpyController.m */;
+		name = "RenameSpyController.m: 50";
+		rLen = 115;
+		rLoc = 1404;
+		rType = 0;
+		vrLen = 886;
+		vrLoc = 1194;
+	};
+	F6FAC01D121386E000523FFE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6D59FF312012AA9009DDA28 /* RenameShipController.m */;
+		name = "RenameShipController.m: 55";
+		rLen = 0;
+		rLoc = 1493;
+		rType = 0;
+		vrLen = 1291;
+		vrLoc = 462;
+	};
+	F6FAC01E121386E000523FFE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F6A9C6371184DF61001F0D9C /* RenameBodyController.m */;
+		name = "RenameBodyController.m: 49";
+		rLen = 0;
+		rLoc = 1261;
+		rType = 0;
+		vrLen = 1016;
+		vrLoc = 244;
+	};
+	F6FAC01F121386E000523FFE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F678F71E11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.m */;
+		name = "LETableViewCellLabeledSwitch.m: 56";
+		rLen = 0;
+		rLoc = 1061;
+		rType = 0;
+		vrLen = 1323;
+		vrLoc = 866;
+	};
+	F6FAC020121386E000523FFE /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = F678F71E11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.m */;
+		name = "LETableViewCellLabeledSwitch.m: 57";
+		rLen = 0;
+		rLoc = 1170;
+		rType = 0;
+		vrLen = 1152;
+		vrLoc = 821;
 	};
 	F6FB458011F5158C00E24EAC /* LEBuildingGlyphSearch.h */ = {
 		uiCtxt = {

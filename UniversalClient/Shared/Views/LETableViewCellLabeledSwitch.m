@@ -54,6 +54,7 @@
 
 - (void)callTapped:(UIGestureRecognizer *)gestureRecognizer {
 	[self.selectedSwitch setOn:!self.selectedSwitch.on animated:YES];
+	self.isSelected = self.selectedSwitch.on;
 }
 
 
