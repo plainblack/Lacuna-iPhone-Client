@@ -68,7 +68,6 @@
 		cell.content.font = TEXT_FONT;
 		cell.content.textColor = TEXT_COLOR;
 		[cell.contentView addSubview:cell.content];
-		
 	}
 	
 	return cell;

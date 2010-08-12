@@ -8,19 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate_Shared.h"
+#import "LERequest.h"
 
 
 @class ViewBodyController;
 @class ViewMailboxController;
 
 
-@interface AppDelegate_Phone : AppDelegate_Shared <UITabBarDelegate> {
+@interface AppDelegate_Phone : AppDelegate_Shared <UITabBarDelegate, LERequestMonitor> {
 	UITabBarController *tabBarController;
 	UITabBarItem *mailTabBarItem;
 	UINavigationController *myWorldsNavigationController;
 	ViewBodyController *myWorldController;
 	UINavigationController *mailNavigationController;
 	ViewMailboxController *mailboxController;
+	UIBackgroundTaskIdentifier backgroundTask;
 }
 
 

@@ -11,6 +11,8 @@
 #import	"LEMacros.h"
 #import "ViewBodyController.h"
 #import "ViewMailboxController.h"
+#import "LERequest.h"
+
 
 @implementation AppDelegate_Phone
 
@@ -49,11 +51,54 @@
 }
 
 
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+	//IS NO SUPER METHOD SO DON'T CALL IT!
+	//[super applicationDidBecomeActive:application];
+}
+
+
+- (void)applicationWillResignActive:(UIApplication *)application {
+	//IS NO SUPER METHOD SO DON'T CALL IT!
+	//[super applicationDidBecomeActive:application];
+	NSLog(@"Will resign active");
+	if ([LERequest getCurrentRequestCount] > 0) {
+		NSLog(@"Active requests!");
+		[LERequest setDelegate:self];
+		self->backgroundTask = [application beginBackgroundTaskWithExpirationHandler:^{
+			NSLog(@"WTF should this do?");
+		}];
+	} else {
+		NSLog(@"No active requests");
+	}
+
+}
+
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+	//IS NO SUPER METHOD SO DON'T CALL IT!
+	//[super applicationDidEnterBackground:application];
+	NSLog(@"Entered background");
+}
+
+
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+	//IS NO SUPER METHOD SO DON'T CALL IT!
+	//[super applicationWillEnterForeground:application];
+	NSLog(@"Will enter foreground");
+}
+
+
 /**
  Superclass implementation saves changes in the application's managed object context before the application terminates.
  */
 - (void)applicationWillTerminate:(UIApplication *)application {
 	[super applicationWillTerminate:application];
+}
+
+
+- (void)applicationDidFinishLaunching:(UIApplication *)application {
+	//IS NO SUPER METHOD SO DON'T CALL IT!
+	//[super applicationDidFinishLaunching:application];
 }
 
 
@@ -119,6 +164,16 @@
 			[session.empire addObserver:self forKeyPath:@"numNewMessages" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 		}
 	}
+}
+
+
+#pragma mark --
+#pragma mark LERequestMonitor Methods
+
+- (void)allRequestsComplete {
+	NSLog(@"ALL REQUESTS COMPLETE");
+	[LERequest setDelegate:nil];
+	[[UIApplication sharedApplication] endBackgroundTask:self->backgroundTask];
 }
 
 

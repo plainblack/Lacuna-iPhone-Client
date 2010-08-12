@@ -47,6 +47,12 @@
 }
 
 
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	[self.nameCell becomeFirstResponder];
+}
+
+
 - (void)viewDidDisappear:(BOOL)animated {
 	[super viewDidDisappear:animated];
 	[self.spy removeObserver:self forKeyPath:@"name"];

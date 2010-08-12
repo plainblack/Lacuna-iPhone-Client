@@ -142,6 +142,14 @@
 }
 
 
+#pragma mark --
+#pragma mark Gesture Recognizer Methods
+
+- (void)callTapped:(UIGestureRecognizer *)gestureRecognizer {
+	[self.textField becomeFirstResponder];
+}
+
+
 #pragma mark -
 #pragma mark Class Methods
 static NSString *CellIdentifier = @"TextEntryCell";
@@ -214,6 +222,9 @@ static NSString *CellIdentifier = @"TextEntryCell";
 		
 		//Set Cell Defaults
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		
+		UITapGestureRecognizer *tapRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:cell action:@selector(callTapped:)] autorelease];
+		[cell.contentView addGestureRecognizer:tapRecognizer];
 	}
 	
 	return cell;

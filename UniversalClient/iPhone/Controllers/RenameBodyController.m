@@ -40,6 +40,12 @@
 }
 
 
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	[self.nameCell becomeFirstResponder];
+}
+
+
 #pragma mark -
 #pragma mark Table view data source
 

@@ -12,6 +12,13 @@
 @class DKDeferred;
 
 
+@protocol LERequestMonitor
+
+- (void)allRequestsComplete;
+
+@end
+
+
 @interface LERequest : NSObject {
 	SEL callback;
 	NSObject *target;
@@ -42,6 +49,9 @@
 - (NSInteger)errorCode;
 - (void)cancel;
 
+
++ (void)setDelegate:(id<LERequestMonitor>)delegate;
++ (NSInteger)getCurrentRequestCount;
 
 
 @end

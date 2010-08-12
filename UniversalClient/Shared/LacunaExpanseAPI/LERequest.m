@@ -13,6 +13,8 @@
 
 
 static int numRequests = 0;
+static id<LERequestMonitor> delegate;
+
 
 @interface LERequest (PrivateMethods)
 
@@ -33,17 +35,17 @@ static int numRequests = 0;
 
 - (id)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget {
 	[self init];
-	canceled = NO;
-	wasError = NO;
-	handledError = NO;
+	self->canceled = NO;
+	self->wasError = NO;
+	self->handledError = NO;
 	
 	self.protocol = @"https";
 	self.serverName = @"pt.lacunaexpanse.com";
 	
-	callback = inCallback;
-	target = inTarget;
+	self->callback = inCallback;
+	self->target = inTarget;
 	
-	[target retain];
+	[self->target retain];
 	
 	numRequests++;
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
@@ -63,9 +65,9 @@ static int numRequests = 0;
 
 
 - (void)dealloc {
-	callback = nil;
-	[target release];
-	target = nil;
+	self->callback = nil;
+	[self->target release];
+	self->target = nil;
 	self.response = nil;
 	self.deferred = nil;
 	self.protocol = nil;
@@ -94,7 +96,7 @@ static int numRequests = 0;
 
 
 - (id)successCallback:(id)results {
-	wasError = NO;
+	self->wasError = NO;
 	self.response = results;
 	[self requestFinished];
 	
@@ -109,8 +111,8 @@ static int numRequests = 0;
 	NSLog(@"Error: %@", err);
 	NSLog(@"Details: %@", err.userInfo);
 	
-	wasError = YES;
-	handledError = NO;
+	self->wasError = YES;
+	self->handledError = NO;
 	self.response = err.userInfo;
 	[self requestFinished];
 
@@ -121,12 +123,12 @@ static int numRequests = 0;
 
 
 - (BOOL)wasError {
-	return wasError;
+	return self->wasError;
 }
 
 
 - (void)markErrorHandled {
-	handledError = YES;
+	self->handledError = YES;
 }
 
 
@@ -143,6 +145,7 @@ static int numRequests = 0;
 	numRequests--;
 	if (numRequests < 1) {
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+		[delegate allRequestsComplete];
 	}
 	
 	NSDictionary *result = [self.response objectForKey:@"result"];
@@ -157,8 +160,8 @@ static int numRequests = 0;
 
 
 - (void)requestComplete {
-	if (!canceled) {
-		[target performSelector:callback withObject:self];
+	if (!self->canceled) {
+		[self->target performSelector:callback withObject:self];
 
 		if (wasError && !handledError) {
 			NSString *errorText = [self errorMessage];
@@ -169,8 +172,18 @@ static int numRequests = 0;
 }
 
 - (void)cancel {
-	canceled = YES;
+	self->canceled = YES;
 	[self.deferred cancel];
+}
+
+
++ (void)setDelegate:(id<LERequestMonitor>)inDelegate {
+	delegate = inDelegate;
+}
+
+
++ (NSInteger)getCurrentRequestCount {
+	return numRequests;
 }
 
 

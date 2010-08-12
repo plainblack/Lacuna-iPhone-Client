@@ -49,6 +49,14 @@
 }
 
 
+#pragma mark --
+#pragma mark Gesture Recognizer Methods
+
+- (void)callTapped:(UIGestureRecognizer *)gestureRecognizer {
+	[self.selectedSwitch setOn:!self.selectedSwitch.on animated:YES];
+}
+
+
 #pragma mark -
 #pragma mark Class Methods
 
@@ -74,6 +82,9 @@
 		cell.selectedSwitch.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.selectedSwitch addTarget:cell action:@selector(switchChanged) forControlEvents:UIControlEventValueChanged];
 		[cell.contentView addSubview:cell.selectedSwitch];
+		
+		UITapGestureRecognizer *tapRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:cell action:@selector(callTapped:)] autorelease];
+		[cell.contentView addGestureRecognizer:tapRecognizer];
 	}
 	
 	return cell;
