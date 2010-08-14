@@ -23,13 +23,13 @@
 #pragma mark Overriden Building Methods
 
 - (void)parseAdditionalData:(NSDictionary *)data {
-	self.nextColonyCost = [data objectForKey:@"next_colony_cost"];
+	self.nextColonyCost = [Util asNumber:[data objectForKey:@"next_colony_cost"]];
 }
 
 
 - (void)generateSections {
 	NSMutableDictionary *productionSection = [self generateProductionSection];
-	[[productionSection objectForKey:@"rows"] addObject:[NSNumber numberWithInt:BUILDING_ROW_NEXT_COLONY_COST]];
+	[[productionSection objectForKey:@"rows"] addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_NEXT_COLONY_COST]];
 	
 	self.sections = _array(productionSection, [self generateHealthSection], [self generateUpgradeSection]);
 }
@@ -54,7 +54,7 @@
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellLabeledText *nextColonyCostCell = [LETableViewCellLabeledText getCellForTableView:tableView];
 			nextColonyCostCell.label.text = @"Next Colony";
-			nextColonyCostCell.content.text = [Util prettyNSNumber:self.nextColonyCost];
+			nextColonyCostCell.content.text = [Util prettyNSDecimalNumber:self.nextColonyCost];
 			cell = nextColonyCostCell;
 			break;
 		default:

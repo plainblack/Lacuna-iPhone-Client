@@ -10,21 +10,21 @@
 
 
 @interface ResourceGeneration : NSObject {
-	NSInteger energy;
-	NSInteger food;
-	NSInteger happiness;
-	NSInteger ore;
-	NSInteger waste;
-	NSInteger water;
+	NSDecimalNumber *energy;
+	NSDecimalNumber *food;
+	NSDecimalNumber *happiness;
+	NSDecimalNumber *ore;
+	NSDecimalNumber *waste;
+	NSDecimalNumber *water;
 }
 
 
-@property (nonatomic, assign) NSInteger energy;
-@property (nonatomic, assign) NSInteger food;
-@property (nonatomic, assign) NSInteger happiness;
-@property (nonatomic, assign) NSInteger ore;
-@property (nonatomic, assign) NSInteger waste;
-@property (nonatomic, assign) NSInteger water;
+@property (nonatomic, retain) NSDecimalNumber *energy;
+@property (nonatomic, retain) NSDecimalNumber *food;
+@property (nonatomic, retain) NSDecimalNumber *happiness;
+@property (nonatomic, retain) NSDecimalNumber *ore;
+@property (nonatomic, retain) NSDecimalNumber *waste;
+@property (nonatomic, retain) NSDecimalNumber *water;
 
 
 - (void) parseData:(NSDictionary *)data;

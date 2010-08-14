@@ -279,7 +279,7 @@ typedef enum {
 		[building setObject:self.x forKey: @"x"];
 		[building setObject:self.y forKey:@"y"];
 		[building setObject:url forKey:@"url"];
-		[building setObject:[NSNumber numberWithInt:0] forKey:@"level"];
+		[building setObject:[NSDecimalNumber numberWithInt:0] forKey:@"level"];
 		[building setObject:image forKey:@"image"];
 		NSString *loc = [NSString stringWithFormat:@"%@x%@", self.x, self.y];
 		[self.buildingsByLoc setObject:building forKey:loc];

@@ -13,6 +13,7 @@
 #import "LEInboxViewSent.h"
 #import "LEInboxViewArchived.h"
 #import "LEMacros.h"
+#import "Util.h"
 #import "Session.h"
 
 #define START_PAGE 1
@@ -77,7 +78,7 @@
 
 - (void)loadMessage:(NSInteger)index {
 	self.messageDetails = [self.messageHeaders objectAtIndex:index];
-	[self.messageDetails setObject:[NSNumber numberWithInt:1] forKey:@"has_read"];
+	[self.messageDetails setObject:[NSDecimalNumber numberWithInt:1] forKey:@"has_read"];
 	Session *session = [Session sharedInstance];
 	session.empire.numNewMessages -= 1;
 	NSString *messageId = [self.messageDetails objectForKey:@"id"];
@@ -114,13 +115,13 @@
 	//Load Page
 	switch (leMailboxType) {
 		case LEMailboxTypeArchived:
-			[[[LEInboxViewArchived alloc] initWithCallback:@selector(messagesLoaded:) target:self page:[NSNumber numberWithInt:pageIndex]] autorelease];
+			[[[LEInboxViewArchived alloc] initWithCallback:@selector(messagesLoaded:) target:self page:[Util decimalFromInt:pageIndex]] autorelease];
 			break;
 		case LEMailboxTypeInbox:
-			[[[LEInboxView alloc] initWithCallback:@selector(messagesLoaded:) target:self page:[NSNumber numberWithInt:pageIndex]] autorelease];
+			[[[LEInboxView alloc] initWithCallback:@selector(messagesLoaded:) target:self page:[Util decimalFromInt:pageIndex]] autorelease];
 			break;
 		case LEMailboxTypeSent:
-			[[[LEInboxViewSent alloc] initWithCallback:@selector(messagesLoaded:) target:self page:[NSNumber numberWithInt:pageIndex]] autorelease];
+			[[[LEInboxViewSent alloc] initWithCallback:@selector(messagesLoaded:) target:self page:[Util decimalFromInt:pageIndex]] autorelease];
 			break;
 		default:
 			NSLog(@"No LEMailboxType Set");

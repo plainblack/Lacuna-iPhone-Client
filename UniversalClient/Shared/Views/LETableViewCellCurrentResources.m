@@ -14,8 +14,8 @@
 @interface LETableViewCellCurrentResources (PrivateMethods)
 
 
-- (void)setTotalLabel:(UILabel *)totalLabel current:(NSNumber *)current capacity:(NSInteger)capacity;
-- (void)setPerHourLabel:(UILabel *)perHourLabel perHour:(NSInteger)perHour;
+- (void)setTotalLabel:(UILabel *)totalLabel current:(NSDecimalNumber *)current capacity:(NSDecimalNumber *)capacity;
+- (void)setPerHourLabel:(UILabel *)perHourLabel perHour:(NSDecimalNumber *)perHour;
 
 
 @end
@@ -83,7 +83,7 @@
 	[self setTotalLabel:foodTotalLabel current:body.food.current capacity:body.food.max];
 	[self setPerHourLabel:foodPerHourLabel perHour:body.food.perHour];
 
-	self.happinessTotalLabel.text = [NSString stringWithFormat:@"%@", [Util prettyNSNumber:body.happiness.current]];
+	self.happinessTotalLabel.text = [NSString stringWithFormat:@"%@", [Util prettyNSDecimalNumber:body.happiness.current]];
 	[self setPerHourLabel:happinessPerHourLabel perHour:body.happiness.perHour];
 
 	[self setTotalLabel:oreTotalLabel current:body.ore.current capacity:body.ore.max];
@@ -100,9 +100,9 @@
 #pragma mark -
 #pragma mark Private Methods
 
-- (void)setTotalLabel:(UILabel *)totalLabel current:(NSNumber *)current capacity:(NSInteger)capacity {
-	totalLabel.text = [NSString stringWithFormat:@"%@/%@", [Util prettyNSNumber:current], [Util prettyNSInteger:capacity]];
-	if (_intv(current) == capacity) {
+- (void)setTotalLabel:(UILabel *)totalLabel current:(NSDecimalNumber *)current capacity:(NSDecimalNumber *)capacity {
+	totalLabel.text = [NSString stringWithFormat:@"%@/%@", [Util prettyNSDecimalNumber:current], [Util prettyNSDecimalNumber:capacity]];
+	if ([current compare:capacity] == NSOrderedSame) {
 		totalLabel.textColor = WARNING_COLOR;
 	} else {
 		totalLabel.textColor = TEXT_SMALL_COLOR;
@@ -111,9 +111,9 @@
 }
 
 
-- (void)setPerHourLabel:(UILabel *)perHourLabel perHour:(NSInteger)perHour {
-	perHourLabel.text = [NSString stringWithFormat:@"%@/hr", [Util prettyNSInteger:perHour]];
-	if (perHour < 0) {
+- (void)setPerHourLabel:(UILabel *)perHourLabel perHour:(NSDecimalNumber *)perHour {
+	perHourLabel.text = [NSString stringWithFormat:@"%@/hr", [Util prettyNSDecimalNumber:perHour]];
+	if (_intv(perHour) < 0) {
 		perHourLabel.textColor = WARNING_COLOR;
 	} else {
 		perHourLabel.textColor = TEXT_SMALL_COLOR;

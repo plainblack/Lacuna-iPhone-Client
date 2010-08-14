@@ -49,7 +49,7 @@
 #pragma mark -
 #pragma mark PickNumericValueController Methods
 
-- (void)newNumericValue:(NSNumber *)value {
+- (void)newNumericValue:(NSDecimalNumber *)value {
 	if (self->maxValue < _intv(value)) {
 		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Amount Invalid" message:[NSString stringWithFormat:@"You entered %@ which is above the maximum amount of %i.", value, self->maxValue] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 		[av show];

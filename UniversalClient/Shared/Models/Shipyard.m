@@ -53,10 +53,10 @@
 	NSMutableDictionary *productionSection = [self generateProductionSection];
 	
 	NSMutableArray *actionRows = [NSMutableArray arrayWithCapacity:1];
-	[actionRows addObject:[NSNumber numberWithInt:BUILDING_ROW_VIEW_SHIP_BUILD_QUEUE]];
-	[actionRows addObject:[NSNumber numberWithInt:BUILDING_ROW_BUILD_SHIP]];
+	[actionRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_SHIP_BUILD_QUEUE]];
+	[actionRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_BUILD_SHIP]];
 	
-	self.sections = _array(productionSection, _dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", actionRows, @"rows"), [self generateHealthSection], [self generateUpgradeSection]);
+	self.sections = _array(productionSection, _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", actionRows, @"rows"), [self generateHealthSection], [self generateUpgradeSection]);
 }
 
 

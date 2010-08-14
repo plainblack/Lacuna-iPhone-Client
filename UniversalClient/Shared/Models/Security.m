@@ -66,7 +66,7 @@
 
 
 - (void)generateSections {
-	self.sections = _array([self generateProductionSection], _dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSNumber numberWithInt:BUILDING_ROW_VIEW_PRISONERS], [NSNumber numberWithInt:BUILDING_ROW_VIEW_FOREIGN_SPIES]), @"rows"), [self generateHealthSection], [self generateUpgradeSection]);
+	self.sections = _array([self generateProductionSection], _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_PRISONERS], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_FOREIGN_SPIES]), @"rows"), [self generateHealthSection], [self generateUpgradeSection]);
 }
 
 

@@ -42,7 +42,7 @@
 			secondsRemaining = 0;
 			requestReload = YES;
 		}
-		[buildQueueItem setObject:[NSNumber numberWithInt:secondsRemaining] forKey:@"seconds_remaining"];
+		[buildQueueItem setObject:[NSDecimalNumber numberWithInt:secondsRemaining] forKey:@"seconds_remaining"];
 	}
 	
 	if (requestReload) {
@@ -66,14 +66,14 @@
 	NSInteger buildQueueSize = [buildQueue count];
 	if (buildQueueSize > 0) {
 		for (int i=0; i<buildQueueSize; i++) {
-			[buildQueueRows addObject:[NSNumber numberWithInt:BUILDING_ROW_BUILD_QUEUE_ITEM]];
+			[buildQueueRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_BUILD_QUEUE_ITEM]];
 		}
-		[buildQueueRows addObject:[NSNumber numberWithInt:BUILDING_ROW_SUBSIDIZE_BUILD_QUEUE]];
+		[buildQueueRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_SUBSIDIZE_BUILD_QUEUE]];
 	} else {
-		[buildQueueRows addObject:[NSNumber numberWithInt:BUILDING_ROW_EMPTY]];
+		[buildQueueRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_EMPTY]];
 	}
 
-	self.sections = _array([self generateProductionSection], _dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Build Queue", @"name", buildQueueRows, @"rows"), [self generateHealthSection], [self generateUpgradeSection]);
+	self.sections = _array([self generateProductionSection], _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Build Queue", @"name", buildQueueRows, @"rows"), [self generateHealthSection], [self generateUpgradeSection]);
 }
 
 

@@ -58,33 +58,33 @@
 #pragma mark Instance Methods
 
 
-- (void)setEnergyCost:(NSNumber *)cost {
+- (void)setEnergyCost:(NSDecimalNumber *)cost {
 	[self setCostLabel:energyCostLabel cost:_intv(cost)];
 }
 
 
-- (void)setFoodCost:(NSNumber *)cost {
+- (void)setFoodCost:(NSDecimalNumber *)cost {
 	[self setCostLabel:foodCostLabel cost:_intv(cost)];
 }
 
 
-- (void)setTimeCost:(NSNumber *)cost {
+- (void)setTimeCost:(NSDecimalNumber *)cost {
 	//[self setCostLabel:timeCostLabel cost:cost];
 	self.timeCostLabel.text = [Util prettyDuration:_intv(cost)];
 }
 
 
-- (void)setOreCost:(NSNumber *)cost {
+- (void)setOreCost:(NSDecimalNumber *)cost {
 	[self setCostLabel:oreCostLabel cost:_intv(cost)];
 }
 
 
-- (void)setWasteCost:(NSNumber *)cost {
+- (void)setWasteCost:(NSDecimalNumber *)cost {
 	[self setCostLabel:wasteCostLabel cost:_intv(cost)];
 }
 
 
-- (void)setWaterCost:(NSNumber *)cost {
+- (void)setWaterCost:(NSDecimalNumber *)cost {
 	[self setCostLabel:waterCostLabel cost:_intv(cost)];
 }
 

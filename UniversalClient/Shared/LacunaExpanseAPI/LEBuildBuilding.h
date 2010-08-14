@@ -12,21 +12,21 @@
 
 @interface LEBuildBuilding : LERequest {
 	NSString *bodyId;
-	NSNumber *x;
-	NSNumber *y;
+	NSDecimalNumber *x;
+	NSDecimalNumber *y;
 	NSString *url;
 	NSString *buildingId;
 }
 
 
 @property(nonatomic, retain) NSString *bodyId;
-@property(nonatomic, retain) NSNumber *x;
-@property(nonatomic, retain) NSNumber *y;
+@property(nonatomic, retain) NSDecimalNumber *x;
+@property(nonatomic, retain) NSDecimalNumber *y;
 @property(nonatomic, retain) NSString *url;
 @property(nonatomic, retain) NSString *buildingId;
 
 
-- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target bodyId:(NSString *)bodyId x:(NSNumber *)x y:(NSNumber *)y url:(NSString *)url;
+- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target bodyId:(NSString *)bodyId x:(NSDecimalNumber *)x y:(NSDecimalNumber *)y url:(NSString *)url;
 
 
 @end

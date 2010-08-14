@@ -28,6 +28,9 @@
 	self.scrollView.autoresizesSubviews = YES;
 	self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	self.scrollView.bounces = NO;
+	self.scrollView.delegate = self;
+	self.scrollView.maximumZoomScale = 4.0;
+	self.scrollView.minimumZoomScale = 0.35;
 	self.view = self.scrollView;
 }
 
@@ -38,7 +41,6 @@
 	
 	self.scrollView.contentSize = CGSizeMake(BODY_BUILDINGS_NUM_ROWS * BODY_BUILDINGS_CELL_WIDTH, BODY_BUILDINGS_NUM_COLS * BODY_BUILDINGS_CELL_HEIGHT);
 	self.scrollView.contentOffset = CGPointMake(BODY_BUILDINGS_NUM_ROWS * BODY_BUILDINGS_CELL_WIDTH/2 - self.scrollView.center.x, BODY_BUILDINGS_NUM_COLS * BODY_BUILDINGS_CELL_HEIGHT/2 - self.scrollView.center.y);
-	
 	
 	self.backgroundView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.contentSize.width, self.scrollView.contentSize.height)] autorelease];
 	self.backgroundView.contentMode = UIViewContentModeScaleAspectFill;
@@ -62,7 +64,7 @@
 			button.imageView.contentMode = UIViewContentModeScaleToFill;
 			button.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
 			button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-			[self.scrollView addSubview:button];
+			[self.backgroundView addSubview:button];
 			[buttonsByLoc setObject:button forKey:loc];
 			[locsByButton setObject:loc forKey:[NSValue valueWithNonretainedObject:button]];
 
@@ -87,6 +89,15 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+
+	
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];  
+	float bodyMapZoom = [userDefaults floatForKey:@"bodyMapZoom"];
+	NSLog(@"bodyMapZoom: %f", bodyMapZoom);
+	if (bodyMapZoom == 0.0) {
+		bodyMapZoom = 1.0;
+	}
+	self.scrollView.zoomScale = bodyMapZoom;
 	
 	Session *session = [Session sharedInstance];
 	[session addObserver:self forKeyPath:@"body.buildingMap" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
@@ -142,14 +153,14 @@
 	NSString *loc = [locsByButton objectForKey:[NSValue valueWithNonretainedObject:sender]];
 	NSDictionary *building = [session.body.buildingMap objectForKey:loc];
 	NSInteger tmp;
-	NSNumber *x;
-	NSNumber *y;
+	NSDecimalNumber *x;
+	NSDecimalNumber *y;
 	NSScanner *scanner = [NSScanner scannerWithString:loc];
 	[scanner scanInteger:&tmp];
-	x = [NSNumber numberWithInt:tmp];
+	x = [Util decimalFromInt:tmp];
 	[scanner setScanLocation:[scanner scanLocation]+1];
 	[scanner scanInteger:&tmp];
-	y = [NSNumber numberWithInt:tmp];
+	y = [Util decimalFromInt:tmp];
 
 	if (building) {
 		ViewBuildingController *viewBuildingController = [ViewBuildingController create];
@@ -164,17 +175,23 @@
 		newBuildingTypeController.x = x;
 		newBuildingTypeController.y	= y;
 		[[self navigationController] pushViewController:newBuildingTypeController animated:YES];
-		/*
-		NewBuildingController *newBuildingController = [NewBuildingController create];
-		newBuildingController.bodyId = session.body.id;
-		newBuildingController.buildingsByLoc = session.body.buildingMap;
-		newBuildingController.buttonsByLoc = buttonsByLoc;
-		newBuildingController.x = x;
-		newBuildingController.y	= y;
-		[[self navigationController] pushViewController:newBuildingController animated:YES];
-		*/
 	}
 
+}
+
+
+#pragma mark -
+#pragma mark UIScrollViewDelegate Methods
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+	return self.backgroundView;
+}
+
+
+- (void)scrollViewDidEndZooming:(UIScrollView *)inScrollView withView:(UIView *)view atScale:(float)scale {
+	NSLog(@"scrollViewDidEndZooming: %f", scale);
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];  
+	[userDefaults setFloat:scale forKey:@"bodyMapZoom"];
 }
 
 

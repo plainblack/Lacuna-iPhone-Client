@@ -14,7 +14,7 @@
 	UILabel *label;
 	UIButton *numberButton;
 	UIViewController *viewController;
-	NSNumber *numericValue;
+	NSDecimalNumber *numericValue;
 	NSInteger maxValue;
 }
 
@@ -22,7 +22,7 @@
 @property(nonatomic, retain) IBOutlet UILabel *label;
 @property(nonatomic, retain) IBOutlet UIButton *numberButton;
 @property(nonatomic, retain) UIViewController *viewController;
-@property(nonatomic, retain) NSNumber *numericValue;
+@property(nonatomic, retain) NSDecimalNumber *numericValue;
 
 
 - (IBAction)editNumericValue;

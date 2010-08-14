@@ -34,12 +34,12 @@
 @property(nonatomic, retain) IBOutlet UILabel *buildingLevelLabel;
 
 
-- (void)setEnergyPerHour:(NSNumber *)perHour;
-- (void)setFoodPerHour:(NSNumber *)perHour;
-- (void)setHappinessPerHour:(NSNumber *)perHour;
-- (void)setOrePerHour:(NSNumber *)perHour;
-- (void)setWastePerHour:(NSNumber *)perHour;
-- (void)setWaterPerHour:(NSNumber *)perHour;
+- (void)setEnergyPerHour:(NSDecimalNumber *)perHour;
+- (void)setFoodPerHour:(NSDecimalNumber *)perHour;
+- (void)setHappinessPerHour:(NSDecimalNumber *)perHour;
+- (void)setOrePerHour:(NSDecimalNumber *)perHour;
+- (void)setWastePerHour:(NSDecimalNumber *)perHour;
+- (void)setWaterPerHour:(NSDecimalNumber *)perHour;
 - (void)setBuildingImage:(UIImage *)buildingImage;
 - (void)setBuildingBackgroundImage:(UIImage *)buildingImage;
 - (void)setBuildingLevel:(NSInteger)level;

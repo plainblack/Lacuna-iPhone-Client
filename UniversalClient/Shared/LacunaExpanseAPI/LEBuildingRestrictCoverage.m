@@ -28,9 +28,9 @@
 
 - (id)params {
 	if (self.isRestricted) {
-		return _array([Session sharedInstance].sessionId, self.buildingId, [NSNumber numberWithInt:1]);
+		return _array([Session sharedInstance].sessionId, self.buildingId, [NSDecimalNumber numberWithInt:1]);
 	} else {
-		return _array([Session sharedInstance].sessionId, self.buildingId, [NSNumber numberWithInt:0]);
+		return _array([Session sharedInstance].sessionId, self.buildingId, [NSDecimalNumber numberWithInt:0]);
 	}
 
 }

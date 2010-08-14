@@ -13,22 +13,22 @@
 @interface LEBuildingRecycle : LERequest {
 	NSString *buildingId;
 	NSString *buildingUrl;
-	NSNumber *energy;
-	NSNumber *ore;
-	NSNumber *water;
+	NSDecimalNumber *energy;
+	NSDecimalNumber *ore;
+	NSDecimalNumber *water;
 	BOOL subsidized;
 }
 
 
 @property(nonatomic, retain) NSString *buildingId;
 @property(nonatomic, retain) NSString *buildingUrl;
-@property(nonatomic, retain) NSNumber *energy;
-@property(nonatomic, retain) NSNumber *ore;
-@property(nonatomic, retain) NSNumber *water;
+@property(nonatomic, retain) NSDecimalNumber *energy;
+@property(nonatomic, retain) NSDecimalNumber *ore;
+@property(nonatomic, retain) NSDecimalNumber *water;
 @property(nonatomic) BOOL subsidized;
 
 
-- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl energy:(NSNumber *)energy ore:(NSNumber *)ore water:(NSNumber *)water subsidized:(BOOL)subsidized;
+- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl energy:(NSDecimalNumber *)energy ore:(NSDecimalNumber *)ore water:(NSDecimalNumber *)water subsidized:(BOOL)subsidized;
 
 
 @end

@@ -71,13 +71,13 @@
 - (void)generateSections {
 	
 	NSMutableDictionary *productionSection = [self generateProductionSection];
-	[[productionSection objectForKey:@"rows"] addObject:[NSNumber numberWithInt:BUILDING_ROW_DOCKED_SHIPS]];
+	[[productionSection objectForKey:@"rows"] addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_DOCKED_SHIPS]];
 
 	NSMutableArray *actionRows = [NSMutableArray arrayWithCapacity:1];
-	[actionRows addObject:[NSNumber numberWithInt:BUILDING_ROW_VIEW_SHIPS]];
-	[actionRows addObject:[NSNumber numberWithInt:BUILDING_ROW_VIEW_TRAVELLING_SHIPS]];
+	[actionRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_SHIPS]];
+	[actionRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_TRAVELLING_SHIPS]];
 	
-	self.sections = _array(productionSection, _dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", actionRows, @"rows"), [self generateHealthSection], [self generateUpgradeSection]);
+	self.sections = _array(productionSection, _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", actionRows, @"rows"), [self generateHealthSection], [self generateUpgradeSection]);
 }
 
 

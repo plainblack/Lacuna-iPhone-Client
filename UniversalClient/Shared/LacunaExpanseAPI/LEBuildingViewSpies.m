@@ -30,7 +30,7 @@
 
 
 - (id)params {
-	return _array([Session sharedInstance].sessionId, self.buildingId, [NSNumber numberWithInt:self.pageNumber]);
+	return _array([Session sharedInstance].sessionId, self.buildingId, [NSDecimalNumber numberWithInt:self.pageNumber]);
 }
 
 

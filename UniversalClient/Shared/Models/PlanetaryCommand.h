@@ -11,11 +11,11 @@
 
 
 @interface PlanetaryCommand : Building {
-	NSNumber *nextColonyCost;
+	NSDecimalNumber *nextColonyCost;
 }
 
 
-@property (nonatomic, retain) NSNumber *nextColonyCost;
+@property (nonatomic, retain) NSDecimalNumber *nextColonyCost;
 
 
 @end

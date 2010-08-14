@@ -15,17 +15,17 @@
 	NSString *name;
 	NSString *description;
 	NSArray *habitableOrbits;
-	NSNumber *constructionAffinity;
-	NSNumber *deceptionAffinity;
-	NSNumber *researchAffinity;
-	NSNumber *managementAffinity;
-	NSNumber *farmingAffinity;
-	NSNumber *miningAffinity;
-	NSNumber *scienceAffinity;
-	NSNumber *environmentalAffinity;
-	NSNumber *politicalAffinity;
-	NSNumber *tradeAffinity;
-	NSNumber *growthAffinity;
+	NSDecimalNumber *constructionAffinity;
+	NSDecimalNumber *deceptionAffinity;
+	NSDecimalNumber *researchAffinity;
+	NSDecimalNumber *managementAffinity;
+	NSDecimalNumber *farmingAffinity;
+	NSDecimalNumber *miningAffinity;
+	NSDecimalNumber *scienceAffinity;
+	NSDecimalNumber *environmentalAffinity;
+	NSDecimalNumber *politicalAffinity;
+	NSDecimalNumber *tradeAffinity;
+	NSDecimalNumber *growthAffinity;
 }
 
 
@@ -33,28 +33,28 @@
 @property(nonatomic, retain) NSString *name;
 @property(nonatomic, retain) NSString *description;
 @property(nonatomic, retain) NSArray *habitableOrbits;
-@property(nonatomic, retain) NSNumber *constructionAffinity;
-@property(nonatomic, retain) NSNumber *deceptionAffinity;
-@property(nonatomic, retain) NSNumber *researchAffinity;
-@property(nonatomic, retain) NSNumber *managementAffinity;
-@property(nonatomic, retain) NSNumber *farmingAffinity;
-@property(nonatomic, retain) NSNumber *miningAffinity;
-@property(nonatomic, retain) NSNumber *scienceAffinity;
-@property(nonatomic, retain) NSNumber *environmentalAffinity;
-@property(nonatomic, retain) NSNumber *politicalAffinity;
-@property(nonatomic, retain) NSNumber *tradeAffinity;
-@property(nonatomic, retain) NSNumber *growthAffinity;
+@property(nonatomic, retain) NSDecimalNumber *constructionAffinity;
+@property(nonatomic, retain) NSDecimalNumber *deceptionAffinity;
+@property(nonatomic, retain) NSDecimalNumber *researchAffinity;
+@property(nonatomic, retain) NSDecimalNumber *managementAffinity;
+@property(nonatomic, retain) NSDecimalNumber *farmingAffinity;
+@property(nonatomic, retain) NSDecimalNumber *miningAffinity;
+@property(nonatomic, retain) NSDecimalNumber *scienceAffinity;
+@property(nonatomic, retain) NSDecimalNumber *environmentalAffinity;
+@property(nonatomic, retain) NSDecimalNumber *politicalAffinity;
+@property(nonatomic, retain) NSDecimalNumber *tradeAffinity;
+@property(nonatomic, retain) NSDecimalNumber *growthAffinity;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target empireId:(NSString *)empireId
 						   name:(NSString*) name description:(NSString *) description
 				habitableOrbits:(NSArray *) habitableOrbits
-		   constructionAffinity:(NSNumber *) constructionAffinity deceptionAffinity:(NSNumber *) deceptionAffinity
-			   researchAffinity:(NSNumber *) researchAffinity managementAffinity:(NSNumber *) managementAffinity
-				farmingAffinity:(NSNumber *) farmingAffinity miningAffinity:(NSNumber *) miningAffinity
-				scienceAffinity:(NSNumber *) scienceAffinity environmentalAffinity:(NSNumber *) environmentalAffinity
-			  politicalAffinity:(NSNumber *) politicalAffinity tradeAffinity:(NSNumber *) tradeAffinity
-				 growthAffinity:(NSNumber *) growthAffinity;
+		   constructionAffinity:(NSDecimalNumber *) constructionAffinity deceptionAffinity:(NSDecimalNumber *) deceptionAffinity
+			   researchAffinity:(NSDecimalNumber *) researchAffinity managementAffinity:(NSDecimalNumber *) managementAffinity
+				farmingAffinity:(NSDecimalNumber *) farmingAffinity miningAffinity:(NSDecimalNumber *) miningAffinity
+				scienceAffinity:(NSDecimalNumber *) scienceAffinity environmentalAffinity:(NSDecimalNumber *) environmentalAffinity
+			  politicalAffinity:(NSDecimalNumber *) politicalAffinity tradeAffinity:(NSDecimalNumber *) tradeAffinity
+				 growthAffinity:(NSDecimalNumber *) growthAffinity;
 
 
 @end

@@ -12,7 +12,7 @@
 @class LEBodyGetBuildings;
 
 
-@interface ViewBodyMapController : UIViewController {
+@interface ViewBodyMapController : UIViewController <UIScrollViewDelegate> {
 	UIScrollView *scrollView;
 	UIView *backgroundView;
 	NSMutableDictionary *buttonsByLoc;

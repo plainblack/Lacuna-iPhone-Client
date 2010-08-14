@@ -13,20 +13,20 @@
 @interface LEGetBuildables : LERequest {
 	NSString *bodyId;
 	NSMutableArray *buildables;
-	NSNumber *x;
-	NSNumber *y;
+	NSDecimalNumber *x;
+	NSDecimalNumber *y;
 	NSString *tag;
 }
 
 
 @property(nonatomic, retain) NSString *bodyId;
 @property(nonatomic, retain) NSMutableArray *buildables;
-@property(nonatomic, retain) NSNumber *x;
-@property(nonatomic, retain) NSNumber *y;
+@property(nonatomic, retain) NSDecimalNumber *x;
+@property(nonatomic, retain) NSDecimalNumber *y;
 @property(nonatomic, retain) NSString *tag;
 
 
-- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target bodyId:(NSString *)bodyId x:(NSNumber *)x y:(NSNumber *)y tag:(NSString *)tag;
+- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target bodyId:(NSString *)bodyId x:(NSDecimalNumber *)x y:(NSDecimalNumber *)y tag:(NSString *)tag;
 
 
 @end

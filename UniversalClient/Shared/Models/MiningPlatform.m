@@ -12,7 +12,7 @@
 
 @interface MiningPlatform (PrivateMethods)
 
-- (void)add:(NSNumber *)number toDictionary:(NSMutableDictionary *)dict withKey:(NSString *)key;
+- (void)add:(NSDecimalNumber *)number toDictionary:(NSMutableDictionary *)dict withKey:(NSString *)key;
 
 @end
 
@@ -90,7 +90,7 @@
 #pragma mark --
 #pragma mark Private Methods
 
-- (void)add:(NSNumber *)number toDictionary:(NSMutableDictionary *)dict withKey:(NSString *)key {
+- (void)add:(NSDecimalNumber *)number toDictionary:(NSMutableDictionary *)dict withKey:(NSString *)key {
 	if (_intv(number) > 0) {
 		[dict setObject:number forKey:key];
 	}

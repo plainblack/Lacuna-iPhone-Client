@@ -27,12 +27,12 @@
 @property(nonatomic, retain) IBOutlet UILabel *waterCostLabel;
 
 
-- (void)setEnergyCost:(NSNumber *)cost;
-- (void)setFoodCost:(NSNumber *)cost;
-- (void)setTimeCost:(NSNumber *)cost;
-- (void)setOreCost:(NSNumber *)cost;
-- (void)setWasteCost:(NSNumber *)cost;
-- (void)setWaterCost:(NSNumber *)cost;
+- (void)setEnergyCost:(NSDecimalNumber *)cost;
+- (void)setFoodCost:(NSDecimalNumber *)cost;
+- (void)setTimeCost:(NSDecimalNumber *)cost;
+- (void)setOreCost:(NSDecimalNumber *)cost;
+- (void)setWasteCost:(NSDecimalNumber *)cost;
+- (void)setWaterCost:(NSDecimalNumber *)cost;
 - (void)setResourceCost:(ResourceCost *)resourceCost;
 
 

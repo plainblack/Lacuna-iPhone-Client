@@ -11,7 +11,7 @@
 
 @protocol PickNumericValueControllerDelegate
 
-- (void)newNumericValue:(NSNumber *)value;
+- (void)newNumericValue:(NSDecimalNumber *)value;
 
 @end
 
@@ -33,7 +33,7 @@
 -(IBAction) save;
 -(IBAction) cancel;
 -(IBAction) max;
--(void) setValue:(NSNumber *)value;
+-(void) setValue:(NSDecimalNumber *)value;
 
 
 +(PickNumericValueController *) createWithDelegate:(id<PickNumericValueControllerDelegate>)delegate maxValue:(NSInteger)maxValue;

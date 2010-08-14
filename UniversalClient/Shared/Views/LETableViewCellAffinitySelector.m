@@ -65,13 +65,13 @@
 #pragma mark -
 #pragma mark Instance Methods
 
-- (NSNumber *)rating {
+- (NSDecimalNumber *)rating {
 	return value;
 }
 
 
 - (void)setRating:(NSInteger)aRating {
-	value = [[NSNumber alloc] initWithInt:aRating];
+	value = [[NSDecimalNumber alloc] initWithInt:aRating];
 	[self updateValueLabel];
 }
 
@@ -94,7 +94,7 @@
 
 
 - (IBAction)increaseValue {
-	value = [[NSNumber alloc] initWithInt:([value intValue] + 1)];
+	value = [[NSDecimalNumber alloc] initWithInt:([value intValue] + 1)];
 	[self.pointsDelegate updatePoints:1];
 	[self updateValueLabel];
 }
@@ -112,7 +112,7 @@
 
 
 - (void)reallyDecreaseValue {
-	value = [[NSNumber alloc] initWithInt:([value intValue] - 1)];
+	value = [[NSDecimalNumber alloc] initWithInt:([value intValue] - 1)];
 	[self.pointsDelegate updatePoints:-1];
 	[self updateValueLabel];
 }

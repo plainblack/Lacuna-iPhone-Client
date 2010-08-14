@@ -8,6 +8,7 @@
 
 #import "PickNumericValueController.h"
 #import "LEMacros.h"
+#import "Util.h"
 
 
 @implementation PickNumericValueController
@@ -82,7 +83,7 @@
 	value += [self.numberPicker selectedRowInComponent:3] * 100;
 	value += [self.numberPicker selectedRowInComponent:4] * 10;
 	value += [self.numberPicker selectedRowInComponent:5];
-	[self.delegate newNumericValue:[NSNumber numberWithInt:value]];
+	[self.delegate newNumericValue:[Util decimalFromInt:value]];
 	[self dismissModalViewControllerAnimated:YES];
 }
 
@@ -93,11 +94,11 @@
 
 
 -(IBAction) max {
-	[self setValue:[NSNumber numberWithInt:self->maxValue]];
+	[self setValue:[Util decimalFromInt:self->maxValue]];
 }
 
 
--(void) setValue:(NSNumber *)value {
+-(void) setValue:(NSDecimalNumber *)value {
 	NSInteger tmp = [value intValue];
 	
 	[self.numberPicker selectRow:(tmp/100000)%10 inComponent:0 animated:YES];

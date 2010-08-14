@@ -11,14 +11,14 @@
 
 
 @interface NewBuildingTypeController : LETableViewControllerGrouped {
-	NSNumber *x;
-	NSNumber *y;
+	NSDecimalNumber *x;
+	NSDecimalNumber *y;
 	NSMutableDictionary *buttonsByLoc;
 }
 
 
-@property (nonatomic, retain) NSNumber *x;
-@property (nonatomic, retain) NSNumber *y;
+@property (nonatomic, retain) NSDecimalNumber *x;
+@property (nonatomic, retain) NSDecimalNumber *y;
 @property (nonatomic, retain) NSMutableDictionary *buttonsByLoc;
 
 

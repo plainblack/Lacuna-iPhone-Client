@@ -134,7 +134,7 @@
 	[self.food tick:interval];
 	[self.happiness tick:interval];
 	[self.ore tick:interval];
-	NSNumber *extraWaste = [[[self.waste tick:interval] retain] autorelease];
+	NSDecimalNumber *extraWaste = [[[self.waste tick:interval] retain] autorelease];
 	[self.water tick:interval];
 	
 	if (self.currentBuilding) {

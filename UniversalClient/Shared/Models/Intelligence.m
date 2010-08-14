@@ -79,15 +79,15 @@
 
 - (void)generateSections {
 	NSMutableArray *spyRows = [NSMutableArray arrayWithCapacity:5];
-	[spyRows addObject:[NSNumber numberWithInt:BUILDING_ROW_NUM_SPIES]];
-	[spyRows addObject:[NSNumber numberWithInt:BUILDING_ROW_SPY_BUILD_COST]];
-	[spyRows addObject:[NSNumber numberWithInt:BUILDING_ROW_VIEW_SPIES_BUTTON]];
+	[spyRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_NUM_SPIES]];
+	[spyRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_SPY_BUILD_COST]];
+	[spyRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_SPIES_BUTTON]];
 	
 	if (self.numSpies < self.maxSpies) {
-		[spyRows addObject:[NSNumber numberWithInt:BUILDING_ROW_BUILD_SPY_BUTTON]];
+		[spyRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_BUILD_SPY_BUTTON]];
 	}
 
-	self.sections = _array([self generateProductionSection], _dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Spies", @"name", spyRows, @"rows"), [self generateHealthSection], [self generateUpgradeSection]);
+	self.sections = _array([self generateProductionSection], _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Spies", @"name", spyRows, @"rows"), [self generateHealthSection], [self generateUpgradeSection]);
 }
 
 
@@ -150,7 +150,7 @@
 - (UIViewController *)tableView:(UITableView *)tableView didSelectBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex {
 	switch (buildingRow) {
 		case BUILDING_ROW_BUILD_SPY_BUTTON:
-			[[[LEBuildingTrainSpy alloc] initWithCallback:@selector(spyTrained:) target:self buildingId:self.id buildingUrl:self.buildingUrl quantity:[NSNumber numberWithInt:1]] autorelease];
+			[[[LEBuildingTrainSpy alloc] initWithCallback:@selector(spyTrained:) target:self buildingId:self.id buildingUrl:self.buildingUrl quantity:[Util decimalFromInt:1]] autorelease];
 			return nil;
 			break;
 		case BUILDING_ROW_VIEW_SPIES_BUTTON:

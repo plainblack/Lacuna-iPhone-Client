@@ -258,7 +258,7 @@
 		for (int index=0; index<NUM_ORBITS; index++) {
 			LETableViewCellOrbitSelector *cell = [orbitCells objectAtIndex:index];
 			if ([cell isSelected]) {
-				[orbitArray addObject:[NSNumber numberWithInteger:(index+1)]];
+				[orbitArray addObject:[NSDecimalNumber numberWithInteger:(index+1)]];
 			}
 		}
 		

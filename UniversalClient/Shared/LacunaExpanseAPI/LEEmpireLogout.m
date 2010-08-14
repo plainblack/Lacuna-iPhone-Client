@@ -29,7 +29,7 @@
 
 
 - (void)processSuccess {
-	NSNumber *number = [self.response objectForKey:@"result"];
+	NSDecimalNumber *number = [self.response objectForKey:@"result"];
 	result = [number boolValue];
 }
 

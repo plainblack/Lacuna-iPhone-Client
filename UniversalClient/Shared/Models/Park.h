@@ -13,13 +13,13 @@
 @interface Park : Building {
 	BOOL canThrowParty;
 	NSInteger secondsRemaining;
-	NSNumber *happinessFromParty;
+	NSDecimalNumber *happinessFromParty;
 }
 
 
 @property (nonatomic, assign) BOOL canThrowParty;
 @property (nonatomic, assign) NSInteger secondsRemaining;
-@property (nonatomic, retain) NSNumber *happinessPerParty;
+@property (nonatomic, retain) NSDecimalNumber *happinessPerParty;
 
 
 @end

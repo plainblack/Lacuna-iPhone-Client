@@ -21,8 +21,8 @@
 	NSArray *buildables;
 	NSArray *allBuildings;
 	NSArray *buildableBuildings;
-	NSNumber *x;
-	NSNumber *y;
+	NSDecimalNumber *x;
+	NSDecimalNumber *y;
 	LEGetBuildables *leGetBuildables;
 	NSInteger selectedBuilding;
 	NSString *tag;
@@ -36,8 +36,8 @@
 @property(nonatomic, retain) NSArray *buildables;
 @property(nonatomic, retain) NSArray *allBuildings;
 @property(nonatomic, retain) NSArray *buildableBuildings;
-@property(nonatomic, retain) NSNumber *x;
-@property(nonatomic, retain) NSNumber *y;
+@property(nonatomic, retain) NSDecimalNumber *x;
+@property(nonatomic, retain) NSDecimalNumber *y;
 @property(nonatomic, retain) LEGetBuildables *leGetBuildables;
 @property(nonatomic, retain) NSString *tag;
 

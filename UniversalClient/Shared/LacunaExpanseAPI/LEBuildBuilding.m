@@ -21,7 +21,7 @@
 @synthesize buildingId;
 
 
-- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget bodyId:(NSString *)inBodyId x:(NSNumber *)inX y:(NSNumber *)inY url:(NSString *)inUrl {
+- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget bodyId:(NSString *)inBodyId x:(NSDecimalNumber *)inX y:(NSDecimalNumber *)inY url:(NSString *)inUrl {
 	self.bodyId = inBodyId;
 	self.x = inX;
 	self.y = inY;

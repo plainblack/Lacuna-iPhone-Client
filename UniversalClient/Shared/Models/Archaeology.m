@@ -77,13 +77,13 @@
 	
 	NSMutableArray *glyphRows = [NSMutableArray arrayWithCapacity:2];
 	if (self.secondsRemaining > 0) {
-		[glyphRows addObject:[NSNumber numberWithInt:BUILDING_ROW_GLYPH_SEARCHING]];
+		[glyphRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_GLYPH_SEARCHING]];
 	} else {
-		[glyphRows addObject:[NSNumber numberWithInt:BUILDING_ROW_GLYPH_SEARCH]];
+		[glyphRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_GLYPH_SEARCH]];
 	}
-	[glyphRows addObject:[NSNumber numberWithInt:BUILDING_ROW_GLYPH_ASSEMBLE]];
+	[glyphRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_GLYPH_ASSEMBLE]];
 
-	self.sections = _array([self generateProductionSection], _dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Glyphs", @"name", glyphRows, @"rows"), [self generateHealthSection], [self generateUpgradeSection]);
+	self.sections = _array([self generateProductionSection], _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Glyphs", @"name", glyphRows, @"rows"), [self generateHealthSection], [self generateUpgradeSection]);
 }
 
 

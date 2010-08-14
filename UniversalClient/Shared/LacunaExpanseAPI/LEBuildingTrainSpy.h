@@ -13,20 +13,20 @@
 @interface LEBuildingTrainSpy : LERequest {
 	NSString *buildingId;
 	NSString *buildingUrl;
-	NSNumber *quantity;
-	NSNumber *trained;
-	NSNumber *notTrained;
+	NSDecimalNumber *quantity;
+	NSDecimalNumber *trained;
+	NSDecimalNumber *notTrained;
 }
 
 
 @property(nonatomic, retain) NSString *buildingId;
 @property(nonatomic, retain) NSString *buildingUrl;
-@property(nonatomic, retain) NSNumber *quantity;
-@property(nonatomic, retain) NSNumber *trained;
-@property(nonatomic, retain) NSNumber *notTrained;
+@property(nonatomic, retain) NSDecimalNumber *quantity;
+@property(nonatomic, retain) NSDecimalNumber *trained;
+@property(nonatomic, retain) NSDecimalNumber *notTrained;
 
 
-- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl quantity:(NSNumber *)quantity;
+- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl quantity:(NSDecimalNumber *)quantity;
 
 
 @end

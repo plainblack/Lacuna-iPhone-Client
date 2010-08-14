@@ -29,7 +29,7 @@
 
 
 - (void)processSuccess {
-	NSNumber *result = [self.response objectForKey:@"result"];
+	NSDecimalNumber *result = [self.response objectForKey:@"result"];
 	if ([result intValue] != 1) {
 		wasError = YES;
 	}

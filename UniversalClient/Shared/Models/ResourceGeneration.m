@@ -8,6 +8,7 @@
 
 #import "ResourceGeneration.h"
 #import "LEMacros.h"
+#import "Util.h"
 
 
 @implementation ResourceGeneration
@@ -30,17 +31,28 @@
 }
 
 
+- (void)dealloc {
+	self.energy = nil;
+	self.food = nil;
+	self.happiness = nil;
+	self.ore = nil;
+	self.waste = nil;
+	self.water = nil;
+	[super dealloc];
+}
+
+
 #pragma mark --
 #pragma mark Instance Methods
 
 - (void) parseData:(NSDictionary *)data {
 	if (data && (id)data != [NSNull null]) {
-		self.energy = _intv([data objectForKey:@"energy_hour"]);
-		self.food = _intv([data objectForKey:@"food_hour"]);
-		self.happiness = _intv([data objectForKey:@"happiness_hour"]);
-		self.ore = _intv([data objectForKey:@"ore_hour"]);
-		self.waste = _intv([data objectForKey:@"waste_hour"]);
-		self.water = _intv([data objectForKey:@"water_hour"]);
+		self.energy = [Util asNumber:[data objectForKey:@"energy_hour"]];
+		self.food = [Util asNumber:[data objectForKey:@"food_hour"]];
+		self.happiness = [Util asNumber:[data objectForKey:@"happiness_hour"]];
+		self.ore = [Util asNumber:[data objectForKey:@"ore_hour"]];
+		self.waste = [Util asNumber:[data objectForKey:@"waste_hour"]];
+		self.water = [Util asNumber:[data objectForKey:@"water_hour"]];
 	}
 
 }

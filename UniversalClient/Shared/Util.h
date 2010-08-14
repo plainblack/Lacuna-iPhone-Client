@@ -18,14 +18,14 @@
 
 + (NSInteger)numPagesForCount:(NSInteger)count;
 
++ (NSDecimalNumber *)decimalFromInt:(NSInteger)inNumber;
 + (NSDate *)date:(NSString *)serverDateString;
 + (NSString *)formatDate:(NSDate *)serverDate;
 + (NSString *)prettyDate:(NSString *)serverDateString;
 
-+ (NSNumber *)asNumber:(NSString *)string;
++ (NSDecimalNumber *)asNumber:(NSString *)string;
 + (NSString *)prettyDuration:(NSInteger)seconds;
-+ (NSString *)prettyNSNumber:(NSNumber *)number;
-//+ (NSString *)prettyNSDecimalNumber:(NSDecimalNumber *)number;
++ (NSString *)prettyNSDecimalNumber:(NSDecimalNumber *)number;
 + (NSString *)prettyNSInteger:(NSInteger)number;
 + (NSString *)prettyCodeValue:(NSString *)originalString;
 

@@ -15,7 +15,7 @@
 	NSString *subject;
 	NSString *body;
 	NSDictionary *options;
-	NSNumber *success;
+	NSDecimalNumber *success;
 }
 
 
@@ -23,7 +23,7 @@
 @property(nonatomic, retain) NSString *subject;
 @property(nonatomic, retain) NSString *body;
 @property(nonatomic, retain) NSDictionary *options;
-@property(nonatomic, retain) NSNumber *success;
+@property(nonatomic, retain) NSDecimalNumber *success;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target recipients:(NSString *)recipients subject:(NSString *)subject body:(NSString *)body options:(NSDictionary *)options;

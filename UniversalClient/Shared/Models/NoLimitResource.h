@@ -10,20 +10,20 @@
 
 
 @interface NoLimitResource : NSObject {
-	NSNumber *current;
-	NSInteger perHour;
-	NSNumber *perSec;
+	NSDecimalNumber *current;
+	NSDecimalNumber *perHour;
+	NSDecimalNumber *perSec;
 }
 
 
-@property (nonatomic, retain) NSNumber *current;
-@property (nonatomic, assign) NSInteger perHour;
-@property (nonatomic, retain) NSNumber *perSec;
+@property (nonatomic, retain) NSDecimalNumber *current;
+@property (nonatomic, retain) NSDecimalNumber* perHour;
+@property (nonatomic, retain) NSDecimalNumber *perSec;
 
 
 - (void)tick:(NSInteger)interval;
-- (void)addToCurrent:(NSNumber *)adjustment;
-- (void)subtractFromCurrent:(NSNumber *)adjustment;
+- (void)addToCurrent:(NSDecimalNumber *)adjustment;
+- (void)subtractFromCurrent:(NSDecimalNumber *)adjustment;
 - (void)parseFromData:(NSDictionary *)data withPrefix:(NSString *)prefix;
 
 

@@ -15,7 +15,7 @@
 	IBOutlet UILabel *valueLabel;
 	IBOutlet UIButton *minusButton;
 	IBOutlet UIButton *plusButton;
-	NSNumber *value;
+	NSDecimalNumber *value;
 	id<LESpeciesPointsUpdateDelegate> pointsDelegate;
 }
 
@@ -29,7 +29,7 @@
 
 - (IBAction)decreaseValue;
 - (IBAction)increaseValue;
-- (NSNumber *)rating;
+- (NSDecimalNumber *)rating;
 - (void)setRating:(NSInteger)aRating;
 
 

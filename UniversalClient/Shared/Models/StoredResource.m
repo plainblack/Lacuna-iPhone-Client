@@ -8,6 +8,7 @@
 
 #import "StoredResource.h"
 #import "LEMacros.h"
+#import "Util.h"
 
 
 @implementation StoredResource
@@ -30,6 +31,8 @@
 
 - (void)dealloc {
 	self.current = nil;
+	self.max = nil;
+	self.perHour = nil;
 	self.perSec = nil;
 	[super dealloc];
 }
@@ -38,25 +41,25 @@
 #pragma mark --
 #pragma mark Instance Methods
 
-- (NSNumber *)tick:(NSInteger)interval {
-	double generated = ([self.current doubleValue] + ([self.perSec doubleValue] * interval));
-	if (generated > self.max) {
-		self.current = [NSNumber numberWithInt:self.max];
-		return [NSNumber numberWithDouble:(generated - self.max)];
+- (NSDecimalNumber *)tick:(NSInteger)inInterval {
+	NSDecimalNumber *interval = [Util decimalFromInt:inInterval];
+	NSDecimalNumber *generated = [self.current decimalNumberByAdding:[self.perSec decimalNumberByMultiplyingBy:interval]];
+	
+	if ([generated compare:self.max] == NSOrderedDescending) {
+		self.current = self.max;
+		return [generated decimalNumberBySubtracting:self.max];
 	} else {
-		self.current = [NSNumber numberWithDouble:generated];
+		self.current = generated;
 		return nil;
 	}
 }
 
 
 - (void)parseFromData:(NSDictionary *)data withPrefix:(NSString *)prefix {
-	self.current = [data objectForKey:[NSString stringWithFormat:@"%@_stored", prefix]];
-	NSString *tmp = [NSString stringWithFormat:@"%@_capacity", prefix];
-	self.max = _intv([data objectForKey:tmp]);
-	tmp = [NSString stringWithFormat:@"%@_hour", prefix];
-	self.perHour = _intv([data objectForKey:tmp]);
-	self.perSec = [NSNumber numberWithFloat:((CGFloat)self.perHour / SEC_IN_HOUR)];
+	self.current = [Util asNumber:[data objectForKey:[NSString stringWithFormat:@"%@_stored", prefix]]];
+	self.max = [Util asNumber:[data objectForKey:[NSString stringWithFormat:@"%@_capacity", prefix]]];
+	self.perHour = [Util asNumber:[data objectForKey:[NSString stringWithFormat:@"%@_hour", prefix]]];
+	self.perSec = [self.perHour decimalNumberByDividingBy:[Util decimalFromInt:SEC_IN_HOUR]];
 }
 
 

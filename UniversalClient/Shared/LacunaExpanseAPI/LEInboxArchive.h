@@ -12,12 +12,12 @@
 
 @interface LEInboxArchive : LERequest {
 	NSArray *messageIds;
-	NSNumber *success;
+	NSDecimalNumber *success;
 }
 
 
 @property(nonatomic, retain) NSArray *messageIds;
-@property(nonatomic, retain) NSNumber *success;
+@property(nonatomic, retain) NSDecimalNumber *success;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target messageIds:(NSArray *)messageIds;

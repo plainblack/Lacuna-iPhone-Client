@@ -163,42 +163,42 @@
 
 - (NSMutableDictionary *)generateProductionSection {
 	if (self.resourceCapacity.hasStorage) {
-		return _dict([NSNumber numberWithInt:BUILDING_SECTION_BUILDING], @"type", @"Production", @"name", _array([NSNumber numberWithInt:BUILDING_ROW_BUILDING_STATS], [NSNumber numberWithInt:BUILDING_ROW_STORAGE]), @"rows");
+		return _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_BUILDING], @"type", @"Production", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_BUILDING_STATS], [NSDecimalNumber numberWithInt:BUILDING_ROW_STORAGE]), @"rows");
 	} else {
-		return _dict([NSNumber numberWithInt:BUILDING_SECTION_BUILDING], @"type", @"Production", @"name", _array([NSNumber numberWithInt:BUILDING_ROW_BUILDING_STATS]), @"rows");
+		return _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_BUILDING], @"type", @"Production", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_BUILDING_STATS]), @"rows");
 	}
 }
 
 
 - (NSMutableDictionary *)generateHealthSection {
 	if (self.efficiency < 100) {
-		return _dict([NSNumber numberWithInt:BUILDING_SECTION_HEALTH], @"type", @"Health", @"name", _array([NSNumber numberWithInt:BUILDING_ROW_EFFICENCY], [NSNumber numberWithInt:BUILDING_ROW_REPAIR_COST], [NSNumber numberWithInt:BUILDING_ROW_REPAIR_BUTTON]), @"rows");
+		return _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_HEALTH], @"type", @"Health", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_EFFICENCY], [NSDecimalNumber numberWithInt:BUILDING_ROW_REPAIR_COST], [NSDecimalNumber numberWithInt:BUILDING_ROW_REPAIR_BUTTON]), @"rows");
 	} else {
-		return _dict([NSNumber numberWithInt:BUILDING_SECTION_HEALTH], @"type", @"Health", @"name", _array([NSNumber numberWithInt:BUILDING_ROW_EFFICENCY]), @"rows");
+		return _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_HEALTH], @"type", @"Health", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_EFFICENCY]), @"rows");
 	}
 
 }
 
 
 - (NSMutableDictionary *)generateUpgradeSection {
-	NSMutableArray *rowArray = _array([NSNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_STATS]);
+	NSMutableArray *rowArray = _array([NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_STATS]);
 	if (self.upgradedResourceStorage.hasStorage) {
-		[rowArray addObject:[NSNumber numberWithInt:BUILDING_ROW_UPGRADE_STORAGE]];
+		[rowArray addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_STORAGE]];
 	}
 	
 	if (self.pendingBuild && (id)self.pendingBuild != [NSNull null]) {
-		[rowArray addObject:[NSNumber numberWithInt:BUILDING_ROW_UPGRADE_PROGRESS]];
+		[rowArray addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_PROGRESS]];
 	} else {
-		[rowArray addObject:[NSNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_COST]];
+		[rowArray addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_COST]];
 		if (self.canUpgrade) {
-			[rowArray addObject:[NSNumber numberWithInt:BUILDING_ROW_UPGRADE_BUTTON]];
+			[rowArray addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_BUTTON]];
 		} else {
-			[rowArray addObject:[NSNumber numberWithInt:BUILDING_ROW_UPGRADE_CANNOT]];
+			[rowArray addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_CANNOT]];
 		}
-		[rowArray addObject:[NSNumber numberWithInt:BUILDING_ROW_DEMOLISH_BUTTON]];
+		[rowArray addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_DEMOLISH_BUTTON]];
 	}
 
-	return _dict([NSNumber numberWithInt:BUILDING_SECTION_UPGRADE], @"type", @"Upgrade", @"name", rowArray, @"rows");
+	return _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_UPGRADE], @"type", @"Upgrade", @"name", rowArray, @"rows");
 }
 
 
@@ -429,8 +429,8 @@
 	NSDictionary *pendingBuildDict = [request.buildingData objectForKey:@"pending_build"]; 
 	if ( pendingBuildDict && ((id)pendingBuildDict != [NSNull null]) ) {
 		for (NSMutableDictionary *section in self.sections) {
-			if ([[section objectForKey:@"type"] isEqual:[NSNumber numberWithInt:BUILDING_SECTION_UPGRADE]]) {
-				[section setObject:_array([NSNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_STATS], [NSNumber numberWithInt:BUILDING_ROW_UPGRADE_PROGRESS]) forKey:@"rows"];
+			if ([[section objectForKey:@"type"] isEqual:[NSDecimalNumber numberWithInt:BUILDING_SECTION_UPGRADE]]) {
+				[section setObject:_array([NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_STATS], [NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_PROGRESS]) forKey:@"rows"];
 			}
 		}
 		if(!self.pendingBuild) {
@@ -443,14 +443,14 @@
 		self.canUpgrade = NO;
 	} else {
 		for (NSMutableDictionary *section in self.sections) {
-			if ([[section objectForKey:@"type"] isEqual:[NSNumber numberWithInt:BUILDING_SECTION_UPGRADE]]) {
+			if ([[section objectForKey:@"type"] isEqual:[NSDecimalNumber numberWithInt:BUILDING_SECTION_UPGRADE]]) {
 				NSLog(@"Is not Building");
 				if (self.canUpgrade) {
 					NSLog(@"Can upgrade");
-					[section setObject:_array([NSNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_STATS], [NSNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_COST], [NSNumber numberWithInt:BUILDING_ROW_UPGRADE_BUTTON], [NSNumber numberWithInt:BUILDING_ROW_DEMOLISH_BUTTON]) forKey:@"rows"];
+					[section setObject:_array([NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_STATS], [NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_COST], [NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_BUTTON], [NSDecimalNumber numberWithInt:BUILDING_ROW_DEMOLISH_BUTTON]) forKey:@"rows"];
 				} else {
 					NSLog(@"Can NOT upgrade");
-					[section setObject:_array([NSNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_STATS], [NSNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_COST], [NSNumber numberWithInt:BUILDING_ROW_UPGRADE_CANNOT], [NSNumber numberWithInt:BUILDING_ROW_DEMOLISH_BUTTON]) forKey:@"rows"];
+					[section setObject:_array([NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_STATS], [NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_COST], [NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_CANNOT], [NSDecimalNumber numberWithInt:BUILDING_ROW_DEMOLISH_BUTTON]) forKey:@"rows"];
 				}
 			}
 		}

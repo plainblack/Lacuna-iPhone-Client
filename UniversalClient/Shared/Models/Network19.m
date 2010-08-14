@@ -35,13 +35,13 @@
 
 - (void)generateSections {
 	NSMutableArray *network19Rows = [NSMutableArray arrayWithCapacity:2];
-	[network19Rows addObject:[NSNumber numberWithInt:BUILDING_ROW_VIEW_NETWORK_19]];
+	[network19Rows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_NETWORK_19]];
 	if (self.restrictingCoverage) {
-		[network19Rows addObject:[NSNumber numberWithInt:BUILDING_ROW_RESTRICTED_NETWORK_19]];
+		[network19Rows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_RESTRICTED_NETWORK_19]];
 	} else {
-		[network19Rows addObject:[NSNumber numberWithInt:BUILDING_ROW_UNRESTRICTED_NETWORK_19]];
+		[network19Rows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_UNRESTRICTED_NETWORK_19]];
 	}
-	self.sections = _array([self generateProductionSection], _dict([NSNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", network19Rows, @"rows"), [self generateHealthSection], [self generateUpgradeSection]);
+	self.sections = _array([self generateProductionSection], _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", network19Rows, @"rows"), [self generateHealthSection], [self generateUpgradeSection]);
 }
 
 

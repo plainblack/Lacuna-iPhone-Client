@@ -10,20 +10,20 @@
 
 
 @interface StoredResource : NSObject {
-	NSNumber *current;
-	NSInteger max;
-	NSInteger perHour;
-	NSNumber *perSec;
+	NSDecimalNumber *current;
+	NSDecimalNumber *max;
+	NSDecimalNumber *perHour;
+	NSDecimalNumber *perSec;
 }
 
 
-@property (nonatomic, retain) NSNumber *current;
-@property (nonatomic, assign) NSInteger max;
-@property (nonatomic, assign) NSInteger perHour;
-@property (nonatomic, retain) NSNumber *perSec;
+@property (nonatomic, retain) NSDecimalNumber *current;
+@property (nonatomic, retain) NSDecimalNumber *max;
+@property (nonatomic, retain) NSDecimalNumber *perHour;
+@property (nonatomic, retain) NSDecimalNumber *perSec;
 
 
-- (NSNumber *)tick:(NSInteger)interval;
+- (NSDecimalNumber *)tick:(NSInteger)interval;
 - (void)parseFromData:(NSDictionary *)data withPrefix:(NSString *)prefix;
 
 

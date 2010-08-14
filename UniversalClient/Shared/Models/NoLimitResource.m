@@ -8,13 +8,7 @@
 
 #import "NoLimitResource.h"
 #import "LEMacros.h"
-
-
-@interface NoLimitResource (PrivateMethods)
-
-- (NSNumber *)getAsNSNumber:(id)object;
-
-@end
+#import "Util.h"
 
 
 @implementation NoLimitResource
@@ -36,6 +30,7 @@
 
 - (void)dealloc {
 	self.current = nil;
+	self.perHour = nil;
 	self.perSec = nil;
 	[super dealloc];
 }
@@ -44,46 +39,27 @@
 #pragma mark --
 #pragma mark Instance Methods
 
-- (void)tick:(NSInteger)interval {
-	double tmp = ([self.current doubleValue] + ([self.perSec doubleValue] * interval));
-	self.current = [NSNumber numberWithDouble:tmp];
+- (void)tick:(NSInteger)inInterval {
+	NSDecimalNumber *interval = [Util decimalFromInt:inInterval]; 
+	self.current = [self.current decimalNumberByAdding:[self.perSec decimalNumberByMultiplyingBy:interval]];
 }
 
 
-- (void)addToCurrent:(NSNumber *)adjustment {
-	double tmp = ([self.current doubleValue] + [adjustment doubleValue]);
-	self.current = [NSNumber numberWithDouble:tmp];
+- (void)addToCurrent:(NSDecimalNumber *)adjustment {
+	self.current = [self.current decimalNumberByAdding:adjustment];
 }
 
 				  
-- (void)subtractFromCurrent:(NSNumber *)adjustment {
-	double tmp = ([self.current doubleValue] - [adjustment doubleValue]);
-	self.current = [NSNumber numberWithDouble:tmp];
+- (void)subtractFromCurrent:(NSDecimalNumber *)adjustment {
+	self.current = [self.current decimalNumberBySubtracting:adjustment];
 }
 
 
 - (void)parseFromData:(NSDictionary *)data withPrefix:(NSString *)prefix{
 	
-	self.current = [self getAsNSNumber:[data objectForKey:[NSString stringWithFormat:@"%@", prefix]]];
-	self.perHour = [[self getAsNSNumber:[data objectForKey:[NSString stringWithFormat:@"%@_hour", prefix]]] intValue];
-	self.perSec = [NSNumber numberWithFloat:self.perHour / SEC_IN_HOUR];
-}
-
-
-#pragma mark --
-#pragma mark PrivateMethods
-
-- (NSNumber *)getAsNSNumber:(id)object {
-	NSNumberFormatter *f = [[[NSNumberFormatter alloc] init] autorelease];
-	[f setNumberStyle:NSNumberFormatterDecimalStyle];
-	if ([object isKindOfClass:[NSString class]]) {
-		return [f numberFromString:object];
-	} else if ([object isKindOfClass:[NSNumber class]]) {
-		return object;
-	} else {
-		NSLog(@"WTF HOW DO I HANDLE THIS: %@", object);
-		return nil;
-	}
+	self.current = [Util asNumber:[data objectForKey:[NSString stringWithFormat:@"%@", prefix]]];
+	self.perHour = [Util asNumber:[data objectForKey:[NSString stringWithFormat:@"%@_hour", prefix]]];
+	self.perSec = [self.perHour decimalNumberByDividingBy:[NSDecimalNumber decimalNumberWithString:@"3600"]];
 }
 
 

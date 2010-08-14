@@ -9,17 +9,15 @@
 #import "Util.h"
 #import "LEMacros.h"
 
-/*
-NSDecimalNumber *ONE_THOUSAND = [NSDecimalNumber decimalNumberWithString:@"1000"];
-NSDecimalNumber *TEN_THOUSAND = [NSDecimalNumber decimalNumberWithString:@"10000"];
-NSDecimalNumber *ONE_HUNDRED_THOUSAND = [NSDecimalNumber decimalNumberWithString:@"100000"];
-NSDecimalNumber *ONE_MILLION = [NSDecimalNumber decimalNumberWithString:@"1000000"];
-NSDecimalNumber *TEN_MILLION = [NSDecimalNumber decimalNumberWithString:@"10000000"];
-NSDecimalNumber *ONE_HUNDRED_MILLION = [NSDecimalNumber decimalNumberWithString:@"100000000"];
-NSDecimalNumber *ONE_BILLION = [NSDecimalNumber decimalNumberWithString:@"1000000000"];
-NSDecimalNumber *TEN_BILLION = [NSDecimalNumber decimalNumberWithString:@"10000000000"];
-NSDecimalNumber *ONE_HUNDRED_BILLION = [NSDecimalNumber decimalNumberWithString:@"100000000000"];
-*/
+static NSDecimalNumber *ONE_THOUSAND;
+static NSDecimalNumber *TEN_THOUSAND;
+static NSDecimalNumber *ONE_HUNDRED_THOUSAND;
+static NSDecimalNumber *ONE_MILLION;
+static NSDecimalNumber *TEN_MILLION;
+static NSDecimalNumber *ONE_HUNDRED_MILLION;
+static NSDecimalNumber *ONE_BILLION;
+static NSDecimalNumber *TEN_BILLION;
+static NSDecimalNumber *ONE_HUNDRED_BILLION;
 
 @implementation Util
 
@@ -46,6 +44,11 @@ NSDecimalNumber *ONE_HUNDRED_BILLION = [NSDecimalNumber decimalNumberWithString:
 }
 
 
++ (NSDecimalNumber *)decimalFromInt:(NSInteger)inNumber {
+	return (NSDecimalNumber *)[NSDecimalNumber numberWithInt:inNumber];
+}
+
+
 + (NSDate *)date:(NSString *)serverDateString {
 	NSDateFormatter *serverDateFormatter = [[[NSDateFormatter alloc] init] autorelease];
 	[serverDateFormatter setDateFormat:@"dd MM yyyy HH:mm:ss ZZZ"];
@@ -65,10 +68,17 @@ NSDecimalNumber *ONE_HUNDRED_BILLION = [NSDecimalNumber decimalNumberWithString:
 }
 
 
-+ (NSNumber *)asNumber:(NSString *)string {
-	NSNumberFormatter *f = [[[NSNumberFormatter alloc] init] autorelease];
-	[f setNumberStyle:NSNumberFormatterDecimalStyle];
-	return [f numberFromString:string];
++ (NSDecimalNumber *)asNumber:(id)obj {
+	NSDecimalNumber *result;
+	if ([obj isKindOfClass:[NSDecimalNumber class]]) {
+		result = obj;
+	}else if ([obj isKindOfClass:[NSString class]]) {
+		result = [NSDecimalNumber decimalNumberWithString:obj];
+	} else {
+		NSLog(@"OMG WTF DO WE DO WITH THIS!");
+		result = nil;
+	}
+	return result;
 }
 
 
@@ -88,36 +98,47 @@ NSDecimalNumber *ONE_HUNDRED_BILLION = [NSDecimalNumber decimalNumberWithString:
 }
 
 
-+ (NSString *)prettyNSNumber:(NSNumber *)number {
-	return [self prettyNSInteger:[number intValue]];
-}
-
-
-/*
 + (NSString *)prettyNSDecimalNumber:(NSDecimalNumber *)number {
-	if ([number compare:ONE_HUNDRED_BILLION] != NSOrderedDescending || [number compare:ONE_HUNDRED_BILLION] != NSOrderedSame) {
-		return @"WIP";
-	} else if ([number compare:TEN_BILLION] != NSOrderedDescending || [number compare:TEN_BILLION] != NSOrderedSame) {
-		return @"WIP";
-	} else if ([number compare:ONE_BILLION] != NSOrderedDescending || [number compare:ONE_BILLION] != NSOrderedSame) {
-		return @"WIP";
-	} else if ([number compare:ONE_HUNDRED_MILLION] != NSOrderedDescending || [number compare:ONE_HUNDRED_MILLION] != NSOrderedSame) {
-		return @"WIP";
-	} else if ([number compare:TEN_MILLION] != NSOrderedDescending || [number compare:TEN_MILLION] != NSOrderedSame) {
-		return @"WIP";
-	} else if ([number compare:ONE_MILLION] != NSOrderedDescending || [number compare:ONE_MILLION] != NSOrderedSame) {
-		return @"WIP";
-	} else if ([number compare:ONE_HUNDRED_THOUSAND] != NSOrderedDescending || [number compare:ONE_HUNDRED_THOUSAND] != NSOrderedSame) {
-		return @"WIP";
-	} else if ([number compare:TEN_THOUSAND] != NSOrderedDescending || [number compare:TEN_THOUSAND] != NSOrderedSame) {
-		return @"WIP";
-	} else if ([number compare:ONE_THOUSAND] != NSOrderedDescending || [number compare:ONE_THOUSAND] != NSOrderedSame) {
-		return @"WIP";
+	if (!ONE_THOUSAND) {
+		ONE_THOUSAND = [[NSDecimalNumber decimalNumberWithString:@"1000"] retain];
+		TEN_THOUSAND = [[NSDecimalNumber decimalNumberWithString:@"10000"] retain];
+		ONE_HUNDRED_THOUSAND = [[NSDecimalNumber decimalNumberWithString:@"100000"] retain];
+		ONE_MILLION = [[NSDecimalNumber decimalNumberWithString:@"1000000"] retain];
+		TEN_MILLION = [[NSDecimalNumber decimalNumberWithString:@"10000000"] retain];
+		ONE_HUNDRED_MILLION = [[NSDecimalNumber decimalNumberWithString:@"100000000"] retain];
+		ONE_BILLION = [[NSDecimalNumber decimalNumberWithString:@"1000000000"] retain];
+		TEN_BILLION = [[NSDecimalNumber decimalNumberWithString:@"10000000000"] retain];
+		ONE_HUNDRED_BILLION = [[NSDecimalNumber decimalNumberWithString:@"100000000000"] retain];
+	}
+
+	NSNumberFormatter *formatter = [[[NSNumberFormatter alloc] init] autorelease];
+	[formatter setUsesSignificantDigits:YES];
+	[formatter setMaximumSignificantDigits:3];
+	[formatter setMinimumSignificantDigits:3];
+	if ([number compare:ONE_HUNDRED_BILLION] == NSOrderedDescending || [number compare:ONE_HUNDRED_BILLION] == NSOrderedSame) {
+		return [NSString stringWithFormat:@"%@B", [formatter stringFromNumber:[number decimalNumberByDividingBy:ONE_BILLION]]];
+	} else if ([number compare:TEN_BILLION] == NSOrderedDescending || [number compare:TEN_BILLION] == NSOrderedSame) {
+		return [NSString stringWithFormat:@"%@B", [formatter stringFromNumber:[number decimalNumberByDividingBy:ONE_BILLION]]];
+	} else if ([number compare:ONE_BILLION] == NSOrderedDescending || [number compare:ONE_BILLION] == NSOrderedSame) {
+		return [NSString stringWithFormat:@"%@B", [formatter stringFromNumber:[number decimalNumberByDividingBy:ONE_BILLION]]];
+	} else if ([number compare:ONE_HUNDRED_MILLION] == NSOrderedDescending || [number compare:ONE_HUNDRED_MILLION] == NSOrderedSame) {
+		return [NSString stringWithFormat:@"%@M", [formatter stringFromNumber:[number decimalNumberByDividingBy:ONE_MILLION]]];
+	} else if ([number compare:TEN_MILLION] == NSOrderedDescending || [number compare:TEN_MILLION] == NSOrderedSame) {
+		return [NSString stringWithFormat:@"%@M", [formatter stringFromNumber:[number decimalNumberByDividingBy:ONE_MILLION]]];
+	} else if ([number compare:ONE_MILLION] == NSOrderedDescending || [number compare:ONE_MILLION] == NSOrderedSame) {
+		return [NSString stringWithFormat:@"%@M", [formatter stringFromNumber:[number decimalNumberByDividingBy:ONE_MILLION]]];
+	} else if ([number compare:ONE_HUNDRED_THOUSAND] == NSOrderedDescending || [number compare:ONE_HUNDRED_THOUSAND] == NSOrderedSame) {
+		return [NSString stringWithFormat:@"%@K", [formatter stringFromNumber:[number decimalNumberByDividingBy:ONE_THOUSAND]]];
+	} else if ([number compare:TEN_THOUSAND] == NSOrderedDescending || [number compare:TEN_THOUSAND] == NSOrderedSame) {
+		return [NSString stringWithFormat:@"%@K", [formatter stringFromNumber:[number decimalNumberByDividingBy:ONE_THOUSAND]]];
+	} else if ([number compare:ONE_THOUSAND] == NSOrderedDescending || [number compare:ONE_THOUSAND] == NSOrderedSame) {
+		return [NSString stringWithFormat:@"%@K", [formatter stringFromNumber:[number decimalNumberByDividingBy:ONE_THOUSAND]]];
 	}else {
-		return @"WIP";
+		[formatter setMaximumSignificantDigits:0];
+		[formatter setMinimumSignificantDigits:0];
+		return [formatter stringFromNumber:number];
 	}
 }
-*/
 
 
 + (NSString *)prettyNSInteger:(NSInteger)number {

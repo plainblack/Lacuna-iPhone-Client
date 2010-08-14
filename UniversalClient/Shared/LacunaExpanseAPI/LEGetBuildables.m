@@ -21,7 +21,7 @@
 @synthesize tag;
 
 
-- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget bodyId:(NSString *)inBodyId x:(NSNumber *)inX y:(NSNumber *)inY  tag:(NSString *)inTag{
+- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget bodyId:(NSString *)inBodyId x:(NSDecimalNumber *)inX y:(NSDecimalNumber *)inY  tag:(NSString *)inTag{
 	self.bodyId = inBodyId;
 	self.x = inX;
 	self.y = inY;

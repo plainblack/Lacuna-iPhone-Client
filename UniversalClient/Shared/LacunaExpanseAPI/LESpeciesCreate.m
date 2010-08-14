@@ -33,12 +33,12 @@
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget empireId:(NSString *)inEmpireId
 						   name:(NSString*) inName description:(NSString *) inDescription
 				habitableOrbits:(NSArray *) inHabitableOrbits
-		   constructionAffinity:(NSNumber *) inConstructionAffinity deceptionAffinity:(NSNumber *) inDeceptionAffinity
-			   researchAffinity:(NSNumber *) inResearchAffinity managementAffinity:(NSNumber *) inManagementAffinity
-				farmingAffinity:(NSNumber *) inFarmingAffinity miningAffinity:(NSNumber *) inMiningAffinity
-				scienceAffinity:(NSNumber *) inScienceAffinity environmentalAffinity:(NSNumber *) inEnvironmentalAffinity
-			  politicalAffinity:(NSNumber *) inPoliticalAffinity tradeAffinity:(NSNumber *) inTradeAffinity
-				 growthAffinity:(NSNumber *) inGrowthAffinity {
+		   constructionAffinity:(NSDecimalNumber *) inConstructionAffinity deceptionAffinity:(NSDecimalNumber *) inDeceptionAffinity
+			   researchAffinity:(NSDecimalNumber *) inResearchAffinity managementAffinity:(NSDecimalNumber *) inManagementAffinity
+				farmingAffinity:(NSDecimalNumber *) inFarmingAffinity miningAffinity:(NSDecimalNumber *) inMiningAffinity
+				scienceAffinity:(NSDecimalNumber *) inScienceAffinity environmentalAffinity:(NSDecimalNumber *) inEnvironmentalAffinity
+			  politicalAffinity:(NSDecimalNumber *) inPoliticalAffinity tradeAffinity:(NSDecimalNumber *) inTradeAffinity
+				 growthAffinity:(NSDecimalNumber *) inGrowthAffinity {
 	self.empireId = inEmpireId;
 	self.name = inName;
 	self.description = inDescription;

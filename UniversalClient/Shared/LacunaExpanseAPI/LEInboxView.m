@@ -18,7 +18,7 @@
 @synthesize messages;
 
 
-- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget page:(NSNumber *)inPage {
+- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget page:(NSDecimalNumber *)inPage {
 	self.page = inPage;
 	return [self initWithCallback:inCallback target:(NSObject *)inTarget];
 }

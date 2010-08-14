@@ -8,11 +8,12 @@
 
 #import "LETableViewCellBuildingStats.h"
 #import "LEMacros.h"
+#import "Util.h"
 
 
 @interface LETableViewCellBuildingStats (PrivateMethods)
-- (void)setNormalPerHourLabel:(UILabel *)perHourLabel perHour:(NSInteger)perHour;
-- (void)setOppositePerHourLabel:(UILabel *)perHourLabel perHour:(NSInteger)perHour;
+- (void)setNormalPerHourLabel:(UILabel *)perHourLabel perHour:(NSDecimalNumber *)perHour;
+- (void)setOppositePerHourLabel:(UILabel *)perHourLabel perHour:(NSDecimalNumber *)perHour;
 @end
 
 
@@ -79,33 +80,33 @@
 }
 
 
-- (void)setEnergyPerHour:(NSNumber *)perHour {
-	[self setNormalPerHourLabel:energyPerHourLabel perHour:_intv(perHour)];
+- (void)setEnergyPerHour:(NSDecimalNumber *)perHour {
+	[self setNormalPerHourLabel:energyPerHourLabel perHour:perHour];
 }
 
 
-- (void)setFoodPerHour:(NSNumber *)perHour {
-	[self setNormalPerHourLabel:foodPerHourLabel perHour:_intv(perHour)];
+- (void)setFoodPerHour:(NSDecimalNumber *)perHour {
+	[self setNormalPerHourLabel:foodPerHourLabel perHour:perHour];
 }
 
 
-- (void)setHappinessPerHour:(NSNumber *)perHour {
-	[self setNormalPerHourLabel:happinessPerHourLabel perHour:_intv(perHour)];
+- (void)setHappinessPerHour:(NSDecimalNumber *)perHour {
+	[self setNormalPerHourLabel:happinessPerHourLabel perHour:perHour];
 }
 
 
-- (void)setOrePerHour:(NSNumber *)perHour {
-	[self setNormalPerHourLabel:orePerHourLabel perHour:_intv(perHour)];
+- (void)setOrePerHour:(NSDecimalNumber *)perHour {
+	[self setNormalPerHourLabel:orePerHourLabel perHour:perHour];
 }
 
 
-- (void)setWastePerHour:(NSNumber *)perHour {
-	[self setOppositePerHourLabel:wastePerHourLabel perHour:_intv(perHour)];
+- (void)setWastePerHour:(NSDecimalNumber *)perHour {
+	[self setOppositePerHourLabel:wastePerHourLabel perHour:perHour];
 }
 
 
-- (void)setWaterPerHour:(NSNumber *)perHour {
-	[self setNormalPerHourLabel:waterPerHourLabel perHour:_intv(perHour)];
+- (void)setWaterPerHour:(NSDecimalNumber *)perHour {
+	[self setNormalPerHourLabel:waterPerHourLabel perHour:perHour];
 }
 
 
@@ -123,8 +124,8 @@
 #pragma mark Private Methods
 
 
-- (void)setNormalPerHourLabel:(UILabel *)perHourLabel perHour:(NSInteger)perHour {
-	perHourLabel.text = [NSString stringWithFormat:@"%i/hr", perHour];
+- (void)setNormalPerHourLabel:(UILabel *)perHourLabel perHour:(NSDecimalNumber *)perHour {
+	perHourLabel.text = [NSString stringWithFormat:@"%@/hr", [Util prettyNSDecimalNumber:perHour]];
 	if (perHour < 0) {
 		perHourLabel.textColor = WARNING_COLOR;
 	} else {
@@ -133,8 +134,8 @@
 }
 
 
-- (void)setOppositePerHourLabel:(UILabel *)perHourLabel perHour:(NSInteger)perHour {
-	perHourLabel.text = [NSString stringWithFormat:@"%i/hr", perHour];
+- (void)setOppositePerHourLabel:(UILabel *)perHourLabel perHour:(NSDecimalNumber *)perHour {
+	perHourLabel.text = [NSString stringWithFormat:@"%@/hr", [Util prettyNSDecimalNumber:perHour]];
 	if (perHour <= 0) {
 		perHourLabel.textColor = TEXT_SMALL_COLOR;
 	} else {

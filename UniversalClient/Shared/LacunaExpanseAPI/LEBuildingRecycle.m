@@ -22,7 +22,7 @@
 @synthesize subsidized;
 
 
-- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl energy:(NSNumber *)inEnergy ore:(NSNumber *)inOre water:(NSNumber *)inWater subsidized:(BOOL)inSubsidized {
+- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl energy:(NSDecimalNumber *)inEnergy ore:(NSDecimalNumber *)inOre water:(NSDecimalNumber *)inWater subsidized:(BOOL)inSubsidized {
 	self.buildingId = inBuildingId;
 	self.buildingUrl = inBuildingUrl;
 	self.energy = inEnergy;
@@ -34,7 +34,7 @@
 
 
 - (id)params {
-	return _array([Session sharedInstance].sessionId, self.buildingId, self.water, self.ore, self.energy, [NSNumber numberWithBool:self.subsidized]);
+	return _array([Session sharedInstance].sessionId, self.buildingId, self.water, self.ore, self.energy, [NSDecimalNumber numberWithBool:self.subsidized]);
 }
 
 

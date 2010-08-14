@@ -47,7 +47,6 @@ typedef enum {
 
 - (void)viewDidLoad {
 	self.navigationItem.title = @"Recycle";
-	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)] autorelease];
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(save)] autorelease];
 	
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Recycle"]);
@@ -59,11 +58,11 @@ typedef enum {
 	}
 	
 	self.energyCell = [LETableViewCellNumberEntry getCellForTableView:self.tableView viewController:self maxValue:maxValue];
-	[self.energyCell setNumericValue:[NSNumber numberWithInt:0]];
+	[self.energyCell newNumericValue:[Util decimalFromInt:0]];
 	self.oreCell = [LETableViewCellNumberEntry getCellForTableView:self.tableView viewController:self maxValue:maxValue];
-	[self.oreCell setNumericValue:[NSNumber numberWithInt:0]];
+	[self.oreCell newNumericValue:[Util decimalFromInt:0]];
 	self.waterCell = [LETableViewCellNumberEntry getCellForTableView:self.tableView viewController:self maxValue:maxValue];
-	[self.waterCell setNumericValue:[NSNumber numberWithInt:0]];
+	[self.waterCell newNumericValue:[Util decimalFromInt:0]];
 	self.subsidizedCell = [LETableViewCellLabeledSwitch getCellForTableView:self.tableView];
 	self.seconds = 0;
 	[self.energyCell addObserver:self forKeyPath:@"numericValue" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
@@ -149,7 +148,7 @@ typedef enum {
 			Session *session = [Session sharedInstance];
 			LETableViewCellLabeledText *currentWasteCell = [LETableViewCellLabeledText getCellForTableView:tableView];
 			currentWasteCell.label.text = @"Current Waste";
-			currentWasteCell.content.text = [Util prettyNSNumber:session.body.waste.current];
+			currentWasteCell.content.text = [Util prettyNSDecimalNumber:session.body.waste.current];
 			cell = currentWasteCell;
 			break;
 		default:
@@ -207,7 +206,15 @@ typedef enum {
 #pragma mark Callback Methods
 
 - (id)recyclStarted:(LEBuildingRecycle *)request {
-	[[self navigationController] popViewControllerAnimated:YES];
+	if (request.subsidized) {
+		[self.energyCell newNumericValue:[Util decimalFromInt:0]];
+		[self.oreCell newNumericValue:[Util decimalFromInt:0]];
+		[self.waterCell newNumericValue:[Util decimalFromInt:0]];
+		[self.tableView reloadData];
+	} else {
+		[[self navigationController] popViewControllerAnimated:YES];
+	}
+
 	return nil;
 }
 

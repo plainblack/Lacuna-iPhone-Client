@@ -20,7 +20,7 @@
 @synthesize notTrained;
 
 
-- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl quantity:(NSNumber *)inQuantity {
+- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl quantity:(NSDecimalNumber *)inQuantity {
 	self.buildingId = inBuildingId;
 	self.buildingUrl = inBuildingUrl;
 	self.quantity = inQuantity;

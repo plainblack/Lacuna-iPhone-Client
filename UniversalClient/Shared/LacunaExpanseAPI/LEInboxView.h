@@ -11,16 +11,16 @@
 
 
 @interface LEInboxView : LERequest {
-	NSNumber *page;
+	NSDecimalNumber *page;
 	NSMutableArray *messages;
 }
 
 
-@property(nonatomic, retain) NSNumber *page;
+@property(nonatomic, retain) NSDecimalNumber *page;
 @property(nonatomic, retain) NSMutableArray *messages;
 
 
-- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target page:(NSNumber *)page;
+- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target page:(NSDecimalNumber *)page;
 
 
 @end
