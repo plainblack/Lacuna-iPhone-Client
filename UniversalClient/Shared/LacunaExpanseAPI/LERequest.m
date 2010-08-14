@@ -18,6 +18,7 @@ static id<LERequestMonitor> delegate;
 
 @interface LERequest (PrivateMethods)
 
+- (void)sendRequest;
 - (void)requestComplete;
 - (void)requestFinished;
 
@@ -49,16 +50,7 @@ static id<LERequestMonitor> delegate;
 	
 	numRequests++;
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-	NSString *url = nil;
-	if ([[self serviceUrl] hasPrefix:@"/"]) {
-		url = [NSString stringWithFormat:@"%@://%@%@", self.protocol, self.serverName, [self serviceUrl]];
-	} else {
-		url = [NSString stringWithFormat:@"%@://%@/%@", self.protocol, self.serverName, [self serviceUrl]];
-	}
-	id service = [DKDeferred jsonService:url name:[self methodName]];
-	self.deferred = [service :[self params]];
-	[self.deferred addCallback:callbackTS(self, successCallback:)];
-	[self.deferred addErrback:callbackTS(self, errorCallback:)];
+	[self sendRequest];
 	
 	return self;
 }
@@ -114,9 +106,15 @@ static id<LERequestMonitor> delegate;
 	self->wasError = YES;
 	self->handledError = NO;
 	self.response = err.userInfo;
-	[self requestFinished];
-
-	[self requestComplete];
+	
+	if ([self errorCode] == 1006) {
+		Session *session = [Session sharedInstance];
+		[session reloginTarget:self selector:@selector(reloginComplete)];
+	} else {
+		[self requestFinished];
+		
+		[self requestComplete];
+	}
 	
 	return nil;
 }
@@ -171,6 +169,19 @@ static id<LERequestMonitor> delegate;
 	}
 }
 
+- (void)sendRequest {
+	NSString *url = nil;
+	if ([[self serviceUrl] hasPrefix:@"/"]) {
+		url = [NSString stringWithFormat:@"%@://%@%@", self.protocol, self.serverName, [self serviceUrl]];
+	} else {
+		url = [NSString stringWithFormat:@"%@://%@/%@", self.protocol, self.serverName, [self serviceUrl]];
+	}
+	id service = [DKDeferred jsonService:url name:[self methodName]];
+	self.deferred = [service :[self params]];
+	[self.deferred addCallback:callbackTS(self, successCallback:)];
+	[self.deferred addErrback:callbackTS(self, errorCallback:)];
+}
+
 - (void)cancel {
 	self->canceled = YES;
 	[self.deferred cancel];
@@ -184,6 +195,12 @@ static id<LERequestMonitor> delegate;
 
 + (NSInteger)getCurrentRequestCount {
 	return numRequests;
+}
+
+
+- (id)reloginComplete{
+	[self sendRequest];
+	return nil;
 }
 
 

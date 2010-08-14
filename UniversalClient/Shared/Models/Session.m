@@ -111,6 +111,15 @@ static Session *sharedSession = nil;
 }
 
 
+- (void)reloginTarget:(id)target selector:(SEL)selector {
+	self->reloginTarget = [target retain];
+	self->reloginSelector = selector;
+	NSString *username = self.empire.name;
+	KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithIdentifier:username accessGroup:nil] autorelease];				
+	NSString *password = [keychainItemWrapper objectForKey:(id)kSecValueData];
+	[[[LEEmpireLogin alloc] initWithCallback:@selector(reloggedIn:) target:self username:username password:password] autorelease];
+}
+
 - (void)logout {
 	[[[LEEmpireLogout alloc] initWithCallback:@selector(loggedOut:) target:self sessionId:self.sessionId] autorelease];
 	self.sessionId = nil;
@@ -223,6 +232,31 @@ static Session *sharedSession = nil;
 		[self.empire parseData:request.empireData];
 		self.isLoggedIn = TRUE;
 	}
+	
+	return nil;
+}
+
+
+- (id)reloggedIn:(LEEmpireLogin *)request {
+	if ([request wasError]) {
+		[request markErrorHandled];
+		
+		NSString *errorText = [request errorMessage];
+		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Could not relogin" message:errorText delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+		[av show];
+		
+		self.sessionId = nil;
+		self.empire = nil;
+		self.isLoggedIn = NO;
+	} else {
+		self.sessionId = request.sessionId;
+		self.empire = [[Empire alloc] init];
+		[self.empire parseData:request.empireData];
+		//Don't change self.isLoggedIn becuase well it should stay logged in
+	}
+	[self->reloginTarget performSelector:self->reloginSelector];
+	[self->reloginTarget release];
+	self->reloginTarget = nil;
 	
 	return nil;
 }

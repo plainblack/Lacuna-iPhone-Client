@@ -20,6 +20,8 @@
 	NSString *serverVersion;
 	NSTimer *timer;
 	NSDate *lastTick;
+	id reloginTarget;
+	SEL reloginSelector;
 }
 
 @property(nonatomic, retain) NSString *sessionId;
@@ -33,6 +35,7 @@
 
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password;
 - (void)logout;
+- (void)reloginTarget:(id)target selector:(SEL)selector;
 - (void)forgetEmpireNamed:(NSString *)empireName;
 - (void)processStatus:(NSDictionary *)status;
 - (void)loadBody:(NSString *)bodyId;

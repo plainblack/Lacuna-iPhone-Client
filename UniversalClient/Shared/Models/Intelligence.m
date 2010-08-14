@@ -207,7 +207,8 @@
 - (id)spyTrained:(LEBuildingTrainSpy *)request {
 	self.numSpies += _intv(request.trained);
 	if (_intv(request.notTrained) > 0) {
-		NSLog(@"KEVIN ADD ALERT!!");
+		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Your spy could not be trained. You probably don't have enough resources to train one." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+		[av show];
 	}
 	self.needsRefresh = YES;
 	
