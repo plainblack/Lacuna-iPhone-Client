@@ -1,23 +1,27 @@
 //
-//  LEBuildingViewForeignSpies.m
+//  LEBuildingViewAvailableTrades.m
 //  UniversalClient
 //
-//  Created by Kevin Runde on 8/6/10.
+//  Created by Kevin Runde on 8/15/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
-#import "LEBuildingViewForeignSpies.h"
+#import "LEBuildingViewAvailableTrades.h"
 #import "LEMacros.h"
+#import "Util.h"
 #import "Session.h"
 
 
-@implementation LEBuildingViewForeignSpies
+@implementation LEBuildingViewAvailableTrades
 
 
 @synthesize buildingId;
 @synthesize buildingUrl;
 @synthesize pageNumber;
-@synthesize foreignSpies;
+@synthesize availableTrades;
+@synthesize tradeCount;
+@synthesize captchaGuid;
+@synthesize captchaUrl;
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl pageNumber:(NSInteger)inPageNumber {
@@ -36,7 +40,12 @@
 - (void)processSuccess {
 	NSDictionary *result = [self.response objectForKey:@"result"];
 	
-	self.foreignSpies = [result objectForKey:@"spies"];
+	self.availableTrades = [result objectForKey:@"trades"];
+	self.tradeCount = [Util asNumber:[result objectForKey:@"trade_count"]];
+
+	NSDictionary *captcha = [self.response objectForKey:@"capthca"];
+	self.captchaGuid = [captcha objectForKey:@"guid"];
+	self.captchaUrl = [captcha objectForKey:@"url"];
 }
 
 
@@ -46,14 +55,17 @@
 
 
 - (NSString *)methodName {
-	return @"view_foreign_spies";
+	return @"view_available_trades";
 }
 
 
 - (void)dealloc {
 	self.buildingId = nil;
 	self.buildingUrl = nil;
-	self.foreignSpies = nil;
+	self.availableTrades = nil;
+	self.tradeCount = nil;
+	self.captchaGuid = nil;
+	self.captchaUrl = nil;
 	[super dealloc];
 }
 

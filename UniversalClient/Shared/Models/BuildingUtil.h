@@ -21,6 +21,8 @@
 #define SECURITY_URL @"/security"
 #define SHIPYARD_URL @"/shipyard"
 #define SPACE_PORT_URL @"/spaceport"
+#define TRADE_URL @"/trade"
+#define TRANSPORTER_URL @"/transporter"
 #define WASTE_RECYCLING_URL @"/wasterecycling"
 
 typedef enum {
@@ -75,7 +77,9 @@ typedef enum {
 	BUILDING_ROW_EFFICENCY,
 	BUILDING_ROW_REPAIR_COST,
 	BUILDING_ROW_REPAIR_BUTTON,
-	BUILDING_ROW_VIEW_FOREIGN_SPIES
+	BUILDING_ROW_VIEW_FOREIGN_SPIES,
+	BUILDING_ROW_VIEW_AVAILABLE_TRADES,
+	BUILDING_ROW_VIEW_MY_TRADES
 } BUILDING_ROW;
 
 

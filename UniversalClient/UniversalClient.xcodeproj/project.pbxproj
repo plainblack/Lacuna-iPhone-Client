@@ -84,6 +84,12 @@
 		F6882DF7116EC6E7009B624B /* LETableViewCellMedal.m in Sources */ = {isa = PBXBuildFile; fileRef = F6882DF6116EC6E7009B624B /* LETableViewCellMedal.m */; };
 		F688A34911939EEB0062DF8A /* ViewAttachedMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = F688A34711939EEB0062DF8A /* ViewAttachedMapController.m */; };
 		F68DC4FB11CD1B0D00144A49 /* EmpireProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F68DC4FA11CD1B0D00144A49 /* EmpireProfile.m */; };
+		F692B7BE121859E700E740C1 /* LEBuildingViewAvailableTrades.m in Sources */ = {isa = PBXBuildFile; fileRef = F692B7BD121859E700E740C1 /* LEBuildingViewAvailableTrades.m */; };
+		F692B7C1121859F700E740C1 /* LEBuildingViewMyTrades.m in Sources */ = {isa = PBXBuildFile; fileRef = F692B7C0121859F700E740C1 /* LEBuildingViewMyTrades.m */; };
+		F692B7C4121861CC00E740C1 /* ViewAvailableTradesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F692B7C3121861CC00E740C1 /* ViewAvailableTradesController.m */; };
+		F692B7C7121861D600E740C1 /* ViewMyTradesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F692B7C6121861D600E740C1 /* ViewMyTradesController.m */; };
+		F692B7CA121861EC00E740C1 /* Trade.m in Sources */ = {isa = PBXBuildFile; fileRef = F692B7C9121861EC00E740C1 /* Trade.m */; };
+		F692B7CD121867B700E740C1 /* BaseTradeBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = F692B7CC121867B700E740C1 /* BaseTradeBuilding.m */; };
 		F697BA09119CE035004B2119 /* RecycleController.m in Sources */ = {isa = PBXBuildFile; fileRef = F697BA08119CE035004B2119 /* RecycleController.m */; };
 		F697BA0C119CE6BD004B2119 /* LEBuildingRecycle.m in Sources */ = {isa = PBXBuildFile; fileRef = F697BA0B119CE6BD004B2119 /* LEBuildingRecycle.m */; };
 		F69809A71179FFFB00BD2096 /* ViewBuildingController.m in Sources */ = {isa = PBXBuildFile; fileRef = F69809A61179FFFB00BD2096 /* ViewBuildingController.m */; };
@@ -367,6 +373,18 @@
 		F688A34711939EEB0062DF8A /* ViewAttachedMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewAttachedMapController.m; sourceTree = "<group>"; };
 		F68DC4F911CD1B0D00144A49 /* EmpireProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmpireProfile.h; sourceTree = "<group>"; };
 		F68DC4FA11CD1B0D00144A49 /* EmpireProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmpireProfile.m; sourceTree = "<group>"; };
+		F692B7BC121859E700E740C1 /* LEBuildingViewAvailableTrades.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewAvailableTrades.h; sourceTree = "<group>"; };
+		F692B7BD121859E700E740C1 /* LEBuildingViewAvailableTrades.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewAvailableTrades.m; sourceTree = "<group>"; };
+		F692B7BF121859F700E740C1 /* LEBuildingViewMyTrades.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewMyTrades.h; sourceTree = "<group>"; };
+		F692B7C0121859F700E740C1 /* LEBuildingViewMyTrades.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewMyTrades.m; sourceTree = "<group>"; };
+		F692B7C2121861CC00E740C1 /* ViewAvailableTradesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewAvailableTradesController.h; sourceTree = "<group>"; };
+		F692B7C3121861CC00E740C1 /* ViewAvailableTradesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewAvailableTradesController.m; sourceTree = "<group>"; };
+		F692B7C5121861D600E740C1 /* ViewMyTradesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMyTradesController.h; sourceTree = "<group>"; };
+		F692B7C6121861D600E740C1 /* ViewMyTradesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMyTradesController.m; sourceTree = "<group>"; };
+		F692B7C8121861EC00E740C1 /* Trade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trade.h; sourceTree = "<group>"; };
+		F692B7C9121861EC00E740C1 /* Trade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trade.m; sourceTree = "<group>"; };
+		F692B7CB121867B700E740C1 /* BaseTradeBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTradeBuilding.h; sourceTree = "<group>"; };
+		F692B7CC121867B700E740C1 /* BaseTradeBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTradeBuilding.m; sourceTree = "<group>"; };
 		F697BA07119CE035004B2119 /* RecycleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecycleController.h; sourceTree = "<group>"; };
 		F697BA08119CE035004B2119 /* RecycleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecycleController.m; sourceTree = "<group>"; };
 		F697BA0A119CE6BD004B2119 /* LEBuildingRecycle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingRecycle.h; sourceTree = "<group>"; };
@@ -1006,6 +1024,10 @@
 				F6D4857D120CD83600D77FC3 /* LEBuildingReleasePrisoner.m */,
 				F6DB8AE31211718D00F3AB4B /* LEEmpireBoostStorage.h */,
 				F6DB8AE41211718D00F3AB4B /* LEEmpireBoostStorage.m */,
+				F692B7BC121859E700E740C1 /* LEBuildingViewAvailableTrades.h */,
+				F692B7BD121859E700E740C1 /* LEBuildingViewAvailableTrades.m */,
+				F692B7BF121859F700E740C1 /* LEBuildingViewMyTrades.h */,
+				F692B7C0121859F700E740C1 /* LEBuildingViewMyTrades.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -1086,6 +1108,10 @@
 				F6E5E5AA1205A9A000365AA2 /* MiningMinistry.m */,
 				F6E5E5D91205BE1C00365AA2 /* MiningPlatform.h */,
 				F6E5E5DA1205BE1C00365AA2 /* MiningPlatform.m */,
+				F692B7C8121861EC00E740C1 /* Trade.h */,
+				F692B7C9121861EC00E740C1 /* Trade.m */,
+				F692B7CB121867B700E740C1 /* BaseTradeBuilding.h */,
+				F692B7CC121867B700E740C1 /* BaseTradeBuilding.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -1180,6 +1206,10 @@
 				F6CF29DF1210E1F400D4A9AC /* AssignSpyControllerV2.h */,
 				F6CF29E01210E1F400D4A9AC /* AssignSpyControllerV2.m */,
 				F6CF29E11210E1F400D4A9AC /* AssignViewControllerV2.xib */,
+				F692B7C2121861CC00E740C1 /* ViewAvailableTradesController.h */,
+				F692B7C3121861CC00E740C1 /* ViewAvailableTradesController.m */,
+				F692B7C5121861D600E740C1 /* ViewMyTradesController.h */,
+				F692B7C6121861D600E740C1 /* ViewMyTradesController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1469,6 +1499,12 @@
 				F6D485B8120CDEA000D77FC3 /* ViewForeignSpiesController.m in Sources */,
 				F6CF29E21210E1F400D4A9AC /* AssignSpyControllerV2.m in Sources */,
 				F6DB8AE51211718D00F3AB4B /* LEEmpireBoostStorage.m in Sources */,
+				F692B7BE121859E700E740C1 /* LEBuildingViewAvailableTrades.m in Sources */,
+				F692B7C1121859F700E740C1 /* LEBuildingViewMyTrades.m in Sources */,
+				F692B7C4121861CC00E740C1 /* ViewAvailableTradesController.m in Sources */,
+				F692B7C7121861D600E740C1 /* ViewMyTradesController.m in Sources */,
+				F692B7CA121861EC00E740C1 /* Trade.m in Sources */,
+				F692B7CD121867B700E740C1 /* BaseTradeBuilding.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

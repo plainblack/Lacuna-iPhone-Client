@@ -8,6 +8,7 @@
 
 #import "BuildingUtil.h"
 #import "LEBuildingView.h"
+#import "BaseTradeBuilding.h"
 #import "Building.h"
 #import "Archaeology.h"
 #import "Development.h"
@@ -56,6 +57,10 @@
 		building = [[[SpacePort alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:SHIPYARD_URL]) {
 		building = [[[Shipyard alloc] init] autorelease];
+	} else if ([request.buildingUrl isEqualToString:TRADE_URL]) {
+		building = [[[BaseTradeBuilding alloc] init] autorelease];
+	} else if ([request.buildingUrl isEqualToString:TRANSPORTER_URL]) {
+		building = [[[BaseTradeBuilding alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:WASTE_RECYCLING_URL]) {
 		building = [[[WasteRecycling alloc] init] autorelease];
 	} else {

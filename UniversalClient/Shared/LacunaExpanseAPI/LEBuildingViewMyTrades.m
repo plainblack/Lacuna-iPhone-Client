@@ -1,23 +1,25 @@
 //
-//  LEBuildingViewForeignSpies.m
+//  LEBuildingViewMyTrades.m
 //  UniversalClient
 //
-//  Created by Kevin Runde on 8/6/10.
+//  Created by Kevin Runde on 8/15/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
-#import "LEBuildingViewForeignSpies.h"
+#import "LEBuildingViewMyTrades.h"
 #import "LEMacros.h"
+#import "Util.h"
 #import "Session.h"
 
 
-@implementation LEBuildingViewForeignSpies
+@implementation LEBuildingViewMyTrades
 
 
 @synthesize buildingId;
 @synthesize buildingUrl;
 @synthesize pageNumber;
-@synthesize foreignSpies;
+@synthesize myTrades;
+@synthesize tradeCount;
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl pageNumber:(NSInteger)inPageNumber {
@@ -36,7 +38,8 @@
 - (void)processSuccess {
 	NSDictionary *result = [self.response objectForKey:@"result"];
 	
-	self.foreignSpies = [result objectForKey:@"spies"];
+	self.myTrades = [result objectForKey:@"trades"];
+	self.tradeCount = [Util asNumber:[result objectForKey:@"trade_count"]];
 }
 
 
@@ -46,14 +49,15 @@
 
 
 - (NSString *)methodName {
-	return @"view_foreign_spies";
+	return @"view_my_trades";
 }
 
 
 - (void)dealloc {
 	self.buildingId = nil;
 	self.buildingUrl = nil;
-	self.foreignSpies = nil;
+	self.myTrades = nil;
+	self.tradeCount = nil;
 	[super dealloc];
 }
 
