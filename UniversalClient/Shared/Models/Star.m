@@ -8,6 +8,7 @@
 
 #import "Star.h"
 #import "LEMacros.h"
+#import "Util.h"
 
 
 @implementation Star
@@ -28,12 +29,15 @@
 	self.id = nil;
 	self.color = nil;
 	self.name = nil;
+	self.x = nil;
+	self.y = nil;
+	self.z = nil;
 	[super dealloc];
 }
 
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"id:%@, color:%@, name:%@, x:%i, y:%i z:%i",
+	return [NSString stringWithFormat:@"id:%@, color:%@, name:%@, x:%@, y:%@ z:%@",
 			self.id, self.color, self.name, self.x, self.y, self.z];
 }
 
@@ -45,9 +49,9 @@
 	self.id = [data objectForKey:@"id"];
 	self.color = [data objectForKey:@"color"];
 	self.name = [data objectForKey:@"name"];
-	self.x = _intv([data objectForKey:@"x"]);
-	self.y = _intv([data objectForKey:@"y"]);
-	self.z = _intv([data objectForKey:@"z"]);
+	self.x = [Util asNumber:[data objectForKey:@"x"]];
+	self.y = [Util asNumber:[data objectForKey:@"y"]];
+	self.z = [Util asNumber:[data objectForKey:@"z"]];
 }
 
 

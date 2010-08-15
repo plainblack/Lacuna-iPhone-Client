@@ -8,6 +8,7 @@
 
 #import "LEBuildingGetBuildableShips.h"
 #import "LEMacros.h"
+#import "Util.h"
 #import "Session.h"
 #import "BuildableShip.h"
 
@@ -36,8 +37,8 @@
 - (void)processSuccess {
 	NSDictionary *result = [self.response objectForKey:@"result"];
 	NSLog(@"Buildable Ship Data: %@", result);
-	self.docksAvailable = _intv([result objectForKey:@"docks_available"]);
-	NSLog(@"docksAvailable: %i", self.docksAvailable);
+	self.docksAvailable = [Util asNumber:[result objectForKey:@"docks_available"]];
+	NSLog(@"docksAvailable: %@", self.docksAvailable);
 	
 	NSMutableDictionary *shipsTravellingData = [result objectForKey:@"buildable"];
 	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[shipsTravellingData count]];
@@ -67,6 +68,7 @@
 	self.buildingId = nil;
 	self.buildingUrl = nil;
 	self.buildableShips = nil;
+	self.docksAvailable = nil;
 	[super dealloc];
 }
 

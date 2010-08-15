@@ -217,7 +217,7 @@
 				}
 			}
 		}
-		self.navigationItem.title = [NSString stringWithFormat:@"%i/%i Buildings", [session.body.buildingMap count], session.body.size];
+		self.navigationItem.title = [NSString stringWithFormat:@"%i/%@ Buildings", [session.body.buildingMap count], session.body.size];
 	}
 }
 

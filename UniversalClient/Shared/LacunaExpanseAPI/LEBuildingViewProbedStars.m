@@ -8,6 +8,7 @@
 
 #import "LEBuildingViewProbedStars.h"
 #import "LEMacros.h"
+#import "Util.h"
 #import "Session.h"
 #import "Star.h"
 
@@ -35,7 +36,7 @@
 
 - (void)processSuccess {
 	NSDictionary *result = [self.response objectForKey:@"result"];
-	self.starCount = _intv([result objectForKey:@"star_count"]);
+	self.starCount = [Util asNumber:[result objectForKey:@"star_count"]];
 
 	NSMutableArray *starsData = [result objectForKey:@"stars"];
 	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[starsData count]];
@@ -65,6 +66,7 @@
 	self.buildingId = nil;
 	self.buildingUrl = nil;
 	self.probedStars = nil;
+	self.starCount = nil;
 	[super dealloc];
 }
 

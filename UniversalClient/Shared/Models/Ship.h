@@ -14,8 +14,8 @@
 	NSString *name;
 	NSString *type;
 	NSString *task;
-	NSInteger speed;
-	NSInteger holdSize;
+	NSDecimalNumber *speed;
+	NSDecimalNumber *holdSize;
 }
 
 
@@ -23,8 +23,8 @@
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *type;
 @property (nonatomic, retain) NSString *task;
-@property (nonatomic, assign) NSInteger speed;
-@property (nonatomic, assign) NSInteger holdSize;
+@property (nonatomic, retain) NSDecimalNumber *speed;
+@property (nonatomic, retain) NSDecimalNumber *holdSize;
 
 
 - (void)parseData:(NSDictionary *)spyData;

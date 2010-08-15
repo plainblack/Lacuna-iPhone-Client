@@ -14,14 +14,14 @@
 	NSString *buildingId;
 	NSString *buildingUrl;
 	NSMutableArray *shipBuildQueue;
-	NSInteger numberShipBuilding;
+	NSDecimalNumber *numberShipBuilding;
 }
 
 
 @property (nonatomic, retain) NSString *buildingId;
 @property (nonatomic, retain) NSString *buildingUrl;
 @property (nonatomic, retain) NSMutableArray *shipBuildQueue;
-@property (nonatomic, assign) NSInteger numberShipBuilding;
+@property (nonatomic, retain) NSDecimalNumber *numberShipBuilding;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl;

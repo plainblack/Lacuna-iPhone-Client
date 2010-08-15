@@ -23,7 +23,7 @@
 #pragma mark NSObject Methods
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"{ current:%@, perHour:%i, perSec:%@ }",
+	return [NSString stringWithFormat:@"{ current:%@, perHour:%@, perSec:%@ }",
 			self.current, self.perHour, self.perSec];
 }
 

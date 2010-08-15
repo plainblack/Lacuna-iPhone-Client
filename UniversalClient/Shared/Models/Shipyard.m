@@ -31,6 +31,7 @@
 - (void)dealloc {
 	self.buildQueue = nil;
 	self.buildableShips = nil;
+	self.docksAvailable = nil;
 	[super dealloc];
 }
 

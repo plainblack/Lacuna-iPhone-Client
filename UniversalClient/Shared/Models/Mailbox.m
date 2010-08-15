@@ -80,7 +80,7 @@
 	self.messageDetails = [self.messageHeaders objectAtIndex:index];
 	[self.messageDetails setObject:[NSDecimalNumber numberWithInt:1] forKey:@"has_read"];
 	Session *session = [Session sharedInstance];
-	session.empire.numNewMessages -= 1;
+	session.empire.numNewMessages = [session.empire.numNewMessages decimalNumberBySubtracting:[NSDecimalNumber one]];
 	NSString *messageId = [self.messageDetails objectForKey:@"id"];
 	[[[LEInboxRead alloc] initWithCallback:@selector(messageDetailsLoaded:) target:self messageId:messageId] autorelease];
 }

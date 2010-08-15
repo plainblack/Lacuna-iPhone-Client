@@ -8,6 +8,7 @@
 
 #import "Body.h"
 #import "LEMacros.h"
+#import "Util.h"
 #import "LEBodyGetBuildings.h"
 #import "LEBuildingView.h"
 #import "BuildingUtil.h"
@@ -49,22 +50,28 @@
 #pragma mark NSObject Methods
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"id:%@, name:%@, type:%@, surfaceImageName:%@, empireId:%@, empireName:%@, x:%i, y:%i, starId:%@i, starName:%@, orbit:%i", 
+	return [NSString stringWithFormat:@"id:%@, name:%@, type:%@, surfaceImageName:%@, empireId:%@, empireName:%@, x:%@, y:%@, starId:%@, starName:%@, orbit:%@", 
 			self.id, self.name, self.type, self.surfaceImageName, self.empireId, self.empireName, self.x, self.y, self.starId, self.starName, self.orbit];
 }
 
 
 - (void)dealloc {
 	self.id = nil;
+	self.x = nil;
+	self.y = nil;
 	self.starId = nil;
 	self.starName = nil;
+	self.orbit = nil;
 	self.type = nil;
 	self.name = nil;
 	self.imageName = nil;
+	self.size = nil;
+	self.planetWater = nil;
 	self.ores = nil;
 	self.empireId = nil;
 	self.empireName = nil;
 	self.alignment = nil;
+	self.buildingCount = nil;
 	self.happiness = nil;
 	self.energy = nil;
 	self.food = nil;
@@ -84,23 +91,23 @@
 
 - (void)parseData:(NSDictionary *)bodyData {
 	self.id = [bodyData objectForKey:@"id"];
-	self.x = _intv([bodyData objectForKey:@"x"]);
-	self.y = _intv([bodyData objectForKey:@"y"]);
+	self.x = [Util asNumber:[bodyData objectForKey:@"x"]];
+	self.y = [Util asNumber:[bodyData objectForKey:@"y"]];
 	self.starId = [bodyData objectForKey:@"star_id"];
 	self.starName = [bodyData objectForKey:@"star_name"];
-	self.orbit = _intv([bodyData objectForKey:@"orbit"]);
+	self.orbit = [Util asNumber:[bodyData objectForKey:@"orbit"]];
 	self.type = [[bodyData objectForKey:@"type"] capitalizedString];
 	self.name = [bodyData objectForKey:@"name"];
 	self.imageName = [bodyData objectForKey:@"image"];
-	self.size = _intv([bodyData objectForKey:@"size"]);
-	self.planetWater = _intv([bodyData objectForKey:@"water"]);
+	self.size = [Util asNumber:[bodyData objectForKey:@"size"]];
+	self.planetWater = [Util asNumber:[bodyData objectForKey:@"water"]];
 	self.ores = [bodyData objectForKey:@"ore"];
 	NSDictionary *empireData = [bodyData objectForKey:@"empire"];
 	self.empireId = [empireData objectForKey:@"id"];
 	self.empireName = [empireData objectForKey:@"name"];
 	self.alignment = [empireData objectForKey:@"alignment"];
 	self.needsSurfaceRefresh = _intv([bodyData objectForKey:@"needs_surface_refresh"]);
-	self.buildingCount = _intv([bodyData objectForKey:@"alignment"]);
+	self.buildingCount = [Util asNumber:[bodyData objectForKey:@"alignment"]];
 	if (!self.happiness) {
 		self.happiness = [[[NoLimitResource alloc] init] autorelease];
 	}

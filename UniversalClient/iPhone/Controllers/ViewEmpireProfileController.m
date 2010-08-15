@@ -173,7 +173,7 @@ typedef enum {
 					; //DO NOT REMOVE
 					LETableViewCellLabeledText *essentiaCell = [LETableViewCellLabeledText getCellForTableView:tableView];
 					essentiaCell.label.text = @"Essentia";
-					essentiaCell.content.text = [NSString stringWithFormat:@"%i", session.empire.essentia];
+					essentiaCell.content.text = [NSString stringWithFormat:@"%@", session.empire.essentia];
 					cell = essentiaCell;
 					break;
 				case EMPIRE_ROW_BOOSTS:

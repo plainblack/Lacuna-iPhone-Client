@@ -140,8 +140,8 @@
 	if ( [keyPath isEqual:@"numNewMessages"]) {
 		Empire *empire = (Empire *)object;
 		if (empire) {
-			if(empire.numNewMessages > 0) {
-				self.mailTabBarItem.badgeValue = [NSString stringWithFormat:@"%i", empire.numNewMessages];
+			if(_intv(empire.numNewMessages) > 0) {
+				self.mailTabBarItem.badgeValue = [NSString stringWithFormat:@"%@", empire.numNewMessages];
 			} else {
 				self.mailTabBarItem.badgeValue = nil;
 			}
@@ -156,8 +156,8 @@
 			self.mailTabBarItem.badgeValue = nil;
 			[session.empire removeObserver:self forKeyPath:@"numNewMessages"];
 		} else {
-			if(session.empire.numNewMessages > 0) {
-				self.mailTabBarItem.badgeValue = [NSString stringWithFormat:@"%i", session.empire.numNewMessages];
+			if(_intv(session.empire.numNewMessages) > 0) {
+				self.mailTabBarItem.badgeValue = [NSString stringWithFormat:@"%@", session.empire.numNewMessages];
 			} else {
 				self.mailTabBarItem.badgeValue = nil;
 			}

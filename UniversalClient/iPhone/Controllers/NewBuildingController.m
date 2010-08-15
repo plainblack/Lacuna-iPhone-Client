@@ -114,7 +114,7 @@ typedef enum {
 			LETableViewCellBuildingStats *buildingStatsCell = [LETableViewCellBuildingStats getCellForTableView:tableView];
 			[buildingStatsCell setBuildingImage:[UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/100/%@.png", [building objectForKey:@"image"]]]];
 			[buildingStatsCell setBuildingBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"assets/planet_side/%@.jpg", session.body.surfaceImageName]]];
-			[buildingStatsCell setBuildingLevel:1];
+			[buildingStatsCell setBuildingLevel:[NSDecimalNumber one]];
 			[buildingStatsCell setEnergyPerHour:[stats objectForKey:@"energy_hour"]];
 			[buildingStatsCell setFoodPerHour:[stats objectForKey:@"food_hour"]];
 			[buildingStatsCell setHappinessPerHour: [stats objectForKey:@"happiness_hour"]];

@@ -15,7 +15,7 @@
 	UIButton *numberButton;
 	UIViewController *viewController;
 	NSDecimalNumber *numericValue;
-	NSInteger maxValue;
+	NSDecimalNumber *maxValue;
 }
 
 
@@ -23,12 +23,13 @@
 @property(nonatomic, retain) IBOutlet UIButton *numberButton;
 @property(nonatomic, retain) UIViewController *viewController;
 @property(nonatomic, retain) NSDecimalNumber *numericValue;
+@property(nonatomic, retain) NSDecimalNumber *maxValue;
 
 
 - (IBAction)editNumericValue;
 
 
-+ (LETableViewCellNumberEntry *)getCellForTableView:(UITableView *)tableView viewController:(UIViewController *)viewController maxValue:(NSInteger)maxValue;
++ (LETableViewCellNumberEntry *)getCellForTableView:(UITableView *)tableView viewController:(UIViewController *)viewController maxValue:(NSDecimalNumber *)maxValue;
 + (CGFloat)getHeightForTableView:(UITableView *)tableView;
 
 

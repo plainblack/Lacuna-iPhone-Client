@@ -13,13 +13,13 @@
 @interface Shipyard : Building {
 	NSMutableArray *buildQueue;
 	NSMutableArray *buildableShips;
-	NSInteger docksAvailable;
+	NSDecimalNumber *docksAvailable;
 }
 
 
 @property (nonatomic, retain) NSMutableArray *buildQueue;
 @property (nonatomic, retain) NSMutableArray *buildableShips;
-@property (nonatomic, assign) NSInteger docksAvailable;
+@property (nonatomic, retain) NSDecimalNumber *docksAvailable;
 
 
 - (void)loadBuildQueue;

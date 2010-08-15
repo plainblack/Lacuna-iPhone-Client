@@ -14,8 +14,8 @@
 
 
 @interface Intelligence : Building {
-	NSInteger maxSpies;
-	NSInteger numSpies;
+	NSDecimalNumber *maxSpies;
+	NSDecimalNumber *numSpies;
 	ResourceCost *spyTrainingCost;
 	NSMutableArray *spies;
 	NSArray *possibleAssignments;
@@ -24,8 +24,8 @@
 }
 
 
-@property (nonatomic, assign) NSInteger maxSpies;
-@property (nonatomic, assign) NSInteger numSpies;
+@property (nonatomic, retain) NSDecimalNumber *maxSpies;
+@property (nonatomic, retain) NSDecimalNumber *numSpies;
 @property (nonatomic, retain) ResourceCost *spyTrainingCost;
 @property (nonatomic, retain) NSMutableArray *spies;
 @property (nonatomic, retain) NSArray *possibleAssignments;

@@ -8,6 +8,7 @@
 
 #import "LEBuildingViewPlatforms.h"
 #import "LEMacros.h"
+#import "Util.h"
 #import "Session.h"
 #import "MiningPlatform.h"
 
@@ -35,7 +36,7 @@
 
 - (void)processSuccess {
 	NSDictionary *result = [self.response objectForKey:@"result"];
-	self.maxPlatforms = _intv([result objectForKey:@"max_platforms"]);
+	self.maxPlatforms = [Util asNumber:[result objectForKey:@"max_platforms"]];
 	
 	NSMutableArray *platformsData = [result objectForKey:@"platforms"];
 	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[platformsData count]];
@@ -65,6 +66,7 @@
 	self.buildingId = nil;
 	self.buildingUrl = nil;
 	self.platforms = nil;
+	self.maxPlatforms = nil;
 	[super dealloc];
 }
 

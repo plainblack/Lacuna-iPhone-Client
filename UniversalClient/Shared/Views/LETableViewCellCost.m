@@ -12,7 +12,7 @@
 
 
 @interface LETableViewCellCost (PrivateMethods)
-- (void)setCostLabel:(UILabel *)costLabel cost:(NSInteger)cost;
+- (void)setCostLabel:(UILabel *)costLabel cost:(NSDecimalNumber *)cost;
 @end
 
 
@@ -59,12 +59,12 @@
 
 
 - (void)setEnergyCost:(NSDecimalNumber *)cost {
-	[self setCostLabel:energyCostLabel cost:_intv(cost)];
+	[self setCostLabel:energyCostLabel cost:cost];
 }
 
 
 - (void)setFoodCost:(NSDecimalNumber *)cost {
-	[self setCostLabel:foodCostLabel cost:_intv(cost)];
+	[self setCostLabel:foodCostLabel cost:cost];
 }
 
 
@@ -75,24 +75,24 @@
 
 
 - (void)setOreCost:(NSDecimalNumber *)cost {
-	[self setCostLabel:oreCostLabel cost:_intv(cost)];
+	[self setCostLabel:oreCostLabel cost:cost];
 }
 
 
 - (void)setWasteCost:(NSDecimalNumber *)cost {
-	[self setCostLabel:wasteCostLabel cost:_intv(cost)];
+	[self setCostLabel:wasteCostLabel cost:cost];
 }
 
 
 - (void)setWaterCost:(NSDecimalNumber *)cost {
-	[self setCostLabel:waterCostLabel cost:_intv(cost)];
+	[self setCostLabel:waterCostLabel cost:cost];
 }
 
 
 - (void)setResourceCost:(ResourceCost *)resourceCost {
 	[self setCostLabel:energyCostLabel cost:resourceCost.energy];
 	[self setCostLabel:foodCostLabel cost:resourceCost.food];
-	self.timeCostLabel.text = [Util prettyDuration:resourceCost.time];
+	self.timeCostLabel.text = [Util prettyDuration:_intv(resourceCost.time)];
 	[self setCostLabel:oreCostLabel cost:resourceCost.ore];
 	[self setCostLabel:wasteCostLabel cost:resourceCost.waste];
 	[self setCostLabel:waterCostLabel cost:resourceCost.water];
@@ -103,8 +103,8 @@
 #pragma mark Private Methods
 
 
-- (void)setCostLabel:(UILabel *)costLabel cost:(NSInteger)cost {
-	costLabel.text = [NSString stringWithFormat:@"%@", [Util prettyNSInteger:cost]];
+- (void)setCostLabel:(UILabel *)costLabel cost:(NSDecimalNumber *)cost {
+	costLabel.text = [NSString stringWithFormat:@"%@", [Util prettyNSDecimalNumber:cost]];
 }
 
 

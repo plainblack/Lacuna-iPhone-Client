@@ -75,8 +75,8 @@
 }
 
 
-- (void)setBuildingLevel:(NSInteger)level {
-	self.buildingLevelLabel.text = [NSString stringWithFormat:@"Level %i", level];
+- (void)setBuildingLevel:(NSDecimalNumber *)level {
+	self.buildingLevelLabel.text = [NSString stringWithFormat:@"Level %@", level];
 }
 
 

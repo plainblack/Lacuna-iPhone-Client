@@ -8,6 +8,7 @@
 
 #import "LEBuildingViewShipBuildQueue.h"
 #import "LEMacros.h"
+#import "Util.h"
 #import "Session.h"
 #import "ShipBuildQueueItem.h"
 
@@ -64,6 +65,7 @@
 	self.buildingId = nil;
 	self.buildingUrl = nil;
 	self.shipBuildQueue = nil;
+	self.numberShipBuilding = nil; //KEVIN THIS IS NOT USED?
 	[super dealloc];
 }
 

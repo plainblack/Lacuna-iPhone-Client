@@ -14,14 +14,14 @@
 	NSString *buildingId;
 	NSString *buildingUrl;
 	NSMutableArray *probedStars;
-	NSInteger starCount;
+	NSDecimalNumber *starCount;
 }
 
 
 @property (nonatomic, retain) NSString *buildingId;
 @property (nonatomic, retain) NSString *buildingUrl;
 @property (nonatomic, retain) NSMutableArray *probedStars;
-@property (nonatomic, assign) NSInteger starCount;
+@property (nonatomic, retain) NSDecimalNumber *starCount;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl;

@@ -14,22 +14,22 @@
 
 @interface Body : NSObject {
 	NSString *id;
-	NSInteger x;
-	NSInteger y;
+	NSDecimalNumber *x;
+	NSDecimalNumber *y;
 	NSString *starId;
 	NSString *starName;
-	NSInteger orbit;
+	NSDecimalNumber *orbit;
 	NSString *type;
 	NSString *name;
 	NSString *imageName;
-	NSInteger size;
-	NSInteger planetWater;
+	NSDecimalNumber *size;
+	NSDecimalNumber *planetWater;
 	NSMutableDictionary *ores;
 	NSString *empireId;
 	NSString *empireName;
 	NSString *alignment;
 	BOOL needsSurfaceRefresh;
-	NSInteger buildingCount;
+	NSDecimalNumber *buildingCount;
 	NoLimitResource *happiness;
 	StoredResource *energy;
 	StoredResource *food;
@@ -44,22 +44,22 @@
 
 
 @property (nonatomic, retain) NSString *id;
-@property (nonatomic, assign) NSInteger x;
-@property (nonatomic, assign) NSInteger y;
+@property (nonatomic, retain) NSDecimalNumber *x;
+@property (nonatomic, retain) NSDecimalNumber *y;
 @property (nonatomic, retain) NSString *starId;
 @property (nonatomic, retain) NSString *starName;
-@property (nonatomic, assign) NSInteger orbit;
+@property (nonatomic, retain) NSDecimalNumber *orbit;
 @property (nonatomic, retain) NSString *type;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *imageName;
-@property (nonatomic, assign) NSInteger size;
-@property (nonatomic, assign) NSInteger planetWater;
+@property (nonatomic, retain) NSDecimalNumber *size;
+@property (nonatomic, retain) NSDecimalNumber *planetWater;
 @property (nonatomic, retain) NSMutableDictionary *ores;
 @property (nonatomic, retain) NSString *empireId;
 @property (nonatomic, retain) NSString *empireName;
 @property (nonatomic, retain) NSString *alignment;
 @property (nonatomic, assign) BOOL needsSurfaceRefresh;
-@property (nonatomic, assign) NSInteger buildingCount;
+@property (nonatomic, retain) NSDecimalNumber *buildingCount;
 @property (nonatomic, retain) NoLimitResource *happiness;
 @property (nonatomic, retain) StoredResource *energy;
 @property (nonatomic, retain) StoredResource *food;

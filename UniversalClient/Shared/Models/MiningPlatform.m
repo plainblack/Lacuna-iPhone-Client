@@ -8,6 +8,7 @@
 
 #import "MiningPlatform.h"
 #import "LEMacros.h"
+#import	"Util.h"
 
 
 @interface MiningPlatform (PrivateMethods)
@@ -35,12 +36,13 @@
 	self.asteroidId = nil;
 	self.asteroidName = nil;
 	self.oresPerHour = nil;
+	self.shippingCapacity = nil;
 	[super dealloc];
 }
 
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"id:%@, asteroidId:%@, asteroidName:%@, oresPerHour:%@, shippingCapacity:%i",
+	return [NSString stringWithFormat:@"id:%@, asteroidId:%@, asteroidName:%@, oresPerHour:%@, shippingCapacity:%@",
 			self.id, self.asteroidId, self.asteroidName, self.oresPerHour, self.shippingCapacity];
 }
 
@@ -83,7 +85,7 @@
 	[self add:[data objectForKey:@"beryl_hour"] toDictionary:self.oresPerHour withKey:@"beryl"];
 	[self add:[data objectForKey:@"magnetite_hour"] toDictionary:self.oresPerHour withKey:@"magnetite"];
 
-	self.shippingCapacity = _intv([data objectForKey:@"shipping_capacity"]);
+	self.shippingCapacity = [Util asNumber:[data objectForKey:@"shipping_capacity"]];
 }
 
 

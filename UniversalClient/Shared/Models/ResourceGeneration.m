@@ -26,7 +26,7 @@
 #pragma mark NSObject Methods
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"{ energy:%i, food:%i, happiness:%i, ore:%i, waste:%i, water: %i }",
+	return [NSString stringWithFormat:@"{ energy:%@, food:%@, happiness:%@, ore:%@, waste:%@, water:%@ }",
 			self.energy, self.food, self.happiness, self.ore, self.waste, self.water];
 }
 

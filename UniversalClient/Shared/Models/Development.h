@@ -11,12 +11,12 @@
 
 
 @interface Development : Building {
-	NSInteger costToSubsidize;
+	NSDecimalNumber *costToSubsidize;
 	NSMutableArray *buildQueue;
 }
 
 
-@property (nonatomic, assign) NSInteger costToSubsidize;
+@property (nonatomic, retain) NSDecimalNumber *costToSubsidize;
 @property (nonatomic, retain) NSMutableArray *buildQueue;
 
 

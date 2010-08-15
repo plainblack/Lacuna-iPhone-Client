@@ -12,16 +12,16 @@
 
 @interface WasteRecycling : Building {
 	BOOL canRecycle;
-	NSInteger secondsPerResource;
-	NSInteger maxResources;
-	NSInteger secondsRemaining;
+	NSDecimalNumber *secondsPerResource;
+	NSDecimalNumber *maxResources;
+	NSDecimalNumber *secondsRemaining;
 }
 
 
 @property (nonatomic, assign) BOOL canRecycle;
-@property (nonatomic, assign) NSInteger secondsPerResource;
-@property (nonatomic, assign) NSInteger maxResources;
-@property (nonatomic, assign) NSInteger secondsRemaining;
+@property (nonatomic, retain) NSDecimalNumber *secondsPerResource;
+@property (nonatomic, retain) NSDecimalNumber *maxResources;
+@property (nonatomic, retain) NSDecimalNumber *secondsRemaining;
 
 
 @end

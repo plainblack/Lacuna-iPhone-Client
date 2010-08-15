@@ -48,6 +48,7 @@
 - (void)dealloc {
 	self.buildingId = nil;
 	self.buildingUrl = nil;
+	self.subsidyCost = nil; //KEVIN THIS IS NOT USED?
 	[super dealloc];
 }
 

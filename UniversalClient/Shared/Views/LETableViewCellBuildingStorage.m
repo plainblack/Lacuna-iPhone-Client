@@ -13,7 +13,7 @@
 
 
 @interface LETableViewCellBuildingStorage (PrivateMethods)
-- (void)setStorageLabel:(UILabel *)storageLabel storage:(NSInteger)storage;
+- (void)setStorageLabel:(UILabel *)storageLabel storage:(NSDecimalNumber *)storage;
 @end
 
 
@@ -70,8 +70,8 @@
 #pragma mark Private Methods
 
 
-- (void)setStorageLabel:(UILabel *)storageLabel storage:(NSInteger)storage {
-	storageLabel.text = [Util prettyNSInteger:storage];
+- (void)setStorageLabel:(UILabel *)storageLabel storage:(NSDecimalNumber *)storage {
+	storageLabel.text = [Util prettyNSDecimalNumber:storage];
 }
 
 

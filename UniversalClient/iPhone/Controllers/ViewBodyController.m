@@ -249,7 +249,7 @@ typedef enum {
 					bodyCell.planetImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"/assets/star_system/%@.png", session.body.imageName]];
 					bodyCell.planetLabel.text = session.body.name;
 					bodyCell.systemLabel.text = session.body.starName;
-					bodyCell.orbitLabel.text = [NSString stringWithFormat:@"%i", session.body.orbit];
+					bodyCell.orbitLabel.text = [NSString stringWithFormat:@"%@", session.body.orbit];
 					bodyCell.empireLabel.text = session.body.empireName;
 					cell = bodyCell;
 					break;
@@ -285,7 +285,7 @@ typedef enum {
 					; //DO NOT REMOVE
 					LETableViewCellLabeledText *sizeCell = [LETableViewCellLabeledText getCellForTableView:tableView];
 					sizeCell.label.text = @"Size";
-					sizeCell.content.text = [NSString stringWithFormat:@"%i", session.body.size];
+					sizeCell.content.text = [NSString stringWithFormat:@"%@", session.body.size];
 					cell = sizeCell;
 					break;
 				case COMPOSITION_ROW_ORE:
@@ -298,7 +298,7 @@ typedef enum {
 					; //DO NOT REMOVE
 					LETableViewCellLabeledText *waterCell = [LETableViewCellLabeledText getCellForTableView:tableView];
 					waterCell.label.text = @"Water";
-					waterCell.content.text = [NSString stringWithFormat:@"%i", session.body.planetWater];
+					waterCell.content.text = [NSString stringWithFormat:@"%@", session.body.planetWater];
 					cell = waterCell;
 					break;
 				default:

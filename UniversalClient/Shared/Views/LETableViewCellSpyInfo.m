@@ -72,20 +72,6 @@
 	self.intelExpContent.text = [NSString stringWithFormat:@"%i", spy.intelExp];
 	self.offenseRatingContent.text = [NSString stringWithFormat:@"%i", spy.offenseRating];
 	self.defenseRatingContent.text = [NSString stringWithFormat:@"%i", spy.defenseRating];
-
-	/*
-	NSLog(@"Spy Data: %@", spyData);
-	self.nameContent.text = [spyData objectForKey:@"name"];
-	self.locationContent.text = [[spyData objectForKey:@"assigned_to"] objectForKey:@"name"];
-	self.assignmentContent.text = [spyData objectForKey:@"assignment"];
-	self.levelContent.text = [NSString stringWithFormat:@"%@", [spyData objectForKey:@"level"]];
-	self.politicsExpContent.text = [NSString stringWithFormat:@"%@", [spyData objectForKey:@"politics"]];
-	self.mayhemExpContent.text = [NSString stringWithFormat:@"%@", [spyData objectForKey:@"mayhem"]];
-	self.theftExpContent.text = [NSString stringWithFormat:@"%@", [spyData objectForKey:@"theft"]];
-	self.intelExpContent.text = [NSString stringWithFormat:@"%@", [spyData objectForKey:@"intel"]];
-	self.offenseRatingContent.text = [NSString stringWithFormat:@"%@", [spyData objectForKey:@"offense_rating"]];
-	self.defenseRatingContent.text = [NSString stringWithFormat:@"%@", [spyData objectForKey:@"defense_rating"]];
-	*/
 }
 
 

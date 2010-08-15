@@ -8,6 +8,7 @@
 
 #import "ResourceCost.h"
 #import "LEMacros.h"
+#import "Util.h"
 
 
 @implementation ResourceCost
@@ -25,8 +26,18 @@
 #pragma mark NSObject Methods
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"{ energy:%i, food:%i, ore:%i, time:%i, waste:%i, water: %i }",
+	return [NSString stringWithFormat:@"{ energy:%@, food:%@, ore:%@, time:%@, waste:%@, water:%@ }",
 			self.energy, self.food, self.ore, self.time, self.waste, self.water];
+}
+
+- (void)dealloc {
+	self.energy = nil;
+	self.food = nil;
+	self.ore = nil;
+	self.time = nil;
+	self.waste = nil;
+	self.water = nil;
+	[super dealloc];
 }
 
 
@@ -35,17 +46,17 @@
 
 - (void) parseData:(NSDictionary *)data {
 	if (data && (id)data != [NSNull null]) {
-		self.energy = _intv([data objectForKey:@"energy"]);
-		self.food = _intv([data objectForKey:@"food"]);
-		self.ore = _intv([data objectForKey:@"ore"]);
+		self.energy = [Util asNumber:[data objectForKey:@"energy"]];
+		self.food = [Util asNumber:[data objectForKey:@"food"]];
+		self.ore = [Util asNumber:[data objectForKey:@"ore"]];
 		if ([data objectForKey:@"time"]) {
-			self.time = _intv([data objectForKey:@"time"]);
+			self.time = [Util asNumber:[data objectForKey:@"time"]];
 		} else {
-			self.time = _intv([data objectForKey:@"seconds"]);
+			self.time = [Util asNumber:[data objectForKey:@"seconds"]];
 		}
 
-		self.waste = _intv([data objectForKey:@"waste"]);
-		self.water = _intv([data objectForKey:@"water"]);
+		self.waste = [Util asNumber:[data objectForKey:@"waste"]];
+		self.water = [Util asNumber:[data objectForKey:@"water"]];
 	}
 }
 

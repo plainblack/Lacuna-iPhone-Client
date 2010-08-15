@@ -26,6 +26,7 @@
 #pragma mark Object Methods
 
 - (void)dealloc {
+	self.costToSubsidize = nil;
 	self.buildQueue = nil;
 	[super dealloc];
 }
@@ -56,7 +57,7 @@
 
 
 - (void)parseAdditionalData:(NSDictionary *)data {
-	self.costToSubsidize = _intv([data objectForKey:@"subsidy_cost"]); 
+	self.costToSubsidize = [Util asNumber:[data objectForKey:@"subsidy_cost"]];
 	self.buildQueue = [data objectForKey:@"build_queue"];
 }
 
@@ -98,7 +99,7 @@
 		case BUILDING_ROW_SUBSIDIZE_BUILD_QUEUE:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellButton *subsidizeBuildQueueButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-			subsidizeBuildQueueButtonCell.textLabel.text = [NSString stringWithFormat:@"Subsidize (%i essentia)", self.costToSubsidize];
+			subsidizeBuildQueueButtonCell.textLabel.text = [NSString stringWithFormat:@"Subsidize (%@ essentia)", self.costToSubsidize];
 			cell = subsidizeBuildQueueButtonCell;
 			break;
 		case BUILDING_ROW_BUILD_QUEUE_ITEM:

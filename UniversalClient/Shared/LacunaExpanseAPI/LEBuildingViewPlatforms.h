@@ -14,14 +14,14 @@
 	NSString *buildingId;
 	NSString *buildingUrl;
 	NSMutableArray *platforms;
-	NSInteger maxPlatforms;
+	NSDecimalNumber *maxPlatforms;
 }
 
 
 @property (nonatomic, retain) NSString *buildingId;
 @property (nonatomic, retain) NSString *buildingUrl;
 @property (nonatomic, retain) NSMutableArray *platforms;
-@property (nonatomic, assign) NSInteger maxPlatforms;
+@property (nonatomic, retain) NSDecimalNumber *maxPlatforms;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl;

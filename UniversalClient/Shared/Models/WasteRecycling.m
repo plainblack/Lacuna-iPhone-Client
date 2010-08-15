@@ -26,6 +26,16 @@
 
 
 #pragma mark --
+#pragma mark NSObject Methods
+
+- (void)dealloc {
+	self.secondsPerResource = nil;
+	self.maxResources = nil;
+	self.secondsRemaining = nil;
+	[super dealloc];
+}
+
+#pragma mark --
 #pragma mark Overriden Building Methods
 
 - (void)tick:(NSInteger)interval {
@@ -45,9 +55,9 @@
 - (void)parseAdditionalData:(NSDictionary *)data {
 	NSDictionary *recycleData = [data objectForKey:@"recycle"];
 	self.canRecycle = [[recycleData objectForKey:@"can"] boolValue];
-	self.secondsPerResource = _intv([recycleData objectForKey:@"seconds_per_resource"]);
-	self.maxResources = _intv([recycleData objectForKey:@"max_recycle"]);
-	self.secondsRemaining = _intv([recycleData objectForKey:@"seconds_remaining"]);
+	self.secondsPerResource = [Util asNumber:[recycleData objectForKey:@"seconds_per_resource"]];
+	self.maxResources = [Util asNumber:[recycleData objectForKey:@"max_recycle"]];
+	self.secondsRemaining = [Util asNumber:[recycleData objectForKey:@"seconds_remaining"]];
 }
 
 
@@ -92,7 +102,7 @@
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellLabeledText *maxRecycleCell = [LETableViewCellLabeledText getCellForTableView:tableView];
 			maxRecycleCell.label.text = @"Max Recycle";
-			maxRecycleCell.content.text = [Util prettyNSInteger:self.maxResources];
+			maxRecycleCell.content.text = [Util prettyNSDecimalNumber:self.maxResources];
 			cell = maxRecycleCell;
 			break;
 		case BUILDING_ROW_RECYCLE:
@@ -105,7 +115,7 @@
 			 ; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			 LETableViewCellLabeledText *recyclingCell = [LETableViewCellLabeledText getCellForTableView:tableView];
 			 recyclingCell.label.text = @"Recycling";
-			 recyclingCell.content.text = [Util prettyDuration:self.secondsRemaining];
+			 recyclingCell.content.text = [Util prettyDuration:_intv(self.secondsRemaining)];
 			 cell = recyclingCell;
 			 break;
 		case BUILDING_ROW_SUBSIDIZE:
@@ -129,7 +139,7 @@
 			; //DO NOT REMOVE
 			RecycleController *recycleController = [RecycleController create];
 			recycleController.wasteRecycling = self;
-			recycleController.secondsPerResource = self.secondsPerResource;
+			recycleController.secondsPerResource = _intv(self.secondsPerResource);
 			return recycleController;
 			break;
 		case BUILDING_ROW_SUBSIDIZE:

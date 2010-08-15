@@ -9,6 +9,7 @@
 #import "Building.h"
 #import "BuildingUtil.h"
 #import "LEMacros.h"
+#import "Util.h"
 #import "Session.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellLabeledText.h"
@@ -63,6 +64,9 @@
 	self.buildingUrl = nil;
 	self.name = nil;
 	self.imageName = nil;
+	self.level = nil;
+	self.x = nil;
+	self.y = nil;
 	self.resourcesPerHour = nil;
 	self.resourceCapacity = nil;
 	self.pendingBuild = nil;
@@ -73,6 +77,7 @@
 	self.upgradedResourceStorage = nil;
 	self.upgradedImageName = nil;
 	self.repairCost = nil;
+	self.efficiency = nil;
 	self.sections = nil;
 	[super dealloc];
 }
@@ -87,9 +92,9 @@
 	self.id = [buildingData objectForKey:@"id"];
 	self.name = [buildingData objectForKey:@"name"];
 	self.imageName = [buildingData objectForKey:@"image"];
-	self.level = _intv([buildingData objectForKey:@"level"]);
-	self.x = _intv([buildingData objectForKey:@"x"]);
-	self.y = _intv([buildingData objectForKey:@"y"]);
+	self.level = [Util asNumber:[buildingData objectForKey:@"level"]];
+	self.x = [Util asNumber:[buildingData objectForKey:@"x"]];
+	self.y = [Util asNumber:[buildingData objectForKey:@"y"]];
 
 	if (!self.resourcesPerHour) {
 		self.resourcesPerHour = [[[ResourceGeneration alloc] init] autorelease];
@@ -139,7 +144,7 @@
 		self.upgradedImageName = [upgradeData objectForKey:@"image"];
 	}
 	
-	self.efficiency = _intv([buildingData objectForKey:@"efficiency"]);
+	self.efficiency = [Util asNumber:[buildingData objectForKey:@"efficiency"]];
 	if (!self.repairCost) {
 		self.repairCost = [[[ResourceCost alloc] init] autorelease];
 	}
@@ -171,7 +176,7 @@
 
 
 - (NSMutableDictionary *)generateHealthSection {
-	if (self.efficiency < 100) {
+	if (_intv(self.efficiency) < 100) {
 		return _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_HEALTH], @"type", @"Health", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_EFFICENCY], [NSDecimalNumber numberWithInt:BUILDING_ROW_REPAIR_COST], [NSDecimalNumber numberWithInt:BUILDING_ROW_REPAIR_BUTTON]), @"rows");
 	} else {
 		return _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_HEALTH], @"type", @"Health", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_EFFICENCY]), @"rows");
@@ -299,7 +304,7 @@
 			LETableViewCellBuildingStats *upgradeStatsCell = [LETableViewCellBuildingStats getCellForTableView:tableView];
 			[upgradeStatsCell setBuildingImage:[UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/100/%@.png", self.upgradedImageName]]];
 			[upgradeStatsCell setBuildingBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"assets/planet_side/%@.jpg", session.body.surfaceImageName]]];
-			[upgradeStatsCell setBuildingLevel:self.level+1];
+			[upgradeStatsCell setBuildingLevel:[self.level decimalNumberByAdding:[NSDecimalNumber one]]];
 			[upgradeStatsCell setResourceGeneration:self.upgradedResourcePerHour];
 			cell = upgradeStatsCell;
 			break;
@@ -365,7 +370,7 @@
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellLabeledText *efficencyCell = [LETableViewCellLabeledText getCellForTableView:tableView];
 			efficencyCell.label.text = @"Efficency";
-			efficencyCell.content.text = [NSString stringWithFormat:@"%i%%", self.efficiency];
+			efficencyCell.content.text = [NSString stringWithFormat:@"%@%%", self.efficiency];
 			cell = efficencyCell;
 			break;
 		case BUILDING_ROW_REPAIR_COST:

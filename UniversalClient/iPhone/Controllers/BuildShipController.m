@@ -245,7 +245,7 @@ typedef enum {
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ([keyPath isEqual:@"buildableShips"]) {
-		self.navigationItem.title = [NSString stringWithFormat:@"%i Docks Available", self.shipyard.docksAvailable];
+		self.navigationItem.title = [NSString stringWithFormat:@"%@ Docks Available", self.shipyard.docksAvailable];
 		[self.tableView reloadData];
 	}
 }

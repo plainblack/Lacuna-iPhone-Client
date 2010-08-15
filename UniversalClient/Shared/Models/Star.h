@@ -13,18 +13,18 @@
 	NSString *id;
 	NSString *color;
 	NSString *name;
-	NSInteger x;
-	NSInteger y;
-	NSInteger z;
+	NSDecimalNumber *x;
+	NSDecimalNumber *y;
+	NSDecimalNumber *z;
 }
 
 
 @property (nonatomic, retain) NSString *id;
 @property (nonatomic, retain) NSString *color;
 @property (nonatomic, retain) NSString *name;
-@property (nonatomic, assign) NSInteger x;
-@property (nonatomic, assign) NSInteger y;
-@property (nonatomic, assign) NSInteger z;
+@property (nonatomic, retain) NSDecimalNumber *x;
+@property (nonatomic, retain) NSDecimalNumber *y;
+@property (nonatomic, retain) NSDecimalNumber *z;
 
 
 - (void)parseData:(NSDictionary *)data;

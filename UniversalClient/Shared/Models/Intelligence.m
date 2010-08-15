@@ -37,6 +37,8 @@
 #pragma mark Object Methods
 
 - (void)dealloc {
+	self.maxSpies = nil;
+	self.numSpies = nil;
 	self.spyTrainingCost = nil;
 	self.spies = nil;
 	self.possibleAssignments = nil;
@@ -68,8 +70,8 @@
 
 - (void)parseAdditionalData:(NSDictionary *)data {
 	NSDictionary *spyData = [data objectForKey:@"spies"];
-	self.maxSpies = _intv([spyData objectForKey:@"maximum"]);
-	self.numSpies = _intv([spyData objectForKey:@"current"]);
+	self.maxSpies = [Util asNumber:[spyData objectForKey:@"maximum"]];
+	self.numSpies = [Util asNumber:[spyData objectForKey:@"current"]];
 	if (!self.spyTrainingCost) {
 		self.spyTrainingCost = [[[ResourceCost alloc] init] autorelease];
 	}
@@ -83,7 +85,7 @@
 	[spyRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_SPY_BUILD_COST]];
 	[spyRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_SPIES_BUTTON]];
 	
-	if (self.numSpies < self.maxSpies) {
+	if ([self.numSpies compare:self.maxSpies] == NSOrderedAscending) {
 		[spyRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_BUILD_SPY_BUTTON]];
 	}
 
@@ -117,7 +119,7 @@
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellLabeledText *numSpiesCell = [LETableViewCellLabeledText getCellForTableView:tableView];
 			numSpiesCell.label.text = @"Spies";
-			numSpiesCell.content.text = [NSString stringWithFormat:@"%i/%i", self.numSpies, self.maxSpies];
+			numSpiesCell.content.text = [NSString stringWithFormat:@"%@/%@", self.numSpies, self.maxSpies];
 			cell = numSpiesCell;
 			break;
 		case BUILDING_ROW_SPY_BUILD_COST:
@@ -197,7 +199,7 @@
 
 
 - (bool)hasNextSpyPage {
-	return (self.spyPageNumber < [Util numPagesForCount:self.numSpies]);
+	return (self.spyPageNumber < [Util numPagesForCount:_intv(self.numSpies)]);
 }
 
 
@@ -205,7 +207,7 @@
 #pragma mark Callback Methods
 
 - (id)spyTrained:(LEBuildingTrainSpy *)request {
-	self.numSpies += _intv(request.trained);
+	self.numSpies = [self.numSpies decimalNumberByAdding:request.trained];
 	if (_intv(request.notTrained) > 0) {
 		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Your spy could not be trained. You probably don't have enough resources to train one." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 		[av show];

@@ -31,7 +31,7 @@
 #pragma mark NSObject Methods
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"id:%@, isIsolationist:%i, name:%@, statusMessage:%@, homePlanetId:%@, essentia:%i, numNewMessages:%i, planets:%@", 
+	return [NSString stringWithFormat:@"id:%@, isIsolationist:%i, name:%@, statusMessage:%@, homePlanetId:%@, essentia:%@, numNewMessages:%@, planets:%@", 
 			self.id, self.isIsolationist, self.name, self.statusMessage, self.homePlanetId, self.essentia, self.numNewMessages, self.planets];
 }
 
@@ -42,6 +42,8 @@
 	self.statusMessage = nil;
 	self.homePlanetId = nil;
 	self.lastMessageAt = nil;
+	self.numNewMessages = nil;
+	self.essentia = nil;
 	self.planets = nil;
 	self.profile = nil;
 	[super dealloc];
@@ -62,8 +64,8 @@
 	self.name = [empireData objectForKey:@"name"];
 	self.statusMessage = [empireData objectForKey:@"status_message"];
 	self.homePlanetId = [empireData objectForKey:@"home_planet_id"];
-	self.essentia = _intv([empireData objectForKey:@"essentia"]);
-	self.numNewMessages = _intv([empireData objectForKey:@"has_new_messages"]);
+	self.essentia = [Util asNumber:[empireData objectForKey:@"essentia"]];
+	self.numNewMessages = [Util asNumber:[empireData objectForKey:@"has_new_messages"]];
 	self.planets = [empireData objectForKey:@"planets"];
 	
 	NSDictionary *newestMessage = [empireData objectForKey:@"most_recent_message"];

@@ -20,8 +20,8 @@
 	NSString *statusMessage;
 	NSString *homePlanetId;
 	NSDate *lastMessageAt;
-	NSInteger numNewMessages;
-	NSInteger essentia;
+	NSDecimalNumber *numNewMessages;
+	NSDecimalNumber *essentia;
 	NSDictionary *planets;
 	EmpireProfile *profile;
 }
@@ -32,9 +32,9 @@
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *statusMessage;
 @property (nonatomic, retain) NSString *homePlanetId;
-@property(nonatomic, retain) NSDate *lastMessageAt;
-@property (nonatomic, assign) NSInteger numNewMessages;
-@property (nonatomic, assign) NSInteger essentia;
+@property (nonatomic, retain) NSDate *lastMessageAt;
+@property (nonatomic, retain) NSDecimalNumber *numNewMessages;
+@property (nonatomic, retain) NSDecimalNumber *essentia;
 @property (nonatomic, retain) NSDictionary *planets;
 @property (nonatomic, retain) EmpireProfile *profile;
 

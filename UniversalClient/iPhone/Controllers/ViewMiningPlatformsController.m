@@ -140,7 +140,7 @@ typedef enum {
 					; //DO NOT REMOVE
 					LETableViewCellLabeledText *shippingCapacityCell = [LETableViewCellLabeledText getCellForTableView:tableView];
 					shippingCapacityCell.label.text = @"Shipping";
-					shippingCapacityCell.content.text = [NSString stringWithFormat:@"%i%%", miningPlatform.shippingCapacity];
+					shippingCapacityCell.content.text = [NSString stringWithFormat:@"%@%%", miningPlatform.shippingCapacity];
 					cell = shippingCapacityCell;
 					break;
 				case ROW_ORE_PER_HOUR:

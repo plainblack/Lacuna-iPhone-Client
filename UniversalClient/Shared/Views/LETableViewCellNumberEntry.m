@@ -19,6 +19,7 @@
 @synthesize numberButton;
 @synthesize viewController;
 @synthesize numericValue;
+@synthesize maxValue;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -42,6 +43,7 @@
 	self.numberButton = nil;
 	self.viewController = nil;
 	self.numericValue = nil;
+	self.maxValue = nil;
     [super dealloc];
 }
 
@@ -50,8 +52,8 @@
 #pragma mark PickNumericValueController Methods
 
 - (void)newNumericValue:(NSDecimalNumber *)value {
-	if (self->maxValue < _intv(value)) {
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Amount Invalid" message:[NSString stringWithFormat:@"You entered %@ which is above the maximum amount of %i.", value, self->maxValue] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+	if ([self.maxValue compare:value] == NSOrderedAscending) {
+		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Amount Invalid" message:[NSString stringWithFormat:@"You entered %@ which is above the maximum amount of %@.", value, self.maxValue] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 		[av show];
 	} else {
 		[self setNumericValue:value];
@@ -64,7 +66,7 @@
 #pragma mark Instance Methods
 
 - (IBAction)editNumericValue {
-	PickNumericValueController *pickNumericValueController = [PickNumericValueController createWithDelegate:self maxValue:self->maxValue];
+	PickNumericValueController *pickNumericValueController = [PickNumericValueController createWithDelegate:self maxValue:_intv(self.maxValue)];
 	[self.viewController presentModalViewController:pickNumericValueController animated:YES];
 	[pickNumericValueController setValue:self.numericValue];
 	pickNumericValueController.titleLabel.text = self.label.text;
@@ -82,13 +84,13 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (LETableViewCellNumberEntry *)getCellForTableView:(UITableView *)tableView viewController:(UIViewController *)viewController maxValue:(NSInteger)inMaxValue {
++ (LETableViewCellNumberEntry *)getCellForTableView:(UITableView *)tableView viewController:(UIViewController *)viewController maxValue:(NSDecimalNumber *)inMaxValue {
     static NSString *CellIdentifier = @"NumberEntryCell";
 	
 	LETableViewCellNumberEntry *cell = (LETableViewCellNumberEntry *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
 		cell = [[LETableViewCellNumberEntry alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-		cell->maxValue = inMaxValue;
+		cell.maxValue = inMaxValue;
 		cell.backgroundColor = CELL_BACKGROUND_COLOR;
 		cell.autoresizesSubviews = YES;
 		

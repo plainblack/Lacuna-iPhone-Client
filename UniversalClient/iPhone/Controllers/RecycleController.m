@@ -52,9 +52,9 @@ typedef enum {
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Recycle"]);
 	
 	Session *session = [Session sharedInstance];
-	NSInteger maxValue = self.wasteRecycling.maxResources;
-	if (_intv(session.body.waste.current) < maxValue) {
-		maxValue = _intv(session.body.waste.current);
+	NSDecimalNumber *maxValue = self.wasteRecycling.maxResources;
+	if ([session.body.waste.current compare:maxValue] == NSOrderedAscending) {
+		maxValue = session.body.waste.current;
 	}
 	
 	self.energyCell = [LETableViewCellNumberEntry getCellForTableView:self.tableView viewController:self maxValue:maxValue];
@@ -140,7 +140,7 @@ typedef enum {
 			; //DO NOT REMOVE
 			LETableViewCellLabeledText *maxRecycleCell = [LETableViewCellLabeledText getCellForTableView:tableView];
 			maxRecycleCell.label.text = @"Max Recycle";
-			maxRecycleCell.content.text = [Util prettyNSInteger:self.wasteRecycling.maxResources];
+			maxRecycleCell.content.text = [Util prettyNSDecimalNumber:self.wasteRecycling.maxResources];
 			cell = maxRecycleCell;
 			break;
 		case ROW_CURRENT:
@@ -228,11 +228,11 @@ typedef enum {
 			self.seconds = 0;
 			[self.tableView reloadData];
 		} else {
-			NSInteger totalAmount = 0;
-			totalAmount += _intv(self.energyCell.numericValue);
-			totalAmount += _intv(self.oreCell.numericValue);
-			totalAmount += _intv(self.waterCell.numericValue);
-			self.seconds = totalAmount * secondsPerResource;
+			NSDecimalNumber *totalAmount = [NSDecimalNumber zero];
+			totalAmount = [totalAmount decimalNumberByAdding:self.energyCell.numericValue];
+			totalAmount = [totalAmount decimalNumberByAdding:self.oreCell.numericValue];
+			totalAmount = [totalAmount decimalNumberByAdding:self.waterCell.numericValue];
+			self.seconds = _intv(totalAmount) * secondsPerResource;
 			[self.tableView reloadData];
 		}
 	} else if ( [keyPath isEqual:@"isSelected"] ) {
@@ -240,11 +240,11 @@ typedef enum {
 			self.seconds = 0;
 			[self.tableView reloadData];
 		} else {
-			NSInteger totalAmount = 0;
-			totalAmount += _intv(self.energyCell.numericValue);
-			totalAmount += _intv(self.oreCell.numericValue);
-			totalAmount += _intv(self.waterCell.numericValue);
-			self.seconds = totalAmount * secondsPerResource;
+			NSDecimalNumber *totalAmount = [NSDecimalNumber zero];
+			totalAmount = [totalAmount decimalNumberByAdding:self.energyCell.numericValue];
+			totalAmount = [totalAmount decimalNumberByAdding:self.oreCell.numericValue];
+			totalAmount = [totalAmount decimalNumberByAdding:self.waterCell.numericValue];
+			self.seconds = _intv(totalAmount) * secondsPerResource;
 			[self.tableView reloadData];
 		}
 	}

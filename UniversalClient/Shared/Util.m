@@ -70,14 +70,21 @@ static NSDecimalNumber *ONE_HUNDRED_BILLION;
 
 + (NSDecimalNumber *)asNumber:(id)obj {
 	NSDecimalNumber *result;
-	if ([obj isKindOfClass:[NSDecimalNumber class]]) {
-		result = obj;
-	}else if ([obj isKindOfClass:[NSString class]]) {
-		result = [NSDecimalNumber decimalNumberWithString:obj];
+	
+	if (obj) {
+		if ([obj isKindOfClass:[NSDecimalNumber class]]) {
+			result = obj;
+		}else if ([obj isKindOfClass:[NSString class]]) {
+			result = [NSDecimalNumber decimalNumberWithString:obj];
+		} else {
+			NSLog(@"OMG WTF DO WE DO WITH THIS!");
+			NSLog(@"Value: %@(%@)", obj, [obj class]);
+			result = nil;
+		}
 	} else {
-		NSLog(@"OMG WTF DO WE DO WITH THIS!");
 		result = nil;
 	}
+
 	return result;
 }
 

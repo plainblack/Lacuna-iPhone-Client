@@ -19,9 +19,9 @@
 	NSString *buildingUrl;
 	NSString *name;
 	NSString *imageName;
-	NSInteger level;
-	NSInteger x;
-	NSInteger y;
+	NSDecimalNumber *level;
+	NSDecimalNumber *x;
+	NSDecimalNumber *y;
 	ResourceGeneration *resourcesPerHour;
 	ResourceStorage *resourceCapacity;
 	TimedActivity *pendingBuild;
@@ -32,10 +32,10 @@
 	ResourceGeneration *upgradedResourcePerHour;
 	ResourceStorage *upgradedResourceStorage;
 	NSString *upgradedImageName;
-	NSInteger efficiency;
+	NSDecimalNumber *efficiency;
 	ResourceCost *repairCost;
 	NSMutableArray *sections;
-	NSInteger subsidyBuildQueueCost;
+	//NSDecimalNumber *subsidyBuildQueueCost;
 	BOOL demolished;
 	BOOL needsReload;
 	BOOL needsRefresh;
@@ -46,9 +46,9 @@
 @property (nonatomic, retain) NSString *buildingUrl;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *imageName;
-@property (nonatomic, assign) NSInteger level;
-@property (nonatomic, assign) NSInteger x;
-@property (nonatomic, assign) NSInteger y;
+@property (nonatomic, retain) NSDecimalNumber *level;
+@property (nonatomic, retain) NSDecimalNumber *x;
+@property (nonatomic, retain) NSDecimalNumber *y;
 @property (nonatomic, retain) ResourceGeneration *resourcesPerHour;
 @property (nonatomic, retain) ResourceStorage *resourceCapacity;
 @property (nonatomic, retain) TimedActivity *pendingBuild;
@@ -59,7 +59,7 @@
 @property (nonatomic, retain) ResourceGeneration *upgradedResourcePerHour;
 @property (nonatomic, retain) ResourceStorage *upgradedResourceStorage;
 @property (nonatomic, retain) NSString *upgradedImageName;
-@property (nonatomic, assign) NSInteger efficiency;
+@property (nonatomic, retain) NSDecimalNumber *efficiency;
 @property (nonatomic, retain) ResourceCost *repairCost;
 @property (nonatomic, retain) NSMutableArray *sections;
 @property (nonatomic, assign) BOOL demolished;

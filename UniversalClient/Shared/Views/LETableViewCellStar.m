@@ -49,7 +49,7 @@
 
 - (void)setStar:(Star *)star {
 	self.nameLabel.text = star.name;
-	self.locationLabel.text = [NSString stringWithFormat:@"%i, %i, %i", star.x, star.y, star.z];
+	self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", star.x, star.y];
 	NSString *starImageName = [NSString stringWithFormat:@"assets/star_map/%@.png", star.color];
 	self.starImageView.image = [UIImage imageNamed:starImageName];
 }

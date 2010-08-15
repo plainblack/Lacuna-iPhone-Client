@@ -42,7 +42,7 @@
 - (void)setWaterPerHour:(NSDecimalNumber *)perHour;
 - (void)setBuildingImage:(UIImage *)buildingImage;
 - (void)setBuildingBackgroundImage:(UIImage *)buildingImage;
-- (void)setBuildingLevel:(NSInteger)level;
+- (void)setBuildingLevel:(NSDecimalNumber *)level;
 - (void)setResourceGeneration:(ResourceGeneration *)resourceGeneration;
 
 + (LETableViewCellBuildingStats *)getCellForTableView:(UITableView *)tableView;
