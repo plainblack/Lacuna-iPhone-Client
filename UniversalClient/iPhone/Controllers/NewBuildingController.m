@@ -115,24 +115,24 @@ typedef enum {
 			[buildingStatsCell setBuildingImage:[UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/100/%@.png", [building objectForKey:@"image"]]]];
 			[buildingStatsCell setBuildingBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"assets/planet_side/%@.jpg", session.body.surfaceImageName]]];
 			[buildingStatsCell setBuildingLevel:[NSDecimalNumber one]];
-			[buildingStatsCell setEnergyPerHour:[stats objectForKey:@"energy_hour"]];
-			[buildingStatsCell setFoodPerHour:[stats objectForKey:@"food_hour"]];
-			[buildingStatsCell setHappinessPerHour: [stats objectForKey:@"happiness_hour"]];
-			[buildingStatsCell setOrePerHour: [stats objectForKey:@"ore_hour"]];
-			[buildingStatsCell setWastePerHour:[stats objectForKey:@"waste_hour"]];
-			[buildingStatsCell setWaterPerHour:[stats objectForKey:@"water_hour"]];
+			[buildingStatsCell setEnergyPerHour:[Util asNumber:[stats objectForKey:@"energy_hour"]]];
+			[buildingStatsCell setFoodPerHour:[Util asNumber:[stats objectForKey:@"food_hour"]]];
+			[buildingStatsCell setHappinessPerHour:[Util asNumber:[stats objectForKey:@"happiness_hour"]]];
+			[buildingStatsCell setOrePerHour:[Util asNumber:[stats objectForKey:@"ore_hour"]]];
+			[buildingStatsCell setWastePerHour:[Util asNumber:[stats objectForKey:@"waste_hour"]]];
+			[buildingStatsCell setWaterPerHour:[Util asNumber:[stats objectForKey:@"water_hour"]]];
 			cell = buildingStatsCell;
 			break;
 		case ROW_COST:
 			; //DO NOT REMOVE
 			NSDictionary *cost = [build objectForKey:@"cost"];
 			LETableViewCellCost *costCell = [LETableViewCellCost getCellForTableView:tableView];
-			[costCell setEnergyCost:[cost objectForKey:@"energy"]];
-			[costCell setFoodCost:[cost objectForKey:@"food"]];
-			[costCell setOreCost:[cost objectForKey:@"ore"]];
-			[costCell setTimeCost:[cost objectForKey:@"time"]];
-			[costCell setWasteCost:[cost objectForKey:@"waste"]];
-			[costCell setWaterCost:[cost objectForKey:@"water"]];
+			[costCell setEnergyCost:[Util asNumber:[cost objectForKey:@"energy"]]];
+			[costCell setFoodCost:[Util asNumber:[cost objectForKey:@"food"]]];
+			[costCell setOreCost:[Util asNumber:[cost objectForKey:@"ore"]]];
+			[costCell setTimeCost:[Util asNumber:[cost objectForKey:@"time"]]];
+			[costCell setWasteCost:[Util asNumber:[cost objectForKey:@"waste"]]];
+			[costCell setWaterCost:[Util asNumber:[cost objectForKey:@"water"]]];
 			cell = costCell;
 			break;
 		case ROW_BUILD:
