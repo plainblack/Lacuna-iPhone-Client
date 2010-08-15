@@ -21,13 +21,14 @@
 	UILabel *titleLabel;
 	UIPickerView *numberPicker;
 	id<PickNumericValueControllerDelegate> delegate;
-	NSInteger maxValue;
+	NSDecimalNumber *maxValue;
 }
 
 
 @property (nonatomic, retain) IBOutlet UILabel *titleLabel;
 @property (nonatomic, retain) IBOutlet UIPickerView *numberPicker;
 @property (nonatomic, assign) id<PickNumericValueControllerDelegate> delegate;
+@property (nonatomic, retain) NSDecimalNumber *maxValue;
 
 
 -(IBAction) save;
@@ -36,7 +37,7 @@
 -(void) setValue:(NSDecimalNumber *)value;
 
 
-+(PickNumericValueController *) createWithDelegate:(id<PickNumericValueControllerDelegate>)delegate maxValue:(NSInteger)maxValue;
++(PickNumericValueController *) createWithDelegate:(id<PickNumericValueControllerDelegate>)delegate maxValue:(NSDecimalNumber *)maxValue;
 
 
 @end

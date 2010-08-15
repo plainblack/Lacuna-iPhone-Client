@@ -56,6 +56,7 @@ typedef enum {
 	if ([session.body.waste.current compare:maxValue] == NSOrderedAscending) {
 		maxValue = session.body.waste.current;
 	}
+	NSLog(@"Max Value is: %@", maxValue);
 	
 	self.energyCell = [LETableViewCellNumberEntry getCellForTableView:self.tableView viewController:self maxValue:maxValue];
 	[self.energyCell newNumericValue:[Util decimalFromInt:0]];

@@ -17,6 +17,7 @@
 @synthesize titleLabel;
 @synthesize numberPicker;
 @synthesize delegate;
+@synthesize maxValue;
 
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -47,6 +48,7 @@
 
 - (void)dealloc {
 	self.delegate = nil;
+	self.maxValue = nil;
     [super dealloc];
 }
 
@@ -94,7 +96,7 @@
 
 
 -(IBAction) max {
-	[self setValue:[Util decimalFromInt:self->maxValue]];
+	[self setValue:self.maxValue];
 }
 
 
@@ -113,10 +115,10 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+(PickNumericValueController *) createWithDelegate:(id<PickNumericValueControllerDelegate>)delegate maxValue:(NSInteger)maxValue {
++(PickNumericValueController *) createWithDelegate:(id<PickNumericValueControllerDelegate>)delegate maxValue:(NSDecimalNumber *)maxValue {
 	PickNumericValueController *pickNumericValueController = [[[PickNumericValueController alloc] initWithNibName:@"PickNumericValueController" bundle:nil] autorelease];
 	pickNumericValueController.delegate = delegate;
-	pickNumericValueController->maxValue = maxValue;
+	pickNumericValueController.maxValue = maxValue;
 	return pickNumericValueController;
 }
 

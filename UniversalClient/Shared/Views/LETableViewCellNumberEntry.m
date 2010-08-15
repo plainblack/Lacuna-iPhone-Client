@@ -66,7 +66,7 @@
 #pragma mark Instance Methods
 
 - (IBAction)editNumericValue {
-	PickNumericValueController *pickNumericValueController = [PickNumericValueController createWithDelegate:self maxValue:_intv(self.maxValue)];
+	PickNumericValueController *pickNumericValueController = [PickNumericValueController createWithDelegate:self maxValue:self.maxValue];
 	[self.viewController presentModalViewController:pickNumericValueController animated:YES];
 	[pickNumericValueController setValue:self.numericValue];
 	pickNumericValueController.titleLabel.text = self.label.text;
