@@ -10,6 +10,9 @@
 #import "Building.h"
 
 
+@class ItemPush;
+
+
 @interface BaseTradeBuilding : Building {
 	NSInteger availableTradePageNumber;
 	NSDecimalNumber *availableTradeCount;
@@ -38,6 +41,7 @@
 - (void)loadMyTradesForPage:(NSInteger)pageNumber;
 - (bool)hasPreviousMyTradePage;
 - (bool)hasNextMyTradePage;
+- (void)pushItems:(ItemPush *)itemPush;
 
 
 @end

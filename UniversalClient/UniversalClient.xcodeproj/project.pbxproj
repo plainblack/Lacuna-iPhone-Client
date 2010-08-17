@@ -90,6 +90,8 @@
 		F692B7C7121861D600E740C1 /* ViewMyTradesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F692B7C6121861D600E740C1 /* ViewMyTradesController.m */; };
 		F692B7CA121861EC00E740C1 /* Trade.m in Sources */ = {isa = PBXBuildFile; fileRef = F692B7C9121861EC00E740C1 /* Trade.m */; };
 		F692B7CD121867B700E740C1 /* BaseTradeBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = F692B7CC121867B700E740C1 /* BaseTradeBuilding.m */; };
+		F692B8531218765F00E740C1 /* LEBuildingPushItems.m in Sources */ = {isa = PBXBuildFile; fileRef = F692B8521218765F00E740C1 /* LEBuildingPushItems.m */; };
+		F692B8561218779D00E740C1 /* ItemPush.m in Sources */ = {isa = PBXBuildFile; fileRef = F692B8551218779D00E740C1 /* ItemPush.m */; };
 		F697BA09119CE035004B2119 /* RecycleController.m in Sources */ = {isa = PBXBuildFile; fileRef = F697BA08119CE035004B2119 /* RecycleController.m */; };
 		F697BA0C119CE6BD004B2119 /* LEBuildingRecycle.m in Sources */ = {isa = PBXBuildFile; fileRef = F697BA0B119CE6BD004B2119 /* LEBuildingRecycle.m */; };
 		F69809A71179FFFB00BD2096 /* ViewBuildingController.m in Sources */ = {isa = PBXBuildFile; fileRef = F69809A61179FFFB00BD2096 /* ViewBuildingController.m */; };
@@ -385,6 +387,10 @@
 		F692B7C9121861EC00E740C1 /* Trade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trade.m; sourceTree = "<group>"; };
 		F692B7CB121867B700E740C1 /* BaseTradeBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTradeBuilding.h; sourceTree = "<group>"; };
 		F692B7CC121867B700E740C1 /* BaseTradeBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTradeBuilding.m; sourceTree = "<group>"; };
+		F692B8511218765F00E740C1 /* LEBuildingPushItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingPushItems.h; sourceTree = "<group>"; };
+		F692B8521218765F00E740C1 /* LEBuildingPushItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingPushItems.m; sourceTree = "<group>"; };
+		F692B8541218779D00E740C1 /* ItemPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemPush.h; sourceTree = "<group>"; };
+		F692B8551218779D00E740C1 /* ItemPush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemPush.m; sourceTree = "<group>"; };
 		F697BA07119CE035004B2119 /* RecycleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecycleController.h; sourceTree = "<group>"; };
 		F697BA08119CE035004B2119 /* RecycleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecycleController.m; sourceTree = "<group>"; };
 		F697BA0A119CE6BD004B2119 /* LEBuildingRecycle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingRecycle.h; sourceTree = "<group>"; };
@@ -1028,6 +1034,8 @@
 				F692B7BD121859E700E740C1 /* LEBuildingViewAvailableTrades.m */,
 				F692B7BF121859F700E740C1 /* LEBuildingViewMyTrades.h */,
 				F692B7C0121859F700E740C1 /* LEBuildingViewMyTrades.m */,
+				F692B8511218765F00E740C1 /* LEBuildingPushItems.h */,
+				F692B8521218765F00E740C1 /* LEBuildingPushItems.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -1112,6 +1120,8 @@
 				F692B7C9121861EC00E740C1 /* Trade.m */,
 				F692B7CB121867B700E740C1 /* BaseTradeBuilding.h */,
 				F692B7CC121867B700E740C1 /* BaseTradeBuilding.m */,
+				F692B8541218779D00E740C1 /* ItemPush.h */,
+				F692B8551218779D00E740C1 /* ItemPush.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -1505,6 +1515,8 @@
 				F692B7C7121861D600E740C1 /* ViewMyTradesController.m in Sources */,
 				F692B7CA121861EC00E740C1 /* Trade.m in Sources */,
 				F692B7CD121867B700E740C1 /* BaseTradeBuilding.m in Sources */,
+				F692B8531218765F00E740C1 /* LEBuildingPushItems.m in Sources */,
+				F692B8561218779D00E740C1 /* ItemPush.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

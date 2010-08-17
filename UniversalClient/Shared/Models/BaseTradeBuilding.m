@@ -9,9 +9,12 @@
 #import "BaseTradeBuilding.h"
 #import "LEMacros.h"
 #import "Util.h"
+#import "Session.h"
 #import "Trade.h"
+#import "ItemPush.h"
 #import "LEBuildingViewAvailableTrades.h";
 #import "LEBuildingViewMyTrades.h";
+#import "LEBuildingPushItems.h"
 #import "LETableViewCellButton.h";
 #import "ViewAvailableTradesController.h"
 #import "ViewMyTradesController.h"
@@ -48,7 +51,17 @@
 #pragma mark Overriden Building Methods
 
 - (void)generateSections {
-	self.sections = _array([self generateProductionSection], _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_AVAILABLE_TRADES], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MY_TRADES]), @"rows"), [self generateHealthSection], [self generateUpgradeSection]);
+	NSMutableArray *rows = _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_AVAILABLE_TRADES], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MY_TRADES], [NSDecimalNumber numberWithInt:BUILDING_ROW_CREATE_TRADE]);
+	
+	Session *session = [Session sharedInstance];
+	if ([session.empire.planets count] > 1) {
+		[rows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_PUSH_ITEMS]];
+	}
+	if ([self.buildingUrl isEqualToString:TRANSPORTER_URL]) {
+		[rows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_1_FOR_1_TRADE]];
+	}
+	
+	self.sections = _array([self generateProductionSection], _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", rows, @"rows"), [self generateHealthSection], [self generateUpgradeSection]);
 }
 
 
@@ -56,6 +69,9 @@
 	switch (buildingRow) {
 		case BUILDING_ROW_VIEW_AVAILABLE_TRADES:
 		case BUILDING_ROW_VIEW_MY_TRADES:
+		case BUILDING_ROW_PUSH_ITEMS:
+		case BUILDING_ROW_CREATE_TRADE:
+		case BUILDING_ROW_1_FOR_1_TRADE:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		default:
@@ -80,6 +96,24 @@
 			myTradesButtonCell.textLabel.text = @"My Trades";
 			cell = myTradesButtonCell;
 			break;
+		case BUILDING_ROW_PUSH_ITEMS:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *pushItemsButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			pushItemsButtonCell.textLabel.text = @"Push Items";
+			cell = pushItemsButtonCell;
+			break;
+		case BUILDING_ROW_CREATE_TRADE:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *createTradeButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			createTradeButtonCell.textLabel.text = @"Create Trade";
+			cell = createTradeButtonCell;
+			break;
+		case BUILDING_ROW_1_FOR_1_TRADE:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *oneForOneTradeButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			oneForOneTradeButtonCell.textLabel.text = @"1 for 1 Trade With Lacunans";
+			cell = oneForOneTradeButtonCell;
+			break;
 		default:
 			cell = [super tableView:tableView cellForBuildingRow:buildingRow rowIndex:rowIndex];
 			break;
@@ -102,6 +136,36 @@
 			ViewMyTradesController *viewMyTradesController = [ViewMyTradesController create];
 			viewMyTradesController.baseTradeBuilding = self;
 			return viewMyTradesController;
+			break;
+		case BUILDING_ROW_PUSH_ITEMS:
+			; //DO NOT REMOVE
+			/*
+			ViewMyTradesController *viewMyTradesController = [ViewMyTradesController create];
+			viewMyTradesController.baseTradeBuilding = self;
+			return viewMyTradesController;
+			*/
+			NSLog(@"KEVIN CREATE PUSH UI");
+			return nil;
+			break;
+		case BUILDING_ROW_CREATE_TRADE:
+			; //DO NOT REMOVE
+			/*
+			 ViewMyTradesController *viewMyTradesController = [ViewMyTradesController create];
+			 viewMyTradesController.baseTradeBuilding = self;
+			 return viewMyTradesController;
+			 */
+			NSLog(@"KEVIN CREATE CREATE TRADE UI");
+			return nil;
+			break;
+		case BUILDING_ROW_1_FOR_1_TRADE:
+			; //DO NOT REMOVE
+			/*
+			 ViewMyTradesController *viewMyTradesController = [ViewMyTradesController create];
+			 viewMyTradesController.baseTradeBuilding = self;
+			 return viewMyTradesController;
+			 */
+			NSLog(@"KEVIN CREATE 1 FOR 1 TRADE UI");
+			return nil;
 			break;
 		default:
 			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];
@@ -142,6 +206,11 @@
 
 - (bool)hasNextMyTradePage {
 	return (self.myTradePageNumber < [Util numPagesForCount:self.myTradePageNumber]);
+}
+
+
+- (void)pushItems:(ItemPush *)itemPush {
+	[[[LEBuildingPushItems alloc] initWithCallback:@selector(myTradesLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl targetId:itemPush.targetId items:itemPush.items] autorelease];
 }
 
 

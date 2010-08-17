@@ -31,7 +31,6 @@
 - (void)dealloc {
 	self.secondsPerResource = nil;
 	self.maxResources = nil;
-	self.secondsRemaining = nil;
 	[super dealloc];
 }
 
@@ -57,7 +56,11 @@
 	self.canRecycle = [[recycleData objectForKey:@"can"] boolValue];
 	self.secondsPerResource = [Util asNumber:[recycleData objectForKey:@"seconds_per_resource"]];
 	self.maxResources = [Util asNumber:[recycleData objectForKey:@"max_recycle"]];
-	self.secondsRemaining = [Util asNumber:[recycleData objectForKey:@"seconds_remaining"]];
+	self.secondsRemaining = _intv([recycleData objectForKey:@"seconds_remaining"]);
+	NSLog(@"Max Resources: %@", self.maxResources);
+	if (!self.maxResources) {
+		NSLog(@"Data: %@", data);
+	}
 }
 
 
@@ -115,7 +118,7 @@
 			 ; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			 LETableViewCellLabeledText *recyclingCell = [LETableViewCellLabeledText getCellForTableView:tableView];
 			 recyclingCell.label.text = @"Recycling";
-			 recyclingCell.content.text = [Util prettyDuration:_intv(self.secondsRemaining)];
+			 recyclingCell.content.text = [Util prettyDuration:self.secondsRemaining];
 			 cell = recyclingCell;
 			 break;
 		case BUILDING_ROW_SUBSIDIZE:

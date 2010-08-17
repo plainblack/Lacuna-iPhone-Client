@@ -14,14 +14,14 @@
 	BOOL canRecycle;
 	NSDecimalNumber *secondsPerResource;
 	NSDecimalNumber *maxResources;
-	NSDecimalNumber *secondsRemaining;
+	NSInteger secondsRemaining;
 }
 
 
 @property (nonatomic, assign) BOOL canRecycle;
 @property (nonatomic, retain) NSDecimalNumber *secondsPerResource;
 @property (nonatomic, retain) NSDecimalNumber *maxResources;
-@property (nonatomic, retain) NSDecimalNumber *secondsRemaining;
+@property (nonatomic, assign) NSInteger secondsRemaining;
 
 
 @end

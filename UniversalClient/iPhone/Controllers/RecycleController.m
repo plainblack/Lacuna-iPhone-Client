@@ -211,6 +211,18 @@ typedef enum {
 		[self.energyCell newNumericValue:[Util decimalFromInt:0]];
 		[self.oreCell newNumericValue:[Util decimalFromInt:0]];
 		[self.waterCell newNumericValue:[Util decimalFromInt:0]];
+
+		//KEVIN REWORK AS DATASOURCE THING WHERE LETableViewCell pulls it's data source for the max value.
+		Session *session = [Session sharedInstance];
+		NSDecimalNumber *maxValue = self.wasteRecycling.maxResources;
+		if ([session.body.waste.current compare:maxValue] == NSOrderedAscending) {
+			maxValue = session.body.waste.current;
+		}
+		NSLog(@"Max Value is: %@", maxValue);
+		self.energyCell.maxValue = maxValue;
+		self.oreCell.maxValue = maxValue;
+		self.waterCell.maxValue = maxValue;
+
 		[self.tableView reloadData];
 	} else {
 		[[self navigationController] popViewControllerAnimated:YES];
