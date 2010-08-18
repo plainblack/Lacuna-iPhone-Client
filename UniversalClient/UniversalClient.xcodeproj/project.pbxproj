@@ -163,6 +163,11 @@
 		F6D59FF412012AA9009DDA28 /* RenameShipController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D59FF312012AA9009DDA28 /* RenameShipController.m */; };
 		F6D5A00B12012E43009DDA28 /* LEBuildingScuttleShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D5A00A12012E43009DDA28 /* LEBuildingScuttleShip.m */; };
 		F6D5A00E12012E5A009DDA28 /* LEBuildingNameShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D5A00D12012E5A009DDA28 /* LEBuildingNameShip.m */; };
+		F6D9AB3D121BFA13003E8D4E /* LEBuildingGetTradeableShips.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9AB3C121BFA13003E8D4E /* LEBuildingGetTradeableShips.m */; };
+		F6D9AB40121BFA25003E8D4E /* LEBuildingGetTradeablePrisoners.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9AB3F121BFA25003E8D4E /* LEBuildingGetTradeablePrisoners.m */; };
+		F6D9AB43121BFA31003E8D4E /* LEBuildingGetTradeablePlans.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9AB42121BFA31003E8D4E /* LEBuildingGetTradeablePlans.m */; };
+		F6D9AB46121BFA3F003E8D4E /* LEBuildingGetTradeableGlyphs.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9AB45121BFA3F003E8D4E /* LEBuildingGetTradeableGlyphs.m */; };
+		F6D9AB49121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9AB48121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.m */; };
 		F6DB8AE51211718D00F3AB4B /* LEEmpireBoostStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DB8AE41211718D00F3AB4B /* LEEmpireBoostStorage.m */; };
 		F6DB90E712039C33003293A7 /* LETableViewCellTravellingShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DB90E612039C33003293A7 /* LETableViewCellTravellingShip.m */; };
 		F6DD1FDC116D33FC0013C58D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F6DD1FDB116D33FC0013C58D /* Default.png */; };
@@ -529,6 +534,16 @@
 		F6D5A00A12012E43009DDA28 /* LEBuildingScuttleShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingScuttleShip.m; sourceTree = "<group>"; };
 		F6D5A00C12012E5A009DDA28 /* LEBuildingNameShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingNameShip.h; sourceTree = "<group>"; };
 		F6D5A00D12012E5A009DDA28 /* LEBuildingNameShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingNameShip.m; sourceTree = "<group>"; };
+		F6D9AB3B121BFA13003E8D4E /* LEBuildingGetTradeableShips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetTradeableShips.h; sourceTree = "<group>"; };
+		F6D9AB3C121BFA13003E8D4E /* LEBuildingGetTradeableShips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetTradeableShips.m; sourceTree = "<group>"; };
+		F6D9AB3E121BFA25003E8D4E /* LEBuildingGetTradeablePrisoners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetTradeablePrisoners.h; sourceTree = "<group>"; };
+		F6D9AB3F121BFA25003E8D4E /* LEBuildingGetTradeablePrisoners.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetTradeablePrisoners.m; sourceTree = "<group>"; };
+		F6D9AB41121BFA31003E8D4E /* LEBuildingGetTradeablePlans.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetTradeablePlans.h; sourceTree = "<group>"; };
+		F6D9AB42121BFA31003E8D4E /* LEBuildingGetTradeablePlans.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetTradeablePlans.m; sourceTree = "<group>"; };
+		F6D9AB44121BFA3F003E8D4E /* LEBuildingGetTradeableGlyphs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetTradeableGlyphs.h; sourceTree = "<group>"; };
+		F6D9AB45121BFA3F003E8D4E /* LEBuildingGetTradeableGlyphs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetTradeableGlyphs.m; sourceTree = "<group>"; };
+		F6D9AB47121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetTradeableStoredResources.h; sourceTree = "<group>"; };
+		F6D9AB48121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetTradeableStoredResources.m; sourceTree = "<group>"; };
 		F6DB8AE31211718D00F3AB4B /* LEEmpireBoostStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireBoostStorage.h; sourceTree = "<group>"; };
 		F6DB8AE41211718D00F3AB4B /* LEEmpireBoostStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireBoostStorage.m; sourceTree = "<group>"; };
 		F6DB90E512039C33003293A7 /* LETableViewCellTravellingShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellTravellingShip.h; sourceTree = "<group>"; };
@@ -1036,6 +1051,16 @@
 				F692B7C0121859F700E740C1 /* LEBuildingViewMyTrades.m */,
 				F692B8511218765F00E740C1 /* LEBuildingPushItems.h */,
 				F692B8521218765F00E740C1 /* LEBuildingPushItems.m */,
+				F6D9AB3B121BFA13003E8D4E /* LEBuildingGetTradeableShips.h */,
+				F6D9AB3C121BFA13003E8D4E /* LEBuildingGetTradeableShips.m */,
+				F6D9AB3E121BFA25003E8D4E /* LEBuildingGetTradeablePrisoners.h */,
+				F6D9AB3F121BFA25003E8D4E /* LEBuildingGetTradeablePrisoners.m */,
+				F6D9AB41121BFA31003E8D4E /* LEBuildingGetTradeablePlans.h */,
+				F6D9AB42121BFA31003E8D4E /* LEBuildingGetTradeablePlans.m */,
+				F6D9AB44121BFA3F003E8D4E /* LEBuildingGetTradeableGlyphs.h */,
+				F6D9AB45121BFA3F003E8D4E /* LEBuildingGetTradeableGlyphs.m */,
+				F6D9AB47121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.h */,
+				F6D9AB48121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -1517,6 +1542,11 @@
 				F692B7CD121867B700E740C1 /* BaseTradeBuilding.m in Sources */,
 				F692B8531218765F00E740C1 /* LEBuildingPushItems.m in Sources */,
 				F692B8561218779D00E740C1 /* ItemPush.m in Sources */,
+				F6D9AB3D121BFA13003E8D4E /* LEBuildingGetTradeableShips.m in Sources */,
+				F6D9AB40121BFA25003E8D4E /* LEBuildingGetTradeablePrisoners.m in Sources */,
+				F6D9AB43121BFA31003E8D4E /* LEBuildingGetTradeablePlans.m in Sources */,
+				F6D9AB46121BFA3F003E8D4E /* LEBuildingGetTradeableGlyphs.m in Sources */,
+				F6D9AB49121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
