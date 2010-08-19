@@ -58,6 +58,12 @@
 		F64C43DC11F3B527002981EC /* OreStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = F64C43DB11F3B527002981EC /* OreStorage.m */; };
 		F64C43F611F3C37A002981EC /* Archaeology.m in Sources */ = {isa = PBXBuildFile; fileRef = F64C43F511F3C37A002981EC /* Archaeology.m */; };
 		F64C441911F3C6F8002981EC /* NewBuildingTypeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F64C441811F3C6F8002981EC /* NewBuildingTypeController.m */; };
+		F64FA1B9121CA70D00CBFC3E /* NewItemPushController.m in Sources */ = {isa = PBXBuildFile; fileRef = F64FA1B8121CA70D00CBFC3E /* NewItemPushController.m */; };
+		F64FA1F0121CB43300CBFC3E /* PickColonyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F64FA1EE121CB43300CBFC3E /* PickColonyController.m */; };
+		F64FA1F1121CB43300CBFC3E /* PickColonyController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F64FA1EF121CB43300CBFC3E /* PickColonyController.xib */; };
+		F64FA25D121CD36F00CBFC3E /* SelectGlyphController.m in Sources */ = {isa = PBXBuildFile; fileRef = F64FA25C121CD36F00CBFC3E /* SelectGlyphController.m */; };
+		F64FA283121CD67C00CBFC3E /* SelectPlanController.m in Sources */ = {isa = PBXBuildFile; fileRef = F64FA282121CD67C00CBFC3E /* SelectPlanController.m */; };
+		F64FA286121CD68A00CBFC3E /* SelectStoredResourceController.m in Sources */ = {isa = PBXBuildFile; fileRef = F64FA285121CD68A00CBFC3E /* SelectStoredResourceController.m */; };
 		F65D35B91195E00400454C2B /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F65D35B81195E00400454C2B /* iTunesArtwork */; };
 		F65D36681195F05B00454C2B /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = F65D36671195F05B00454C2B /* Entitlements.plist */; };
 		F65DC32611EE09AE00A0A782 /* PlanetaryCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = F65DC32511EE09AE00A0A782 /* PlanetaryCommand.m */; };
@@ -332,6 +338,17 @@
 		F64C43F511F3C37A002981EC /* Archaeology.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Archaeology.m; sourceTree = "<group>"; };
 		F64C441711F3C6F8002981EC /* NewBuildingTypeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewBuildingTypeController.h; sourceTree = "<group>"; };
 		F64C441811F3C6F8002981EC /* NewBuildingTypeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewBuildingTypeController.m; sourceTree = "<group>"; };
+		F64FA1B7121CA70D00CBFC3E /* NewItemPushController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewItemPushController.h; sourceTree = "<group>"; };
+		F64FA1B8121CA70D00CBFC3E /* NewItemPushController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewItemPushController.m; sourceTree = "<group>"; };
+		F64FA1ED121CB43300CBFC3E /* PickColonyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickColonyController.h; sourceTree = "<group>"; };
+		F64FA1EE121CB43300CBFC3E /* PickColonyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickColonyController.m; sourceTree = "<group>"; };
+		F64FA1EF121CB43300CBFC3E /* PickColonyController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickColonyController.xib; sourceTree = "<group>"; };
+		F64FA25B121CD36F00CBFC3E /* SelectGlyphController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectGlyphController.h; sourceTree = "<group>"; };
+		F64FA25C121CD36F00CBFC3E /* SelectGlyphController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectGlyphController.m; sourceTree = "<group>"; };
+		F64FA281121CD67C00CBFC3E /* SelectPlanController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPlanController.h; sourceTree = "<group>"; };
+		F64FA282121CD67C00CBFC3E /* SelectPlanController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPlanController.m; sourceTree = "<group>"; };
+		F64FA284121CD68A00CBFC3E /* SelectStoredResourceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectStoredResourceController.h; sourceTree = "<group>"; };
+		F64FA285121CD68A00CBFC3E /* SelectStoredResourceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectStoredResourceController.m; sourceTree = "<group>"; };
 		F65D35B81195E00400454C2B /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		F65D36671195F05B00454C2B /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		F65DC32411EE09AE00A0A782 /* PlanetaryCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanetaryCommand.h; sourceTree = "<group>"; };
@@ -1245,6 +1262,17 @@
 				F692B7C3121861CC00E740C1 /* ViewAvailableTradesController.m */,
 				F692B7C5121861D600E740C1 /* ViewMyTradesController.h */,
 				F692B7C6121861D600E740C1 /* ViewMyTradesController.m */,
+				F64FA1B7121CA70D00CBFC3E /* NewItemPushController.h */,
+				F64FA1B8121CA70D00CBFC3E /* NewItemPushController.m */,
+				F64FA1ED121CB43300CBFC3E /* PickColonyController.h */,
+				F64FA1EE121CB43300CBFC3E /* PickColonyController.m */,
+				F64FA1EF121CB43300CBFC3E /* PickColonyController.xib */,
+				F64FA25B121CD36F00CBFC3E /* SelectGlyphController.h */,
+				F64FA25C121CD36F00CBFC3E /* SelectGlyphController.m */,
+				F64FA281121CD67C00CBFC3E /* SelectPlanController.h */,
+				F64FA282121CD67C00CBFC3E /* SelectPlanController.m */,
+				F64FA284121CD68A00CBFC3E /* SelectStoredResourceController.h */,
+				F64FA285121CD68A00CBFC3E /* SelectStoredResourceController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1332,6 +1360,7 @@
 				F6FB45A411F52C1F00E24EAC /* SearchForGlyphController.xib in Resources */,
 				F6FB45D211F53D9F00E24EAC /* AssembleGlyphsController.xib in Resources */,
 				F6CF29E31210E1F400D4A9AC /* AssignViewControllerV2.xib in Resources */,
+				F64FA1F1121CB43300CBFC3E /* PickColonyController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1547,6 +1576,11 @@
 				F6D9AB43121BFA31003E8D4E /* LEBuildingGetTradeablePlans.m in Sources */,
 				F6D9AB46121BFA3F003E8D4E /* LEBuildingGetTradeableGlyphs.m in Sources */,
 				F6D9AB49121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.m in Sources */,
+				F64FA1B9121CA70D00CBFC3E /* NewItemPushController.m in Sources */,
+				F64FA1F0121CB43300CBFC3E /* PickColonyController.m in Sources */,
+				F64FA25D121CD36F00CBFC3E /* SelectGlyphController.m in Sources */,
+				F64FA283121CD67C00CBFC3E /* SelectPlanController.m in Sources */,
+				F64FA286121CD68A00CBFC3E /* SelectStoredResourceController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

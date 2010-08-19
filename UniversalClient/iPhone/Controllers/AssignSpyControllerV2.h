@@ -12,6 +12,7 @@
 @class Intelligence;
 @class Spy;
 
+
 @interface AssignSpyControllerV2 : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource> {
 	UIPickerView *assignmentPicker;
 	Intelligence *intelligence;

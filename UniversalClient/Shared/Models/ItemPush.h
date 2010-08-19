@@ -9,14 +9,17 @@
 #import <Foundation/Foundation.h>
 
 
+@class BaseTradeBuilding;
+
+
 @interface ItemPush : NSObject {
 	NSString *targetId;
 	NSMutableArray *items;
 }
 
 
-@property (nonatomic, assign) NSString *targetId;
-@property (nonatomic, assign) NSMutableArray *items;
+@property (nonatomic, retain) NSString *targetId;
+@property (nonatomic, retain) NSMutableArray *items;
 
 
 - (void)addResourceType:(NSString *)resourceType withQuantity:(NSDecimalNumber *)quantity;

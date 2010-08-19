@@ -13,14 +13,14 @@
 @interface LEBuildingGetTradeableStoredResources : LERequest {
 	NSString *buildingId;
 	NSString *buildingUrl;
-	NSMutableArray *storedResources;
+	NSMutableDictionary *storedResources;
 	NSDecimalNumber *cargoSpaceUsedPer;
 }
 
 
 @property (nonatomic, retain) NSString *buildingId;
 @property (nonatomic, retain) NSString *buildingUrl;
-@property (nonatomic, retain) NSMutableArray *storedResources;
+@property (nonatomic, retain) NSMutableDictionary *storedResources;
 @property (nonatomic, retain) NSDecimalNumber *cargoSpaceUsedPer;
 
 

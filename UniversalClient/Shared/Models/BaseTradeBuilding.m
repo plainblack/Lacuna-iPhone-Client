@@ -12,12 +12,17 @@
 #import "Session.h"
 #import "Trade.h"
 #import "ItemPush.h"
+#import "Glyph.h"
 #import "LEBuildingViewAvailableTrades.h";
 #import "LEBuildingViewMyTrades.h";
 #import "LEBuildingPushItems.h"
+#import "LEBuildingGetTradeableGlyphs.h"
+#import "LEBuildingGetTradeablePlans.h"
+#import "LEBuildingGetTradeableStoredResources.h"
 #import "LETableViewCellButton.h";
 #import "ViewAvailableTradesController.h"
 #import "ViewMyTradesController.h"
+#import "NewItemPushController.h"
 
 
 @implementation BaseTradeBuilding
@@ -31,6 +36,14 @@
 @synthesize myTradeCount;
 @synthesize myTradesUpdated;
 @synthesize myTrades;
+@synthesize glyphs;
+@synthesize glyphsById;
+@synthesize cargoUserPerGlyph;
+@synthesize plans;
+@synthesize plansById;
+@synthesize cargoUserPerPlan;
+@synthesize storedResources;
+@synthesize cargoUserPerStoredResource;
 
 
 #pragma mark --
@@ -43,6 +56,14 @@
 	self.myTradeCount = nil;
 	self.myTradesUpdated = nil;
 	self.myTrades = nil;
+	self.glyphs = nil;
+	self.glyphsById = nil;
+	self.cargoUserPerGlyph = nil;
+	self.plans = nil;
+	self.plansById = nil;
+	self.cargoUserPerPlan = nil;
+	self.storedResources = nil;
+	self.cargoUserPerStoredResource = nil;
 	[super dealloc];
 }
 
@@ -139,13 +160,9 @@
 			break;
 		case BUILDING_ROW_PUSH_ITEMS:
 			; //DO NOT REMOVE
-			/*
-			ViewMyTradesController *viewMyTradesController = [ViewMyTradesController create];
-			viewMyTradesController.baseTradeBuilding = self;
-			return viewMyTradesController;
-			*/
-			NSLog(@"KEVIN CREATE PUSH UI");
-			return nil;
+			NewItemPushController *newItemPushController = [NewItemPushController create];
+			newItemPushController.baseTradeBuilding = self;
+			return newItemPushController;
 			break;
 		case BUILDING_ROW_CREATE_TRADE:
 			; //DO NOT REMOVE
@@ -176,6 +193,21 @@
 
 #pragma mark --
 #pragma mark Instance Methods
+
+- (void)loadTradeableGlyphs {
+	[[[LEBuildingGetTradeableGlyphs alloc] initWithCallback:@selector(loadedTradeableGlyphs:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+}
+
+
+- (void)loadTradeablePlans {
+	[[[LEBuildingGetTradeablePlans alloc] initWithCallback:@selector(loadedTradeablePlans:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+}
+
+
+- (void)loadTradeableStoredResources {
+	[[[LEBuildingGetTradeableStoredResources alloc] initWithCallback:@selector(loadedTradeableStoredResources:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+}
+
 
 - (void)loadAvailableTradesForPage:(NSInteger)pageNumber {
 	self.availableTradePageNumber = pageNumber;
@@ -216,6 +248,48 @@
 
 #pragma mark -
 #pragma mark Callback Methods
+
+- (id)loadedTradeableGlyphs:(LEBuildingGetTradeableGlyphs *)request {
+	self.cargoUserPerGlyph = request.cargoSpaceUsedPer;
+	NSMutableArray *tmpArray = [NSMutableArray arrayWithCapacity:[request.glyphs count]];
+	NSMutableDictionary *tmpDict = [NSMutableDictionary dictionaryWithCapacity:[request.glyphs count]];
+	[request.glyphs enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+		Glyph *glyph = [[[Glyph alloc] init] autorelease];
+		[glyph parseData:obj];
+		[tmpArray addObject:glyph];
+		[tmpDict setObject:glyph forKey:glyph.id];
+	}];
+	self.glyphs = tmpArray;
+	self.glyphsById = tmpDict;
+	return nil;
+}
+
+
+- (id)loadedTradeablePlans:(LEBuildingGetTradeablePlans *)request {
+	self.cargoUserPerPlan = request.cargoSpaceUsedPer;
+	NSMutableArray *tmpArray = [NSMutableArray arrayWithCapacity:[request.plans count]];
+	NSMutableDictionary *tmpDict = [NSMutableDictionary dictionaryWithCapacity:[request.plans count]];
+	[request.plans enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+		[tmpArray addObject:obj];
+		[tmpDict setObject:obj forKey:[obj objectForKey:@"id"]];
+	}];
+	self.plans = tmpArray;
+	self.plansById = tmpDict;
+	return nil;
+}
+
+
+- (id)loadedTradeableStoredResources:(LEBuildingGetTradeableStoredResources *)request {
+	self.cargoUserPerStoredResource = request.cargoSpaceUsedPer;
+	NSMutableArray *tmpArray = [NSMutableArray arrayWithCapacity:[request.storedResources count]];
+	[request.storedResources enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+		[tmpArray addObject:_dict(key, @"type", obj, @"quantity")];
+	}];
+	[tmpArray sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES])];
+	self.storedResources = tmpArray;
+	return nil;
+}
+
 
 - (id)availableTradesLoaded:(LEBuildingViewAvailableTrades *)request {
 	NSMutableArray *tmpTrades = [NSMutableArray arrayWithCapacity:[request.availableTrades count]];

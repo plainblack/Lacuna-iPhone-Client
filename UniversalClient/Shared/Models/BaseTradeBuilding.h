@@ -22,6 +22,14 @@
 	NSDecimalNumber *myTradeCount;
 	NSDate *myTradesUpdated;
 	NSMutableArray *myTrades;
+	NSMutableArray *glyphs;
+	NSMutableDictionary *glyphsById;
+	NSDecimalNumber *cargoUserPerGlyph;
+	NSMutableArray *plans;
+	NSMutableDictionary *plansById;
+	NSDecimalNumber *cargoUserPerPlan;
+	NSMutableArray *storedResources;
+	NSDecimalNumber *cargoUserPerStoredResource;
 }
 
 
@@ -33,8 +41,19 @@
 @property (nonatomic, retain) NSDecimalNumber *myTradeCount;
 @property (nonatomic, retain) NSDate *myTradesUpdated;
 @property (nonatomic, retain) NSMutableArray *myTrades;
+@property (nonatomic, retain) NSMutableArray *glyphs;
+@property (nonatomic, retain) NSMutableDictionary *glyphsById;
+@property (nonatomic, retain) NSDecimalNumber *cargoUserPerGlyph;
+@property (nonatomic, retain) NSMutableArray *plans;
+@property (nonatomic, retain) NSMutableDictionary *plansById;
+@property (nonatomic, retain) NSDecimalNumber *cargoUserPerPlan;
+@property (nonatomic, retain) NSMutableArray *storedResources;
+@property (nonatomic, retain) NSDecimalNumber *cargoUserPerStoredResource;
 
 
+- (void)loadTradeableGlyphs;
+- (void)loadTradeablePlans;
+- (void)loadTradeableStoredResources;
 - (void)loadAvailableTradesForPage:(NSInteger)pageNumber;
 - (bool)hasPreviousAvailableTradePage;
 - (bool)hasNextAvailableTradePage;
