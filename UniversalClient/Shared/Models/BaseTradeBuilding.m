@@ -13,6 +13,7 @@
 #import "Trade.h"
 #import "ItemPush.h"
 #import "Glyph.h"
+#import "Plan.h"
 #import "LEBuildingViewAvailableTrades.h";
 #import "LEBuildingViewMyTrades.h";
 #import "LEBuildingPushItems.h"
@@ -270,8 +271,10 @@
 	NSMutableArray *tmpArray = [NSMutableArray arrayWithCapacity:[request.plans count]];
 	NSMutableDictionary *tmpDict = [NSMutableDictionary dictionaryWithCapacity:[request.plans count]];
 	[request.plans enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
-		[tmpArray addObject:obj];
-		[tmpDict setObject:obj forKey:[obj objectForKey:@"id"]];
+		Plan *plan = [[[Plan alloc] init] autorelease];
+		[plan parseData:obj];
+		[tmpArray addObject:plan];
+		[tmpDict setObject:plan forKey:plan.id];
 	}];
 	self.plans = tmpArray;
 	self.plansById = tmpDict;

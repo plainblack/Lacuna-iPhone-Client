@@ -174,6 +174,8 @@
 		F6D9AB43121BFA31003E8D4E /* LEBuildingGetTradeablePlans.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9AB42121BFA31003E8D4E /* LEBuildingGetTradeablePlans.m */; };
 		F6D9AB46121BFA3F003E8D4E /* LEBuildingGetTradeableGlyphs.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9AB45121BFA3F003E8D4E /* LEBuildingGetTradeableGlyphs.m */; };
 		F6D9AB49121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9AB48121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.m */; };
+		F6DA0DC0121D47E200705240 /* LETableViewCellGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA0DBF121D47E200705240 /* LETableViewCellGlyph.m */; };
+		F6DA0DF1121D4D0F00705240 /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA0DF0121D4D0F00705240 /* Plan.m */; };
 		F6DB8AE51211718D00F3AB4B /* LEEmpireBoostStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DB8AE41211718D00F3AB4B /* LEEmpireBoostStorage.m */; };
 		F6DB90E712039C33003293A7 /* LETableViewCellTravellingShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DB90E612039C33003293A7 /* LETableViewCellTravellingShip.m */; };
 		F6DD1FDC116D33FC0013C58D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F6DD1FDB116D33FC0013C58D /* Default.png */; };
@@ -561,6 +563,10 @@
 		F6D9AB45121BFA3F003E8D4E /* LEBuildingGetTradeableGlyphs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetTradeableGlyphs.m; sourceTree = "<group>"; };
 		F6D9AB47121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetTradeableStoredResources.h; sourceTree = "<group>"; };
 		F6D9AB48121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetTradeableStoredResources.m; sourceTree = "<group>"; };
+		F6DA0DBE121D47E200705240 /* LETableViewCellGlyph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellGlyph.h; sourceTree = "<group>"; };
+		F6DA0DBF121D47E200705240 /* LETableViewCellGlyph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellGlyph.m; sourceTree = "<group>"; };
+		F6DA0DEF121D4D0F00705240 /* Plan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plan.h; sourceTree = "<group>"; };
+		F6DA0DF0121D4D0F00705240 /* Plan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plan.m; sourceTree = "<group>"; };
 		F6DB8AE31211718D00F3AB4B /* LEEmpireBoostStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireBoostStorage.h; sourceTree = "<group>"; };
 		F6DB8AE41211718D00F3AB4B /* LEEmpireBoostStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireBoostStorage.m; sourceTree = "<group>"; };
 		F6DB90E512039C33003293A7 /* LETableViewCellTravellingShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellTravellingShip.h; sourceTree = "<group>"; };
@@ -877,6 +883,8 @@
 				F69809C4117A156E00BD2096 /* LETableViewCellUnbuildable.m */,
 				F6DD2062116D5B3C0013C58D /* LEViewSectionTab.h */,
 				F6DD2063116D5B3C0013C58D /* LEViewSectionTab.m */,
+				F6DA0DBE121D47E200705240 /* LETableViewCellGlyph.h */,
+				F6DA0DBF121D47E200705240 /* LETableViewCellGlyph.m */,
 			);
 			name = Views;
 			path = Shared/Views;
@@ -1164,6 +1172,8 @@
 				F692B7CC121867B700E740C1 /* BaseTradeBuilding.m */,
 				F692B8541218779D00E740C1 /* ItemPush.h */,
 				F692B8551218779D00E740C1 /* ItemPush.m */,
+				F6DA0DEF121D4D0F00705240 /* Plan.h */,
+				F6DA0DF0121D4D0F00705240 /* Plan.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -1581,6 +1591,8 @@
 				F64FA25D121CD36F00CBFC3E /* SelectGlyphController.m in Sources */,
 				F64FA283121CD67C00CBFC3E /* SelectPlanController.m in Sources */,
 				F64FA286121CD68A00CBFC3E /* SelectStoredResourceController.m in Sources */,
+				F6DA0DC0121D47E200705240 /* LETableViewCellGlyph.m in Sources */,
+				F6DA0DF1121D4D0F00705240 /* Plan.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

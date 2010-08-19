@@ -28,14 +28,14 @@
 
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"id:%@, type:%2", self.id, self.type];
+	return [NSString stringWithFormat:@"id:%@, type:%@", self.id, self.type];
 }
 
 
 #pragma mark --
 #pragma mark Instance Methods
 
-- (NSString *)imageNamed {
+- (NSString *)imageName {
 	return [NSString stringWithFormat:@"/assets/glyphs/%@.png", self.type];
 }
 
