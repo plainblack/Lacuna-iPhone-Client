@@ -75,16 +75,18 @@ static Session *sharedSession = nil;
 #pragma mark Live Cycle methods
 
 - (id)init {
-	NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *documentFolderPath = [searchPaths objectAtIndex:0];
-	NSString *empireListFileName = [documentFolderPath stringByAppendingPathComponent:@"empireList.dat"];
-	self.savedEmpireList = [NSMutableArray arrayWithContentsOfFile:empireListFileName];
-	if (!self.savedEmpireList) {
-		self.savedEmpireList = [NSMutableArray arrayWithCapacity:1];
+    if (self = [super init]) {
+		NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+		NSString *documentFolderPath = [searchPaths objectAtIndex:0];
+		NSString *empireListFileName = [documentFolderPath stringByAppendingPathComponent:@"empireList.dat"];
+		self.savedEmpireList = [NSMutableArray arrayWithContentsOfFile:empireListFileName];
+		if (!self.savedEmpireList) {
+			self.savedEmpireList = [NSMutableArray arrayWithCapacity:1];
+		}
+		
+		self.lastTick = [NSDate date];
+		self->timer = [[NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES] retain];
 	}
-	
-	self.lastTick = [NSDate date];
-	self->timer = [[NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES] retain];
 
 	return self;
 }
@@ -158,6 +160,7 @@ static Session *sharedSession = nil;
 				}
 			} else {
 				self.serverVersion = newServerVersion;
+				NSLog(@"Server version is: %@", self.serverVersion);
 			}
 		}
 		

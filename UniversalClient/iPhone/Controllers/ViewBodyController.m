@@ -17,6 +17,7 @@
 #import "ViewBodyMapController.h"
 #import "RenameBodyController.h"
 #import "LETableViewCellDictionary.h"
+#import "PickColonyController.h"
 
 
 typedef enum {
@@ -46,7 +47,8 @@ typedef enum {
 	
 @interface ViewBodyController (PrivateMethods)
 
-- (void)togglePageButtons;
+- (void)loadBody;
+- (void)pickColony;
 
 @end
 
@@ -55,8 +57,6 @@ typedef enum {
 
 
 @synthesize pageSegmentedControl;
-@synthesize bodyIds;
-@synthesize currentBodyIndex;
 @synthesize bodyId;
 @synthesize watchedBody;
 
@@ -77,13 +77,6 @@ typedef enum {
 	self.navigationItem.title = @"Loading";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadBody)] autorelease];
-
-	self.pageSegmentedControl = [[[UISegmentedControl alloc] initWithItems:_array(UP_ARROW_ICON, DOWN_ARROW_ICON)] autorelease];
-	[self.pageSegmentedControl addTarget:self action:@selector(switchPage) forControlEvents:UIControlEventValueChanged]; 
-	self.pageSegmentedControl.momentary = YES;
-	self.pageSegmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
-	UIBarButtonItem *rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.pageSegmentedControl] autorelease];
-	self.navigationItem.rightBarButtonItem = rightBarButtonItem; 
 	
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Body"],
 								 [LEViewSectionTab tableView:self.tableView createWithText:@"Actions"],
@@ -94,37 +87,30 @@ typedef enum {
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 
-	[self togglePageButtons];
-
 	Session *session = [Session sharedInstance];
 	if (!self.bodyId) {
 		self.bodyId = session.empire.homePlanetId;
 	}
-	if (!self.bodyIds) {
-		NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[session.empire.planets count]];
-		[session.empire.planets enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
-			[tmp addObject:key];
-			if ([key isEqualToString:self.bodyId]) {
-				self.currentBodyIndex = [tmp count]-1;
-			}
-		}];
-		self.bodyIds = tmp;
-	}
-	self.navigationItem.title = @"Loading";
 	
+	if ([session.empire.planets count] > 1) {
+		self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Change" style:UIBarButtonItemStylePlain target:self action:@selector(pickColony)] autorelease];
+	} else {
+		self.navigationItem.rightBarButtonItem = nil;
+	}
+
+
 	[session addObserver:self forKeyPath:@"body" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 	[session addObserver:self forKeyPath:@"lastTick" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 
-	if (self.bodyIds) {
-		if (![session.body.id isEqualToString:[self.bodyIds objectAtIndex:self.currentBodyIndex]]) {
-			[session loadBody:[self.bodyIds objectAtIndex:self.currentBodyIndex]];
-		}
-	} else {
-		if (![session.body.id isEqualToString:self.bodyId]) {
-			[session loadBody:self.bodyId];
-		}
+	if (isNotNull(session.body)) {
+		[session.body addObserver:self forKeyPath:@"needsRefresh" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+		self.watchedBody = session.body;
 	}
 
+	if (![session.body.id isEqualToString:self.bodyId]) {
+		self.navigationItem.title = @"Loading";
+		[self loadBody];
+	}
 }
 
 
@@ -145,7 +131,7 @@ typedef enum {
 	[session removeObserver:self forKeyPath:@"body"];
 	[session removeObserver:self forKeyPath:@"lastTick"];
 	if (isNotNull(self.watchedBody)) {
-		[self.watchedBody addObserver:self forKeyPath:@"needsRefresh" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+		[self.watchedBody removeObserver:self forKeyPath:@"needsRefresh"];
 		self.watchedBody = nil;
 	}
     [super viewDidDisappear:animated];
@@ -357,7 +343,6 @@ typedef enum {
 
 
 - (void)dealloc {
-	self.bodyIds = nil;
 	self.bodyId = nil;
     [super dealloc];
 }
@@ -367,56 +352,47 @@ typedef enum {
 #pragma mark Instance Methods
 
 - (void)clear {
-	self.bodyIds = nil;
 	self.bodyId = nil;
 	[self.tableView reloadData];
 }
 
 
 #pragma mark -
-#pragma mark Callback Methods
+#pragma mark PickColonyDelegate Methods
 
-- (void)loadBody {
-	Session *session = [Session sharedInstance];
-	if (self.bodyIds) {
-		[session loadBody:[self.bodyIds objectAtIndex:self.currentBodyIndex]];
-	} else {
-		[session loadBody:self.bodyId];
-	}
+- (void)colonySelected:(NSString *)colonyId {
+	self.bodyId = colonyId;
+	[self loadBody];
+	[self dismissModalViewControllerAnimated:YES];
+	[self->pickColonyController release];
 }
 
 
 #pragma mark --
 #pragma mark Private Methods
-
-- (void)togglePageButtons {
-	if (self.bodyIds) {
-		[self.pageSegmentedControl setEnabled:(self.currentBodyIndex > 0) forSegmentAtIndex:0];
-		[self.pageSegmentedControl setEnabled:(self.currentBodyIndex < (self.bodyIds.count - 1)) forSegmentAtIndex:1];
-	} else {
-		[self.pageSegmentedControl setEnabled:NO forSegmentAtIndex:0];
-		[self.pageSegmentedControl setEnabled:NO forSegmentAtIndex:1];
-	}
-
+											  
+- (void)loadBody {
+	Session *session = [Session sharedInstance];
+	[session loadBody:self.bodyId];
 }
 
 
-- (void) switchPage {
-	Session *session = [Session sharedInstance];
-	switch (self.pageSegmentedControl.selectedSegmentIndex) {
-		case 0:
-			NSLog(@"NSLog Previous Body");
-			self.currentBodyIndex--;
-			[session loadBody:[self.bodyIds objectAtIndex:self.currentBodyIndex]];
-			break;
-		case 1:
-			NSLog(@"NSLog Next Body");
-			self.currentBodyIndex++;
-			[session loadBody:[self.bodyIds objectAtIndex:self.currentBodyIndex]];
-			break;
-		default:
-			NSLog(@"Invalid switchPage");
-			break;
+- (void)pickColony {
+	Session *session = [Session	 sharedInstance];
+	NSMutableArray *colonies = [NSMutableArray arrayWithCapacity:[session.empire.planets count]];
+	[session.empire.planets enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+		if (![session.body.id isEqualToString:key]) {
+			[colonies addObject:_dict(key, @"id", obj, @"name")];
+		}
+	}];
+	if ([colonies count] > 1) {
+		self->pickColonyController = [[PickColonyController create] retain];
+		self->pickColonyController.delegate = self;
+		self->pickColonyController.colonies = colonies;
+		[self presentModalViewController:self->pickColonyController animated:YES];
+	} else {
+		self.bodyId = [[colonies objectAtIndex:0] objectForKey:@"id"];
+		[self loadBody];
 	}
 }
 
@@ -434,7 +410,6 @@ typedef enum {
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ([keyPath isEqual:@"body"]) {
-		NSLog(@"LOADED NEW BODY");
 		if (isNotNull(self.watchedBody)) {
 			[self.watchedBody removeObserver:self forKeyPath:@"needsRefresh"];
 		}
@@ -445,20 +420,16 @@ typedef enum {
 		}
 		self.watchedBody = newBody;
 		
-		Session *session = [Session sharedInstance];
-		self.navigationItem.title = session.body.name;
+		self.navigationItem.title = self.watchedBody.name;
 		self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:newBody.type],
 									 [LEViewSectionTab tableView:self.tableView createWithText:@"Actions"],
 									 [LEViewSectionTab tableView:self.tableView createWithText:@"Composition"]);
-		[self togglePageButtons];
 		[self.tableView reloadData];
-	} else if ([keyPath isEqual:@"lastTick"]) {
 		self.navigationItem.title = self.watchedBody.name;
 		[self.tableView reloadData];
 	} else if ([keyPath isEqual:@"needsRefresh"]) {
 		self.navigationItem.title = self.watchedBody.name;
 		[self.tableView reloadData];
-		[self togglePageButtons];
 	}
 }
 

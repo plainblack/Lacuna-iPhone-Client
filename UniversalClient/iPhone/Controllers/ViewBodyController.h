@@ -8,22 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import "LETableViewControllerGrouped.h"
+#import "PickColonyController.h"
+
 
 @class Body;
 
 
-@interface ViewBodyController : LETableViewControllerGrouped {
+@interface ViewBodyController : LETableViewControllerGrouped <PickColonyDelegate> {
 	UISegmentedControl *pageSegmentedControl;
-	NSArray *bodyIds;
-	NSInteger currentBodyIndex;
 	NSString *bodyId;
 	Body *watchedBody;
+	PickColonyController* pickColonyController;
 }
 
 
 @property (nonatomic, retain) UISegmentedControl *pageSegmentedControl;
-@property(nonatomic, retain) NSArray *bodyIds;
-@property(nonatomic, assign) NSInteger currentBodyIndex;
 @property(nonatomic, retain) NSString *bodyId;
 @property(nonatomic, retain) Body *watchedBody;
 

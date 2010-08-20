@@ -13,13 +13,14 @@
 #import "Glyph.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellLabeledText.h"
-#import "LETableViewCellButton.h"
+#import "LETableViewCellGlyph.h"
 
 
 @implementation SelectGlyphController
 
 
 @synthesize baseTradeBuilding;
+@synthesize delegate;
 
 
 #pragma mark -
@@ -79,7 +80,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (self.baseTradeBuilding && self.baseTradeBuilding.glyphs) {
 		if ([self.baseTradeBuilding.glyphs count] > 0) {
-			return [LETableViewCellButton getHeightForTableView:tableView];
+			NSLog(@"GOOD");
+			return [LETableViewCellGlyph getHeightForTableView:tableView];
 		} else {
 			return [LETableViewCellLabeledText getHeightForTableView:tableView];
 		}
@@ -97,8 +99,8 @@
 	if (self.baseTradeBuilding && self.baseTradeBuilding.glyphs) {
 		if ([self.baseTradeBuilding.glyphs count] > 0) {
 			Glyph *glyph = [self.baseTradeBuilding.glyphs objectAtIndex:indexPath.row];
-			LETableViewCellButton *glyphCell = [LETableViewCellButton getCellForTableView:tableView];
-			glyphCell.textLabel.text = glyph.type;
+			LETableViewCellGlyph *glyphCell = [LETableViewCellGlyph getCellForTableView:tableView isSelectable:YES];
+			[glyphCell setGlyph:glyph];
 			cell = glyphCell;
 		} else {
 			LETableViewCellLabeledText *emptyCell = [LETableViewCellLabeledText getCellForTableView:tableView];
@@ -114,6 +116,15 @@
 	}
     
     return cell;
+}
+
+
+#pragma mark -
+#pragma mark UITableViewDataSource Methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	Glyph *glyph = [self.baseTradeBuilding.glyphs objectAtIndex:indexPath.row];
+	[self.delegate glyphSelected:glyph];
 }
 
 

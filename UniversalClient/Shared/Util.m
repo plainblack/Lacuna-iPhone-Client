@@ -72,7 +72,7 @@ static NSDecimalNumber *ONE_HUNDRED_BILLION;
 + (NSDecimalNumber *)asNumber:(id)obj {
 	NSDecimalNumber *result;
 	
-	if (obj) {
+	if (isNotNull(obj)) {
 		if ([obj isKindOfClass:[NSDecimalNumber class]]) {
 			result = obj;
 		}else if ([obj isKindOfClass:[NSString class]]) {

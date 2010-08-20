@@ -93,7 +93,6 @@
 	
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];  
 	float bodyMapZoom = [userDefaults floatForKey:@"bodyMapZoom"];
-	NSLog(@"bodyMapZoom: %f", bodyMapZoom);
 	if (bodyMapZoom == 0.0) {
 		bodyMapZoom = 1.0;
 	}

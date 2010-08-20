@@ -11,14 +11,24 @@
 
 
 @class BaseTradeBuilding;
+@class Glyph;
+
+
+@protocol SelectGlyphControllerDelegate
+
+- (void)glyphSelected:(Glyph *)glyph;
+
+@end
 
 
 @interface SelectGlyphController : LETableViewControllerGrouped {
 	BaseTradeBuilding *baseTradeBuilding;
+	id<SelectGlyphControllerDelegate> delegate;
 }
 
 
 @property (nonatomic, retain) BaseTradeBuilding *baseTradeBuilding;
+@property (nonatomic, assign) id<SelectGlyphControllerDelegate> delegate;
 
 
 + (SelectGlyphController *) create;

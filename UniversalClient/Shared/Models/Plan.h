@@ -13,14 +13,14 @@
 	NSString *id;
 	NSString *name;
 	NSDecimalNumber *buildLevel;
-	NSDecimalNumber *extendedBuildLevel;
+	NSDecimalNumber *extraBuildLevel;
 }
 
 
 @property (nonatomic, retain) NSString *id;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSDecimalNumber *buildLevel;
-@property (nonatomic, retain) NSDecimalNumber *extendedBuildLevel;
+@property (nonatomic, retain) NSDecimalNumber *extraBuildLevel;
 
 
 - (void)parseData:(NSDictionary *)data;

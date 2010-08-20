@@ -16,7 +16,7 @@
 @synthesize	id;
 @synthesize	name;
 @synthesize	buildLevel;
-@synthesize	extendedBuildLevel;
+@synthesize	extraBuildLevel;
 
 
 #pragma mark --
@@ -26,14 +26,14 @@
 	self.id = nil;
 	self.name = nil;
 	self.buildLevel = nil;
-	self.extendedBuildLevel = nil;
+	self.extraBuildLevel = nil;
 	[super dealloc];
 }
 
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"id:%@, name:%@, buildLevel: %@, extendedBuildLevel: %@",
-			self.id, self.name, self.buildLevel, self.extendedBuildLevel];
+	return [NSString stringWithFormat:@"id:%@, name:%@, buildLevel: %@, extraBuildLevel: %@",
+			self.id, self.name, self.buildLevel, self.extraBuildLevel];
 }
 
 
@@ -44,9 +44,9 @@
 	self.id = [data objectForKey:@"id"];
 	self.name = [data objectForKey:@"name"];
 	self.buildLevel = [Util	asNumber:[data objectForKey:@"level"]];
-	self.extendedBuildLevel = [Util	asNumber:[data objectForKey:@"extended_build_level"]];
-	if ([self.extendedBuildLevel isEqual:[NSDecimalNumber zero]]) {
-		self.extendedBuildLevel = nil;
+	self.extraBuildLevel = [Util asNumber:[data objectForKey:@"extra_build_level"]];
+	if ([self.extraBuildLevel isEqual:[NSDecimalNumber zero]]) {
+		self.extraBuildLevel = nil;
 	}
 }
 

@@ -9,17 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "LETableViewControllerGrouped.h"
 #import "PickColonyController.h"
+#import "SelectGlyphController.h"
+#import "SelectPlanController.h"
 
 
 @class BaseTradeBuilding;
 @class ItemPush;
-@class PickColonyController;
 
 
-@interface NewItemPushController : LETableViewControllerGrouped <PickColonyDelegate> {
+@interface NewItemPushController : LETableViewControllerGrouped <PickColonyDelegate, SelectGlyphControllerDelegate, SelectPlanControllerDelegate> {
 	BaseTradeBuilding *baseTradeBuilding;
 	ItemPush *itemPush;
 	PickColonyController *pickColonyController;
+	SelectGlyphController *selectGlyphController;
+	SelectPlanController *selectPlanController;
 }
 
 

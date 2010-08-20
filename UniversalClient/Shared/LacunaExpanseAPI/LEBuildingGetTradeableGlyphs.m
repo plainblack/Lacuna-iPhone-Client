@@ -47,7 +47,7 @@
 
 
 - (NSString *)methodName {
-	return @"get_glyhps";
+	return @"get_glyphs";
 }
 
 

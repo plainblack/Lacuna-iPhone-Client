@@ -25,7 +25,7 @@
 - (void)setGlyph:(Glyph *)glyph;
 
 
-+ (LETableViewCellGlyph *)getCellForTableView:(UITableView *)tableView;
++ (LETableViewCellGlyph *)getCellForTableView:(UITableView *)tableView isSelectable:(BOOL)isSelectable;
 + (CGFloat)getHeightForTableView:(UITableView *)tableView;
 
 

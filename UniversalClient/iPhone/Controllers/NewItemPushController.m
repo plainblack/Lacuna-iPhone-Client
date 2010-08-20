@@ -12,9 +12,13 @@
 #import "Session.h"
 #import "BaseTradeBuilding.h"
 #import "ItemPush.h"
+#import "Glyph.h"
+#import "Plan.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellLabeledText.h"
 #import "LETableViewCellButton.h"
+#import "LETableViewCellGlyph.h"
+#import "LETableViewCellPlan.h"
 #import "PickColonyController.h"
 #import "SelectGlyphController.h"
 #import "SelectPlanController.h"
@@ -53,6 +57,7 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+	//self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Push To"], [LEViewSectionTab tableView:self.tableView createWithText:@"Items To Push"], [LEViewSectionTab tableView:self.tableView createWithText:@"Add"]);
 	
 	if (!self.itemPush) {
@@ -130,7 +135,15 @@ typedef enum {
 			; //DO NOT REMOVE
 			NSInteger count = [self.itemPush.items count];
 			if (count > 0) {
-				return [LETableViewCellLabeledText getHeightForTableView:tableView];
+				NSMutableDictionary *item = [self.itemPush.items objectAtIndex:indexPath.row];
+				NSString *type = [item objectForKey:@"type"];
+				if ([type isEqualToString:@"glyph"]) {
+					return [LETableViewCellGlyph getHeightForTableView:tableView];
+				} else if ([type isEqualToString:@"plan"]) {
+					return [LETableViewCellPlan getHeightForTableView:tableView];
+				} else {
+					return [LETableViewCellLabeledText getHeightForTableView:tableView];
+				}
 			} else {
 				return [LETableViewCellLabeledText getHeightForTableView:tableView];
 			}
@@ -166,19 +179,24 @@ typedef enum {
 			NSInteger count = [self.itemPush.items count];
 			if (count > 0) {
 				NSMutableDictionary *item = [self.itemPush.items objectAtIndex:indexPath.row];
-				LETableViewCellLabeledText *itemCell = [LETableViewCellLabeledText getCellForTableView:tableView];
 				NSString *type = [item objectForKey:@"type"];
 				if ([type isEqualToString:@"glyph"]) {
-					itemCell.label.text = @"Glyph";
-					itemCell.content.text = [item objectForKey:@"glpyh_id"];
-					//KEVIN how to get real glyph and display glyph?
+					Glyph *glyph = [self.baseTradeBuilding.glyphsById objectForKey:[item objectForKey:@"glyph_id"]];
+					NSLog(@"id: %@", [item objectForKey:@"glyph_id"]);
+					NSLog(@"glyph: %@", glyph);
+					LETableViewCellGlyph *glyphCell = [LETableViewCellGlyph getCellForTableView:tableView isSelectable:NO];
+					[glyphCell setGlyph:glyph];
+					cell = glyphCell;
 				} else if ([type isEqualToString:@"plan"]) {
-					itemCell.label.text = @"Plan";
-					itemCell.content.text = [item objectForKey:@"plan_id"];
-					//Kevin how to get real plan and display plan?
+					Plan *plan = [self.baseTradeBuilding.plansById objectForKey:[item objectForKey:@"plan_id"]];
+					LETableViewCellPlan *planCell = [LETableViewCellPlan getCellForTableView:tableView isSelectable:NO];
+					[planCell setPlan:plan];
+					cell = planCell;
 				} else {
+					LETableViewCellLabeledText *itemCell = [LETableViewCellLabeledText getCellForTableView:tableView];
 					itemCell.label.text = [type capitalizedString];
 					itemCell.content.text = [Util prettyNSDecimalNumber:[item objectForKey:@"quantity"]];
+					cell = itemCell;
 				}
 			} else {
 				LETableViewCellLabeledText *noItemsCell = [LETableViewCellLabeledText getCellForTableView:tableView];
@@ -215,6 +233,9 @@ typedef enum {
 }
 
 
+#pragma mark -
+#pragma mark UITableViewDataSource Methods
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	switch (indexPath.section) {
 		case SECTION_PUSH_TO:
@@ -224,15 +245,17 @@ typedef enum {
 			switch (indexPath.row) {
 				case ADD_ROW_GLYPH:
 					; //DO NOT REMOVE
-					SelectGlyphController *selectGlyphController = [SelectGlyphController create];
-					selectGlyphController.baseTradeBuilding = self.baseTradeBuilding;
-					[self.navigationController pushViewController:selectGlyphController animated:YES];
+					self->selectGlyphController = [[SelectGlyphController create] retain];
+					self->selectGlyphController.delegate = self;
+					self->selectGlyphController.baseTradeBuilding = self.baseTradeBuilding;
+					[self.navigationController pushViewController:self->selectGlyphController animated:YES];
 					break;
 				case ADD_ROW_PLAN:
 					; //DO NOT REMOVE
-					SelectPlanController *selectPlanController = [SelectPlanController create];
-					selectPlanController.baseTradeBuilding = self.baseTradeBuilding;
-					[self.navigationController pushViewController:selectPlanController animated:YES];
+					self->selectPlanController = [[SelectPlanController create] retain];
+					self->selectPlanController.delegate = self;
+					self->selectPlanController.baseTradeBuilding = self.baseTradeBuilding;
+					[self.navigationController pushViewController:self->selectPlanController animated:YES];
 					break;
 				case ADD_ROW_RESOURCE:
 					; //DO NOT REMOVE
@@ -245,6 +268,44 @@ typedef enum {
 	}
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+	switch (indexPath.section) {
+		case SECTION_PUSH_TO:
+			return NO;
+			break;
+		case SECTION_ITEMS:
+			; //DO NOT REMOVE
+			NSInteger count = [self.itemPush.items count];
+			if (count > 0) {
+				return YES;
+			} else {
+				return NO;
+			}
+			break;
+		case SECTION_ADD:
+			return NO;
+			break;
+		default:
+			return NO;
+	}
+}
+
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+	if ( (indexPath.section == SECTION_ITEMS) && (editingStyle == UITableViewCellEditingStyleDelete) ) {
+		NSMutableDictionary *item = [self.itemPush.items objectAtIndex:indexPath.row];
+		NSString *type = [item objectForKey:@"type"];
+		if ([type isEqualToString:@"glyph"]) {
+			[self.baseTradeBuilding.glyphs addObject:[self.baseTradeBuilding.glyphsById objectForKey:[item objectForKey:@"glyph_id"]]];
+		} else if ([type isEqualToString:@"plan"]) {
+			[self.baseTradeBuilding.plans addObject:[self.baseTradeBuilding.plansById objectForKey:[item objectForKey:@"plan_id"]]];
+		} else {
+			NSLog(@"What to do here?");
+		}
+		[self.itemPush.items removeObjectAtIndex:indexPath.row];
+		[self.tableView reloadData];
+	}
+}
 
 #pragma mark -
 #pragma mark Memory management
@@ -266,6 +327,9 @@ typedef enum {
 - (void)dealloc {
 	self.baseTradeBuilding = nil;
 	self.itemPush = nil;
+	[self->pickColonyController release];
+	[self->selectGlyphController release];
+	[self->selectPlanController release];
     [super dealloc];
 }
 
@@ -285,6 +349,32 @@ typedef enum {
 	self.itemPush.targetId = colonyId;
 	[self dismissModalViewControllerAnimated:YES];
 	[self->pickColonyController release];
+	[self.tableView reloadData];
+}
+
+
+#pragma mark -
+#pragma mark SelectGlyphDelegate Methods
+
+- (void)glyphSelected:(Glyph *)glyph {
+	[self.itemPush addGlyph:glyph.id];
+	[self.navigationController popViewControllerAnimated:YES];
+	[self->selectGlyphController release];
+	self->selectGlyphController = nil;
+	[self.baseTradeBuilding.glyphs removeObject:glyph];
+	[self.tableView reloadData];
+}
+
+
+#pragma mark -
+#pragma mark SelectPlanDelegate Methods
+
+- (void)planSelected:(Plan *)plan {
+	[self.itemPush addPlan:plan.id];
+	[self.navigationController popViewControllerAnimated:YES];
+	[self->selectPlanController release];
+	self->selectPlanController = nil;
+	[self.baseTradeBuilding.plans removeObject:plan];
 	[self.tableView reloadData];
 }
 

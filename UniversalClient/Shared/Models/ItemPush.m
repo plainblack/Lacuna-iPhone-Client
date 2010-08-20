@@ -22,6 +22,14 @@
 #pragma mark --
 #pragma mark Object Methods
 
+- (id) init {
+    if (self = [super init]) {
+		self.items = [NSMutableArray arrayWithCapacity:1];
+	}
+	
+	return self;
+}
+
 - (void)dealloc {
 	self.targetId = nil;
 	self.items = nil;
@@ -38,7 +46,7 @@
 
 
 - (void)addGlyph:(NSString *)glyphId {
-	[self.items addObject:_dict(@"glyph", @"type", glyphId, @"glpyh_id")];
+	[self.items addObject:_dict(@"glyph", @"type", glyphId, @"glyph_id")];
 }
 
 

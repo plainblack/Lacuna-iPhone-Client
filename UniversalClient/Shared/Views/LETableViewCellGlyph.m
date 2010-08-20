@@ -46,36 +46,52 @@
 
 - (void)setGlyph:(Glyph *)glyph {
 	self.imageView.image = [UIImage imageNamed:glyph.imageName];
-	self.content.text = glyph.type;
+	self.content.text = [glyph.type capitalizedString];
 }
 
 
 #pragma mark -
 #pragma mark Class Methods
 
-+ (LETableViewCellGlyph *)getCellForTableView:(UITableView *)tableView {
++ (LETableViewCellGlyph *)getCellForTableView:(UITableView *)tableView isSelectable:(BOOL)isSelectable {
+	static NSString *SelectableCellIdentifier = @"GlyphCellSelectable";
 	static NSString *CellIdentifier = @"GlyphCell";
 	
-	LETableViewCellGlyph *cell = (LETableViewCellGlyph *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	NSString *cellIdentifier;
+	if (isSelectable) {
+		cellIdentifier = SelectableCellIdentifier;
+	} else {
+		cellIdentifier = CellIdentifier;
+	}
+	
+	LETableViewCellGlyph *cell = (LETableViewCellGlyph *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-		cell = [[LETableViewCellGlyph alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+		cell = [[LETableViewCellGlyph alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
 		cell.backgroundColor = CELL_BACKGROUND_COLOR;
 		cell.autoresizesSubviews = YES;
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		
-		cell.imageView = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 95, 44)] autorelease];
+		cell.imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 95, 44)] autorelease];
 		cell.imageView.backgroundColor = [UIColor clearColor];
-		cell.imageView.contentMode = UIViewContentModeRight;
-		cell.imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin;
+		cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
+		cell.imageView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin;
 		[cell.contentView addSubview:cell.imageView];
 		
 		cell.content = [[[UILabel alloc] initWithFrame:CGRectMake(105, 6, 210, 31)] autorelease];
 		cell.content.backgroundColor = [UIColor clearColor];
 		cell.content.textAlignment = UITextAlignmentLeft;
-		cell.content.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-		cell.content.font = TEXT_FONT;
-		cell.content.textColor = TEXT_COLOR;
+		cell.content.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
+		cell.content.font = BUTTON_TEXT_FONT;
 		[cell.contentView addSubview:cell.content];
+		
+		if (isSelectable) {
+			cell.content.textColor = BUTTON_TEXT_COLOR;
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+		} else {
+			cell.content.textColor = TEXT_COLOR;
+		}
+
 	}
 	
 	return cell;
@@ -83,7 +99,7 @@
 
 
 + (CGFloat)getHeightForTableView:(UITableView *)tableView {
-	return tableView.rowHeight;
+	return 54.0f;
 }
 
 

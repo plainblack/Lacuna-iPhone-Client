@@ -167,6 +167,9 @@
 			break;
 		case BUILDING_ROW_CREATE_TRADE:
 			; //DO NOT REMOVE
+			UIAlertView *createTradeAlertView = [[[UIAlertView alloc] initWithTitle:@"WIP" message:@"This feature is not implemented yet." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+			[createTradeAlertView show];
+			[tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
 			/*
 			 ViewMyTradesController *viewMyTradesController = [ViewMyTradesController create];
 			 viewMyTradesController.baseTradeBuilding = self;
@@ -177,6 +180,9 @@
 			break;
 		case BUILDING_ROW_1_FOR_1_TRADE:
 			; //DO NOT REMOVE
+			UIAlertView *oneForOneTradeAlertView = [[[UIAlertView alloc] initWithTitle:@"WIP" message:@"This feature is not implemented yet." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+			[oneForOneTradeAlertView show];
+			[tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
 			/*
 			 ViewMyTradesController *viewMyTradesController = [ViewMyTradesController create];
 			 viewMyTradesController.baseTradeBuilding = self;

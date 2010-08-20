@@ -21,7 +21,7 @@
 #pragma mark Initialization
 
 - (id)init {
-    if ((self = [super initWithStyle:UITableViewStyleGrouped])) {
+    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
 		//Do any special init stuff here
     }
     return self;

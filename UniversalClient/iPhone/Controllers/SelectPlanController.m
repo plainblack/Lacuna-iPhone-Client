@@ -10,15 +10,17 @@
 #import "LEMacros.h"
 #import "Util.h"
 #import "BaseTradeBuilding.h"
+#import "Plan.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellLabeledText.h"
-#import "LETableViewCellButton.h"
+#import "LETableViewCellPlan.h"
 
 
 @implementation SelectPlanController
 
 
 @synthesize baseTradeBuilding;
+@synthesize delegate;
 
 
 #pragma mark -
@@ -78,7 +80,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (self.baseTradeBuilding && self.baseTradeBuilding.plans) {
 		if ([self.baseTradeBuilding.plans count] > 0) {
-			return [LETableViewCellButton getHeightForTableView:tableView];
+			return [LETableViewCellPlan getHeightForTableView:tableView];
 		} else {
 			return [LETableViewCellLabeledText getHeightForTableView:tableView];
 		}
@@ -95,9 +97,9 @@
 	
 	if (self.baseTradeBuilding && self.baseTradeBuilding.plans) {
 		if ([self.baseTradeBuilding.plans count] > 0) {
-			NSMutableDictionary *plan = [self.baseTradeBuilding.plans objectAtIndex:indexPath.row];
-			LETableViewCellButton *planCell = [LETableViewCellButton getCellForTableView:tableView];
-			planCell.textLabel.text = [NSString stringWithFormat:@"%@ %@", [plan objectForKey:@"name"], [plan objectForKey:@"level"]];
+			Plan *plan = [self.baseTradeBuilding.plans objectAtIndex:indexPath.row];
+			LETableViewCellPlan *planCell = [LETableViewCellPlan getCellForTableView:tableView isSelectable:YES];
+			[planCell setPlan:plan];
 			cell = planCell;
 		} else {
 			LETableViewCellLabeledText *emptyCell = [LETableViewCellLabeledText getCellForTableView:tableView];
@@ -113,6 +115,15 @@
 	}
     
     return cell;
+}
+
+
+#pragma mark -
+#pragma mark UITableViewDataSource Methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	Plan *plan = [self.baseTradeBuilding.plans objectAtIndex:indexPath.row];
+	[self.delegate planSelected:plan];
 }
 
 

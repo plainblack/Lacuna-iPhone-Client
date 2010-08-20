@@ -11,14 +11,25 @@
 
 
 @class BaseTradeBuilding;
+@class Plan;
+
+
+@protocol SelectPlanControllerDelegate
+
+- (void)planSelected:(Plan *)plan;
+
+@end
+
 
 
 @interface SelectPlanController : LETableViewControllerGrouped {
 	BaseTradeBuilding *baseTradeBuilding;
+	id<SelectPlanControllerDelegate> delegate;
 }
 
 
 @property (nonatomic, retain) BaseTradeBuilding *baseTradeBuilding;
+@property (nonatomic, assign) id<SelectPlanControllerDelegate> delegate;
 
 
 + (SelectPlanController *) create;
