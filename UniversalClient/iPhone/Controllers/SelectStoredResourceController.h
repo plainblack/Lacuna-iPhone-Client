@@ -1,3 +1,4 @@
+NSMutableDictionary *selectedStoredResource;
 //
 //  SelectStoredResource.h
 //  UniversalClient
@@ -13,12 +14,23 @@
 @class BaseTradeBuilding;
 
 
+@protocol SelectStoredResourceControllerDelegate
+
+- (void)storedResourceSelected:(NSDictionary *)storedResource;
+
+@end
+
+
 @interface SelectStoredResourceController : LETableViewControllerGrouped {
 	BaseTradeBuilding *baseTradeBuilding;
+	NSMutableDictionary *selectedStoredResource;
+	id<SelectStoredResourceControllerDelegate> delegate;
 }
 
 
 @property (nonatomic, retain) BaseTradeBuilding *baseTradeBuilding;
+@property (nonatomic, retain) 	NSMutableDictionary *selectedStoredResource;
+@property (nonatomic, assign) id<SelectStoredResourceControllerDelegate> delegate;
 
 
 + (SelectStoredResourceController *) create;

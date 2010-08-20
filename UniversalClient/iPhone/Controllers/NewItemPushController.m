@@ -73,8 +73,9 @@ typedef enum {
 		Session *session = [Session sharedInstance];
 		if	([session.empire.planets count] == 2) {
 			[session.empire.planets enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+				NSLog(@"Comparing key: %@(%@) to %@", key, obj, session.body.id);
 				if (![key isEqualToString:session.body.id]) {
-					self.itemPush.targetId = session.body.id;
+					self.itemPush.targetId = key;
 					*stop = YES;
 				}
 			}];
@@ -259,9 +260,10 @@ typedef enum {
 					break;
 				case ADD_ROW_RESOURCE:
 					; //DO NOT REMOVE
-					SelectStoredResourceController *selectStoredResourceController = [SelectStoredResourceController create];
-					selectStoredResourceController.baseTradeBuilding = self.baseTradeBuilding;
-					[self.navigationController pushViewController:selectStoredResourceController animated:YES];
+					self->selectStoredResourceController = [[SelectStoredResourceController create] retain];
+					self->selectStoredResourceController.delegate = self;
+					self->selectStoredResourceController.baseTradeBuilding = self.baseTradeBuilding;
+					[self.navigationController pushViewController:self->selectStoredResourceController animated:YES];
 					break;
 			}
 			break;
@@ -300,7 +302,7 @@ typedef enum {
 		} else if ([type isEqualToString:@"plan"]) {
 			[self.baseTradeBuilding.plans addObject:[self.baseTradeBuilding.plansById objectForKey:[item objectForKey:@"plan_id"]]];
 		} else {
-			NSLog(@"What to do here?");
+			[self.baseTradeBuilding.storedResources addObject:item];
 		}
 		[self.itemPush.items removeObjectAtIndex:indexPath.row];
 		[self.tableView reloadData];
@@ -330,6 +332,7 @@ typedef enum {
 	[self->pickColonyController release];
 	[self->selectGlyphController release];
 	[self->selectPlanController release];
+	[self->selectStoredResourceController release];
     [super dealloc];
 }
 
@@ -375,6 +378,19 @@ typedef enum {
 	[self->selectPlanController release];
 	self->selectPlanController = nil;
 	[self.baseTradeBuilding.plans removeObject:plan];
+	[self.tableView reloadData];
+}
+
+
+#pragma mark -
+#pragma mark SelectStoredResourcesDelegate Methods
+
+- (void)storedResourceSelected:(NSDictionary *)storedResource {
+	[self.itemPush addResourceType:[storedResource objectForKey:@"type"] withQuantity:[storedResource objectForKey:@"quantity"]];
+	[self.navigationController popViewControllerAnimated:YES];
+	[self->selectStoredResourceController release];
+	self->selectStoredResourceController = nil;
+	[self.baseTradeBuilding.storedResources removeObject:storedResource];
 	[self.tableView reloadData];
 }
 

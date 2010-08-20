@@ -11,18 +11,20 @@
 #import "PickColonyController.h"
 #import "SelectGlyphController.h"
 #import "SelectPlanController.h"
+#import "SelectStoredResourceController.h"
 
 
 @class BaseTradeBuilding;
 @class ItemPush;
 
 
-@interface NewItemPushController : LETableViewControllerGrouped <PickColonyDelegate, SelectGlyphControllerDelegate, SelectPlanControllerDelegate> {
+@interface NewItemPushController : LETableViewControllerGrouped <PickColonyDelegate, SelectGlyphControllerDelegate, SelectPlanControllerDelegate, SelectStoredResourceControllerDelegate> {
 	BaseTradeBuilding *baseTradeBuilding;
 	ItemPush *itemPush;
 	PickColonyController *pickColonyController;
 	SelectGlyphController *selectGlyphController;
 	SelectPlanController *selectPlanController;
+	SelectStoredResourceController *selectStoredResourceController;
 }
 
 

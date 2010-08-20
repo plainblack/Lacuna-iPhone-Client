@@ -19,6 +19,8 @@
 
 
 @synthesize baseTradeBuilding;
+@synthesize selectedStoredResource;
+@synthesize delegate;
 
 
 #pragma mark -
@@ -117,6 +119,15 @@
 
 
 #pragma mark -
+#pragma mark UITableViewDataSource Methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	self.selectedStoredResource = [self.baseTradeBuilding.storedResources objectAtIndex:indexPath.row];
+	[self.delegate storedResourceSelected:self.selectedStoredResource];
+}
+
+
+#pragma mark -
 #pragma mark Memory management
 
 - (void)didReceiveMemoryWarning {
@@ -135,6 +146,7 @@
 
 - (void)dealloc {
 	self.baseTradeBuilding = nil;
+	self.selectedStoredResource = nil;
     [super dealloc];
 }
 

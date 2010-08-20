@@ -21,7 +21,6 @@
 @end
 
 
-
 @interface SelectPlanController : LETableViewControllerGrouped {
 	BaseTradeBuilding *baseTradeBuilding;
 	id<SelectPlanControllerDelegate> delegate;
