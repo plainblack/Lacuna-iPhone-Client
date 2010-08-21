@@ -32,6 +32,9 @@
 @property (nonatomic, retain) ItemPush *itemPush;
 
 
+- (IBAction)send;
+
+
 + (NewItemPushController *) create;
 
 

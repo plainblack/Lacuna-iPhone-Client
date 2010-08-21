@@ -41,6 +41,8 @@
 	[self.baseTradeBuilding addObserver:self forKeyPath:@"storedResources" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
 	if (!self.baseTradeBuilding.storedResources) {
 		[self.baseTradeBuilding loadTradeableStoredResources];
+	} else {
+		[self.baseTradeBuilding.storedResources sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES])];
 	}
 }
 
@@ -123,7 +125,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	self.selectedStoredResource = [self.baseTradeBuilding.storedResources objectAtIndex:indexPath.row];
-	[self.delegate storedResourceSelected:self.selectedStoredResource];
+	self->pickNumericValueController = [[PickNumericValueController createWithDelegate:self maxValue:[self.selectedStoredResource objectForKey:@"quantity"]] retain];
+	//[pickNumericValueController setValue:self.numericValue];
+	pickNumericValueController.titleLabel.text = [[self.selectedStoredResource objectForKey:@"type"] capitalizedString];
+	[self presentModalViewController:pickNumericValueController animated:YES];
 }
 
 
@@ -147,7 +152,17 @@
 - (void)dealloc {
 	self.baseTradeBuilding = nil;
 	self.selectedStoredResource = nil;
+	[self->pickNumericValueController release];
     [super dealloc];
+}
+
+
+#pragma mark --
+#pragma mark PickNumericValueControllerDelegate Methods
+
+- (void)newNumericValue:(NSDecimalNumber *)value {
+	NSMutableDictionary *selected = _dict([self.selectedStoredResource objectForKey:@"type"], @"type", value, @"quantity");
+	[self.delegate storedResourceSelected:selected];
 }
 
 
@@ -164,6 +179,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ([keyPath isEqual:@"storedResources"]) {
+		[self.baseTradeBuilding.storedResources sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES])];
 		[self.tableView reloadData];
 	}
 }

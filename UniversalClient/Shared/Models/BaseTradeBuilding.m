@@ -69,6 +69,11 @@
 }
 
 
+- (void)parseAdditionalData:(NSDictionary *)data {
+	NSLog(@"Data: %@", data);
+}
+
+
 #pragma mark --
 #pragma mark Overriden Building Methods
 
@@ -201,6 +206,18 @@
 #pragma mark --
 #pragma mark Instance Methods
 
+- (void)clearLoadables {
+	self.glyphs = nil;
+	self.glyphsById = nil;
+	self.cargoUserPerGlyph = nil;
+	self.plans = nil;
+	self.plansById = nil;
+	self.cargoUserPerPlan = nil;
+	self.storedResources = nil;
+	self.cargoUserPerStoredResource = nil;
+}
+
+
 - (void)loadTradeableGlyphs {
 	[[[LEBuildingGetTradeableGlyphs alloc] initWithCallback:@selector(loadedTradeableGlyphs:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
 }
@@ -215,6 +232,63 @@
 	[[[LEBuildingGetTradeableStoredResources alloc] initWithCallback:@selector(loadedTradeableStoredResources:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
 }
 
+
+- (void)removeTradeableStoredResource:(NSDictionary *)storedResource {
+	__block NSDictionary *toDelete = nil; 
+	NSString *toRemoveType = [storedResource objectForKey:@"type"];
+	NSDecimalNumber *toRemoveQuantity = [storedResource objectForKey:@"quantity"];
+	[self.storedResources enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		if ([[obj objectForKey:@"type"] isEqualToString:toRemoveType]) {
+			NSInteger tmp = [[obj objectForKey:@"quantity"] compare:toRemoveQuantity];
+			if (tmp == NSOrderedDescending) {
+				NSDecimalNumber *currentLevel = [obj objectForKey:@"quantity"];
+				NSDecimalNumber *leftOver = [currentLevel decimalNumberBySubtracting:toRemoveQuantity];
+				[obj setObject:leftOver forKey:@"quantity"];
+			} else if (tmp == NSOrderedSame) {
+				toDelete = obj;
+			}
+			*stop = YES;
+		}
+	}];
+	if (toDelete) {
+		[self.storedResources removeObject:toDelete];
+	}
+}
+
+
+- (void)addTradeableStoredResource:(NSDictionary *)storedResource {
+	__block BOOL found = NO; 
+	[self.storedResources enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		if ([[obj objectForKey:@"type"] isEqualToString:[storedResource objectForKey:@"type"]]) {
+			NSDecimalNumber *currentLevel = [obj objectForKey:@"quantity"];
+			NSDecimalNumber *toAdd = [storedResource objectForKey:@"quantity"];
+			NSDecimalNumber *newLevel = [currentLevel decimalNumberByAdding:toAdd];
+			[obj setObject:newLevel forKey:@"quantity"];
+			found = YES;
+			*stop = YES;
+		}
+	}];
+	if (!found) {
+		[self.storedResources addObject:storedResource];
+	}
+}
+
+
+- (NSDecimalNumber *)calculateStorageForGlyphs:(NSInteger)numGlyphs plans:(NSInteger)numPlans storedResources:(NSDecimalNumber *)numStoredResources {
+	NSDecimalNumber *total = [NSDecimalNumber zero];
+	if (numGlyphs > 0) {
+		total = [total decimalNumberByAdding:[self.cargoUserPerGlyph decimalNumberByMultiplyingBy:[Util decimalFromInt:numGlyphs]]];
+	}
+	if (numPlans > 0) {
+		total = [total decimalNumberByAdding:[self.cargoUserPerPlan decimalNumberByMultiplyingBy:[Util decimalFromInt:numPlans]]];
+	}
+	if (_intv(numStoredResources) > 0) {
+		NSDecimalNumber *tmp = [self.cargoUserPerStoredResource decimalNumberByMultiplyingBy:numStoredResources];
+		total = [total decimalNumberByAdding:tmp];
+	}
+	
+	return total;
+}
 
 - (void)loadAvailableTradesForPage:(NSInteger)pageNumber {
 	self.availableTradePageNumber = pageNumber;
@@ -248,8 +322,10 @@
 }
 
 
-- (void)pushItems:(ItemPush *)itemPush {
-	[[[LEBuildingPushItems alloc] initWithCallback:@selector(myTradesLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl targetId:itemPush.targetId items:itemPush.items] autorelease];
+- (void)pushItems:(ItemPush *)itemPush target:(id)target callback:(SEL)callback {
+	self->itemPushTarget = target;
+	self->itemPushCallback = callback;
+	[[[LEBuildingPushItems alloc] initWithCallback:@selector(pushedItems:) target:self buildingId:self.id buildingUrl:self.buildingUrl targetId:itemPush.targetId items:itemPush.items] autorelease];
 }
 
 
@@ -327,6 +403,11 @@
 	self.myTradeCount = request.tradeCount;
 	self.myTradesUpdated = [NSDate date];
 	return nil;
+}
+
+
+- (id)pushedItems:(LEBuildingPushItems *)request {
+	[self->itemPushTarget performSelector:self->itemPushCallback withObject:request];
 }
 
 

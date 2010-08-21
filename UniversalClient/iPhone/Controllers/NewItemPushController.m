@@ -23,6 +23,8 @@
 #import "SelectGlyphController.h"
 #import "SelectPlanController.h"
 #import "SelectStoredResourceController.h"
+#import "LEBuildingPushItems.h"
+
 
 typedef enum {
 	SECTION_PUSH_TO,
@@ -31,6 +33,7 @@ typedef enum {
 } SECTIONS;
 
 typedef enum {
+	ADD_ROW_TOTAL,
 	ADD_ROW_GLYPH,
 	ADD_ROW_PLAN,
 	ADD_ROW_RESOURCE
@@ -57,12 +60,13 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	//self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleDone target:self action:@selector(send)] autorelease];
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Push To"], [LEViewSectionTab tableView:self.tableView createWithText:@"Items To Push"], [LEViewSectionTab tableView:self.tableView createWithText:@"Add"]);
 	
 	if (!self.itemPush) {
 		self.itemPush = [[[ItemPush alloc] init] autorelease];
 	}
+	[self.baseTradeBuilding clearLoadables];
 }
 
 
@@ -73,7 +77,6 @@ typedef enum {
 		Session *session = [Session sharedInstance];
 		if	([session.empire.planets count] == 2) {
 			[session.empire.planets enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-				NSLog(@"Comparing key: %@(%@) to %@", key, obj, session.body.id);
 				if (![key isEqualToString:session.body.id]) {
 					self.itemPush.targetId = key;
 					*stop = YES;
@@ -119,7 +122,7 @@ typedef enum {
 			}
 			break;
 		case SECTION_ADD:
-			return 3;
+			return 4;
 			break;
 		default:
 			return 0;
@@ -150,7 +153,12 @@ typedef enum {
 			}
 			break;
 		case SECTION_ADD:
-			return [LETableViewCellButton getHeightForTableView:tableView];
+			if (indexPath.row == ADD_ROW_TOTAL) {
+				return [LETableViewCellLabeledText getHeightForTableView:tableView];
+			} else {
+				return [LETableViewCellButton getHeightForTableView:tableView];
+			}
+
 			break;
 		default:
 			return 0;
@@ -208,6 +216,29 @@ typedef enum {
 			break;
 		case SECTION_ADD:
 			switch (indexPath.row) {
+				case ADD_ROW_TOTAL:
+					; //DO NOT REMOVE
+					NSInteger numGlyphs = 0;
+					NSInteger numPlans = 0;
+					NSDecimalNumber *numStoredResources = [NSDecimalNumber zero];
+					
+					for (NSDictionary *item in self.itemPush.items) {
+						NSString *type = [item objectForKey:@"type"];
+						if ([type isEqualToString:@"glyph"]) {
+							numGlyphs++;
+						} else if ([type isEqualToString:@"plan"]) {
+							numPlans++;
+						} else {
+							numStoredResources = [numStoredResources decimalNumberByAdding:[item objectForKey:@"quantity"]];
+						}
+					}
+					NSDecimalNumber *total = [self.baseTradeBuilding calculateStorageForGlyphs:numGlyphs plans:numPlans storedResources:numStoredResources];
+					LETableViewCellLabeledText *totalCargoCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+					totalCargoCell.label.text = @"Cargo Size";
+					NSLog(@"Total: %@", total);
+					totalCargoCell.content.text =[total stringValue];
+					cell = totalCargoCell;
+					break;
 				case ADD_ROW_GLYPH:
 					; //DO NOT REMOVE
 					LETableViewCellButton *addGlyphButton = [LETableViewCellButton getCellForTableView:tableView];
@@ -302,7 +333,8 @@ typedef enum {
 		} else if ([type isEqualToString:@"plan"]) {
 			[self.baseTradeBuilding.plans addObject:[self.baseTradeBuilding.plansById objectForKey:[item objectForKey:@"plan_id"]]];
 		} else {
-			[self.baseTradeBuilding.storedResources addObject:item];
+			//[self.baseTradeBuilding.storedResources addObject:item];
+			[self.baseTradeBuilding addTradeableStoredResource:item];
 		}
 		[self.itemPush.items removeObjectAtIndex:indexPath.row];
 		[self.tableView reloadData];
@@ -338,10 +370,11 @@ typedef enum {
 
 
 #pragma mark -
-#pragma mark Callback Methods
+#pragma mark Instance Methods
 
-- (IBAction)save {
+- (IBAction)send {
 	NSLog(@"Action called");
+	[self.baseTradeBuilding pushItems:self.itemPush target:self callback:@selector(pushedItems:)];
 }
 
 
@@ -390,7 +423,8 @@ typedef enum {
 	[self.navigationController popViewControllerAnimated:YES];
 	[self->selectStoredResourceController release];
 	self->selectStoredResourceController = nil;
-	[self.baseTradeBuilding.storedResources removeObject:storedResource];
+	//[self.baseTradeBuilding.storedResources removeObject:storedResource];
+	[self.baseTradeBuilding removeTradeableStoredResource:storedResource];
 	[self.tableView reloadData];
 }
 
@@ -412,6 +446,22 @@ typedef enum {
 	[self presentModalViewController:self->pickColonyController animated:YES];
 }
 
+
+#pragma mark --
+#pragma mark Callbacks
+
+- (id)pushedItems:(LEBuildingPushItems *)request {
+	if ([request wasError]) {
+		NSString *errorText = [request errorMessage];
+		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Could not relogin" message:errorText delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+		[av show];
+		[request markErrorHandled];
+	} else {
+		[self.navigationController popViewControllerAnimated:YES];
+	}
+
+	return nil;
+}
 
 #pragma mark -
 #pragma mark Class Methods

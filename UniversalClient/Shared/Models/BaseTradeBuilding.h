@@ -30,6 +30,8 @@
 	NSDecimalNumber *cargoUserPerPlan;
 	NSMutableArray *storedResources;
 	NSDecimalNumber *cargoUserPerStoredResource;
+	id itemPushTarget;
+	SEL itemPushCallback;
 }
 
 
@@ -51,16 +53,20 @@
 @property (nonatomic, retain) NSDecimalNumber *cargoUserPerStoredResource;
 
 
+- (void)clearLoadables;
 - (void)loadTradeableGlyphs;
 - (void)loadTradeablePlans;
 - (void)loadTradeableStoredResources;
+- (void)removeTradeableStoredResource:(NSDictionary *)storedResource;
+- (void)addTradeableStoredResource:(NSDictionary *)storedResource;
+- (NSDecimalNumber *)calculateStorageForGlyphs:(NSInteger)numGlyphs plans:(NSInteger)numPlans storedResources:(NSDecimalNumber *)numStoredResources;
 - (void)loadAvailableTradesForPage:(NSInteger)pageNumber;
 - (bool)hasPreviousAvailableTradePage;
 - (bool)hasNextAvailableTradePage;
 - (void)loadMyTradesForPage:(NSInteger)pageNumber;
 - (bool)hasPreviousMyTradePage;
 - (bool)hasNextMyTradePage;
-- (void)pushItems:(ItemPush *)itemPush;
+- (void)pushItems:(ItemPush *)itemPush target:(id)target callback:(SEL)callback;
 
 
 @end

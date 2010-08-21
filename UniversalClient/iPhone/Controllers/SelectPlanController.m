@@ -41,6 +41,8 @@
 	[self.baseTradeBuilding addObserver:self forKeyPath:@"plans" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
 	if (!self.baseTradeBuilding.plans) {
 		[self.baseTradeBuilding loadTradeablePlans];
+	} else {
+		[self.baseTradeBuilding.plans sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES])];
 	}
 }
 
@@ -163,6 +165,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ([keyPath isEqual:@"plans"]) {
+		[self.baseTradeBuilding.plans sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES])];
 		[self.tableView reloadData];
 	}
 }

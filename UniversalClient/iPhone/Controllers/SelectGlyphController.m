@@ -41,6 +41,8 @@
 	[self.baseTradeBuilding addObserver:self forKeyPath:@"glyphs" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
 	if (!self.baseTradeBuilding.glyphs) {
 		[self.baseTradeBuilding loadTradeableGlyphs];
+	} else {
+		[self.baseTradeBuilding.glyphs sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES])];
 	}
 }
 
@@ -164,6 +166,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ([keyPath isEqual:@"glyphs"]) {
+		[self.baseTradeBuilding.glyphs sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES])];
 		[self.tableView reloadData];
 	}
 }

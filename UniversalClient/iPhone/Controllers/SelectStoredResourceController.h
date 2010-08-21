@@ -9,6 +9,7 @@ NSMutableDictionary *selectedStoredResource;
 
 #import <UIKit/UIKit.h>
 #import "LETableViewControllerGrouped.h"
+#import "PickNumericValueController.h"
 
 
 @class BaseTradeBuilding;
@@ -21,10 +22,11 @@ NSMutableDictionary *selectedStoredResource;
 @end
 
 
-@interface SelectStoredResourceController : LETableViewControllerGrouped {
+@interface SelectStoredResourceController : LETableViewControllerGrouped <PickNumericValueControllerDelegate> {
 	BaseTradeBuilding *baseTradeBuilding;
 	NSMutableDictionary *selectedStoredResource;
 	id<SelectStoredResourceControllerDelegate> delegate;
+	PickNumericValueController *pickNumericValueController;
 }
 
 
