@@ -45,7 +45,7 @@ typedef enum {
     [super viewDidLoad];
 	
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleDone target:self action:@selector(send)] autorelease];
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"1 For 1 Trade"], [LEViewSectionTab tableView:self.tableView createWithText:@"Items To Push"], [LEViewSectionTab tableView:self.tableView createWithText:@"Add"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Have"], [LEViewSectionTab tableView:self.tableView createWithText:@"Want"], [LEViewSectionTab tableView:self.tableView createWithText:@"Add"]);
 	
 	if (!self.oneForOneTrade) {
 		self.oneForOneTrade = [[[OneForOneTrade alloc] init] autorelease];
@@ -170,13 +170,30 @@ typedef enum {
 #pragma mark Instance Methods
 
 - (IBAction)send {
-	if (self.baseTradeBuilding.usesEssentia) {
-		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"This will cost 3 essentia. Do you wish to contine?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
-		actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-		[actionSheet showFromTabBar:self.tabBarController.tabBar];
-		[actionSheet release];
+	if (self.oneForOneTrade.haveResourceType && self.oneForOneTrade.wantResourceType && (_intv(self.oneForOneTrade.quantity) > 0)) {
+		if (self.baseTradeBuilding.usesEssentia) {
+			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"This will cost 3 essentia. Do you wish to contine?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+			actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+			[actionSheet showFromTabBar:self.tabBarController.tabBar];
+			[actionSheet release];
+		} else {
+			[self oneForOneTrade];
+		}
 	} else {
-		[self oneForOneTrade];
+		NSString *errorText;
+		if (!self.oneForOneTrade.haveResourceType && !self.oneForOneTrade.wantResourceType) {
+			errorText = @"You must select what you have to trade and want to receive.";
+		} else if (!self.oneForOneTrade.haveResourceType) {
+			errorText = @"You must select what you have to trade.";
+		} else if (!self.oneForOneTrade.wantResourceType) {
+			errorText = @"You must select what you want to receive.";
+		} else if (self.oneForOneTrade.quantity && (_intv(self.oneForOneTrade.quantity) <= 0)) {
+			errorText = @"You must select a quantity greater than zero to trade.";
+		} else {
+			errorText = @"This trade is not valid.";
+		}
+		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Trade invalid" message:errorText delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+		[av show];
 	}
 }
 
@@ -216,7 +233,7 @@ typedef enum {
 #pragma mark PrivateMethods
 
 - (void)tradeOneForOne {
-	[self.baseTradeBuilding tradeOneForOne:self.oneForOneTrade target:self callback:@selector(pushedItems:)];
+	[self.baseTradeBuilding tradeOneForOne:self.oneForOneTrade target:self callback:@selector(tradedOneForOne:)];
 }
 
 
@@ -224,7 +241,7 @@ typedef enum {
 #pragma mark --
 #pragma mark Callbacks
 
-- (id)pushedItems:(LEBuildingTradeOneForOne *)request {
+- (id)tradedOneForOne:(LEBuildingTradeOneForOne *)request {
 	if ([request wasError]) {
 		NSString *errorText = [request errorMessage];
 		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Count not do 1 for 1 trade." message:errorText delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];

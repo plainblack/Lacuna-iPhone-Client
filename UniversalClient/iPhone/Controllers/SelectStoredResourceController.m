@@ -125,8 +125,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	self.selectedStoredResource = [self.baseTradeBuilding.storedResources objectAtIndex:indexPath.row];
-	self->pickNumericValueController = [[PickNumericValueController createWithDelegate:self maxValue:[self.selectedStoredResource objectForKey:@"quantity"]] retain];
-	//[pickNumericValueController setValue:self.numericValue];
+	NSDecimalNumber *max = [self.selectedStoredResource objectForKey:@"quantity"];
+	if (self.baseTradeBuilding.maxCargoSize) {
+		if ([max compare:self.baseTradeBuilding.maxCargoSize] == NSOrderedDescending) {
+			max = self.baseTradeBuilding.maxCargoSize;
+		}
+	}
+	self->pickNumericValueController = [[PickNumericValueController createWithDelegate:self maxValue:max] retain];
 	pickNumericValueController.titleLabel.text = [[self.selectedStoredResource objectForKey:@"type"] capitalizedString];
 	[self presentModalViewController:pickNumericValueController animated:YES];
 }

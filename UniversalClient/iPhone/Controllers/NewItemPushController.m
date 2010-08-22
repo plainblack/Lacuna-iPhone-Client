@@ -377,13 +377,18 @@ typedef enum {
 #pragma mark Instance Methods
 
 - (IBAction)send {
-	if (self.baseTradeBuilding.usesEssentia) {
-		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"This will cost 2 essentia. Do you wish to contine?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
-		actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-		[actionSheet showFromTabBar:self.tabBarController.tabBar];
-		[actionSheet release];
+	if ([self.itemPush.items count] == 0) {
+		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Incomplete" message:@"You have not selected anything to push." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+		[av show];
 	} else {
-		[self pushItems];
+			if (self.baseTradeBuilding.usesEssentia) {
+			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"This will cost 2 essentia. Do you wish to contine?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+			actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+			[actionSheet showFromTabBar:self.tabBarController.tabBar];
+			[actionSheet release];
+		} else {
+			[self pushItems];
+		}
 	}
 }
 
