@@ -9,9 +9,6 @@
 #import <Foundation/Foundation.h>
 
 
-@class BaseTradeBuilding;
-
-
 @interface ItemPush : NSObject {
 	NSString *targetId;
 	NSMutableArray *items;

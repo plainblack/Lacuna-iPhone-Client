@@ -11,6 +11,7 @@
 
 
 @class ItemPush;
+@class OneForOneTrade;
 
 
 @interface BaseTradeBuilding : Building {
@@ -28,10 +29,15 @@
 	NSMutableArray *plans;
 	NSMutableDictionary *plansById;
 	NSDecimalNumber *cargoUserPerPlan;
+	NSMutableArray *resourceTypes;
 	NSMutableArray *storedResources;
 	NSDecimalNumber *cargoUserPerStoredResource;
 	id itemPushTarget;
 	SEL itemPushCallback;
+	id oneForOneTradeTarget;
+	SEL oneForOneTradeCallback;
+	BOOL usesEssentia;
+	NSDecimalNumber *maxCargoSize;
 }
 
 
@@ -49,13 +55,18 @@
 @property (nonatomic, retain) NSMutableArray *plans;
 @property (nonatomic, retain) NSMutableDictionary *plansById;
 @property (nonatomic, retain) NSDecimalNumber *cargoUserPerPlan;
+@property (nonatomic, retain) NSMutableArray *resourceTypes;
 @property (nonatomic, retain) NSMutableArray *storedResources;
 @property (nonatomic, retain) NSDecimalNumber *cargoUserPerStoredResource;
+@property (nonatomic, readonly) BOOL usesEssentia;
+@property (nonatomic, retain) NSDecimalNumber *maxCargoSize;
+
 
 
 - (void)clearLoadables;
 - (void)loadTradeableGlyphs;
 - (void)loadTradeablePlans;
+- (void)loadTradeableResourceTypes;
 - (void)loadTradeableStoredResources;
 - (void)removeTradeableStoredResource:(NSDictionary *)storedResource;
 - (void)addTradeableStoredResource:(NSDictionary *)storedResource;
@@ -67,6 +78,8 @@
 - (bool)hasPreviousMyTradePage;
 - (bool)hasNextMyTradePage;
 - (void)pushItems:(ItemPush *)itemPush target:(id)target callback:(SEL)callback;
+- (void)tradeOneForOne:(OneForOneTrade *)oneForOneTrade target:(id)target callback:(SEL)callback;
+
 
 
 @end

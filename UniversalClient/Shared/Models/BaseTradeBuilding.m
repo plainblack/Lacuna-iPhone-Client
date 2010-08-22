@@ -12,18 +12,22 @@
 #import "Session.h"
 #import "Trade.h"
 #import "ItemPush.h"
+#import "OneForOneTrade.h"
 #import "Glyph.h"
 #import "Plan.h"
 #import "LEBuildingViewAvailableTrades.h";
 #import "LEBuildingViewMyTrades.h";
 #import "LEBuildingPushItems.h"
+#import "LEBuildingTradeOneForOne.h"
 #import "LEBuildingGetTradeableGlyphs.h"
 #import "LEBuildingGetTradeablePlans.h"
 #import "LEBuildingGetTradeableStoredResources.h"
 #import "LETableViewCellButton.h";
+#import "LETableViewCellLabeledText.h"
 #import "ViewAvailableTradesController.h"
 #import "ViewMyTradesController.h"
 #import "NewItemPushController.h"
+#import "NewOneForOneTradeController.h"
 
 
 @implementation BaseTradeBuilding
@@ -43,8 +47,11 @@
 @synthesize plans;
 @synthesize plansById;
 @synthesize cargoUserPerPlan;
+@synthesize resourceTypes;
 @synthesize storedResources;
 @synthesize cargoUserPerStoredResource;
+@synthesize usesEssentia;
+@synthesize maxCargoSize;
 
 
 #pragma mark --
@@ -63,14 +70,20 @@
 	self.plans = nil;
 	self.plansById = nil;
 	self.cargoUserPerPlan = nil;
+	self.resourceTypes = nil;
 	self.storedResources = nil;
 	self.cargoUserPerStoredResource = nil;
+	self.maxCargoSize = nil;
 	[super dealloc];
 }
 
 
 - (void)parseAdditionalData:(NSDictionary *)data {
-	NSLog(@"Data: %@", data);
+	NSDictionary *transportData = [data objectForKey:@"transport"];
+	if (transportData) {
+		self.maxCargoSize = [transportData objectForKey:@"max"];
+		NSLog(@"Found maxCargoSize: %@", self.maxCargoSize);
+	}
 }
 
 
@@ -78,6 +91,9 @@
 #pragma mark Overriden Building Methods
 
 - (void)generateSections {
+	NSMutableDictionary *productionSection = [self generateProductionSection];
+	[[productionSection objectForKey:@"rows"] addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_MAX_CARGO_SIZE]];
+	
 	NSMutableArray *rows = _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_AVAILABLE_TRADES], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MY_TRADES], [NSDecimalNumber numberWithInt:BUILDING_ROW_CREATE_TRADE]);
 	
 	Session *session = [Session sharedInstance];
@@ -86,9 +102,12 @@
 	}
 	if ([self.buildingUrl isEqualToString:TRANSPORTER_URL]) {
 		[rows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_1_FOR_1_TRADE]];
+		self->usesEssentia = YES;
+	} else {
+		self->usesEssentia = NO;
 	}
 	
-	self.sections = _array([self generateProductionSection], _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", rows, @"rows"), [self generateHealthSection], [self generateUpgradeSection]);
+	self.sections = _array(productionSection, _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", rows, @"rows"), [self generateHealthSection], [self generateUpgradeSection]);
 }
 
 
@@ -100,6 +119,9 @@
 		case BUILDING_ROW_CREATE_TRADE:
 		case BUILDING_ROW_1_FOR_1_TRADE:
 			return [LETableViewCellButton getHeightForTableView:tableView];
+			break;
+		case BUILDING_ROW_MAX_CARGO_SIZE:
+			return [LETableViewCellLabeledText getHeightForTableView:tableView];
 			break;
 		default:
 			return [super tableView:tableView heightForBuildingRow:buildingRow];
@@ -140,6 +162,13 @@
 			LETableViewCellButton *oneForOneTradeButtonCell = [LETableViewCellButton getCellForTableView:tableView];
 			oneForOneTradeButtonCell.textLabel.text = @"1 for 1 Trade With Lacunans";
 			cell = oneForOneTradeButtonCell;
+			break;
+		case BUILDING_ROW_MAX_CARGO_SIZE:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellLabeledText *maxCargoSizeCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			maxCargoSizeCell.label.text = @"Max Cargo Size";
+			maxCargoSizeCell.content.text = [Util prettyNSDecimalNumber:self.maxCargoSize];
+			cell = maxCargoSizeCell;
 			break;
 		default:
 			cell = [super tableView:tableView cellForBuildingRow:buildingRow rowIndex:rowIndex];
@@ -185,16 +214,9 @@
 			break;
 		case BUILDING_ROW_1_FOR_1_TRADE:
 			; //DO NOT REMOVE
-			UIAlertView *oneForOneTradeAlertView = [[[UIAlertView alloc] initWithTitle:@"WIP" message:@"This feature is not implemented yet." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-			[oneForOneTradeAlertView show];
-			[tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
-			/*
-			 ViewMyTradesController *viewMyTradesController = [ViewMyTradesController create];
-			 viewMyTradesController.baseTradeBuilding = self;
-			 return viewMyTradesController;
-			 */
-			NSLog(@"KEVIN CREATE 1 FOR 1 TRADE UI");
-			return nil;
+			NewOneForOneTradeController *newOneForOneTradeController = [NewOneForOneTradeController create];
+			newOneForOneTradeController.baseTradeBuilding = self;
+			return newOneForOneTradeController;
 			break;
 		default:
 			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];
@@ -213,6 +235,7 @@
 	self.plans = nil;
 	self.plansById = nil;
 	self.cargoUserPerPlan = nil;
+	self.resourceTypes = nil;
 	self.storedResources = nil;
 	self.cargoUserPerStoredResource = nil;
 }
@@ -227,6 +250,10 @@
 	[[[LEBuildingGetTradeablePlans alloc] initWithCallback:@selector(loadedTradeablePlans:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
 }
 
+
+- (void)loadTradeableResourceTypes {
+	self.resourceTypes = _array( @"water", @"energy", @"waste", @"essentia", @"bean", @"lapis", @"potato", @"apple", @"root", @"corn", @"cider", @"wheat", @"bread", @"soup", @"chip", @"pie", @"pancake", @"milk", @"meal", @"algae", @"syrup", @"fungus", @"burger", @"shake", @"beetle", @"rutile", @"chromite", @"chalcopyrite", @"galena", @"gold", @"uraninite", @"bauxite", @"goethite", @"halite", @"gypsum", @"trona", @"kerogen", @"methane", @"anthracite", @"sulfur", @"zircon", @"monazite", @"fluorite", @"beryl", @"magnetite");
+}
 
 - (void)loadTradeableStoredResources {
 	[[[LEBuildingGetTradeableStoredResources alloc] initWithCallback:@selector(loadedTradeableStoredResources:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
@@ -329,6 +356,13 @@
 }
 
 
+- (void)tradeOneForOne:(OneForOneTrade *)oneForOneTrade target:(id)target callback:(SEL)callback {
+	self->oneForOneTradeTarget = target;
+	self->oneForOneTradeCallback = callback;
+	[[[LEBuildingTradeOneForOne alloc] initWithCallback:@selector(tradedOneForOne:) target:self buildingId:self.id buildingUrl:self.buildingUrl haveResourceType:oneForOneTrade.haveResourceType wantResourceType:oneForOneTrade.wantResourceType quantity:oneForOneTrade.quantity] autorelease];
+}
+
+
 #pragma mark -
 #pragma mark Callback Methods
 
@@ -408,6 +442,13 @@
 
 - (id)pushedItems:(LEBuildingPushItems *)request {
 	[self->itemPushTarget performSelector:self->itemPushCallback withObject:request];
+	return nil;
+}
+
+
+- (id)tradedOneForOne:(LEBuildingTradeOneForOne *)request {
+	[self->oneForOneTradeTarget performSelector:self->oneForOneTradeCallback withObject:request];
+	return nil;
 }
 
 

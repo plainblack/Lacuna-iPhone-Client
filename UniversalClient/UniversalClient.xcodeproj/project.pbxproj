@@ -232,6 +232,10 @@
 		F6EF714F11FE7D1C00A93226 /* LEBuildingViewAllShips.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF714E11FE7D1C00A93226 /* LEBuildingViewAllShips.m */; };
 		F6EF716A11FE810900A93226 /* Ship.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF716911FE810900A93226 /* Ship.m */; };
 		F6F5427D11A9D7D4006F347B /* LEBodyStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */; };
+		F6F854C412203FBF0000CD09 /* NewOneForOneTradeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F854C312203FBF0000CD09 /* NewOneForOneTradeController.m */; };
+		F6F854C712203FF20000CD09 /* LEBuildingTradeOneForOne.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F854C612203FF20000CD09 /* LEBuildingTradeOneForOne.m */; };
+		F6F854CA122040070000CD09 /* OneForOneTrade.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F854C9122040070000CD09 /* OneForOneTrade.m */; };
+		F6F8550D1220B0500000CD09 /* SelectResourceTypeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F8550C1220B0500000CD09 /* SelectResourceTypeController.m */; };
 		F6FB458211F5158C00E24EAC /* LEBuildingGlyphSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB458111F5158C00E24EAC /* LEBuildingGlyphSearch.m */; };
 		F6FB458511F5159800E24EAC /* LEBuildingGlyphs.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB458411F5159800E24EAC /* LEBuildingGlyphs.m */; };
 		F6FB458811F515A700E24EAC /* LEBuildingGlyphAssemble.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB458711F515A700E24EAC /* LEBuildingGlyphAssemble.m */; };
@@ -681,6 +685,14 @@
 		F6EF716911FE810900A93226 /* Ship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ship.m; sourceTree = "<group>"; };
 		F6F5427B11A9D7D4006F347B /* LEBodyStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBodyStatus.h; sourceTree = "<group>"; };
 		F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBodyStatus.m; sourceTree = "<group>"; };
+		F6F854C212203FBF0000CD09 /* NewOneForOneTradeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewOneForOneTradeController.h; sourceTree = "<group>"; };
+		F6F854C312203FBF0000CD09 /* NewOneForOneTradeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewOneForOneTradeController.m; sourceTree = "<group>"; };
+		F6F854C512203FF20000CD09 /* LEBuildingTradeOneForOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingTradeOneForOne.h; sourceTree = "<group>"; };
+		F6F854C612203FF20000CD09 /* LEBuildingTradeOneForOne.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingTradeOneForOne.m; sourceTree = "<group>"; };
+		F6F854C8122040070000CD09 /* OneForOneTrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneForOneTrade.h; sourceTree = "<group>"; };
+		F6F854C9122040070000CD09 /* OneForOneTrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneForOneTrade.m; sourceTree = "<group>"; };
+		F6F8550B1220B0500000CD09 /* SelectResourceTypeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectResourceTypeController.h; sourceTree = "<group>"; };
+		F6F8550C1220B0500000CD09 /* SelectResourceTypeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectResourceTypeController.m; sourceTree = "<group>"; };
 		F6FB458011F5158C00E24EAC /* LEBuildingGlyphSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGlyphSearch.h; sourceTree = "<group>"; };
 		F6FB458111F5158C00E24EAC /* LEBuildingGlyphSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGlyphSearch.m; sourceTree = "<group>"; };
 		F6FB458311F5159800E24EAC /* LEBuildingGlyphs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGlyphs.h; sourceTree = "<group>"; };
@@ -1091,6 +1103,8 @@
 				F6D9AB45121BFA3F003E8D4E /* LEBuildingGetTradeableGlyphs.m */,
 				F6D9AB47121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.h */,
 				F6D9AB48121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.m */,
+				F6F854C512203FF20000CD09 /* LEBuildingTradeOneForOne.h */,
+				F6F854C612203FF20000CD09 /* LEBuildingTradeOneForOne.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -1179,6 +1193,8 @@
 				F692B8551218779D00E740C1 /* ItemPush.m */,
 				F6DA0DEF121D4D0F00705240 /* Plan.h */,
 				F6DA0DF0121D4D0F00705240 /* Plan.m */,
+				F6F854C8122040070000CD09 /* OneForOneTrade.h */,
+				F6F854C9122040070000CD09 /* OneForOneTrade.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -1288,6 +1304,10 @@
 				F64FA282121CD67C00CBFC3E /* SelectPlanController.m */,
 				F64FA284121CD68A00CBFC3E /* SelectStoredResourceController.h */,
 				F64FA285121CD68A00CBFC3E /* SelectStoredResourceController.m */,
+				F6F854C212203FBF0000CD09 /* NewOneForOneTradeController.h */,
+				F6F854C312203FBF0000CD09 /* NewOneForOneTradeController.m */,
+				F6F8550B1220B0500000CD09 /* SelectResourceTypeController.h */,
+				F6F8550C1220B0500000CD09 /* SelectResourceTypeController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1599,6 +1619,10 @@
 				F6DA0DC0121D47E200705240 /* LETableViewCellGlyph.m in Sources */,
 				F6DA0DF1121D4D0F00705240 /* Plan.m in Sources */,
 				F6E4C975121E0ED70028FFE8 /* LETableViewCellPlan.m in Sources */,
+				F6F854C412203FBF0000CD09 /* NewOneForOneTradeController.m in Sources */,
+				F6F854C712203FF20000CD09 /* LEBuildingTradeOneForOne.m in Sources */,
+				F6F854CA122040070000CD09 /* OneForOneTrade.m in Sources */,
+				F6F8550D1220B0500000CD09 /* SelectResourceTypeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

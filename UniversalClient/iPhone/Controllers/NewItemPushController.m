@@ -43,6 +43,7 @@ typedef enum {
 @interface NewItemPushController (PrivateMethods)
 
 - (void)showColonyPicker;
+- (void)pushItems;
 
 @end
 
@@ -235,8 +236,11 @@ typedef enum {
 					NSDecimalNumber *total = [self.baseTradeBuilding calculateStorageForGlyphs:numGlyphs plans:numPlans storedResources:numStoredResources];
 					LETableViewCellLabeledText *totalCargoCell = [LETableViewCellLabeledText getCellForTableView:tableView];
 					totalCargoCell.label.text = @"Cargo Size";
-					NSLog(@"Total: %@", total);
-					totalCargoCell.content.text =[total stringValue];
+					if (self.baseTradeBuilding.maxCargoSize) {
+						totalCargoCell.content.text =[NSString stringWithFormat:@"%@ / %@", [Util prettyNSDecimalNumber:total], [Util prettyNSDecimalNumber:self.baseTradeBuilding.maxCargoSize]];
+					} else {
+						totalCargoCell.content.text =[total stringValue];
+					}
 					cell = totalCargoCell;
 					break;
 				case ADD_ROW_GLYPH:
@@ -373,8 +377,14 @@ typedef enum {
 #pragma mark Instance Methods
 
 - (IBAction)send {
-	NSLog(@"Action called");
-	[self.baseTradeBuilding pushItems:self.itemPush target:self callback:@selector(pushedItems:)];
+	if (self.baseTradeBuilding.usesEssentia) {
+		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"This will cost 2 essentia. Do you wish to contine?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+		actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+		[actionSheet showFromTabBar:self.tabBarController.tabBar];
+		[actionSheet release];
+	} else {
+		[self pushItems];
+	}
 }
 
 
@@ -447,13 +457,19 @@ typedef enum {
 }
 
 
+- (void)pushItems {
+	[self.baseTradeBuilding pushItems:self.itemPush target:self callback:@selector(pushedItems:)];
+}
+
+
+
 #pragma mark --
 #pragma mark Callbacks
 
 - (id)pushedItems:(LEBuildingPushItems *)request {
 	if ([request wasError]) {
 		NSString *errorText = [request errorMessage];
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Could not relogin" message:errorText delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Could not push items." message:errorText delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 		[av show];
 		[request markErrorHandled];
 	} else {
@@ -462,6 +478,16 @@ typedef enum {
 
 	return nil;
 }
+
+#pragma mark -
+#pragma mark UIActionSheetDelegate Methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
+		[self pushItems];
+	}
+}
+
 
 #pragma mark -
 #pragma mark Class Methods

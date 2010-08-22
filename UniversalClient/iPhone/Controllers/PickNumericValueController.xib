@@ -147,10 +147,7 @@
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
 				<reference key="NSSuperview"/>
-				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">1</int>
-					<bytes key="NSRGB">MC4zMjE1Njg2NCAwLjY3NDUwOTgyIDEAA</bytes>
-				</object>
+				<reference key="IBUIBackgroundColor" ref="1054140831"/>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>

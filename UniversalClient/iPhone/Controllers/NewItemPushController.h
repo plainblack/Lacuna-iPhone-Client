@@ -18,7 +18,7 @@
 @class ItemPush;
 
 
-@interface NewItemPushController : LETableViewControllerGrouped <PickColonyDelegate, SelectGlyphControllerDelegate, SelectPlanControllerDelegate, SelectStoredResourceControllerDelegate> {
+@interface NewItemPushController : LETableViewControllerGrouped <UIActionSheetDelegate, PickColonyDelegate, SelectGlyphControllerDelegate, SelectPlanControllerDelegate, SelectStoredResourceControllerDelegate> {
 	BaseTradeBuilding *baseTradeBuilding;
 	ItemPush *itemPush;
 	PickColonyController *pickColonyController;
