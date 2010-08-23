@@ -104,13 +104,13 @@
 			storedResourceCell.textLabel.text = [NSString stringWithFormat:@"%@ (%@)", [[storedResource objectForKey:@"type"] capitalizedString], [storedResource objectForKey:@"quantity"]];
 			cell = storedResourceCell;
 		} else {
-			LETableViewCellLabeledText *emptyCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			LETableViewCellLabeledText *emptyCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 			emptyCell.label.text = @"Resources";
 			emptyCell.content.text = @"None";
 			cell = emptyCell;
 		}
 	} else {
-		LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+		LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 		loadingCell.label.text = @"Resources";
 		loadingCell.content.text = @"Loading";
 		cell = loadingCell;

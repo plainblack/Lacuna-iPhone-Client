@@ -12,11 +12,13 @@
 @interface Prisoner : NSObject {
 	NSString *id;
 	NSString *name;
+	NSDecimalNumber *level;
 	NSDate *sentenceExpiresOn;
 }
 
 @property (nonatomic, retain) NSString *id;
 @property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSDecimalNumber *level;
 @property (nonatomic, retain) NSDate *sentenceExpiresOn;
 
 

@@ -17,6 +17,10 @@
 	NSString *askDescription;
 	NSString *offerType;
 	NSDecimalNumber *offerQuantity;
+	NSString *offerGlyphId;
+	NSString *offerPlanId;
+	NSString *offerPrisonerId;
+	NSString *offerShipId;
 	NSString *offerDescription;
 }
 
@@ -28,6 +32,10 @@
 @property (nonatomic, retain) NSString *askDescription;
 @property (nonatomic, retain) NSString *offerType;
 @property (nonatomic, retain) NSDecimalNumber *offerQuantity;
+@property (nonatomic, retain) NSString *offerGlyphId;
+@property (nonatomic, retain) NSString *offerPlanId;
+@property (nonatomic, retain) NSString *offerPrisonerId;
+@property (nonatomic, retain) NSString *offerShipId;
 @property (nonatomic, retain) NSString *offerDescription;
 
 

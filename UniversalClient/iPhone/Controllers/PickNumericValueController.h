@@ -19,6 +19,7 @@
 
 @interface PickNumericValueController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate> {
 	UILabel *titleLabel;
+	UIButton *maxButton;
 	UIPickerView *numberPicker;
 	id<PickNumericValueControllerDelegate> delegate;
 	NSDecimalNumber *maxValue;
@@ -26,6 +27,7 @@
 
 
 @property (nonatomic, retain) IBOutlet UILabel *titleLabel;
+@property (nonatomic, retain) IBOutlet UIButton *maxButton;
 @property (nonatomic, retain) IBOutlet UIPickerView *numberPicker;
 @property (nonatomic, assign) id<PickNumericValueControllerDelegate> delegate;
 @property (nonatomic, retain) NSDecimalNumber *maxValue;

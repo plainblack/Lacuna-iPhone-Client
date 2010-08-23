@@ -10,13 +10,16 @@
 #import "LEMacros.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellLabeledText.h"
+#import "LETableViewCellButton.h"
 #import "Util.h"
 #import "BaseTradeBuilding.h"
 #import "Trade.h"
 
 
 typedef enum {
-	ROW_TRADE_INFO,
+	ROW_TRADE_OFFER,
+	ROW_TRADE_ASK,
+	ROW_WITHDRAW
 } ROW;
 
 
@@ -102,8 +105,12 @@ typedef enum {
 	if (self.baseTradeBuilding && self.baseTradeBuilding.myTrades) {
 		if ([self.baseTradeBuilding.myTrades count] > 0) {
 			switch (indexPath.row) {
-				case ROW_TRADE_INFO:
+				case ROW_TRADE_OFFER:
+				case ROW_TRADE_ASK:
 					return [LETableViewCellLabeledText getHeightForTableView:tableView];
+					break;
+				case ROW_WITHDRAW:
+					return [LETableViewCellButton getHeightForTableView:tableView];
 					break;
 				default:
 					return tableView.rowHeight;
@@ -127,31 +134,57 @@ typedef enum {
 		if ([self.baseTradeBuilding.myTrades count] > 0) {
 			Trade *trade = [self.baseTradeBuilding.myTrades objectAtIndex:indexPath.section];
 			switch (indexPath.row) {
-				case ROW_TRADE_INFO:
+				case ROW_TRADE_OFFER:
 					; //DO NOT REMOVE
-					LETableViewCellLabeledText *tradeCell = [LETableViewCellLabeledText getCellForTableView:tableView];
-					tradeCell.label.text = @"Trade";
-					tradeCell.content.text = [NSString stringWithFormat:@"%@ : %@", trade.askDescription, trade.askDescription];
-					cell = tradeCell;
+					LETableViewCellLabeledText *offerCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+					offerCell.label.text = @"Offer";
+					offerCell.content.text = trade.offerDescription;
+					cell = offerCell;
+					break;
+				case ROW_TRADE_ASK:
+					; //DO NOT REMOVE
+					LETableViewCellLabeledText *askCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+					askCell.label.text = @"Ask";
+					askCell.content.text = trade.askDescription;
+					cell = askCell;
+					break;
+				case ROW_WITHDRAW:
+					; //DO NOT REMOVE
+					LETableViewCellButton *withdrawButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+					withdrawButtonCell.textLabel.text = @"Withdraw Trade";
+					cell = withdrawButtonCell;
 					break;
 				default:
 					cell = nil;
 					break;
 			}
 		} else {
-			LETableViewCellLabeledText *emptyCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			LETableViewCellLabeledText *emptyCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 			emptyCell.label.text = @"Trades";
 			emptyCell.content.text = @"None";
 			cell = emptyCell;
 		}
 	} else {
-		LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+		LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 		loadingCell.label.text = @"Trades";
 		loadingCell.content.text = @"Loading";
 		cell = loadingCell;
 	}
     
     return cell;
+}
+
+
+#pragma mark -
+#pragma mark UITableViewDataSource Methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	Trade *trade = [self.baseTradeBuilding.myTrades objectAtIndex:indexPath.section];
+	switch (indexPath.row) {
+		case ROW_WITHDRAW:
+			[self.baseTradeBuilding withdrawTrade:trade];
+			break;
+	}
 }
 
 

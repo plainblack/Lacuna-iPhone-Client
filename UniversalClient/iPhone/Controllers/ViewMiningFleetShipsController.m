@@ -121,7 +121,7 @@ typedef enum {
 			switch (indexPath.row) {
 				case ROW_SHIP_INFO:
 					; //DO NOT REMOVE
-					LETableViewCellShip *shipCell = [LETableViewCellShip getCellForTableView:tableView];
+					LETableViewCellShip *shipCell = [LETableViewCellShip getCellForTableView:tableView isSelectable:NO];
 					[shipCell setShip:ship];
 					cell = shipCell;
 					break;
@@ -140,14 +140,14 @@ typedef enum {
 					break;
 			}
 		} else {
-			LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 			loadingCell.label.text = @"Ships";
 			loadingCell.content.text = @"None";
 			cell = loadingCell;
 		}
 		
 	} else {
-		LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+		LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 		loadingCell.label.text = @"";
 		loadingCell.content.text = @"Loading";
 		cell = loadingCell;

@@ -138,14 +138,14 @@ typedef enum {
 			switch (indexPath.row) {
 				case ROW_PRISONER_NAME:
 					; //DO NOT REMOVE
-					LETableViewCellLabeledText *prisonerNameCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+					LETableViewCellLabeledText *prisonerNameCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					prisonerNameCell.label.text = @"Name";
 					prisonerNameCell.content.text = prisoner.name;
 					cell = prisonerNameCell;
 					break;
 				case ROW_PRISONER_SENTENCE:
 					; //DO NOT REMOVE
-					LETableViewCellLabeledText *prisonerSentenceCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+					LETableViewCellLabeledText *prisonerSentenceCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					prisonerSentenceCell.label.text = @"Expires";
 					prisonerSentenceCell.content.text = [Util formatDate:prisoner.sentenceExpiresOn];
 					cell = prisonerSentenceCell;
@@ -167,13 +167,13 @@ typedef enum {
 					break;
 			}
 		} else {
-			LETableViewCellLabeledText *emptyCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			LETableViewCellLabeledText *emptyCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 			emptyCell.label.text = @"Prisoners";
 			emptyCell.content.text = @"None";
 			cell = emptyCell;
 		}
 	} else {
-		LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+		LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 		loadingCell.label.text = @"Prisoners";
 		loadingCell.content.text = @"Loading";
 		cell = loadingCell;

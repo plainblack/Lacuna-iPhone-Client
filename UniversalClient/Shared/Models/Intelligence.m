@@ -117,7 +117,7 @@
 	switch (buildingRow) {
 		case BUILDING_ROW_NUM_SPIES:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
-			LETableViewCellLabeledText *numSpiesCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			LETableViewCellLabeledText *numSpiesCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 			numSpiesCell.label.text = @"Spies";
 			numSpiesCell.content.text = [NSString stringWithFormat:@"%@/%@", self.numSpies, self.maxSpies];
 			cell = numSpiesCell;

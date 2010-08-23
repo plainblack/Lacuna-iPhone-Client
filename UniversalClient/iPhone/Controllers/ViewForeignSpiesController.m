@@ -132,21 +132,21 @@ typedef enum {
 			switch (indexPath.row) {
 				case ROW_NAME:
 					; //DO NOT REMOVE
-					LETableViewCellLabeledText *nameCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+					LETableViewCellLabeledText *nameCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					nameCell.label.text = @"Name";
 					nameCell.content.text = [foreignSpy objectForKey:@"name"];
 					cell = nameCell;
 					break;
 				case ROW_LEVEL:
 					; //DO NOT REMOVE
-					LETableViewCellLabeledText *levelCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+					LETableViewCellLabeledText *levelCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					levelCell.label.text = @"level";
 					levelCell.content.text = [NSString stringWithFormat:@"%@", [foreignSpy objectForKey:@"name"]];
 					cell = levelCell;
 					break;
 				case ROW_NEXT_MISSION:
 					; //DO NOT REMOVE
-					LETableViewCellLabeledText *nextMissionCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+					LETableViewCellLabeledText *nextMissionCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					nextMissionCell.label.text = @"Next Mission";
 					nextMissionCell.content.text = [Util formatDate:[foreignSpy objectForKey:@"next_mission"]];
 					cell = nextMissionCell;
@@ -156,13 +156,13 @@ typedef enum {
 					break;
 			}
 		} else {
-			LETableViewCellLabeledText *emptyCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			LETableViewCellLabeledText *emptyCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 			emptyCell.label.text = @"Foreign Spies";
 			emptyCell.content.text = @"None";
 			cell = emptyCell;
 		}
 	} else {
-		LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+		LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 		loadingCell.label.text = @"Foreign Spies";
 		loadingCell.content.text = @"Loading";
 		cell = loadingCell;

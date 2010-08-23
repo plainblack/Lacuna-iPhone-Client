@@ -170,7 +170,7 @@ typedef enum {
 				assignButtonCell.textLabel.text = @"Assign spy";
 				cell = assignButtonCell;
 			} else {
-				LETableViewCellLabeledText *assignedCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+				LETableViewCellLabeledText *assignedCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 				assignedCell.label.text = @"Busy for";
 				//assignedCell.content.text = [Util formatDate:spy.assignmentEnds];
 				assignedCell.content.text = [Util prettyDuration:spy.secondsRemaining];

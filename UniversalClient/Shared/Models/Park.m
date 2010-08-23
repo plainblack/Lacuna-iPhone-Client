@@ -93,7 +93,7 @@
 			break;
 		case BUILDING_ROW_PARTY_PENDING:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
-			LETableViewCellLabeledText *partyPendingCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			LETableViewCellLabeledText *partyPendingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 			if (self.secondsRemaining > 0) {
 				partyPendingCell.label.text = @"In progress";
 				partyPendingCell.content.text = [Util prettyDuration:self.secondsRemaining];

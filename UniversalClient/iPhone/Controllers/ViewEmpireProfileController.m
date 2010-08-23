@@ -142,7 +142,7 @@ typedef enum {
 			switch (indexPath.row) {
 				case EMPIRE_ROW_NAME:
 					; //DO NOT REMOVE
-					LETableViewCellLabeledText *empireNameCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+					LETableViewCellLabeledText *empireNameCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					empireNameCell.label.text = @"Empire";
 					empireNameCell.content.text = session.empire.name;
 					cell = empireNameCell;
@@ -171,7 +171,7 @@ typedef enum {
 					break;
 				case EMPIRE_ROW_ESSENTIA:
 					; //DO NOT REMOVE
-					LETableViewCellLabeledText *essentiaCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+					LETableViewCellLabeledText *essentiaCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					essentiaCell.label.text = @"Essentia";
 					essentiaCell.content.text = [NSString stringWithFormat:@"%@", session.empire.essentia];
 					cell = essentiaCell;

@@ -349,7 +349,7 @@
 			break;
 		case BUILDING_ROW_EMPTY:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
-			LETableViewCellLabeledText *emptyCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			LETableViewCellLabeledText *emptyCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 			emptyCell.label.text = @"";
 			emptyCell.content.text = @"Empty";
 			cell = emptyCell;
@@ -368,7 +368,7 @@
 			break;
 		case BUILDING_ROW_EFFICENCY:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
-			LETableViewCellLabeledText *efficencyCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			LETableViewCellLabeledText *efficencyCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 			efficencyCell.label.text = @"Efficency";
 			efficencyCell.content.text = [NSString stringWithFormat:@"%@%%", self.efficiency];
 			cell = efficencyCell;
@@ -387,7 +387,7 @@
 			break;
 		default:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
-			LETableViewCellLabeledText *defaultCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			LETableViewCellLabeledText *defaultCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 			defaultCell.label.text = @"";
 			defaultCell.content.text = @"TBD";
 			cell = defaultCell;

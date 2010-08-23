@@ -31,7 +31,7 @@ NSMutableDictionary *selectedStoredResource;
 
 
 @property (nonatomic, retain) BaseTradeBuilding *baseTradeBuilding;
-@property (nonatomic, retain) 	NSMutableDictionary *selectedStoredResource;
+@property (nonatomic, retain) NSMutableDictionary *selectedStoredResource;
 @property (nonatomic, assign) id<SelectStoredResourceControllerDelegate> delegate;
 
 

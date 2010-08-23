@@ -32,6 +32,7 @@ typedef enum {
 	SECTION_ADD
 } SECTIONS;
 
+
 typedef enum {
 	ADD_ROW_TOTAL,
 	ADD_ROW_GLYPH,
@@ -192,8 +193,6 @@ typedef enum {
 				NSString *type = [item objectForKey:@"type"];
 				if ([type isEqualToString:@"glyph"]) {
 					Glyph *glyph = [self.baseTradeBuilding.glyphsById objectForKey:[item objectForKey:@"glyph_id"]];
-					NSLog(@"id: %@", [item objectForKey:@"glyph_id"]);
-					NSLog(@"glyph: %@", glyph);
 					LETableViewCellGlyph *glyphCell = [LETableViewCellGlyph getCellForTableView:tableView isSelectable:NO];
 					[glyphCell setGlyph:glyph];
 					cell = glyphCell;
@@ -203,13 +202,13 @@ typedef enum {
 					[planCell setPlan:plan];
 					cell = planCell;
 				} else {
-					LETableViewCellLabeledText *itemCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+					LETableViewCellLabeledText *itemCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					itemCell.label.text = [type capitalizedString];
 					itemCell.content.text = [Util prettyNSDecimalNumber:[item objectForKey:@"quantity"]];
 					cell = itemCell;
 				}
 			} else {
-				LETableViewCellLabeledText *noItemsCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+				LETableViewCellLabeledText *noItemsCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 				noItemsCell.label.text = @"None yet";
 				noItemsCell.content.text = @"Go add some!";
 				cell = noItemsCell;
@@ -234,7 +233,7 @@ typedef enum {
 						}
 					}
 					NSDecimalNumber *total = [self.baseTradeBuilding calculateStorageForGlyphs:numGlyphs plans:numPlans storedResources:numStoredResources];
-					LETableViewCellLabeledText *totalCargoCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+					LETableViewCellLabeledText *totalCargoCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					totalCargoCell.label.text = @"Cargo Size";
 					if (self.baseTradeBuilding.maxCargoSize) {
 						totalCargoCell.content.text =[NSString stringWithFormat:@"%@ / %@", [Util prettyNSDecimalNumber:total], [Util prettyNSDecimalNumber:self.baseTradeBuilding.maxCargoSize]];
@@ -337,7 +336,6 @@ typedef enum {
 		} else if ([type isEqualToString:@"plan"]) {
 			[self.baseTradeBuilding.plans addObject:[self.baseTradeBuilding.plansById objectForKey:[item objectForKey:@"plan_id"]]];
 		} else {
-			//[self.baseTradeBuilding.storedResources addObject:item];
 			[self.baseTradeBuilding addTradeableStoredResource:item];
 		}
 		[self.itemPush.items removeObjectAtIndex:indexPath.row];

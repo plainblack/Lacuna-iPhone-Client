@@ -72,7 +72,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSArray *section = [self.sections objectAtIndex:indexPath.section];
 
-	LETableViewCellLabeledText *cell = [LETableViewCellLabeledText getCellForTableView:tableView];
+	LETableViewCellLabeledText *cell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 	cell.label.text = [self.headers objectAtIndex:indexPath.row];
 	cell.content.text = [section objectAtIndex:indexPath.row];
 

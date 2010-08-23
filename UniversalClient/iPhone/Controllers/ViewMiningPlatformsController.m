@@ -131,14 +131,14 @@ typedef enum {
 			switch (indexPath.row) {
 				case ROW_PLATFORM_LOCATION:
 					; //DO NOT REMOVE
-					LETableViewCellLabeledText *locationCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+					LETableViewCellLabeledText *locationCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					locationCell.label.text = @"Asteroid";
 					locationCell.content.text = miningPlatform.asteroidName;
 					cell = locationCell;
 					break;
 				case ROW_SHIPPING_CAPACTITY:
 					; //DO NOT REMOVE
-					LETableViewCellLabeledText *shippingCapacityCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+					LETableViewCellLabeledText *shippingCapacityCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					shippingCapacityCell.label.text = @"Shipping";
 					shippingCapacityCell.content.text = [NSString stringWithFormat:@"%@%%", miningPlatform.shippingCapacity];
 					cell = shippingCapacityCell;
@@ -160,14 +160,14 @@ typedef enum {
 					break;
 			}
 		} else {
-			LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 			loadingCell.label.text = @"Platforms";
 			loadingCell.content.text = @"None";
 			cell = loadingCell;
 		}
 		
 	} else {
-		LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+		LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 		loadingCell.label.text = @"";
 		loadingCell.content.text = @"Loading";
 		cell = loadingCell;

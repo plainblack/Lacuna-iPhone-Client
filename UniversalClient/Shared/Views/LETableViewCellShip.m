@@ -67,12 +67,20 @@
 #pragma mark --
 #pragma mark Class Methods
 
-+ (LETableViewCellShip *)getCellForTableView:(UITableView *)tableView {
-    static NSString *CellIdentifier = @"ShipCell";
++ (LETableViewCellShip *)getCellForTableView:(UITableView *)tableView isSelectable:(BOOL)isSelectable {
+    static NSString *SelectableCellIdentifier = @"ShipCellSelectable";
+    static NSString *NormalCellIdentifier = @"ShipCell";
+	NSString *cellIdentifier;
+	if (isSelectable) {
+		cellIdentifier = SelectableCellIdentifier;
+	} else {
+		cellIdentifier = NormalCellIdentifier;
+	}
+
 	
-	LETableViewCellShip *cell = (LETableViewCellShip *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	LETableViewCellShip *cell = (LETableViewCellShip *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-		cell = [[LETableViewCellShip alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+		cell = [[LETableViewCellShip alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
 		cell.backgroundColor = CELL_BACKGROUND_COLOR;
 		cell.autoresizesSubviews = YES;
 		
@@ -143,9 +151,14 @@
 		cell.holdSizeLabel.textColor = TEXT_SMALL_COLOR;
 		cell.holdSizeLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.holdSizeLabel];
-		
+				
 		//Set Cell Defaults
-		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		if (isSelectable) {
+			cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		} else {
+			cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		}
 	}
 	
 	return cell;

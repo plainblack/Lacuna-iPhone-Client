@@ -52,7 +52,7 @@
 	switch (buildingRow) {
 		case BUILDING_ROW_NEXT_COLONY_COST:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
-			LETableViewCellLabeledText *nextColonyCostCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			LETableViewCellLabeledText *nextColonyCostCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 			nextColonyCostCell.label.text = @"Next Colony";
 			nextColonyCostCell.content.text = [Util prettyNSDecimalNumber:self.nextColonyCost];
 			cell = nextColonyCostCell;

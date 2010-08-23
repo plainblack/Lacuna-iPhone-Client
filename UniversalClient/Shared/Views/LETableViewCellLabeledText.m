@@ -43,12 +43,19 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (LETableViewCellLabeledText *)getCellForTableView:(UITableView *)tableView {
-	static NSString *CellIdentifier = @"LabeledTextCell";
++ (LETableViewCellLabeledText *)getCellForTableView:(UITableView *)tableView isSelectable:(BOOL)isSelectable{
+	static NSString *SelectableCellIdentifier = @"LabeledTextCellSelectable";
+	static NSString *NormalCellIdentifier = @"LabeledTextCell";
+	NSString *cellIdentifier;
+	if (isSelectable) {
+		cellIdentifier = SelectableCellIdentifier;
+	} else {
+		cellIdentifier = NormalCellIdentifier;
+	}
 	
-	LETableViewCellLabeledText *cell = (LETableViewCellLabeledText *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	LETableViewCellLabeledText *cell = (LETableViewCellLabeledText *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-		cell = [[LETableViewCellLabeledText alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+		cell = [[LETableViewCellLabeledText alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
 		cell.backgroundColor = CELL_BACKGROUND_COLOR;
 		cell.autoresizesSubviews = YES;
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -68,6 +75,14 @@
 		cell.content.font = TEXT_FONT;
 		cell.content.textColor = TEXT_COLOR;
 		[cell.contentView addSubview:cell.content];
+
+		//Set Cell Defaults
+		if (isSelectable) {
+			cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		} else {
+			cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		}
 	}
 	
 	return cell;

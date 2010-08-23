@@ -171,7 +171,6 @@ static Session *sharedSession = nil;
 
 		NSDictionary *bodyStatus = [status objectForKey:@"body"];
 		if (bodyStatus) {
-			NSLog(@"Session updating body");
 			[self.body parseData:bodyStatus];
 		}
 	}

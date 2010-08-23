@@ -24,6 +24,7 @@ typedef enum {
 	SECTION_WANT
 } SECTIONS;
 
+
 @interface NewOneForOneTradeController (PrivateMethods)
 
 - (void)tradeOneForOne;
@@ -45,7 +46,7 @@ typedef enum {
     [super viewDidLoad];
 	
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleDone target:self action:@selector(send)] autorelease];
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Have"], [LEViewSectionTab tableView:self.tableView createWithText:@"Want"], [LEViewSectionTab tableView:self.tableView createWithText:@"Add"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Have"], [LEViewSectionTab tableView:self.tableView createWithText:@"Want"]);
 	
 	if (!self.oneForOneTrade) {
 		self.oneForOneTrade = [[[OneForOneTrade alloc] init] autorelease];
@@ -220,7 +221,7 @@ typedef enum {
 #pragma mark -
 #pragma mark SelectStoredResourcesDelegate Methods
 
-- (void)resourceTypeSelected:(NSString *)resourceType {
+- (void)resourceTypeSelected:(NSString *)resourceType withQuantity:(NSDecimalNumber *)quantity {
 	self.oneForOneTrade.wantResourceType = resourceType;
 	[self.navigationController popViewControllerAnimated:YES];
 	[self->selectResourceTypeController release];

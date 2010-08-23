@@ -15,6 +15,7 @@
 
 @synthesize id;
 @synthesize name;
+@synthesize level;
 @synthesize sentenceExpiresOn;
 
 
@@ -22,14 +23,15 @@
 #pragma mark NSObject Methods
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"id:%@, name:%@, sentenceExpiresOn:%@", 
-			self.id, self.name, self.sentenceExpiresOn];
+	return [NSString stringWithFormat:@"id:%@, name:%@, level: %@, sentenceExpiresOn:%@", 
+			self.id, self.name, self.level, self.sentenceExpiresOn];
 }
 
 
 - (void)dealloc {
 	self.id = nil;
 	self.name = nil;
+	self.level = nil;
 	self.sentenceExpiresOn = nil;
 	[super dealloc];
 }
@@ -41,6 +43,7 @@
 - (void)parseData:(NSDictionary *)prisonerData {
 	self.id = [prisonerData objectForKey:@"id"];
 	self.name = [prisonerData objectForKey:@"name"];
+	self.level = [Util asNumber:[prisonerData objectForKey:@"level"] ];
 	self.sentenceExpiresOn = [Util date:[prisonerData objectForKey:@"sentence_expires"]];
 }
 

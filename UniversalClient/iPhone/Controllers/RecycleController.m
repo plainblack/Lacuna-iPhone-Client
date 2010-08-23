@@ -132,14 +132,14 @@ typedef enum {
 			break;
 		case ROW_TIME:
 			; //DO NOT REMOVE
-			LETableViewCellLabeledText *timeCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			LETableViewCellLabeledText *timeCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 			timeCell.label.text = @"Time needed";
 			timeCell.content.text = [Util prettyDuration:self.seconds];
 			cell = timeCell;
 			break;
 		case ROW_MAX:
 			; //DO NOT REMOVE
-			LETableViewCellLabeledText *maxRecycleCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			LETableViewCellLabeledText *maxRecycleCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 			maxRecycleCell.label.text = @"Max Recycle";
 			maxRecycleCell.content.text = [Util prettyNSDecimalNumber:self.wasteRecycling.maxResources];
 			cell = maxRecycleCell;
@@ -147,7 +147,7 @@ typedef enum {
 		case ROW_CURRENT:
 			; //DO NOT REMOVE
 			Session *session = [Session sharedInstance];
-			LETableViewCellLabeledText *currentWasteCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			LETableViewCellLabeledText *currentWasteCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 			currentWasteCell.label.text = @"Current Waste";
 			currentWasteCell.content.text = [Util prettyNSDecimalNumber:session.body.waste.current];
 			cell = currentWasteCell;

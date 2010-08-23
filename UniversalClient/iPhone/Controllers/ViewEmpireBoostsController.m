@@ -178,7 +178,7 @@ typedef enum {
 
 - (UITableViewCell *)setupCellForTableView:(UITableView *)tableView boostEndDate:(NSDate *)boostEndDate name:(NSString *)name {
 	if ([self isBoosting:boostEndDate]) {
-		LETableViewCellLabeledText *energyPendingCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+		LETableViewCellLabeledText *energyPendingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 		energyPendingCell.label.text = name;
 		energyPendingCell.content.text = [Util formatDate:boostEndDate];
 		return energyPendingCell;

@@ -161,6 +161,14 @@
 		F6C390EE11F23D54004FB38F /* LETableViewCellBuildQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C390ED11F23D54004FB38F /* LETableViewCellBuildQueueItem.m */; };
 		F6CF29E21210E1F400D4A9AC /* AssignSpyControllerV2.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CF29E01210E1F400D4A9AC /* AssignSpyControllerV2.m */; };
 		F6CF29E31210E1F400D4A9AC /* AssignViewControllerV2.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6CF29E11210E1F400D4A9AC /* AssignViewControllerV2.xib */; };
+		F6D3F66D1221776A0090E31E /* NewTradeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3F66C1221776A0090E31E /* NewTradeController.m */; };
+		F6D3F6A812218AD10090E31E /* LEBuildingAddTrade.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3F6A712218AD10090E31E /* LEBuildingAddTrade.m */; };
+		F6D3F6BB122193C30090E31E /* SelectTradeablePrisonerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3F6BA122193C30090E31E /* SelectTradeablePrisonerController.m */; };
+		F6D3F6BE122193D70090E31E /* SelectTradeableShipController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3F6BD122193D70090E31E /* SelectTradeableShipController.m */; };
+		F6D3F6FD1221B2A90090E31E /* LEBuildingWithdrawTrade.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3F6FC1221B2A90090E31E /* LEBuildingWithdrawTrade.m */; };
+		F6D3F7001221B2B90090E31E /* LEBuildingAcceptTrade.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3F6FF1221B2B90090E31E /* LEBuildingAcceptTrade.m */; };
+		F6D3F7DD1221F6BC0090E31E /* AcceptTradeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3F7DC1221F6BC0090E31E /* AcceptTradeController.m */; };
+		F6D3F8751222130A0090E31E /* LETableViewCellCaptchaImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3F8741222130A0090E31E /* LETableViewCellCaptchaImage.m */; };
 		F6D48578120CD80D00D77FC3 /* LEBuildingViewForeignSpies.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D48577120CD80D00D77FC3 /* LEBuildingViewForeignSpies.m */; };
 		F6D4857B120CD82100D77FC3 /* LEBuildingExecutePrisoner.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D4857A120CD82100D77FC3 /* LEBuildingExecutePrisoner.m */; };
 		F6D4857E120CD83600D77FC3 /* LEBuildingReleasePrisoner.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D4857D120CD83600D77FC3 /* LEBuildingReleasePrisoner.m */; };
@@ -542,6 +550,22 @@
 		F6CF29DF1210E1F400D4A9AC /* AssignSpyControllerV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssignSpyControllerV2.h; sourceTree = "<group>"; };
 		F6CF29E01210E1F400D4A9AC /* AssignSpyControllerV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssignSpyControllerV2.m; sourceTree = "<group>"; };
 		F6CF29E11210E1F400D4A9AC /* AssignViewControllerV2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssignViewControllerV2.xib; sourceTree = "<group>"; };
+		F6D3F66B1221776A0090E31E /* NewTradeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTradeController.h; sourceTree = "<group>"; };
+		F6D3F66C1221776A0090E31E /* NewTradeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTradeController.m; sourceTree = "<group>"; };
+		F6D3F6A612218AD10090E31E /* LEBuildingAddTrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingAddTrade.h; sourceTree = "<group>"; };
+		F6D3F6A712218AD10090E31E /* LEBuildingAddTrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingAddTrade.m; sourceTree = "<group>"; };
+		F6D3F6B9122193C30090E31E /* SelectTradeablePrisonerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectTradeablePrisonerController.h; sourceTree = "<group>"; };
+		F6D3F6BA122193C30090E31E /* SelectTradeablePrisonerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectTradeablePrisonerController.m; sourceTree = "<group>"; };
+		F6D3F6BC122193D70090E31E /* SelectTradeableShipController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectTradeableShipController.h; sourceTree = "<group>"; };
+		F6D3F6BD122193D70090E31E /* SelectTradeableShipController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectTradeableShipController.m; sourceTree = "<group>"; };
+		F6D3F6FB1221B2A90090E31E /* LEBuildingWithdrawTrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingWithdrawTrade.h; sourceTree = "<group>"; };
+		F6D3F6FC1221B2A90090E31E /* LEBuildingWithdrawTrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingWithdrawTrade.m; sourceTree = "<group>"; };
+		F6D3F6FE1221B2B90090E31E /* LEBuildingAcceptTrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingAcceptTrade.h; sourceTree = "<group>"; };
+		F6D3F6FF1221B2B90090E31E /* LEBuildingAcceptTrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingAcceptTrade.m; sourceTree = "<group>"; };
+		F6D3F7DB1221F6BC0090E31E /* AcceptTradeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptTradeController.h; sourceTree = "<group>"; };
+		F6D3F7DC1221F6BC0090E31E /* AcceptTradeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptTradeController.m; sourceTree = "<group>"; };
+		F6D3F8731222130A0090E31E /* LETableViewCellCaptchaImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellCaptchaImage.h; sourceTree = "<group>"; };
+		F6D3F8741222130A0090E31E /* LETableViewCellCaptchaImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellCaptchaImage.m; sourceTree = "<group>"; };
 		F6D48576120CD80D00D77FC3 /* LEBuildingViewForeignSpies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewForeignSpies.h; sourceTree = "<group>"; };
 		F6D48577120CD80D00D77FC3 /* LEBuildingViewForeignSpies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewForeignSpies.m; sourceTree = "<group>"; };
 		F6D48579120CD82100D77FC3 /* LEBuildingExecutePrisoner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingExecutePrisoner.h; sourceTree = "<group>"; };
@@ -902,6 +926,8 @@
 				F6DA0DBF121D47E200705240 /* LETableViewCellGlyph.m */,
 				F6E4C973121E0ED70028FFE8 /* LETableViewCellPlan.h */,
 				F6E4C974121E0ED70028FFE8 /* LETableViewCellPlan.m */,
+				F6D3F8731222130A0090E31E /* LETableViewCellCaptchaImage.h */,
+				F6D3F8741222130A0090E31E /* LETableViewCellCaptchaImage.m */,
 			);
 			name = Views;
 			path = Shared/Views;
@@ -1105,6 +1131,12 @@
 				F6D9AB48121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.m */,
 				F6F854C512203FF20000CD09 /* LEBuildingTradeOneForOne.h */,
 				F6F854C612203FF20000CD09 /* LEBuildingTradeOneForOne.m */,
+				F6D3F6A612218AD10090E31E /* LEBuildingAddTrade.h */,
+				F6D3F6A712218AD10090E31E /* LEBuildingAddTrade.m */,
+				F6D3F6FB1221B2A90090E31E /* LEBuildingWithdrawTrade.h */,
+				F6D3F6FC1221B2A90090E31E /* LEBuildingWithdrawTrade.m */,
+				F6D3F6FE1221B2B90090E31E /* LEBuildingAcceptTrade.h */,
+				F6D3F6FF1221B2B90090E31E /* LEBuildingAcceptTrade.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -1308,6 +1340,14 @@
 				F6F854C312203FBF0000CD09 /* NewOneForOneTradeController.m */,
 				F6F8550B1220B0500000CD09 /* SelectResourceTypeController.h */,
 				F6F8550C1220B0500000CD09 /* SelectResourceTypeController.m */,
+				F6D3F66B1221776A0090E31E /* NewTradeController.h */,
+				F6D3F66C1221776A0090E31E /* NewTradeController.m */,
+				F6D3F6B9122193C30090E31E /* SelectTradeablePrisonerController.h */,
+				F6D3F6BA122193C30090E31E /* SelectTradeablePrisonerController.m */,
+				F6D3F6BC122193D70090E31E /* SelectTradeableShipController.h */,
+				F6D3F6BD122193D70090E31E /* SelectTradeableShipController.m */,
+				F6D3F7DB1221F6BC0090E31E /* AcceptTradeController.h */,
+				F6D3F7DC1221F6BC0090E31E /* AcceptTradeController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1623,6 +1663,14 @@
 				F6F854C712203FF20000CD09 /* LEBuildingTradeOneForOne.m in Sources */,
 				F6F854CA122040070000CD09 /* OneForOneTrade.m in Sources */,
 				F6F8550D1220B0500000CD09 /* SelectResourceTypeController.m in Sources */,
+				F6D3F66D1221776A0090E31E /* NewTradeController.m in Sources */,
+				F6D3F6A812218AD10090E31E /* LEBuildingAddTrade.m in Sources */,
+				F6D3F6BB122193C30090E31E /* SelectTradeablePrisonerController.m in Sources */,
+				F6D3F6BE122193D70090E31E /* SelectTradeableShipController.m in Sources */,
+				F6D3F6FD1221B2A90090E31E /* LEBuildingWithdrawTrade.m in Sources */,
+				F6D3F7001221B2B90090E31E /* LEBuildingAcceptTrade.m in Sources */,
+				F6D3F7DD1221F6BC0090E31E /* AcceptTradeController.m in Sources */,
+				F6D3F8751222130A0090E31E /* LETableViewCellCaptchaImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

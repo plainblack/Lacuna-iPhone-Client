@@ -82,7 +82,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (self.baseTradeBuilding && self.baseTradeBuilding.glyphs) {
 		if ([self.baseTradeBuilding.glyphs count] > 0) {
-			NSLog(@"GOOD");
 			return [LETableViewCellGlyph getHeightForTableView:tableView];
 		} else {
 			return [LETableViewCellLabeledText getHeightForTableView:tableView];
@@ -105,14 +104,14 @@
 			[glyphCell setGlyph:glyph];
 			cell = glyphCell;
 		} else {
-			LETableViewCellLabeledText *emptyCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			LETableViewCellLabeledText *emptyCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 			emptyCell.label.text = @"Glyphs";
 			emptyCell.content.text = @"None";
 			cell = emptyCell;
 		}
 	} else {
-		LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView];
-		loadingCell.label.text = @"Glpyhs";
+		LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+		loadingCell.label.text = @"Glyphs";
 		loadingCell.content.text = @"Loading";
 		cell = loadingCell;
 	}

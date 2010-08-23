@@ -15,6 +15,7 @@
 
 
 @synthesize titleLabel;
+@synthesize maxButton;
 @synthesize numberPicker;
 @synthesize delegate;
 @synthesize maxValue;
@@ -26,6 +27,13 @@
 	self.view.autoresizesSubviews = YES;
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	self.view.backgroundColor = CELL_BACKGROUND_COLOR;
+	
+	if (self.maxValue) {
+		maxButton.hidden = NO;
+	} else {
+		maxButton.hidden = YES;
+	}
+
 }
 
 
@@ -41,6 +49,7 @@
 
 - (void)viewDidUnload {
 	self.titleLabel = nil;
+	self.maxButton = nil;
 	self.numberPicker = nil;
     [super viewDidUnload];
 }

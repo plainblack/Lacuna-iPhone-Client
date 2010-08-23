@@ -43,7 +43,7 @@
 	self.availableTrades = [result objectForKey:@"trades"];
 	self.tradeCount = [Util asNumber:[result objectForKey:@"trade_count"]];
 
-	NSDictionary *captcha = [self.response objectForKey:@"capthca"];
+	NSDictionary *captcha = [result objectForKey:@"captcha"];
 	self.captchaGuid = [captcha objectForKey:@"guid"];
 	self.captchaUrl = [captcha objectForKey:@"url"];
 }

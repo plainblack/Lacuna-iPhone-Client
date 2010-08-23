@@ -1,27 +1,25 @@
 //
-//  SelectResourceTypeController.m
+//  SelectTradeablePrisonerController.m
 //  UniversalClient
 //
-//  Created by Kevin Runde on 8/21/10.
+//  Created by Kevin Runde on 8/22/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
-#import "SelectResourceTypeController.h"
+#import "SelectTradeablePrisonerController.h"
 #import "LEMacros.h"
 #import "Util.h"
 #import "BaseTradeBuilding.h"
+#import "Prisoner.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellLabeledText.h"
-#import "LETableViewCellButton.h"
 
 
-@implementation SelectResourceTypeController
+@implementation SelectTradeablePrisonerController
 
 
 @synthesize baseTradeBuilding;
 @synthesize delegate;
-@synthesize includeQuantity;
-@synthesize selectedResourceType;
 
 
 #pragma mark -
@@ -30,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.navigationItem.title = @"Select Resource";
+	self.navigationItem.title = @"Select Prisoner";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
 	self.sectionHeaders = [NSArray array];
@@ -39,11 +37,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	[self.baseTradeBuilding addObserver:self forKeyPath:@"resourceTypes" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
-	if (!self.baseTradeBuilding.resourceTypes) {
-		[self.baseTradeBuilding loadTradeableResourceTypes];
+	[self.baseTradeBuilding addObserver:self forKeyPath:@"prisoners" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+	if (!self.baseTradeBuilding.prisoners) {
+		[self.baseTradeBuilding loadTradeablePrisoners];
 	} else {
-		[self.baseTradeBuilding.resourceTypes sortUsingSelector: @selector(caseInsensitiveCompare:)];
+		[self.baseTradeBuilding.prisoners sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES])];
 	}
 }
 
@@ -55,7 +53,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-	[self.baseTradeBuilding removeObserver:self forKeyPath:@"resourceTypes"];
+	[self.baseTradeBuilding removeObserver:self forKeyPath:@"prisoners"];
 }
 
 
@@ -68,9 +66,9 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if (self.baseTradeBuilding && self.baseTradeBuilding.resourceTypes) {
-		if ([self.baseTradeBuilding.resourceTypes count] > 0) {
-			return [self.baseTradeBuilding.resourceTypes count];
+	if (self.baseTradeBuilding && self.baseTradeBuilding.prisoners) {
+		if ([self.baseTradeBuilding.prisoners count] > 0) {
+			return [self.baseTradeBuilding.prisoners count];
 		} else {
 			return 1;
 		}
@@ -81,9 +79,9 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (self.baseTradeBuilding && self.baseTradeBuilding.resourceTypes) {
-		if ([self.baseTradeBuilding.resourceTypes count] > 0) {
-			return [LETableViewCellButton getHeightForTableView:tableView];
+	if (self.baseTradeBuilding && self.baseTradeBuilding.prisoners) {
+		if ([self.baseTradeBuilding.prisoners count] > 0) {
+			return [LETableViewCellLabeledText getHeightForTableView:tableView];
 		} else {
 			return [LETableViewCellLabeledText getHeightForTableView:tableView];
 		}
@@ -98,21 +96,22 @@
     
     UITableViewCell *cell;
 	
-	if (self.baseTradeBuilding && self.baseTradeBuilding.resourceTypes) {
-		if ([self.baseTradeBuilding.resourceTypes count] > 0) {
-			NSString *resourceType = [self.baseTradeBuilding.resourceTypes objectAtIndex:indexPath.row];
-			LETableViewCellButton *storedResourceCell = [LETableViewCellButton getCellForTableView:tableView];
-			storedResourceCell.textLabel.text = [resourceType capitalizedString];
-			cell = storedResourceCell;
+	if (self.baseTradeBuilding && self.baseTradeBuilding.prisoners) {
+		if ([self.baseTradeBuilding.prisoners count] > 0) {
+			Prisoner *prisoner = [self.baseTradeBuilding.prisoners objectAtIndex:indexPath.row];
+			LETableViewCellLabeledText *prisonerCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:YES];
+			prisonerCell.label.text = [NSString stringWithFormat:@"Level %@", prisoner.level];
+			prisonerCell.content.text = prisoner.name;
+			cell = prisonerCell;
 		} else {
 			LETableViewCellLabeledText *emptyCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-			emptyCell.label.text = @"Resources";
+			emptyCell.label.text = @"Prisoners";
 			emptyCell.content.text = @"None";
 			cell = emptyCell;
 		}
 	} else {
 		LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-		loadingCell.label.text = @"Resources";
+		loadingCell.label.text = @"Prisoners";
 		loadingCell.content.text = @"Loading";
 		cell = loadingCell;
 	}
@@ -125,15 +124,8 @@
 #pragma mark UITableViewDataSource Methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	self.selectedResourceType = [self.baseTradeBuilding.resourceTypes objectAtIndex:indexPath.row];
-	
-	if (self.includeQuantity) {
-		self->pickNumericValueController = [[PickNumericValueController createWithDelegate:self maxValue:nil] retain];
-		pickNumericValueController.titleLabel.text = [self.selectedResourceType capitalizedString];
-		[self presentModalViewController:pickNumericValueController animated:YES];
-	} else {
-		[self.delegate resourceTypeSelected:self.selectedResourceType withQuantity:nil];
-	}
+	Prisoner *prisoner = [self.baseTradeBuilding.prisoners objectAtIndex:indexPath.row];
+	[self.delegate prisonerSelected:prisoner];
 }
 
 
@@ -156,26 +148,15 @@
 
 - (void)dealloc {
 	self.baseTradeBuilding = nil;
-	self.selectedResourceType = nil;
     [super dealloc];
-}
-
-
-#pragma mark --
-#pragma mark PickNumericValueControllerDelegate Methods
-
-- (void)newNumericValue:(NSDecimalNumber *)value {
-	[self.delegate resourceTypeSelected:self.selectedResourceType withQuantity:value];
 }
 
 
 #pragma mark -
 #pragma mark Class Methods
 
-+ (SelectResourceTypeController *)create {
-	SelectResourceTypeController *selectResourceTypeController = [[[SelectResourceTypeController alloc] init] autorelease];
-	selectResourceTypeController.includeQuantity = NO;
-	return selectResourceTypeController;
++ (SelectTradeablePrisonerController *)create {
+	return [[[SelectTradeablePrisonerController alloc] init] autorelease];
 }
 
 
@@ -183,8 +164,8 @@
 #pragma mark KVO Methods
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-	if ([keyPath isEqual:@"resourceTypes"]) {
-		[self.baseTradeBuilding.resourceTypes sortUsingSelector: @selector(caseInsensitiveCompare:)];
+	if ([keyPath isEqual:@"prisoners"]) {
+		[self.baseTradeBuilding.prisoners sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES])];
 		[self.tableView reloadData];
 	}
 }

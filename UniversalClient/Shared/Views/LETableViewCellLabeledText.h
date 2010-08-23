@@ -19,7 +19,7 @@
 @property(nonatomic, retain) UILabel *content;
 
 
-+ (LETableViewCellLabeledText *)getCellForTableView:(UITableView *)tableView;
++ (LETableViewCellLabeledText *)getCellForTableView:(UITableView *)tableView isSelectable:(BOOL)isSelectable;
 + (CGFloat)getHeightForTableView:(UITableView *)tableView;
 
 

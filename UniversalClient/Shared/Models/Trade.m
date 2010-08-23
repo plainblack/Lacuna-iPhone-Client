@@ -21,6 +21,10 @@
 @synthesize	askDescription;
 @synthesize	offerType;
 @synthesize	offerQuantity;
+@synthesize offerGlyphId;
+@synthesize offerPlanId;
+@synthesize offerPrisonerId;
+@synthesize offerShipId;
 @synthesize	offerDescription;
 
 
@@ -35,13 +39,17 @@
 	self.askDescription = nil;
 	self.offerType = nil;
 	self.offerQuantity = nil;
+	self.offerGlyphId = nil;
+	self.offerPlanId = nil;
+	self.offerPrisonerId = nil;
+	self.offerShipId = nil;
 	self.offerDescription = nil;
 	[super dealloc];
 }
 
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"id:%@, dateOffered:%@, askType:%@, askQuantity:%@, askDescription:%@, askType:%@, askQuantity:%@, askDescription:%@",
+	return [NSString stringWithFormat:@"id:%@, dateOffered:%@, askType:%@, askQuantity:%@, askDescription:%@, offerType:%@, offerQuantity:%@, offerDescription:%@",
 			self.id, self.dateOffered, self.askType, self.askQuantity, self.askDescription, self.offerType, self.offerQuantity, self.offerDescription];
 }
 
@@ -50,8 +58,6 @@
 #pragma mark Instance Methods
 
 - (void)parseData:(NSDictionary *)data {
-	NSLog(@"Trade Data: %@", data);
-	
 	self.id = [data objectForKey:@"id"];
 	self.dateOffered = [Util date:[data objectForKey:@"date_offered"]];
 	self.askType = [data objectForKey:@"ask_type"];

@@ -122,7 +122,7 @@
 			break;
 		case BUILDING_ROW_GLYPH_SEARCHING:
 			; //DO NOT REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
-			LETableViewCellLabeledText *searchingCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			LETableViewCellLabeledText *searchingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 			searchingCell.label.text = @"Searching";
 			searchingCell.content.text = [Util prettyDuration:self.secondsRemaining];
 			cell = searchingCell;

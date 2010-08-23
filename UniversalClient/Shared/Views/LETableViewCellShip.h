@@ -32,7 +32,7 @@
 
 - (void)setShip:(Ship *)ship;
 
-+ (LETableViewCellShip *)getCellForTableView:(UITableView *)tableView;
++ (LETableViewCellShip *)getCellForTableView:(UITableView *)tableView isSelectable:(BOOL)isSelectable;
 + (CGFloat)getHeightForTableView:(UITableView *)tableView;
 
 

@@ -269,7 +269,7 @@ typedef enum {
 			switch (indexPath.row) {
 				case COMPOSITION_ROW_SIZE:
 					; //DO NOT REMOVE
-					LETableViewCellLabeledText *sizeCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+					LETableViewCellLabeledText *sizeCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					sizeCell.label.text = @"Size";
 					sizeCell.content.text = [NSString stringWithFormat:@"%@", session.body.size];
 					cell = sizeCell;
@@ -282,7 +282,7 @@ typedef enum {
 					break;
 				case COMPOSITION_ROW_WATER:
 					; //DO NOT REMOVE
-					LETableViewCellLabeledText *waterCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+					LETableViewCellLabeledText *waterCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					waterCell.label.text = @"Water";
 					waterCell.content.text = [NSString stringWithFormat:@"%@", session.body.planetWater];
 					cell = waterCell;

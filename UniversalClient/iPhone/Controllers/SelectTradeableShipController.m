@@ -1,27 +1,26 @@
 //
-//  SelectResourceTypeController.m
+//  SelectTradeableShipController.m
 //  UniversalClient
 //
-//  Created by Kevin Runde on 8/21/10.
+//  Created by Kevin Runde on 8/22/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
-#import "SelectResourceTypeController.h"
+#import "SelectTradeableShipController.h"
 #import "LEMacros.h"
 #import "Util.h"
 #import "BaseTradeBuilding.h"
+#import "Ship.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellLabeledText.h"
-#import "LETableViewCellButton.h"
+#import "LETableViewCellShip.h"
 
 
-@implementation SelectResourceTypeController
+@implementation SelectTradeableShipController
 
 
 @synthesize baseTradeBuilding;
 @synthesize delegate;
-@synthesize includeQuantity;
-@synthesize selectedResourceType;
 
 
 #pragma mark -
@@ -30,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.navigationItem.title = @"Select Resource";
+	self.navigationItem.title = @"Select Ship";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
 	self.sectionHeaders = [NSArray array];
@@ -39,11 +38,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	[self.baseTradeBuilding addObserver:self forKeyPath:@"resourceTypes" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
-	if (!self.baseTradeBuilding.resourceTypes) {
-		[self.baseTradeBuilding loadTradeableResourceTypes];
+	[self.baseTradeBuilding addObserver:self forKeyPath:@"ships" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+	if (!self.baseTradeBuilding.ships) {
+		[self.baseTradeBuilding loadTradeableShips];
 	} else {
-		[self.baseTradeBuilding.resourceTypes sortUsingSelector: @selector(caseInsensitiveCompare:)];
+		[self.baseTradeBuilding.ships sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES])];
 	}
 }
 
@@ -55,7 +54,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-	[self.baseTradeBuilding removeObserver:self forKeyPath:@"resourceTypes"];
+	[self.baseTradeBuilding removeObserver:self forKeyPath:@"ships"];
 }
 
 
@@ -68,9 +67,9 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if (self.baseTradeBuilding && self.baseTradeBuilding.resourceTypes) {
-		if ([self.baseTradeBuilding.resourceTypes count] > 0) {
-			return [self.baseTradeBuilding.resourceTypes count];
+	if (self.baseTradeBuilding && self.baseTradeBuilding.ships) {
+		if ([self.baseTradeBuilding.ships count] > 0) {
+			return [self.baseTradeBuilding.ships count];
 		} else {
 			return 1;
 		}
@@ -81,9 +80,9 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (self.baseTradeBuilding && self.baseTradeBuilding.resourceTypes) {
-		if ([self.baseTradeBuilding.resourceTypes count] > 0) {
-			return [LETableViewCellButton getHeightForTableView:tableView];
+	if (self.baseTradeBuilding && self.baseTradeBuilding.ships) {
+		if ([self.baseTradeBuilding.ships count] > 0) {
+			return [LETableViewCellShip getHeightForTableView:tableView];
 		} else {
 			return [LETableViewCellLabeledText getHeightForTableView:tableView];
 		}
@@ -98,21 +97,21 @@
     
     UITableViewCell *cell;
 	
-	if (self.baseTradeBuilding && self.baseTradeBuilding.resourceTypes) {
-		if ([self.baseTradeBuilding.resourceTypes count] > 0) {
-			NSString *resourceType = [self.baseTradeBuilding.resourceTypes objectAtIndex:indexPath.row];
-			LETableViewCellButton *storedResourceCell = [LETableViewCellButton getCellForTableView:tableView];
-			storedResourceCell.textLabel.text = [resourceType capitalizedString];
-			cell = storedResourceCell;
+	if (self.baseTradeBuilding && self.baseTradeBuilding.ships) {
+		if ([self.baseTradeBuilding.ships count] > 0) {
+			Ship *ship = [self.baseTradeBuilding.ships objectAtIndex:indexPath.row];
+			LETableViewCellShip *shipCell = [LETableViewCellShip getCellForTableView:tableView isSelectable:YES];
+			[shipCell setShip:ship];
+			cell = shipCell;
 		} else {
 			LETableViewCellLabeledText *emptyCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-			emptyCell.label.text = @"Resources";
+			emptyCell.label.text = @"Ship";
 			emptyCell.content.text = @"None";
 			cell = emptyCell;
 		}
 	} else {
 		LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-		loadingCell.label.text = @"Resources";
+		loadingCell.label.text = @"Ships";
 		loadingCell.content.text = @"Loading";
 		cell = loadingCell;
 	}
@@ -125,15 +124,8 @@
 #pragma mark UITableViewDataSource Methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	self.selectedResourceType = [self.baseTradeBuilding.resourceTypes objectAtIndex:indexPath.row];
-	
-	if (self.includeQuantity) {
-		self->pickNumericValueController = [[PickNumericValueController createWithDelegate:self maxValue:nil] retain];
-		pickNumericValueController.titleLabel.text = [self.selectedResourceType capitalizedString];
-		[self presentModalViewController:pickNumericValueController animated:YES];
-	} else {
-		[self.delegate resourceTypeSelected:self.selectedResourceType withQuantity:nil];
-	}
+	Ship *ship = [self.baseTradeBuilding.ships objectAtIndex:indexPath.row];
+	[self.delegate shipSelected:ship];
 }
 
 
@@ -156,26 +148,15 @@
 
 - (void)dealloc {
 	self.baseTradeBuilding = nil;
-	self.selectedResourceType = nil;
     [super dealloc];
-}
-
-
-#pragma mark --
-#pragma mark PickNumericValueControllerDelegate Methods
-
-- (void)newNumericValue:(NSDecimalNumber *)value {
-	[self.delegate resourceTypeSelected:self.selectedResourceType withQuantity:value];
 }
 
 
 #pragma mark -
 #pragma mark Class Methods
 
-+ (SelectResourceTypeController *)create {
-	SelectResourceTypeController *selectResourceTypeController = [[[SelectResourceTypeController alloc] init] autorelease];
-	selectResourceTypeController.includeQuantity = NO;
-	return selectResourceTypeController;
++ (SelectTradeableShipController *)create {
+	return [[[SelectTradeableShipController alloc] init] autorelease];
 }
 
 
@@ -183,8 +164,8 @@
 #pragma mark KVO Methods
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-	if ([keyPath isEqual:@"resourceTypes"]) {
-		[self.baseTradeBuilding.resourceTypes sortUsingSelector: @selector(caseInsensitiveCompare:)];
+	if ([keyPath isEqual:@"ships"]) {
+		[self.baseTradeBuilding.ships sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES])];
 		[self.tableView reloadData];
 	}
 }

@@ -15,12 +15,19 @@
 #import "OneForOneTrade.h"
 #import "Glyph.h"
 #import "Plan.h"
+#import "Prisoner.h"
+#import "Ship.h"
 #import "LEBuildingViewAvailableTrades.h";
 #import "LEBuildingViewMyTrades.h";
 #import "LEBuildingPushItems.h"
 #import "LEBuildingTradeOneForOne.h"
+#import "LEBuildingAddTrade.h"
+#import "LEBuildingAcceptTrade.h"
+#import "LEBuildingWithdrawTrade.h"
 #import "LEBuildingGetTradeableGlyphs.h"
 #import "LEBuildingGetTradeablePlans.h"
+#import "LEBuildingGetTradeablePrisoners.h"
+#import "LEBuildingGetTradeableShips.h"
 #import "LEBuildingGetTradeableStoredResources.h"
 #import "LETableViewCellButton.h";
 #import "LETableViewCellLabeledText.h"
@@ -28,6 +35,7 @@
 #import "ViewMyTradesController.h"
 #import "NewItemPushController.h"
 #import "NewOneForOneTradeController.h"
+#import "NewTradeController.h"
 
 
 @implementation BaseTradeBuilding
@@ -37,6 +45,8 @@
 @synthesize availableTradeCount;
 @synthesize availableTradesUpdated;
 @synthesize availableTrades;
+@synthesize captchaGuid;
+@synthesize captchaUrl;
 @synthesize myTradePageNumber;
 @synthesize myTradeCount;
 @synthesize myTradesUpdated;
@@ -47,7 +57,13 @@
 @synthesize plans;
 @synthesize plansById;
 @synthesize cargoUserPerPlan;
+@synthesize prisoners;
+@synthesize prisonersById;
+@synthesize cargoUserPerPrisoner;
 @synthesize resourceTypes;
+@synthesize ships;
+@synthesize shipsById;
+@synthesize cargoUserPerShip;
 @synthesize storedResources;
 @synthesize cargoUserPerStoredResource;
 @synthesize usesEssentia;
@@ -61,6 +77,8 @@
 	self.availableTradeCount = nil;
 	self.availableTradesUpdated = nil;
 	self.availableTrades = nil;
+	self.captchaGuid = nil;
+	self.captchaUrl = nil;
 	self.myTradeCount = nil;
 	self.myTradesUpdated = nil;
 	self.myTrades = nil;
@@ -70,7 +88,13 @@
 	self.plans = nil;
 	self.plansById = nil;
 	self.cargoUserPerPlan = nil;
+	self.prisoners = nil;
+	self.prisonersById = nil;
+	self.cargoUserPerPrisoner = nil;
 	self.resourceTypes = nil;
+	self.ships = nil;
+	self.shipsById = nil;
+	self.cargoUserPerShip = nil;
 	self.storedResources = nil;
 	self.cargoUserPerStoredResource = nil;
 	self.maxCargoSize = nil;
@@ -82,7 +106,6 @@
 	NSDictionary *transportData = [data objectForKey:@"transport"];
 	if (transportData) {
 		self.maxCargoSize = [transportData objectForKey:@"max"];
-		NSLog(@"Found maxCargoSize: %@", self.maxCargoSize);
 	}
 }
 
@@ -92,7 +115,9 @@
 
 - (void)generateSections {
 	NSMutableDictionary *productionSection = [self generateProductionSection];
-	[[productionSection objectForKey:@"rows"] addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_MAX_CARGO_SIZE]];
+	if (self.maxCargoSize) {
+		[[productionSection objectForKey:@"rows"] addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_MAX_CARGO_SIZE]];
+	}
 	
 	NSMutableArray *rows = _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_AVAILABLE_TRADES], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MY_TRADES], [NSDecimalNumber numberWithInt:BUILDING_ROW_CREATE_TRADE]);
 	
@@ -165,7 +190,7 @@
 			break;
 		case BUILDING_ROW_MAX_CARGO_SIZE:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
-			LETableViewCellLabeledText *maxCargoSizeCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			LETableViewCellLabeledText *maxCargoSizeCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 			maxCargoSizeCell.label.text = @"Max Cargo Size";
 			maxCargoSizeCell.content.text = [Util prettyNSDecimalNumber:self.maxCargoSize];
 			cell = maxCargoSizeCell;
@@ -201,16 +226,9 @@
 			break;
 		case BUILDING_ROW_CREATE_TRADE:
 			; //DO NOT REMOVE
-			UIAlertView *createTradeAlertView = [[[UIAlertView alloc] initWithTitle:@"WIP" message:@"This feature is not implemented yet." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-			[createTradeAlertView show];
-			[tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
-			/*
-			 ViewMyTradesController *viewMyTradesController = [ViewMyTradesController create];
-			 viewMyTradesController.baseTradeBuilding = self;
-			 return viewMyTradesController;
-			 */
-			NSLog(@"KEVIN CREATE CREATE TRADE UI");
-			return nil;
+			NewTradeController *newTradeController = [NewTradeController create];
+			newTradeController.baseTradeBuilding = self;
+			return newTradeController;
 			break;
 		case BUILDING_ROW_1_FOR_1_TRADE:
 			; //DO NOT REMOVE
@@ -235,7 +253,13 @@
 	self.plans = nil;
 	self.plansById = nil;
 	self.cargoUserPerPlan = nil;
+	self.prisoners = nil;
+	self.prisonersById = nil;
+	self.cargoUserPerPrisoner = nil;
 	self.resourceTypes = nil;
+	self.ships = nil;
+	self.shipsById = nil;
+	self.cargoUserPerShip = nil;
 	self.storedResources = nil;
 	self.cargoUserPerStoredResource = nil;
 }
@@ -251,9 +275,19 @@
 }
 
 
+- (void)loadTradeablePrisoners {
+	[[[LEBuildingGetTradeablePrisoners alloc] initWithCallback:@selector(loadedTradeablePrisoners:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+}
+
+
 - (void)loadTradeableResourceTypes {
 	self.resourceTypes = _array( @"water", @"energy", @"waste", @"essentia", @"bean", @"lapis", @"potato", @"apple", @"root", @"corn", @"cider", @"wheat", @"bread", @"soup", @"chip", @"pie", @"pancake", @"milk", @"meal", @"algae", @"syrup", @"fungus", @"burger", @"shake", @"beetle", @"rutile", @"chromite", @"chalcopyrite", @"galena", @"gold", @"uraninite", @"bauxite", @"goethite", @"halite", @"gypsum", @"trona", @"kerogen", @"methane", @"anthracite", @"sulfur", @"zircon", @"monazite", @"fluorite", @"beryl", @"magnetite");
 }
+
+- (void)loadTradeableShips {
+	[[[LEBuildingGetTradeableShips alloc] initWithCallback:@selector(loadedTradeableShips:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+}
+
 
 - (void)loadTradeableStoredResources {
 	[[[LEBuildingGetTradeableStoredResources alloc] initWithCallback:@selector(loadedTradeableStoredResources:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
@@ -363,6 +397,25 @@
 }
 
 
+- (void)postTrade:(Trade *)trade target:(id)target callback:(SEL)callback {
+	self->postTradeTarget = target;
+	self->postTradeCallback = callback;
+	[[[LEBuildingAddTrade alloc] initWithCallback:@selector(addedTrade:) target:self buildingId:self.id buildingUrl:self.buildingUrl askType:trade.askType askQuantity:trade.askQuantity offerType:trade.offerType offerQuantity:trade.offerQuantity offerGlyphId:trade.offerGlyphId offerPlanId:trade.offerPlanId offerPrisonerId:trade.offerPrisonerId offerShipId:trade.offerShipId] autorelease];
+}
+
+
+- (void)acceptTrade:(Trade *)trade solution:(NSString *)solution target:(id)target callback:(SEL)callback {
+	self->acceptTradeTarget = target;
+	self->acceptTradeCallback = callback;
+	[[[LEBuildingAcceptTrade alloc] initWithCallback:@selector(acceptedTrade:) target:self buildingId:self.id buildingUrl:self.buildingUrl tradeId:trade.id captchaGuid:self.captchaGuid captchaSolution:solution] autorelease];
+}
+
+
+- (void)withdrawTrade:(Trade *)trade {
+	[[[LEBuildingWithdrawTrade alloc] initWithCallback:@selector(addedTrade:) target:self buildingId:self.id buildingUrl:self.buildingUrl tradeId:trade.id] autorelease];
+}
+
+
 #pragma mark -
 #pragma mark Callback Methods
 
@@ -398,6 +451,43 @@
 }
 
 
+- (id)loadedTradeablePrisoners:(LEBuildingGetTradeablePrisoners *)request {
+	self.cargoUserPerPrisoner = request.cargoSpaceUsedPer;
+	NSMutableArray *tmpArray = [NSMutableArray arrayWithCapacity:[request.prisoners count]];
+	NSMutableDictionary *tmpDict = [NSMutableDictionary dictionaryWithCapacity:[request.prisoners count]];
+	[request.prisoners enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+		Prisoner *prisoner = [[[Prisoner alloc] init] autorelease];
+		[prisoner parseData:obj];
+		[tmpArray addObject:prisoner];
+		[tmpDict setObject:prisoner forKey:prisoner.id];
+	}];
+	self.prisoners = tmpArray;
+	self.prisonersById = tmpDict;
+	NSLog(@"Prisoner Data: %@", request.prisoners);
+	NSLog(@"Prisoners: %@", self.prisoners);
+	return nil;
+}
+
+
+- (id)loadedTradeableShips:(LEBuildingGetTradeableShips *)request {
+	self.cargoUserPerShip = request.cargoSpaceUsedPer;
+	NSMutableArray *tmpArray = [NSMutableArray arrayWithCapacity:[request.ships count]];
+	NSMutableDictionary *tmpDict = [NSMutableDictionary dictionaryWithCapacity:[request.ships count]];
+	[request.ships enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+		Ship *ship = [[[Ship alloc] init] autorelease];
+		[ship parseData:obj];
+		ship.task = @"Docked";
+		[tmpArray addObject:ship];
+		[tmpDict setObject:ship forKey:ship.id];
+	}];
+	self.ships = tmpArray;
+	self.shipsById = tmpDict;
+	NSLog(@"Ship Data: %@", request.ships);
+	NSLog(@"Ships: %@", self.ships);
+	return nil;
+}
+
+
 - (id)loadedTradeableStoredResources:(LEBuildingGetTradeableStoredResources *)request {
 	self.cargoUserPerStoredResource = request.cargoSpaceUsedPer;
 	NSMutableArray *tmpArray = [NSMutableArray arrayWithCapacity:[request.storedResources count]];
@@ -420,6 +510,8 @@
 	self.availableTrades = tmpTrades;
 	
 	self.availableTradeCount = request.tradeCount;
+	self.captchaGuid = request.captchaGuid;
+	self.captchaUrl = request.captchaUrl;
 	self.availableTradesUpdated = [NSDate date];
 	return nil;
 }
@@ -448,6 +540,18 @@
 
 - (id)tradedOneForOne:(LEBuildingTradeOneForOne *)request {
 	[self->oneForOneTradeTarget performSelector:self->oneForOneTradeCallback withObject:request];
+	return nil;
+}
+
+
+- (id)addedTrade:(LEBuildingAddTrade *)request {
+	[self->postTradeTarget performSelector:self->postTradeCallback withObject:request];
+	return nil;
+}
+
+
+- (id)acceptedTrade:(LEBuildingAcceptTrade *)request {
+	[self->acceptTradeTarget performSelector:self->acceptTradeCallback withObject:request];
 	return nil;
 }
 

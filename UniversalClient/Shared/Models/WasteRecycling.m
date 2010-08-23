@@ -103,7 +103,7 @@
 	switch (buildingRow) {
 		case BUILDING_ROW_MAX_RECYCLE:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
-			LETableViewCellLabeledText *maxRecycleCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			LETableViewCellLabeledText *maxRecycleCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 			maxRecycleCell.label.text = @"Max Recycle";
 			maxRecycleCell.content.text = [Util prettyNSDecimalNumber:self.maxResources];
 			cell = maxRecycleCell;
@@ -116,7 +116,7 @@
 			break;
 		case BUILDING_ROW_RECYCLE_PENDING:
 			 ; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
-			 LETableViewCellLabeledText *recyclingCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			 LETableViewCellLabeledText *recyclingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 			 recyclingCell.label.text = @"Recycling";
 			 recyclingCell.content.text = [Util prettyDuration:self.secondsRemaining];
 			 cell = recyclingCell;

@@ -129,14 +129,14 @@ typedef enum {
 					break;
 			}
 		} else {
-			LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+			LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 			loadingCell.label.text = @"In Transit";
 			loadingCell.content.text = @"None";
 			cell = loadingCell;
 		}
 
 	} else {
-		LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView];
+		LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 		loadingCell.label.text = @"";
 		loadingCell.content.text = @"Loading";
 		cell = loadingCell;
