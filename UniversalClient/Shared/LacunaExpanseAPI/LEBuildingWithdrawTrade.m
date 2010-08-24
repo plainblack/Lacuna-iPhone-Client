@@ -30,13 +30,11 @@
 
 - (id)params {
 	NSArray *params = _array([Session sharedInstance].sessionId, self.buildingId, self.tradeId);
-	NSLog(@"Withdraw params: %@", params);
 	return params;
 }
 
 
 - (void)processSuccess {
-	NSLog(@"Withdraw Response: %@", self.response);
 }
 
 

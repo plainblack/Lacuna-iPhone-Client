@@ -63,8 +63,6 @@
 	[dockedShipData enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
 		[self.dockedShips setObject:obj forKey:[Util prettyCodeValue:key]];
 	}];
-	
-	NSLog(@"Docked Ships: %@", self.dockedShips);
 }
 
 

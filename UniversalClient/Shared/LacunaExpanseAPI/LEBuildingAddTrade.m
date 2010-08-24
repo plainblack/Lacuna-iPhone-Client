@@ -65,7 +65,6 @@
 		[offer setObject:self.offerShipId forKey:@"ship_id"];
 	}
 	NSArray *params = _array([Session sharedInstance].sessionId, self.buildingId, offer, ask);
-	NSLog(@"Add Trade Params: %@", params);
 	return params;
 }
 

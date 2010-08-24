@@ -412,7 +412,7 @@
 
 
 - (void)withdrawTrade:(Trade *)trade {
-	[[[LEBuildingWithdrawTrade alloc] initWithCallback:@selector(addedTrade:) target:self buildingId:self.id buildingUrl:self.buildingUrl tradeId:trade.id] autorelease];
+	[[[LEBuildingWithdrawTrade alloc] initWithCallback:@selector(withdrewTrade:) target:self buildingId:self.id buildingUrl:self.buildingUrl tradeId:trade.id] autorelease];
 }
 
 
@@ -482,8 +482,6 @@
 	}];
 	self.ships = tmpArray;
 	self.shipsById = tmpDict;
-	NSLog(@"Ship Data: %@", request.ships);
-	NSLog(@"Ships: %@", self.ships);
 	return nil;
 }
 
@@ -550,7 +548,40 @@
 }
 
 
+- (id)withdrewTrade:(LEBuildingAddTrade *)request {
+	if (![request wasError]) {
+		__block Trade *foundTrade;
+		[self.myTrades enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+			Trade *trade = obj;
+			if ([trade.id isEqualToString:request.tradeId]) {
+				foundTrade = obj;
+				*stop = YES;
+			}
+		}];
+		if (foundTrade) {
+			[self.myTrades removeObject:foundTrade];
+			self.myTradesUpdated = [NSDate date];
+		}
+	}
+	return nil;
+}
+
+
 - (id)acceptedTrade:(LEBuildingAcceptTrade *)request {
+	if (![request wasError]) {
+		__block Trade *foundTrade;
+		[self.availableTrades enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+			Trade *trade = obj;
+			if ([trade.id isEqualToString:request.tradeId]) {
+				foundTrade = obj;
+				*stop = YES;
+			}
+		}];
+		if (foundTrade) {
+			[self.availableTrades removeObject:foundTrade];
+			self.availableTradesUpdated = [NSDate date];
+		}
+	}
 	[self->acceptTradeTarget performSelector:self->acceptTradeCallback withObject:request];
 	return nil;
 }
