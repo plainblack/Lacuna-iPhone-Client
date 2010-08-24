@@ -23,9 +23,17 @@ typedef enum {
 } ROW;
 
 
+@interface ViewMyTradesController (PrivateMethods)
+
+- (void)togglePageButtons;
+
+@end
+
+
 @implementation ViewMyTradesController
 
 
+@synthesize pageSegmentedControl;
 @synthesize baseTradeBuilding;
 @synthesize tradesLastUpdated;
 
@@ -38,6 +46,13 @@ typedef enum {
 	
 	self.navigationItem.title = @"My Trades";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+	
+	self.pageSegmentedControl = [[[UISegmentedControl alloc] initWithItems:_array(UP_ARROW_ICON, DOWN_ARROW_ICON)] autorelease];
+	[self.pageSegmentedControl addTarget:self action:@selector(switchPage) forControlEvents:UIControlEventValueChanged]; 
+	self.pageSegmentedControl.momentary = YES;
+	self.pageSegmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
+	UIBarButtonItem *rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.pageSegmentedControl] autorelease];
+	self.navigationItem.rightBarButtonItem = rightBarButtonItem; 
 	
 	self.sectionHeaders = [NSArray array];
 }
@@ -212,6 +227,15 @@ typedef enum {
 }
 
 
+#pragma mark --
+#pragma mark Private Methods
+
+- (void)togglePageButtons {
+	[self.pageSegmentedControl setEnabled:[self.baseTradeBuilding hasPreviousMyTradePage] forSegmentAtIndex:0];
+	[self.pageSegmentedControl setEnabled:[self.baseTradeBuilding hasNextMyTradePage] forSegmentAtIndex:1];
+}
+
+
 #pragma mark -
 #pragma mark Class Methods
 
@@ -225,6 +249,7 @@ typedef enum {
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ([keyPath isEqual:@"myTradesUpdated"]) {
+		[self togglePageButtons];
 		[self.tableView reloadData];
 		self.tradesLastUpdated = self.baseTradeBuilding.myTradesUpdated;
 	}

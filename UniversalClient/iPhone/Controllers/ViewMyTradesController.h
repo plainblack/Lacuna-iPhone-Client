@@ -14,11 +14,13 @@
 
 
 @interface ViewMyTradesController : LETableViewControllerGrouped {
+	UISegmentedControl *pageSegmentedControl;
 	BaseTradeBuilding *baseTradeBuilding;
 	NSDate *tradesLastUpdated;
 }
 
 
+@property (nonatomic, retain) UISegmentedControl *pageSegmentedControl;
 @property (nonatomic, retain) BaseTradeBuilding *baseTradeBuilding;
 @property (nonatomic, retain) NSDate *tradesLastUpdated;
 

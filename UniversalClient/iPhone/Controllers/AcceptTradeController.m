@@ -173,8 +173,6 @@ typedef enum {
 		[request markErrorHandled];
 	} else {
 		[self.baseTradeBuilding.availableTrades removeObject:self.trade];
-		//UIViewController *goBackTo = [self.navigationController.viewControllers objectAtIndex:([self.navigationController.viewControllers count]-2)];
-		//[self.navigationController popToViewController:goBackTo animated:YES];
 		[self.navigationController popViewControllerAnimated:YES];
 	}
 	
