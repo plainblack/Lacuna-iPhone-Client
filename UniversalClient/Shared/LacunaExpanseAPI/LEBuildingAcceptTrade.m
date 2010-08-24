@@ -38,7 +38,6 @@
 
 
 - (void)processSuccess {
-	NSLog(@"Withdraw Response: %@", self.response);
 }
 
 
