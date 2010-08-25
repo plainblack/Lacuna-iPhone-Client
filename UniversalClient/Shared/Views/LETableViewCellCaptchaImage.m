@@ -42,10 +42,14 @@
 #pragma mark Instance Methods
 
 - (void)setCapthchaImageURL:(NSString *)url {
-	NSURL *imgURL = [NSURL URLWithString:url];
-	NSData *data = [NSData dataWithContentsOfURL:imgURL];
-	UIImage *img = [[UIImage alloc] initWithData:data];
-	self.imageView.image = img;
+	[[[[NSOperationQueue alloc] init] autorelease] addOperationWithBlock:^{
+		NSURL *imgURL = [NSURL URLWithString:url];
+		NSData *data = [NSData dataWithContentsOfURL:imgURL];
+		[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+			UIImage *img = [[UIImage alloc] initWithData:data];
+			self.imageView.image = img;
+		}];
+	}];
 }
 
 
@@ -62,11 +66,18 @@
 		cell.autoresizesSubviews = YES;
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		
+		UILabel *tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 10, 300, 80)] autorelease];
+		tmpLabel.text = @"Loading";
+		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
+		tmpLabel.backgroundColor = [UIColor clearColor];
+		tmpLabel.textAlignment = UITextAlignmentCenter;
+		[cell.contentView addSubview:tmpLabel];
+
 		cell.imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 300, 80)] autorelease];
 		cell.imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
 		cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
 		[cell.contentView addSubview:cell.imageView];
-
+		
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	}
 	
