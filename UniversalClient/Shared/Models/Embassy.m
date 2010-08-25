@@ -8,15 +8,42 @@
 
 #import "Embassy.h"
 #import "LEMacros.h"
+#import "Util.h"
+#import "Session.h"
+#import "AllianceStatus.h"
+#import "PendingAllianceInvite.h"
+#import "MyAllianceInvite.h"
+#import "LEBuildingAcceptInvite.h"
+#import "LEBuildingAssignAllianceLeader.h"
+#import "LEBuildingCreateAlliance.h"
+#import "LEBuildingDissolveAlliance.h"
+#import "LEBuildingExpelMember.h"
+#import "LEBuildingGetAllianceStatus.h"
+#import "LEBuildingGetPendingInvites.h"
+#import "LEBuildingGetMyInvites.h"
+#import "LEBuildingLeaveAlliance.h"
+#import "LEBuildingRejectInvite.h"
+#import "LEBuildingSendInvite.h"
+#import "LEBuildingUpdateAlliance.h"
+#import "LEBuildingWithdrawInvite.h"
+#import "LETableViewCellButton.h"
 
 
 @implementation Embassy
+
+
+@synthesize allianceStatus;
+@synthesize pendingInvites;
+@synthesize myInvites;
 
 
 #pragma mark --
 #pragma mark Object Methods
 
 - (void)dealloc {
+	self.allianceStatus = nil;
+	self.pendingInvites = nil;
+	self.myInvites = nil;
 	[super dealloc];
 }
 
@@ -30,17 +57,53 @@
 
 
 - (void)parseAdditionalData:(NSDictionary *)data {
-	NSLog(@"Embassy Data: %@", data);
+	if (!self.allianceStatus) {
+		self.allianceStatus = [[[AllianceStatus alloc] init] autorelease];
+	}
+	NSMutableDictionary *allianceStatusData = [data objectForKey:@"alliance"];
+	if (allianceStatusData) {
+		[self.allianceStatus parseData:allianceStatusData];
+	}
 }
 
 
 - (void)generateSections {
-	self.sections = _array([self generateProductionSection], [self generateHealthSection], [self generateUpgradeSection]);
+	NSMutableArray *tmp = _array([self generateProductionSection]);
+	
+	if (self.allianceStatus.id) {
+		NSLog(@"Add Alliance Status Section");
+		Session *session = [Session sharedInstance];
+		if ([session.empire.id isEqualToString:self.allianceStatus.leaderId]) {
+			NSLog(@"Add Alliance Leader Actions");
+			[tmp addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_CREATE_ALLIANCE], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_PENDING_INVITES], [NSDecimalNumber numberWithInt:BUILDING_ROW_UPDATE_ALLIANCE], [NSDecimalNumber numberWithInt:BUILDING_ROW_DISOLVE_ALLIANCE], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MY_INVITES]), @"rows")];
+		} else {
+			NSLog(@"Add Alliance Member Actions");
+			[tmp addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_LEAVE_ALLIANCE], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MY_INVITES]), @"rows")];
+		}
+
+	} else {
+		NSLog(@"Add Not in Alliance Actions");
+		[tmp addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MY_INVITES], [NSDecimalNumber numberWithInt:BUILDING_ROW_CREATE_ALLIANCE]), @"rows")];
+	}
+
+	
+	[tmp addObject:[self generateHealthSection]];
+	[tmp addObject:[self generateUpgradeSection]];
+	self.sections = tmp;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForBuildingRow:(BUILDING_ROW)buildingRow {
 	switch (buildingRow) {
+		case BUILDING_ROW_VIEW_MY_INVITES:
+		case BUILDING_ROW_CREATE_ALLIANCE:
+		case BUILDING_ROW_LEAVE_ALLIANCE:
+		case BUILDING_ROW_CREATE_INVITE:
+		case BUILDING_ROW_VIEW_PENDING_INVITES:
+		case BUILDING_ROW_UPDATE_ALLIANCE:
+		case BUILDING_ROW_DISOLVE_ALLIANCE:
+			return [LETableViewCellButton getHeightForTableView:tableView];
+			break;
 		default:
 			return [super tableView:tableView heightForBuildingRow:buildingRow];
 			break;
@@ -51,6 +114,48 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex {
 	UITableViewCell *cell = nil;
 	switch (buildingRow) {
+		case BUILDING_ROW_VIEW_MY_INVITES:
+			; //DO NOT REMOVE
+			LETableViewCellButton *myInvitesButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			myInvitesButtonCell.textLabel.text = @"My Invites";
+			cell = myInvitesButtonCell;
+			break;
+		case BUILDING_ROW_CREATE_ALLIANCE:
+			; //DO NOT REMOVE
+			LETableViewCellButton *createAllianceButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			createAllianceButtonCell.textLabel.text = @"Create Alliance";
+			cell = createAllianceButtonCell;
+			break;
+		case BUILDING_ROW_LEAVE_ALLIANCE:
+			; //DO NOT REMOVE
+			LETableViewCellButton *leaveAllianceButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			leaveAllianceButtonCell.textLabel.text = @"Leave Alliance";
+			cell = leaveAllianceButtonCell;
+			break;
+		case BUILDING_ROW_CREATE_INVITE:
+			; //DO NOT REMOVE
+			LETableViewCellButton *inviteNewMemberButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			inviteNewMemberButtonCell.textLabel.text = @"Invite New Member";
+			cell = inviteNewMemberButtonCell;
+			break;
+		case BUILDING_ROW_VIEW_PENDING_INVITES:
+			; //DO NOT REMOVE
+			LETableViewCellButton *viewPendingInvitesButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			viewPendingInvitesButtonCell.textLabel.text = @"Pending Invites";
+			cell = viewPendingInvitesButtonCell;
+			break;
+		case BUILDING_ROW_UPDATE_ALLIANCE:
+			; //DO NOT REMOVE
+			LETableViewCellButton *updateAllianceButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			updateAllianceButtonCell.textLabel.text = @"Update Alliance";
+			cell = updateAllianceButtonCell;
+			break;
+		case BUILDING_ROW_DISOLVE_ALLIANCE:
+			; //DO NOT REMOVE
+			LETableViewCellButton *disolveAllianceButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			disolveAllianceButtonCell.textLabel.text = @"Disolved Alliance";
+			cell = disolveAllianceButtonCell;
+			break;
 		default:
 			cell = [super tableView:tableView cellForBuildingRow:buildingRow rowIndex:rowIndex];
 			break;
@@ -62,10 +167,195 @@
 
 - (UIViewController *)tableView:(UITableView *)tableView didSelectBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex {
 	switch (buildingRow) {
+		case BUILDING_ROW_VIEW_MY_INVITES:
+			; //DO NOT REMOVE
+			UIAlertView *av1 = [[[UIAlertView alloc] initWithTitle:@"WIP" message:@"My Invites is not complete yet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+			[av1 show];
+			return nil;
+		case BUILDING_ROW_CREATE_ALLIANCE:
+			; //DO NOT REMOVE
+			UIAlertView *av2 = [[[UIAlertView alloc] initWithTitle:@"WIP" message:@"Create Alliance is not complete yet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+			[av2 show];
+			return nil;
+		case BUILDING_ROW_LEAVE_ALLIANCE:
+			; //DO NOT REMOVE
+			UIAlertView *av3 = [[[UIAlertView alloc] initWithTitle:@"WIP" message:@"Leave Alliance is not complete yet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+			[av3 show];
+			return nil;
+		case BUILDING_ROW_CREATE_INVITE:
+			; //DO NOT REMOVE
+			UIAlertView *av4 = [[[UIAlertView alloc] initWithTitle:@"WIP" message:@"Create Invite is not complete yet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+			[av4 show];
+			return nil;
+		case BUILDING_ROW_VIEW_PENDING_INVITES:
+			; //DO NOT REMOVE
+			UIAlertView *av5 = [[[UIAlertView alloc] initWithTitle:@"WIP" message:@"Pending Invites is not complete yet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+			[av5 show];
+			return nil;
+		case BUILDING_ROW_UPDATE_ALLIANCE:
+			; //DO NOT REMOVE
+			UIAlertView *av6 = [[[UIAlertView alloc] initWithTitle:@"WIP" message:@"Update Alliance is not complete yet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+			[av6 show];
+			return nil;
+		case BUILDING_ROW_DISOLVE_ALLIANCE:
+			; //DO NOT REMOVE
+			UIAlertView *av7 = [[[UIAlertView alloc] initWithTitle:@"WIP" message:@"Disolve Alliance is not complete yet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+			[av7 show];
+			return nil;
+			break;
 		default:
 			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];
 			break;
 	}
+}
+
+
+#pragma mark --
+#pragma mark Instance Methods
+
+- (void)acceptInvite:(NSString *)inviteId withMessage:(NSString *)message {
+	[[[LEBuildingAcceptInvite alloc] initWithCallback:@selector(inviteAccepted:) target:self buildingId:self.id buildingUrl:self.buildingUrl inviteId:inviteId message:message] autorelease];
+}
+
+
+- (void)assignAllianceLeader:(NSString *)newLeaderId {
+	[[[LEBuildingAssignAllianceLeader alloc] initWithCallback:@selector(allianceLeaderAssigned:) target:self buildingId:self.id buildingUrl:self.buildingUrl newLeaderId:newLeaderId] autorelease];
+}
+
+
+
+- (void)createAllianceWithName:(NSString *)allianceName {
+	[[[LEBuildingCreateAlliance alloc] initWithCallback:@selector(allianceCreated:) target:self buildingId:self.id buildingUrl:self.buildingUrl name:allianceName] autorelease];
+}
+
+
+- (void)disolveAlliance {
+	[[[LEBuildingDissolveAlliance alloc] initWithCallback:@selector(allianceDisolved:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+}
+
+
+- (void)expelMemeber:(NSString *)empireId withMessage:(NSString *)message {
+	[[[LEBuildingExpelMember alloc] initWithCallback:@selector(memeberExpeled:) target:self buildingId:self.id buildingUrl:self.buildingUrl empireId:empireId message:message] autorelease];
+}
+
+
+- (void)getAllianceStatus {
+	[[[LEBuildingGetAllianceStatus alloc] initWithCallback:@selector(allianceStatusLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+}
+
+
+- (void)getPendingInvites {
+	[[[LEBuildingGetPendingInvites alloc] initWithCallback:@selector(pendingInvitesLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+}
+
+
+- (void)getMyInvites {
+	[[[LEBuildingGetMyInvites alloc] initWithCallback:@selector(myInvitesLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+}
+
+
+- (void)leaveAllianceWithMessage:(NSString *)message {
+	[[[LEBuildingLeaveAlliance alloc] initWithCallback:@selector(allianceLeft:) target:self buildingId:self.id buildingUrl:self.buildingUrl message:message] autorelease];
+}
+
+
+- (void)rejectInvite:(NSString *)inviteId withMessage:(NSString *)message {
+	[[[LEBuildingRejectInvite alloc] initWithCallback:@selector(inviteRejected:) target:self buildingId:self.id buildingUrl:self.buildingUrl inviteId:inviteId message:message] autorelease];
+}
+
+
+- (void)sendInviteTo:(NSString *)inviteeId withMessage:(NSString *)message {
+	[[[LEBuildingSendInvite alloc] initWithCallback:@selector(inviteSent:) target:self buildingId:self.id buildingUrl:self.buildingUrl inviteeId:inviteeId message:message] autorelease];
+}
+
+
+- (void)updateAllianceWithForumUri:(NSString *)forumUri description:(NSString *)description announcements:(NSString *)announcements {
+	[[[LEBuildingUpdateAlliance alloc] initWithCallback:@selector(allianceUpdated:) target:self buildingId:self.id buildingUrl:self.buildingUrl forumUri:forumUri description:description announcements:announcements] autorelease];
+}
+
+
+- (void)withdrawInvite:(NSString *)inviteId withMessage:(NSString *)message {
+	[[[LEBuildingWithdrawInvite alloc] initWithCallback:@selector(inviteWithdrawn:) target:self buildingId:self.id buildingUrl:self.buildingUrl inviteId:inviteId message:message] autorelease];	
+}
+
+
+#pragma mark --
+#pragma mark Callback Methods
+
+- (void)inviteAccepted:(LEBuildingAcceptInvite *)request {
+	[self.allianceStatus parseData:request.allianceStatus];
+}
+
+
+- (void)allianceLeaderAssigned:(LEBuildingAssignAllianceLeader *)request {
+	[self.allianceStatus parseData:request.allianceStatus];
+}
+
+
+- (void)allianceCreated:(LEBuildingCreateAlliance *)request {
+	[self.allianceStatus parseData:request.allianceStatus];
+}
+
+
+- (void)allianceDisolved:(LEBuildingDissolveAlliance *)request {
+	//Do we need to do anything?
+}
+
+
+- (void)memeberExpeled:(LEBuildingExpelMember *)request {
+	[self.allianceStatus parseData:request.allianceStatus];
+}
+
+
+- (void)allianceStatusLoaded:(LEBuildingGetAllianceStatus *)request {
+	[self.allianceStatus parseData:request.allianceStatus];
+}
+
+
+- (void)pendingInvitesLoaded:(LEBuildingGetPendingInvites *)request {
+	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[request.invites count]];
+	for (NSMutableDictionary *pendingInviteData in request.invites) {
+		PendingAllianceInvite *invite = [[[PendingAllianceInvite alloc] init] autorelease];
+		[invite parseData:pendingInviteData];
+		[tmp addObject:invite];
+	}
+	self.pendingInvites = tmp;
+}
+
+
+- (void)myInvitesLoaded:(LEBuildingGetMyInvites *)request {
+	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[request.invites count]];
+	for (NSMutableDictionary *myInviteData in request.invites) {
+		MyAllianceInvite *invite = [[[MyAllianceInvite alloc] init] autorelease];
+		[invite parseData:myInviteData];
+		[tmp addObject:invite];
+	}
+	self.myInvites = tmp;
+}
+
+
+- (void)allianceLeft:(LEBuildingLeaveAlliance *)request {
+	//Do we need to do anything?
+}
+
+
+- (void)inviteRejected:(LEBuildingRejectInvite *)request {
+	//Do we need to do anything?
+}
+
+
+- (void)inviteSent:(LEBuildingSendInvite *)request {
+	//Do we need to do anything?
+}
+
+
+- (void)allianceUpdated:(LEBuildingUpdateAlliance *)request {
+	[self.allianceStatus parseData:request.allianceStatus];
+}
+
+
+- (void)inviteWithdrawn:(LEBuildingWithdrawInvite *)request {
+	//Do we need to do anything?
 }
 
 

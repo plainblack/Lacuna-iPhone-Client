@@ -21,6 +21,10 @@
 		F603A8BE1177E7FC00BAC73A /* LETableViewCellBody.m in Sources */ = {isa = PBXBuildFile; fileRef = F603A8BD1177E7FC00BAC73A /* LETableViewCellBody.m */; };
 		F603A8EF1177F7F200BAC73A /* LETableViewCellCurrentResources.m in Sources */ = {isa = PBXBuildFile; fileRef = F603A8EE1177F7F200BAC73A /* LETableViewCellCurrentResources.m */; };
 		F603A91911780A0400BAC73A /* ViewBodyMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = F603A91811780A0400BAC73A /* ViewBodyMapController.m */; };
+		F60AF5171224A483005B2F0E /* AllianceStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = F60AF5161224A483005B2F0E /* AllianceStatus.m */; };
+		F60AF51B1224A48D005B2F0E /* AllianceMember.m in Sources */ = {isa = PBXBuildFile; fileRef = F60AF51A1224A48D005B2F0E /* AllianceMember.m */; };
+		F60AF51E1224A4A5005B2F0E /* PendingAllianceInvite.m in Sources */ = {isa = PBXBuildFile; fileRef = F60AF51D1224A4A5005B2F0E /* PendingAllianceInvite.m */; };
+		F60AF5211224A4AE005B2F0E /* MyAllianceInvite.m in Sources */ = {isa = PBXBuildFile; fileRef = F60AF5201224A4AE005B2F0E /* MyAllianceInvite.m */; };
 		F6132E5B119E3A78000F99A9 /* LETableViewCellNumberEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = F6132E5A119E3A78000F99A9 /* LETableViewCellNumberEntry.m */; };
 		F614450B11E961D40052D010 /* Spy.m in Sources */ = {isa = PBXBuildFile; fileRef = F614450A11E961D40052D010 /* Spy.m */; };
 		F61D0C2311E2355600B06382 /* WasteRecycling.m in Sources */ = {isa = PBXBuildFile; fileRef = F61D0C2211E2355600B06382 /* WasteRecycling.m */; };
@@ -297,6 +301,14 @@
 		F603A8EE1177F7F200BAC73A /* LETableViewCellCurrentResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellCurrentResources.m; sourceTree = "<group>"; };
 		F603A91711780A0400BAC73A /* ViewBodyMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewBodyMapController.h; sourceTree = "<group>"; };
 		F603A91811780A0400BAC73A /* ViewBodyMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewBodyMapController.m; sourceTree = "<group>"; };
+		F60AF5151224A483005B2F0E /* AllianceStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllianceStatus.h; sourceTree = "<group>"; };
+		F60AF5161224A483005B2F0E /* AllianceStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllianceStatus.m; sourceTree = "<group>"; };
+		F60AF5191224A48D005B2F0E /* AllianceMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllianceMember.h; sourceTree = "<group>"; };
+		F60AF51A1224A48D005B2F0E /* AllianceMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllianceMember.m; sourceTree = "<group>"; };
+		F60AF51C1224A4A5005B2F0E /* PendingAllianceInvite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PendingAllianceInvite.h; sourceTree = "<group>"; };
+		F60AF51D1224A4A5005B2F0E /* PendingAllianceInvite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingAllianceInvite.m; sourceTree = "<group>"; };
+		F60AF51F1224A4AE005B2F0E /* MyAllianceInvite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAllianceInvite.h; sourceTree = "<group>"; };
+		F60AF5201224A4AE005B2F0E /* MyAllianceInvite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAllianceInvite.m; sourceTree = "<group>"; };
 		F6132E59119E3A78000F99A9 /* LETableViewCellNumberEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellNumberEntry.h; sourceTree = "<group>"; };
 		F6132E5A119E3A78000F99A9 /* LETableViewCellNumberEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellNumberEntry.m; sourceTree = "<group>"; };
 		F614450911E961D40052D010 /* Spy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spy.h; sourceTree = "<group>"; };
@@ -1297,6 +1309,14 @@
 				F6F854C9122040070000CD09 /* OneForOneTrade.m */,
 				F623AFF912236D20007794D5 /* Embassy.h */,
 				F623AFFA12236D20007794D5 /* Embassy.m */,
+				F60AF5151224A483005B2F0E /* AllianceStatus.h */,
+				F60AF5161224A483005B2F0E /* AllianceStatus.m */,
+				F60AF5191224A48D005B2F0E /* AllianceMember.h */,
+				F60AF51A1224A48D005B2F0E /* AllianceMember.m */,
+				F60AF51C1224A4A5005B2F0E /* PendingAllianceInvite.h */,
+				F60AF51D1224A4A5005B2F0E /* PendingAllianceInvite.m */,
+				F60AF51F1224A4AE005B2F0E /* MyAllianceInvite.h */,
+				F60AF5201224A4AE005B2F0E /* MyAllianceInvite.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -1755,6 +1775,10 @@
 				F6E8D56E1223E7F7001CD21D /* LEBuildingUpdateAlliance.m in Sources */,
 				F6E8D5711223E817001CD21D /* LEBuildingLeaveAlliance.m in Sources */,
 				F6E8D5741223E82C001CD21D /* LEBuildingExpelMember.m in Sources */,
+				F60AF5171224A483005B2F0E /* AllianceStatus.m in Sources */,
+				F60AF51B1224A48D005B2F0E /* AllianceMember.m in Sources */,
+				F60AF51E1224A4A5005B2F0E /* PendingAllianceInvite.m in Sources */,
+				F60AF5211224A4AE005B2F0E /* MyAllianceInvite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,8 +10,34 @@
 #import "Building.h"
 
 
-@interface Embassy : Building {
+@class AllianceStatus;
 
+
+@interface Embassy : Building {
+	AllianceStatus *allianceStatus;
+	NSMutableArray *myInvites;
+	NSMutableArray *pendingInvites;
 }
+
+
+@property (nonatomic, retain) AllianceStatus *allianceStatus;
+@property (nonatomic, retain) NSMutableArray *myInvites;
+@property (nonatomic, retain) NSMutableArray *pendingInvites;
+
+
+- (void)acceptInvite:(NSString *)inviteId withMessage:(NSString *)message;
+- (void)assignAllianceLeader:(NSString *)newLeaderId;
+- (void)createAllianceWithName:(NSString *)name;
+- (void)disolveAlliance;
+- (void)expelMemeber:(NSString *)empireId withMessage:(NSString *)message;
+- (void)getAllianceStatus;
+- (void)getPendingInvites;
+- (void)getMyInvites;
+- (void)leaveAllianceWithMessage:(NSString *)message;
+- (void)rejectInvite:(NSString *)inviteId withMessage:(NSString *)message;
+- (void)sendInviteTo:(NSString *)inviteeId withMessage:(NSString *)message;
+- (void)updateAllianceWithForumUri:(NSString *)forumUri description:(NSString *)description announcements:(NSString *)announcements;
+- (void)withdrawInvite:(NSString *)inviteId withMessage:(NSString *)message;
+
 
 @end

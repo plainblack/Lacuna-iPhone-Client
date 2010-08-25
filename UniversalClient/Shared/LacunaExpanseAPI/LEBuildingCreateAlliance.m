@@ -44,7 +44,7 @@
 
 
 - (NSString *)methodName {
-	return @"accept_trade";
+	return @"create_alliance";
 }
 
 
