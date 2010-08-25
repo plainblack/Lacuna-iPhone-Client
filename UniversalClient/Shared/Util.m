@@ -151,9 +151,7 @@ static NSDecimalNumber *ONE_HUNDRED_BILLION;
 	} else if ([compareNumber compare:ONE_THOUSAND] == NSOrderedDescending || [compareNumber compare:ONE_THOUSAND] == NSOrderedSame) {
 		return [NSString stringWithFormat:@"%@K", [formatter stringFromNumber:[number decimalNumberByDividingBy:ONE_THOUSAND]]];
 	}else {
-		[formatter setMaximumSignificantDigits:0];
-		[formatter setMinimumSignificantDigits:0];
-		return [formatter stringFromNumber:number];
+		return [number stringValue];
 	}
 }
 

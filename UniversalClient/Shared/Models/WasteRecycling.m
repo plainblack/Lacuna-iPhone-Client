@@ -57,10 +57,6 @@
 	self.secondsPerResource = [Util asNumber:[recycleData objectForKey:@"seconds_per_resource"]];
 	self.maxResources = [Util asNumber:[recycleData objectForKey:@"max_recycle"]];
 	self.secondsRemaining = _intv([recycleData objectForKey:@"seconds_remaining"]);
-	NSLog(@"Max Resources: %@", self.maxResources);
-	if (!self.maxResources) {
-		NSLog(@"Data: %@", data);
-	}
 }
 
 

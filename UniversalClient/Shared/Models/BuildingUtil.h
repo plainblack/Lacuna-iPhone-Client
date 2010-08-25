@@ -10,6 +10,7 @@
 
 #define ARCHAEOLOGY_URL @"/archaeology"
 #define DEVELOPMENT_URL @"/development"
+#define EMBASSY_URL @"/embassy"
 #define FOOD_RESERVE_URL @"/foodreserve"
 #define INTELLIGENCE_URL @"/intelligence"
 #define MINING_MINISTRY_URL @"/miningministry"

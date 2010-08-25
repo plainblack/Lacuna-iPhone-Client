@@ -92,8 +92,6 @@ typedef enum {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell;
 	
-	NSLog(@"Getting Cell [%i,%i]", indexPath.section, indexPath.row);
-	
 	switch (indexPath.section) {
 		case SECTION_INFRASTRUCTURE:
 			switch (indexPath.row) {
@@ -176,17 +174,14 @@ typedef enum {
 			}
 			break;
 		case SECTION_ALL:
-			NSLog(@"Section All");
 			switch (indexPath.row) {
 				case ALL_ROW_FREE_PLANS:
-					NSLog(@"Row Free Plans");
 					; //DO NOT REMOVE
 					LETableViewCellButton *freePlansButtonCell = [LETableViewCellButton getCellForTableView:tableView];
 					freePlansButtonCell.textLabel.text = @"Free Plans";
 					cell = freePlansButtonCell;
 					break;
 				case ALL_ROW_ALL:
-					NSLog(@"Row All");
 					; //DO NOT REMOVE
 					LETableViewCellButton *allButtonCell = [LETableViewCellButton getCellForTableView:tableView];
 					allButtonCell.textLabel.text = @"ALL Buildings";
