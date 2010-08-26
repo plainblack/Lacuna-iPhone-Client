@@ -179,6 +179,7 @@
 		F6D4857E120CD83600D77FC3 /* LEBuildingReleasePrisoner.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D4857D120CD83600D77FC3 /* LEBuildingReleasePrisoner.m */; };
 		F6D485B8120CDEA000D77FC3 /* ViewForeignSpiesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D485B7120CDEA000D77FC3 /* ViewForeignSpiesController.m */; };
 		F6D55E8E1225E2A000AA79BD /* NewAllianceController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D55E8D1225E2A000AA79BD /* NewAllianceController.m */; };
+		F6D55EFD1225EBAE00AA79BD /* DisolveAllianceController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D55EFC1225EBAE00AA79BD /* DisolveAllianceController.m */; };
 		F6D59F9D120120EE009DDA28 /* ViewShipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D59F9C120120EE009DDA28 /* ViewShipsController.m */; };
 		F6D59FF412012AA9009DDA28 /* RenameShipController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D59FF312012AA9009DDA28 /* RenameShipController.m */; };
 		F6D5A00B12012E43009DDA28 /* LEBuildingScuttleShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D5A00A12012E43009DDA28 /* LEBuildingScuttleShip.m */; };
@@ -605,6 +606,8 @@
 		F6D485B7120CDEA000D77FC3 /* ViewForeignSpiesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewForeignSpiesController.m; sourceTree = "<group>"; };
 		F6D55E8C1225E2A000AA79BD /* NewAllianceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewAllianceController.h; sourceTree = "<group>"; };
 		F6D55E8D1225E2A000AA79BD /* NewAllianceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewAllianceController.m; sourceTree = "<group>"; };
+		F6D55EFB1225EBAE00AA79BD /* DisolveAllianceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisolveAllianceController.h; sourceTree = "<group>"; };
+		F6D55EFC1225EBAE00AA79BD /* DisolveAllianceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisolveAllianceController.m; sourceTree = "<group>"; };
 		F6D59F9B120120EE009DDA28 /* ViewShipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewShipsController.h; sourceTree = "<group>"; };
 		F6D59F9C120120EE009DDA28 /* ViewShipsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewShipsController.m; sourceTree = "<group>"; };
 		F6D59FF212012AA9009DDA28 /* RenameShipController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenameShipController.h; sourceTree = "<group>"; };
@@ -1443,6 +1446,8 @@
 				F6D3F7DC1221F6BC0090E31E /* AcceptTradeController.m */,
 				F6D55E8C1225E2A000AA79BD /* NewAllianceController.h */,
 				F6D55E8D1225E2A000AA79BD /* NewAllianceController.m */,
+				F6D55EFB1225EBAE00AA79BD /* DisolveAllianceController.h */,
+				F6D55EFC1225EBAE00AA79BD /* DisolveAllianceController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1785,6 +1790,7 @@
 				F60AF51E1224A4A5005B2F0E /* PendingAllianceInvite.m in Sources */,
 				F60AF5211224A4AE005B2F0E /* MyAllianceInvite.m in Sources */,
 				F6D55E8E1225E2A000AA79BD /* NewAllianceController.m in Sources */,
+				F6D55EFD1225EBAE00AA79BD /* DisolveAllianceController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

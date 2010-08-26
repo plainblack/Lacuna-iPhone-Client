@@ -27,7 +27,10 @@
 #import "LEBuildingUpdateAlliance.h"
 #import "LEBuildingWithdrawInvite.h"
 #import "LETableViewCellButton.h"
+#import "LETableViewCellLabeledText.h"
+#import "LETableViewCellLabeledParagraph.h"
 #import "NewAllianceController.h"
+#import	"DisolveAllianceController.h"
 
 
 @implementation Embassy
@@ -65,7 +68,6 @@
 	if (allianceStatusData) {
 		[self.allianceStatus parseData:allianceStatusData];
 	}
-	NSLog(@"Embassy Data: %@", data);
 }
 
 
@@ -73,21 +75,16 @@
 	NSMutableArray *tmp = _array([self generateProductionSection]);
 	
 	if (self.allianceStatus.id) {
-		NSLog(@"Add Alliance Status Section");
+		[tmp addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ALLIANCE_STATUS], @"type", @"Alliance", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_ALLIANCE_NAME], [NSDecimalNumber numberWithInt:BUILDING_ROW_ALLIANCE_LEADER], [NSDecimalNumber numberWithInt:BUILDING_ROW_ALLIANCE_DESCRIPTION], [NSDecimalNumber numberWithInt:BUILDING_ROW_ALLIANCE_ANNOUNCEMENTS], [NSDecimalNumber numberWithInt:BUILDING_ROW_ALLIANCE_FORUM], [NSDecimalNumber numberWithInt:BUILDING_ROW_ALLIANCE_CREATED_ON]), @"rows")];
 		Session *session = [Session sharedInstance];
 		if ([session.empire.id isEqualToString:self.allianceStatus.leaderId]) {
-			NSLog(@"Add Alliance Leader Actions");
 			[tmp addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_CREATE_ALLIANCE], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_PENDING_INVITES], [NSDecimalNumber numberWithInt:BUILDING_ROW_UPDATE_ALLIANCE], [NSDecimalNumber numberWithInt:BUILDING_ROW_DISOLVE_ALLIANCE], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MY_INVITES]), @"rows")];
 		} else {
-			NSLog(@"Add Alliance Member Actions");
 			[tmp addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_LEAVE_ALLIANCE], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MY_INVITES]), @"rows")];
 		}
-
 	} else {
-		NSLog(@"Add Not in Alliance Actions");
 		[tmp addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MY_INVITES], [NSDecimalNumber numberWithInt:BUILDING_ROW_CREATE_ALLIANCE]), @"rows")];
 	}
-
 	
 	[tmp addObject:[self generateHealthSection]];
 	[tmp addObject:[self generateUpgradeSection]];
@@ -105,6 +102,18 @@
 		case BUILDING_ROW_UPDATE_ALLIANCE:
 		case BUILDING_ROW_DISOLVE_ALLIANCE:
 			return [LETableViewCellButton getHeightForTableView:tableView];
+			break;
+		case BUILDING_ROW_ALLIANCE_NAME:
+		case BUILDING_ROW_ALLIANCE_LEADER:
+		case BUILDING_ROW_ALLIANCE_FORUM:
+		case BUILDING_ROW_ALLIANCE_CREATED_ON:
+			return [LETableViewCellLabeledText getHeightForTableView:tableView];
+			break;
+		case BUILDING_ROW_ALLIANCE_DESCRIPTION:
+			return [LETableViewCellLabeledParagraph getHeightForTableView:tableView text:self.allianceStatus.allianceDescription];
+			break;
+		case BUILDING_ROW_ALLIANCE_ANNOUNCEMENTS:
+			return [LETableViewCellLabeledParagraph getHeightForTableView:tableView text:self.allianceStatus.announcements];
 			break;
 		default:
 			return [super tableView:tableView heightForBuildingRow:buildingRow];
@@ -155,8 +164,63 @@
 		case BUILDING_ROW_DISOLVE_ALLIANCE:
 			; //DO NOT REMOVE
 			LETableViewCellButton *disolveAllianceButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-			disolveAllianceButtonCell.textLabel.text = @"Disolved Alliance";
+			disolveAllianceButtonCell.textLabel.text = @"Disolve Alliance";
 			cell = disolveAllianceButtonCell;
+			break;
+		case BUILDING_ROW_ALLIANCE_NAME:
+			; //DO NOT REMOVE
+			LETableViewCellLabeledText *allianceNameCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+			allianceNameCell.label.text = @"Name";
+			allianceNameCell.content.text = self.allianceStatus.name;
+			cell = allianceNameCell;
+			break;
+		case BUILDING_ROW_ALLIANCE_LEADER:
+			; //DO NOT REMOVE
+			LETableViewCellLabeledText *allianceLeaderCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+			allianceLeaderCell.label.text = @"Leader";
+			allianceLeaderCell.content.text = self.allianceStatus.leaderName;
+			cell = allianceLeaderCell;
+			break;
+		case BUILDING_ROW_ALLIANCE_FORUM:
+			; //DO NOT REMOVE
+			LETableViewCellLabeledText *allianceForumCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+			allianceForumCell.label.text = @"Forum";
+			if (isNotNull(self.allianceStatus.forumUri) && [self.allianceStatus.forumUri length]>0) {
+				allianceForumCell.content.text = self.allianceStatus.forumUri;
+			} else {
+				allianceForumCell.content.text = @"empty";
+			}
+
+			cell = allianceForumCell;
+			break;
+		case BUILDING_ROW_ALLIANCE_CREATED_ON:
+			; //DO NOT REMOVE
+			LETableViewCellLabeledText *allianceCreatedOnCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+			allianceCreatedOnCell.label.text = @"Created";
+			allianceCreatedOnCell.content.text = [Util formatDate:self.allianceStatus.dateCreated];
+			cell = allianceCreatedOnCell;
+			break;
+		case BUILDING_ROW_ALLIANCE_DESCRIPTION:
+			; //DO NOT REMOVE
+			LETableViewCellLabeledParagraph *allianceDescriptionCell = [LETableViewCellLabeledParagraph getCellForTableView:tableView];
+			allianceDescriptionCell.label.text = @"Description";
+			if (isNotNull(self.allianceStatus.allianceDescription)) {
+				allianceDescriptionCell.content.text = self.allianceStatus.allianceDescription;
+			} else {
+				allianceDescriptionCell.content.text = @"empty";
+			}
+			cell = allianceDescriptionCell;
+			break;
+		case BUILDING_ROW_ALLIANCE_ANNOUNCEMENTS:
+			; //DO NOT REMOVE
+			LETableViewCellLabeledParagraph *alliancAnnouncementCell = [LETableViewCellLabeledParagraph getCellForTableView:tableView];
+			alliancAnnouncementCell.label.text = @"Announcement";
+			if (isNotNull(self.allianceStatus.announcements)) {
+				alliancAnnouncementCell.content.text = self.allianceStatus.announcements;
+			} else {
+				alliancAnnouncementCell.content.text = @"empty";
+			}
+			cell = alliancAnnouncementCell;
 			break;
 		default:
 			cell = [super tableView:tableView cellForBuildingRow:buildingRow rowIndex:rowIndex];
@@ -201,9 +265,9 @@
 			return nil;
 		case BUILDING_ROW_DISOLVE_ALLIANCE:
 			; //DO NOT REMOVE
-			UIAlertView *av7 = [[[UIAlertView alloc] initWithTitle:@"WIP" message:@"Disolve Alliance is not complete yet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-			[av7 show];
-			return nil;
+			DisolveAllianceController *disolveAllianceController = [DisolveAllianceController create];
+			disolveAllianceController.embassy = self;
+			return disolveAllianceController;
 			break;
 		default:
 			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];
@@ -303,7 +367,8 @@
 
 
 - (void)allianceDisolved:(LEBuildingDissolveAlliance *)request {
-	//Do we need to do anything?
+	self.allianceStatus = nil;
+	self.needsRefresh = YES;
 }
 
 

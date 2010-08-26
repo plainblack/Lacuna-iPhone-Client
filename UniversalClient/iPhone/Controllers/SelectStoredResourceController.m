@@ -125,7 +125,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	self.selectedStoredResource = [self.baseTradeBuilding.storedResources objectAtIndex:indexPath.row];
-	NSDecimalNumber *max = [self.selectedStoredResource objectForKey:@"quantity"];
+	NSDecimalNumber *max = [Util asNumber:[self.selectedStoredResource objectForKey:@"quantity"]];
 	if (self.baseTradeBuilding.maxCargoSize) {
 		if ([max compare:self.baseTradeBuilding.maxCargoSize] == NSOrderedDescending) {
 			max = self.baseTradeBuilding.maxCargoSize;

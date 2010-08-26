@@ -13,8 +13,9 @@
 	NSString *id;
 	NSString *name;
 	NSString *leaderId;
+	NSString *leaderName;
 	NSString *forumUri;
-	NSString *description;
+	NSString *allianceDescription;
 	NSString *announcements;
 	NSDate *dateCreated;
 	NSMutableArray *members;
@@ -24,8 +25,9 @@
 @property (nonatomic, retain) NSString *id;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *leaderId;
+@property (nonatomic, retain) NSString *leaderName;
 @property (nonatomic, retain) NSString *forumUri;
-@property (nonatomic, retain) NSString *description;
+@property (nonatomic, retain) NSString *allianceDescription;
 @property (nonatomic, retain) NSString *announcements;
 @property (nonatomic, retain) NSDate *dateCreated;
 @property (nonatomic, retain) NSMutableArray *members;

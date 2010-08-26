@@ -18,8 +18,9 @@
 @synthesize id;
 @synthesize name;
 @synthesize leaderId;
+@synthesize leaderName;
 @synthesize forumUri;
-@synthesize description;
+@synthesize allianceDescription;
 @synthesize announcements;
 @synthesize dateCreated;
 @synthesize members;
@@ -41,8 +42,9 @@
 	self.id = nil;
 	self.name = nil;
 	self.leaderId = nil;
+	self.leaderName = nil;
 	self.forumUri = nil;
-	self.description = nil;
+	self.allianceDescription = nil;
 	self.announcements = nil;
 	self.dateCreated = nil;
 	self.members = nil;
@@ -51,8 +53,8 @@
 
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"id:%@, name:%@, leaderId: %@, forumUri: %@, description: %@, announcements: %@, dateCreated: %@, members: %@",
-			self.id, self.name, self.leaderId, self.forumUri, self.description, self.announcements, self.dateCreated, self.members];
+	return [NSString stringWithFormat:@"id:%@, name:%@, leaderId: %@, leaderName:%@, forumUri: %@, description: %@, announcements: %@, dateCreated: %@, members: %@",
+			self.id, self.name, self.leaderId, self.leaderName, self.forumUri, self.allianceDescription, self.announcements, self.dateCreated, self.members];
 }
 
 
@@ -62,16 +64,19 @@
 - (void)parseData:(NSDictionary *)data {
 	self.id = [data objectForKey:@"id"];
 	self.name = [data objectForKey:@"name"];
-	self.leaderId = [data objectForKey:@"leaderId"];
-	self.forumUri = [data objectForKey:@"forumUri"];
-	self.description = [data objectForKey:@"description"];
+	self.leaderId = [data objectForKey:@"leader_id"];
+	self.forumUri = [data objectForKey:@"forum_uri"];
+	self.allianceDescription = [data objectForKey:@"description"];
 	self.announcements = [data objectForKey:@"announcements"];
-	self.dateCreated = [data objectForKey:@"dateCreated"];
+	self.dateCreated = [Util date:[data objectForKey:@"date_created"]];
 	NSMutableArray *memberDataArray = [data objectForKey:@"members"];
 	for (NSMutableDictionary *memberData in memberDataArray) {
 		AllianceMember *allianceMember = [[[AllianceMember alloc] init] autorelease];
 		[allianceMember parseData:memberData];
 		[self.members addObject:allianceMember];
+		if ([allianceMember.empireId isEqualToString:self.leaderId]) {
+			self.leaderName = allianceMember.name;
+		}
 	}
 	[self.members sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES])];
 }

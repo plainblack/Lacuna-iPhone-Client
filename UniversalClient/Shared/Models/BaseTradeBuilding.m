@@ -300,9 +300,9 @@
 	NSDecimalNumber *toRemoveQuantity = [storedResource objectForKey:@"quantity"];
 	[self.storedResources enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
 		if ([[obj objectForKey:@"type"] isEqualToString:toRemoveType]) {
-			NSInteger tmp = [[obj objectForKey:@"quantity"] compare:toRemoveQuantity];
+			NSInteger tmp = [[Util asNumber:[obj objectForKey:@"quantity"]] compare:toRemoveQuantity];
 			if (tmp == NSOrderedDescending) {
-				NSDecimalNumber *currentLevel = [obj objectForKey:@"quantity"];
+				NSDecimalNumber *currentLevel = [Util asNumber:[obj objectForKey:@"quantity"]];
 				NSDecimalNumber *leftOver = [currentLevel decimalNumberBySubtracting:toRemoveQuantity];
 				[obj setObject:leftOver forKey:@"quantity"];
 			} else if (tmp == NSOrderedSame) {
