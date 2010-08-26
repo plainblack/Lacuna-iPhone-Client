@@ -27,6 +27,7 @@
 #import "LEBuildingUpdateAlliance.h"
 #import "LEBuildingWithdrawInvite.h"
 #import "LETableViewCellButton.h"
+#import "NewAllianceController.h"
 
 
 @implementation Embassy
@@ -60,10 +61,11 @@
 	if (!self.allianceStatus) {
 		self.allianceStatus = [[[AllianceStatus alloc] init] autorelease];
 	}
-	NSMutableDictionary *allianceStatusData = [data objectForKey:@"alliance"];
+	NSMutableDictionary *allianceStatusData = [data objectForKey:@"alliance_status"];
 	if (allianceStatusData) {
 		[self.allianceStatus parseData:allianceStatusData];
 	}
+	NSLog(@"Embassy Data: %@", data);
 }
 
 
@@ -174,9 +176,9 @@
 			return nil;
 		case BUILDING_ROW_CREATE_ALLIANCE:
 			; //DO NOT REMOVE
-			UIAlertView *av2 = [[[UIAlertView alloc] initWithTitle:@"WIP" message:@"Create Alliance is not complete yet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-			[av2 show];
-			return nil;
+			NewAllianceController *newAllianceController = [NewAllianceController create];
+			newAllianceController.embassy = self;
+			return newAllianceController;
 		case BUILDING_ROW_LEAVE_ALLIANCE:
 			; //DO NOT REMOVE
 			UIAlertView *av3 = [[[UIAlertView alloc] initWithTitle:@"WIP" message:@"Leave Alliance is not complete yet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
@@ -224,7 +226,9 @@
 
 
 
-- (void)createAllianceWithName:(NSString *)allianceName {
+- (void)createAllianceWithName:(NSString *)allianceName target:(id)target callback:(SEL)callback{
+	self->createAllianceTarget = target;
+	self->createAllianceCallback = callback;
 	[[[LEBuildingCreateAlliance alloc] initWithCallback:@selector(allianceCreated:) target:self buildingId:self.id buildingUrl:self.buildingUrl name:allianceName] autorelease];
 }
 
@@ -294,6 +298,7 @@
 
 - (void)allianceCreated:(LEBuildingCreateAlliance *)request {
 	[self.allianceStatus parseData:request.allianceStatus];
+	[self->createAllianceTarget performSelector:self->createAllianceCallback withObject:request];
 }
 
 

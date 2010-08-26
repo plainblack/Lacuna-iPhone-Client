@@ -17,6 +17,8 @@
 	AllianceStatus *allianceStatus;
 	NSMutableArray *myInvites;
 	NSMutableArray *pendingInvites;
+	id createAllianceTarget;
+	SEL createAllianceCallback;
 }
 
 
@@ -27,7 +29,7 @@
 
 - (void)acceptInvite:(NSString *)inviteId withMessage:(NSString *)message;
 - (void)assignAllianceLeader:(NSString *)newLeaderId;
-- (void)createAllianceWithName:(NSString *)name;
+- (void)createAllianceWithName:(NSString *)name target:(id)target callback:(SEL)callback;
 - (void)disolveAlliance;
 - (void)expelMemeber:(NSString *)empireId withMessage:(NSString *)message;
 - (void)getAllianceStatus;

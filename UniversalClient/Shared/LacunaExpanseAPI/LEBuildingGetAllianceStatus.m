@@ -33,7 +33,7 @@
 
 
 - (void)processSuccess {
-	self.allianceStatus = [self.response objectForKey:@"alliance"];
+	self.allianceStatus = [self.response objectForKey:@"alliance_status"];
 }
 
 
