@@ -1,5 +1,5 @@
 //
-//  RejectAllianceInviteController.h
+//  LeaveAllianceController.h
 //  UniversalClient
 //
 //  Created by Kevin Runde on 8/27/10.
@@ -11,25 +11,22 @@
 
 @class Embassy;
 @class LETableViewCellTextView;
-@class MyAllianceInvite;
 
 
-@interface RejectAllianceInviteController : LETableViewControllerGrouped <UIActionSheetDelegate> {
+@interface LeaveAllianceController : LETableViewControllerGrouped <UIActionSheetDelegate> {
 	Embassy *embassy;
 	LETableViewCellTextView *messageCell;
-	MyAllianceInvite *invite;
 }
 
 
 @property (nonatomic, retain) Embassy *embassy;
 @property (nonatomic, retain) LETableViewCellTextView *messageCell;
-@property (nonatomic, retain) MyAllianceInvite *invite;
 
 
-- (IBAction)rejectInvite;
+- (IBAction)leaveAlliance;
 
 
-+ (RejectAllianceInviteController *)create;
++ (LeaveAllianceController *)create;
 
 
 @end

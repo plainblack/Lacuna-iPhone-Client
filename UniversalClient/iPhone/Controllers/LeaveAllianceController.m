@@ -1,27 +1,26 @@
 //
-//  AcceptMyAllianceInviteController.m
+//  LeaveAllianceController.m
 //  UniversalClient
 //
 //  Created by Kevin Runde on 8/27/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
-#import "AcceptAllianceInviteController.h"
+#import "LeaveAllianceController.h"
 #import "LEMacros.h"
 #import "Session.h"
 #import "Embassy.h"
-#import "MyAllianceInvite.h"
+#import "AllianceStatus.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellLabeledText.h"
 #import "LETableViewCellTextView.h"
 
 
-@implementation AcceptAllianceInviteController
+@implementation LeaveAllianceController
 
 
 @synthesize embassy;
 @synthesize messageCell;
-@synthesize invite;
 
 
 #pragma mark -
@@ -30,12 +29,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.navigationItem.title = @"Accept Invite";
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Accept" style:UIBarButtonItemStyleDone target:self action:@selector(acceptInvite)] autorelease];
+	self.navigationItem.title = @"Leave Alliance";
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Leave" style:UIBarButtonItemStyleDone target:self action:@selector(leaveAlliance)] autorelease];
 	
 	self.messageCell = [LETableViewCellTextView getCellForTableView:self.tableView];
 	
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Alliance"], [LEViewSectionTab tableView:self.tableView createWithText:@"Message"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"To"], [LEViewSectionTab tableView:self.tableView createWithText:@"Message"]);
 }
 
 
@@ -80,7 +79,7 @@
 	if (indexPath.section == 0) {
 		LETableViewCellLabeledText *toCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO]; 
 		toCell.label.text = @"To";
-		toCell.content.text = self.invite.name;
+		toCell.content.text = self.embassy.allianceStatus.leaderName;
 		return toCell;
 	} else {
 		return self.messageCell;
@@ -107,7 +106,6 @@
 
 - (void)dealloc {
 	self.embassy = nil;
-	self.invite = nil;
     [super dealloc];
 }
 
@@ -115,17 +113,29 @@
 #pragma mark -
 #pragma mark Action Methods
 
-- (IBAction)acceptInvite {
-	[self.embassy acceptInvite:self.invite.id withMessage:self.messageCell.textView.text];
-	[self.navigationController popViewControllerAnimated:YES];
+- (IBAction)leaveAlliance {
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Are you really sure you want to leave the alliance." delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+	actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+	[actionSheet showFromTabBar:self.tabBarController.tabBar];
+	[actionSheet release];
+}
+
+#pragma mark -
+#pragma mark UIActionSheetDelegate Methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
+		[self.embassy leaveAllianceWithMessage:self.messageCell.textView.text];
+		[self.navigationController popViewControllerAnimated:YES];
+	}
 }
 
 
 #pragma mark -
 #pragma mark Class Methods
 
-+ (AcceptAllianceInviteController *)create {
-	return [[[AcceptAllianceInviteController alloc] init] autorelease];
++ (LeaveAllianceController *)create {
+	return [[[LeaveAllianceController alloc] init] autorelease];
 }
 
 

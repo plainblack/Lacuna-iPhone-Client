@@ -216,6 +216,7 @@
 		F6DF42F412289F1D00A526FD /* WithdrawAllianceInviteController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */; };
 		F6DF433D1228A53D00A526FD /* AcceptAllianceInviteController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF433C1228A53D00A526FD /* AcceptAllianceInviteController.m */; };
 		F6DF43411228A55F00A526FD /* RejectAllianceInviteController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF43401228A55F00A526FD /* RejectAllianceInviteController.m */; };
+		F6DF43681228AA3700A526FD /* LeaveAllianceController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF43671228AA3700A526FD /* LeaveAllianceController.m */; };
 		F6E349C91227D94E001E39B5 /* SelectEmpireController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E349C81227D94E001E39B5 /* SelectEmpireController.m */; };
 		F6E349D31227DE1F001E39B5 /* LEEmpireFind.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E349D21227DE1F001E39B5 /* LEEmpireFind.m */; };
 		F6E3E57F11BB0A3200A031CF /* EditEmpireProfileText.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3E57E11BB0A3200A031CF /* EditEmpireProfileText.m */; };
@@ -689,6 +690,8 @@
 		F6DF433C1228A53D00A526FD /* AcceptAllianceInviteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptAllianceInviteController.m; sourceTree = "<group>"; };
 		F6DF433F1228A55F00A526FD /* RejectAllianceInviteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RejectAllianceInviteController.h; sourceTree = "<group>"; };
 		F6DF43401228A55F00A526FD /* RejectAllianceInviteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RejectAllianceInviteController.m; sourceTree = "<group>"; };
+		F6DF43661228AA3700A526FD /* LeaveAllianceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaveAllianceController.h; sourceTree = "<group>"; };
+		F6DF43671228AA3700A526FD /* LeaveAllianceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaveAllianceController.m; sourceTree = "<group>"; };
 		F6E349C71227D94E001E39B5 /* SelectEmpireController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectEmpireController.h; sourceTree = "<group>"; };
 		F6E349C81227D94E001E39B5 /* SelectEmpireController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectEmpireController.m; sourceTree = "<group>"; };
 		F6E349D11227DE1F001E39B5 /* LEEmpireFind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireFind.h; sourceTree = "<group>"; };
@@ -1488,6 +1491,8 @@
 				F6DF433C1228A53D00A526FD /* AcceptAllianceInviteController.m */,
 				F6DF433F1228A55F00A526FD /* RejectAllianceInviteController.h */,
 				F6DF43401228A55F00A526FD /* RejectAllianceInviteController.m */,
+				F6DF43661228AA3700A526FD /* LeaveAllianceController.h */,
+				F6DF43671228AA3700A526FD /* LeaveAllianceController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1839,6 +1844,7 @@
 				F6DF42F412289F1D00A526FD /* WithdrawAllianceInviteController.m in Sources */,
 				F6DF433D1228A53D00A526FD /* AcceptAllianceInviteController.m in Sources */,
 				F6DF43411228A55F00A526FD /* RejectAllianceInviteController.m in Sources */,
+				F6DF43681228AA3700A526FD /* LeaveAllianceController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -116,8 +116,20 @@
 #pragma mark Action Methods
 
 - (IBAction)withdrawInvite {
-	[self.embassy withdrawInvite:self.invite.id withMessage:self.messageCell.textView.text];
-	[self.navigationController popViewControllerAnimated:YES];
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Are you really sure you want to withdraw this invite?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+	actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+	[actionSheet showFromTabBar:self.tabBarController.tabBar];
+	[actionSheet release];
+}
+
+#pragma mark -
+#pragma mark UIActionSheetDelegate Methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
+		[self.embassy withdrawInvite:self.invite.id withMessage:self.messageCell.textView.text];
+		[self.navigationController popViewControllerAnimated:YES];
+	}
 }
 
 

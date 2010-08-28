@@ -35,7 +35,7 @@
 	
 	self.messageCell = [LETableViewCellTextView getCellForTableView:self.tableView];
 	
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"To"], [LEViewSectionTab tableView:self.tableView createWithText:@"Message"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Alliance"], [LEViewSectionTab tableView:self.tableView createWithText:@"Message"]);
 }
 
 
@@ -116,8 +116,20 @@
 #pragma mark Action Methods
 
 - (IBAction)rejectInvite {
-	[self.embassy rejectInvite:self.invite.id withMessage:self.messageCell.textView.text];
-	[self.navigationController popViewControllerAnimated:YES];
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Are you really sure you want to reject this invite?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+	actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+	[actionSheet showFromTabBar:self.tabBarController.tabBar];
+	[actionSheet release];
+}
+
+#pragma mark -
+#pragma mark UIActionSheetDelegate Methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
+		[self.embassy rejectInvite:self.invite.id withMessage:self.messageCell.textView.text];
+		[self.navigationController popViewControllerAnimated:YES];
+	}
 }
 
 

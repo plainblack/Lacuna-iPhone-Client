@@ -14,7 +14,7 @@
 @class PendingAllianceInvite;
 
 
-@interface WithdrawAllianceInviteController : LETableViewControllerGrouped {
+@interface WithdrawAllianceInviteController : LETableViewControllerGrouped <UIActionSheetDelegate> {
 	Embassy *embassy;
 	LETableViewCellTextView *messageCell;
 	PendingAllianceInvite *invite;

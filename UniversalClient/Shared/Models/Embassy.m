@@ -34,6 +34,7 @@
 #import "NewAllianceInvite.h"
 #import "ViewPendingInvitesController.h"
 #import "ViewMyInvitesController.h"
+#import "LeaveAllianceController.h"
 
 
 @implementation Embassy
@@ -248,9 +249,9 @@
 			return newAllianceController;
 		case BUILDING_ROW_LEAVE_ALLIANCE:
 			; //DO NOT REMOVE
-			UIAlertView *av3 = [[[UIAlertView alloc] initWithTitle:@"WIP" message:@"Leave Alliance is not complete yet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-			[av3 show];
-			return nil;
+			LeaveAllianceController *leaveAllianceController = [LeaveAllianceController create];
+			leaveAllianceController.embassy = self;
+			return leaveAllianceController;
 		case BUILDING_ROW_CREATE_INVITE:
 			; //DO NOT REMOVE
 			NewAllianceInvite *newAllianceInvite = [NewAllianceInvite create];
@@ -337,6 +338,7 @@
 
 
 - (void)leaveAllianceWithMessage:(NSString *)message {
+	self.allianceStatus = nil;
 	[[[LEBuildingLeaveAlliance alloc] initWithCallback:@selector(allianceLeft:) target:self buildingId:self.id buildingUrl:self.buildingUrl message:message] autorelease];
 }
 
