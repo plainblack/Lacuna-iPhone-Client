@@ -85,6 +85,7 @@
 - (UIViewController *)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 - (UIViewController *)tableView:(UITableView *)tableView didSelectBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex;
 - (BOOL)isConfirmCell:(NSIndexPath *)indexPath;
+- (NSString *)confirmMessage:(NSIndexPath *)indexPath;
 
 	
 @end

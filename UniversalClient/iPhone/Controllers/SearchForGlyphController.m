@@ -107,7 +107,6 @@
 
 - (IBAction)search {
 	NSString *selectedOreType = [[self.archaeology.availableOreTypes objectAtIndex:[self.orePicker selectedRowInComponent:0]] objectForKey:@"type"];
-	NSLog(@"Selected Ore Type: %@", selectedOreType);
 	[self.archaeology searchForGlyph:selectedOreType];
 	[self.navigationController popViewControllerAnimated:YES];
 }

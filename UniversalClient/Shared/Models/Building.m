@@ -443,6 +443,24 @@
 }
 
 
+- (NSString *)confirmMessage:(NSIndexPath *)indexPath {
+	NSDictionary *section = [self.sections objectAtIndex:indexPath.section];
+	NSArray *rows = [section objectForKey:@"rows"];
+	
+	switch (_intv([rows objectAtIndex:indexPath.row])) {
+		case BUILDING_ROW_DEMOLISH_BUTTON:
+			return @"Are you sure you want to demolish this building?";
+			break;
+		case BUILDING_ROW_DOWNGRADE_BUTTON:
+			return @"Are you sure you want to downgrade this building by one level?";
+			break;
+		default:
+			return @"Are you sure?";
+			break;
+	}
+}
+
+
 - (id)upgradedBuilding:(LEUpgradeBuilding *)request {
 	NSDictionary *pendingBuildDict = [request.buildingData objectForKey:@"pending_build"]; 
 	if ( pendingBuildDict && ((id)pendingBuildDict != [NSNull null]) ) {

@@ -139,7 +139,7 @@
 		self.selectedTableView = tableView;
 		self.selectedIndexPath = indexPath;
 		if ([session.body.currentBuilding isConfirmCell:indexPath]) {
-			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Demolish building?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[session.body.currentBuilding confirmMessage:indexPath] delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
 			actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
 			[actionSheet showFromTabBar:self.tabBarController.tabBar];
 			[actionSheet release];

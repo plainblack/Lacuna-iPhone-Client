@@ -216,7 +216,6 @@ typedef enum {
 		if ([session.body.waste.current compare:maxValue] == NSOrderedAscending) {
 			maxValue = session.body.waste.current;
 		}
-		NSLog(@"Max Value is: %@", maxValue);
 		self.energyCell.maxValue = maxValue;
 		self.oreCell.maxValue = maxValue;
 		self.waterCell.maxValue = maxValue;
