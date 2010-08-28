@@ -81,7 +81,7 @@
 	[self.messageDetails setObject:[NSDecimalNumber numberWithInt:1] forKey:@"has_read"];
 	Session *session = [Session sharedInstance];
 	session.empire.numNewMessages = [session.empire.numNewMessages decimalNumberBySubtracting:[NSDecimalNumber one]];
-	NSString *messageId = [self.messageDetails objectForKey:@"id"];
+	NSString *messageId = [Util idFromDict:self.messageDetails named:@"id"];
 	[[[LEInboxRead alloc] initWithCallback:@selector(messageDetailsLoaded:) target:self messageId:messageId] autorelease];
 }
 
@@ -98,7 +98,7 @@
 - (void)archiveMessage:(NSInteger)index {
 	if ([self canArchive]) {
 		NSDictionary *headers = [self.messageHeaders objectAtIndex:index];
-		NSString *messageId = [headers objectForKey:@"id"];
+		NSString *messageId = [Util idFromDict:headers named:@"id"];
 		[[[LEInboxArchive alloc] initWithCallback:@selector(messageArchived:) target:self messageIds:_array(messageId)] autorelease];
 		[self.messageHeaders removeObjectAtIndex:index];
 	}

@@ -58,7 +58,7 @@
 #pragma mark Instance Methods
 
 - (void)parseData:(NSDictionary *)spyData {
-	self.id = [spyData objectForKey:@"id"];
+	self.id = [Util idFromDict:spyData named:@"id"];
 	self.name = [spyData objectForKey:@"name"];
 	self.bodyId = [[spyData objectForKey:@"assigned_to"] objectForKey:@"body_id"];
 	self.bodyName = [[spyData objectForKey:@"assigned_to"] objectForKey:@"name"];

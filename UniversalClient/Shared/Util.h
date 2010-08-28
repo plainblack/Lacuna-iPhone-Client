@@ -18,6 +18,7 @@
 
 + (NSInteger)numPagesForCount:(NSInteger)count;
 
++ (NSString *)idFromDict:(NSDictionary *)dict named:(NSString *)name;
 + (NSDecimalNumber *)decimalFromInt:(NSInteger)inNumber;
 + (NSDate *)date:(NSString *)serverDateString;
 + (NSString *)formatDate:(NSDate *)serverDate;

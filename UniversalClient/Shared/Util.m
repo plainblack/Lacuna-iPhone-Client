@@ -45,6 +45,17 @@ static NSDecimalNumber *ONE_HUNDRED_BILLION;
 }
 
 
++ (NSString *)idFromDict:(NSDictionary *)dict named:(NSString *)name {
+	id obj = [dict objectForKey:name];
+	if ([obj respondsToSelector:@selector(stringValue)]) {
+		return [obj stringValue];
+	} else {
+		return (NSString *)obj;
+	}
+
+}
+
+
 + (NSDecimalNumber *)decimalFromInt:(NSInteger)inNumber {
 	return (NSDecimalNumber *)[NSDecimalNumber numberWithInt:inNumber];
 }

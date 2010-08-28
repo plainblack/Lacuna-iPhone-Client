@@ -41,7 +41,7 @@
 #pragma mark Instance Methods
 
 - (void)parseData:(NSDictionary *)prisonerData {
-	self.id = [prisonerData objectForKey:@"id"];
+	self.id = [Util idFromDict:prisonerData named:@"id"];
 	self.name = [prisonerData objectForKey:@"name"];
 	self.level = [Util asNumber:[prisonerData objectForKey:@"level"] ];
 	self.sentenceExpiresOn = [Util date:[prisonerData objectForKey:@"sentence_expires"]];

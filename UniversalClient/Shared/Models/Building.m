@@ -21,6 +21,7 @@
 #import "LETableViewCellBuildingStorage.h"
 #import "LEUpgradeBuilding.h"
 #import "LEBuildingDemolish.h"
+#import "LEBuildingDowngrade.h"
 #import "LEBuildingRestrictCoverage.h"
 #import "LEBuildingTrainSpy.h"
 #import "LEBuildingSubsidizeBuildQueue.h"
@@ -89,7 +90,7 @@
 - (void)parseData:(NSDictionary *)data {
 	NSDictionary *buildingData = [data objectForKey:@"building"];
 
-	self.id = [buildingData objectForKey:@"id"];
+	self.id = [Util idFromDict:buildingData named:@"id"];
 	self.name = [buildingData objectForKey:@"name"];
 	self.imageName = [buildingData objectForKey:@"image"];
 	self.level = [Util asNumber:[buildingData objectForKey:@"level"]];
@@ -200,6 +201,7 @@
 		} else {
 			[rowArray addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_CANNOT]];
 		}
+		[rowArray addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_DOWNGRADE_BUTTON]];
 		[rowArray addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_DEMOLISH_BUTTON]];
 	}
 
@@ -254,6 +256,7 @@
 			break;
 		case BUILDING_ROW_UPGRADE_BUTTON:
 		case BUILDING_ROW_DEMOLISH_BUTTON:
+		case BUILDING_ROW_DOWNGRADE_BUTTON:
 		case BUILDING_ROW_REPAIR_BUTTON:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
@@ -347,6 +350,12 @@
 			demolishCell.textLabel.text = @"Demolish";
 			cell = demolishCell;
 			break;
+		case BUILDING_ROW_DOWNGRADE_BUTTON:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *downgradeCell = [LETableViewCellButton getCellForTableView:tableView];
+			downgradeCell.textLabel.text = @"Downgrade";
+			cell = downgradeCell;
+			break;
 		case BUILDING_ROW_EMPTY:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellLabeledText *emptyCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
@@ -414,6 +423,9 @@
 		case BUILDING_ROW_DEMOLISH_BUTTON:
 			[[[LEBuildingDemolish alloc] initWithCallback:@selector(buildingDemolished:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
 			break;
+		case BUILDING_ROW_DOWNGRADE_BUTTON:
+			[[[LEBuildingDowngrade alloc] initWithCallback:@selector(buildingDowngraded:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+			break;
 		case BUILDING_ROW_REPAIR_BUTTON:
 			[[[LEBuildingRepair alloc] initWithCallback:@selector(buildingRepaired:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
 			break;
@@ -426,7 +438,8 @@
 	NSDictionary *section = [self.sections objectAtIndex:indexPath.section];
 	NSArray *rows = [section objectForKey:@"rows"];
 	
-	return (_intv([rows objectAtIndex:indexPath.row]) == BUILDING_ROW_DEMOLISH_BUTTON);
+	return (_intv([rows objectAtIndex:indexPath.row]) == BUILDING_ROW_DEMOLISH_BUTTON) ||
+			(_intv([rows objectAtIndex:indexPath.row]) == BUILDING_ROW_DOWNGRADE_BUTTON);
 }
 
 
@@ -452,10 +465,10 @@
 				NSLog(@"Is not Building");
 				if (self.canUpgrade) {
 					NSLog(@"Can upgrade");
-					[section setObject:_array([NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_STATS], [NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_COST], [NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_BUTTON], [NSDecimalNumber numberWithInt:BUILDING_ROW_DEMOLISH_BUTTON]) forKey:@"rows"];
+					[section setObject:_array([NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_STATS], [NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_COST], [NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_BUTTON], [NSDecimalNumber numberWithInt:BUILDING_ROW_DEMOLISH_BUTTON], [NSDecimalNumber numberWithInt:BUILDING_ROW_DOWNGRADE_BUTTON]) forKey:@"rows"];
 				} else {
 					NSLog(@"Can NOT upgrade");
-					[section setObject:_array([NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_STATS], [NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_COST], [NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_CANNOT], [NSDecimalNumber numberWithInt:BUILDING_ROW_DEMOLISH_BUTTON]) forKey:@"rows"];
+					[section setObject:_array([NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_STATS], [NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_COST], [NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_CANNOT], [NSDecimalNumber numberWithInt:BUILDING_ROW_DEMOLISH_BUTTON], [NSDecimalNumber numberWithInt:BUILDING_ROW_DOWNGRADE_BUTTON]) forKey:@"rows"];
 				}
 			}
 		}
@@ -468,6 +481,13 @@
 
 - (id)buildingDemolished:(LEBuildingDemolish *)request {
 	self.demolished = YES;
+	return nil;
+}
+
+
+- (id)buildingDowngraded:(LEBuildingDowngrade *)request {
+	[self parseData:request.result];
+	self.needsRefresh = YES;
 	return nil;
 }
 

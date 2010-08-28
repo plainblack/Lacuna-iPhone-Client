@@ -52,15 +52,15 @@
 #pragma mark Instance Methods
 
 - (void)parseData:(NSDictionary *)shipData {
-	self.id = [shipData objectForKey:@"id"];
+	self.id = [Util idFromDict:shipData named:@"id"];
 	self.type = [shipData objectForKey:@"type"];
 	self.dateArrives = [Util date:[shipData objectForKey:@"date_arrives"]];
 	NSDictionary *fromData = [shipData objectForKey:@"from"];
-	self.fromId = [fromData objectForKey:@"id"];
+	self.fromId = [Util idFromDict:fromData named:@"id"];
 	self.fromType = [fromData objectForKey:@"type"];
 	self.fromName = [fromData objectForKey:@"name"];
 	NSDictionary *toData = [shipData objectForKey:@"to"];
-	self.toId = [toData objectForKey:@"id"];
+	self.toId = [Util idFromDict:toData named:@"id"];
 	self.toType = [toData objectForKey:@"type"];
 	self.toName = [toData objectForKey:@"name"];
 }

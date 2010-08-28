@@ -8,6 +8,7 @@
 
 #import "NewAllianceInvite.h"
 #import "LEMacros.h"
+#import "Util.h"
 #import "Session.h"
 #import "Embassy.h"
 #import "LEViewSectionTab.h"
@@ -139,7 +140,7 @@
 
 - (IBAction)sendInvite {
 	for (NSMutableDictionary *invitee in self.invitees) {
-		[self.embassy sendInviteTo:[invitee objectForKey:@"id"] withMessage:self.messageCell.textView.text];
+		[self.embassy sendInviteTo:[Util idFromDict:invitee named:@"id"] withMessage:self.messageCell.textView.text];
 	}
 	[self.navigationController popViewControllerAnimated:YES];
 }

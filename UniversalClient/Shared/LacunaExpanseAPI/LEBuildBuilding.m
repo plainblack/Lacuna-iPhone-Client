@@ -9,6 +9,7 @@
 #import "LEBuildBuilding.h"
 #import "Session.h"
 #import "LEMacros.h"
+#import "Util.h"
 
 
 @implementation LEBuildBuilding
@@ -39,7 +40,7 @@
 - (void)processSuccess {
 	NSDictionary *result = [self.response objectForKey:@"result"];
 	NSDictionary *building = [result objectForKey:@"building"];
-	self.buildingId = [building objectForKey:@"id"];
+	self.buildingId = [Util idFromDict:building named:@"id"];
 	NSLog(@"BUILD SUCCESS: %@", result);
 }
 

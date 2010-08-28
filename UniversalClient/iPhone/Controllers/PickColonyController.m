@@ -90,8 +90,7 @@
 - (void)save {
 	NSInteger row = [self.colonyPicker selectedRowInComponent:0];
 	NSDictionary *colony = [self.colonies objectAtIndex:row];
-	NSLog(@"Selected Colony: %@", colony);
-	[self.delegate colonySelected:[colony objectForKey:@"id"]];
+	[self.delegate colonySelected:[Util idFromDict:colony named:@"id"]];
 }
 
 

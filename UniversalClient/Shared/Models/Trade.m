@@ -58,7 +58,7 @@
 #pragma mark Instance Methods
 
 - (void)parseData:(NSDictionary *)data {
-	self.id = [data objectForKey:@"id"];
+	self.id = [Util idFromDict:data named:@"id"];
 	self.dateOffered = [Util date:[data objectForKey:@"date_offered"]];
 	self.askType = [data objectForKey:@"ask_type"];
 	self.askQuantity = [Util asNumber:[data objectForKey:@"ask_quantity"]];

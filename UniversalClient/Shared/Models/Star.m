@@ -46,7 +46,7 @@
 #pragma mark Instance Methods
 
 - (void)parseData:(NSDictionary *)data {
-	self.id = [data objectForKey:@"id"];
+	self.id = [Util idFromDict:data named:@"id"];
 	self.color = [data objectForKey:@"color"];
 	self.name = [data objectForKey:@"name"];
 	self.x = [Util asNumber:[data objectForKey:@"x"]];

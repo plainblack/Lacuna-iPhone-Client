@@ -41,7 +41,7 @@
 #pragma mark Instance Methods
 
 - (void)parseData:(NSDictionary *)data {
-	self.id = [data objectForKey:@"id"];
+	self.id = [Util idFromDict:data named:@"id"];
 	self.name = [data objectForKey:@"name"];
 	self.buildLevel = [Util	asNumber:[data objectForKey:@"level"]];
 	self.extraBuildLevel = [Util asNumber:[data objectForKey:@"extra_build_level"]];

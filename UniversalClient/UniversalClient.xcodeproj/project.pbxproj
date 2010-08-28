@@ -213,6 +213,7 @@
 		F6DEC052120247BF00716CE7 /* LETableViewCellShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DEC051120247BF00716CE7 /* LETableViewCellShip.m */; };
 		F6DF22DA12293D660023FE65 /* EditTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF22D912293D660023FE65 /* EditTextViewController.m */; };
 		F6DF23231229558C0023FE65 /* EditTextFieldController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF23221229558C0023FE65 /* EditTextFieldController.m */; };
+		F6DF239F122960BE0023FE65 /* LEBuildingDowngrade.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF239E122960BE0023FE65 /* LEBuildingDowngrade.m */; };
 		F6DF425012288EB600A526FD /* ViewPendingInvitesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF424F12288EB600A526FD /* ViewPendingInvitesController.m */; };
 		F6DF42C01228990700A526FD /* ViewMyInvitesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF42BF1228990700A526FD /* ViewMyInvitesController.m */; };
 		F6DF42F412289F1D00A526FD /* WithdrawAllianceInviteController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */; };
@@ -689,6 +690,8 @@
 		F6DF22D912293D660023FE65 /* EditTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTextViewController.m; sourceTree = "<group>"; };
 		F6DF23211229558C0023FE65 /* EditTextFieldController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTextFieldController.h; sourceTree = "<group>"; };
 		F6DF23221229558C0023FE65 /* EditTextFieldController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTextFieldController.m; sourceTree = "<group>"; };
+		F6DF239D122960BE0023FE65 /* LEBuildingDowngrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingDowngrade.h; sourceTree = "<group>"; };
+		F6DF239E122960BE0023FE65 /* LEBuildingDowngrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingDowngrade.m; sourceTree = "<group>"; };
 		F6DF424E12288EB600A526FD /* ViewPendingInvitesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewPendingInvitesController.h; sourceTree = "<group>"; };
 		F6DF424F12288EB600A526FD /* ViewPendingInvitesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewPendingInvitesController.m; sourceTree = "<group>"; };
 		F6DF42BE1228990700A526FD /* ViewMyInvitesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMyInvitesController.h; sourceTree = "<group>"; };
@@ -1267,6 +1270,8 @@
 				F6E8D5731223E82C001CD21D /* LEBuildingExpelMember.m */,
 				F6E349D11227DE1F001E39B5 /* LEEmpireFind.h */,
 				F6E349D21227DE1F001E39B5 /* LEEmpireFind.m */,
+				F6DF239D122960BE0023FE65 /* LEBuildingDowngrade.h */,
+				F6DF239E122960BE0023FE65 /* LEBuildingDowngrade.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -1875,6 +1880,7 @@
 				F6DF43C51228B49400A526FD /* PromoteAllianceMemberController.m in Sources */,
 				F6DF22DA12293D660023FE65 /* EditTextViewController.m in Sources */,
 				F6DF23231229558C0023FE65 /* EditTextFieldController.m in Sources */,
+				F6DF239F122960BE0023FE65 /* LEBuildingDowngrade.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

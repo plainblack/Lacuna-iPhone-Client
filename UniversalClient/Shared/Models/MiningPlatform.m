@@ -51,11 +51,9 @@
 #pragma mark Instance Methods
 
 - (void)parseData:(NSDictionary *)data {
-	NSLog(@"Platform Data: %@", data);
-	
-	self.id = [data objectForKey:@"id"];
+	self.id = [Util idFromDict:data named:@"id"];
 	NSDictionary *asteroidData = [data objectForKey:@"asteroid"];
-	self.asteroidId = [asteroidData objectForKey:@"id"];
+	self.asteroidId = [Util idFromDict:asteroidData named:@"id"];
 	self.asteroidName = [asteroidData objectForKey:@"name"];
 	
 	if (!self.oresPerHour) {

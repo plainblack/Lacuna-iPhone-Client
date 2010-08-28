@@ -163,7 +163,7 @@
 
 	if (building) {
 		ViewBuildingController *viewBuildingController = [ViewBuildingController create];
-		viewBuildingController.buildingId = [building objectForKey:@"id"];
+		viewBuildingController.buildingId = [Util idFromDict:building named:@"id"];
 		viewBuildingController.urlPart = [building objectForKey:@"url"];
 		viewBuildingController.buildingsByLoc = session.body.buildingMap;
 		viewBuildingController.buttonsByLoc = buttonsByLoc;

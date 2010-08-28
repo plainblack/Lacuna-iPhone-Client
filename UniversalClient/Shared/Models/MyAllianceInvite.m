@@ -39,7 +39,7 @@
 #pragma mark Instance Methods
 
 - (void)parseData:(NSDictionary *)data {
-	self.id = [data objectForKey:@"id"];
+	self.id = [Util idFromDict:data named:@"id"];
 	self.name = [data objectForKey:@"name"];
 	self.allianceId = [data objectForKey:@"alliance_id"];
 }

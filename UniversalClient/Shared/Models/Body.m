@@ -90,7 +90,7 @@
 #pragma mark NSObject Methods
 
 - (void)parseData:(NSDictionary *)bodyData {
-	self.id = [bodyData objectForKey:@"id"];
+	self.id = [Util idFromDict:bodyData named:@"id"];
 	self.x = [Util asNumber:[bodyData objectForKey:@"x"]];
 	self.y = [Util asNumber:[bodyData objectForKey:@"y"]];
 	self.starId = [bodyData objectForKey:@"star_id"];
@@ -103,7 +103,7 @@
 	self.planetWater = [Util asNumber:[bodyData objectForKey:@"water"]];
 	self.ores = [bodyData objectForKey:@"ore"];
 	NSDictionary *empireData = [bodyData objectForKey:@"empire"];
-	self.empireId = [empireData objectForKey:@"id"];
+	self.empireId = [Util idFromDict:empireData named:@"id"];
 	self.empireName = [empireData objectForKey:@"name"];
 	self.alignment = [empireData objectForKey:@"alignment"];
 	self.needsSurfaceRefresh = _intv([bodyData objectForKey:@"needs_surface_refresh"]);

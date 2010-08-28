@@ -8,6 +8,7 @@
 
 #import "ViewBodyController.h"
 #import "LEMacros.h"
+#import "Util.h"
 #import "Session.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellButton.h"
@@ -391,7 +392,7 @@ typedef enum {
 		self->pickColonyController.colonies = colonies;
 		[self presentModalViewController:self->pickColonyController animated:YES];
 	} else {
-		self.bodyId = [[colonies objectAtIndex:0] objectForKey:@"id"];
+		self.bodyId = [Util idFromDict:[colonies objectAtIndex:0] named:@"id"];
 		[self loadBody];
 	}
 }

@@ -46,7 +46,7 @@
 #pragma mark Instance Methods
 
 - (void)parseData:(NSDictionary *)shipData {
-	self.id = [shipData objectForKey:@"id"];
+	self.id = [Util idFromDict:shipData named:@"id"];
 	self.name = [shipData objectForKey:@"name"];
 	self.type = [shipData objectForKey:@"type"];
 	self.task = [shipData objectForKey:@"task"];

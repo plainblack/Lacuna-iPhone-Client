@@ -7,6 +7,7 @@
 //
 
 #import "Glyph.h"
+#import "Util.h"
 
 
 @implementation Glyph
@@ -41,7 +42,7 @@
 
 
 - (void)parseData:(NSDictionary *)data {
-	self.id = [data objectForKey:@"id"];
+	self.id = [Util idFromDict:data named:@"id"];
 	self.type = [data objectForKey:@"type"];
 }
 
