@@ -33,7 +33,8 @@
 
 
 - (void)processSuccess {
-	self.invites = [self.response objectForKey:@"invites"];
+	NSDictionary *result = [self.response objectForKey:@"result"];
+	self.invites = [result objectForKey:@"invites"];
 }
 
 

@@ -31,6 +31,9 @@
 #import "LETableViewCellLabeledParagraph.h"
 #import "NewAllianceController.h"
 #import	"DisolveAllianceController.h"
+#import "NewAllianceInvite.h"
+#import "ViewPendingInvitesController.h"
+#import "ViewMyInvitesController.h"
 
 
 @implementation Embassy
@@ -78,7 +81,7 @@
 		[tmp addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ALLIANCE_STATUS], @"type", @"Alliance", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_ALLIANCE_NAME], [NSDecimalNumber numberWithInt:BUILDING_ROW_ALLIANCE_LEADER], [NSDecimalNumber numberWithInt:BUILDING_ROW_ALLIANCE_DESCRIPTION], [NSDecimalNumber numberWithInt:BUILDING_ROW_ALLIANCE_ANNOUNCEMENTS], [NSDecimalNumber numberWithInt:BUILDING_ROW_ALLIANCE_FORUM], [NSDecimalNumber numberWithInt:BUILDING_ROW_ALLIANCE_CREATED_ON]), @"rows")];
 		Session *session = [Session sharedInstance];
 		if ([session.empire.id isEqualToString:self.allianceStatus.leaderId]) {
-			[tmp addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_CREATE_ALLIANCE], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_PENDING_INVITES], [NSDecimalNumber numberWithInt:BUILDING_ROW_UPDATE_ALLIANCE], [NSDecimalNumber numberWithInt:BUILDING_ROW_DISOLVE_ALLIANCE], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MY_INVITES]), @"rows")];
+			[tmp addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_CREATE_INVITE], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_PENDING_INVITES], [NSDecimalNumber numberWithInt:BUILDING_ROW_UPDATE_ALLIANCE], [NSDecimalNumber numberWithInt:BUILDING_ROW_DISOLVE_ALLIANCE], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MY_INVITES]), @"rows")];
 		} else {
 			[tmp addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_LEAVE_ALLIANCE], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MY_INVITES]), @"rows")];
 		}
@@ -235,9 +238,9 @@
 	switch (buildingRow) {
 		case BUILDING_ROW_VIEW_MY_INVITES:
 			; //DO NOT REMOVE
-			UIAlertView *av1 = [[[UIAlertView alloc] initWithTitle:@"WIP" message:@"My Invites is not complete yet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-			[av1 show];
-			return nil;
+			ViewMyInvitesController *viewMyInvitesController = [ViewMyInvitesController create];
+			viewMyInvitesController.embassy = self;
+			return viewMyInvitesController;
 		case BUILDING_ROW_CREATE_ALLIANCE:
 			; //DO NOT REMOVE
 			NewAllianceController *newAllianceController = [NewAllianceController create];
@@ -250,14 +253,14 @@
 			return nil;
 		case BUILDING_ROW_CREATE_INVITE:
 			; //DO NOT REMOVE
-			UIAlertView *av4 = [[[UIAlertView alloc] initWithTitle:@"WIP" message:@"Create Invite is not complete yet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-			[av4 show];
-			return nil;
+			NewAllianceInvite *newAllianceInvite = [NewAllianceInvite create];
+			newAllianceInvite.embassy = self;
+			return newAllianceInvite;
 		case BUILDING_ROW_VIEW_PENDING_INVITES:
 			; //DO NOT REMOVE
-			UIAlertView *av5 = [[[UIAlertView alloc] initWithTitle:@"WIP" message:@"Pending Invites is not complete yet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-			[av5 show];
-			return nil;
+			ViewPendingInvitesController *viewPendingInvitesController = [ViewPendingInvitesController create];
+			viewPendingInvitesController.embassy = self;
+			return viewPendingInvitesController;
 		case BUILDING_ROW_UPDATE_ALLIANCE:
 			; //DO NOT REMOVE
 			UIAlertView *av6 = [[[UIAlertView alloc] initWithTitle:@"WIP" message:@"Update Alliance is not complete yet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
@@ -280,6 +283,17 @@
 #pragma mark Instance Methods
 
 - (void)acceptInvite:(NSString *)inviteId withMessage:(NSString *)message {
+	__block MyAllianceInvite *foundInvite = nil;
+	[self.myInvites enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+		MyAllianceInvite *invite = obj;
+		if ([invite.id isEqualToString:inviteId]) {
+			foundInvite = invite;
+			*stop = YES;
+		}
+	}];
+	if (foundInvite) {
+		[self.myInvites removeObject:foundInvite];
+	}
 	[[[LEBuildingAcceptInvite alloc] initWithCallback:@selector(inviteAccepted:) target:self buildingId:self.id buildingUrl:self.buildingUrl inviteId:inviteId message:message] autorelease];
 }
 
@@ -307,17 +321,17 @@
 }
 
 
-- (void)getAllianceStatus {
+- (void)loadAllianceStatus {
 	[[[LEBuildingGetAllianceStatus alloc] initWithCallback:@selector(allianceStatusLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
 }
 
 
-- (void)getPendingInvites {
+- (void)loadPendingInvites {
 	[[[LEBuildingGetPendingInvites alloc] initWithCallback:@selector(pendingInvitesLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
 }
 
 
-- (void)getMyInvites {
+- (void)loadMyInvites {
 	[[[LEBuildingGetMyInvites alloc] initWithCallback:@selector(myInvitesLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
 }
 
@@ -328,6 +342,17 @@
 
 
 - (void)rejectInvite:(NSString *)inviteId withMessage:(NSString *)message {
+	__block MyAllianceInvite *foundInvite = nil;
+	[self.myInvites enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+		MyAllianceInvite *invite = obj;
+		if ([invite.id isEqualToString:inviteId]) {
+			foundInvite = invite;
+			*stop = YES;
+		}
+	}];
+	if (foundInvite) {
+		[self.myInvites removeObject:foundInvite];
+	}
 	[[[LEBuildingRejectInvite alloc] initWithCallback:@selector(inviteRejected:) target:self buildingId:self.id buildingUrl:self.buildingUrl inviteId:inviteId message:message] autorelease];
 }
 
@@ -343,6 +368,17 @@
 
 
 - (void)withdrawInvite:(NSString *)inviteId withMessage:(NSString *)message {
+	__block PendingAllianceInvite *foundInvite = nil;
+	[self.pendingInvites enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+		PendingAllianceInvite *invite = obj;
+		if ([invite.id isEqualToString:inviteId]) {
+			foundInvite = invite;
+			*stop = YES;
+		}
+	}];
+	if (foundInvite) {
+		[self.pendingInvites removeObject:foundInvite];
+	}
 	[[[LEBuildingWithdrawInvite alloc] initWithCallback:@selector(inviteWithdrawn:) target:self buildingId:self.id buildingUrl:self.buildingUrl inviteId:inviteId message:message] autorelease];	
 }
 

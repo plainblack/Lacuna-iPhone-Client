@@ -11,19 +11,19 @@
 
 
 @class Embassy;
-@class LETableViewCellLabeledParagraph;
+@class LETableViewCellParagraph;
 @class LETableViewCellButton;
 
 
 @interface DisolveAllianceController : LETableViewControllerGrouped <UIActionSheetDelegate> {
 	Embassy *embassy;
-	LETableViewCellLabeledParagraph *warningCell;
+	LETableViewCellParagraph *warningCell;
 	LETableViewCellButton *disolveButtonCell;
 }
 
 
 @property (nonatomic, retain) Embassy *embassy;
-@property (nonatomic, retain) LETableViewCellLabeledParagraph *warningCell;
+@property (nonatomic, retain) LETableViewCellParagraph *warningCell;
 @property (nonatomic, retain) LETableViewCellButton *disolveButtonCell;
 
 

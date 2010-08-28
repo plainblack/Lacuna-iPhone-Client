@@ -50,7 +50,7 @@
 #define TEXT_COLOR [UIColor whiteColor]
 #define TEXT_SMALL_COLOR [UIColor whiteColor]
 #define PARAGRAPH_COLOR [UIColor whiteColor]
-#define TEXT_ENTRY_COLOR [UIColor whiteColor]
+#define TEXT_ENTRY_COLOR [UIColor blackColor]
 #define BUTTON_TEXT_COLOR [UIColor colorWithRed:1.0 green:192.0/255.0 blue:0.0 alpha:1.0]
 #define HEADER_TEXT_COLOR [UIColor colorWithRed:1.0 green:192.0/255.0 blue:0.0 alpha:1.0]
 //#define WARNING_COLOR [UIColor colorWithRed:1.0 green:0.8 blue:0.8 alpha:1.0]

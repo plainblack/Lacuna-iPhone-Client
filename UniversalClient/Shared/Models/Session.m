@@ -114,6 +114,7 @@ static Session *sharedSession = nil;
 
 
 - (void)reloginTarget:(id)target selector:(SEL)selector {
+	NSLog(@"Attempting to relogin");
 	self->reloginTarget = [target retain];
 	self->reloginSelector = selector;
 	NSString *username = self.empire.name;

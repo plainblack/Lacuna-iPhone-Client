@@ -32,9 +32,9 @@
 - (void)createAllianceWithName:(NSString *)name target:(id)target callback:(SEL)callback;
 - (void)disolveAlliance;
 - (void)expelMemeber:(NSString *)empireId withMessage:(NSString *)message;
-- (void)getAllianceStatus;
-- (void)getPendingInvites;
-- (void)getMyInvites;
+- (void)loadAllianceStatus;
+- (void)loadPendingInvites;
+- (void)loadMyInvites;
 - (void)leaveAllianceWithMessage:(NSString *)message;
 - (void)rejectInvite:(NSString *)inviteId withMessage:(NSString *)message;
 - (void)sendInviteTo:(NSString *)inviteeId withMessage:(NSString *)message;

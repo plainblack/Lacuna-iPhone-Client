@@ -34,7 +34,7 @@
 - (void)processSuccess {
 	NSDictionary *result = [self.response objectForKey:@"result"];
 	NSDictionary *tmp = [result objectForKey:@"boosts"];
-	NSMutableDictionary *newDict = [NSMutableDictionary dictionaryWithCapacity:5];
+	NSMutableDictionary *newDict = [NSMutableDictionary dictionaryWithCapacity:6];
 
 	[newDict setObject:[Util date:[tmp objectForKey:@"energy"]] forKey:@"energy"];
 	[newDict setObject:[Util date:[tmp objectForKey:@"food"]] forKey:@"food"];

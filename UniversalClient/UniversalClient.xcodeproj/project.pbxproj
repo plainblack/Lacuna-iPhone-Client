@@ -191,6 +191,7 @@
 		F6D9AB49121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9AB48121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.m */; };
 		F6DA0DC0121D47E200705240 /* LETableViewCellGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA0DBF121D47E200705240 /* LETableViewCellGlyph.m */; };
 		F6DA0DF1121D4D0F00705240 /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA0DF0121D4D0F00705240 /* Plan.m */; };
+		F6DB3C1A12268603002DA174 /* NewAllianceInvite.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DB3C1912268603002DA174 /* NewAllianceInvite.m */; };
 		F6DB8AE51211718D00F3AB4B /* LEEmpireBoostStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DB8AE41211718D00F3AB4B /* LEEmpireBoostStorage.m */; };
 		F6DB90E712039C33003293A7 /* LETableViewCellTravellingShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DB90E612039C33003293A7 /* LETableViewCellTravellingShip.m */; };
 		F6DD1FDC116D33FC0013C58D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F6DD1FDB116D33FC0013C58D /* Default.png */; };
@@ -210,6 +211,13 @@
 		F6DD2119116D73F50013C58D /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DD210D116D73F50013C58D /* SBJsonWriter.m */; };
 		F6DD2141116D75770013C58D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6DD2140116D75770013C58D /* CoreLocation.framework */; };
 		F6DEC052120247BF00716CE7 /* LETableViewCellShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DEC051120247BF00716CE7 /* LETableViewCellShip.m */; };
+		F6DF425012288EB600A526FD /* ViewPendingInvitesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF424F12288EB600A526FD /* ViewPendingInvitesController.m */; };
+		F6DF42C01228990700A526FD /* ViewMyInvitesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF42BF1228990700A526FD /* ViewMyInvitesController.m */; };
+		F6DF42F412289F1D00A526FD /* WithdrawAllianceInviteController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */; };
+		F6DF433D1228A53D00A526FD /* AcceptAllianceInviteController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF433C1228A53D00A526FD /* AcceptAllianceInviteController.m */; };
+		F6DF43411228A55F00A526FD /* RejectAllianceInviteController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF43401228A55F00A526FD /* RejectAllianceInviteController.m */; };
+		F6E349C91227D94E001E39B5 /* SelectEmpireController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E349C81227D94E001E39B5 /* SelectEmpireController.m */; };
+		F6E349D31227DE1F001E39B5 /* LEEmpireFind.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E349D21227DE1F001E39B5 /* LEEmpireFind.m */; };
 		F6E3E57F11BB0A3200A031CF /* EditEmpireProfileText.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3E57E11BB0A3200A031CF /* EditEmpireProfileText.m */; };
 		F6E3E58211BB0EA500A031CF /* LEEmpireEditProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3E58111BB0EA500A031CF /* LEEmpireEditProfile.m */; };
 		F6E3E5E011BB1E8500A031CF /* LETableViewCellTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3E5DF11BB1E8500A031CF /* LETableViewCellTextView.m */; };
@@ -630,6 +638,8 @@
 		F6DA0DBF121D47E200705240 /* LETableViewCellGlyph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellGlyph.m; sourceTree = "<group>"; };
 		F6DA0DEF121D4D0F00705240 /* Plan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plan.h; sourceTree = "<group>"; };
 		F6DA0DF0121D4D0F00705240 /* Plan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plan.m; sourceTree = "<group>"; };
+		F6DB3C1812268603002DA174 /* NewAllianceInvite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewAllianceInvite.h; sourceTree = "<group>"; };
+		F6DB3C1912268603002DA174 /* NewAllianceInvite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewAllianceInvite.m; sourceTree = "<group>"; };
 		F6DB8AE31211718D00F3AB4B /* LEEmpireBoostStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireBoostStorage.h; sourceTree = "<group>"; };
 		F6DB8AE41211718D00F3AB4B /* LEEmpireBoostStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireBoostStorage.m; sourceTree = "<group>"; };
 		F6DB90E512039C33003293A7 /* LETableViewCellTravellingShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellTravellingShip.h; sourceTree = "<group>"; };
@@ -669,6 +679,20 @@
 		F6DD2140116D75770013C58D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F6DEC050120247BF00716CE7 /* LETableViewCellShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellShip.h; sourceTree = "<group>"; };
 		F6DEC051120247BF00716CE7 /* LETableViewCellShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellShip.m; sourceTree = "<group>"; };
+		F6DF424E12288EB600A526FD /* ViewPendingInvitesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewPendingInvitesController.h; sourceTree = "<group>"; };
+		F6DF424F12288EB600A526FD /* ViewPendingInvitesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewPendingInvitesController.m; sourceTree = "<group>"; };
+		F6DF42BE1228990700A526FD /* ViewMyInvitesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMyInvitesController.h; sourceTree = "<group>"; };
+		F6DF42BF1228990700A526FD /* ViewMyInvitesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMyInvitesController.m; sourceTree = "<group>"; };
+		F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WithdrawAllianceInviteController.h; sourceTree = "<group>"; };
+		F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WithdrawAllianceInviteController.m; sourceTree = "<group>"; };
+		F6DF433B1228A53D00A526FD /* AcceptAllianceInviteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptAllianceInviteController.h; sourceTree = "<group>"; };
+		F6DF433C1228A53D00A526FD /* AcceptAllianceInviteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptAllianceInviteController.m; sourceTree = "<group>"; };
+		F6DF433F1228A55F00A526FD /* RejectAllianceInviteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RejectAllianceInviteController.h; sourceTree = "<group>"; };
+		F6DF43401228A55F00A526FD /* RejectAllianceInviteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RejectAllianceInviteController.m; sourceTree = "<group>"; };
+		F6E349C71227D94E001E39B5 /* SelectEmpireController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectEmpireController.h; sourceTree = "<group>"; };
+		F6E349C81227D94E001E39B5 /* SelectEmpireController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectEmpireController.m; sourceTree = "<group>"; };
+		F6E349D11227DE1F001E39B5 /* LEEmpireFind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireFind.h; sourceTree = "<group>"; };
+		F6E349D21227DE1F001E39B5 /* LEEmpireFind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireFind.m; sourceTree = "<group>"; };
 		F6E3E57D11BB0A3200A031CF /* EditEmpireProfileText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditEmpireProfileText.h; sourceTree = "<group>"; };
 		F6E3E57E11BB0A3200A031CF /* EditEmpireProfileText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditEmpireProfileText.m; sourceTree = "<group>"; };
 		F6E3E58011BB0EA500A031CF /* LEEmpireEditProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireEditProfile.h; sourceTree = "<group>"; };
@@ -1223,6 +1247,8 @@
 				F6E8D5701223E817001CD21D /* LEBuildingLeaveAlliance.m */,
 				F6E8D5721223E82C001CD21D /* LEBuildingExpelMember.h */,
 				F6E8D5731223E82C001CD21D /* LEBuildingExpelMember.m */,
+				F6E349D11227DE1F001E39B5 /* LEEmpireFind.h */,
+				F6E349D21227DE1F001E39B5 /* LEEmpireFind.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -1448,6 +1474,20 @@
 				F6D55E8D1225E2A000AA79BD /* NewAllianceController.m */,
 				F6D55EFB1225EBAE00AA79BD /* DisolveAllianceController.h */,
 				F6D55EFC1225EBAE00AA79BD /* DisolveAllianceController.m */,
+				F6DB3C1812268603002DA174 /* NewAllianceInvite.h */,
+				F6DB3C1912268603002DA174 /* NewAllianceInvite.m */,
+				F6E349C71227D94E001E39B5 /* SelectEmpireController.h */,
+				F6E349C81227D94E001E39B5 /* SelectEmpireController.m */,
+				F6DF424E12288EB600A526FD /* ViewPendingInvitesController.h */,
+				F6DF424F12288EB600A526FD /* ViewPendingInvitesController.m */,
+				F6DF42BE1228990700A526FD /* ViewMyInvitesController.h */,
+				F6DF42BF1228990700A526FD /* ViewMyInvitesController.m */,
+				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
+				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
+				F6DF433B1228A53D00A526FD /* AcceptAllianceInviteController.h */,
+				F6DF433C1228A53D00A526FD /* AcceptAllianceInviteController.m */,
+				F6DF433F1228A55F00A526FD /* RejectAllianceInviteController.h */,
+				F6DF43401228A55F00A526FD /* RejectAllianceInviteController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1791,6 +1831,14 @@
 				F60AF5211224A4AE005B2F0E /* MyAllianceInvite.m in Sources */,
 				F6D55E8E1225E2A000AA79BD /* NewAllianceController.m in Sources */,
 				F6D55EFD1225EBAE00AA79BD /* DisolveAllianceController.m in Sources */,
+				F6DB3C1A12268603002DA174 /* NewAllianceInvite.m in Sources */,
+				F6E349C91227D94E001E39B5 /* SelectEmpireController.m in Sources */,
+				F6E349D31227DE1F001E39B5 /* LEEmpireFind.m in Sources */,
+				F6DF425012288EB600A526FD /* ViewPendingInvitesController.m in Sources */,
+				F6DF42C01228990700A526FD /* ViewMyInvitesController.m in Sources */,
+				F6DF42F412289F1D00A526FD /* WithdrawAllianceInviteController.m in Sources */,
+				F6DF433D1228A53D00A526FD /* AcceptAllianceInviteController.m in Sources */,
+				F6DF43411228A55F00A526FD /* RejectAllianceInviteController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

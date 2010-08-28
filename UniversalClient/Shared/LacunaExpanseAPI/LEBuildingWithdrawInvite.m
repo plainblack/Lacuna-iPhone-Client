@@ -24,6 +24,8 @@
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl inviteId:(NSString *)inInviteId message:(NSString *)inMessage {
 	self.buildingId = inBuildingId;
 	self.buildingUrl = inBuildingUrl;
+	self.inviteId = inInviteId;
+	self.message = inMessage;
 	return [self initWithCallback:inCallback target:(NSObject *)inTarget];
 }
 

@@ -11,7 +11,7 @@
 #import "Session.h"
 #import "Embassy.h"
 #import "LEViewSectionTab.h"
-#import "LETableViewCellLabeledParagraph.h"
+#import "LETableViewCellParagraph.h"
 #import "LETableViewCellButton.h"
 #import "LEBuildingCreateAlliance.h"
 
@@ -32,8 +32,7 @@
 	
 	self.navigationItem.title = @"Disolve Alliance";
 	
-	self.warningCell = [LETableViewCellLabeledParagraph getCellForTableView:self.tableView];
-	self.warningCell.label.text = @"Name";
+	self.warningCell = [LETableViewCellParagraph getCellForTableView:self.tableView];
 	self.warningCell.content.text = @"You are about to disolve your whole alliance. This cannot be undone. If this is what you really truly intended to do then select Disolve Alliance below. If not press Back in the upper left corner.";
 	
 	self.disolveButtonCell = [LETableViewCellButton getCellForTableView:self.tableView];
@@ -67,7 +66,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	switch (indexPath.row) {
 		case 0:
-			return [LETableViewCellLabeledParagraph getHeightForTableView:tableView text:self.warningCell.content.text];
+			return [LETableViewCellParagraph getHeightForTableView:tableView text:self.warningCell.content.text];
 			break;
 		case 1:
 			return [LETableViewCellButton getHeightForTableView:tableView];
