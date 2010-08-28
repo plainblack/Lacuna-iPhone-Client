@@ -33,7 +33,6 @@
 
 
 - (void)processSuccess {
-	NSLog(@"Remove Ship From Fleet: %@", self.response);
 }
 
 

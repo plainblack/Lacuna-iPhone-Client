@@ -36,9 +36,7 @@
 
 - (void)processSuccess {
 	NSDictionary *result = [self.response objectForKey:@"result"];
-	NSLog(@"Buildable Ship Data: %@", result);
 	self.docksAvailable = [Util asNumber:[result objectForKey:@"docks_available"]];
-	NSLog(@"docksAvailable: %@", self.docksAvailable);
 	
 	NSMutableDictionary *shipsTravellingData = [result objectForKey:@"buildable"];
 	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[shipsTravellingData count]];

@@ -33,7 +33,6 @@
 
 
 - (void)processSuccess {
-	NSLog(@"Add Ship To Fleet: %@", self.response);
 }
 
 

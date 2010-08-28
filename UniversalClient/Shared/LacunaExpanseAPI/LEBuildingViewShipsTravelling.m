@@ -45,7 +45,6 @@
 	}
 	[tmp sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"dateArrives" ascending:YES])];
 	self.travellingShips = tmp;
-	NSLog(@"TravellingShipData: %@", self.travellingShips);
 }
 
 
