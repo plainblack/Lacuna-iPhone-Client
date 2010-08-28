@@ -44,6 +44,7 @@
 	if (self.announcements) {
 		[params setObject:self.announcements forKey:@"announcements"];
 	}
+	NSLog(@"Update Alliance Params: %@", params);
 	return _array([Session sharedInstance].sessionId, self.buildingId, params);
 }
 

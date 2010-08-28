@@ -118,7 +118,6 @@
 #pragma mark -
 #pragma mark UITextFieldDelegate methods
 
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 	if (textField == self.nameCell.textField) {
 		[self.nameCell resignFirstResponder];

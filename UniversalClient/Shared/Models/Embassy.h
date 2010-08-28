@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "Building.h"
+#import "EditTextViewController.h"
+#import "EditTextFieldController.h"
 
 
 @class AllianceStatus;
 
 
-@interface Embassy : Building {
+@interface Embassy : Building <EditTextViewControllerDelegate, EditTextFieldControllerDelegate> {
 	AllianceStatus *allianceStatus;
 	NSMutableArray *myInvites;
 	NSMutableArray *pendingInvites;

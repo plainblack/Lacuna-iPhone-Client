@@ -36,6 +36,8 @@
 #import "ViewMyInvitesController.h"
 #import "LeaveAllianceController.h"
 #import "ViewAllianceMembersController.h"
+#import "EditTextViewController.h"
+#import "EditTextFieldController.h"
 
 
 @implementation Embassy
@@ -129,6 +131,7 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex {
+	Session *session = [Session sharedInstance];
 	UITableViewCell *cell = nil;
 	switch (buildingRow) {
 		case BUILDING_ROW_VIEW_MY_INVITES:
@@ -195,7 +198,7 @@
 			break;
 		case BUILDING_ROW_ALLIANCE_FORUM:
 			; //DO NOT REMOVE
-			LETableViewCellLabeledText *allianceForumCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+			LETableViewCellLabeledText *allianceForumCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:YES];
 			allianceForumCell.label.text = @"Forum";
 			if (isNotNull(self.allianceStatus.forumUri) && [self.allianceStatus.forumUri length]>0) {
 				allianceForumCell.content.text = self.allianceStatus.forumUri;
@@ -221,18 +224,33 @@
 			} else {
 				allianceDescriptionCell.content.text = @"empty";
 			}
+			if ([session.empire.id isEqualToString:self.allianceStatus.leaderId]) {
+				allianceDescriptionCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+				allianceDescriptionCell.selectionStyle = UITableViewCellSelectionStyleBlue;
+			} else {
+				allianceDescriptionCell.accessoryType = UITableViewCellAccessoryNone;
+				allianceDescriptionCell.selectionStyle = UITableViewCellSelectionStyleNone;
+			}
+
 			cell = allianceDescriptionCell;
 			break;
 		case BUILDING_ROW_ALLIANCE_ANNOUNCEMENTS:
 			; //DO NOT REMOVE
-			LETableViewCellLabeledParagraph *alliancAnnouncementCell = [LETableViewCellLabeledParagraph getCellForTableView:tableView];
-			alliancAnnouncementCell.label.text = @"Announcement";
+			LETableViewCellLabeledParagraph *allianceAnnouncementCell = [LETableViewCellLabeledParagraph getCellForTableView:tableView];
+			allianceAnnouncementCell.label.text = @"Announcement";
 			if (isNotNull(self.allianceStatus.announcements)) {
-				alliancAnnouncementCell.content.text = self.allianceStatus.announcements;
+				allianceAnnouncementCell.content.text = self.allianceStatus.announcements;
 			} else {
-				alliancAnnouncementCell.content.text = @"empty";
+				allianceAnnouncementCell.content.text = @"empty";
 			}
-			cell = alliancAnnouncementCell;
+			if ([session.empire.id isEqualToString:self.allianceStatus.leaderId]) {
+				allianceAnnouncementCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+				allianceAnnouncementCell.selectionStyle = UITableViewCellSelectionStyleBlue;
+			} else {
+				allianceAnnouncementCell.accessoryType = UITableViewCellAccessoryNone;
+				allianceAnnouncementCell.selectionStyle = UITableViewCellSelectionStyleNone;
+			}
+			cell = allianceAnnouncementCell;
 			break;
 		default:
 			cell = [super tableView:tableView cellForBuildingRow:buildingRow rowIndex:rowIndex];
@@ -286,6 +304,24 @@
 			ViewAllianceMembersController *viewAllianceMembersController = [ViewAllianceMembersController create];
 			viewAllianceMembersController.embassy = self;
 			return viewAllianceMembersController;
+			break;
+		case BUILDING_ROW_ALLIANCE_FORUM:
+			; //DO NOT REMOVE
+			EditTextFieldController *editTextFieldController = [EditTextFieldController createForTextName:@"Forum URI" textValue:self.allianceStatus.forumUri];
+			editTextFieldController.delegate = self;
+			return editTextFieldController;
+			break;
+		case BUILDING_ROW_ALLIANCE_DESCRIPTION:
+			; //DO NOT REMOVE
+			EditTextViewController *editTextViewController1 = [EditTextViewController createForTextName:@"Description" textValue:self.allianceStatus.allianceDescription];
+			editTextViewController1.delegate = self;
+			return editTextViewController1;
+			break;
+		case BUILDING_ROW_ALLIANCE_ANNOUNCEMENTS:
+			; //DO NOT REMOVE
+			EditTextViewController *editTextViewController2 = [EditTextViewController createForTextName:@"Announcements" textValue:self.allianceStatus.announcements];
+			editTextViewController2.delegate = self;
+			return editTextViewController2;
 			break;
 		default:
 			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];
@@ -379,6 +415,15 @@
 
 
 - (void)updateAllianceWithForumUri:(NSString *)forumUri description:(NSString *)description announcements:(NSString *)announcements {
+	if(forumUri) {
+		self.allianceStatus.forumUri = forumUri;
+	}
+	if(description) {
+		self.allianceStatus.allianceDescription = description;
+	}
+	if(announcements) {
+		self.allianceStatus.announcements = announcements;
+	}
 	[[[LEBuildingUpdateAlliance alloc] initWithCallback:@selector(allianceUpdated:) target:self buildingId:self.id buildingUrl:self.buildingUrl forumUri:forumUri description:description announcements:announcements] autorelease];
 }
 
@@ -478,6 +523,30 @@
 
 - (void)inviteWithdrawn:(LEBuildingWithdrawInvite *)request {
 	//Do we need to do anything?
+}
+
+
+#pragma mark --
+#pragma mark EditTextViewControllerDelegate Methods
+
+- (BOOL)newTextValue:(NSString *)value forTextName:(NSString *)textName {
+	if ([textName isEqualToString:@"Description"]) {
+		[self updateAllianceWithForumUri:nil description:value announcements:nil];
+	} else if ([textName isEqualToString:@"Announcements"]) {
+		[self updateAllianceWithForumUri:nil description:nil announcements:value];
+	}
+	return YES;
+}
+
+
+#pragma mark --
+#pragma mark EditTextFieldControllerDelegate Methods
+
+- (BOOL)newTextEntryValue:(NSString *)value forTextName:(NSString *)textName {
+	if ([textName isEqualToString:@"Forum URI"]) {
+		[self updateAllianceWithForumUri:value description:nil announcements:nil];
+	}
+	return YES;
 }
 
 

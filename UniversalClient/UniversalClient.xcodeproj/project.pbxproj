@@ -211,6 +211,8 @@
 		F6DD2119116D73F50013C58D /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DD210D116D73F50013C58D /* SBJsonWriter.m */; };
 		F6DD2141116D75770013C58D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6DD2140116D75770013C58D /* CoreLocation.framework */; };
 		F6DEC052120247BF00716CE7 /* LETableViewCellShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DEC051120247BF00716CE7 /* LETableViewCellShip.m */; };
+		F6DF22DA12293D660023FE65 /* EditTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF22D912293D660023FE65 /* EditTextViewController.m */; };
+		F6DF23231229558C0023FE65 /* EditTextFieldController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF23221229558C0023FE65 /* EditTextFieldController.m */; };
 		F6DF425012288EB600A526FD /* ViewPendingInvitesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF424F12288EB600A526FD /* ViewPendingInvitesController.m */; };
 		F6DF42C01228990700A526FD /* ViewMyInvitesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF42BF1228990700A526FD /* ViewMyInvitesController.m */; };
 		F6DF42F412289F1D00A526FD /* WithdrawAllianceInviteController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */; };
@@ -683,6 +685,10 @@
 		F6DD2140116D75770013C58D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		F6DEC050120247BF00716CE7 /* LETableViewCellShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellShip.h; sourceTree = "<group>"; };
 		F6DEC051120247BF00716CE7 /* LETableViewCellShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellShip.m; sourceTree = "<group>"; };
+		F6DF22D812293D660023FE65 /* EditTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTextViewController.h; sourceTree = "<group>"; };
+		F6DF22D912293D660023FE65 /* EditTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTextViewController.m; sourceTree = "<group>"; };
+		F6DF23211229558C0023FE65 /* EditTextFieldController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTextFieldController.h; sourceTree = "<group>"; };
+		F6DF23221229558C0023FE65 /* EditTextFieldController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTextFieldController.m; sourceTree = "<group>"; };
 		F6DF424E12288EB600A526FD /* ViewPendingInvitesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewPendingInvitesController.h; sourceTree = "<group>"; };
 		F6DF424F12288EB600A526FD /* ViewPendingInvitesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewPendingInvitesController.m; sourceTree = "<group>"; };
 		F6DF42BE1228990700A526FD /* ViewMyInvitesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMyInvitesController.h; sourceTree = "<group>"; };
@@ -1508,6 +1514,10 @@
 				F6DF43C11228B48500A526FD /* ExpelAllianceMemberController.m */,
 				F6DF43C31228B49400A526FD /* PromoteAllianceMemberController.h */,
 				F6DF43C41228B49400A526FD /* PromoteAllianceMemberController.m */,
+				F6DF22D812293D660023FE65 /* EditTextViewController.h */,
+				F6DF22D912293D660023FE65 /* EditTextViewController.m */,
+				F6DF23211229558C0023FE65 /* EditTextFieldController.h */,
+				F6DF23221229558C0023FE65 /* EditTextFieldController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1863,6 +1873,8 @@
 				F6DF43A01228B03100A526FD /* ViewAllianceMembersController.m in Sources */,
 				F6DF43C21228B48500A526FD /* ExpelAllianceMemberController.m in Sources */,
 				F6DF43C51228B49400A526FD /* PromoteAllianceMemberController.m in Sources */,
+				F6DF22DA12293D660023FE65 /* EditTextViewController.m in Sources */,
+				F6DF23231229558C0023FE65 /* EditTextFieldController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
