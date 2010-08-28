@@ -217,6 +217,9 @@
 		F6DF433D1228A53D00A526FD /* AcceptAllianceInviteController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF433C1228A53D00A526FD /* AcceptAllianceInviteController.m */; };
 		F6DF43411228A55F00A526FD /* RejectAllianceInviteController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF43401228A55F00A526FD /* RejectAllianceInviteController.m */; };
 		F6DF43681228AA3700A526FD /* LeaveAllianceController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF43671228AA3700A526FD /* LeaveAllianceController.m */; };
+		F6DF43A01228B03100A526FD /* ViewAllianceMembersController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF439F1228B03100A526FD /* ViewAllianceMembersController.m */; };
+		F6DF43C21228B48500A526FD /* ExpelAllianceMemberController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF43C11228B48500A526FD /* ExpelAllianceMemberController.m */; };
+		F6DF43C51228B49400A526FD /* PromoteAllianceMemberController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF43C41228B49400A526FD /* PromoteAllianceMemberController.m */; };
 		F6E349C91227D94E001E39B5 /* SelectEmpireController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E349C81227D94E001E39B5 /* SelectEmpireController.m */; };
 		F6E349D31227DE1F001E39B5 /* LEEmpireFind.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E349D21227DE1F001E39B5 /* LEEmpireFind.m */; };
 		F6E3E57F11BB0A3200A031CF /* EditEmpireProfileText.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3E57E11BB0A3200A031CF /* EditEmpireProfileText.m */; };
@@ -692,6 +695,12 @@
 		F6DF43401228A55F00A526FD /* RejectAllianceInviteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RejectAllianceInviteController.m; sourceTree = "<group>"; };
 		F6DF43661228AA3700A526FD /* LeaveAllianceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaveAllianceController.h; sourceTree = "<group>"; };
 		F6DF43671228AA3700A526FD /* LeaveAllianceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaveAllianceController.m; sourceTree = "<group>"; };
+		F6DF439E1228B03100A526FD /* ViewAllianceMembersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewAllianceMembersController.h; sourceTree = "<group>"; };
+		F6DF439F1228B03100A526FD /* ViewAllianceMembersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewAllianceMembersController.m; sourceTree = "<group>"; };
+		F6DF43C01228B48500A526FD /* ExpelAllianceMemberController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpelAllianceMemberController.h; sourceTree = "<group>"; };
+		F6DF43C11228B48500A526FD /* ExpelAllianceMemberController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpelAllianceMemberController.m; sourceTree = "<group>"; };
+		F6DF43C31228B49400A526FD /* PromoteAllianceMemberController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromoteAllianceMemberController.h; sourceTree = "<group>"; };
+		F6DF43C41228B49400A526FD /* PromoteAllianceMemberController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromoteAllianceMemberController.m; sourceTree = "<group>"; };
 		F6E349C71227D94E001E39B5 /* SelectEmpireController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectEmpireController.h; sourceTree = "<group>"; };
 		F6E349C81227D94E001E39B5 /* SelectEmpireController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectEmpireController.m; sourceTree = "<group>"; };
 		F6E349D11227DE1F001E39B5 /* LEEmpireFind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireFind.h; sourceTree = "<group>"; };
@@ -1489,10 +1498,16 @@
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
 				F6DF433B1228A53D00A526FD /* AcceptAllianceInviteController.h */,
 				F6DF433C1228A53D00A526FD /* AcceptAllianceInviteController.m */,
-				F6DF433F1228A55F00A526FD /* RejectAllianceInviteController.h */,
-				F6DF43401228A55F00A526FD /* RejectAllianceInviteController.m */,
 				F6DF43661228AA3700A526FD /* LeaveAllianceController.h */,
 				F6DF43671228AA3700A526FD /* LeaveAllianceController.m */,
+				F6DF433F1228A55F00A526FD /* RejectAllianceInviteController.h */,
+				F6DF43401228A55F00A526FD /* RejectAllianceInviteController.m */,
+				F6DF439E1228B03100A526FD /* ViewAllianceMembersController.h */,
+				F6DF439F1228B03100A526FD /* ViewAllianceMembersController.m */,
+				F6DF43C01228B48500A526FD /* ExpelAllianceMemberController.h */,
+				F6DF43C11228B48500A526FD /* ExpelAllianceMemberController.m */,
+				F6DF43C31228B49400A526FD /* PromoteAllianceMemberController.h */,
+				F6DF43C41228B49400A526FD /* PromoteAllianceMemberController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1845,6 +1860,9 @@
 				F6DF433D1228A53D00A526FD /* AcceptAllianceInviteController.m in Sources */,
 				F6DF43411228A55F00A526FD /* RejectAllianceInviteController.m in Sources */,
 				F6DF43681228AA3700A526FD /* LeaveAllianceController.m in Sources */,
+				F6DF43A01228B03100A526FD /* ViewAllianceMembersController.m in Sources */,
+				F6DF43C21228B48500A526FD /* ExpelAllianceMemberController.m in Sources */,
+				F6DF43C51228B49400A526FD /* PromoteAllianceMemberController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

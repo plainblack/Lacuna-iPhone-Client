@@ -35,6 +35,7 @@
 #import "ViewPendingInvitesController.h"
 #import "ViewMyInvitesController.h"
 #import "LeaveAllianceController.h"
+#import "ViewAllianceMembersController.h"
 
 
 @implementation Embassy
@@ -82,7 +83,7 @@
 		[tmp addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ALLIANCE_STATUS], @"type", @"Alliance", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_ALLIANCE_NAME], [NSDecimalNumber numberWithInt:BUILDING_ROW_ALLIANCE_LEADER], [NSDecimalNumber numberWithInt:BUILDING_ROW_ALLIANCE_DESCRIPTION], [NSDecimalNumber numberWithInt:BUILDING_ROW_ALLIANCE_ANNOUNCEMENTS], [NSDecimalNumber numberWithInt:BUILDING_ROW_ALLIANCE_FORUM], [NSDecimalNumber numberWithInt:BUILDING_ROW_ALLIANCE_CREATED_ON]), @"rows")];
 		Session *session = [Session sharedInstance];
 		if ([session.empire.id isEqualToString:self.allianceStatus.leaderId]) {
-			[tmp addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_CREATE_INVITE], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_PENDING_INVITES], [NSDecimalNumber numberWithInt:BUILDING_ROW_UPDATE_ALLIANCE], [NSDecimalNumber numberWithInt:BUILDING_ROW_DISOLVE_ALLIANCE], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MY_INVITES]), @"rows")];
+			[tmp addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_ALLIANCE_MEMBERS], [NSDecimalNumber numberWithInt:BUILDING_ROW_CREATE_INVITE], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_PENDING_INVITES], [NSDecimalNumber numberWithInt:BUILDING_ROW_UPDATE_ALLIANCE], [NSDecimalNumber numberWithInt:BUILDING_ROW_DISOLVE_ALLIANCE], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MY_INVITES]), @"rows")];
 		} else {
 			[tmp addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_LEAVE_ALLIANCE], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MY_INVITES]), @"rows")];
 		}
@@ -105,6 +106,7 @@
 		case BUILDING_ROW_VIEW_PENDING_INVITES:
 		case BUILDING_ROW_UPDATE_ALLIANCE:
 		case BUILDING_ROW_DISOLVE_ALLIANCE:
+		case BUILDING_ROW_ALLIANCE_MEMBERS:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		case BUILDING_ROW_ALLIANCE_NAME:
@@ -170,6 +172,12 @@
 			LETableViewCellButton *disolveAllianceButtonCell = [LETableViewCellButton getCellForTableView:tableView];
 			disolveAllianceButtonCell.textLabel.text = @"Disolve Alliance";
 			cell = disolveAllianceButtonCell;
+			break;
+		case BUILDING_ROW_ALLIANCE_MEMBERS:
+			; //DO NOT REMOVE
+			LETableViewCellButton *viewAllianceMembersButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			viewAllianceMembersButtonCell.textLabel.text = @"View Members";
+			cell = viewAllianceMembersButtonCell;
 			break;
 		case BUILDING_ROW_ALLIANCE_NAME:
 			; //DO NOT REMOVE
@@ -272,6 +280,12 @@
 			DisolveAllianceController *disolveAllianceController = [DisolveAllianceController create];
 			disolveAllianceController.embassy = self;
 			return disolveAllianceController;
+			break;
+		case BUILDING_ROW_ALLIANCE_MEMBERS:
+			; //DO NOT REMOVE
+			ViewAllianceMembersController *viewAllianceMembersController = [ViewAllianceMembersController create];
+			viewAllianceMembersController.embassy = self;
+			return viewAllianceMembersController;
 			break;
 		default:
 			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];

@@ -44,6 +44,7 @@ typedef enum {
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+	self->watched = YES;
 	[self.embassy addObserver:self forKeyPath:@"myInvites" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
 	[self.embassy loadMyInvites];
 }
@@ -51,7 +52,10 @@ typedef enum {
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-	[self.embassy removeObserver:self forKeyPath:@"myInvites"];
+	if (self ->watched) {
+		[self.embassy removeObserver:self forKeyPath:@"myInvites"];
+		self->watched = NO;
+	}
 }
 
 
@@ -196,6 +200,10 @@ typedef enum {
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
+	if (self ->watched) {
+		[self.embassy removeObserver:self forKeyPath:@"myInvites"];
+		self->watched = NO;
+	}
 }
 
 

@@ -41,7 +41,13 @@
 
 
 - (void)processSuccess {
-	self.allianceStatus = [self.response objectForKey:@"alliance_status"];
+	NSDictionary *result = [self.response objectForKey:@"result"];
+	self.allianceStatus = [result objectForKey:@"alliance_status"];
+	if (!self.allianceStatus) {
+		self.allianceStatus = [result objectForKey:@"alliance"];
+	}
+	NSLog(@"Response: %@", self.response);
+	NSLog(@"allianceStatus: %@", self.allianceStatus);
 }
 
 

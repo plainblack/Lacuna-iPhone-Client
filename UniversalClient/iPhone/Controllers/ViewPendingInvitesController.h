@@ -15,6 +15,7 @@
 
 @interface ViewPendingInvitesController : LETableViewControllerGrouped {
 	Embassy *embassy;
+	BOOL watched;
 }
 
 

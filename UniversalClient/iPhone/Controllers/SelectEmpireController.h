@@ -17,14 +17,19 @@
 @end
 
 
+@class LETableViewCellTextEntry;
+
+
 @interface SelectEmpireController : LETableViewControllerGrouped <UITextFieldDelegate> {
 	NSMutableArray *empires;
 	id<SelectEmpireControllerDelegate> delegate;
+	LETableViewCellTextEntry *nameCell;
 }
 
 
 @property (nonatomic, retain) NSMutableArray *empires;
 @property (nonatomic, assign) id<SelectEmpireControllerDelegate> delegate;
+@property (nonatomic, assign) LETableViewCellTextEntry *nameCell;
 
 
 - (void)searchForEmpire:(NSString *)empireName;

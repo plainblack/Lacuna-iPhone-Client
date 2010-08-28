@@ -243,7 +243,7 @@
 			self.mailbox = [Mailbox loadSent];
 			break;
 		default:
-			NSLog(@"IN VALID selectedSegmentIndex");
+			NSLog(@"INVALID selectedSegmentIndex");
 			break;
 	}
 	

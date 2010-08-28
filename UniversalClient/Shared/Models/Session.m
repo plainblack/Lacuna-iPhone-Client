@@ -272,10 +272,8 @@ static Session *sharedSession = nil;
 
 - (id)bodyLoaded:(LEBodyStatus *)request {
 	if (self.body) {
-		NSLog(@"Updating body");
 		[self.body parseData:request.body];
 	} else {
-		NSLog(@"Creating body");
 		Body *newBody = [[[Body alloc] init] autorelease];
 		[newBody parseData:request.body];
 		self.body = newBody;

@@ -1,5 +1,5 @@
 //
-//  ViewMyInvitesContorller.h
+//  ViewAllianceMembersController.h
 //  UniversalClient
 //
 //  Created by Kevin Runde on 8/27/10.
@@ -11,18 +11,21 @@
 
 
 @class Embassy;
+@class AllianceStatus;
 
 
-@interface ViewMyInvitesController : LETableViewControllerGrouped {
+@interface ViewAllianceMembersController : LETableViewControllerGrouped {
 	Embassy *embassy;
+	AllianceStatus *watchedAllianceStatus;
 	BOOL watched;
 }
 
 
 @property (nonatomic, retain) Embassy *embassy;
+@property (nonatomic, retain) AllianceStatus *watchedAllianceStatus;
 
 
-+ (ViewMyInvitesController *) create;
++ (ViewAllianceMembersController *) create;
 
 
 @end

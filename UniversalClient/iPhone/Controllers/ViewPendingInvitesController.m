@@ -42,6 +42,7 @@ typedef enum {
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+	self->watched = YES;
 	[self.embassy addObserver:self forKeyPath:@"pendingInvites" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
 	if (self.embassy.pendingInvites) {
 		[self.tableView reloadData];
@@ -53,7 +54,10 @@ typedef enum {
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-	[self.embassy removeObserver:self forKeyPath:@"pendingInvites"];
+	if (self->watched) {
+		self->watched = NO;
+		[self.embassy removeObserver:self forKeyPath:@"pendingInvites"];
+	}
 }
 
 
@@ -188,6 +192,10 @@ typedef enum {
 
 
 - (void)dealloc {
+	if (self->watched) {
+		self->watched = NO;
+		[self.embassy removeObserver:self forKeyPath:@"pendingInvites"];
+	}
 	self.embassy = nil;
     [super dealloc];
 }

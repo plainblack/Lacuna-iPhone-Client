@@ -19,6 +19,7 @@
 	NSString *announcements;
 	NSDate *dateCreated;
 	NSMutableArray *members;
+	NSDate *dateLoaded;
 }
 
 
@@ -31,6 +32,7 @@
 @property (nonatomic, retain) NSString *announcements;
 @property (nonatomic, retain) NSDate *dateCreated;
 @property (nonatomic, retain) NSMutableArray *members;
+@property (nonatomic, retain) NSDate *dateLoaded;
 
 
 - (void)parseData:(NSDictionary *)data;

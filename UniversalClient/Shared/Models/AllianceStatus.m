@@ -24,6 +24,7 @@
 @synthesize announcements;
 @synthesize dateCreated;
 @synthesize members;
+@synthesize dateLoaded;
 
 
 #pragma mark --
@@ -48,13 +49,14 @@
 	self.announcements = nil;
 	self.dateCreated = nil;
 	self.members = nil;
+	self.dateLoaded = nil;
 	[super dealloc];
 }
 
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"id:%@, name:%@, leaderId: %@, leaderName:%@, forumUri: %@, description: %@, announcements: %@, dateCreated: %@, members: %@",
-			self.id, self.name, self.leaderId, self.leaderName, self.forumUri, self.allianceDescription, self.announcements, self.dateCreated, self.members];
+	return [NSString stringWithFormat:@"id:%@, name:%@, leaderId: %@, leaderName:%@, forumUri: %@, description: %@, announcements: %@, dateCreated: %@, members: %@, dateLoaded: %@",
+			self.id, self.name, self.leaderId, self.leaderName, self.forumUri, self.allianceDescription, self.announcements, self.dateCreated, self.members, self.dateLoaded];
 }
 
 
@@ -70,6 +72,7 @@
 	self.announcements = [data objectForKey:@"announcements"];
 	self.dateCreated = [Util date:[data objectForKey:@"date_created"]];
 	NSMutableArray *memberDataArray = [data objectForKey:@"members"];
+	[self.members removeAllObjects];
 	for (NSMutableDictionary *memberData in memberDataArray) {
 		AllianceMember *allianceMember = [[[AllianceMember alloc] init] autorelease];
 		[allianceMember parseData:memberData];
@@ -79,6 +82,7 @@
 		}
 	}
 	[self.members sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES])];
+	self.dateLoaded = [NSDate date];
 }
 
 

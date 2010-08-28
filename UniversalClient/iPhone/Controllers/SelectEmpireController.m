@@ -28,6 +28,7 @@ typedef enum {
 
 @synthesize empires;
 @synthesize delegate;
+@synthesize nameCell;
 
 
 #pragma mark -
@@ -39,11 +40,17 @@ typedef enum {
 	self.navigationItem.title = @"Select Empire";
 	
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Search"], [LEViewSectionTab tableView:self.tableView createWithText:@"Matches"]);
+
+	self.nameCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
+	[self.nameCell setReturnKeyType:UIReturnKeySearch];
+	self.nameCell.delegate = self;
+	self.nameCell.label.text = @"Empire Name";
 }
 
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
+	[self.nameCell becomeFirstResponder];
 }
 
 
@@ -102,11 +109,7 @@ typedef enum {
 	switch (indexPath.section) {
 		case SECTION_SEARCH:
 			; // DO NOT REMOVE
-			LETableViewCellTextEntry *empireSearchCell = [LETableViewCellTextEntry getCellForTableView:tableView];
-			[empireSearchCell setReturnKeyType:UIReturnKeySearch];
-			empireSearchCell.delegate = self;
-			empireSearchCell.label.text = @"Empire Name";
-			cell = empireSearchCell;
+			cell = self.nameCell;
 			break;
 		case SECTION_EMPIRES:
 			if (self.empires) {
@@ -161,6 +164,7 @@ typedef enum {
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
+	self.nameCell = nil;
 }
 
 
