@@ -17,7 +17,7 @@
 
 @interface AppDelegate_Phone(PrivateMethod)
 
-- (void)displayLogin;
+- (void)displayLoginAnimated:(BOOL)animated;
 - (void)hideLogin;
 
 @end
@@ -65,7 +65,7 @@
 	//[super applicationDidBecomeActive:application];
 	Session *session = [Session sharedInstance];
 	if (!session.isLoggedIn) {
-		[self displayLogin];
+		[self displayLoginAnimated:NO];
 	}
 }
 
@@ -177,7 +177,7 @@
 			[self.mailboxController clear];
 			self.mailTabBarItem.badgeValue = nil;
 			[session.empire removeObserver:self forKeyPath:@"numNewMessages"];
-			[self displayLogin];
+			[self displayLoginAnimated:YES];
 		}
 	}
 }
@@ -196,12 +196,12 @@
 #pragma mark --
 #pragma mark PrivateMethod
 
-- (void)displayLogin {
+- (void)displayLoginAnimated:(BOOL)animated {
 	LoginController *loginController = [LoginController create];
 	UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:loginController] autorelease];
 	navController.navigationBar.tintColor = TINT_COLOR;
 	navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-	[self.tabBarController presentModalViewController:navController animated:YES];
+	[self.tabBarController presentModalViewController:navController animated:animated];
 }
 
 
