@@ -77,7 +77,7 @@ typedef enum {
 	
 	self.navigationItem.title = @"Loading";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
-	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadBody)] autorelease];
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout)] autorelease];
 	
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Body"],
 								 [LEViewSectionTab tableView:self.tableView createWithText:@"Actions"],
@@ -99,7 +99,7 @@ typedef enum {
 		self.navigationItem.rightBarButtonItem = nil;
 	}
 
-
+	self->watchingSession = YES;
 	[session addObserver:self forKeyPath:@"body" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 	[session addObserver:self forKeyPath:@"lastTick" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 
@@ -129,8 +129,11 @@ typedef enum {
 
 - (void)viewDidDisappear:(BOOL)animated {
 	Session *session = [Session sharedInstance];
-	[session removeObserver:self forKeyPath:@"body"];
-	[session removeObserver:self forKeyPath:@"lastTick"];
+	if (self->watchingSession) {
+		[session removeObserver:self forKeyPath:@"body"];
+		[session removeObserver:self forKeyPath:@"lastTick"];
+		self->watchingSession = NO;
+	}
 	if (isNotNull(self.watchedBody)) {
 		[self.watchedBody removeObserver:self forKeyPath:@"needsRefresh"];
 		self.watchedBody = nil;
@@ -352,10 +355,17 @@ typedef enum {
 #pragma mark -
 #pragma mark Instance Methods
 
-- (void)clear {
+- (IBAction)clear {
 	self.bodyId = nil;
 	[self.tableView reloadData];
 }
+
+
+- (IBAction)logout {
+	Session *session = [Session sharedInstance];
+	[session logout];
+}
+
 
 
 #pragma mark -
@@ -418,15 +428,23 @@ typedef enum {
 		Body *newBody = (Body *)[change objectForKey:NSKeyValueChangeNewKey];
 		if (isNotNull(newBody)) {
 			[newBody addObserver:self forKeyPath:@"needsRefresh" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+			self.watchedBody = newBody;
+		} else {
+			self.watchedBody = nil;
 		}
-		self.watchedBody = newBody;
+
 		
-		self.navigationItem.title = self.watchedBody.name;
-		self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:newBody.type],
-									 [LEViewSectionTab tableView:self.tableView createWithText:@"Actions"],
-									 [LEViewSectionTab tableView:self.tableView createWithText:@"Composition"]);
-		[self.tableView reloadData];
-		self.navigationItem.title = self.watchedBody.name;
+
+		if (self.watchedBody) {
+			self.navigationItem.title = self.watchedBody.name;
+			self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:newBody.type],
+										 [LEViewSectionTab tableView:self.tableView createWithText:@"Actions"],
+										 [LEViewSectionTab tableView:self.tableView createWithText:@"Composition"]);
+		} else {
+			self.navigationItem.title = @"";
+			self.sectionHeaders = nil;
+		}
+
 		[self.tableView reloadData];
 	} else if ([keyPath isEqual:@"needsRefresh"]) {
 		self.navigationItem.title = self.watchedBody.name;

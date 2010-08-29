@@ -246,6 +246,7 @@
 		F6E3F02A11B46BF800E7BC86 /* LEEmpireBoostOre.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F02911B46BF800E7BC86 /* LEEmpireBoostOre.m */; };
 		F6E3F02D11B46C0600E7BC86 /* LEEmpireBoostWater.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F02C11B46C0600E7BC86 /* LEEmpireBoostWater.m */; };
 		F6E4C975121E0ED70028FFE8 /* LETableViewCellPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E4C974121E0ED70028FFE8 /* LETableViewCellPlan.m */; };
+		F6E4FD43122A916B00E78CBB /* ViewEmpireProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6E4FD42122A916B00E78CBB /* ViewEmpireProfileController.xib */; };
 		F6E57AC5120A40270030330F /* LEBuildingRepair.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E57AC4120A40270030330F /* LEBuildingRepair.m */; };
 		F6E5E5AB1205A9A000365AA2 /* MiningMinistry.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5E5AA1205A9A000365AA2 /* MiningMinistry.m */; };
 		F6E5E5DB1205BE1C00365AA2 /* MiningPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5E5DA1205BE1C00365AA2 /* MiningPlatform.m */; };
@@ -760,6 +761,7 @@
 		F6E3F02C11B46C0600E7BC86 /* LEEmpireBoostWater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireBoostWater.m; sourceTree = "<group>"; };
 		F6E4C973121E0ED70028FFE8 /* LETableViewCellPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellPlan.h; sourceTree = "<group>"; };
 		F6E4C974121E0ED70028FFE8 /* LETableViewCellPlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellPlan.m; sourceTree = "<group>"; };
+		F6E4FD42122A916B00E78CBB /* ViewEmpireProfileController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewEmpireProfileController.xib; sourceTree = "<group>"; };
 		F6E57AC3120A40270030330F /* LEBuildingRepair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingRepair.h; sourceTree = "<group>"; };
 		F6E57AC4120A40270030330F /* LEBuildingRepair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingRepair.m; sourceTree = "<group>"; };
 		F6E5E5A91205A9A000365AA2 /* MiningMinistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiningMinistry.h; sourceTree = "<group>"; };
@@ -1552,6 +1554,7 @@
 				F642C669122A155C00C596A7 /* ViewStatsController.h */,
 				F642C66A122A155C00C596A7 /* ViewStatsController.m */,
 				F642C66B122A155C00C596A7 /* ViewStatsController.xib */,
+				F6E4FD42122A916B00E78CBB /* ViewEmpireProfileController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1643,6 +1646,7 @@
 				F64FA1F1121CB43300CBFC3E /* PickColonyController.xib in Resources */,
 				F642C668122A154B00C596A7 /* ViewUniverseController.xib in Resources */,
 				F642C66D122A155C00C596A7 /* ViewStatsController.xib in Resources */,
+				F6E4FD43122A916B00E78CBB /* ViewEmpireProfileController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -77,12 +77,6 @@ typedef enum {
 	[super viewWillAppear:animated];
 	Session *session = [Session sharedInstance];
 	
-	if (session.isLoggedIn) {
-		[session logout];
-	}
-	
-	[session addObserver:self forKeyPath:@"isLoggedIn" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-	
 	self.empires = session.savedEmpireList;
 	if ([self.empires count] > 0) {
 		self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Login"],
@@ -107,8 +101,6 @@ typedef enum {
 
 - (void)viewDidDisappear:(BOOL)animated {
 	[super viewDidDisappear:animated];
-	Session *session = [Session sharedInstance];
-	[session removeObserver:self forKeyPath:@"isLoggedIn"];
 }
 
 
@@ -262,12 +254,11 @@ typedef enum {
 		case SECTION_CREATE_NEW:
 			; //DO NOT REMOVE
 			NewEmpireController *newEmpireController = [NewEmpireController create];
-			UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:newEmpireController];
-			navController.navigationBar.tintColor = TINT_COLOR;
-
-			[self presentModalViewController:navController animated:YES];
-
-			[navController release];
+			[self.navigationController pushViewController:newEmpireController animated:YES];
+//			UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:newEmpireController];
+//			navController.navigationBar.tintColor = TINT_COLOR;
+//			[self presentModalViewController:navController animated:YES];
+//			[navController release];
 			break;
 		default:
 			break;
@@ -361,17 +352,10 @@ typedef enum {
 
 
 #pragma mark -
-#pragma mark KVO Methods
+#pragma mark Class Methods
 
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-	if ( [keyPath isEqual:@"isLoggedIn"]) {
-		Session *session = (Session *)object;
-		if(session.isLoggedIn) {
-			[self.navigationController pushViewController:[ViewEmpireProfileController create] animated:YES];
-		}
-		
-	}
++ (LoginController *)create {
+	return [[[LoginController alloc] init] autorelease];
 }
 
 

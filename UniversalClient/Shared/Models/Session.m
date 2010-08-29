@@ -130,7 +130,7 @@ static Session *sharedSession = nil;
 	self.sessionId = nil;
 	self.empire = nil;
 	self.body = nil;
-	self.isLoggedIn = FALSE;
+	self.isLoggedIn = NO;
 	self.serverUri = nil;
 }
 

@@ -23,6 +23,7 @@
 @property(nonatomic, retain) LEEmpireViewProfile *leEmpireViewProfile;
 @property(nonatomic, retain) EmpireProfile *empireProfile;
 
+
 + (ViewEmpireProfileController *) create;
 
 

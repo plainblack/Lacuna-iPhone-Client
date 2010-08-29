@@ -12,6 +12,15 @@
 #import "ViewBodyController.h"
 #import "ViewMailboxController.h"
 #import "LERequest.h"
+#import "LoginController.h"
+
+
+@interface AppDelegate_Phone(PrivateMethod)
+
+- (void)displayLogin;
+- (void)hideLogin;
+
+@end
 
 
 @implementation AppDelegate_Phone
@@ -46,7 +55,7 @@
 
 	Session *session = [Session sharedInstance];
 	[session addObserver:self forKeyPath:@"isLoggedIn" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-
+	
 	return YES;
 }
 
@@ -54,6 +63,10 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 	//IS NO SUPER METHOD SO DON'T CALL IT!
 	//[super applicationDidBecomeActive:application];
+	Session *session = [Session sharedInstance];
+	if (!session.isLoggedIn) {
+		[self displayLogin];
+	}
 }
 
 
@@ -148,20 +161,23 @@
 		}
 	} else if ( [keyPath isEqual:@"isLoggedIn"]) {
 		Session *session = (Session *)object;
-		if (!session.isLoggedIn) {
-			[self.myWorldsNavigationController popToRootViewControllerAnimated:NO];
-			[self.myWorldController clear];
-			[self.mailNavigationController popToRootViewControllerAnimated:NO];
-			[self.mailboxController clear];
-			self.mailTabBarItem.badgeValue = nil;
-			[session.empire removeObserver:self forKeyPath:@"numNewMessages"];
-		} else {
+		[change objectForKey:NSKeyValueChangeNewKey];
+		if (session.isLoggedIn) {
 			if(_intv(session.empire.numNewMessages) > 0) {
 				self.mailTabBarItem.badgeValue = [NSString stringWithFormat:@"%@", session.empire.numNewMessages];
 			} else {
 				self.mailTabBarItem.badgeValue = nil;
 			}
 			[session.empire addObserver:self forKeyPath:@"numNewMessages" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+			[self hideLogin];
+		} else {
+			[self.myWorldsNavigationController popToRootViewControllerAnimated:NO];
+			[self.myWorldController clear];
+			[self.mailNavigationController popToRootViewControllerAnimated:NO];
+			[self.mailboxController clear];
+			self.mailTabBarItem.badgeValue = nil;
+			[session.empire removeObserver:self forKeyPath:@"numNewMessages"];
+			[self displayLogin];
 		}
 	}
 }
@@ -174,6 +190,23 @@
 	NSLog(@"ALL REQUESTS COMPLETE");
 	[LERequest setDelegate:nil];
 	[[UIApplication sharedApplication] endBackgroundTask:self->backgroundTask];
+}
+
+
+#pragma mark --
+#pragma mark PrivateMethod
+
+- (void)displayLogin {
+	LoginController *loginController = [LoginController create];
+	UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:loginController] autorelease];
+	navController.navigationBar.tintColor = TINT_COLOR;
+	navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+	[self.tabBarController presentModalViewController:navController animated:YES];
+}
+
+
+- (void)hideLogin {
+	[self.tabBarController dismissModalViewControllerAnimated:YES];
 }
 
 

@@ -19,6 +19,7 @@
 	NSString *bodyId;
 	Body *watchedBody;
 	PickColonyController* pickColonyController;
+	BOOL watchingSession;
 }
 
 
@@ -27,7 +28,8 @@
 @property(nonatomic, retain) Body *watchedBody;
 
 
-- (void)clear;
+- (IBAction)clear;
+- (IBAction)logout;
 
 
 + (ViewBodyController *)create;

@@ -26,4 +26,6 @@
 @property(nonatomic, retain) NSDictionary *selectedServer;
 
 
++ (LoginController *)create;
+
 @end

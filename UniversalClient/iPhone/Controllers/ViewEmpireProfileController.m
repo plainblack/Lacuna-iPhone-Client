@@ -18,6 +18,7 @@
 #import "LETableViewCellButton.h"
 #import "ViewEmpireBoostsController.h"
 #import "EditEmpireProfileText.h"
+#import "LoginController.h"
 
 
 typedef enum {
@@ -48,6 +49,11 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
+	self.view.autoresizesSubviews = YES;
+	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	self.tableView.backgroundColor = [UIColor clearColor];
+	self.tableView.separatorColor = SEPARATOR_COLOR;
+
     self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
 	self.navigationItem.title = @"Loading";
 	
@@ -60,7 +66,10 @@ typedef enum {
     [super viewWillAppear:animated];
 	
 	Session *session = [Session sharedInstance];
-	self.leEmpireViewProfile = [[[LEEmpireViewProfile alloc] initWithCallback:@selector(profileLoaded:) target:self sessionId:session.sessionId] autorelease];
+	if (session.isLoggedIn) {
+		self.leEmpireViewProfile = [[[LEEmpireViewProfile alloc] initWithCallback:@selector(profileLoaded:) target:self sessionId:session.sessionId] autorelease];
+	}
+
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -75,58 +84,69 @@ typedef enum {
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	if (self.leEmpireViewProfile.response) {
+	Session *session = [Session sharedInstance];
+	if (session.empire.id) {
 		return 2;
 	} else {
-		return 0;
+		return 1;
 	}
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	switch (section) {
-		case SECTION_EMPIRE:
-			return 5;
-			break;
-		case SECTION_MEDALS:
-			return [empireProfile.medals count];
-			break;
-		default:
-			return 0;
-			break;
+	Session *session = [Session sharedInstance];
+	if (session.empire.id) {
+		switch (section) {
+			case SECTION_EMPIRE:
+				return 5;
+				break;
+			case SECTION_MEDALS:
+				return [empireProfile.medals count];
+				break;
+			default:
+				return 0;
+				break;
+		}
+	} else {
+		return 1;
 	}
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	switch (indexPath.section) {
-		case SECTION_EMPIRE:
-			switch (indexPath.row) {
-				case EMPIRE_ROW_NAME:
-				case EMPIRE_ROW_ESSENTIA:
-					return [LETableViewCellLabeledText getHeightForTableView:tableView];
-					break;
-				case EMPIRE_ROW_DESCRIPTION:
-					return [LETableViewCellLabeledParagraph getHeightForTableView:tableView text:self.empireProfile.description];
-					break;
-				case EMPIRE_ROW_STATUS:
-					return [LETableViewCellLabeledParagraph getHeightForTableView:tableView text:self.empireProfile.status];
-					break;
-				case EMPIRE_ROW_BOOSTS:
-					return [LETableViewCellButton getHeightForTableView:tableView];
-					break;
-				default:
-					return 0.0;
-					break;
-			}
-			break;
-		case SECTION_MEDALS:
-			; //DO NOT REMOVE
-			NSDictionary *medal = [empireProfile.medals objectAtIndex:indexPath.row];
-			return [LETableViewCellMedal getHeightForTableView:tableView withMedal:medal];
-		default:
-			return 0.0;
-			break;
+	Session *session = [Session sharedInstance];
+	if (session.empire.id) {
+		switch (indexPath.section) {
+			case SECTION_EMPIRE:
+				switch (indexPath.row) {
+					case EMPIRE_ROW_NAME:
+					case EMPIRE_ROW_ESSENTIA:
+						return [LETableViewCellLabeledText getHeightForTableView:tableView];
+						break;
+					case EMPIRE_ROW_DESCRIPTION:
+						return [LETableViewCellLabeledParagraph getHeightForTableView:tableView text:self.empireProfile.description];
+						break;
+					case EMPIRE_ROW_STATUS:
+						return [LETableViewCellLabeledParagraph getHeightForTableView:tableView text:self.empireProfile.status];
+						break;
+					case EMPIRE_ROW_BOOSTS:
+						return [LETableViewCellButton getHeightForTableView:tableView];
+						break;
+					default:
+						return 0.0;
+						break;
+				}
+				break;
+			case SECTION_MEDALS:
+				; //DO NOT REMOVE
+				NSDictionary *medal = [empireProfile.medals objectAtIndex:indexPath.row];
+				return [LETableViewCellMedal getHeightForTableView:tableView withMedal:medal];
+			default:
+				return 0.0;
+				break;
+		}
+	} else {
+		return [LETableViewCellLabeledText getHeightForTableView:tableView];
 	}
 }
 
@@ -137,72 +157,80 @@ typedef enum {
     UITableViewCell *cell;
 
 	Session *session = [Session sharedInstance];
-	switch (indexPath.section) {
-		case SECTION_EMPIRE:
-			switch (indexPath.row) {
-				case EMPIRE_ROW_NAME:
-					; //DO NOT REMOVE
-					LETableViewCellLabeledText *empireNameCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-					empireNameCell.label.text = @"Empire";
-					empireNameCell.content.text = session.empire.name;
-					cell = empireNameCell;
-					break;
-				case EMPIRE_ROW_DESCRIPTION:
-					; //DO NOT REMOVE
-					LETableViewCellLabeledParagraph *descriptionCell = [LETableViewCellLabeledParagraph getCellForTableView:tableView];
-					descriptionCell.label.text = @"Description";
-					if ((id)self.empireProfile.description == [NSNull null]) {
-						descriptionCell.content.text = @"";
-					} else {
-						descriptionCell.content.text = self.empireProfile.description;
-					}
-					descriptionCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-					descriptionCell.selectionStyle = UITableViewCellSelectionStyleBlue;
-					cell = descriptionCell;
-					break;
-				case EMPIRE_ROW_STATUS:
-					; //DO NOT REMOVE
-					LETableViewCellLabeledParagraph *statusCell = [LETableViewCellLabeledParagraph getCellForTableView:tableView];
-					statusCell.label.text = @"Status";
-					statusCell.content.text = self.empireProfile.status;
-					statusCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-					statusCell.selectionStyle = UITableViewCellSelectionStyleBlue;
-					cell = statusCell;
-					break;
-				case EMPIRE_ROW_ESSENTIA:
-					; //DO NOT REMOVE
-					LETableViewCellLabeledText *essentiaCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-					essentiaCell.label.text = @"Essentia";
-					essentiaCell.content.text = [NSString stringWithFormat:@"%@", session.empire.essentia];
-					cell = essentiaCell;
-					break;
-				case EMPIRE_ROW_BOOSTS:
-					; //DO NOT REMOVE
-					LETableViewCellButton *boostsButton = [LETableViewCellButton getCellForTableView:tableView];
-					boostsButton.textLabel.text = @"View Empire Boosts";
-					cell = boostsButton;
-					break;
-				default:
-					break;
-			}
-			break;
-		case SECTION_MEDALS:
-			; //DO NOT REMOVE
-			NSDictionary *medal = [empireProfile.medals objectAtIndex:indexPath.row];
-			LETableViewCellMedal *medalCell = [LETableViewCellMedal getCellForTableView:tableView];
-			medalCell.medalNameLabel.text = [medal objectForKey:@"name"];
-			medalCell.dateLabel.text = [Util prettyDate:[medal objectForKey:@"date"]];
-			if ([medal objectForKey:@"note"] == [NSNull null]) {
-				medalCell.noteView.text = @"";
-			} else {
-				medalCell.noteView.text = [medal objectForKey:@"note"];
-			}
-			medalCell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"assets/medal/%@.png", [medal objectForKey:@"image"]]];
-			cell = medalCell;
-			break;
-		default:
-			cell = nil;
-			break;
+	if (session.empire.id) {
+		switch (indexPath.section) {
+			case SECTION_EMPIRE:
+				switch (indexPath.row) {
+					case EMPIRE_ROW_NAME:
+						; //DO NOT REMOVE
+						LETableViewCellLabeledText *empireNameCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+						empireNameCell.label.text = @"Empire";
+						empireNameCell.content.text = session.empire.name;
+						cell = empireNameCell;
+						break;
+					case EMPIRE_ROW_DESCRIPTION:
+						; //DO NOT REMOVE
+						LETableViewCellLabeledParagraph *descriptionCell = [LETableViewCellLabeledParagraph getCellForTableView:tableView];
+						descriptionCell.label.text = @"Description";
+						if ((id)self.empireProfile.description == [NSNull null]) {
+							descriptionCell.content.text = @"";
+						} else {
+							descriptionCell.content.text = self.empireProfile.description;
+						}
+						descriptionCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+						descriptionCell.selectionStyle = UITableViewCellSelectionStyleBlue;
+						cell = descriptionCell;
+						break;
+					case EMPIRE_ROW_STATUS:
+						; //DO NOT REMOVE
+						LETableViewCellLabeledParagraph *statusCell = [LETableViewCellLabeledParagraph getCellForTableView:tableView];
+						statusCell.label.text = @"Status";
+						statusCell.content.text = self.empireProfile.status;
+						statusCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+						statusCell.selectionStyle = UITableViewCellSelectionStyleBlue;
+						cell = statusCell;
+						break;
+					case EMPIRE_ROW_ESSENTIA:
+						; //DO NOT REMOVE
+						LETableViewCellLabeledText *essentiaCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+						essentiaCell.label.text = @"Essentia";
+						essentiaCell.content.text = [NSString stringWithFormat:@"%@", session.empire.essentia];
+						cell = essentiaCell;
+						break;
+					case EMPIRE_ROW_BOOSTS:
+						; //DO NOT REMOVE
+						LETableViewCellButton *boostsButton = [LETableViewCellButton getCellForTableView:tableView];
+						boostsButton.textLabel.text = @"View Empire Boosts";
+						cell = boostsButton;
+						break;
+					default:
+						break;
+				}
+				break;
+			case SECTION_MEDALS:
+				; //DO NOT REMOVE
+				NSDictionary *medal = [empireProfile.medals objectAtIndex:indexPath.row];
+				LETableViewCellMedal *medalCell = [LETableViewCellMedal getCellForTableView:tableView];
+				medalCell.medalNameLabel.text = [medal objectForKey:@"name"];
+				medalCell.dateLabel.text = [Util prettyDate:[medal objectForKey:@"date"]];
+				if ([medal objectForKey:@"note"] == [NSNull null]) {
+					medalCell.noteView.text = @"";
+				} else {
+					medalCell.noteView.text = [medal objectForKey:@"note"];
+				}
+				medalCell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"assets/medal/%@.png", [medal objectForKey:@"image"]]];
+				cell = medalCell;
+				break;
+			default:
+				cell = nil;
+				break;
+		}
+	} else {
+		; //DO NOT REMOVE
+		LETableViewCellLabeledText *empireNameCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+		empireNameCell.label.text = @"Empire";
+		empireNameCell.content.text = @"Not loaded";
+		cell = empireNameCell;
 	}
     
     return cell;
