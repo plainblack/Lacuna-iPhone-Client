@@ -27,15 +27,11 @@
 	BOOL handledError;
 	DKDeferred *deferred;
 	BOOL canceled;
-	NSString *protocol;
-	NSString *serverName;
 }
 
 
 @property(nonatomic, retain) NSDictionary *response;
 @property(nonatomic, retain) DKDeferred *deferred;
-@property(nonatomic, retain) NSString *protocol;
-@property(nonatomic, retain) NSString *serverName;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target;

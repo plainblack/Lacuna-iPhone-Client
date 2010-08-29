@@ -16,6 +16,7 @@
 
 @synthesize username;
 @synthesize password;
+@synthesize server;
 @synthesize empireName;
 
 
@@ -31,8 +32,8 @@
 
 	KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithIdentifier:self.empireName accessGroup:nil] autorelease];
 	self.username.text = [keychainItemWrapper objectForKey:(id)kSecAttrAccount];
-	NSString *passwordTxt = [keychainItemWrapper objectForKey:(id)kSecValueData];
-	self.password.text = passwordTxt;
+	self.password.text = [keychainItemWrapper objectForKey:(id)kSecValueData];
+	self.server.text = [keychainItemWrapper objectForKey:(id)kSecAttrService];
 }
 
 
@@ -47,6 +48,7 @@
 - (void)viewDidUnload {
 	self.username = nil;
 	self.password = nil;
+	self.server = nil;
     [super viewDidUnload];
 }
 
@@ -69,9 +71,9 @@
 - (IBAction)save {
 	NSLog(@"Save Called");
 	KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithIdentifier:self.empireName accessGroup:nil] autorelease];
-	//[keychainItemWrapper resetKeychainItem]; //I removed this and now things work on teras phone maybe??
 	[keychainItemWrapper setObject:self.username.text forKey:(id)kSecAttrAccount];
 	[keychainItemWrapper setObject:self.password.text forKey:(id)kSecValueData];
+	[keychainItemWrapper setObject:self.server.text forKey:(id)kSecAttrService];
 	
 	[self.navigationController popViewControllerAnimated:YES];
 }

@@ -15,6 +15,7 @@
 #import "ViewEmpireProfileController.h"
 #import "NewEmpireController.h"
 #import "EditSavedEmpire.h"
+#import "SelectServerController.h"
 
 
 typedef enum {
@@ -23,6 +24,21 @@ typedef enum {
 	SECTION_CREATE_NEW,
 } SECTION;
 
+typedef enum {
+	LOGIN_FORM_ROW_EMPIRE_NAME,
+	LOGIN_FORM_ROW_PASSWORD,
+	LOGIN_FORM_ROW_SERVER,
+	LOGIN_FORM_ROW_LOGIN_BUTTON
+} LOGIN_FORM_ROW;
+
+
+@interface LoginController(PrivateMethods)
+
+- (void)doLogin;
+- (void)showServerSelect;
+
+@end
+
 
 @implementation LoginController
 
@@ -30,6 +46,7 @@ typedef enum {
 @synthesize empires;
 @synthesize empireNameCell;
 @synthesize passwordCell;
+@synthesize selectedServer;
 
 
 #pragma mark -
@@ -53,7 +70,6 @@ typedef enum {
 	self.passwordCell.label.text = @"Password";
 	self.passwordCell.delegate = self;
 	self.passwordCell.secureTextEntry = YES;
-	
 }
 
 
@@ -79,9 +95,6 @@ typedef enum {
 	}
 
 	[self.tableView reloadData];
-	
-	self.empireNameCell.textField.text = @"";
-	self.passwordCell.textField.text = @"";
 }
 
 
@@ -115,7 +128,7 @@ typedef enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	switch (section) {
 		case SECTION_LOGIN_FORM:
-			return 3;
+			return 4;
 			break;
 		case SECTION_REMEMBERED_ACCOUNT:
 			; //DO NOT REMOVE
@@ -137,13 +150,23 @@ typedef enum {
 	switch (indexPath.section) {
 		case SECTION_LOGIN_FORM:
 			switch (indexPath.row) {
-				case 0:
+				case LOGIN_FORM_ROW_EMPIRE_NAME:
 					return self.empireNameCell;
 					break;
-				case 1:
+				case LOGIN_FORM_ROW_PASSWORD:
 					return self.passwordCell;
 					break;
-				case 2:
+				case LOGIN_FORM_ROW_SERVER:
+					; //DO NOT REMOVE
+					LETableViewCellButton *serverCell = [LETableViewCellButton getCellForTableView:tableView];
+					if (self.selectedServer) {
+						serverCell.textLabel.text = [self.selectedServer objectForKey:@"name"];
+					} else {
+						serverCell.textLabel.text = @"Select Server";
+					}
+					return serverCell;
+					break;
+				case LOGIN_FORM_ROW_LOGIN_BUTTON:
 					; //DO NOT REMOVE
 					LETableViewCellButton *loginCell = [LETableViewCellButton getCellForTableView:tableView];
 					loginCell.textLabel.text = @"Login";
@@ -204,10 +227,23 @@ typedef enum {
 
 	switch (indexPath.section) {
 		case SECTION_LOGIN_FORM:
-			if (indexPath.row == 2) {
-				[self.empireNameCell resignFirstResponder];
-				[self.passwordCell resignFirstResponder];
-				[session loginWithUsername:self.empireNameCell.textField.text password:self.passwordCell.textField.text];
+			[self.empireNameCell resignFirstResponder];
+			[self.passwordCell resignFirstResponder];
+			if (indexPath.row == LOGIN_FORM_ROW_SERVER) {
+				[self showServerSelect];
+			} else if (indexPath.row == LOGIN_FORM_ROW_LOGIN_BUTTON) {
+				if ([self.empireNameCell.textField.text length] == 0) {
+					UIAlertView *noEmpireNameAlertView = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must enter an empire name." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+					[noEmpireNameAlertView show];
+				} else if ([self.passwordCell.textField.text length] == 0) {
+					UIAlertView *noEmpireNameAlertView = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must enter a password." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+					[noEmpireNameAlertView show];
+				} else if (!self.selectedServer) {
+					UIAlertView *noEmpireNameAlertView = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must select a server." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+					[noEmpireNameAlertView show];
+				} else {
+					[self doLogin];
+				}
 			}
 			break;
 		case SECTION_REMEMBERED_ACCOUNT:
@@ -216,6 +252,11 @@ typedef enum {
 			NSString *username = [empireData objectForKey:@"username"];
 			KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithIdentifier:username accessGroup:nil] autorelease];				
 			NSString *password = [keychainItemWrapper objectForKey:(id)kSecValueData];
+			session.serverUri = [keychainItemWrapper objectForKey:(id)kSecAttrService];
+			if (!session.serverUri || [session.serverUri length] == 0) {
+				//KEVIN REMOVE AFTER BETA
+				session.serverUri = @"https://pt.lacunaexpanse.com/";
+			}
 			[session loginWithUsername:username password:password];
 			break;
 		case SECTION_CREATE_NEW:
@@ -262,6 +303,7 @@ typedef enum {
 	self.empires = nil;
 	self.empireNameCell = nil;
 	self.passwordCell = nil;
+	self.selectedServer = nil;
 	[super viewDidUnload];
 }
 
@@ -271,21 +313,50 @@ typedef enum {
 }
 
 
+#pragma mark --
+#pragma mark SelectServerControllerDelegate Methods
+
+- (void)selectedServer:(NSDictionary *)server {
+	self.selectedServer = server;
+	[self.navigationController popViewControllerAnimated:YES];
+}
+
+
 #pragma mark -
 #pragma mark UITextFieldDelegate methods
-
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 	if (textField == self.empireNameCell.textField) {
 		[self.empireNameCell resignFirstResponder];
 		[self.passwordCell becomeFirstResponder];
 	} else if (textField == passwordCell.textField) {
+		[self.empireNameCell resignFirstResponder];
 		[self.passwordCell resignFirstResponder];
-		Session *session = [Session sharedInstance];
-		[session loginWithUsername:self.empireNameCell.textField.text password:self.passwordCell.textField.text];
+		if (self.selectedServer) {
+			[self doLogin];
+		} else {
+			[self showServerSelect];
+		}
 	}
 	
 	return YES;
+}
+
+
+#pragma mark --
+#pragma mark PrivateMethods
+
+- (void)doLogin {
+	Session *session = [Session sharedInstance];
+	session.serverUri = [self.selectedServer objectForKey:@"uri"];
+	[session loginWithUsername:self.empireNameCell.textField.text password:self.passwordCell.textField.text];
+}
+
+
+- (void)showServerSelect {
+	SelectServerController *selectServerController = [SelectServerController create];
+	selectServerController.delegate = self;
+	[self.navigationController pushViewController:selectServerController animated:YES];
 }
 
 
@@ -297,8 +368,7 @@ typedef enum {
 	if ( [keyPath isEqual:@"isLoggedIn"]) {
 		Session *session = (Session *)object;
 		if(session.isLoggedIn) {
-			[self.navigationController pushViewController:[ViewEmpireProfileController create]
-												 animated:YES];
+			[self.navigationController pushViewController:[ViewEmpireProfileController create] animated:YES];
 		}
 		
 	}

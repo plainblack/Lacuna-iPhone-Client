@@ -12,12 +12,14 @@
 @interface EditSavedEmpire : UIViewController {
 	UITextField *username;
 	UITextField *password;
+	UITextField *server;
 	NSString *empireName;
 }
 
 
 @property (nonatomic, retain) IBOutlet UITextField *username;
 @property (nonatomic, retain) IBOutlet UITextField *password;
+@property (nonatomic, retain) IBOutlet UITextField *server;
 @property (nonatomic, retain) NSString *empireName;
 
 

@@ -47,7 +47,6 @@
 	}
 	[tmp sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"dateCompleted" ascending:YES])];
 	self.shipBuildQueue = tmp;
-	NSLog(@"ShipBuildQueueItems: %@", self.shipBuildQueue);
 }
 
 

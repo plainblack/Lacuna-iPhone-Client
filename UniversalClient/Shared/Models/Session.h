@@ -22,6 +22,7 @@
 	NSDate *lastTick;
 	id reloginTarget;
 	SEL reloginSelector;
+	NSString *serverUri;
 }
 
 @property(nonatomic, retain) NSString *sessionId;
@@ -31,6 +32,7 @@
 @property(nonatomic, retain) NSMutableArray *savedEmpireList;
 @property(nonatomic, retain) NSString *serverVersion;
 @property(nonatomic, retain) NSDate *lastTick;
+@property(nonatomic, retain) NSString *serverUri;
 
 
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password;

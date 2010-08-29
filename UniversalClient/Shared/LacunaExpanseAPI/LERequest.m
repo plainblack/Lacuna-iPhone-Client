@@ -30,8 +30,6 @@ static id<LERequestMonitor> delegate;
 
 @synthesize response;
 @synthesize deferred;
-@synthesize protocol;
-@synthesize serverName;
 
 
 - (id)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget {
@@ -39,9 +37,6 @@ static id<LERequestMonitor> delegate;
 	self->canceled = NO;
 	self->wasError = NO;
 	self->handledError = NO;
-	
-	self.protocol = @"https";
-	self.serverName = @"pt.lacunaexpanse.com";
 	
 	self->callback = inCallback;
 	self->target = inTarget;
@@ -62,8 +57,6 @@ static id<LERequestMonitor> delegate;
 	self->target = nil;
 	self.response = nil;
 	self.deferred = nil;
-	self.protocol = nil;
-	self.serverName = nil;
 	[super dealloc];
 }
 
@@ -170,11 +163,22 @@ static id<LERequestMonitor> delegate;
 }
 
 - (void)sendRequest {
-	NSString *url = nil;
-	if ([[self serviceUrl] hasPrefix:@"/"]) {
-		url = [NSString stringWithFormat:@"%@://%@%@", self.protocol, self.serverName, [self serviceUrl]];
+	Session *session = [Session sharedInstance];
+	NSString *url;
+	NSString *serviceUrl = [self serviceUrl];
+	if ([session.serverUri hasSuffix:@"/"]) {
+		if ([serviceUrl hasPrefix:@"/"]) {
+			serviceUrl = [serviceUrl substringFromIndex:1];
+			url = [NSString stringWithFormat:@"%@%@", session.serverUri, serviceUrl];
+		} else {
+			url = [NSString stringWithFormat:@"%@%@", session.serverUri, serviceUrl];
+		}
 	} else {
-		url = [NSString stringWithFormat:@"%@://%@/%@", self.protocol, self.serverName, [self serviceUrl]];
+		if ([serviceUrl hasPrefix:@"/"]) {
+			url = [NSString stringWithFormat:@"%@%@", session.serverUri, serviceUrl];
+		} else {
+			url = [NSString stringWithFormat:@"%@/%@", session.serverUri, serviceUrl];
+		}
 	}
 	id service = [DKDeferred jsonService:url name:[self methodName]];
 	self.deferred = [service :[self params]];

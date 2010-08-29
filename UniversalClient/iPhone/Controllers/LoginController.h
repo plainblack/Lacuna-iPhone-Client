@@ -9,18 +9,21 @@
 #import <UIKit/UIKit.h>
 #import "LETableViewControllerGrouped.h"
 #import "LETableViewCellTextEntry.h"
+#import "SelectServerController.h"
 
 
-@interface LoginController : LETableViewControllerGrouped <UITextFieldDelegate> {
+@interface LoginController : LETableViewControllerGrouped <UITextFieldDelegate, SelectServerControllerDelegate> {
 	NSArray *empires;
 	LETableViewCellTextEntry *empireNameCell;
 	LETableViewCellTextEntry *passwordCell;
+	NSDictionary *selectedServer;
 }
 
 
 @property(nonatomic, retain) NSArray *empires;
 @property(nonatomic, retain) LETableViewCellTextEntry *empireNameCell;
 @property(nonatomic, retain) LETableViewCellTextEntry *passwordCell;
+@property(nonatomic, retain) NSDictionary *selectedServer;
 
 
 @end

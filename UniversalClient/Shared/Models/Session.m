@@ -29,6 +29,7 @@ static Session *sharedSession = nil;
 @synthesize empire;
 @synthesize body;
 @synthesize lastTick;
+@synthesize serverUri;
 
 
 #pragma mark --
@@ -102,6 +103,7 @@ static Session *sharedSession = nil;
 	[self->timer invalidate];
 	[self->timer release];
 	self->timer = nil;
+	self.serverUri = nil;
 	[super dealloc];
 }
 
@@ -129,6 +131,7 @@ static Session *sharedSession = nil;
 	self.empire = nil;
 	self.body = nil;
 	self.isLoggedIn = FALSE;
+	self.serverUri = nil;
 }
 
 
@@ -212,9 +215,9 @@ static Session *sharedSession = nil;
 		self.empire = nil;
 	} else {
 		KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithIdentifier:request.username accessGroup:nil] autorelease];
-		//[keychainItemWrapper resetKeychainItem]; //I removed this and now things work on teras phone maybe??
 		[keychainItemWrapper setObject:request.username forKey:(id)kSecAttrAccount];
 		[keychainItemWrapper setObject:request.password forKey:(id)kSecValueData];
+		[keychainItemWrapper setObject:self.serverUri forKey:(id)kSecAttrService];
 		BOOL found = NO;
 		for (NSDictionary *savedEmpire in self.savedEmpireList) {
 			if ([[savedEmpire objectForKey:@"username"] isEqualToString:request.username]){

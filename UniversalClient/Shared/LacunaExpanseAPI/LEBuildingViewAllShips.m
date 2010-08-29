@@ -45,7 +45,6 @@
 	}
 	[tmp sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES])];
 	 self.ships = tmp;
-	NSLog(@"ShipData: %@", self.ships);
 }
 
 

@@ -98,7 +98,7 @@
 - (id)initWithIdentifier: (NSString *)identifier accessGroup:(NSString *) accessGroup {
     if (self = [super init]) {
 		self.keychainItemData = [NSMutableDictionary dictionaryWithCapacity:1];
-		[self.keychainItemData setObject:identifier forKey:(id)kSecAttrGeneric];
+		[self.keychainItemData setObject:identifier forKey:(id)kSecAttrAccount];
 	}
 	
 	return self;
@@ -111,10 +111,12 @@
 
 
 - (id)objectForKey:(id)key {
-	if (key == (id)kSecAttrGeneric) {
-		return [self.keychainItemData objectForKey:(id)kSecAttrGeneric];
+	if (key == (id)kSecAttrAccount) {
+		return [self.keychainItemData objectForKey:(id)kSecAttrAccount];
 	} else if (key == (id)kSecValueData) {
 		return @"abc123";
+	} else if (key == (id)kSecAttrService) {
+		return @"https://pt.lacunaexpanse.com/";
 	} else {
 		return nil;
 	}
@@ -305,7 +307,7 @@
         
         // An implicit assumption is that you can only update a single item at a time.
 		OSStatus updateResult = SecItemUpdate((CFDictionaryRef)updateItem, (CFDictionaryRef)tempCheck);
-        NSAssert(updateResult == noErr, @"Couldn't update the Keychain Item." );
+        //NSAssert(updateResult == noErr, @"Couldn't update the Keychain Item." );
 
 		if (updateResult != noErr) {
 			UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Update" message:[NSString stringWithFormat:@"Result: %d", updateResult] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
