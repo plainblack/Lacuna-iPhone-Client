@@ -61,6 +61,10 @@
 		F642C4E81229D8A000C596A7 /* Servers.m in Sources */ = {isa = PBXBuildFile; fileRef = F642C4E71229D8A000C596A7 /* Servers.m */; };
 		F642C51E1229DB5F00C596A7 /* servers.json in Resources */ = {isa = PBXBuildFile; fileRef = F642C4E51229D84500C596A7 /* servers.json */; };
 		F642C5621229E5EB00C596A7 /* SelectServerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F642C5611229E5EB00C596A7 /* SelectServerController.m */; };
+		F642C667122A154B00C596A7 /* ViewUniverseController.m in Sources */ = {isa = PBXBuildFile; fileRef = F642C665122A154B00C596A7 /* ViewUniverseController.m */; };
+		F642C668122A154B00C596A7 /* ViewUniverseController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F642C666122A154B00C596A7 /* ViewUniverseController.xib */; };
+		F642C66C122A155C00C596A7 /* ViewStatsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F642C66A122A155C00C596A7 /* ViewStatsController.m */; };
+		F642C66D122A155C00C596A7 /* ViewStatsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F642C66B122A155C00C596A7 /* ViewStatsController.xib */; };
 		F645746C118DD62A000897C4 /* LETableViewCellAttachedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F645746B118DD62A000897C4 /* LETableViewCellAttachedImage.m */; };
 		F64C43D911F3B50E002981EC /* FoodReserve.m in Sources */ = {isa = PBXBuildFile; fileRef = F64C43D811F3B50E002981EC /* FoodReserve.m */; };
 		F64C43DC11F3B527002981EC /* OreStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = F64C43DB11F3B527002981EC /* OreStorage.m */; };
@@ -396,6 +400,12 @@
 		F642C4E71229D8A000C596A7 /* Servers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Servers.m; sourceTree = "<group>"; };
 		F642C5601229E5EB00C596A7 /* SelectServerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectServerController.h; sourceTree = "<group>"; };
 		F642C5611229E5EB00C596A7 /* SelectServerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectServerController.m; sourceTree = "<group>"; };
+		F642C664122A154B00C596A7 /* ViewUniverseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewUniverseController.h; sourceTree = "<group>"; };
+		F642C665122A154B00C596A7 /* ViewUniverseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewUniverseController.m; sourceTree = "<group>"; };
+		F642C666122A154B00C596A7 /* ViewUniverseController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewUniverseController.xib; sourceTree = "<group>"; };
+		F642C669122A155C00C596A7 /* ViewStatsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewStatsController.h; sourceTree = "<group>"; };
+		F642C66A122A155C00C596A7 /* ViewStatsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewStatsController.m; sourceTree = "<group>"; };
+		F642C66B122A155C00C596A7 /* ViewStatsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewStatsController.xib; sourceTree = "<group>"; };
 		F645746A118DD62A000897C4 /* LETableViewCellAttachedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellAttachedImage.h; sourceTree = "<group>"; };
 		F645746B118DD62A000897C4 /* LETableViewCellAttachedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellAttachedImage.m; sourceTree = "<group>"; };
 		F64C43D711F3B50E002981EC /* FoodReserve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodReserve.h; sourceTree = "<group>"; };
@@ -1536,6 +1546,12 @@
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
 				F642C5601229E5EB00C596A7 /* SelectServerController.h */,
 				F642C5611229E5EB00C596A7 /* SelectServerController.m */,
+				F642C664122A154B00C596A7 /* ViewUniverseController.h */,
+				F642C665122A154B00C596A7 /* ViewUniverseController.m */,
+				F642C666122A154B00C596A7 /* ViewUniverseController.xib */,
+				F642C669122A155C00C596A7 /* ViewStatsController.h */,
+				F642C66A122A155C00C596A7 /* ViewStatsController.m */,
+				F642C66B122A155C00C596A7 /* ViewStatsController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1625,6 +1641,8 @@
 				F6FB45D211F53D9F00E24EAC /* AssembleGlyphsController.xib in Resources */,
 				F6CF29E31210E1F400D4A9AC /* AssignViewControllerV2.xib in Resources */,
 				F64FA1F1121CB43300CBFC3E /* PickColonyController.xib in Resources */,
+				F642C668122A154B00C596A7 /* ViewUniverseController.xib in Resources */,
+				F642C66D122A155C00C596A7 /* ViewStatsController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1897,6 +1915,8 @@
 				F6DF239F122960BE0023FE65 /* LEBuildingDowngrade.m in Sources */,
 				F642C4E81229D8A000C596A7 /* Servers.m in Sources */,
 				F642C5621229E5EB00C596A7 /* SelectServerController.m in Sources */,
+				F642C667122A154B00C596A7 /* ViewUniverseController.m in Sources */,
+				F642C66C122A155C00C596A7 /* ViewStatsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
