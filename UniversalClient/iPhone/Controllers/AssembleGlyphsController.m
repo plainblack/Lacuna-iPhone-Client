@@ -132,7 +132,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Instance Methods
 
 - (IBAction)assemble {
@@ -152,7 +152,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Archaeology Delegate Methods
 
 - (void) assembleyComplete {
@@ -167,7 +167,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Class Methods
 
 + (AssembleGlyphsController *)create {

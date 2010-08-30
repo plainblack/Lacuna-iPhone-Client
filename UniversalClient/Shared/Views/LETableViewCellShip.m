@@ -64,7 +64,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Class Methods
 
 + (LETableViewCellShip *)getCellForTableView:(UITableView *)tableView isSelectable:(BOOL)isSelectable {

@@ -15,6 +15,21 @@
 #import "LETableViewCellOrbitSelector.h"
 
 
+typedef enum {
+	SECTION_SPECIES,
+	SECTION_HABITAL_ORBITS,
+	SECTION_AFFINITIES,
+	SECTION_CREATE,
+} SECTION;
+
+
+@interface NewSpeciesController (PrivateMethods)
+
+- (void)calculatePoints;
+
+@end
+
+
 @implementation NewSpeciesController
 
 
@@ -23,7 +38,7 @@
 @synthesize password;
 @synthesize speciesNameCell;
 @synthesize orbitCells;
-@synthesize constructionCell;
+@synthesize manufacturingCell;
 @synthesize deceptionCell;
 @synthesize researchCell;
 @synthesize managementCell;
@@ -42,14 +57,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Create" style:UIBarButtonItemStyleDone target:self action:@selector(createSpecies)] autorelease];
+	//self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Create" style:UIBarButtonItemStyleDone target:self action:@selector(createSpecies)] autorelease];
 	
 	//Setup Cells
 	self.speciesNameCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
 	self.speciesNameCell.label.text = @"Name";
 	self.speciesNameCell.delegate = self;
 
-	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:7];
+	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:NUM_ORBITS];
 	for (int index=0; index<NUM_ORBITS; index++) {
 		LETableViewCellOrbitSelector *orbitCell = [LETableViewCellOrbitSelector getCellForTableView:self.tableView];
 		orbitCell.label.text = [NSString stringWithFormat:@"Orbit %i", index+1];
@@ -58,10 +73,10 @@
 	}
 	self.orbitCells = tmp;
 	
-	self.constructionCell = [LETableViewCellAffinitySelector getCellForTableView:self.tableView];
-	self.constructionCell.nameLabel.text = @"Construction";
-	self.constructionCell.pointsDelegate = self;
-	[self.constructionCell setRating:3];
+	self.manufacturingCell = [LETableViewCellAffinitySelector getCellForTableView:self.tableView];
+	self.manufacturingCell.nameLabel.text = @"Manufacturing";
+	self.manufacturingCell.pointsDelegate = self;
+	[self.manufacturingCell setRating:3];
 	
 	self.deceptionCell = [LETableViewCellAffinitySelector getCellForTableView:self.tableView];
 	self.deceptionCell.nameLabel.text = @"Deception";
@@ -113,12 +128,13 @@
 	self.growthCell.pointsDelegate = self;
 	[self.growthCell setRating:3];
 	
-	points = 33;
-	self.navigationItem.title = [NSString stringWithFormat:@"%i / 45 points", points];
+	[self calculatePoints];
+	self.navigationItem.title = [NSString stringWithFormat:@"%i / 45 points", self->points];
 	
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Species"],
 								 [LEViewSectionTab tableView:self.tableView createWithText:@"Habital Orbits"],
-								 [LEViewSectionTab tableView:self.tableView createWithText:@"Affinities"]);
+								 [LEViewSectionTab tableView:self.tableView createWithText:@"Affinities"],
+								 [LEViewSectionTab tableView:self.tableView createWithText:@"Create Species"]);
 }
 
 
@@ -132,14 +148,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	switch (section) {
-		case 0:
+		case SECTION_SPECIES:
 			return 1;
 			break;
-		case 1:
+		case SECTION_HABITAL_ORBITS:
 			return [orbitCells count];
 			break;
-		case 2:
+		case SECTION_AFFINITIES:
 			return 11;
+			break;
+		case SECTION_CREATE:
+			return 1;
 			break;
 		default:
 			return 0;
@@ -169,7 +188,7 @@
 		case 2:
 			switch (indexPath.row) {
 				case 0:
-					cell = constructionCell;
+					cell = manufacturingCell;
 					break;
 				case 1:
 					cell = deceptionCell;
@@ -244,13 +263,12 @@
 #pragma mark -
 #pragma mark Instance methods
 
-
 - (IBAction)createSpecies {
-	if (points > 45) {
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Too many points" message:[NSString stringWithFormat:@"You have spent %i points, but you can only spend 45 points.", points] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+	if (self->points > 45) {
+		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Too many points" message:[NSString stringWithFormat:@"You have spent %i points, but you can only spend 45 points.", self->points] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 		[av show];
-	} else if (points < 45) {
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Too few points" message:[NSString stringWithFormat:@"You have spent %i points, but you must spend 45 points.", points] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+	} else if (self->points < 45) {
+		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Too few points" message:[NSString stringWithFormat:@"You have spent %i points, but you must spend 45 points.", self->points] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 		[av show];
 		
 	} else {
@@ -267,7 +285,7 @@
 											  name:self.speciesNameCell.textField.text
 									   description:@""
 								   habitableOrbits:orbitArray
-							  constructionAffinity:constructionCell.rating
+							 manufacturingAffinity:manufacturingCell.rating
 								 deceptionAffinity:deceptionCell.rating
 								  researchAffinity:researchCell.rating
 								managementAffinity:managementCell.rating
@@ -285,16 +303,15 @@
 #pragma mark -
 #pragma mark LESpeciesUpdatePointsDelegate
 
-
 - (void)updatePoints:(NSInteger)delta {
-	points += delta;
-	self.navigationItem.title = [NSString stringWithFormat:@"%i / 45 points", points];
+	//points += delta;
+	[self calculatePoints];
+	self.navigationItem.title = [NSString stringWithFormat:@"%i / 45 points", self->points];
 }
 
 
 #pragma mark -
 #pragma mark UITextFieldDelegate methods
-
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 	if (textField == self.speciesNameCell.textField) {
@@ -306,8 +323,32 @@
 
 
 #pragma mark -
-#pragma mark Callbacks
+#pragma mark PrivateMethods
 
+- (void)calculatePoints {
+	NSInteger newPoints = 0;
+	for (LETableViewCellOrbitSelector *orbitCell in self.orbitCells) {
+		if([orbitCell isSelected]) {
+			newPoints++;
+		}
+	}
+	newPoints += _intv([self.manufacturingCell rating]);
+	newPoints += _intv([self.deceptionCell rating]);
+	newPoints += _intv([self.researchCell rating]);
+	newPoints += _intv([self.managementCell rating]);
+	newPoints += _intv([self.farmingCell rating]);
+	newPoints += _intv([self.miningCell rating]);
+	newPoints += _intv([self.scienceCell rating]);
+	newPoints += _intv([self.environmentalCell rating]);
+	newPoints += _intv([self.politicalCell rating]);
+	newPoints += _intv([self.tradeCell rating]);
+	newPoints += _intv([self.growthCell rating]);
+	self->points = newPoints;
+}
+
+
+#pragma mark -
+#pragma mark Callbacks
 
 - (id)speciesCreated:(LESpeciesCreate *) request {
 	if ([request wasError]) {
@@ -320,8 +361,7 @@
 				break;
 		}
 	} else {
-		NSLog(@"Founding Empire: %@", self.empireId);
-		[[[LEEmpireFound alloc] initWithCallback:@selector(empireFounded:) target:self empireId:self.empireId] autorelease];
+		NSLog(@"Go to confirm screen now");
 	}
 	
 	return nil;

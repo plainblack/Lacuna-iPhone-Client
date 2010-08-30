@@ -55,7 +55,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Class Methods
 
 + (LETableViewCellStar *)getCellForTableView:(UITableView *)tableView {

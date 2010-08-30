@@ -18,7 +18,7 @@
 @synthesize empireId;
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Object Methods
 
 - (void)dealloc {
@@ -35,7 +35,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Instance Methods
 
 - (void)parseData:(NSDictionary *)data {

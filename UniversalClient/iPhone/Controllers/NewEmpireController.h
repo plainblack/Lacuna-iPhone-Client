@@ -8,31 +8,37 @@
 
 #import <UIKit/UIKit.h>
 #import "LETableViewControllerGrouped.h"
-#import "LETableViewCellTextEntry.h"
-//#import "LEActivityIndicatorView.h"
+
+
+@class LETableViewCellTextEntry;
+@class LETableViewCellCaptchaImage;
+@class LETableViewCellButton;
 
 
 @interface NewEmpireController : LETableViewControllerGrouped <UITextFieldDelegate> {
-//	LEActivityIndicatorView *activityIndicator;
 	LETableViewCellTextEntry *nameCell;
 	LETableViewCellTextEntry *passwordCell;
 	LETableViewCellTextEntry *passwordConfirmationCell;
-	UITableViewCell *speciesCell;
-	UISegmentedControl *speciesSelector;
+	LETableViewCellTextEntry *emailCell;
+	LETableViewCellCaptchaImage *captchaImageCell;
+	LETableViewCellTextEntry *captchaSolutionCell;
+	LETableViewCellButton *nextButton;
+	NSString *captchaGuid;
+	NSString *captchaUrl;
 	NSString *empireId;
 }
 
 
-//@property(nonatomic, retain) LEActivityIndicatorView *activityIndicator;
 @property(nonatomic, retain) LETableViewCellTextEntry *nameCell;
 @property(nonatomic, retain) LETableViewCellTextEntry *passwordCell;
 @property(nonatomic, retain) LETableViewCellTextEntry *passwordConfirmationCell;
-@property(nonatomic, retain) UITableViewCell *speciesCell;
-@property(nonatomic, retain) UISegmentedControl *speciesSelector;
+@property(nonatomic, retain) LETableViewCellTextEntry *emailCell;
+@property(nonatomic, retain) LETableViewCellCaptchaImage *captchaImageCell;
+@property(nonatomic, retain) LETableViewCellTextEntry *captchaSolutionCell;
+@property(nonatomic, retain) LETableViewCellButton *nextButton;
+@property(nonatomic, retain) NSString *captchaGuid;
+@property(nonatomic, retain) NSString *captchaUrl;
 @property(nonatomic, retain) NSString *empireId;
-
-
-- (IBAction)speciesSelected;
 
 
 + (NewEmpireController *) create;

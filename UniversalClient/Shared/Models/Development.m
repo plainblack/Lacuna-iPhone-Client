@@ -22,7 +22,7 @@
 @synthesize buildQueue;
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Object Methods
 
 - (void)dealloc {
@@ -31,7 +31,7 @@
 	[super dealloc];
 }
 
-#pragma mark --
+#pragma mark -
 #pragma mark Overriden Building Methods
 
 - (void)tick:(NSInteger)interval {
@@ -131,7 +131,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Callback Methods
 
 - (id)subsidizedBuildQueue:(LEBuildingSubsidizeBuildQueue *)request {

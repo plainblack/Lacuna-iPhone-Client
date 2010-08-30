@@ -25,7 +25,7 @@
 @synthesize toName;
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark NSObject Methods
 
 - (NSString *)description {
@@ -48,7 +48,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Instance Methods
 
 - (void)parseData:(NSDictionary *)shipData {

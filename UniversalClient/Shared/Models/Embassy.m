@@ -48,7 +48,7 @@
 @synthesize myInvites;
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Object Methods
 
 - (void)dealloc {
@@ -59,7 +59,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Overriden Building Methods
 
 - (void)tick:(NSInteger)interval {
@@ -330,7 +330,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Instance Methods
 
 - (void)acceptInvite:(NSString *)inviteId withMessage:(NSString *)message {
@@ -444,7 +444,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Callback Methods
 
 - (void)inviteAccepted:(LEBuildingAcceptInvite *)request {
@@ -526,7 +526,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark EditTextViewControllerDelegate Methods
 
 - (BOOL)newTextValue:(NSString *)value forTextName:(NSString *)textName {
@@ -539,7 +539,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark EditTextFieldControllerDelegate Methods
 
 - (BOOL)newTextEntryValue:(NSString *)value forTextName:(NSString *)textName {

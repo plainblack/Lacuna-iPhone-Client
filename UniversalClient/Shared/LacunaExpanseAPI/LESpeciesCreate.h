@@ -15,7 +15,7 @@
 	NSString *name;
 	NSString *description;
 	NSArray *habitableOrbits;
-	NSDecimalNumber *constructionAffinity;
+	NSDecimalNumber *manufacturingAffinity;
 	NSDecimalNumber *deceptionAffinity;
 	NSDecimalNumber *researchAffinity;
 	NSDecimalNumber *managementAffinity;
@@ -33,7 +33,7 @@
 @property(nonatomic, retain) NSString *name;
 @property(nonatomic, retain) NSString *description;
 @property(nonatomic, retain) NSArray *habitableOrbits;
-@property(nonatomic, retain) NSDecimalNumber *constructionAffinity;
+@property(nonatomic, retain) NSDecimalNumber *manufacturingAffinity;
 @property(nonatomic, retain) NSDecimalNumber *deceptionAffinity;
 @property(nonatomic, retain) NSDecimalNumber *researchAffinity;
 @property(nonatomic, retain) NSDecimalNumber *managementAffinity;
@@ -49,11 +49,16 @@
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target empireId:(NSString *)empireId
 						   name:(NSString*) name description:(NSString *) description
 				habitableOrbits:(NSArray *) habitableOrbits
-		   constructionAffinity:(NSDecimalNumber *) constructionAffinity deceptionAffinity:(NSDecimalNumber *) deceptionAffinity
-			   researchAffinity:(NSDecimalNumber *) researchAffinity managementAffinity:(NSDecimalNumber *) managementAffinity
-				farmingAffinity:(NSDecimalNumber *) farmingAffinity miningAffinity:(NSDecimalNumber *) miningAffinity
-				scienceAffinity:(NSDecimalNumber *) scienceAffinity environmentalAffinity:(NSDecimalNumber *) environmentalAffinity
-			  politicalAffinity:(NSDecimalNumber *) politicalAffinity tradeAffinity:(NSDecimalNumber *) tradeAffinity
+		  manufacturingAffinity:(NSDecimalNumber *) manufacturingAffinity
+			  deceptionAffinity:(NSDecimalNumber *) deceptionAffinity
+			   researchAffinity:(NSDecimalNumber *) researchAffinity
+			 managementAffinity:(NSDecimalNumber *) managementAffinity
+				farmingAffinity:(NSDecimalNumber *) farmingAffinity
+				 miningAffinity:(NSDecimalNumber *) miningAffinity
+				scienceAffinity:(NSDecimalNumber *) scienceAffinity
+		  environmentalAffinity:(NSDecimalNumber *) environmentalAffinity
+			  politicalAffinity:(NSDecimalNumber *) politicalAffinity
+				  tradeAffinity:(NSDecimalNumber *) tradeAffinity
 				 growthAffinity:(NSDecimalNumber *) growthAffinity;
 
 

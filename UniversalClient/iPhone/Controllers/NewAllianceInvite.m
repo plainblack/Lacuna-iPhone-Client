@@ -146,7 +146,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark SelectEmpireControllerDelegate Methods
 
 - (void)selectedEmpire:(NSDictionary *)empire {

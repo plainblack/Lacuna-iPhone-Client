@@ -25,7 +25,7 @@
 @synthesize secondsRemaining;
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark NSObject Methods
 
 - (void)dealloc {
@@ -34,7 +34,7 @@
 	[super dealloc];
 }
 
-#pragma mark --
+#pragma mark -
 #pragma mark Overriden Building Methods
 
 - (void)tick:(NSInteger)interval {
@@ -152,7 +152,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Callback Methods
 
 - (id)subsidizedRecycling:(LEBuildingSubsidizeRecycling *)request {

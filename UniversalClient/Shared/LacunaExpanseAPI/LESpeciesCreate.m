@@ -17,7 +17,7 @@
 @synthesize name;
 @synthesize description;
 @synthesize habitableOrbits;
-@synthesize constructionAffinity;
+@synthesize manufacturingAffinity;
 @synthesize deceptionAffinity;
 @synthesize researchAffinity;
 @synthesize managementAffinity;
@@ -33,17 +33,22 @@
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget empireId:(NSString *)inEmpireId
 						   name:(NSString*) inName description:(NSString *) inDescription
 				habitableOrbits:(NSArray *) inHabitableOrbits
-		   constructionAffinity:(NSDecimalNumber *) inConstructionAffinity deceptionAffinity:(NSDecimalNumber *) inDeceptionAffinity
-			   researchAffinity:(NSDecimalNumber *) inResearchAffinity managementAffinity:(NSDecimalNumber *) inManagementAffinity
-				farmingAffinity:(NSDecimalNumber *) inFarmingAffinity miningAffinity:(NSDecimalNumber *) inMiningAffinity
-				scienceAffinity:(NSDecimalNumber *) inScienceAffinity environmentalAffinity:(NSDecimalNumber *) inEnvironmentalAffinity
-			  politicalAffinity:(NSDecimalNumber *) inPoliticalAffinity tradeAffinity:(NSDecimalNumber *) inTradeAffinity
+		  manufacturingAffinity:(NSDecimalNumber *) inManufacturingAffinity
+			  deceptionAffinity:(NSDecimalNumber *) inDeceptionAffinity
+			   researchAffinity:(NSDecimalNumber *) inResearchAffinity
+			 managementAffinity:(NSDecimalNumber *) inManagementAffinity
+				farmingAffinity:(NSDecimalNumber *) inFarmingAffinity
+				 miningAffinity:(NSDecimalNumber *) inMiningAffinity
+				scienceAffinity:(NSDecimalNumber *) inScienceAffinity
+		  environmentalAffinity:(NSDecimalNumber *) inEnvironmentalAffinity
+			  politicalAffinity:(NSDecimalNumber *) inPoliticalAffinity
+				  tradeAffinity:(NSDecimalNumber *) inTradeAffinity
 				 growthAffinity:(NSDecimalNumber *) inGrowthAffinity {
 	self.empireId = inEmpireId;
 	self.name = inName;
 	self.description = inDescription;
 	self.habitableOrbits = inHabitableOrbits;
-	self.constructionAffinity = inConstructionAffinity;
+	self.manufacturingAffinity = inManufacturingAffinity;
 	self.deceptionAffinity = inDeceptionAffinity;
 	self.researchAffinity = inResearchAffinity;
 	self.managementAffinity = inManagementAffinity;
@@ -60,7 +65,7 @@
 
 
 - (id)params {
-	NSDictionary *speciesParams = _dict(name, @"name", description, @"description", habitableOrbits, @"habitable_orbits", constructionAffinity, @"manufacturing_affinity", deceptionAffinity, @"deception_affinity", researchAffinity, @"research_affinity", managementAffinity, @"management_affinity", farmingAffinity, @"farming_affinity", miningAffinity, @"mining_affinity", scienceAffinity, @"science_affinity", environmentalAffinity, @"environmental_affinity", politicalAffinity, @"political_affinity", tradeAffinity, @"trade_affinity", growthAffinity, @"growth_affinity");
+	NSDictionary *speciesParams = _dict(name, @"name", description, @"description", habitableOrbits, @"habitable_orbits", manufacturingAffinity, @"manufacturing_affinity", deceptionAffinity, @"deception_affinity", researchAffinity, @"research_affinity", managementAffinity, @"management_affinity", farmingAffinity, @"farming_affinity", miningAffinity, @"mining_affinity", scienceAffinity, @"science_affinity", environmentalAffinity, @"environmental_affinity", politicalAffinity, @"political_affinity", tradeAffinity, @"trade_affinity", growthAffinity, @"growth_affinity");
 	NSArray *tmp = _array(self.empireId, speciesParams);
 	NSLog(@"Species Params: %@", speciesParams);
 	NSLog(@"Creating species: %@", tmp);
@@ -88,7 +93,7 @@
 	self.name = nil;
 	self.description = nil;
 	self.habitableOrbits = nil;
-	self.constructionAffinity = nil;
+	self.manufacturingAffinity = nil;
 	self.deceptionAffinity = nil;
 	self.researchAffinity = nil;
 	self.managementAffinity = nil;

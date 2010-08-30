@@ -49,7 +49,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Gesture Recognizer Methods
 
 - (void)callTapped:(UIGestureRecognizer *)gestureRecognizer {

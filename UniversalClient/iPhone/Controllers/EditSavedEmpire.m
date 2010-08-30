@@ -20,7 +20,7 @@
 @synthesize empireName;
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark View Methods
 
 - (void)viewDidLoad {
@@ -59,7 +59,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark View Methods
 
 - (IBAction)cancel {

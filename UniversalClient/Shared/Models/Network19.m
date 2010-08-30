@@ -20,7 +20,7 @@
 
 @synthesize restrictingCoverage;
 
-#pragma mark --
+#pragma mark -
 #pragma mark Overriden Building Methods
 
 - (void)tick:(NSInteger)interval {
@@ -113,7 +113,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Callback Methods
 
 - (id)buildingRestrictCoverageChanged:(LEBuildingRestrictCoverage *)request {

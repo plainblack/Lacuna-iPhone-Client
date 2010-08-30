@@ -27,7 +27,7 @@
 @synthesize profile;
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark NSObject Methods
 
 - (NSString *)description {
@@ -50,7 +50,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark NSObject Methods
 
 - (void)loadProfile {

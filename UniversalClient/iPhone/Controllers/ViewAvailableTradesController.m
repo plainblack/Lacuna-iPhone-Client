@@ -231,7 +231,7 @@ typedef enum {
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Private Methods
 
 - (void)togglePageButtons {

@@ -183,7 +183,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark LERequestMonitor Methods
 
 - (void)allRequestsComplete {
@@ -193,7 +193,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark PrivateMethod
 
 - (void)displayLoginAnimated:(BOOL)animated {

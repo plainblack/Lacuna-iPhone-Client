@@ -173,6 +173,9 @@
 		F6C390EE11F23D54004FB38F /* LETableViewCellBuildQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C390ED11F23D54004FB38F /* LETableViewCellBuildQueueItem.m */; };
 		F6CF29E21210E1F400D4A9AC /* AssignSpyControllerV2.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CF29E01210E1F400D4A9AC /* AssignSpyControllerV2.m */; };
 		F6CF29E31210E1F400D4A9AC /* AssignViewControllerV2.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6CF29E11210E1F400D4A9AC /* AssignViewControllerV2.xib */; };
+		F6D1DF9B122B2191007A9A4B /* LEEmpireFetchCaptcha.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D1DF9A122B2191007A9A4B /* LEEmpireFetchCaptcha.m */; };
+		F6D1DFB8122B266F007A9A4B /* LETableViewCellServerSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D1DFB7122B266F007A9A4B /* LETableViewCellServerSelect.m */; };
+		F6D1E018122B33DE007A9A4B /* SelectNewEmpireSpeciesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D1E017122B33DE007A9A4B /* SelectNewEmpireSpeciesController.m */; };
 		F6D3F66D1221776A0090E31E /* NewTradeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3F66C1221776A0090E31E /* NewTradeController.m */; };
 		F6D3F6A812218AD10090E31E /* LEBuildingAddTrade.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3F6A712218AD10090E31E /* LEBuildingAddTrade.m */; };
 		F6D3F6BB122193C30090E31E /* SelectTradeablePrisonerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3F6BA122193C30090E31E /* SelectTradeablePrisonerController.m */; };
@@ -614,6 +617,12 @@
 		F6CF29DF1210E1F400D4A9AC /* AssignSpyControllerV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssignSpyControllerV2.h; sourceTree = "<group>"; };
 		F6CF29E01210E1F400D4A9AC /* AssignSpyControllerV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssignSpyControllerV2.m; sourceTree = "<group>"; };
 		F6CF29E11210E1F400D4A9AC /* AssignViewControllerV2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssignViewControllerV2.xib; sourceTree = "<group>"; };
+		F6D1DF99122B2191007A9A4B /* LEEmpireFetchCaptcha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireFetchCaptcha.h; sourceTree = "<group>"; };
+		F6D1DF9A122B2191007A9A4B /* LEEmpireFetchCaptcha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireFetchCaptcha.m; sourceTree = "<group>"; };
+		F6D1DFB6122B266F007A9A4B /* LETableViewCellServerSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellServerSelect.h; sourceTree = "<group>"; };
+		F6D1DFB7122B266F007A9A4B /* LETableViewCellServerSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellServerSelect.m; sourceTree = "<group>"; };
+		F6D1E016122B33DE007A9A4B /* SelectNewEmpireSpeciesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectNewEmpireSpeciesController.h; sourceTree = "<group>"; };
+		F6D1E017122B33DE007A9A4B /* SelectNewEmpireSpeciesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectNewEmpireSpeciesController.m; sourceTree = "<group>"; };
 		F6D3F66B1221776A0090E31E /* NewTradeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTradeController.h; sourceTree = "<group>"; };
 		F6D3F66C1221776A0090E31E /* NewTradeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTradeController.m; sourceTree = "<group>"; };
 		F6D3F6A612218AD10090E31E /* LEBuildingAddTrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingAddTrade.h; sourceTree = "<group>"; };
@@ -1035,6 +1044,8 @@
 				F6E4C974121E0ED70028FFE8 /* LETableViewCellPlan.m */,
 				F69809BD117A154500BD2096 /* LETableViewCellProgress.h */,
 				F69809BE117A154500BD2096 /* LETableViewCellProgress.m */,
+				F6D1DFB6122B266F007A9A4B /* LETableViewCellServerSelect.h */,
+				F6D1DFB7122B266F007A9A4B /* LETableViewCellServerSelect.m */,
 				F6DEC050120247BF00716CE7 /* LETableViewCellShip.h */,
 				F6DEC051120247BF00716CE7 /* LETableViewCellShip.m */,
 				F61F66E8120504FE0007427A /* LETableViewCellShipBuildQueueItem.h */,
@@ -1255,6 +1266,8 @@
 				F6AC49F1116C0F9B001B967A /* LEEmpireCreate.m */,
 				F6E3E58011BB0EA500A031CF /* LEEmpireEditProfile.h */,
 				F6E3E58111BB0EA500A031CF /* LEEmpireEditProfile.m */,
+				F6D1DF99122B2191007A9A4B /* LEEmpireFetchCaptcha.h */,
+				F6D1DF9A122B2191007A9A4B /* LEEmpireFetchCaptcha.m */,
 				F6E349D11227DE1F001E39B5 /* LEEmpireFind.h */,
 				F6E349D21227DE1F001E39B5 /* LEEmpireFind.m */,
 				F6AC49F2116C0F9B001B967A /* LEEmpireFound.h */,
@@ -1482,10 +1495,14 @@
 				F6E349C81227D94E001E39B5 /* SelectEmpireController.m */,
 				F64FA25B121CD36F00CBFC3E /* SelectGlyphController.h */,
 				F64FA25C121CD36F00CBFC3E /* SelectGlyphController.m */,
+				F6D1E016122B33DE007A9A4B /* SelectNewEmpireSpeciesController.h */,
+				F6D1E017122B33DE007A9A4B /* SelectNewEmpireSpeciesController.m */,
 				F64FA281121CD67C00CBFC3E /* SelectPlanController.h */,
 				F64FA282121CD67C00CBFC3E /* SelectPlanController.m */,
 				F6F8550B1220B0500000CD09 /* SelectResourceTypeController.h */,
 				F6F8550C1220B0500000CD09 /* SelectResourceTypeController.m */,
+				F642C5601229E5EB00C596A7 /* SelectServerController.h */,
+				F642C5611229E5EB00C596A7 /* SelectServerController.m */,
 				F64FA284121CD68A00CBFC3E /* SelectStoredResourceController.h */,
 				F64FA285121CD68A00CBFC3E /* SelectStoredResourceController.m */,
 				F6D3F6B9122193C30090E31E /* SelectTradeablePrisonerController.h */,
@@ -1512,6 +1529,7 @@
 				F6E3EFEF11B45BA000E7BC86 /* ViewEmpireBoostsController.m */,
 				F6882CFB116EA08A009B624B /* ViewEmpireProfileController.h */,
 				F6882CFC116EA08A009B624B /* ViewEmpireProfileController.m */,
+				F6E4FD42122A916B00E78CBB /* ViewEmpireProfileController.xib */,
 				F6D485B6120CDEA000D77FC3 /* ViewForeignSpiesController.h */,
 				F6D485B7120CDEA000D77FC3 /* ViewForeignSpiesController.m */,
 				F6980ACC117A600E00BD2096 /* ViewMailboxController.h */,
@@ -1542,19 +1560,16 @@
 				F6D59F9C120120EE009DDA28 /* ViewShipsController.m */,
 				F6A9C5E91184C1CC001F0D9C /* ViewSpiesController.h */,
 				F6A9C5EA1184C1CC001F0D9C /* ViewSpiesController.m */,
-				F6EB02641202FB01001BFD68 /* ViewTravellingShipsController.h */,
-				F6EB02651202FB01001BFD68 /* ViewTravellingShipsController.m */,
-				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
-				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
-				F642C5601229E5EB00C596A7 /* SelectServerController.h */,
-				F642C5611229E5EB00C596A7 /* SelectServerController.m */,
-				F642C664122A154B00C596A7 /* ViewUniverseController.h */,
-				F642C665122A154B00C596A7 /* ViewUniverseController.m */,
-				F642C666122A154B00C596A7 /* ViewUniverseController.xib */,
 				F642C669122A155C00C596A7 /* ViewStatsController.h */,
 				F642C66A122A155C00C596A7 /* ViewStatsController.m */,
 				F642C66B122A155C00C596A7 /* ViewStatsController.xib */,
-				F6E4FD42122A916B00E78CBB /* ViewEmpireProfileController.xib */,
+				F6EB02641202FB01001BFD68 /* ViewTravellingShipsController.h */,
+				F6EB02651202FB01001BFD68 /* ViewTravellingShipsController.m */,
+				F642C664122A154B00C596A7 /* ViewUniverseController.h */,
+				F642C665122A154B00C596A7 /* ViewUniverseController.m */,
+				F642C666122A154B00C596A7 /* ViewUniverseController.xib */,
+				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
+				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1921,6 +1936,9 @@
 				F642C5621229E5EB00C596A7 /* SelectServerController.m in Sources */,
 				F642C667122A154B00C596A7 /* ViewUniverseController.m in Sources */,
 				F642C66C122A155C00C596A7 /* ViewStatsController.m in Sources */,
+				F6D1DF9B122B2191007A9A4B /* LEEmpireFetchCaptcha.m in Sources */,
+				F6D1DFB8122B266F007A9A4B /* LETableViewCellServerSelect.m in Sources */,
+				F6D1E018122B33DE007A9A4B /* SelectNewEmpireSpeciesController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

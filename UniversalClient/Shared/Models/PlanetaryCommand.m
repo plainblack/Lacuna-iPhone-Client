@@ -19,7 +19,7 @@
 @synthesize nextColonyCost;
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Overriden Building Methods
 
 - (void)parseAdditionalData:(NSDictionary *)data {

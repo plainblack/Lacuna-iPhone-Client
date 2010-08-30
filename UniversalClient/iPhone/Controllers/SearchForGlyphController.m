@@ -102,7 +102,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Instance Methods
 
 - (IBAction)search {
@@ -112,7 +112,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Class Methods
 
 + (SearchForGlyphController *)create {

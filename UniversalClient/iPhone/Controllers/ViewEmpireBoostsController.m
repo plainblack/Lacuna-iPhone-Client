@@ -44,7 +44,7 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-    //self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
+    self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
 	self.navigationItem.title = @"Loading";
 	
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Empire Boosts"]);
@@ -173,7 +173,7 @@ typedef enum {
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Instance Methods
 
 - (UITableViewCell *)setupCellForTableView:(UITableView *)tableView boostEndDate:(NSDate *)boostEndDate name:(NSString *)name {
@@ -238,7 +238,7 @@ typedef enum {
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Callbacks
 
 - (id)boostsLoaded:(LEEmpireViewBoosts *)request {

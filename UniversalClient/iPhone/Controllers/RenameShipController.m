@@ -136,7 +136,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark KVO Methods
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {

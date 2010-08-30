@@ -10,6 +10,7 @@
 #import "LEMacros.h"
 #import "Servers.h"
 #import "LEViewSectionTab.h"
+#import "LETableViewCellServerSelect.h"
 #import "LETableViewCellButton.h"
 #import "LETableViewCellLabeledText.h"
 #import "LETableViewCellTextEntry.h"
@@ -43,7 +44,7 @@ typedef enum {
 	
 	self.view.autoresizesSubviews = YES;
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
+    self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
     self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)] autorelease];
 	self.tableView.backgroundColor = [UIColor clearColor];
 	self.tableView.separatorColor = SEPARATOR_COLOR;
@@ -95,7 +96,7 @@ typedef enum {
 		case SECTION_SERVER_LIST:
 			if (self.servers.serverList) {
 				if ([self.servers.serverList count] > 0) {
-					return [LETableViewCellButton getHeightForTableView:tableView];
+					return [LETableViewCellServerSelect getHeightForTableView:tableView];
 				} else {
 					return [LETableViewCellLabeledText getHeightForTableView:tableView];
 				}
@@ -132,8 +133,8 @@ typedef enum {
 			if (self.servers.serverList) {
 				if ([self.servers.serverList count] > 0) {
 					NSDictionary *server = [self.servers.serverList objectAtIndex:indexPath.row];
-					LETableViewCellButton *serverButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-					serverButtonCell.textLabel.text = [server objectForKey:@"name"];
+					LETableViewCellServerSelect *serverButtonCell = [LETableViewCellServerSelect getCellForTableView:tableView];
+					[serverButtonCell setServer:server];
 					cell = serverButtonCell;
 				} else {
 					LETableViewCellLabeledText *noMatchesCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];

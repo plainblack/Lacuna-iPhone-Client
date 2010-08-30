@@ -16,7 +16,7 @@
 @synthesize quantity;
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Object Methods
 
 - (id) init {

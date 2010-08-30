@@ -30,7 +30,7 @@
 @synthesize travellingShipsUpdated;
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Object Methods
 
 - (void)dealloc {
@@ -48,7 +48,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Overriden Building Methods
 
 - (void)tick:(NSInteger)interval {
@@ -146,7 +146,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Instance Methods
 
 - (void)loadShips {
@@ -169,7 +169,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Callback Methods
 
 - (id)shipsLoaded:(LEBuildingViewAllShips *)request {

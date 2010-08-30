@@ -16,7 +16,7 @@
 @synthesize items;
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Object Methods
 
 - (id) init {
@@ -34,7 +34,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Instance Methods
 
 - (void)addResourceType:(NSString *)resourceType withQuantity:(NSDecimalNumber *)quantity {

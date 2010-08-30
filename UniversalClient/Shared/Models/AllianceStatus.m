@@ -27,7 +27,7 @@
 @synthesize dateLoaded;
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Object Methods
 
 
@@ -60,7 +60,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Instance Methods
 
 - (void)parseData:(NSDictionary *)data {

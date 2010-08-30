@@ -69,7 +69,7 @@
 #define BUTTON_TEXT_FONT [UIFont fontWithName:@"Verdana-Bold" size:16.0]
 
 //Settins
-#define NUM_ORBITS 7
+#define NUM_ORBITS 8
 
 //BODY_BUILDINGS
 #define BODY_BUILDINGS_NUM_ROWS 11

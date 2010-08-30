@@ -32,7 +32,7 @@ static Session *sharedSession = nil;
 @synthesize serverUri;
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Singleton methods
 
 + (Session *)sharedInstance {
@@ -72,7 +72,7 @@ static Session *sharedSession = nil;
     return self;
 }
 
-#pragma mark --
+#pragma mark -
 #pragma mark Live Cycle methods
 
 - (id)init {
@@ -107,7 +107,7 @@ static Session *sharedSession = nil;
 	[super dealloc];
 }
 
-#pragma mark --
+#pragma mark -
 #pragma mark Instance methods
 
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password {
@@ -189,7 +189,7 @@ static Session *sharedSession = nil;
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Callback methods
 
 - (void)handleTimer:(NSTimer *)theTimer {

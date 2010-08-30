@@ -17,7 +17,7 @@
 @synthesize storedOre;
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Object Methods
 
 - (void)dealloc {
@@ -26,7 +26,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Overriden Building Methods
 
 - (void)parseAdditionalData:(NSDictionary *)data {

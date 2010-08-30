@@ -475,7 +475,7 @@ typedef enum {
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Callbacks
 
 - (id)tradePosted:(LEBuildingAddTrade *)request {

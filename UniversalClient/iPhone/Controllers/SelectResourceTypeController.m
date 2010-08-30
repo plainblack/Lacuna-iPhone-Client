@@ -161,7 +161,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark PickNumericValueControllerDelegate Methods
 
 - (void)newNumericValue:(NSDecimalNumber *)value {

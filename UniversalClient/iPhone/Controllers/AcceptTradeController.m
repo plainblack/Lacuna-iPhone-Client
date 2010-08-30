@@ -154,7 +154,7 @@ typedef enum {
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Instance Methods
 
 - (IBAction)acceptTrade {

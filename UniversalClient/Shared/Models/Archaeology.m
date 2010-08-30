@@ -30,7 +30,7 @@
 @synthesize delegate;
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Object Methods
 
 - (void)dealloc {
@@ -47,7 +47,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Overriden Building Methods
 
 - (void)tick:(NSInteger)interval {
@@ -157,7 +157,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Instance Methods
 
 - (void)assembleGlyphs:(NSArray *)inGlyphs {
@@ -180,7 +180,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Callback Methods
 
 - (id)glyphAssembeled:(LEBuildingGlyphAssemble *)request {

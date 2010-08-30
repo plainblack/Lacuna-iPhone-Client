@@ -379,7 +379,7 @@ typedef enum {
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Private Methods
 											  
 - (void)loadBody {
@@ -408,7 +408,7 @@ typedef enum {
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Class Methods
 
 + (ViewBodyController *)create {

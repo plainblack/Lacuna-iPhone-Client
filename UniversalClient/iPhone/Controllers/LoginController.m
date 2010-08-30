@@ -16,6 +16,7 @@
 #import "NewEmpireController.h"
 #import "EditSavedEmpire.h"
 #import "SelectServerController.h"
+#import "SelectServerController.h"
 
 
 typedef enum {
@@ -57,7 +58,7 @@ typedef enum {
 
 	self.view.autoresizesSubviews = YES;
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
+    self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
 	self.navigationItem.title = @"Empire";
 	self.tableView.backgroundColor = [UIColor clearColor];
 	self.tableView.separatorColor = SEPARATOR_COLOR;
@@ -222,6 +223,7 @@ typedef enum {
 			[self.empireNameCell resignFirstResponder];
 			[self.passwordCell resignFirstResponder];
 			if (indexPath.row == LOGIN_FORM_ROW_SERVER) {
+				self->createNewAccount = NO;
 				[self showServerSelect];
 			} else if (indexPath.row == LOGIN_FORM_ROW_LOGIN_BUTTON) {
 				if ([self.empireNameCell.textField.text length] == 0) {
@@ -253,12 +255,8 @@ typedef enum {
 			break;
 		case SECTION_CREATE_NEW:
 			; //DO NOT REMOVE
-			NewEmpireController *newEmpireController = [NewEmpireController create];
-			[self.navigationController pushViewController:newEmpireController animated:YES];
-//			UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:newEmpireController];
-//			navController.navigationBar.tintColor = TINT_COLOR;
-//			[self presentModalViewController:navController animated:YES];
-//			[navController release];
+			self->createNewAccount = YES;
+			[self showServerSelect];
 			break;
 		default:
 			break;
@@ -304,12 +302,19 @@ typedef enum {
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark SelectServerControllerDelegate Methods
 
 - (void)selectedServer:(NSDictionary *)server {
-	self.selectedServer = server;
-	[self.navigationController popViewControllerAnimated:YES];
+	if (self->createNewAccount) {
+		Session *session = [Session sharedInstance];
+		session.serverUri = [server objectForKey:@"uri"];
+		NewEmpireController *newEmpireController = [NewEmpireController create];
+		[self.navigationController pushViewController:newEmpireController animated:YES];
+	} else {
+		[self.navigationController popViewControllerAnimated:YES];
+	}
+
 }
 
 
@@ -334,7 +339,7 @@ typedef enum {
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark PrivateMethods
 
 - (void)doLogin {

@@ -58,7 +58,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Class Methods
 
 + (LETableViewCellBuildableShipInfo *)getCellForTableView:(UITableView *)tableView {

@@ -17,6 +17,7 @@
 	LETableViewCellTextEntry *empireNameCell;
 	LETableViewCellTextEntry *passwordCell;
 	NSDictionary *selectedServer;
+	BOOL createNewAccount;
 }
 
 

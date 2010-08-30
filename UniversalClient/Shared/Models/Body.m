@@ -46,7 +46,7 @@
 @synthesize needsRefresh;
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark NSObject Methods
 
 - (NSString *)description {
@@ -86,7 +86,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark NSObject Methods
 
 - (void)parseData:(NSDictionary *)bodyData {
@@ -171,7 +171,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Callback Methods
 
 - (id)buildingMapLoaded:(LEBodyGetBuildings *)request {
@@ -189,7 +189,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark KVO Callback
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {

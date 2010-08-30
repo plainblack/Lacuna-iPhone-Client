@@ -20,7 +20,7 @@
 	NSInteger points;
 	LETableViewCellTextEntry *speciesNameCell;
 	NSArray *orbitCells;
-	LETableViewCellAffinitySelector *constructionCell;
+	LETableViewCellAffinitySelector *manufacturingCell;
 	LETableViewCellAffinitySelector *deceptionCell;
 	LETableViewCellAffinitySelector *researchCell;
 	LETableViewCellAffinitySelector *managementCell;
@@ -40,7 +40,7 @@
 @property(nonatomic, retain) NSString *password;
 @property(nonatomic, retain) LETableViewCellTextEntry *speciesNameCell;
 @property(nonatomic, retain) NSArray *orbitCells;
-@property(nonatomic, retain) LETableViewCellAffinitySelector *constructionCell;
+@property(nonatomic, retain) LETableViewCellAffinitySelector *manufacturingCell;
 @property(nonatomic, retain) LETableViewCellAffinitySelector *deceptionCell;
 @property(nonatomic, retain) LETableViewCellAffinitySelector *researchCell;
 @property(nonatomic, retain) LETableViewCellAffinitySelector *managementCell;

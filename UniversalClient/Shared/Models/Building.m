@@ -57,7 +57,7 @@
 @synthesize needsRefresh;
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark NSObject Methods
 
 - (void)dealloc {
@@ -84,7 +84,7 @@
 }
 
 
-#pragma mark --
+#pragma mark -
 #pragma mark Instance Methods
 
 - (void)parseData:(NSDictionary *)data {
