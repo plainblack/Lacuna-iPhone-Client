@@ -11,6 +11,7 @@
 #import "LETableViewCellTextEntry.h"
 #import "LETableViewCellAffinitySelector.h"
 #import "LESpeciesPointsUpdateDelegate.h"
+#import "LETableViewCellLabeledTextView.h"
 
 
 @interface NewSpeciesController : LETableViewControllerGrouped <UITextFieldDelegate, LESpeciesPointsUpdateDelegate> {
@@ -19,6 +20,7 @@
 	NSString *password;
 	NSInteger points;
 	LETableViewCellTextEntry *speciesNameCell;
+	LETableViewCellLabeledTextView *speciesDescriptionCell;
 	NSArray *orbitCells;
 	LETableViewCellAffinitySelector *manufacturingCell;
 	LETableViewCellAffinitySelector *deceptionCell;
@@ -39,6 +41,7 @@
 @property(nonatomic, retain) NSString *username;
 @property(nonatomic, retain) NSString *password;
 @property(nonatomic, retain) LETableViewCellTextEntry *speciesNameCell;
+@property(nonatomic, retain) LETableViewCellLabeledTextView *speciesDescriptionCell;
 @property(nonatomic, retain) NSArray *orbitCells;
 @property(nonatomic, retain) LETableViewCellAffinitySelector *manufacturingCell;
 @property(nonatomic, retain) LETableViewCellAffinitySelector *deceptionCell;

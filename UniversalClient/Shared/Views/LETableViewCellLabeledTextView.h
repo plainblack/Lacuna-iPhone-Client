@@ -1,20 +1,22 @@
 //
-//  LETableViewCellTextView.h
+//  LETableViewCellLabeledTextView.h
 //  UniversalClient
 //
-//  Created by Kevin Runde on 6/5/10.
+//  Created by Kevin Runde on 8/30/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 
-@interface LETableViewCellTextView : UITableViewCell <UITextInputTraits> {
+@interface LETableViewCellLabeledTextView : UITableViewCell <UITextInputTraits>  {
+	UILabel *label;
 	UITextView *textView;
 	id<UITextViewDelegate> delegate;
 }
 
 
+@property(nonatomic, retain) IBOutlet UILabel *label;
 @property(nonatomic, retain) IBOutlet UITextView *textView;
 @property(nonatomic, assign) id<UITextViewDelegate> delegate;
 
@@ -25,7 +27,8 @@
 - (void)dismissKeyboard;
 - (void)clearText;
 
-+ (LETableViewCellTextView *)getCellForTableView:(UITableView *)tableView;
+
++ (LETableViewCellLabeledTextView *)getCellForTableView:(UITableView *)tableView;
 + (CGFloat)getHeightForTableView:(UITableView *)tableView;
 
 

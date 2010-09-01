@@ -54,7 +54,8 @@ typedef enum {
 	self.tableView.backgroundColor = [UIColor clearColor];
 	self.tableView.separatorColor = SEPARATOR_COLOR;
 
-    self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
+	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout)] autorelease];
 	self.navigationItem.title = @"Loading";
 	
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Empire"],
@@ -287,6 +288,15 @@ typedef enum {
 
 - (void)dealloc {
     [super dealloc];
+}
+
+
+#pragma mark -
+#pragma mark Instance Methods
+
+- (IBAction)logout {
+	Session *session = [Session sharedInstance];
+	[session logout];
 }
 
 

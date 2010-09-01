@@ -1,19 +1,20 @@
 //
-//  LETableViewCellTextView.m
+//  LETableViewCellLabeledTextView.m
 //  UniversalClient
 //
-//  Created by Kevin Runde on 6/5/10.
+//  Created by Kevin Runde on 8/30/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
-#import "LETableViewCellTextView.h"
-#import	<QuartzCore/QuartzCore.h>
+#import "LETableViewCellLabeledTextView.h"
+#import <QuartzCore/QuartzCore.h>
 #import "LEMacros.h"
 
 
-@implementation LETableViewCellTextView
+@implementation LETableViewCellLabeledTextView
 
 
+@synthesize label;
 @synthesize textView;
 @dynamic delegate;
 
@@ -35,6 +36,7 @@
 
 
 - (void)dealloc {
+	self.label = nil;
 	self.textView = nil;
     [super dealloc];
 }
@@ -162,16 +164,24 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (LETableViewCellTextView *)getCellForTableView:(UITableView *)tableView {
++ (LETableViewCellLabeledTextView *)getCellForTableView:(UITableView *)tableView {
     static NSString *CellIdentifier = @"TextEntryCell";
 	
-	LETableViewCellTextView *cell = (LETableViewCellTextView *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	LETableViewCellLabeledTextView *cell = (LETableViewCellLabeledTextView *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-		cell = [[LETableViewCellTextView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-		cell.backgroundColor = [UIColor whiteColor];
+		cell = [[LETableViewCellLabeledTextView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+		cell.backgroundColor = CELL_BACKGROUND_COLOR;
 		cell.autoresizesSubviews = YES;
 		
-		cell.textView = [[[UITextView alloc] initWithFrame:CGRectMake(0, 6, 320, 140)] autorelease];
+		cell.label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 95, 20)] autorelease];
+		cell.label.textAlignment = UITextAlignmentRight;
+		cell.label.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin;
+		cell.label.font = LABEL_FONT;
+		cell.label.textColor = LABEL_COLOR;
+		cell.label.backgroundColor = [UIColor clearColor];
+		[cell.contentView addSubview:cell.label];
+		
+		cell.textView = [[[UITextView alloc] initWithFrame:CGRectMake(5, 20, 310, 140)] autorelease];
 		cell.textView.textAlignment = UITextAlignmentLeft;
 		cell.textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
 		cell.textView.font = TEXT_ENTRY_FONT;

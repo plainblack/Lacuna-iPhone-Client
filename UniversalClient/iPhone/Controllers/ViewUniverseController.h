@@ -13,4 +13,8 @@
 
 }
 
+
+- (IBAction)logout;
+
+
 @end

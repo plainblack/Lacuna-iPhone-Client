@@ -46,6 +46,7 @@
 			((UINavigationController *)viewController).navigationBar.tintColor = TINT_COLOR;
 		}
 	}
+	self.tabBarController.moreNavigationController.navigationBar.tintColor = TINT_COLOR;
 	
 	[window addSubview:self.tabBarController.view];
     [window makeKeyAndVisible];

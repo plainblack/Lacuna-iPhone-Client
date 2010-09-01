@@ -194,6 +194,8 @@
 		F6D59FF412012AA9009DDA28 /* RenameShipController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D59FF312012AA9009DDA28 /* RenameShipController.m */; };
 		F6D5A00B12012E43009DDA28 /* LEBuildingScuttleShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D5A00A12012E43009DDA28 /* LEBuildingScuttleShip.m */; };
 		F6D5A00E12012E5A009DDA28 /* LEBuildingNameShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D5A00D12012E5A009DDA28 /* LEBuildingNameShip.m */; };
+		F6D85A3B122DC06C00A44BD9 /* WebPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D85A39122DC06C00A44BD9 /* WebPageController.m */; };
+		F6D85A3C122DC06C00A44BD9 /* WebPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */; };
 		F6D9AB3D121BFA13003E8D4E /* LEBuildingGetTradeableShips.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9AB3C121BFA13003E8D4E /* LEBuildingGetTradeableShips.m */; };
 		F6D9AB40121BFA25003E8D4E /* LEBuildingGetTradeablePrisoners.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9AB3F121BFA25003E8D4E /* LEBuildingGetTradeablePrisoners.m */; };
 		F6D9AB43121BFA31003E8D4E /* LEBuildingGetTradeablePlans.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9AB42121BFA31003E8D4E /* LEBuildingGetTradeablePlans.m */; };
@@ -285,6 +287,11 @@
 		F6EF714211FE76EA00A93226 /* SpacePort.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF714111FE76EA00A93226 /* SpacePort.m */; };
 		F6EF714F11FE7D1C00A93226 /* LEBuildingViewAllShips.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF714E11FE7D1C00A93226 /* LEBuildingViewAllShips.m */; };
 		F6EF716A11FE810900A93226 /* Ship.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF716911FE810900A93226 /* Ship.m */; };
+		F6F52409122C5D9D004E428A /* ViewCreditsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F52408122C5D9D004E428A /* ViewCreditsController.m */; };
+		F6F5240C122C5ED5004E428A /* LEStatsCredits.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F5240B122C5ED5004E428A /* LEStatsCredits.m */; };
+		F6F52440122C7D31004E428A /* LETableViewCellText.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F5243F122C7D31004E428A /* LETableViewCellText.m */; };
+		F6F5244E122C7EFF004E428A /* ViewCreditsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6F5244D122C7EFF004E428A /* ViewCreditsController.xib */; };
+		F6F52509122C9854004E428A /* LETableViewCellLabeledTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F52508122C9854004E428A /* LETableViewCellLabeledTextView.m */; };
 		F6F5427D11A9D7D4006F347B /* LEBodyStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */; };
 		F6F854C412203FBF0000CD09 /* NewOneForOneTradeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F854C312203FBF0000CD09 /* NewOneForOneTradeController.m */; };
 		F6F854C712203FF20000CD09 /* LEBuildingTradeOneForOne.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F854C612203FF20000CD09 /* LEBuildingTradeOneForOne.m */; };
@@ -659,6 +666,9 @@
 		F6D5A00A12012E43009DDA28 /* LEBuildingScuttleShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingScuttleShip.m; sourceTree = "<group>"; };
 		F6D5A00C12012E5A009DDA28 /* LEBuildingNameShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingNameShip.h; sourceTree = "<group>"; };
 		F6D5A00D12012E5A009DDA28 /* LEBuildingNameShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingNameShip.m; sourceTree = "<group>"; };
+		F6D85A38122DC06C00A44BD9 /* WebPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebPageController.h; sourceTree = "<group>"; };
+		F6D85A39122DC06C00A44BD9 /* WebPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebPageController.m; sourceTree = "<group>"; };
+		F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebPageController.xib; sourceTree = "<group>"; };
 		F6D9AB3B121BFA13003E8D4E /* LEBuildingGetTradeableShips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetTradeableShips.h; sourceTree = "<group>"; };
 		F6D9AB3C121BFA13003E8D4E /* LEBuildingGetTradeableShips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetTradeableShips.m; sourceTree = "<group>"; };
 		F6D9AB3E121BFA25003E8D4E /* LEBuildingGetTradeablePrisoners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetTradeablePrisoners.h; sourceTree = "<group>"; };
@@ -841,6 +851,15 @@
 		F6EF714E11FE7D1C00A93226 /* LEBuildingViewAllShips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewAllShips.m; sourceTree = "<group>"; };
 		F6EF716811FE810900A93226 /* Ship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ship.h; sourceTree = "<group>"; };
 		F6EF716911FE810900A93226 /* Ship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ship.m; sourceTree = "<group>"; };
+		F6F52407122C5D9D004E428A /* ViewCreditsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewCreditsController.h; sourceTree = "<group>"; };
+		F6F52408122C5D9D004E428A /* ViewCreditsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewCreditsController.m; sourceTree = "<group>"; };
+		F6F5240A122C5ED5004E428A /* LEStatsCredits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEStatsCredits.h; sourceTree = "<group>"; };
+		F6F5240B122C5ED5004E428A /* LEStatsCredits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEStatsCredits.m; sourceTree = "<group>"; };
+		F6F5243E122C7D31004E428A /* LETableViewCellText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellText.h; sourceTree = "<group>"; };
+		F6F5243F122C7D31004E428A /* LETableViewCellText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellText.m; sourceTree = "<group>"; };
+		F6F5244D122C7EFF004E428A /* ViewCreditsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewCreditsController.xib; sourceTree = "<group>"; };
+		F6F52507122C9854004E428A /* LETableViewCellLabeledTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellLabeledTextView.h; sourceTree = "<group>"; };
+		F6F52508122C9854004E428A /* LETableViewCellLabeledTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellLabeledTextView.m; sourceTree = "<group>"; };
 		F6F5427B11A9D7D4006F347B /* LEBodyStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBodyStatus.h; sourceTree = "<group>"; };
 		F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBodyStatus.m; sourceTree = "<group>"; };
 		F6F854C212203FBF0000CD09 /* NewOneForOneTradeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewOneForOneTradeController.h; sourceTree = "<group>"; };
@@ -1054,6 +1073,8 @@
 				F67E11F0118A75BB00D964FD /* LETableViewCellSpyInfo.m */,
 				F61F6762120518C20007427A /* LETableViewCellStar.h */,
 				F61F6763120518C20007427A /* LETableViewCellStar.m */,
+				F6F5243E122C7D31004E428A /* LETableViewCellText.h */,
+				F6F5243F122C7D31004E428A /* LETableViewCellText.m */,
 				F634BB51116C31BD0084A8B2 /* LETableViewCellTextEntry.h */,
 				F634BB52116C31BD0084A8B2 /* LETableViewCellTextEntry.m */,
 				F634BB54116C31E50084A8B2 /* LETableViewCellTextEntry.xib */,
@@ -1065,6 +1086,8 @@
 				F69809C4117A156E00BD2096 /* LETableViewCellUnbuildable.m */,
 				F6DD2062116D5B3C0013C58D /* LEViewSectionTab.h */,
 				F6DD2063116D5B3C0013C58D /* LEViewSectionTab.m */,
+				F6F52507122C9854004E428A /* LETableViewCellLabeledTextView.h */,
+				F6F52508122C9854004E428A /* LETableViewCellLabeledTextView.m */,
 			);
 			name = Views;
 			path = Shared/Views;
@@ -1304,6 +1327,8 @@
 				F6AC4A15116C0F9B001B967A /* LESpeciesCreate.m */,
 				F6AC4A16116C0F9B001B967A /* LESpeciesSetHuman.h */,
 				F6AC4A17116C0F9B001B967A /* LESpeciesSetHuman.m */,
+				F6F5240A122C5ED5004E428A /* LEStatsCredits.h */,
+				F6F5240B122C5ED5004E428A /* LEStatsCredits.m */,
 				F6AC4A18116C0F9B001B967A /* LEUpgradeBuilding.h */,
 				F6AC4A19116C0F9B001B967A /* LEUpgradeBuilding.m */,
 			);
@@ -1525,6 +1550,9 @@
 				F603A91811780A0400BAC73A /* ViewBodyMapController.m */,
 				F69809A51179FFFB00BD2096 /* ViewBuildingController.h */,
 				F69809A61179FFFB00BD2096 /* ViewBuildingController.m */,
+				F6F52407122C5D9D004E428A /* ViewCreditsController.h */,
+				F6F52408122C5D9D004E428A /* ViewCreditsController.m */,
+				F6F5244D122C7EFF004E428A /* ViewCreditsController.xib */,
 				F6E3EFEE11B45BA000E7BC86 /* ViewEmpireBoostsController.h */,
 				F6E3EFEF11B45BA000E7BC86 /* ViewEmpireBoostsController.m */,
 				F6882CFB116EA08A009B624B /* ViewEmpireProfileController.h */,
@@ -1570,6 +1598,9 @@
 				F642C666122A154B00C596A7 /* ViewUniverseController.xib */,
 				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
+				F6D85A38122DC06C00A44BD9 /* WebPageController.h */,
+				F6D85A39122DC06C00A44BD9 /* WebPageController.m */,
+				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1662,6 +1693,8 @@
 				F642C668122A154B00C596A7 /* ViewUniverseController.xib in Resources */,
 				F642C66D122A155C00C596A7 /* ViewStatsController.xib in Resources */,
 				F6E4FD43122A916B00E78CBB /* ViewEmpireProfileController.xib in Resources */,
+				F6F5244E122C7EFF004E428A /* ViewCreditsController.xib in Resources */,
+				F6D85A3C122DC06C00A44BD9 /* WebPageController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1939,6 +1972,11 @@
 				F6D1DF9B122B2191007A9A4B /* LEEmpireFetchCaptcha.m in Sources */,
 				F6D1DFB8122B266F007A9A4B /* LETableViewCellServerSelect.m in Sources */,
 				F6D1E018122B33DE007A9A4B /* SelectNewEmpireSpeciesController.m in Sources */,
+				F6F52409122C5D9D004E428A /* ViewCreditsController.m in Sources */,
+				F6F5240C122C5ED5004E428A /* LEStatsCredits.m in Sources */,
+				F6F52440122C7D31004E428A /* LETableViewCellText.m in Sources */,
+				F6F52509122C9854004E428A /* LETableViewCellLabeledTextView.m in Sources */,
+				F6D85A3B122DC06C00A44BD9 /* WebPageController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

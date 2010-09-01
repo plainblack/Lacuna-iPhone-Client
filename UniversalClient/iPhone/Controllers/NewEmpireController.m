@@ -13,20 +13,48 @@
 #import "LETableViewCellTextEntry.h"
 #import "LETableViewCellCaptchaImage.h"
 #import "LETableViewCellButton.h"
+#import "LETableViewCellLabeledSwitch.h"
 #import "LEEmpireFetchCaptcha.h"
 #import "LEEmpireCreate.h"
 #import "SelectNewEmpireSpeciesController.h"
+#import "WebPageController.h"
+
+/*
+ [x] I agree to the Terms of Service.
+ [x] I agree to abide by the rules.
+ 
+ Link the first statement to: http://www.lacunaexpanse.com/terms/
+ Link the seconds statement to: http://www.lacunaexpanse.com/rules/
+ */
+
+typedef enum {
+	SECTION_EMPIRE,
+	SECTION_TOS,
+	SECTION_NEXT
+} SECTION;
 
 
 typedef enum {
-	ROW_NAME,
-	ROW_PASSWORD,
-	ROW_PASSWORD_CONFIRM,
-	ROW_EMAIL,
-	ROW_CAPTCHA_IMAGE,
-	ROW_CAPTCHA_SOLUTION,
-	ROW_NEXT_BUTTON
-} ROW;
+	EMPIRE_ROW_NAME,
+	EMPIRE_ROW_PASSWORD,
+	EMPIRE_ROW_PASSWORD_CONFIRM,
+	EMPIRE_ROW_EMAIL
+} EMPIRE_ROW;
+
+
+typedef enum {
+	TOS_TERMS_AGREE,
+	TOS_TERMS_LINK,
+	TOS_RULES_AGREE,
+	TOS_RULES_LINK
+} TOS_ROW;
+
+
+typedef enum {
+	NEXT_ROW_CAPTCHA_IMAGE,
+	NEXT_ROW_CAPTCHA_SOLUTION,
+	NEXT_ROW_NEXT_BUTTON
+} NEXT_ROW;
 
 
 @interface NewEmpireController (PrivateMethods)
@@ -43,6 +71,10 @@ typedef enum {
 @synthesize passwordCell;
 @synthesize passwordConfirmationCell;
 @synthesize emailCell;
+@synthesize termsAgreeCell;
+@synthesize termsLinkCell;
+@synthesize rulesAgreeCell;
+@synthesize rulesLinkCell;
 @synthesize captchaImageCell;
 @synthesize captchaSolutionCell;
 @synthesize nextButton;
@@ -80,6 +112,18 @@ typedef enum {
 	self.emailCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
 	self.emailCell.label.text = @"Email";
 	self.emailCell.delegate = self;
+
+	self.termsAgreeCell = [LETableViewCellLabeledSwitch getCellForTableView:self.tableView];
+	self.termsAgreeCell.label.text = @"I agree to Terms";
+	
+	self.termsLinkCell = [LETableViewCellButton getCellForTableView:self.tableView];
+	self.termsLinkCell.textLabel.text = @"View Terms of Service";
+	
+	self.rulesAgreeCell = [LETableViewCellLabeledSwitch getCellForTableView:self.tableView];
+	self.rulesAgreeCell.label.text = @"I agree to Rules";
+	
+	self.rulesLinkCell = [LETableViewCellButton getCellForTableView:self.tableView];
+	self.rulesLinkCell.textLabel.text = @"View rules";
 	
 	self.captchaImageCell = [LETableViewCellCaptchaImage getCellForTableView:self.tableView];
 	
@@ -117,31 +161,73 @@ typedef enum {
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
-    return 1;
+    return 3;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    return 7;
+	switch (section) {
+		case SECTION_EMPIRE:
+			return  4;
+			break;
+		case SECTION_TOS:
+			return  4;
+			break;
+		case SECTION_NEXT:
+			return  3;
+			break;
+		default:
+			return 0;
+			break;
+	}
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	switch (indexPath.row) {
-		case ROW_NAME:
-		case ROW_PASSWORD:
-		case ROW_PASSWORD_CONFIRM:
-		case ROW_EMAIL:
-		case ROW_CAPTCHA_SOLUTION:
-			return [LETableViewCellTextEntry getHeightForTableView:tableView];
+	switch (indexPath.section) {
+		case SECTION_EMPIRE:
+			switch (indexPath.row) {
+				case EMPIRE_ROW_NAME:
+				case EMPIRE_ROW_PASSWORD:
+				case EMPIRE_ROW_PASSWORD_CONFIRM:
+				case EMPIRE_ROW_EMAIL:
+					return [LETableViewCellTextEntry getHeightForTableView:tableView];
+					break;
+				default:
+					return 0.0;
+					break;
+			}
 			break;
-		case ROW_CAPTCHA_IMAGE:
-			return [LETableViewCellCaptchaImage getHeightForTableView:tableView];
+		case SECTION_TOS:
+			switch (indexPath.row) {
+				case TOS_TERMS_AGREE:
+				case TOS_RULES_AGREE:
+					return [LETableViewCellLabeledSwitch getHeightForTableView:tableView];
+					break;
+				case TOS_TERMS_LINK:
+				case TOS_RULES_LINK:
+					return [LETableViewCellButton getHeightForTableView:tableView];
+					break;
+				default:
+					return 0.0;
+					break;
+			}
 			break;
-		case ROW_NEXT_BUTTON:
-			return [LETableViewCellButton getHeightForTableView:tableView];
+		case SECTION_NEXT:
+			switch (indexPath.row) {
+				case NEXT_ROW_CAPTCHA_SOLUTION:
+					return [LETableViewCellTextEntry getHeightForTableView:tableView];
+					break;
+				case NEXT_ROW_CAPTCHA_IMAGE:
+					return [LETableViewCellCaptchaImage getHeightForTableView:tableView];
+					break;
+				case NEXT_ROW_NEXT_BUTTON:
+					return [LETableViewCellButton getHeightForTableView:tableView];
+					break;
+				default:
+					return 0.0;
+					break;
+			}
 			break;
 		default:
 			return 0.0;
@@ -152,27 +238,60 @@ typedef enum {
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	switch (indexPath.row) {
-		case ROW_NAME:
-			return self.nameCell;
+	switch (indexPath.section) {
+		case SECTION_EMPIRE:
+			switch (indexPath.row) {
+				case EMPIRE_ROW_NAME:
+					return self.nameCell;
+					break;
+				case EMPIRE_ROW_PASSWORD:
+					return self.passwordCell;
+					break;
+				case EMPIRE_ROW_PASSWORD_CONFIRM:
+					return self.passwordConfirmationCell;
+					break;
+				case EMPIRE_ROW_EMAIL:
+					return self.emailCell;
+					break;
+				default:
+					return nil;
+					break;
+			}
 			break;
-		case ROW_PASSWORD:
-			return self.passwordCell;
+		case SECTION_TOS:
+			switch (indexPath.row) {
+				case TOS_TERMS_AGREE:
+					return self.termsAgreeCell;
+					break;
+				case TOS_TERMS_LINK:
+					return self.termsLinkCell;
+					break;
+				case TOS_RULES_AGREE:
+					return self.rulesAgreeCell;
+					break;
+				case TOS_RULES_LINK:
+					return self.rulesLinkCell;
+					break;
+				default:
+					return nil;
+					break;
+			}
 			break;
-		case ROW_PASSWORD_CONFIRM:
-			return self.passwordConfirmationCell;
-			break;
-		case ROW_EMAIL:
-			return self.emailCell;
-			break;
-		case ROW_CAPTCHA_IMAGE:
-			return self.captchaImageCell;
-			break;
-		case ROW_CAPTCHA_SOLUTION:
-			return self.captchaSolutionCell;
-			break;
-		case ROW_NEXT_BUTTON:
-			return self.nextButton;
+		case SECTION_NEXT:
+			switch (indexPath.row) {
+				case NEXT_ROW_CAPTCHA_SOLUTION:
+					return self.captchaSolutionCell;
+					break;
+				case NEXT_ROW_CAPTCHA_IMAGE:
+					return self.captchaImageCell;
+					break;
+				case NEXT_ROW_NEXT_BUTTON:
+					return self.nextButton;
+					break;
+				default:
+					return nil;
+					break;
+			}
 			break;
 		default:
 			return nil;
@@ -185,12 +304,41 @@ typedef enum {
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	switch (indexPath.row) {
-		case ROW_NEXT_BUTTON:
-			if (self.empireId) {
-				[self showSpeciesSelect];
-			} else {
-				[[[LEEmpireCreate alloc] initWithCallback:@selector(empireCreated:) target:self name:self.nameCell.textField.text password:self.passwordCell.textField.text password1:self.passwordConfirmationCell.textField.text captchaGuid:self.captchaGuid captchaSolution:self.captchaSolutionCell.textField.text email:self.emailCell.textField.text] autorelease];
+	switch (indexPath.section) {
+		case SECTION_TOS:
+			switch (indexPath.row) {
+				case TOS_TERMS_LINK:
+					; //DO NOT REMOVE
+					WebPageController *termsWebPageController = [WebPageController create];
+					[termsWebPageController goToUrl:@"http://www.lacunaexpanse.com/terms/"];
+					[self presentModalViewController:termsWebPageController animated:YES];
+					break;
+				case TOS_RULES_LINK:
+					; //DO NOT REMOVE
+					WebPageController *rulesWebPageController = [WebPageController create];
+					[rulesWebPageController goToUrl:@"http://www.lacunaexpanse.com/rules/"];
+					[self presentModalViewController:rulesWebPageController animated:YES];
+					break;
+
+				default:
+					break;
+			}
+			break;
+		case SECTION_NEXT:
+			switch (indexPath.row) {
+				case NEXT_ROW_NEXT_BUTTON:
+					if (self.termsAgreeCell.isSelected && self.rulesAgreeCell.isSelected) {
+						if (self.empireId) {
+							[self showSpeciesSelect];
+						} else {
+							[[[LEEmpireCreate alloc] initWithCallback:@selector(empireCreated:) target:self name:self.nameCell.textField.text password:self.passwordCell.textField.text password1:self.passwordConfirmationCell.textField.text captchaGuid:self.captchaGuid captchaSolution:self.captchaSolutionCell.textField.text email:self.emailCell.textField.text] autorelease];
+						}
+					} else {
+						UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Alert" message:@"You must agree to the Terms of Service and Rules." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+						[av show];
+					}
+
+					break;
 			}
 			break;
 	}
@@ -213,6 +361,10 @@ typedef enum {
 	self.passwordCell = nil;
 	self.passwordConfirmationCell = nil;
 	self.emailCell = nil;
+	self.termsAgreeCell = nil;
+	self.termsLinkCell = nil;
+	self.rulesAgreeCell = nil;
+	self.rulesLinkCell = nil;
 	self.captchaImageCell = nil;
 	self.captchaSolutionCell = nil;
 	self.nextButton = nil;

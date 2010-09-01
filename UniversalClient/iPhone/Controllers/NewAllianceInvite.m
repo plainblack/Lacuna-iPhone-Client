@@ -13,7 +13,7 @@
 #import "Embassy.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellButton.h"
-#import "LETableViewCellTextView.h"
+#import "LETableViewCellLabeledTextView.h"
 #import "LEBuildingCreateAlliance.h"
 
 
@@ -34,7 +34,7 @@
 	self.navigationItem.title = @"New Alliance";
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleDone target:self action:@selector(sendInvite)] autorelease];
 	
-	self.messageCell = [LETableViewCellTextView getCellForTableView:self.tableView];
+	self.messageCell = [LETableViewCellLabeledTextView getCellForTableView:self.tableView];
 	self.messageCell.label.text = @"Name";
 	
 	
@@ -73,7 +73,7 @@
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		case 1:
-			return [LETableViewCellTextView getHeightForTableView:tableView];
+			return [LETableViewCellLabeledTextView getHeightForTableView:tableView];
 			break;
 		default:
 			return 0.0;

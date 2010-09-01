@@ -13,6 +13,7 @@
 @class LETableViewCellTextEntry;
 @class LETableViewCellCaptchaImage;
 @class LETableViewCellButton;
+@class LETableViewCellLabeledSwitch;
 
 
 @interface NewEmpireController : LETableViewControllerGrouped <UITextFieldDelegate> {
@@ -20,6 +21,10 @@
 	LETableViewCellTextEntry *passwordCell;
 	LETableViewCellTextEntry *passwordConfirmationCell;
 	LETableViewCellTextEntry *emailCell;
+	LETableViewCellLabeledSwitch *termsAgreeCell;
+	LETableViewCellButton *termsLinkCell;
+	LETableViewCellLabeledSwitch *rulesAgreeCell;
+	LETableViewCellButton *rulesLinkCell;
 	LETableViewCellCaptchaImage *captchaImageCell;
 	LETableViewCellTextEntry *captchaSolutionCell;
 	LETableViewCellButton *nextButton;
@@ -33,6 +38,10 @@
 @property(nonatomic, retain) LETableViewCellTextEntry *passwordCell;
 @property(nonatomic, retain) LETableViewCellTextEntry *passwordConfirmationCell;
 @property(nonatomic, retain) LETableViewCellTextEntry *emailCell;
+@property(nonatomic, retain) LETableViewCellLabeledSwitch *termsAgreeCell;
+@property(nonatomic, retain) LETableViewCellButton *termsLinkCell;
+@property(nonatomic, retain) LETableViewCellLabeledSwitch *rulesAgreeCell;
+@property(nonatomic, retain) LETableViewCellButton *rulesLinkCell;
 @property(nonatomic, retain) LETableViewCellCaptchaImage *captchaImageCell;
 @property(nonatomic, retain) LETableViewCellTextEntry *captchaSolutionCell;
 @property(nonatomic, retain) LETableViewCellButton *nextButton;

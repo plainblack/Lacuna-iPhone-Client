@@ -13,14 +13,21 @@
 #import "LEEmpireFound.h"
 #import "Session.h"
 #import "LETableViewCellOrbitSelector.h"
+#import "LETableViewCellButton.h"
 
 
 typedef enum {
 	SECTION_SPECIES,
 	SECTION_HABITAL_ORBITS,
 	SECTION_AFFINITIES,
-	SECTION_CREATE,
+	SECTION_CREATE
 } SECTION;
+
+
+typedef enum {
+	SPECIES_ROW_NAME,
+	SPECIES_ROW_DESCRIPTION
+} SPECIES_ROWS;
 
 
 @interface NewSpeciesController (PrivateMethods)
@@ -37,6 +44,7 @@ typedef enum {
 @synthesize username;
 @synthesize password;
 @synthesize speciesNameCell;
+@synthesize speciesDescriptionCell;
 @synthesize orbitCells;
 @synthesize manufacturingCell;
 @synthesize deceptionCell;
@@ -63,7 +71,10 @@ typedef enum {
 	self.speciesNameCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
 	self.speciesNameCell.label.text = @"Name";
 	self.speciesNameCell.delegate = self;
-
+	
+	self.speciesDescriptionCell = [LETableViewCellLabeledTextView getCellForTableView:self.tableView];
+	self.speciesDescriptionCell.label.text = @"Description";
+	
 	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:NUM_ORBITS];
 	for (int index=0; index<NUM_ORBITS; index++) {
 		LETableViewCellOrbitSelector *orbitCell = [LETableViewCellOrbitSelector getCellForTableView:self.tableView];
@@ -142,14 +153,14 @@ typedef enum {
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 4;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	switch (section) {
 		case SECTION_SPECIES:
-			return 1;
+			return 2;
 			break;
 		case SECTION_HABITAL_ORBITS:
 			return [orbitCells count];
@@ -167,25 +178,58 @@ typedef enum {
 }
 
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	switch (indexPath.section) {
+		case SECTION_SPECIES:
+			switch (indexPath.row) {
+				case SPECIES_ROW_NAME:
+					return [LETableViewCellTextEntry getHeightForTableView:tableView];
+					break;
+				case SPECIES_ROW_DESCRIPTION:
+					return [LETableViewCellLabeledTextView getHeightForTableView:tableView];
+					break;
+				default:
+					return 0;
+					break;
+			}
+			break;
+		case SECTION_HABITAL_ORBITS:
+			return [LETableViewCellOrbitSelector getHeightForTableView:tableView];
+			break;
+		case SECTION_AFFINITIES:
+			return [LETableViewCellAffinitySelector getHeightForTableView:tableView];
+			break;
+		case SECTION_CREATE:
+			return [LETableViewCellButton getHeightForTableView:tableView];
+			break;
+		default:
+			return 0;
+			break;
+	}
+}
+
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell;
 	
 	switch (indexPath.section) {
-		case 0:
+		case SECTION_SPECIES:
 			switch (indexPath.row) {
-				case 0:
+				case SPECIES_ROW_NAME:
 					cell = self.speciesNameCell;
+					break;
+				case SPECIES_ROW_DESCRIPTION:
+					cell = self.speciesDescriptionCell;
 					break;
 				default:
 					cell = nil;
 					break;
 			}
 			break;
-		case 1:
+		case SECTION_HABITAL_ORBITS:
 			cell = [orbitCells objectAtIndex:indexPath.row];
 			break;
-		case 2:
+		case SECTION_AFFINITIES:
 			switch (indexPath.row) {
 				case 0:
 					cell = manufacturingCell;
@@ -224,12 +268,29 @@ typedef enum {
 					break;
 			}
 			break;
+		case SECTION_CREATE:
+			; //DO NOT REMOVE
+			LETableViewCellButton *createButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			createButtonCell.textLabel.text = @"Create";
+			cell = createButtonCell;
+			break;
 		default:
 			cell = nil;
 			break;
 	}
 
     return cell;
+}
+
+
+#pragma mark -
+#pragma mark UITableViewDataSource Methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.section == SECTION_CREATE) {
+		[self createSpecies];
+		[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	}
 }
 
 
@@ -247,7 +308,19 @@ typedef enum {
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     self.speciesNameCell = nil;
+	self.speciesDescriptionCell = nil;
 	self.orbitCells = nil;
+	self.manufacturingCell = nil;
+	self.deceptionCell = nil;
+	self.researchCell = nil;
+	self.managementCell = nil;
+	self.farmingCell = nil;
+	self.miningCell = nil;
+	self.scienceCell = nil;
+	self.environmentalCell = nil;
+	self.politicalCell = nil;
+	self.tradeCell = nil;
+	self.growthCell = nil;
 	[super viewDidUnload];
 }
 
@@ -283,7 +356,7 @@ typedef enum {
 		[[[LESpeciesCreate alloc] initWithCallback:@selector(speciesCreated:) target:self
 										  empireId:self.empireId
 											  name:self.speciesNameCell.textField.text
-									   description:@""
+									   description:self.speciesDescriptionCell.textView.text
 								   habitableOrbits:orbitArray
 							 manufacturingAffinity:manufacturingCell.rating
 								 deceptionAffinity:deceptionCell.rating
@@ -361,6 +434,7 @@ typedef enum {
 				break;
 		}
 	} else {
+		//KEVIN ADD CONFIRM SCREEN HERE
 		NSLog(@"Go to confirm screen now");
 	}
 	

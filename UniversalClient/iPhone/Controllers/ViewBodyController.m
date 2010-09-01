@@ -19,6 +19,7 @@
 #import "RenameBodyController.h"
 #import "LETableViewCellDictionary.h"
 #import "PickColonyController.h"
+#import "ViewCreditsController.h"
 
 
 typedef enum {
@@ -365,7 +366,6 @@ typedef enum {
 	Session *session = [Session sharedInstance];
 	[session logout];
 }
-
 
 
 #pragma mark -

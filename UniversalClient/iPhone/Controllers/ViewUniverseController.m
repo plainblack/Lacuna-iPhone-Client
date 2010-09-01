@@ -7,6 +7,7 @@
 //
 
 #import "ViewUniverseController.h"
+#import "Session.h"
 
 
 @implementation ViewUniverseController
@@ -25,16 +26,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	self.navigationItem.title = @"Star Map";
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout)] autorelease];
 }
 
 
-/*
-// Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return YES;
 }
-*/
+
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -52,6 +51,15 @@
 
 - (void)dealloc {
     [super dealloc];
+}
+
+
+#pragma mark -
+#pragma mark Instance Methods
+
+- (IBAction)logout {
+	Session *session = [Session sharedInstance];
+	[session logout];
 }
 
 

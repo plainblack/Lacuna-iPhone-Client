@@ -24,6 +24,9 @@
 @property(nonatomic, retain) EmpireProfile *empireProfile;
 
 
+- (IBAction)logout;
+
+
 + (ViewEmpireProfileController *) create;
 
 

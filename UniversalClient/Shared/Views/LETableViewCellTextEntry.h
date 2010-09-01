@@ -24,6 +24,8 @@
 - (NSString *)value;
 - (void)becomeFirstResponder;
 - (void)resignFirstResponder;
+- (void)dismissKeyboard;
+- (void)clearText;
 
 
 + (LETableViewCellTextEntry *)getCellWithNibForTableView:(UITableView *)tableView;

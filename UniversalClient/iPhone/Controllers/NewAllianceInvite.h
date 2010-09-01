@@ -11,18 +11,18 @@
 #import "SelectEmpireController.h"
 
 @class Embassy;
-@class LETableViewCellTextView;
+@class LETableViewCellLabeledTextView;
 
 
 @interface NewAllianceInvite : LETableViewControllerGrouped <SelectEmpireControllerDelegate> {
 	Embassy *embassy;
-	LETableViewCellTextView *messageCell;
+	LETableViewCellLabeledTextView *messageCell;
 	NSMutableArray *invitees;
 }
 
 
 @property (nonatomic, retain) Embassy *embassy;
-@property (nonatomic, retain) LETableViewCellTextView *messageCell;
+@property (nonatomic, retain) LETableViewCellLabeledTextView *messageCell;
 @property (nonatomic, retain) NSMutableArray *invitees;
 
 
