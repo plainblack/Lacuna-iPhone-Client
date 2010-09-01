@@ -19,13 +19,6 @@
 #import "SelectNewEmpireSpeciesController.h"
 #import "WebPageController.h"
 
-/*
- [x] I agree to the Terms of Service.
- [x] I agree to abide by the rules.
- 
- Link the first statement to: http://www.lacunaexpanse.com/terms/
- Link the seconds statement to: http://www.lacunaexpanse.com/rules/
- */
 
 typedef enum {
 	SECTION_EMPIRE,
@@ -355,6 +348,7 @@ typedef enum {
     // Relinquish ownership any cached data, images, etc that aren't in use.
 }
 
+
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
 	self.nameCell = nil;
@@ -464,22 +458,6 @@ typedef enum {
 	return nil;
 }
 
-
-/*
-- (id)empireFounded:(LEEmpireFound *) request {
-	NSLog(@"Empire Founded");
-	if ([request wasError]) {
-		//WHAT TO DO?
-	} else {
-		[self dismissModalViewControllerAnimated:YES];
-		Session *session = [Session sharedInstance];
-		[session loginWithUsername:self.nameCell.textField.text password:self.passwordCell.textField.text];
-		
-	}
-	
-	return nil;
-}
-*/
 
 #pragma mark -
 #pragma mark Class Methods

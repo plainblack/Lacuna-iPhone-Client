@@ -14,6 +14,7 @@
 #import "Session.h"
 #import "LETableViewCellOrbitSelector.h"
 #import "LETableViewCellButton.h"
+#import "FoundNewEmpireController.h"
 
 
 typedef enum {
@@ -434,21 +435,11 @@ typedef enum {
 				break;
 		}
 	} else {
-		//KEVIN ADD CONFIRM SCREEN HERE
-		NSLog(@"Go to confirm screen now");
-	}
-	
-	return nil;
-}
-
-
-- (id)empireFounded:(LEEmpireFound *) request {
-	if ([request wasError]) {
-		//WHAT TO DO?
-	} else {
-		[self dismissModalViewControllerAnimated:YES];
-		Session *session = [Session sharedInstance];
-		[session loginWithUsername:self.username password:self.password];
+		FoundNewEmpireController *foundNewEmpireController = [FoundNewEmpireController create];
+		foundNewEmpireController.empireId = self.empireId;
+		foundNewEmpireController.username = self.username;
+		foundNewEmpireController.password = self.password;
+		[self.navigationController pushViewController:foundNewEmpireController animated:YES];
 	}
 	
 	return nil;

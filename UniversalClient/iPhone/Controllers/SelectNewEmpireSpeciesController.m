@@ -14,6 +14,7 @@
 #import "LESpeciesSetHuman.h"
 #import "LESpeciesCreate.h"
 #import "NewSpeciesController.h"
+#import "FoundNewEmpireController.h"
 
 
 #define SELECT_MESSAGE @"You can select to be human which is average in all affinities and can live on Orbit 3 planets or you can create a custom species so you can choose your affinities levels and habitial planets."
@@ -126,7 +127,6 @@ typedef enum {
 	switch (indexPath.row) {
 		case ROW_HUMAN:
 			[[[LESpeciesSetHuman alloc] initWithCallback:@selector(humanSet:) target:self empireId:self.empireId] autorelease];
-			NSLog(@"Send set human and then go to Confirm.");
 			break;
 		case ROW_CUSTOM:
 			; //DO NOT REMOVE
@@ -169,7 +169,11 @@ typedef enum {
 
 - (id)humanSet:(LESpeciesSetHuman *)request {
 	if (![request wasError]) {
-		NSLog(@"Display confirm screen.");
+		FoundNewEmpireController *foundNewEmpireController = [FoundNewEmpireController create];
+		foundNewEmpireController.empireId = self.empireId;
+		foundNewEmpireController.username = self.username;
+		foundNewEmpireController.password = self.password;
+		[self.navigationController pushViewController:foundNewEmpireController animated:YES];
 	}
 	
 	return nil;

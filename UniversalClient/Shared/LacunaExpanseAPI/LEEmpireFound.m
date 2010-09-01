@@ -15,25 +15,32 @@
 
 @synthesize empireId;
 @synthesize sessionId;
+@synthesize inviteCode;
 @synthesize status;
 
 
-- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget empireId:(NSString *)inEmpireId {
+- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget empireId:(NSString *)inEmpireId inviteCode:(NSString *)inInviteCode {
 	self.empireId = inEmpireId;
+	self.inviteCode = inInviteCode;
 	
 	return [super initWithCallback:inCallback target:inTarget];
 }
 
 
 - (id)params {
-	return _array(self.empireId, API_KEY);
+	NSMutableArray *params = _array(self.empireId, API_KEY);
+	
+	if (self.inviteCode && [self.inviteCode length] > 0) {
+		[params addObject:self.inviteCode];
+	}
+	
+	return params;
 }
 
 
 - (void)processSuccess {
 	NSDictionary *result = [self.response objectForKey:@"result"];
 	self.sessionId = [result objectForKey:@"session_id"];
-	self.status = [result objectForKey:@"status"];
 }
 
 
@@ -50,7 +57,7 @@
 - (void)dealloc {
 	self.empireId = nil;
 	self.sessionId = nil;
-	self.status = nil;
+	self.inviteCode = nil;
 	[super dealloc];
 }
 
