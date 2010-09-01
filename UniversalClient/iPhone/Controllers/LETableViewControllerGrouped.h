@@ -11,10 +11,12 @@
 
 @interface LETableViewControllerGrouped : UITableViewController {
 	NSArray *sectionHeaders;
+	BOOL pendingRequest;
 }
 
 
-@property(nonatomic, retain) NSArray *sectionHeaders;
+@property (nonatomic, retain) NSArray *sectionHeaders;
+@property (nonatomic, assign) BOOL pendingRequest;
 
 
 @end

@@ -16,6 +16,7 @@
 @synthesize label;
 @synthesize textField;
 @dynamic delegate;
+@dynamic enabled;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -139,6 +140,22 @@
 
 - (void)setDelegate:(id<UITextFieldDelegate>)aDelegate {
 	self.textField.delegate = aDelegate;
+}
+
+
+- (BOOL)enabled {
+	return self.textField.enabled;
+}
+
+
+- (void)setEnabled:(BOOL)inEnabled {
+	if (inEnabled) {
+		self.textField.backgroundColor = [UIColor whiteColor];
+		self.textField.enabled = YES;
+	} else {
+		self.textField.backgroundColor = [UIColor lightGrayColor];
+		self.textField.enabled = NO;
+	}
 }
 
 

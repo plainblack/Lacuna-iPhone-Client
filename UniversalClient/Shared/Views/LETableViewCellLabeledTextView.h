@@ -16,9 +16,10 @@
 }
 
 
-@property(nonatomic, retain) IBOutlet UILabel *label;
-@property(nonatomic, retain) IBOutlet UITextView *textView;
-@property(nonatomic, assign) id<UITextViewDelegate> delegate;
+@property (nonatomic, retain) IBOutlet UILabel *label;
+@property (nonatomic, retain) IBOutlet UITextView *textView;
+@property (nonatomic, assign) id<UITextViewDelegate> delegate;
+@property (nonatomic, assign) BOOL enabled;
 
 
 - (NSString *)value;

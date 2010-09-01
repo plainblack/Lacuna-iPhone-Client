@@ -17,6 +17,7 @@
 @synthesize label;
 @synthesize textView;
 @dynamic delegate;
+@dynamic enabled;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -140,6 +141,22 @@
 
 - (void)setDelegate:(id<UITextViewDelegate>)aDelegate {
 	self.textView.delegate = aDelegate;
+}
+
+
+- (BOOL)enabled {
+	return self.textView.editable;
+}
+
+
+- (void)setEnabled:(BOOL)inEnabled {
+	if (inEnabled) {
+		self.textView.backgroundColor = [UIColor whiteColor];
+		self.textView.editable = YES;
+	} else {
+		self.textView.backgroundColor = [UIColor lightGrayColor];
+		self.textView.editable = NO;
+	}
 }
 
 

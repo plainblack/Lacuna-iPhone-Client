@@ -288,9 +288,11 @@ typedef enum {
 #pragma mark UITableViewDataSource Methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == SECTION_CREATE) {
-		[self createSpecies];
-		[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	if (!self.pendingRequest) {
+		if (indexPath.section == SECTION_CREATE) {
+			[self createSpecies];
+			[tableView deselectRowAtIndexPath:indexPath animated:YES];
+		}
 	}
 }
 
@@ -353,7 +355,7 @@ typedef enum {
 				[orbitArray addObject:[NSDecimalNumber numberWithInteger:(index+1)]];
 			}
 		}
-		
+		self.pendingRequest = YES;
 		[[[LESpeciesCreate alloc] initWithCallback:@selector(speciesCreated:) target:self
 										  empireId:self.empireId
 											  name:self.speciesNameCell.textField.text
@@ -425,6 +427,7 @@ typedef enum {
 #pragma mark Callbacks
 
 - (id)speciesCreated:(LESpeciesCreate *) request {
+	self.pendingRequest = NO;
 	if ([request wasError]) {
 		switch ([request errorCode]) {
 			case 1009:

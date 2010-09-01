@@ -106,10 +106,13 @@ typedef enum {
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	switch (indexPath.row) {
-		case ROW_FOUND_BUTTON:
-			[[[LEEmpireFound alloc] initWithCallback:@selector(empireFounded:) target:self empireId:self.empireId inviteCode:self.friendCodeCell.textField.text] autorelease];
-			break;
+	if (!self.pendingRequest) {
+		switch (indexPath.row) {
+			case ROW_FOUND_BUTTON:
+				self.pendingRequest = YES;
+				[[[LEEmpireFound alloc] initWithCallback:@selector(empireFounded:) target:self empireId:self.empireId inviteCode:self.friendCodeCell.textField.text] autorelease];
+				break;
+		}
 	}
 }
 
@@ -157,7 +160,7 @@ typedef enum {
 #pragma mark Callbacks
 
 - (id)empireFounded:(LEEmpireFound *) request {
-	NSLog(@"Empire Founded");
+	self.pendingRequest = NO;
 	if ([request wasError]) {
 		//WHAT TO DO?
 	} else {

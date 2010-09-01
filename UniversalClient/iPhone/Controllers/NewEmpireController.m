@@ -297,43 +297,46 @@ typedef enum {
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	switch (indexPath.section) {
-		case SECTION_TOS:
-			switch (indexPath.row) {
-				case TOS_TERMS_LINK:
-					; //DO NOT REMOVE
-					WebPageController *termsWebPageController = [WebPageController create];
-					[termsWebPageController goToUrl:@"http://www.lacunaexpanse.com/terms/"];
-					[self presentModalViewController:termsWebPageController animated:YES];
-					break;
-				case TOS_RULES_LINK:
-					; //DO NOT REMOVE
-					WebPageController *rulesWebPageController = [WebPageController create];
-					[rulesWebPageController goToUrl:@"http://www.lacunaexpanse.com/rules/"];
-					[self presentModalViewController:rulesWebPageController animated:YES];
-					break;
-
-				default:
-					break;
-			}
-			break;
-		case SECTION_NEXT:
-			switch (indexPath.row) {
-				case NEXT_ROW_NEXT_BUTTON:
-					if (self.termsAgreeCell.isSelected && self.rulesAgreeCell.isSelected) {
-						if (self.empireId) {
-							[self showSpeciesSelect];
+	if (!self.pendingRequest) {
+		switch (indexPath.section) {
+			case SECTION_TOS:
+				switch (indexPath.row) {
+					case TOS_TERMS_LINK:
+						; //DO NOT REMOVE
+						WebPageController *termsWebPageController = [WebPageController create];
+						[termsWebPageController goToUrl:@"http://www.lacunaexpanse.com/terms/"];
+						[self presentModalViewController:termsWebPageController animated:YES];
+						break;
+					case TOS_RULES_LINK:
+						; //DO NOT REMOVE
+						WebPageController *rulesWebPageController = [WebPageController create];
+						[rulesWebPageController goToUrl:@"http://www.lacunaexpanse.com/rules/"];
+						[self presentModalViewController:rulesWebPageController animated:YES];
+						break;
+						
+					default:
+						break;
+				}
+				break;
+			case SECTION_NEXT:
+				switch (indexPath.row) {
+					case NEXT_ROW_NEXT_BUTTON:
+						if (self.termsAgreeCell.isSelected && self.rulesAgreeCell.isSelected) {
+							if (self.empireId) {
+								[self showSpeciesSelect];
+							} else {
+								[[[LEEmpireCreate alloc] initWithCallback:@selector(empireCreated:) target:self name:self.nameCell.textField.text password:self.passwordCell.textField.text password1:self.passwordConfirmationCell.textField.text captchaGuid:self.captchaGuid captchaSolution:self.captchaSolutionCell.textField.text email:self.emailCell.textField.text] autorelease];
+								self.pendingRequest = YES;
+							}
 						} else {
-							[[[LEEmpireCreate alloc] initWithCallback:@selector(empireCreated:) target:self name:self.nameCell.textField.text password:self.passwordCell.textField.text password1:self.passwordConfirmationCell.textField.text captchaGuid:self.captchaGuid captchaSolution:self.captchaSolutionCell.textField.text email:self.emailCell.textField.text] autorelease];
+							UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Alert" message:@"You must agree to the Terms of Service and Rules." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+							[av show];
 						}
-					} else {
-						UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Alert" message:@"You must agree to the Terms of Service and Rules." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-						[av show];
-					}
-
-					break;
-			}
-			break;
+						
+						break;
+				}
+				break;
+		}
 	}
 }
 
@@ -424,6 +427,7 @@ typedef enum {
 
 
 - (id)empireCreated:(LEEmpireCreate *)request {
+	self.pendingRequest = NO;
 	if ([request wasError]) {
 		switch ([request errorCode]) {
 			case 1000:
@@ -447,11 +451,11 @@ typedef enum {
 		}
 	} else {
 		self.empireId = request.empireId;
-		self.nameCell.textField.enabled = NO;
-		self.passwordCell.textField.enabled = NO;
-		self.passwordConfirmationCell.textField.enabled = NO;
-		self.emailCell.textField.enabled = NO;
-		self.captchaSolutionCell.textField.enabled = NO;
+		self.nameCell.enabled = NO;
+		self.passwordCell.enabled = NO;
+		self.passwordConfirmationCell.enabled = NO;
+		self.emailCell.enabled = NO;
+		self.captchaSolutionCell.enabled = NO;
 		[self showSpeciesSelect];
 	}
 	

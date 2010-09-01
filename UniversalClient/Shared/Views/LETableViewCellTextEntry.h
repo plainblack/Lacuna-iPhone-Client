@@ -16,9 +16,10 @@
 }
 
 
-@property(nonatomic, retain) IBOutlet UILabel *label;
-@property(nonatomic, retain) IBOutlet UITextField *textField;
-@property(nonatomic, assign) id<UITextFieldDelegate> delegate;
+@property (nonatomic, retain) IBOutlet UILabel *label;
+@property (nonatomic, retain) IBOutlet UITextField *textField;
+@property (nonatomic, assign) id<UITextFieldDelegate> delegate;
+@property (nonatomic, assign) BOOL enabled;
 
 
 - (NSString *)value;

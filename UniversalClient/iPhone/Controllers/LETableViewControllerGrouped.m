@@ -15,6 +15,7 @@
 
 
 @synthesize sectionHeaders;
+@synthesize pendingRequest;
 
 
 #pragma mark -
@@ -23,6 +24,7 @@
 - (id)init {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
 		//Do any special init stuff here
+		self.pendingRequest = NO;
     }
     return self;
 }
