@@ -173,6 +173,8 @@
 		F6C390EE11F23D54004FB38F /* LETableViewCellBuildQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C390ED11F23D54004FB38F /* LETableViewCellBuildQueueItem.m */; };
 		F6CF29E21210E1F400D4A9AC /* AssignSpyControllerV2.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CF29E01210E1F400D4A9AC /* AssignSpyControllerV2.m */; };
 		F6CF29E31210E1F400D4A9AC /* AssignViewControllerV2.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6CF29E11210E1F400D4A9AC /* AssignViewControllerV2.xib */; };
+		F6D02A191230698B000D8811 /* LEEmpireSendPasswordResetMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D02A181230698B000D8811 /* LEEmpireSendPasswordResetMessage.m */; };
+		F6D02A1C1230699F000D8811 /* LEEmpireResetPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D02A1B1230699F000D8811 /* LEEmpireResetPassword.m */; };
 		F6D1DF9B122B2191007A9A4B /* LEEmpireFetchCaptcha.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D1DF9A122B2191007A9A4B /* LEEmpireFetchCaptcha.m */; };
 		F6D1DFB8122B266F007A9A4B /* LETableViewCellServerSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D1DFB7122B266F007A9A4B /* LETableViewCellServerSelect.m */; };
 		F6D1E018122B33DE007A9A4B /* SelectNewEmpireSpeciesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D1E017122B33DE007A9A4B /* SelectNewEmpireSpeciesController.m */; };
@@ -194,6 +196,7 @@
 		F6D59FF412012AA9009DDA28 /* RenameShipController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D59FF312012AA9009DDA28 /* RenameShipController.m */; };
 		F6D5A00B12012E43009DDA28 /* LEBuildingScuttleShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D5A00A12012E43009DDA28 /* LEBuildingScuttleShip.m */; };
 		F6D5A00E12012E5A009DDA28 /* LEBuildingNameShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D5A00D12012E5A009DDA28 /* LEBuildingNameShip.m */; };
+		F6D7CAD4122FBEA6003F698F /* ForgotPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D7CAD3122FBEA6003F698F /* ForgotPasswordController.m */; };
 		F6D85A3B122DC06C00A44BD9 /* WebPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D85A39122DC06C00A44BD9 /* WebPageController.m */; };
 		F6D85A3C122DC06C00A44BD9 /* WebPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */; };
 		F6D85AA2122DEA1200A44BD9 /* FoundNewEmpireController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D85AA1122DEA1200A44BD9 /* FoundNewEmpireController.m */; };
@@ -625,6 +628,10 @@
 		F6CF29DF1210E1F400D4A9AC /* AssignSpyControllerV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssignSpyControllerV2.h; sourceTree = "<group>"; };
 		F6CF29E01210E1F400D4A9AC /* AssignSpyControllerV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssignSpyControllerV2.m; sourceTree = "<group>"; };
 		F6CF29E11210E1F400D4A9AC /* AssignViewControllerV2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssignViewControllerV2.xib; sourceTree = "<group>"; };
+		F6D02A171230698B000D8811 /* LEEmpireSendPasswordResetMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireSendPasswordResetMessage.h; sourceTree = "<group>"; };
+		F6D02A181230698B000D8811 /* LEEmpireSendPasswordResetMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireSendPasswordResetMessage.m; sourceTree = "<group>"; };
+		F6D02A1A1230699F000D8811 /* LEEmpireResetPassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireResetPassword.h; sourceTree = "<group>"; };
+		F6D02A1B1230699F000D8811 /* LEEmpireResetPassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireResetPassword.m; sourceTree = "<group>"; };
 		F6D1DF99122B2191007A9A4B /* LEEmpireFetchCaptcha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireFetchCaptcha.h; sourceTree = "<group>"; };
 		F6D1DF9A122B2191007A9A4B /* LEEmpireFetchCaptcha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireFetchCaptcha.m; sourceTree = "<group>"; };
 		F6D1DFB6122B266F007A9A4B /* LETableViewCellServerSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellServerSelect.h; sourceTree = "<group>"; };
@@ -667,6 +674,8 @@
 		F6D5A00A12012E43009DDA28 /* LEBuildingScuttleShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingScuttleShip.m; sourceTree = "<group>"; };
 		F6D5A00C12012E5A009DDA28 /* LEBuildingNameShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingNameShip.h; sourceTree = "<group>"; };
 		F6D5A00D12012E5A009DDA28 /* LEBuildingNameShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingNameShip.m; sourceTree = "<group>"; };
+		F6D7CAD2122FBEA6003F698F /* ForgotPasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordController.h; sourceTree = "<group>"; };
+		F6D7CAD3122FBEA6003F698F /* ForgotPasswordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordController.m; sourceTree = "<group>"; };
 		F6D85A38122DC06C00A44BD9 /* WebPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebPageController.h; sourceTree = "<group>"; };
 		F6D85A39122DC06C00A44BD9 /* WebPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebPageController.m; sourceTree = "<group>"; };
 		F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebPageController.xib; sourceTree = "<group>"; };
@@ -1334,6 +1343,10 @@
 				F6F5240B122C5ED5004E428A /* LEStatsCredits.m */,
 				F6AC4A18116C0F9B001B967A /* LEUpgradeBuilding.h */,
 				F6AC4A19116C0F9B001B967A /* LEUpgradeBuilding.m */,
+				F6D02A171230698B000D8811 /* LEEmpireSendPasswordResetMessage.h */,
+				F6D02A181230698B000D8811 /* LEEmpireSendPasswordResetMessage.m */,
+				F6D02A1A1230699F000D8811 /* LEEmpireResetPassword.h */,
+				F6D02A1B1230699F000D8811 /* LEEmpireResetPassword.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -1606,6 +1619,8 @@
 				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
 				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
+				F6D7CAD2122FBEA6003F698F /* ForgotPasswordController.h */,
+				F6D7CAD3122FBEA6003F698F /* ForgotPasswordController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1983,6 +1998,9 @@
 				F6F52509122C9854004E428A /* LETableViewCellLabeledTextView.m in Sources */,
 				F6D85A3B122DC06C00A44BD9 /* WebPageController.m in Sources */,
 				F6D85AA2122DEA1200A44BD9 /* FoundNewEmpireController.m in Sources */,
+				F6D7CAD4122FBEA6003F698F /* ForgotPasswordController.m in Sources */,
+				F6D02A191230698B000D8811 /* LEEmpireSendPasswordResetMessage.m in Sources */,
+				F6D02A1C1230699F000D8811 /* LEEmpireResetPassword.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

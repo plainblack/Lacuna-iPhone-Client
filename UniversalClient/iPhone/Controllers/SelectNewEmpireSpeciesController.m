@@ -43,6 +43,7 @@ typedef enum {
 	
 	self.navigationItem.title = @"Select Species";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)] autorelease];
 	
 	self.sectionHeaders = [NSArray array];
 }
@@ -165,7 +166,15 @@ typedef enum {
 
 
 #pragma mark -
-#pragma mark Memory management
+#pragma mark Instance Methods
+
+- (IBAction)cancel {
+	[self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+
+#pragma mark -
+#pragma mark Callback Methods
 
 - (id)humanSet:(LESpeciesSetHuman *)request {
 	if (![request wasError]) {

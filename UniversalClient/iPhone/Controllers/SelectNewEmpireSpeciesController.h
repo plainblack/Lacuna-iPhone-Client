@@ -22,6 +22,9 @@
 @property (nonatomic, retain) NSString *password;
 
 
+- (IBAction)cancel;
+
+
 + (SelectNewEmpireSpeciesController *)create;
 
 

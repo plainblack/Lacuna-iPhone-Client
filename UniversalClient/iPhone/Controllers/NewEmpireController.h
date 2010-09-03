@@ -50,6 +50,9 @@
 @property(nonatomic, retain) NSString *empireId;
 
 
+- (IBAction)cancel;
+
+
 + (NewEmpireController *) create;
 
 

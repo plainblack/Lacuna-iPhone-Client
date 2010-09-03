@@ -58,6 +58,7 @@
 	self.empireId = nil;
 	self.sessionId = nil;
 	self.inviteCode = nil;
+	self.status = nil;
 	[super dealloc];
 }
 

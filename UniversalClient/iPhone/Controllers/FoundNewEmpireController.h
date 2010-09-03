@@ -30,6 +30,9 @@
 @property (nonatomic, retain) NSString *password;
 
 
+- (IBAction)cancel;
+
+
 + (FoundNewEmpireController *) create;
 
 

@@ -66,7 +66,8 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-	//self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Create" style:UIBarButtonItemStyleDone target:self action:@selector(createSpecies)] autorelease];
+	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)] autorelease];
 	
 	//Setup Cells
 	self.speciesNameCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
@@ -395,6 +396,14 @@ typedef enum {
 	}
 	
 	return YES;
+}
+
+
+#pragma mark -
+#pragma mark Instance Methods
+
+- (IBAction)cancel {
+	[self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 

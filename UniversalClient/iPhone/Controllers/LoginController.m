@@ -17,6 +17,7 @@
 #import "EditSavedEmpire.h"
 #import "SelectServerController.h"
 #import "SelectServerController.h"
+#import "ForgotPasswordController.h"
 
 
 typedef enum {
@@ -29,7 +30,8 @@ typedef enum {
 	LOGIN_FORM_ROW_EMPIRE_NAME,
 	LOGIN_FORM_ROW_PASSWORD,
 	LOGIN_FORM_ROW_SERVER,
-	LOGIN_FORM_ROW_LOGIN_BUTTON
+	LOGIN_FORM_ROW_LOGIN_BUTTON,
+	LOGIN_FORM_ROW_FORGOT_PASSWORD_BUTTON
 } LOGIN_FORM_ROW;
 
 
@@ -121,7 +123,7 @@ typedef enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	switch (section) {
 		case SECTION_LOGIN_FORM:
-			return 4;
+			return 5;
 			break;
 		case SECTION_REMEMBERED_ACCOUNT:
 			; //DO NOT REMOVE
@@ -164,6 +166,12 @@ typedef enum {
 					LETableViewCellButton *loginCell = [LETableViewCellButton getCellForTableView:tableView];
 					loginCell.textLabel.text = @"Login";
 					return loginCell;
+					break;
+				case LOGIN_FORM_ROW_FORGOT_PASSWORD_BUTTON:
+					; //DO NOT REMOVE
+					LETableViewCellButton *forgotPasswordCell = [LETableViewCellButton getCellForTableView:tableView];
+					forgotPasswordCell.textLabel.text = @"Forgot Password?";
+					return forgotPasswordCell;
 					break;
 				default:
 					return nil;
@@ -222,22 +230,32 @@ typedef enum {
 		case SECTION_LOGIN_FORM:
 			[self.empireNameCell resignFirstResponder];
 			[self.passwordCell resignFirstResponder];
-			if (indexPath.row == LOGIN_FORM_ROW_SERVER) {
-				self->createNewAccount = NO;
-				[self showServerSelect];
-			} else if (indexPath.row == LOGIN_FORM_ROW_LOGIN_BUTTON) {
-				if ([self.empireNameCell.textField.text length] == 0) {
-					UIAlertView *noEmpireNameAlertView = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must enter an empire name." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-					[noEmpireNameAlertView show];
-				} else if ([self.passwordCell.textField.text length] == 0) {
-					UIAlertView *noEmpireNameAlertView = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must enter a password." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-					[noEmpireNameAlertView show];
-				} else if (!self.selectedServer) {
-					UIAlertView *noEmpireNameAlertView = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must select a server." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-					[noEmpireNameAlertView show];
-				} else {
-					[self doLogin];
-				}
+			switch (indexPath.row) {
+				case LOGIN_FORM_ROW_SERVER:
+					self->serverSelectReason = SERVER_SELECT_REASON_LOGIN;
+					[self showServerSelect];
+					break;
+				case LOGIN_FORM_ROW_LOGIN_BUTTON:
+					if ([self.empireNameCell.textField.text length] == 0) {
+						UIAlertView *noEmpireNameAlertView = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must enter an empire name." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+						[noEmpireNameAlertView show];
+					} else if ([self.passwordCell.textField.text length] == 0) {
+						UIAlertView *noEmpireNameAlertView = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must enter a password." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+						[noEmpireNameAlertView show];
+					} else if (!self.selectedServer) {
+						UIAlertView *noEmpireNameAlertView = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must select a server." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+						[noEmpireNameAlertView show];
+					} else {
+						[self doLogin];
+					}
+					break;
+				case LOGIN_FORM_ROW_FORGOT_PASSWORD_BUTTON:
+					; //DO NOT REMOVE
+					self->serverSelectReason = SERVER_SELECT_REASON_FORGOT_PASSWORD;
+					[self showServerSelect];
+					break;
+				default:
+					break;
 			}
 			break;
 		case SECTION_REMEMBERED_ACCOUNT:
@@ -255,7 +273,7 @@ typedef enum {
 			break;
 		case SECTION_CREATE_NEW:
 			; //DO NOT REMOVE
-			self->createNewAccount = YES;
+			self->serverSelectReason = SERVER_SELECT_REASON_CREATE_EMPIRE;
 			[self showServerSelect];
 			break;
 		default:
@@ -306,15 +324,26 @@ typedef enum {
 #pragma mark SelectServerControllerDelegate Methods
 
 - (void)selectedServer:(NSDictionary *)server {
-	if (self->createNewAccount) {
-		Session *session = [Session sharedInstance];
-		session.serverUri = [server objectForKey:@"uri"];
-		NewEmpireController *newEmpireController = [NewEmpireController create];
-		[self.navigationController pushViewController:newEmpireController animated:YES];
-	} else {
-		[self.navigationController popViewControllerAnimated:YES];
+	Session *session = [Session sharedInstance];
+	session.serverUri = [server objectForKey:@"uri"];
+	switch (self->serverSelectReason) {
+		case SERVER_SELECT_REASON_CREATE_EMPIRE:
+			; //DO NOT REMOVE
+			NewEmpireController *newEmpireController = [NewEmpireController create];
+			[self.navigationController pushViewController:newEmpireController animated:YES];
+			break;
+		case SERVER_SELECT_REASON_FORGOT_PASSWORD:
+			; //DO NOT REMOVE
+			ForgotPasswordController *forgotPasswordController = [ForgotPasswordController create];
+			[self.navigationController pushViewController:forgotPasswordController animated:YES];
+			break;
+		case SERVER_SELECT_REASON_LOGIN:
+			self.selectedServer = server;
+			[self.navigationController popViewControllerAnimated:YES];
+			break;
+		default:
+			break;
 	}
-
 }
 
 
@@ -344,7 +373,6 @@ typedef enum {
 
 - (void)doLogin {
 	Session *session = [Session sharedInstance];
-	session.serverUri = [self.selectedServer objectForKey:@"uri"];
 	[session loginWithUsername:self.empireNameCell.textField.text password:self.passwordCell.textField.text];
 }
 

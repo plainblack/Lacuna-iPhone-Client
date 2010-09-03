@@ -56,6 +56,7 @@
 @property(nonatomic, retain) LETableViewCellAffinitySelector *growthCell;
 
 
+- (IBAction)cancel;
 - (IBAction)createSpecies;
 
 
