@@ -10,6 +10,7 @@
 
 
 @interface WebPageController : UIViewController <UIWebViewDelegate> {
+	UIToolbar *toolbar;
 	UIWebView *webView;
 	UIActivityIndicatorView *activityIndicatorView;
 	UIBarButtonItem *previousButton;
@@ -19,6 +20,7 @@
 }
 
 
+@property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *previousButton;

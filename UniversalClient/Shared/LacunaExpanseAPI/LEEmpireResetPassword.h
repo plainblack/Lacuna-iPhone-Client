@@ -14,14 +14,16 @@
 	NSString *resetKey;
 	NSString *password;
 	NSString *passwordConfirmation;
-	NSString *empireName;
+	NSString *sessionId;
+	NSDictionary *empireData;
 }
 
 
 @property(nonatomic, retain) NSString *resetKey;
 @property(nonatomic, retain) NSString *password;
 @property(nonatomic, retain) NSString *passwordConfirmation;
-@property(nonatomic, retain) NSString *empireName;
+@property(nonatomic, retain) NSString *sessionId;
+@property(nonatomic, retain) NSDictionary *empireData;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target resetKey:(NSString *)resetKey password:(NSString *)password passwordConfirmation:(NSString *)passwordConfirmation;

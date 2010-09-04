@@ -189,6 +189,33 @@ static Session *sharedSession = nil;
 }
 
 
+- (void)loggedInEmpireData:(NSDictionary *)inEmpireData sessionId:(NSString *)inSessionId password:(NSString *)inPassword {
+	NSString *username = [inEmpireData objectForKey:@"name"];
+	KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithIdentifier:username accessGroup:nil] autorelease];
+	[keychainItemWrapper setObject:username forKey:(id)kSecAttrAccount];
+	[keychainItemWrapper setObject:inPassword forKey:(id)kSecValueData];
+	[keychainItemWrapper setObject:self.serverUri forKey:(id)kSecAttrService];
+	
+	BOOL found = NO;
+	for (NSDictionary *savedEmpire in self.savedEmpireList) {
+		if ([[savedEmpire objectForKey:@"username"] isEqualToString:username]){
+			found = YES;
+		}
+	}
+	if (!found) {
+		[self.savedEmpireList addObject:dict_(username, @"username")];
+		NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+		NSString *documentFolderPath = [searchPaths objectAtIndex:0];
+		NSString *empireListFileName = [documentFolderPath stringByAppendingPathComponent:@"empireList.dat"];
+		[self.savedEmpireList writeToFile:empireListFileName atomically:YES];
+	}
+
+	self.sessionId = inSessionId;
+	self.empire = [[Empire alloc] init];
+	[self.empire parseData:inEmpireData];
+	self.isLoggedIn = TRUE;
+}
+
 #pragma mark -
 #pragma mark Callback methods
 
@@ -214,29 +241,7 @@ static Session *sharedSession = nil;
 		self.sessionId = nil;
 		self.empire = nil;
 	} else {
-		KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithIdentifier:request.username accessGroup:nil] autorelease];
-		[keychainItemWrapper setObject:request.username forKey:(id)kSecAttrAccount];
-		[keychainItemWrapper setObject:request.password forKey:(id)kSecValueData];
-		[keychainItemWrapper setObject:self.serverUri forKey:(id)kSecAttrService];
-		BOOL found = NO;
-		for (NSDictionary *savedEmpire in self.savedEmpireList) {
-			if ([[savedEmpire objectForKey:@"username"] isEqualToString:request.username]){
-				found = YES;
-			}
-		}
-		if (!found) {
-			[self.savedEmpireList addObject:dict_(request.username, @"username")];
-			NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-			NSString *documentFolderPath = [searchPaths objectAtIndex:0];
-			NSString *empireListFileName = [documentFolderPath stringByAppendingPathComponent:@"empireList.dat"];
-			[self.savedEmpireList writeToFile:empireListFileName atomically:YES];
-		}
-	
-		
-		self.sessionId = request.sessionId;
-		self.empire = [[Empire alloc] init];
-		[self.empire parseData:request.empireData];
-		self.isLoggedIn = TRUE;
+		[self loggedInEmpireData:request.empireData sessionId:request.sessionId password:request.password];
 	}
 	
 	return nil;
@@ -285,4 +290,6 @@ static Session *sharedSession = nil;
 	
 	return nil;
 }
+
+
 @end

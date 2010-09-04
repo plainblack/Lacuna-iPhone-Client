@@ -13,6 +13,7 @@
 @implementation WebPageController
 
 
+@synthesize toolbar;
 @synthesize webView;
 @synthesize activityIndicatorView;
 @synthesize previousButton;
@@ -25,6 +26,7 @@
 	[super viewDidLoad];
 	
 	self.webView.hidden = YES;
+	//self.toolbar.tintColor = TINT_COLOR;
 	
 	if (self.urlToLoad) {
 		[self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlToLoad]]];
@@ -51,6 +53,7 @@
 
 
 - (void)viewDidUnload {
+	self.toolbar = nil;
 	self.webView = nil;
 	self.activityIndicatorView = nil;
 	self.previousButton = nil;

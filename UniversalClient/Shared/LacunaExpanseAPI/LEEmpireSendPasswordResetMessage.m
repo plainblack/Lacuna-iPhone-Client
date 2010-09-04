@@ -46,7 +46,6 @@
 
 
 - (void)processSuccess {
-	NSDictionary *result = [self.response objectForKey:@"result"];
 	NSLog(@"Send Password Reset Message response: %@", self.response);
 }
 

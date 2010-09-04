@@ -19,10 +19,12 @@
 #import "ViewEmpireBoostsController.h"
 #import "EditEmpireProfileText.h"
 #import "LoginController.h"
+#import "WebPageController.h"
 
 
 typedef enum {
 	SECTION_EMPIRE,
+	SECTION_ACTIONS,
 	SECTION_MEDALS
 } SECTION;
 
@@ -31,9 +33,14 @@ typedef enum {
 	EMPIRE_ROW_NAME,
 	EMPIRE_ROW_DESCRIPTION,
 	EMPIRE_ROW_STATUS,
-	EMPIRE_ROW_ESSENTIA,
-	EMPIRE_ROW_BOOSTS
+	EMPIRE_ROW_ESSENTIA
 } EMPIRE_ROW;
+
+
+typedef enum {
+	ACTION_ROW_BOOSTS,
+	ACTION_ROW_ESSENTIA
+} ACTION_ROW;
 
 
 @implementation ViewEmpireProfileController
@@ -59,6 +66,7 @@ typedef enum {
 	self.navigationItem.title = @"Loading";
 	
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Empire"],
+								 [LEViewSectionTab tableView:self.tableView createWithText:@"Actions"],
 								 [LEViewSectionTab tableView:self.tableView createWithText:@"Medals"]);
 }
 
@@ -87,7 +95,7 @@ typedef enum {
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	Session *session = [Session sharedInstance];
 	if (session.empire.id) {
-		return 2;
+		return 3;
 	} else {
 		return 1;
 	}
@@ -99,7 +107,10 @@ typedef enum {
 	if (session.empire.id) {
 		switch (section) {
 			case SECTION_EMPIRE:
-				return 5;
+				return 4;
+				break;
+			case SECTION_ACTIONS:
+				return 2;
 				break;
 			case SECTION_MEDALS:
 				return [empireProfile.medals count];
@@ -130,7 +141,15 @@ typedef enum {
 					case EMPIRE_ROW_STATUS:
 						return [LETableViewCellLabeledParagraph getHeightForTableView:tableView text:self.empireProfile.status];
 						break;
-					case EMPIRE_ROW_BOOSTS:
+					default:
+						return 0.0;
+						break;
+				}
+				break;
+			case SECTION_ACTIONS:
+				switch (indexPath.row) {
+					case ACTION_ROW_BOOSTS:
+					case ACTION_ROW_ESSENTIA:
 						return [LETableViewCellButton getHeightForTableView:tableView];
 						break;
 					default:
@@ -198,13 +217,26 @@ typedef enum {
 						essentiaCell.content.text = [NSString stringWithFormat:@"%@", session.empire.essentia];
 						cell = essentiaCell;
 						break;
-					case EMPIRE_ROW_BOOSTS:
+					default:
+						break;
+				}
+				break;
+			case SECTION_ACTIONS:
+				switch (indexPath.row) {
+					case ACTION_ROW_BOOSTS:
 						; //DO NOT REMOVE
 						LETableViewCellButton *boostsButton = [LETableViewCellButton getCellForTableView:tableView];
 						boostsButton.textLabel.text = @"View Empire Boosts";
 						cell = boostsButton;
 						break;
+					case ACTION_ROW_ESSENTIA:
+						; //DO NOT REMOVE
+						LETableViewCellButton *essentiaButton = [LETableViewCellButton getCellForTableView:tableView];
+						essentiaButton.textLabel.text = @"Purchase Essentia";
+						cell = essentiaButton;
+						break;
 					default:
+						cell = nil;
 						break;
 				}
 				break;
@@ -242,25 +274,41 @@ typedef enum {
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	switch (indexPath.row) {
-		case EMPIRE_ROW_BOOSTS:
-			; //DO NOT REMOVE
-			ViewEmpireBoostsController *viewEmpireBoostsController = [ViewEmpireBoostsController create];
-			[self.navigationController pushViewController:viewEmpireBoostsController animated:YES];
-			break;
-		case EMPIRE_ROW_DESCRIPTION:
-			; //DO NOT REMOVE
-			NSLog(@"");
-			EditEmpireProfileText *editDescriptionEmpireProfileText = [EditEmpireProfileText createForEmpireProfile:self.empireProfile textName:@"Description" textKey:@"description" text:self.empireProfile.description];
-			[self.navigationController pushViewController:editDescriptionEmpireProfileText animated:YES];
-			break;
-		case EMPIRE_ROW_STATUS:
-			; //DO NOT REMOVE
-			EditEmpireProfileText *editStatusEmpireProfileText = [EditEmpireProfileText createForEmpireProfile:self.empireProfile textName:@"Status" textKey:@"status_message" text:self.empireProfile.status];
-			[self.navigationController pushViewController:editStatusEmpireProfileText animated:YES];
-			break;
-		default:
-			break;
+	Session *session = [Session sharedInstance];
+	if (session.empire.id) {
+		switch (indexPath.section) {
+			case SECTION_EMPIRE:
+				switch (indexPath.row) {
+					case EMPIRE_ROW_DESCRIPTION:
+						; //DO NOT REMOVE
+						NSLog(@"");
+						EditEmpireProfileText *editDescriptionEmpireProfileText = [EditEmpireProfileText createForEmpireProfile:self.empireProfile textName:@"Description" textKey:@"description" text:self.empireProfile.description];
+						[self.navigationController pushViewController:editDescriptionEmpireProfileText animated:YES];
+						break;
+					case EMPIRE_ROW_STATUS:
+						; //DO NOT REMOVE
+						EditEmpireProfileText *editStatusEmpireProfileText = [EditEmpireProfileText createForEmpireProfile:self.empireProfile textName:@"Status" textKey:@"status_message" text:self.empireProfile.status];
+						[self.navigationController pushViewController:editStatusEmpireProfileText animated:YES];
+						break;
+				}
+				break;
+			case SECTION_ACTIONS:
+				switch (indexPath.row) {
+					case ACTION_ROW_BOOSTS:
+						; //DO NOT REMOVE
+						ViewEmpireBoostsController *viewEmpireBoostsController = [ViewEmpireBoostsController create];
+						[self.navigationController pushViewController:viewEmpireBoostsController animated:YES];
+						break;
+					case ACTION_ROW_ESSENTIA:
+						; //DO NOT REMOVE
+						NSString *purchaseUrl = [NSString stringWithFormat:@"%@pay?session_id=%@", session.serverUri, session.sessionId];
+						WebPageController *webPageController = [WebPageController create];
+						[webPageController goToUrl:purchaseUrl];
+						[self presentModalViewController:webPageController animated:YES];
+						break;
+				}
+				break;
+		}
 	}
 }
 

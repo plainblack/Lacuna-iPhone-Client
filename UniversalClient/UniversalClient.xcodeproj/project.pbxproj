@@ -1311,6 +1311,10 @@
 				F6AC49F5116C0F9B001B967A /* LEEmpireLogin.m */,
 				F6AC49F6116C0F9B001B967A /* LEEmpireLogout.h */,
 				F6AC49F7116C0F9B001B967A /* LEEmpireLogout.m */,
+				F6D02A1A1230699F000D8811 /* LEEmpireResetPassword.h */,
+				F6D02A1B1230699F000D8811 /* LEEmpireResetPassword.m */,
+				F6D02A171230698B000D8811 /* LEEmpireSendPasswordResetMessage.h */,
+				F6D02A181230698B000D8811 /* LEEmpireSendPasswordResetMessage.m */,
 				F6E3F01C11B46BBB00E7BC86 /* LEEmpireViewBoosts.h */,
 				F6E3F01D11B46BBB00E7BC86 /* LEEmpireViewBoosts.m */,
 				F6AC49F8116C0F9B001B967A /* LEEmpireViewProfile.h */,
@@ -1343,10 +1347,6 @@
 				F6F5240B122C5ED5004E428A /* LEStatsCredits.m */,
 				F6AC4A18116C0F9B001B967A /* LEUpgradeBuilding.h */,
 				F6AC4A19116C0F9B001B967A /* LEUpgradeBuilding.m */,
-				F6D02A171230698B000D8811 /* LEEmpireSendPasswordResetMessage.h */,
-				F6D02A181230698B000D8811 /* LEEmpireSendPasswordResetMessage.m */,
-				F6D02A1A1230699F000D8811 /* LEEmpireResetPassword.h */,
-				F6D02A1B1230699F000D8811 /* LEEmpireResetPassword.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -1484,6 +1484,8 @@
 				F6DF22D912293D660023FE65 /* EditTextViewController.m */,
 				F6DF43C01228B48500A526FD /* ExpelAllianceMemberController.h */,
 				F6DF43C11228B48500A526FD /* ExpelAllianceMemberController.m */,
+				F6D7CAD2122FBEA6003F698F /* ForgotPasswordController.h */,
+				F6D7CAD3122FBEA6003F698F /* ForgotPasswordController.m */,
 				F6D85AA0122DEA1200A44BD9 /* FoundNewEmpireController.h */,
 				F6D85AA1122DEA1200A44BD9 /* FoundNewEmpireController.m */,
 				F6DF43661228AA3700A526FD /* LeaveAllianceController.h */,
@@ -1619,8 +1621,6 @@
 				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
 				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
-				F6D7CAD2122FBEA6003F698F /* ForgotPasswordController.h */,
-				F6D7CAD3122FBEA6003F698F /* ForgotPasswordController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

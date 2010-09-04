@@ -175,7 +175,7 @@ typedef enum {
 	} else {
 		[self.navigationController popToRootViewControllerAnimated:YES];
 		Session *session = [Session sharedInstance];
-		[session loginWithUsername:self.username password:self.password];
+		[session loggedInEmpireData:request.empireData sessionId:request.sessionId password:self.password];
 	}
 	
 	return nil;

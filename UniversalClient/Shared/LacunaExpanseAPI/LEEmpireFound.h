@@ -14,14 +14,14 @@
 	NSString *empireId;
 	NSString *sessionId;
 	NSString *inviteCode;
-	NSDictionary *status;
+	NSDictionary *empireData;
 }
 
 
 @property(nonatomic, retain) NSString *empireId;
 @property(nonatomic, retain) NSString *sessionId;
 @property(nonatomic, retain) NSString *inviteCode;
-@property(nonatomic, retain) NSDictionary *status;
+@property(nonatomic, retain) NSDictionary *empireData;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target empireId:(NSString *)empireId inviteCode:(NSString *)inviteCode;

@@ -16,7 +16,8 @@
 @synthesize resetKey;
 @synthesize password;
 @synthesize passwordConfirmation;
-@synthesize empireName;
+@synthesize sessionId;
+@synthesize empireData;
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget resetKey:(NSString *)inResetKey password:(NSString *)inPassword passwordConfirmation:(NSString *)inPasswordConfirmation {
@@ -39,8 +40,8 @@
 - (void)processSuccess {
 	NSDictionary *result = [self.response objectForKey:@"result"];
 	NSDictionary *status = [result objectForKey:@"status"];
-	self.empireName = [status objectForKey:@"empire"];
-	NSLog(@"Empire Name: %@", self.empireName);
+	self.sessionId = [result objectForKey:@"session_id"];
+	self.empireData = [status objectForKey:@"empire"];
 }
 
 
@@ -58,7 +59,8 @@
 	self.resetKey = nil;
 	self.password = nil;
 	self.passwordConfirmation = nil;
-	self.empireName = nil;
+	self.sessionId = nil;
+	self.empireData = nil;
 	[super dealloc];
 }
 

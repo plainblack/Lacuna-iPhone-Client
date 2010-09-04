@@ -322,7 +322,7 @@ typedef enum {
 		[av show];
 	} else {
 		Session *session = [Session sharedInstance];
-		[session loginWithUsername:request.empireName password:request.password];
+		[session loggedInEmpireData:request.empireData sessionId:request.sessionId password:request.password];
 	}
 
 	return nil;
