@@ -291,6 +291,7 @@
 		F6EF714211FE76EA00A93226 /* SpacePort.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF714111FE76EA00A93226 /* SpacePort.m */; };
 		F6EF714F11FE7D1C00A93226 /* LEBuildingViewAllShips.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF714E11FE7D1C00A93226 /* LEBuildingViewAllShips.m */; };
 		F6EF716A11FE810900A93226 /* Ship.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF716911FE810900A93226 /* Ship.m */; };
+		F6F1C21D12326FB100D69BB6 /* ViewMedalsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F1C21C12326FB100D69BB6 /* ViewMedalsController.m */; };
 		F6F52409122C5D9D004E428A /* ViewCreditsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F52408122C5D9D004E428A /* ViewCreditsController.m */; };
 		F6F5240C122C5ED5004E428A /* LEStatsCredits.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F5240B122C5ED5004E428A /* LEStatsCredits.m */; };
 		F6F52440122C7D31004E428A /* LETableViewCellText.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F5243F122C7D31004E428A /* LETableViewCellText.m */; };
@@ -863,6 +864,8 @@
 		F6EF714E11FE7D1C00A93226 /* LEBuildingViewAllShips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewAllShips.m; sourceTree = "<group>"; };
 		F6EF716811FE810900A93226 /* Ship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ship.h; sourceTree = "<group>"; };
 		F6EF716911FE810900A93226 /* Ship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ship.m; sourceTree = "<group>"; };
+		F6F1C21B12326FB100D69BB6 /* ViewMedalsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMedalsController.h; sourceTree = "<group>"; };
+		F6F1C21C12326FB100D69BB6 /* ViewMedalsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMedalsController.m; sourceTree = "<group>"; };
 		F6F52407122C5D9D004E428A /* ViewCreditsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewCreditsController.h; sourceTree = "<group>"; };
 		F6F52408122C5D9D004E428A /* ViewCreditsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewCreditsController.m; sourceTree = "<group>"; };
 		F6F5240A122C5ED5004E428A /* LEStatsCredits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEStatsCredits.h; sourceTree = "<group>"; };
@@ -1621,6 +1624,8 @@
 				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
 				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
+				F6F1C21B12326FB100D69BB6 /* ViewMedalsController.h */,
+				F6F1C21C12326FB100D69BB6 /* ViewMedalsController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2001,6 +2006,7 @@
 				F6D7CAD4122FBEA6003F698F /* ForgotPasswordController.m in Sources */,
 				F6D02A191230698B000D8811 /* LEEmpireSendPasswordResetMessage.m in Sources */,
 				F6D02A1C1230699F000D8811 /* LEEmpireResetPassword.m in Sources */,
+				F6F1C21D12326FB100D69BB6 /* ViewMedalsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

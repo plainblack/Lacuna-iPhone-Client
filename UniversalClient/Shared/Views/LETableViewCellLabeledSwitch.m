@@ -15,7 +15,8 @@
 
 @synthesize label;
 @synthesize selectedSwitch;
-@synthesize isSelected;
+@dynamic isSelected;
+@synthesize delegate;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -41,11 +42,23 @@
 }
 
 
+- (BOOL)isSelected {
+	return self->isSelected;
+}
+
+- (void)setIsSelected:(BOOL)value {
+	if (self->isSelected != value) {
+		self->isSelected = value;
+		self.selectedSwitch.on = value;
+	}
+}
+
 #pragma mark -
 #pragma mark Action Methods
 
 - (IBAction)switchChanged {
 	self.isSelected = self.selectedSwitch.on;
+	[self.delegate cell:self switchedTo:self.isSelected];
 }
 
 
@@ -54,7 +67,7 @@
 
 - (void)callTapped:(UIGestureRecognizer *)gestureRecognizer {
 	[self.selectedSwitch setOn:!self.selectedSwitch.on animated:YES];
-	self.isSelected = self.selectedSwitch.on;
+	[self switchChanged];
 }
 
 

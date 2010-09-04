@@ -28,6 +28,20 @@
 }
 
 
+- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget medals:(NSArray *)inMedals {
+	NSMutableArray *publicMedals = [NSMutableArray arrayWithCapacity:[inMedals count]];
+	
+	[inMedals enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+		if (_boolv([obj objectForKey:@"public"])) {
+			[publicMedals addObject:[obj objectForKey:@"id"]];
+		}
+	}];
+	self.profile = [NSMutableDictionary dictionaryWithCapacity:1];
+	[self.profile setObject:publicMedals forKey:@"public_medals"];
+	return [super initWithCallback:inCallback target:inTarget];
+}
+
+
 - (id)params {
 	Session *session = [Session sharedInstance];
 	return _array(session.sessionId, profile);

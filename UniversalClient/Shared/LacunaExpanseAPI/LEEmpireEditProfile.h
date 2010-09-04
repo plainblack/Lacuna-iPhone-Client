@@ -22,6 +22,7 @@
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target textKey:(NSString *)textKey text:(NSString *)text empire:(EmpireProfile *)empire;
+- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target medals:(NSArray *)medals;
 
 
 @end

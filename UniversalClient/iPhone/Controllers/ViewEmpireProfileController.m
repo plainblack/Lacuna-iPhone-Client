@@ -20,12 +20,12 @@
 #import "EditEmpireProfileText.h"
 #import "LoginController.h"
 #import "WebPageController.h"
+#import "ViewMedalsController.h"
 
 
 typedef enum {
 	SECTION_EMPIRE,
-	SECTION_ACTIONS,
-	SECTION_MEDALS
+	SECTION_ACTIONS
 } SECTION;
 
 
@@ -38,8 +38,9 @@ typedef enum {
 
 
 typedef enum {
-	ACTION_ROW_BOOSTS,
-	ACTION_ROW_ESSENTIA
+	ACTION_ROW_VIEW_EMPIRE_BOOSTS,
+	ACTION_ROW_PURCHASE_ESSENTIA,
+	ACTION_ROW_VIEW_MEDALS
 } ACTION_ROW;
 
 
@@ -66,8 +67,7 @@ typedef enum {
 	self.navigationItem.title = @"Loading";
 	
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Empire"],
-								 [LEViewSectionTab tableView:self.tableView createWithText:@"Actions"],
-								 [LEViewSectionTab tableView:self.tableView createWithText:@"Medals"]);
+								 [LEViewSectionTab tableView:self.tableView createWithText:@"Actions"]);
 }
 
 
@@ -110,10 +110,7 @@ typedef enum {
 				return 4;
 				break;
 			case SECTION_ACTIONS:
-				return 2;
-				break;
-			case SECTION_MEDALS:
-				return [empireProfile.medals count];
+				return 3;
 				break;
 			default:
 				return 0;
@@ -148,8 +145,9 @@ typedef enum {
 				break;
 			case SECTION_ACTIONS:
 				switch (indexPath.row) {
-					case ACTION_ROW_BOOSTS:
-					case ACTION_ROW_ESSENTIA:
+					case ACTION_ROW_VIEW_EMPIRE_BOOSTS:
+					case ACTION_ROW_PURCHASE_ESSENTIA:
+					case ACTION_ROW_VIEW_MEDALS:
 						return [LETableViewCellButton getHeightForTableView:tableView];
 						break;
 					default:
@@ -157,10 +155,6 @@ typedef enum {
 						break;
 				}
 				break;
-			case SECTION_MEDALS:
-				; //DO NOT REMOVE
-				NSDictionary *medal = [empireProfile.medals objectAtIndex:indexPath.row];
-				return [LETableViewCellMedal getHeightForTableView:tableView withMedal:medal];
 			default:
 				return 0.0;
 				break;
@@ -223,36 +217,28 @@ typedef enum {
 				break;
 			case SECTION_ACTIONS:
 				switch (indexPath.row) {
-					case ACTION_ROW_BOOSTS:
+					case ACTION_ROW_VIEW_EMPIRE_BOOSTS:
 						; //DO NOT REMOVE
 						LETableViewCellButton *boostsButton = [LETableViewCellButton getCellForTableView:tableView];
 						boostsButton.textLabel.text = @"View Empire Boosts";
 						cell = boostsButton;
 						break;
-					case ACTION_ROW_ESSENTIA:
+					case ACTION_ROW_PURCHASE_ESSENTIA:
 						; //DO NOT REMOVE
 						LETableViewCellButton *essentiaButton = [LETableViewCellButton getCellForTableView:tableView];
 						essentiaButton.textLabel.text = @"Purchase Essentia";
 						cell = essentiaButton;
 						break;
+					case ACTION_ROW_VIEW_MEDALS:
+						; //DO NOT REMOVE
+						LETableViewCellButton *medalButton = [LETableViewCellButton getCellForTableView:tableView];
+						medalButton.textLabel.text = @"View Medals";
+						cell = medalButton;
+						break;
 					default:
 						cell = nil;
 						break;
 				}
-				break;
-			case SECTION_MEDALS:
-				; //DO NOT REMOVE
-				NSDictionary *medal = [empireProfile.medals objectAtIndex:indexPath.row];
-				LETableViewCellMedal *medalCell = [LETableViewCellMedal getCellForTableView:tableView];
-				medalCell.medalNameLabel.text = [medal objectForKey:@"name"];
-				medalCell.dateLabel.text = [Util prettyDate:[medal objectForKey:@"date"]];
-				if ([medal objectForKey:@"note"] == [NSNull null]) {
-					medalCell.noteView.text = @"";
-				} else {
-					medalCell.noteView.text = [medal objectForKey:@"note"];
-				}
-				medalCell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"assets/medal/%@.png", [medal objectForKey:@"image"]]];
-				cell = medalCell;
 				break;
 			default:
 				cell = nil;
@@ -294,17 +280,23 @@ typedef enum {
 				break;
 			case SECTION_ACTIONS:
 				switch (indexPath.row) {
-					case ACTION_ROW_BOOSTS:
+					case ACTION_ROW_VIEW_EMPIRE_BOOSTS:
 						; //DO NOT REMOVE
 						ViewEmpireBoostsController *viewEmpireBoostsController = [ViewEmpireBoostsController create];
 						[self.navigationController pushViewController:viewEmpireBoostsController animated:YES];
 						break;
-					case ACTION_ROW_ESSENTIA:
+					case ACTION_ROW_PURCHASE_ESSENTIA:
 						; //DO NOT REMOVE
 						NSString *purchaseUrl = [NSString stringWithFormat:@"%@pay?session_id=%@", session.serverUri, session.sessionId];
 						WebPageController *webPageController = [WebPageController create];
 						[webPageController goToUrl:purchaseUrl];
 						[self presentModalViewController:webPageController animated:YES];
+						break;
+					case ACTION_ROW_VIEW_MEDALS:
+						; //DO NOT REMOVE
+						ViewMedalsController *viewMedalsController = [ViewMedalsController create];
+						viewMedalsController.medals = self.empireProfile.medals;
+						[self.navigationController pushViewController:viewMedalsController animated:YES];
 						break;
 				}
 				break;

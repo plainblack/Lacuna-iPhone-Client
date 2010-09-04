@@ -8,6 +8,7 @@
 
 #import "LETableViewCellMedal.h"
 #import "LEMacros.h"
+#import "Util.h"
 
 
 @implementation LETableViewCellMedal
@@ -43,6 +44,21 @@
     [super dealloc];
 }
 
+
+#pragma mark -
+#pragma mark Instance Methods
+
+- (void)setData:(NSDictionary *)data {
+	self.medalNameLabel.text = [data objectForKey:@"name"];
+	self.dateLabel.text = [Util prettyDate:[data objectForKey:@"date"]];
+	NSString *note = [data objectForKey:@"note"];
+	if (isNotNull(note)) {
+		self.noteView.text = note;
+	} else {
+		self.noteView.text = @"";
+	}
+	self.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"assets/medal/%@.png", [data objectForKey:@"image"]]];
+}
 
 #pragma mark -
 #pragma mark Class Methods

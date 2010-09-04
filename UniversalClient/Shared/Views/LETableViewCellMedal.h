@@ -23,6 +23,9 @@
 @property(nonatomic,retain) IBOutlet UIImageView *imageView;
 
 
+- (void)setData:(NSDictionary *)data;
+
+
 + (LETableViewCellMedal *)getCellForTableView:(UITableView *)tableView;
 + (CGFloat)getHeightForTableView:(UITableView *)tableView withMedal:(NSDictionary *)medal;
 

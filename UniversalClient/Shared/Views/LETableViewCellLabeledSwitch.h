@@ -9,16 +9,29 @@
 #import <UIKit/UIKit.h>
 
 
+@class LETableViewCellLabeledSwitch;
+
+
+@protocol LETableViewCellLabeledSwitchDelegate
+
+- (void)cell:(LETableViewCellLabeledSwitch *)cell switchedTo:(BOOL)isOn;
+
+@end
+
+
 @interface LETableViewCellLabeledSwitch : UITableViewCell {
 	UILabel *label;
 	UISwitch *selectedSwitch;
 	BOOL isSelected;
+	id<LETableViewCellLabeledSwitchDelegate> delegate;
 }
 
 
 @property(nonatomic, retain) UILabel *label;
 @property(nonatomic, retain) UISwitch *selectedSwitch;
 @property(nonatomic, assign) BOOL isSelected;
+@property(nonatomic, assign) id<LETableViewCellLabeledSwitchDelegate> delegate;
+
 
 
 + (LETableViewCellLabeledSwitch *)getCellForTableView:(UITableView *)tableView;
