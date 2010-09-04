@@ -21,10 +21,12 @@ typedef enum {
 } SECTION;
 
 typedef enum {
-	INFRASTRCUTURE_ROW_INTELLIGENCE,
-	INFRASTRCUTURE_ROW_HAPPINESS,
-	INFRASTRCUTURE_ROW_SHIPS,
 	INFRASTRCUTURE_ROW_COLONIZATION,
+	INFRASTRCUTURE_ROW_CONSTRUCTION,
+	INFRASTRCUTURE_ROW_HAPPINESS,
+	INFRASTRCUTURE_ROW_INTELLIGENCE,
+	INFRASTRCUTURE_ROW_SHIPS,
+	INFRASTRCUTURE_ROW_TRADE,
 	INFRASTRCUTURE_ROW_ALL
 } INFRASTRCUTURE_ROW;
 
@@ -32,6 +34,7 @@ typedef enum {
 	RESOURCE_ROW_ENERGY,
 	RESOURCE_ROW_FOOD,
 	RESOURCE_ROW_ORE,
+	RESOURCE_ROW_STORAGE,
 	RESOURCE_ROW_WASTE,
 	RESOURCE_ROW_WATER,
 	RESOURCE_ROW_ALL
@@ -73,10 +76,10 @@ typedef enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
 		case SECTION_INFRASTRUCTURE:
-			return 5;
+			return 7;
 			break;
 		case SECTION_RESOURCES:
-			return 6;
+			return 7;
 			break;
 		case SECTION_ALL:
 			return 2;
@@ -95,11 +98,17 @@ typedef enum {
 	switch (indexPath.section) {
 		case SECTION_INFRASTRUCTURE:
 			switch (indexPath.row) {
-				case INFRASTRCUTURE_ROW_INTELLIGENCE:
+				case INFRASTRCUTURE_ROW_COLONIZATION:
 					; //DO NOT REMOVE
-					LETableViewCellButton *intelligenceButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-					intelligenceButtonCell.textLabel.text = @"Intelligence";
-					cell = intelligenceButtonCell;
+					LETableViewCellButton *colonizationButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+					colonizationButtonCell.textLabel.text = @"Colonization";
+					cell = colonizationButtonCell;
+					break;
+				case INFRASTRCUTURE_ROW_CONSTRUCTION:
+					; //DO NOT REMOVE
+					LETableViewCellButton *constructionButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+					constructionButtonCell.textLabel.text = @"Construction";
+					cell = constructionButtonCell;
 					break;
 				case INFRASTRCUTURE_ROW_HAPPINESS:
 					; //DO NOT REMOVE
@@ -107,22 +116,28 @@ typedef enum {
 					happinessButtonCell.textLabel.text = @"Happiness";
 					cell = happinessButtonCell;
 					break;
+				case INFRASTRCUTURE_ROW_INTELLIGENCE:
+					; //DO NOT REMOVE
+					LETableViewCellButton *intelligenceButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+					intelligenceButtonCell.textLabel.text = @"Intelligence";
+					cell = intelligenceButtonCell;
+					break;
 				case INFRASTRCUTURE_ROW_SHIPS:
 					; //DO NOT REMOVE
 					LETableViewCellButton *shipsButtonCell = [LETableViewCellButton getCellForTableView:tableView];
 					shipsButtonCell.textLabel.text = @"Ships";
 					cell = shipsButtonCell;
 					break;
-				case INFRASTRCUTURE_ROW_COLONIZATION:
+				case INFRASTRCUTURE_ROW_TRADE:
 					; //DO NOT REMOVE
-					LETableViewCellButton *colonizationButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-					colonizationButtonCell.textLabel.text = @"Colonization";
-					cell = colonizationButtonCell;
+					LETableViewCellButton *tradeButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+					tradeButtonCell.textLabel.text = @"Trade";
+					cell = tradeButtonCell;
 					break;
 				case INFRASTRCUTURE_ROW_ALL:
 					; //DO NOT REMOVE
 					LETableViewCellButton *infrastructureAllButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-					infrastructureAllButtonCell.textLabel.text = @"ALL Infrastructure";
+					infrastructureAllButtonCell.textLabel.text = @"All Infrastructure";
 					cell = infrastructureAllButtonCell;
 					break;
 				default:
@@ -150,6 +165,12 @@ typedef enum {
 					oreButtonCell.textLabel.text = @"Ore";
 					cell = oreButtonCell;
 					break;
+				case RESOURCE_ROW_STORAGE:
+					; //DO NOT REMOVE
+					LETableViewCellButton *storageButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+					storageButtonCell.textLabel.text = @"Storage";
+					cell = storageButtonCell;
+					break;
 				case RESOURCE_ROW_WASTE:
 					; //DO NOT REMOVE
 					LETableViewCellButton *wasteButtonCell = [LETableViewCellButton getCellForTableView:tableView];
@@ -165,7 +186,7 @@ typedef enum {
 				case RESOURCE_ROW_ALL:
 					; //DO NOT REMOVE
 					LETableViewCellButton *allResourcesButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-					allResourcesButtonCell.textLabel.text = @"ALL Resources";
+					allResourcesButtonCell.textLabel.text = @"All Resources";
 					cell = allResourcesButtonCell;
 					break;
 				default:
@@ -184,7 +205,7 @@ typedef enum {
 				case ALL_ROW_ALL:
 					; //DO NOT REMOVE
 					LETableViewCellButton *allButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-					allButtonCell.textLabel.text = @"ALL Buildings";
+					allButtonCell.textLabel.text = @"All Buildings";
 					cell = allButtonCell;
 					break;
 				default:
@@ -210,17 +231,23 @@ typedef enum {
 	switch (indexPath.section) {
 		case SECTION_INFRASTRUCTURE:
 			switch (indexPath.row) {
-				case INFRASTRCUTURE_ROW_INTELLIGENCE:
-					tag = @"Intelligence";
+				case INFRASTRCUTURE_ROW_COLONIZATION:
+					tag = @"Colonization";
+					break;
+				case INFRASTRCUTURE_ROW_CONSTRUCTION:
+					tag = @"Construction";
 					break;
 				case INFRASTRCUTURE_ROW_HAPPINESS:
 					tag = @"Happiness";
 					break;
+				case INFRASTRCUTURE_ROW_INTELLIGENCE:
+					tag = @"Intelligence";
+					break;
 				case INFRASTRCUTURE_ROW_SHIPS:
 					tag = @"Ships";
 					break;
-				case INFRASTRCUTURE_ROW_COLONIZATION:
-					tag = @"Colonization";
+				case INFRASTRCUTURE_ROW_TRADE:
+					tag = @"Trade";
 					break;
 				case INFRASTRCUTURE_ROW_ALL:
 					tag = @"Infrastructure";
@@ -240,6 +267,9 @@ typedef enum {
 					break;
 				case RESOURCE_ROW_ORE:
 					tag = @"Ore";
+					break;
+				case RESOURCE_ROW_STORAGE:
+					tag = @"Storage";
 					break;
 				case RESOURCE_ROW_WASTE:
 					tag = @"Waste";

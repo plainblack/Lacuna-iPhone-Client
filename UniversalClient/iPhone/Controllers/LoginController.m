@@ -270,6 +270,7 @@ typedef enum {
 				session.serverUri = @"https://pt.lacunaexpanse.com/";
 			}
 			[session loginWithUsername:username password:password];
+			[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 			break;
 		case SECTION_CREATE_NEW:
 			; //DO NOT REMOVE
@@ -374,6 +375,7 @@ typedef enum {
 - (void)doLogin {
 	Session *session = [Session sharedInstance];
 	[session loginWithUsername:self.empireNameCell.textField.text password:self.passwordCell.textField.text];
+	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
 
