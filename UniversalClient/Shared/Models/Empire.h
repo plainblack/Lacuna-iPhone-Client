@@ -23,6 +23,8 @@
 	NSDecimalNumber *numNewMessages;
 	NSDecimalNumber *essentia;
 	NSDictionary *planets;
+	BOOL selfDestructActive;
+	NSDate *selfDestructAt;
 	EmpireProfile *profile;
 }
 
@@ -36,11 +38,17 @@
 @property (nonatomic, retain) NSDecimalNumber *numNewMessages;
 @property (nonatomic, retain) NSDecimalNumber *essentia;
 @property (nonatomic, retain) NSDictionary *planets;
+@property (nonatomic, assign) BOOL selfDestructActive;
+@property (nonatomic, retain) NSDate *selfDestructAt;
 @property (nonatomic, retain) EmpireProfile *profile;
 
 
 - (void)loadProfile;
 - (void)parseData:(NSDictionary *)empireData;
+- (void)changeFromPassword:(NSString *)oldPassword toPassword:(NSString *)newPassword confirmPassword:(NSString *)newPasswordConfirm;
+- (void)setSelfDestruct:(BOOL)enabled;
+- (void)sendInviteTo:(NSString *)emailAddress;
+- (void)redeemEssentiaCode:(NSString *)code;
 
 
 @end

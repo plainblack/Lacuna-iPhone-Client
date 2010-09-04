@@ -18,17 +18,15 @@
 	LETableViewCellTextView *textCell;
 	NSString *textName;
 	NSString *textKey;
-	EmpireProfile *empireProfile;
 }
 
 
 @property(nonatomic, retain) LETableViewCellTextView *textCell;
 @property(nonatomic, retain) NSString *textName;
 @property(nonatomic, retain) NSString *textKey;
-@property(nonatomic, retain) EmpireProfile *empireProfile;
 
 
-+ (EditEmpireProfileText *)createForEmpireProfile:(EmpireProfile *)empireProfile textName:(NSString *)name textKey:(NSString *)key text:(NSString *)text;
++ (EditEmpireProfileText *)createForTextName:(NSString *)name textKey:(NSString *)key text:(NSString *)text;
 
 
 @end

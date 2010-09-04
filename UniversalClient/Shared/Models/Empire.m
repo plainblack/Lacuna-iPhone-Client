@@ -10,6 +10,11 @@
 #import "EmpireProfile.h"
 #import "LEMacros.h"
 #import "Util.h"
+#import "LEEmpireChangePassword.h"
+#import "LEEmpireEnableSelfDestruct.h"
+#import "LEEmpireDisableSelfDestruct.h"
+#import "LEEmpireInviteFriend.h"
+#import "LEEmpireRedeemEssentiaCode.h"
 
 
 @implementation Empire
@@ -24,6 +29,8 @@
 @synthesize numNewMessages;
 @synthesize essentia;
 @synthesize planets;
+@synthesize selfDestructActive;
+@synthesize selfDestructAt;
 @synthesize profile;
 
 
@@ -31,8 +38,8 @@
 #pragma mark NSObject Methods
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"id:%@, isIsolationist:%i, name:%@, statusMessage:%@, homePlanetId:%@, essentia:%@, numNewMessages:%@, planets:%@", 
-			self.id, self.isIsolationist, self.name, self.statusMessage, self.homePlanetId, self.essentia, self.numNewMessages, self.planets];
+	return [NSString stringWithFormat:@"id:%@, isIsolationist:%i, name:%@, statusMessage:%@, homePlanetId:%@, essentia:%@, numNewMessages:%@, planets:%@, selfDestructActive:%i, selfDestructAt:%@", 
+			self.id, self.isIsolationist, self.name, self.statusMessage, self.homePlanetId, self.essentia, self.numNewMessages, self.planets, self.selfDestructActive, self.selfDestructAt];
 }
 
 
@@ -45,13 +52,14 @@
 	self.numNewMessages = nil;
 	self.essentia = nil;
 	self.planets = nil;
+	self.selfDestructAt = nil;
 	self.profile = nil;
 	[super dealloc];
 }
 
 
 #pragma mark -
-#pragma mark NSObject Methods
+#pragma mark Instance Methods
 
 - (void)loadProfile {
 	NSLog(@"NEED TO IMPLEMENT");
@@ -67,6 +75,8 @@
 	self.essentia = [Util asNumber:[empireData objectForKey:@"essentia"]];
 	self.numNewMessages = [Util asNumber:[empireData objectForKey:@"has_new_messages"]];
 	self.planets = [empireData objectForKey:@"planets"];
+	self.selfDestructActive = _boolv([empireData objectForKey:@"self_destruct_active"]);
+	self.selfDestructAt = [Util date:[empireData objectForKey:@"self_destruct_date"]];
 	
 	NSDictionary *newestMessage = [empireData objectForKey:@"most_recent_message"];
 	if (newestMessage && (id)newestMessage != [NSNull null]) {
@@ -76,6 +86,63 @@
 		}
 	}
 	
+}
+
+
+- (void)changeFromPassword:(NSString *)oldPassword toPassword:(NSString *)newPassword confirmPassword:(NSString *)newPasswordConfirm {
+	[[[LEEmpireChangePassword alloc] initWithCallback:@selector(passwordChanged:) target:self currentPassword:oldPassword newPassword:newPassword newPasswordConfirm:newPasswordConfirm] autorelease];
+}
+
+
+- (void)setSelfDestruct:(BOOL)enabled {
+	if (enabled) {
+		[[[LEEmpireEnableSelfDestruct alloc] initWithCallback:@selector(selfDestructEnabled:) target:self] autorelease];
+	} else {
+		[[[LEEmpireDisableSelfDestruct alloc] initWithCallback:@selector(selfDestructDisabled:) target:self] autorelease];
+	}
+}
+
+
+- (void)sendInviteTo:(NSString *)emailAddress {
+	[[[LEEmpireInviteFriend alloc] initWithCallback:@selector(inviteSent:) target:self email:emailAddress] autorelease];
+}
+
+
+- (void)redeemEssentiaCode:(NSString *)code {
+	[[[LEEmpireRedeemEssentiaCode alloc] initWithCallback:@selector(essentiaCodeRedeemed:) target:self code:code] autorelease];
+}
+
+
+#pragma mark -
+#pragma mark Callback Methods
+
+- (id)passwordChanged:(LEEmpireChangePassword *)request {
+	NSLog(@"passwordChanged: %@", request.response);
+	return nil;
+}
+
+
+- (id)selfDestructDisabled:(LEEmpireDisableSelfDestruct *)request {
+	NSLog(@"selfDestructDisabled: %@", request.response);
+	return nil;
+}
+
+
+- (id)selfDestructEnabled:(LEEmpireEnableSelfDestruct *)request {
+	NSLog(@"selfDestructEnabled: %@", request.response);
+	return nil;
+}
+
+
+- (id)inviteSent:(LEEmpireInviteFriend *)request {
+	NSLog(@"inviteSent: %@", request.response);
+	return nil;
+}
+
+
+- (id)essentiaCodeRedeemed:(LEEmpireRedeemEssentiaCode *)request {
+	NSLog(@"essentiaCodeRedeemed: %@", request.response);
+	return nil;
 }
 
 

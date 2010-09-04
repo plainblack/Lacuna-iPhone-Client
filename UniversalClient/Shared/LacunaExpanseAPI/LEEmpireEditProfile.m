@@ -18,11 +18,8 @@
 @synthesize profile;
 
 
-- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget textKey:(NSString *)textKey text:(NSString *)text empire:(EmpireProfile *)empire {
-	self.profile = [NSMutableDictionary dictionaryWithCapacity:3];
-	[self.profile setObject:empire.status forKey:@"status_message"];
-	[self.profile setObject:empire.description forKey:@"description"];
-	[self.profile setObject:[NSArray array] forKey:@"public_medals"];
+- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget textKey:(NSString *)textKey text:(NSString *)text {
+	self.profile = [NSMutableDictionary dictionaryWithCapacity:1];
 	[self.profile setObject:text forKey:textKey];
 	return [super initWithCallback:inCallback target:inTarget];
 }

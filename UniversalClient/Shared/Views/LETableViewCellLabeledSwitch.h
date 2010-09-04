@@ -33,7 +33,6 @@
 @property(nonatomic, assign) id<LETableViewCellLabeledSwitchDelegate> delegate;
 
 
-
 + (LETableViewCellLabeledSwitch *)getCellForTableView:(UITableView *)tableView;
 + (CGFloat)getHeightForTableView:(UITableView *)tableView;
 

@@ -10,9 +10,6 @@
 #import "LERequest.h"
 
 
-@class EmpireProfile;
-
-
 @interface LEEmpireEditProfile : LERequest {
 	NSMutableDictionary *profile;
 }
@@ -21,7 +18,7 @@
 @property(nonatomic, retain) NSMutableDictionary *profile;
 
 
-- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target textKey:(NSString *)textKey text:(NSString *)text empire:(EmpireProfile *)empire;
+- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target textKey:(NSString *)textKey text:(NSString *)text;
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target medals:(NSArray *)medals;
 
 

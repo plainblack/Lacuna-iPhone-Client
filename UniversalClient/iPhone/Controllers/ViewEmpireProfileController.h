@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "LETableViewControllerGrouped.h"
-
+#import "LETableViewCellLabeledSwitch.h"
 
 @class LEEmpireViewProfile;
 @class EmpireProfile;
 
 
-@interface ViewEmpireProfileController : LETableViewControllerGrouped {
+@interface ViewEmpireProfileController : LETableViewControllerGrouped <LETableViewCellLabeledSwitchDelegate> {
 	LEEmpireViewProfile *leEmpireViewProfile;
 	EmpireProfile *empireProfile;
 }

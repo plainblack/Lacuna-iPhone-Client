@@ -168,6 +168,11 @@
 		F6AC4A37116C0FAE001B967A /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC4A35116C0FAE001B967A /* Session.m */; };
 		F6AC4A50116C106E001B967A /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC4A4F116C106E001B967A /* KeychainItemWrapper.m */; };
 		F6AC4A5C116C10A9001B967A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6AC4A5B116C10A9001B967A /* Security.framework */; };
+		F6B2148E1232AAFF00531EEE /* LEEmpireInviteFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B2148D1232AAFF00531EEE /* LEEmpireInviteFriend.m */; };
+		F6B214911232AB2100531EEE /* LEEmpireChangePassword.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B214901232AB2100531EEE /* LEEmpireChangePassword.m */; };
+		F6B214941232AB4300531EEE /* LEEmpireEnableSelfDestruct.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B214931232AB4300531EEE /* LEEmpireEnableSelfDestruct.m */; };
+		F6B214971232AB4F00531EEE /* LEEmpireDisableSelfDestruct.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B214961232AB4F00531EEE /* LEEmpireDisableSelfDestruct.m */; };
+		F6B2149A1232AB7500531EEE /* LEEmpireRedeemEssentiaCode.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B214991232AB7500531EEE /* LEEmpireRedeemEssentiaCode.m */; };
 		F6C3906311F1E36C004FB38F /* LETableViewCellMailSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */; };
 		F6C390C311F1ED14004FB38F /* LETableViewCellMailHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C390C211F1ED14004FB38F /* LETableViewCellMailHeaders.m */; };
 		F6C390EE11F23D54004FB38F /* LETableViewCellBuildQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C390ED11F23D54004FB38F /* LETableViewCellBuildQueueItem.m */; };
@@ -620,6 +625,16 @@
 		F6AC4A4E116C106E001B967A /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeychainItemWrapper.h; path = Shared/KeychainItemWrapper.h; sourceTree = "<group>"; };
 		F6AC4A4F116C106E001B967A /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeychainItemWrapper.m; path = Shared/KeychainItemWrapper.m; sourceTree = "<group>"; };
 		F6AC4A5B116C10A9001B967A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		F6B2148C1232AAFF00531EEE /* LEEmpireInviteFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireInviteFriend.h; sourceTree = "<group>"; };
+		F6B2148D1232AAFF00531EEE /* LEEmpireInviteFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireInviteFriend.m; sourceTree = "<group>"; };
+		F6B2148F1232AB2100531EEE /* LEEmpireChangePassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireChangePassword.h; sourceTree = "<group>"; };
+		F6B214901232AB2100531EEE /* LEEmpireChangePassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireChangePassword.m; sourceTree = "<group>"; };
+		F6B214921232AB4300531EEE /* LEEmpireEnableSelfDestruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireEnableSelfDestruct.h; sourceTree = "<group>"; };
+		F6B214931232AB4300531EEE /* LEEmpireEnableSelfDestruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireEnableSelfDestruct.m; sourceTree = "<group>"; };
+		F6B214951232AB4F00531EEE /* LEEmpireDisableSelfDestruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireDisableSelfDestruct.h; sourceTree = "<group>"; };
+		F6B214961232AB4F00531EEE /* LEEmpireDisableSelfDestruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireDisableSelfDestruct.m; sourceTree = "<group>"; };
+		F6B214981232AB7500531EEE /* LEEmpireRedeemEssentiaCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireRedeemEssentiaCode.h; sourceTree = "<group>"; };
+		F6B214991232AB7500531EEE /* LEEmpireRedeemEssentiaCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireRedeemEssentiaCode.m; sourceTree = "<group>"; };
 		F6C3906111F1E36C004FB38F /* LETableViewCellMailSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellMailSelect.h; sourceTree = "<group>"; };
 		F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellMailSelect.m; sourceTree = "<group>"; };
 		F6C390C111F1ED14004FB38F /* LETableViewCellMailHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellMailHeaders.h; sourceTree = "<group>"; };
@@ -1300,20 +1315,30 @@
 				F6DB8AE41211718D00F3AB4B /* LEEmpireBoostStorage.m */,
 				F6E3F02B11B46C0600E7BC86 /* LEEmpireBoostWater.h */,
 				F6E3F02C11B46C0600E7BC86 /* LEEmpireBoostWater.m */,
+				F6B2148F1232AB2100531EEE /* LEEmpireChangePassword.h */,
+				F6B214901232AB2100531EEE /* LEEmpireChangePassword.m */,
 				F6AC49F0116C0F9B001B967A /* LEEmpireCreate.h */,
 				F6AC49F1116C0F9B001B967A /* LEEmpireCreate.m */,
+				F6B214951232AB4F00531EEE /* LEEmpireDisableSelfDestruct.h */,
+				F6B214961232AB4F00531EEE /* LEEmpireDisableSelfDestruct.m */,
 				F6E3E58011BB0EA500A031CF /* LEEmpireEditProfile.h */,
 				F6E3E58111BB0EA500A031CF /* LEEmpireEditProfile.m */,
+				F6B214921232AB4300531EEE /* LEEmpireEnableSelfDestruct.h */,
+				F6B214931232AB4300531EEE /* LEEmpireEnableSelfDestruct.m */,
 				F6D1DF99122B2191007A9A4B /* LEEmpireFetchCaptcha.h */,
 				F6D1DF9A122B2191007A9A4B /* LEEmpireFetchCaptcha.m */,
 				F6E349D11227DE1F001E39B5 /* LEEmpireFind.h */,
 				F6E349D21227DE1F001E39B5 /* LEEmpireFind.m */,
 				F6AC49F2116C0F9B001B967A /* LEEmpireFound.h */,
 				F6AC49F3116C0F9B001B967A /* LEEmpireFound.m */,
+				F6B2148C1232AAFF00531EEE /* LEEmpireInviteFriend.h */,
+				F6B2148D1232AAFF00531EEE /* LEEmpireInviteFriend.m */,
 				F6AC49F4116C0F9B001B967A /* LEEmpireLogin.h */,
 				F6AC49F5116C0F9B001B967A /* LEEmpireLogin.m */,
 				F6AC49F6116C0F9B001B967A /* LEEmpireLogout.h */,
 				F6AC49F7116C0F9B001B967A /* LEEmpireLogout.m */,
+				F6B214981232AB7500531EEE /* LEEmpireRedeemEssentiaCode.h */,
+				F6B214991232AB7500531EEE /* LEEmpireRedeemEssentiaCode.m */,
 				F6D02A1A1230699F000D8811 /* LEEmpireResetPassword.h */,
 				F6D02A1B1230699F000D8811 /* LEEmpireResetPassword.m */,
 				F6D02A171230698B000D8811 /* LEEmpireSendPasswordResetMessage.h */,
@@ -2007,6 +2032,11 @@
 				F6D02A191230698B000D8811 /* LEEmpireSendPasswordResetMessage.m in Sources */,
 				F6D02A1C1230699F000D8811 /* LEEmpireResetPassword.m in Sources */,
 				F6F1C21D12326FB100D69BB6 /* ViewMedalsController.m in Sources */,
+				F6B2148E1232AAFF00531EEE /* LEEmpireInviteFriend.m in Sources */,
+				F6B214911232AB2100531EEE /* LEEmpireChangePassword.m in Sources */,
+				F6B214941232AB4300531EEE /* LEEmpireEnableSelfDestruct.m in Sources */,
+				F6B214971232AB4F00531EEE /* LEEmpireDisableSelfDestruct.m in Sources */,
+				F6B2149A1232AB7500531EEE /* LEEmpireRedeemEssentiaCode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,7 +13,7 @@
 #import "Session.h"
 #import "LETableViewCellLabeledText.h"
 #import "LETableViewCellLabeledParagraph.h"
-#import "LETableViewCellMedal.h"
+#import "LETableViewCellLabeledSwitch.h"
 #import "Util.h"
 #import "LETableViewCellButton.h"
 #import "ViewEmpireBoostsController.h"
@@ -25,7 +25,8 @@
 
 typedef enum {
 	SECTION_EMPIRE,
-	SECTION_ACTIONS
+	SECTION_ACTIONS,
+	SECTION_SELF_DESTRUCT
 } SECTION;
 
 
@@ -40,7 +41,9 @@ typedef enum {
 typedef enum {
 	ACTION_ROW_VIEW_EMPIRE_BOOSTS,
 	ACTION_ROW_PURCHASE_ESSENTIA,
-	ACTION_ROW_VIEW_MEDALS
+	ACTION_ROW_VIEW_MEDALS,
+	ACTION_ROW_CHANGE_PASSWORD,
+	ACTION_ROW_SEND_INVITE
 } ACTION_ROW;
 
 
@@ -112,6 +115,9 @@ typedef enum {
 			case SECTION_ACTIONS:
 				return 3;
 				break;
+			case SECTION_SELF_DESTRUCT:
+				return 1;
+				break;
 			default:
 				return 0;
 				break;
@@ -148,12 +154,17 @@ typedef enum {
 					case ACTION_ROW_VIEW_EMPIRE_BOOSTS:
 					case ACTION_ROW_PURCHASE_ESSENTIA:
 					case ACTION_ROW_VIEW_MEDALS:
+					case ACTION_ROW_CHANGE_PASSWORD:
+					case ACTION_ROW_SEND_INVITE:
 						return [LETableViewCellButton getHeightForTableView:tableView];
 						break;
 					default:
 						return 0.0;
 						break;
 				}
+				break;
+			case SECTION_SELF_DESTRUCT:
+				return [LETableViewCellLabeledSwitch getHeightForTableView:tableView];
 				break;
 			default:
 				return 0.0;
@@ -235,10 +246,30 @@ typedef enum {
 						medalButton.textLabel.text = @"View Medals";
 						cell = medalButton;
 						break;
+					case ACTION_ROW_CHANGE_PASSWORD:
+						; //DO NOT REMOVE
+						LETableViewCellButton *changePasswordButton = [LETableViewCellButton getCellForTableView:tableView];
+						changePasswordButton.textLabel.text = @"Change Password";
+						cell = changePasswordButton;
+						break;
+					case ACTION_ROW_SEND_INVITE:
+						; //DO NOT REMOVE
+						LETableViewCellButton *sendInviteButton = [LETableViewCellButton getCellForTableView:tableView];
+						sendInviteButton.textLabel.text = @"Send Friend Invite";
+						cell = sendInviteButton;
+						break;
 					default:
 						cell = nil;
 						break;
 				}
+				break;
+			case SECTION_SELF_DESTRUCT:
+				; //DO NOT REMOVE
+				LETableViewCellLabeledSwitch *selfDestructCell = [LETableViewCellLabeledSwitch getCellForTableView:tableView];
+				selfDestructCell.label.text = @"Self Destruct";
+				selfDestructCell.isSelected = session.empire.selfDestructActive;
+				selfDestructCell.delegate = self;
+				cell = selfDestructCell;
 				break;
 			default:
 				cell = nil;
@@ -268,12 +299,12 @@ typedef enum {
 					case EMPIRE_ROW_DESCRIPTION:
 						; //DO NOT REMOVE
 						NSLog(@"");
-						EditEmpireProfileText *editDescriptionEmpireProfileText = [EditEmpireProfileText createForEmpireProfile:self.empireProfile textName:@"Description" textKey:@"description" text:self.empireProfile.description];
+						EditEmpireProfileText *editDescriptionEmpireProfileText = [EditEmpireProfileText createForTextName:@"Description" textKey:@"description" text:self.empireProfile.description];
 						[self.navigationController pushViewController:editDescriptionEmpireProfileText animated:YES];
 						break;
 					case EMPIRE_ROW_STATUS:
 						; //DO NOT REMOVE
-						EditEmpireProfileText *editStatusEmpireProfileText = [EditEmpireProfileText createForEmpireProfile:self.empireProfile textName:@"Status" textKey:@"status_message" text:self.empireProfile.status];
+						EditEmpireProfileText *editStatusEmpireProfileText = [EditEmpireProfileText createForTextName:@"Status" textKey:@"status_message" text:self.empireProfile.status];
 						[self.navigationController pushViewController:editStatusEmpireProfileText animated:YES];
 						break;
 				}
@@ -318,7 +349,6 @@ typedef enum {
 
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
 	[self.leEmpireViewProfile cancel];
 	self.leEmpireViewProfile = nil;
 	self.empireProfile = nil;
@@ -328,6 +358,15 @@ typedef enum {
 
 - (void)dealloc {
     [super dealloc];
+}
+
+
+#pragma mark -
+#pragma mark LETableViewCellLabeledSwitchDelegate Methods
+
+- (void)cell:(LETableViewCellLabeledSwitch *)cell switchedTo:(BOOL)isOn {
+	Session *session = [Session sharedInstance];
+	[session.empire setSelfDestruct:isOn];
 }
 
 

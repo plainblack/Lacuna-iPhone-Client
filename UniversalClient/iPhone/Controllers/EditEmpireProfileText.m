@@ -19,7 +19,6 @@
 @synthesize textCell;
 @synthesize textName;
 @synthesize textKey;
-@synthesize empireProfile;
 
 
 #pragma mark -
@@ -93,7 +92,6 @@
 	self.textCell = nil;
 	self.textName = nil;
 	self.textKey = nil;
-	self.empireProfile = nil;
     [super dealloc];
 }
 
@@ -107,7 +105,7 @@
 
 
 - (void)save {
-	[[LEEmpireEditProfile alloc] initWithCallback:@selector(textUpdated:) target:self textKey:self.textKey text:self.textCell.textView.text empire:self.empireProfile];
+	[[LEEmpireEditProfile alloc] initWithCallback:@selector(textUpdated:) target:self textKey:self.textKey text:self.textCell.textView.text];
 }
 
 
@@ -123,10 +121,9 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (EditEmpireProfileText *)createForEmpireProfile:(EmpireProfile *)inEmpireProfile textName:(NSString *)name textKey:(NSString *)key text:(NSString *)text {
++ (EditEmpireProfileText *)createForTextName:(NSString *)name textKey:(NSString *)key text:(NSString *)text {
 	EditEmpireProfileText *editEmpireProfileText = [[[EditEmpireProfileText alloc] init] autorelease];
 	
-	editEmpireProfileText.empireProfile = inEmpireProfile;
 	editEmpireProfileText.textKey = key;
 	editEmpireProfileText.textName = name;
 	if ((id)text == [NSNull null]) {
