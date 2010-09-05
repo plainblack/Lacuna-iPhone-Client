@@ -32,21 +32,9 @@
 
 - (void)processSuccess {
 	NSDictionary *result = [self.response objectForKey:@"result"];
-	NSDictionary *profile = [result objectForKey:@"profile"];
+	NSDictionary *profileData = [result objectForKey:@"profile"];
 	EmpireProfile *newEmpire = [[[EmpireProfile alloc] init] autorelease];
-	newEmpire.description = [profile objectForKey:@"description"];
-	newEmpire.status = [profile objectForKey:@"status_message"];
-	
-	NSMutableDictionary *medalsDictionary = [profile objectForKey:@"medals"];
-	NSMutableArray *medalArray = [NSMutableArray arrayWithCapacity:[medalsDictionary count]];
-	for (NSString *medalId in medalsDictionary) {
-		NSMutableDictionary *medalDictionary = [medalsDictionary objectForKey:medalId];
-		[medalDictionary setObject:medalId forKey:@"id"];
-		[medalArray addObject:medalDictionary];
-	}
-	[medalArray sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES])];
-
-	newEmpire.medals = medalArray;
+	[newEmpire parseData:profileData];
 	self.empire = newEmpire;
 }
 

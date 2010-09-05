@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "LETableViewControllerGrouped.h"
 #import "LETableViewCellLabeledSwitch.h"
+#import "EditTextFieldController.h"
 
 @class LEEmpireViewProfile;
 @class EmpireProfile;
 
 
-@interface ViewEmpireProfileController : LETableViewControllerGrouped <LETableViewCellLabeledSwitchDelegate> {
+@interface ViewEmpireProfileController : LETableViewControllerGrouped <LETableViewCellLabeledSwitchDelegate, EditTextFieldControllerDelegate> {
 	LEEmpireViewProfile *leEmpireViewProfile;
 	EmpireProfile *empireProfile;
 }

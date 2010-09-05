@@ -156,7 +156,7 @@ static id<LERequestMonitor> delegate;
 
 		if (wasError && !handledError) {
 			NSString *errorText = [self errorMessage];
-			UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Unhandled Error" message:errorText delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+			UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:errorText delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 			[av show];
 		}
 	}

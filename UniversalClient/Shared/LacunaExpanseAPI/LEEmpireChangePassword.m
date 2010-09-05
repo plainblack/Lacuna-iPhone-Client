@@ -35,7 +35,6 @@
 
 
 - (void)processSuccess {
-	NSLog(@"Change Password Response: %@", self.response);
 }
 
 

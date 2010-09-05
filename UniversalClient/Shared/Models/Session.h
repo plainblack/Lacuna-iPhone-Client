@@ -42,6 +42,7 @@
 - (void)processStatus:(NSDictionary *)status;
 - (void)loadBody:(NSString *)bodyId;
 - (void)loggedInEmpireData:(NSDictionary *)empireData sessionId:(NSString *)sessionId password:(NSString *)password;
+- (void)saveToKeyChainForUsername:(NSString *)username password:(NSString *)password;
 
 
 + (Session *)sharedInstance;

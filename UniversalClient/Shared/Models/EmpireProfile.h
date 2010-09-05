@@ -10,15 +10,30 @@
 
 
 @interface EmpireProfile : NSObject {
-	NSString *description;
+	NSString *empireDescription;
 	NSString *status;
 	NSArray *medals;
+	NSString *city;
+	NSString *country;
+	NSString *skype;
+	NSString *playerName;
+	NSString *email;
+	NSString *sitterPassword;
 }
 
 
-@property(nonatomic, retain) NSString *description;
+@property(nonatomic, retain) NSString *empireDescription;
 @property(nonatomic, retain) NSString *status;
 @property(nonatomic, retain) NSArray *medals;
+@property(nonatomic, retain) NSString *city;
+@property(nonatomic, retain) NSString *country;
+@property(nonatomic, retain) NSString *skype;
+@property(nonatomic, retain) NSString *playerName;
+@property(nonatomic, retain) NSString *email;
+@property(nonatomic, retain) NSString *sitterPassword;
+
+
+- (void)parseData:(NSDictionary *)data;
 
 
 @end

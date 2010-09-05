@@ -89,7 +89,9 @@
 }
 
 
-- (void)changeFromPassword:(NSString *)oldPassword toPassword:(NSString *)newPassword confirmPassword:(NSString *)newPasswordConfirm {
+- (void)changeFromPassword:(NSString *)oldPassword toPassword:(NSString *)newPassword confirmPassword:(NSString *)newPasswordConfirm target:(id)target callback:(SEL)callback{
+	self->changePasswordTarget = target;
+	self->changePasswordCallback = callback;
 	[[[LEEmpireChangePassword alloc] initWithCallback:@selector(passwordChanged:) target:self currentPassword:oldPassword newPassword:newPassword newPasswordConfirm:newPasswordConfirm] autorelease];
 }
 
@@ -117,31 +119,27 @@
 #pragma mark Callback Methods
 
 - (id)passwordChanged:(LEEmpireChangePassword *)request {
-	NSLog(@"passwordChanged: %@", request.response);
+	[self->changePasswordTarget performSelector:self->changePasswordCallback withObject:request];
 	return nil;
 }
 
 
 - (id)selfDestructDisabled:(LEEmpireDisableSelfDestruct *)request {
-	NSLog(@"selfDestructDisabled: %@", request.response);
 	return nil;
 }
 
 
 - (id)selfDestructEnabled:(LEEmpireEnableSelfDestruct *)request {
-	NSLog(@"selfDestructEnabled: %@", request.response);
 	return nil;
 }
 
 
 - (id)inviteSent:(LEEmpireInviteFriend *)request {
-	NSLog(@"inviteSent: %@", request.response);
 	return nil;
 }
 
 
 - (id)essentiaCodeRedeemed:(LEEmpireRedeemEssentiaCode *)request {
-	NSLog(@"essentiaCodeRedeemed: %@", request.response);
 	return nil;
 }
 

@@ -191,10 +191,7 @@ static Session *sharedSession = nil;
 
 - (void)loggedInEmpireData:(NSDictionary *)inEmpireData sessionId:(NSString *)inSessionId password:(NSString *)inPassword {
 	NSString *username = [inEmpireData objectForKey:@"name"];
-	KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithIdentifier:username accessGroup:nil] autorelease];
-	[keychainItemWrapper setObject:username forKey:(id)kSecAttrAccount];
-	[keychainItemWrapper setObject:inPassword forKey:(id)kSecValueData];
-	[keychainItemWrapper setObject:self.serverUri forKey:(id)kSecAttrService];
+	[self saveToKeyChainForUsername:username password:inPassword];
 	
 	BOOL found = NO;
 	for (NSDictionary *savedEmpire in self.savedEmpireList) {
@@ -215,6 +212,15 @@ static Session *sharedSession = nil;
 	[self.empire parseData:inEmpireData];
 	self.isLoggedIn = TRUE;
 }
+
+
+- (void)saveToKeyChainForUsername:(NSString *)username password:(NSString *)password {
+	KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithIdentifier:username accessGroup:nil] autorelease];
+	[keychainItemWrapper setObject:username forKey:(id)kSecAttrAccount];
+	[keychainItemWrapper setObject:password forKey:(id)kSecValueData];
+	[keychainItemWrapper setObject:self.serverUri forKey:(id)kSecAttrService];
+}
+
 
 #pragma mark -
 #pragma mark Callback methods
