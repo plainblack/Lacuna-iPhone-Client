@@ -1181,6 +1181,8 @@
 		F6E4D6681168D4B200980B59 /* LacunaExpanseAPI */ = {
 			isa = PBXGroup;
 			children = (
+				F6B21665123324E000531EEE /* LEBodyAbandon.h */,
+				F6B21666123324E000531EEE /* LEBodyAbandon.m */,
 				F6AC4A00116C0F9B001B967A /* LEBodyGetBuildings.h */,
 				F6AC4A01116C0F9B001B967A /* LEBodyGetBuildings.m */,
 				F6F5427B11A9D7D4006F347B /* LEBodyStatus.h */,
@@ -1383,14 +1385,12 @@
 				F6AC4A15116C0F9B001B967A /* LESpeciesCreate.m */,
 				F6AC4A16116C0F9B001B967A /* LESpeciesSetHuman.h */,
 				F6AC4A17116C0F9B001B967A /* LESpeciesSetHuman.m */,
+				F6B215A71232E4F900531EEE /* LESpeciesViewStats.h */,
+				F6B215A81232E4F900531EEE /* LESpeciesViewStats.m */,
 				F6F5240A122C5ED5004E428A /* LEStatsCredits.h */,
 				F6F5240B122C5ED5004E428A /* LEStatsCredits.m */,
 				F6AC4A18116C0F9B001B967A /* LEUpgradeBuilding.h */,
 				F6AC4A19116C0F9B001B967A /* LEUpgradeBuilding.m */,
-				F6B215A71232E4F900531EEE /* LESpeciesViewStats.h */,
-				F6B215A81232E4F900531EEE /* LESpeciesViewStats.m */,
-				F6B21665123324E000531EEE /* LEBodyAbandon.h */,
-				F6B21666123324E000531EEE /* LEBodyAbandon.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -1555,6 +1555,8 @@
 				F6980B76117A8BD700BD2096 /* NewMailMessageController.m */,
 				F6F854C212203FBF0000CD09 /* NewOneForOneTradeController.h */,
 				F6F854C312203FBF0000CD09 /* NewOneForOneTradeController.m */,
+				F6B2155A1232D20200531EEE /* NewPasswordController.h */,
+				F6B2155B1232D20200531EEE /* NewPasswordController.m */,
 				F69D299011725FA400D7277E /* NewSpeciesController.h */,
 				F69D299111725FA400D7277E /* NewSpeciesController.m */,
 				F6D3F66B1221776A0090E31E /* NewTradeController.h */,
@@ -1630,6 +1632,8 @@
 				F6980B02117A6CF900BD2096 /* ViewMailMessageController.h */,
 				F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */,
 				F6980B04117A6CF900BD2096 /* ViewMailMessageController.xib */,
+				F6F1C21B12326FB100D69BB6 /* ViewMedalsController.h */,
+				F6F1C21C12326FB100D69BB6 /* ViewMedalsController.m */,
 				F6E5E63E1205CF4000365AA2 /* ViewMiningFleetShipsController.h */,
 				F6E5E63F1205CF4000365AA2 /* ViewMiningFleetShipsController.m */,
 				F6E5E5E71205C40600365AA2 /* ViewMiningPlatformsController.h */,
@@ -1646,6 +1650,8 @@
 				F65DC36D11EE533500A0A782 /* ViewPrisonersController.m */,
 				F61F6759120515410007427A /* ViewProbedStarsController.h */,
 				F61F675A120515410007427A /* ViewProbedStarsController.m */,
+				F6B2155D1232D20B00531EEE /* ViewRacialStatsController.h */,
+				F6B2155E1232D20B00531EEE /* ViewRacialStatsController.m */,
 				F61F65CE1204C6030007427A /* ViewShipBuildQueueController.h */,
 				F61F65CF1204C6030007427A /* ViewShipBuildQueueController.m */,
 				F6D59F9B120120EE009DDA28 /* ViewShipsController.h */,
@@ -1665,12 +1671,6 @@
 				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
 				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
-				F6F1C21B12326FB100D69BB6 /* ViewMedalsController.h */,
-				F6F1C21C12326FB100D69BB6 /* ViewMedalsController.m */,
-				F6B2155A1232D20200531EEE /* NewPasswordController.h */,
-				F6B2155B1232D20200531EEE /* NewPasswordController.m */,
-				F6B2155D1232D20B00531EEE /* ViewRacialStatsController.h */,
-				F6B2155E1232D20B00531EEE /* ViewRacialStatsController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

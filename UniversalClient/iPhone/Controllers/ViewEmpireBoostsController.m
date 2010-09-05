@@ -22,13 +22,19 @@
 
 
 typedef enum {
-	EMPIRE_BOOST_ROW_ENERGY,
-	EMPIRE_BOOST_ROW_FOOD,
-	EMPIRE_BOOST_ROW_HAPPINESS,
-	EMPIRE_BOOST_ROW_ORE,
-	EMPIRE_BOOST_ROW_WATER,
-	EMPIRE_BOOST_ROW_STORAGE
-} EMPIRE_ROW;
+	EMPIRE_BOOST_SECTION_ENERGY,
+	EMPIRE_BOOST_SECTION_FOOD,
+	EMPIRE_BOOST_SECTION_HAPPINESS,
+	EMPIRE_BOOST_SECTION_ORE,
+	EMPIRE_BOOST_SECTION_WATER,
+	EMPIRE_BOOST_SECTION_STORAGE
+} EMPIRE_BOOST_SECTION;
+
+
+typedef enum {
+	EMPIRE_BOOST_ROW_EXPIRES,
+	EMPIRE_BOOST_ROW_BUTTON
+} EMPIRE_BOOST_ROW;
 
 
 @implementation ViewEmpireBoostsController
@@ -47,7 +53,12 @@ typedef enum {
     self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
 	self.navigationItem.title = @"Loading";
 	
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Empire Boosts"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Energy"],
+								 [LEViewSectionTab tableView:self.tableView createWithText:@"Food"],
+								 [LEViewSectionTab tableView:self.tableView createWithText:@"Happiness"],
+								 [LEViewSectionTab tableView:self.tableView createWithText:@"Ore"],
+								 [LEViewSectionTab tableView:self.tableView createWithText:@"Water"],
+								 [LEViewSectionTab tableView:self.tableView createWithText:@"Storage"]);
 }
 
 
@@ -68,7 +79,7 @@ typedef enum {
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	if (self.empireBoosts) {
-		return 1;
+		return 6;
 	} else {
 		return 0;
 	}
@@ -77,9 +88,35 @@ typedef enum {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (self.empireBoosts) {
-		return 6;
+		return 2;
 	} else {
 		return 0;
+	}
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	switch (indexPath.section) {
+		case EMPIRE_BOOST_SECTION_ENERGY:
+		case EMPIRE_BOOST_SECTION_FOOD:
+		case EMPIRE_BOOST_SECTION_HAPPINESS:
+		case EMPIRE_BOOST_SECTION_ORE:
+		case EMPIRE_BOOST_SECTION_WATER:
+		case EMPIRE_BOOST_SECTION_STORAGE:
+			switch (indexPath.row) {
+				case EMPIRE_BOOST_ROW_EXPIRES:
+					return [LETableViewCellLabeledText getHeightForTableView:tableView];
+					break;
+				case EMPIRE_BOOST_ROW_BUTTON:
+					return [LETableViewCellButton getHeightForTableView:tableView];
+					break;
+				default:
+					return 0.0;
+					break;
+			}
+			break;
+		default:
+			return 0.0;
+			break;
 	}
 }
 
@@ -88,24 +125,96 @@ typedef enum {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell;
 	
-	switch (indexPath.row) {
-		case EMPIRE_BOOST_ROW_ENERGY:
-			cell = [self setupCellForTableView:tableView boostEndDate:[self.empireBoosts objectForKey:@"energy"] name:@"Energy"];
+	switch (indexPath.section) {
+		case EMPIRE_BOOST_SECTION_ENERGY:
+			; //DO NOT REMOVE
+			NSDate *energyBoostEndDate = [self.empireBoosts objectForKey:@"energy"];
+			switch (indexPath.row) {
+				case EMPIRE_BOOST_ROW_EXPIRES:
+					cell = [self setupExpiresCellForTableView:tableView secondsRemaining:[energyBoostEndDate timeIntervalSinceNow]];
+					break;
+				case EMPIRE_BOOST_ROW_BUTTON:
+					cell = [self setupButtonCellForTableView:tableView secondsRemaining:[energyBoostEndDate timeIntervalSinceNow] name:@"Energy"];
+					break;
+				default:
+					cell = nil;
+					break;
+			}
 			break;
-		case EMPIRE_BOOST_ROW_FOOD:
-			cell = [self setupCellForTableView:tableView boostEndDate:[self.empireBoosts objectForKey:@"food"] name:@"Food"];
+		case EMPIRE_BOOST_SECTION_FOOD:
+			; //DO NOT REMOVE
+			NSDate *foodBoostEndDate = [self.empireBoosts objectForKey:@"food"];
+			switch (indexPath.row) {
+				case EMPIRE_BOOST_ROW_EXPIRES:
+					cell = [self setupExpiresCellForTableView:tableView secondsRemaining:[foodBoostEndDate timeIntervalSinceNow]];
+					break;
+				case EMPIRE_BOOST_ROW_BUTTON:
+					cell = [self setupButtonCellForTableView:tableView secondsRemaining:[foodBoostEndDate timeIntervalSinceNow] name:@"Food"];
+					break;
+				default:
+					cell = nil;
+					break;
+			}
 			break;
-		case EMPIRE_BOOST_ROW_HAPPINESS:
-			cell = [self setupCellForTableView:tableView boostEndDate:[self.empireBoosts objectForKey:@"happiness"] name:@"Happiness"];
+		case EMPIRE_BOOST_SECTION_HAPPINESS:
+			; //DO NOT REMOVE
+			NSDate *happinessBoostEndDate = [self.empireBoosts objectForKey:@"happiness"];
+			switch (indexPath.row) {
+				case EMPIRE_BOOST_ROW_EXPIRES:
+					cell = [self setupExpiresCellForTableView:tableView secondsRemaining:[happinessBoostEndDate timeIntervalSinceNow]];
+					break;
+				case EMPIRE_BOOST_ROW_BUTTON:
+					cell = [self setupButtonCellForTableView:tableView secondsRemaining:[happinessBoostEndDate timeIntervalSinceNow] name:@"Happiness"];
+					break;
+				default:
+					cell = nil;
+					break;
+			}
 			break;
-		case EMPIRE_BOOST_ROW_ORE:
-			cell = [self setupCellForTableView:tableView boostEndDate:[self.empireBoosts objectForKey:@"ore"] name:@"Ore"];
+		case EMPIRE_BOOST_SECTION_ORE:
+			; //DO NOT REMOVE
+			NSDate *oreBoostEndDate = [self.empireBoosts objectForKey:@"ore"];
+			switch (indexPath.row) {
+				case EMPIRE_BOOST_ROW_EXPIRES:
+					cell = [self setupExpiresCellForTableView:tableView secondsRemaining:[oreBoostEndDate timeIntervalSinceNow]];
+					break;
+				case EMPIRE_BOOST_ROW_BUTTON:
+					cell = [self setupButtonCellForTableView:tableView secondsRemaining:[oreBoostEndDate timeIntervalSinceNow] name:@"Ore"];
+					break;
+				default:
+					cell = nil;
+					break;
+			}
 			break;
-		case EMPIRE_BOOST_ROW_WATER:
-			cell = [self setupCellForTableView:tableView boostEndDate:[self.empireBoosts objectForKey:@"water"] name:@"Water"];
+		case EMPIRE_BOOST_SECTION_WATER:
+			; //DO NOT REMOVE
+			NSDate *waterBoostEndDate = [self.empireBoosts objectForKey:@"water"];
+			switch (indexPath.row) {
+				case EMPIRE_BOOST_ROW_EXPIRES:
+					cell = [self setupExpiresCellForTableView:tableView secondsRemaining:[waterBoostEndDate timeIntervalSinceNow]];
+					break;
+				case EMPIRE_BOOST_ROW_BUTTON:
+					cell = [self setupButtonCellForTableView:tableView secondsRemaining:[waterBoostEndDate timeIntervalSinceNow] name:@"Water"];
+					break;
+				default:
+					cell = nil;
+					break;
+			}
 			break;
-		case EMPIRE_BOOST_ROW_STORAGE:
-			cell = [self setupCellForTableView:tableView boostEndDate:[self.empireBoosts objectForKey:@"storage"] name:@"Storage"];
+		case EMPIRE_BOOST_SECTION_STORAGE:
+			; //DO NOT REMOVE
+			NSDate *storageBoostEndDate = [self.empireBoosts objectForKey:@"storage"];
+			switch (indexPath.row) {
+				case EMPIRE_BOOST_ROW_EXPIRES:
+					cell = [self setupExpiresCellForTableView:tableView secondsRemaining:[storageBoostEndDate timeIntervalSinceNow]];
+					break;
+				case EMPIRE_BOOST_ROW_BUTTON:
+					cell = [self setupButtonCellForTableView:tableView secondsRemaining:[storageBoostEndDate timeIntervalSinceNow] name:@"Storage"];
+					break;
+				default:
+					cell = nil;
+					break;
+			}
 			break;
 		default:
 			cell = nil;
@@ -122,27 +231,27 @@ typedef enum {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSString *msg = nil;
 	switch (indexPath.row) {
-		case EMPIRE_BOOST_ROW_ENERGY:
+		case EMPIRE_BOOST_SECTION_ENERGY:
 			msg = [NSString stringWithFormat:@"Are you sure you want to spend 2 essentia to boost your Energy Production by 25%%?"];
 			break;
-		case EMPIRE_BOOST_ROW_FOOD:
+		case EMPIRE_BOOST_SECTION_FOOD:
 			msg = [NSString stringWithFormat:@"Are you sure you want to spend 2 essentia to boost your Food Production by 25%%?"];
 			break;
-		case EMPIRE_BOOST_ROW_HAPPINESS:
+		case EMPIRE_BOOST_SECTION_HAPPINESS:
 			msg = [NSString stringWithFormat:@"Are you sure you want to spend 2 essentia to boost your Happiness Production by 25%%?"];
 			break;
-		case EMPIRE_BOOST_ROW_ORE:
+		case EMPIRE_BOOST_SECTION_ORE:
 			msg = [NSString stringWithFormat:@"Are you sure you want to spend 2 essentia to boost your Ore Production by 25%%?"];
 			break;
-		case EMPIRE_BOOST_ROW_WATER:
+		case EMPIRE_BOOST_SECTION_WATER:
 			msg = [NSString stringWithFormat:@"Are you sure you want to spend 2 essentia to boost your Water Production by 25%%?"];
 			break;
-		case EMPIRE_BOOST_ROW_STORAGE:
+		case EMPIRE_BOOST_SECTION_STORAGE:
 			msg = [NSString stringWithFormat:@"Are you sure you want to spend 2 essentia to boost your Storage Capacity by 25%%?"];
 			break;
 	}
 	if (msg) {
-		self->selectedRow = indexPath.row;
+		self->selectedSection = indexPath.section;
 		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:msg delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
 		actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
 		[actionSheet showFromTabBar:self.tabBarController.tabBar];
@@ -176,12 +285,12 @@ typedef enum {
 #pragma mark -
 #pragma mark Instance Methods
 
+/*
 - (UITableViewCell *)setupCellForTableView:(UITableView *)tableView boostEndDate:(NSDate *)boostEndDate name:(NSString *)name {
 	if ([self isBoosting:boostEndDate]) {
-		LETableViewCellLabeledText *energyPendingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-		energyPendingCell.label.text = name;
-		energyPendingCell.content.text = [Util formatDate:boostEndDate];
-		return energyPendingCell;
+		LETableViewCellEmpireBoost *boostedCell = [LETableViewCellEmpireBoost getCellForTableView:tableView];
+		[boostedCell setExpireAt:boostEndDate];
+		return boostedCell;
 	} else {
 		LETableViewCellButton *energyButtonCell = [LETableViewCellButton getCellForTableView:tableView];
 		energyButtonCell.textLabel.text = [NSString stringWithFormat:@"Purchase %@ Boost", name];
@@ -194,6 +303,32 @@ typedef enum {
 	NSDate *now = [NSDate date];
 	return [boostEndDate compare:now] == NSOrderedDescending;
 }
+ */
+
+
+- (UITableViewCell *)setupExpiresCellForTableView:(UITableView *)tableView secondsRemaining:(NSInteger)secondsRemaining {
+	; //DO NOT REMOVE
+	LETableViewCellLabeledText *expiresCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+	expiresCell.label.text = @"Expires in";
+	if (secondsRemaining > 0) {
+		expiresCell.content.text = [Util prettyDuration:secondsRemaining];
+	} else {
+		expiresCell.content.text = @"Not Boosting";
+	}
+	
+	return expiresCell;
+}
+
+
+- (UITableViewCell *)setupButtonCellForTableView:(UITableView *)tableView secondsRemaining:(NSInteger)secondsRemaining name:(NSString *)name {
+	LETableViewCellButton *buttonCell = [LETableViewCellButton getCellForTableView:tableView];
+	if (secondsRemaining > 0) {
+		buttonCell.textLabel.text = [NSString stringWithFormat:@"Extend %@ Boost", name];
+	} else {
+		buttonCell.textLabel.text = [NSString stringWithFormat:@"Start %@ Boost", name];
+	}
+	return buttonCell;
+}
 
 
 #pragma mark -
@@ -201,36 +336,24 @@ typedef enum {
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
-		switch (self->selectedRow) {
-			case EMPIRE_BOOST_ROW_ENERGY:
-				if (![self isBoosting:[self.empireBoosts objectForKey:@"energy"]]) {
-					[[[LEEmpireBoostEnergy alloc] initWithCallback:@selector(boostedEnergy:) target:self] autorelease];
-				}
+		switch (self->selectedSection) {
+			case EMPIRE_BOOST_SECTION_ENERGY:
+				[[[LEEmpireBoostEnergy alloc] initWithCallback:@selector(boostedEnergy:) target:self] autorelease];
 				break;
-			case EMPIRE_BOOST_ROW_FOOD:
-				if (![self isBoosting:[self.empireBoosts objectForKey:@"food"]]) {
-					[[[LEEmpireBoostFood alloc] initWithCallback:@selector(boostedFood:) target:self] autorelease];
-				}
+			case EMPIRE_BOOST_SECTION_FOOD:
+				[[[LEEmpireBoostFood alloc] initWithCallback:@selector(boostedFood:) target:self] autorelease];
 				break;
-			case EMPIRE_BOOST_ROW_HAPPINESS:
-				if (![self isBoosting:[self.empireBoosts objectForKey:@"happiness"]]) {
-					[[[LEEmpireBoostHappiness alloc] initWithCallback:@selector(boostedHappiness:) target:self] autorelease];
-				}
+			case EMPIRE_BOOST_SECTION_HAPPINESS:
+				[[[LEEmpireBoostHappiness alloc] initWithCallback:@selector(boostedHappiness:) target:self] autorelease];
 				break;
-			case EMPIRE_BOOST_ROW_ORE:
-				if (![self isBoosting:[self.empireBoosts objectForKey:@"ore"]]) {
-					[[[LEEmpireBoostOre alloc] initWithCallback:@selector(boostedOre:) target:self] autorelease];
-				}
+			case EMPIRE_BOOST_SECTION_ORE:
+				[[[LEEmpireBoostOre alloc] initWithCallback:@selector(boostedOre:) target:self] autorelease];
 				break;
-			case EMPIRE_BOOST_ROW_WATER:
-				if (![self isBoosting:[self.empireBoosts objectForKey:@"water"]]) {
-					[[[LEEmpireBoostWater alloc] initWithCallback:@selector(boostedWater:) target:self] autorelease];
-				}
+			case EMPIRE_BOOST_SECTION_WATER:
+				[[[LEEmpireBoostWater alloc] initWithCallback:@selector(boostedWater:) target:self] autorelease];
 				break;
-			case EMPIRE_BOOST_ROW_STORAGE:
-				if (![self isBoosting:[self.empireBoosts objectForKey:@"storage"]]) {
-					[[[LEEmpireBoostStorage alloc] initWithCallback:@selector(boostedStorage:) target:self] autorelease];
-				}
+			case EMPIRE_BOOST_SECTION_STORAGE:
+				[[[LEEmpireBoostStorage alloc] initWithCallback:@selector(boostedStorage:) target:self] autorelease];
 				break;
 		}
 	}

@@ -12,15 +12,16 @@
 
 @interface ViewEmpireBoostsController : LETableViewControllerGrouped <UIActionSheetDelegate> {
 	NSMutableDictionary *empireBoosts;
-	NSInteger selectedRow;
+	NSInteger selectedSection;
 }
 
 
 @property(nonatomic, retain) NSMutableDictionary *empireBoosts;
 
 
-- (UITableViewCell *)setupCellForTableView:(UITableView *)tableView boostEndDate:(NSDate *)boostEndDate name:(NSString *)name;
-- (BOOL)isBoosting:(NSDate *)boostEndDate;
+//- (BOOL)isBoosting:(NSDate *)boostEndDate;
+- (UITableViewCell *)setupExpiresCellForTableView:(UITableView *)tableView secondsRemaining:(NSInteger)secondsRemaining;
+- (UITableViewCell *)setupButtonCellForTableView:(UITableView *)tableView secondsRemaining:(NSInteger)secondsRemaining name:(NSString *)name;
 
 
 + (ViewEmpireBoostsController *)create;
