@@ -20,6 +20,7 @@
 #import "LETableViewCellDictionary.h"
 #import "PickColonyController.h"
 #import "ViewCreditsController.h"
+#import "LEBodyAbandon.h"
 
 
 typedef enum {
@@ -37,7 +38,8 @@ typedef enum {
 
 typedef enum {
 	ACTION_ROW_VIEW_BUILDINGS,
-	ACTION_ROW_RENAME_BODY
+	ACTION_ROW_RENAME_BODY,
+	ACTION_ROW_ABANDON_BODY
 } ACTION_ROW;
 
 typedef enum {
@@ -177,7 +179,7 @@ typedef enum {
 				}
 				break;
 			case SECTION_ACTIONS:
-				return 2;
+				return 3;
 				break;
 			case SECTION_COMPOSITION:
 				return 3;
@@ -266,6 +268,12 @@ typedef enum {
 					renameBodyCell.textLabel.text = [NSString stringWithFormat:@"Rename %@", session.body.type];
 					cell = renameBodyCell;
 					break;
+				case ACTION_ROW_ABANDON_BODY:
+					; //DO NOT REMOVE
+					LETableViewCellButton *abandonBodyCell = [LETableViewCellButton getCellForTableView:tableView];
+					abandonBodyCell.textLabel.text = @"Abandon";
+					cell = abandonBodyCell;
+					break;
 				default:
 					break;
 			}
@@ -324,6 +332,13 @@ typedef enum {
 				RenameBodyController *renameBodyController = [RenameBodyController create];
 				renameBodyController.body = session.body;
 				[[self navigationController] pushViewController:renameBodyController animated:YES];
+				break;
+			case ACTION_ROW_ABANDON_BODY:
+				; //DO NOT REMOVE
+				UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Do you really wish to abandon this colony?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+				actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+				[actionSheet showFromTabBar:self.tabBarController.tabBar];
+				[actionSheet release];
 				break;
 			default:
 				NSLog(@"Invalid action clicked: %i:%i", indexPath.section, indexPath.row);
@@ -403,6 +418,31 @@ typedef enum {
 		[self presentModalViewController:self->pickColonyController animated:YES];
 	} else {
 		self.bodyId = [Util idFromDict:[colonies objectAtIndex:0] named:@"id"];
+		[self loadBody];
+	}
+}
+
+
+#pragma mark -
+#pragma mark UIActionSheetDelegate Methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
+		[[[LEBodyAbandon alloc] initWithCallback:@selector(bodyAbandoned:) target:self forBody:self.bodyId] autorelease];
+	}
+	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+}
+
+
+#pragma mark -
+#pragma mark Callback Methods
+
+- (void)bodyAbandoned:(LEBodyAbandon *)request {
+	if ([request wasError]) {
+		//Rely on default error handling
+	} else {
+		Session *session = [Session sharedInstance];
+		self.bodyId = session.empire.homePlanetId;
 		[self loadBody];
 	}
 }

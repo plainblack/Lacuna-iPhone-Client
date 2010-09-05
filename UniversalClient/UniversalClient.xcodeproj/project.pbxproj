@@ -176,6 +176,7 @@
 		F6B2155C1232D20200531EEE /* NewPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B2155B1232D20200531EEE /* NewPasswordController.m */; };
 		F6B2155F1232D20B00531EEE /* ViewRacialStatsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B2155E1232D20B00531EEE /* ViewRacialStatsController.m */; };
 		F6B215A91232E4F900531EEE /* LESpeciesViewStats.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B215A81232E4F900531EEE /* LESpeciesViewStats.m */; };
+		F6B21667123324E000531EEE /* LEBodyAbandon.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B21666123324E000531EEE /* LEBodyAbandon.m */; };
 		F6C3906311F1E36C004FB38F /* LETableViewCellMailSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */; };
 		F6C390C311F1ED14004FB38F /* LETableViewCellMailHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C390C211F1ED14004FB38F /* LETableViewCellMailHeaders.m */; };
 		F6C390EE11F23D54004FB38F /* LETableViewCellBuildQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C390ED11F23D54004FB38F /* LETableViewCellBuildQueueItem.m */; };
@@ -644,6 +645,8 @@
 		F6B2155E1232D20B00531EEE /* ViewRacialStatsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewRacialStatsController.m; sourceTree = "<group>"; };
 		F6B215A71232E4F900531EEE /* LESpeciesViewStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LESpeciesViewStats.h; sourceTree = "<group>"; };
 		F6B215A81232E4F900531EEE /* LESpeciesViewStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LESpeciesViewStats.m; sourceTree = "<group>"; };
+		F6B21665123324E000531EEE /* LEBodyAbandon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBodyAbandon.h; sourceTree = "<group>"; };
+		F6B21666123324E000531EEE /* LEBodyAbandon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBodyAbandon.m; sourceTree = "<group>"; };
 		F6C3906111F1E36C004FB38F /* LETableViewCellMailSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellMailSelect.h; sourceTree = "<group>"; };
 		F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellMailSelect.m; sourceTree = "<group>"; };
 		F6C390C111F1ED14004FB38F /* LETableViewCellMailHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellMailHeaders.h; sourceTree = "<group>"; };
@@ -1386,6 +1389,8 @@
 				F6AC4A19116C0F9B001B967A /* LEUpgradeBuilding.m */,
 				F6B215A71232E4F900531EEE /* LESpeciesViewStats.h */,
 				F6B215A81232E4F900531EEE /* LESpeciesViewStats.m */,
+				F6B21665123324E000531EEE /* LEBodyAbandon.h */,
+				F6B21666123324E000531EEE /* LEBodyAbandon.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -2055,6 +2060,7 @@
 				F6B2155C1232D20200531EEE /* NewPasswordController.m in Sources */,
 				F6B2155F1232D20B00531EEE /* ViewRacialStatsController.m in Sources */,
 				F6B215A91232E4F900531EEE /* LESpeciesViewStats.m in Sources */,
+				F6B21667123324E000531EEE /* LEBodyAbandon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,7 +14,7 @@
 @class Body;
 
 
-@interface ViewBodyController : LETableViewControllerGrouped <PickColonyDelegate> {
+@interface ViewBodyController : LETableViewControllerGrouped <PickColonyDelegate, UIActionSheetDelegate> {
 	UISegmentedControl *pageSegmentedControl;
 	NSString *bodyId;
 	Body *watchedBody;
