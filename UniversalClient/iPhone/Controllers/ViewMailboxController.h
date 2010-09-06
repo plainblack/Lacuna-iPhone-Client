@@ -20,6 +20,7 @@
 	Mailbox *mailbox;
 	NSTimer *reloadTimer;
 	NSDate *lastMessageAt;
+	BOOL observingMailbox;
 }
 
 

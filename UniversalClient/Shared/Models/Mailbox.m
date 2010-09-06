@@ -53,24 +53,24 @@
 
 
 - (BOOL)hasNextPage {
-	return originalMessageHeaderCount >= MAX_MESSAGES_PER_PAGE;
+	return self->pageIndex < self->numPages;
 }
 
 
 - (BOOL)hasPreviousPage {
-	return pageIndex > START_PAGE;
+	return self->pageIndex > START_PAGE;
 }
 
 - (void)nextPage {
 	if ([self hasNextPage]) {
-		pageIndex++;
+		self->pageIndex++;
 		[self loadMessageHeaders];
 	}
 }
 
 - (void)previousPage {
 	if ([self hasPreviousPage]) {
-		pageIndex--;
+		self->pageIndex--;
 		[self loadMessageHeaders];
 	}
 }
@@ -133,7 +133,8 @@
 
 - (id)messagesLoaded:(LEInboxView *)request {
 	if (![request wasError]) {
-		originalMessageHeaderCount = [request.messages count];
+		self->originalMessageHeaderCount = [request.messages count];
+		self->numPages = [Util numPagesForCount:_intv(request.messageCount)];
 		self.messageHeaders = request.messages;
 	}
 	

@@ -16,6 +16,7 @@
 
 @synthesize page;
 @synthesize messages;
+@synthesize messageCount;
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget page:(NSDecimalNumber *)inPage {
@@ -33,6 +34,7 @@
 - (void)processSuccess {
 	NSDictionary *result = [self.response objectForKey:@"result"];
 	self.messages = [result objectForKey:@"messages"];
+	self.messageCount = [result objectForKey:@"message_count"];
 }
 
 
@@ -49,6 +51,7 @@
 - (void)dealloc {
 	self.page = nil;
 	self.messages = nil;
+	self.messageCount = nil;
 	[super dealloc];
 }
 

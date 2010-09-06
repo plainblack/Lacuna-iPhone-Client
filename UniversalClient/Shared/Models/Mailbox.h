@@ -22,6 +22,7 @@ typedef enum {
 	NSInteger pageIndex;
 	LEMailBoxType leMailboxType;
 	NSInteger originalMessageHeaderCount;
+	NSInteger numPages;
 }
 
 

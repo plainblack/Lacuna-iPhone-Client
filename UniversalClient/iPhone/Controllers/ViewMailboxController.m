@@ -32,6 +32,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	self->observingMailbox = NO;
 
 	self.view.autoresizesSubviews = YES;
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -84,7 +86,10 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-	[self.mailbox addObserver:self forKeyPath:@"messageHeaders" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+	if (!self->observingMailbox) {
+		[self.mailbox addObserver:self forKeyPath:@"messageHeaders" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+		self->observingMailbox = YES;
+	}
 	self.reloadTimer = [NSTimer scheduledTimerWithTimeInterval:600 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
 	Session *session = [Session sharedInstance];
 	if (self.lastMessageAt) {
@@ -105,6 +110,7 @@
 	[self.reloadTimer invalidate];
 	self.reloadTimer = nil;
 	[self.mailbox removeObserver:self forKeyPath:@"messageHeaders"];
+	self->observingMailbox = NO;
 	Session *session = [Session sharedInstance];
 	[session.empire removeObserver:self forKeyPath:@"lastMessageAt"];
 }
@@ -179,6 +185,7 @@
 
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
+	NSLog(@"Test 1");
 	self.pageSegmentedControl = nil;
 	self.mailboxSegmentedControl = nil;
 	self.inboxBarButtonItems = nil;
@@ -197,6 +204,7 @@
 #pragma mark Instance Methods
 
 - (void)clear {
+	NSLog(@"Test 2");
 	self.mailbox = nil;
 	self.lastMessageAt = nil;
 	self.mailboxSegmentedControl.selectedSegmentIndex = UISegmentedControlNoSegment;
@@ -231,9 +239,8 @@
 
 
 - (void)loadMessages {
-	if (self.mailbox) {
-		[self.mailbox removeObserver:self forKeyPath:@"messageHeaders"];
-	}
+	[self.mailbox removeObserver:self forKeyPath:@"messageHeaders"];
+	self->observingMailbox = NO;
 	
 	switch (self.mailboxSegmentedControl.selectedSegmentIndex) {
 		case 0:
@@ -253,7 +260,10 @@
 			break;
 	}
 	
-	[self.mailbox addObserver:self forKeyPath:@"messageHeaders" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+	if (!self->observingMailbox) {
+		[self.mailbox addObserver:self forKeyPath:@"messageHeaders" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+		self->observingMailbox = YES;
+	}
 	
 	if ([self.mailbox canArchive]) {
 		[self setToolbarItems:self.inboxBarButtonItems animated:NO];
