@@ -9,6 +9,8 @@
 #import "NewMailMessageController.h"
 #import "LEMacros.h"
 #import "LEInboxSend.h"
+#import "LETableViewCellTextEntry.h"
+#import "LETableViewCellTextView.h"
 
 
 typedef enum {
@@ -27,7 +29,7 @@ typedef enum {
 
 @synthesize toCell;
 @synthesize subjectCell;
-@synthesize messageTextView;
+@synthesize messageCell;
 @synthesize replyToMessage;
 
 
@@ -39,7 +41,6 @@ typedef enum {
 
 	self.navigationItem.title = @"New Message";
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(sendMessage)] autorelease];
-	self.hidesBottomBarWhenPushed = YES;
 	
 	self.toCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
 	self.toCell.label.text = @"To";
@@ -49,11 +50,7 @@ typedef enum {
 	self.subjectCell.label.text = @"Subject";
 	self.subjectCell.delegate = self;
 	
-	self.messageTextView = [[[UITextView alloc] initWithFrame:CGRectMake(5, 5, 310, 140)] autorelease];
-	self.messageTextView.font = TEXT_SMALL_FONT;
-	self.messageTextView.textColor = TEXT_SMALL_COLOR;
-	self.messageTextView.backgroundColor = [UIColor clearColor];
-	self.messageTextView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
+	self.messageCell = [LETableViewCellTextView getCellForTableView:self.tableView];
 }
 
 
@@ -63,28 +60,22 @@ typedef enum {
 		self.navigationItem.title = @"Reply";
 		self.toCell.textField.text = [replyToMessage objectForKey:@"from"];
 		self.subjectCell.textField.text = [NSString stringWithFormat:@"RE: %@", [replyToMessage objectForKey:@"subject"]];
-		self.messageTextView.text = [NSString stringWithFormat:@"\nIn reply to:\n%@", [replyToMessage objectForKey:@"body"]];
-		[self.messageTextView becomeFirstResponder];
-	} else {
-		[self.toCell becomeFirstResponder];
+		self.messageCell.textView.text = [NSString stringWithFormat:@"\nIn reply to:\n%@", [replyToMessage objectForKey:@"body"]];
 	}
-
 }
 
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	if (replyToMessage) {
-		self.messageTextView.selectedRange = NSRangeZero;
+		[self.messageCell becomeFirstResponder];
+		self.messageCell.textView.selectedRange = NSRangeZero;
+	} else {
+		[self.toCell becomeFirstResponder];
 	}
 }
 
 	
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return YES;
-}
-
-
 #pragma mark -
 #pragma mark Table view data source
 
@@ -135,16 +126,7 @@ typedef enum {
 			}
 			break;
 		case SECTION_BODY:
-			; //DO NOT REMOVE
-			static NSString *MessageCellIdentifier = @"MessageCell";
-			UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MessageCellIdentifier];
-			if (cell == nil) {
-				cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MessageCellIdentifier] autorelease];
-				cell.selectionStyle = UITableViewCellSelectionStyleNone;
-				[cell.contentView addSubview:self.messageTextView];
-				cell.backgroundColor = CELL_BACKGROUND_COLOR;
-			}
-			return cell;
+			return self.messageCell;
 			break;
 	}
 	return nil;
@@ -165,7 +147,7 @@ typedef enum {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
 	self.toCell = nil;
 	self.subjectCell = nil;
-	self.messageTextView = nil;
+	self.messageCell = nil;
 	[super viewDidUnload];
 }
 
@@ -183,7 +165,7 @@ typedef enum {
 - (IBAction)cancelMessage {
 	[self.toCell resignFirstResponder];
 	[self.subjectCell resignFirstResponder];
-	[self.messageTextView resignFirstResponder];
+	[self.messageCell resignFirstResponder];
 	[self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -191,7 +173,7 @@ typedef enum {
 - (IBAction)sendMessage {
 	[self.toCell resignFirstResponder];
 	[self.subjectCell resignFirstResponder];
-	[self.messageTextView resignFirstResponder];
+	[self.messageCell resignFirstResponder];
 	
 	NSDictionary *options;
 	
@@ -201,7 +183,7 @@ typedef enum {
 		options = [NSDictionary dictionary];
 	}
 	
-	[[[LEInboxSend alloc] initWithCallback:@selector(messageSent:) target:self recipients:self.toCell.textField.text subject:self.subjectCell.textField.text body:self.messageTextView.text options:options] autorelease];
+	[[[LEInboxSend alloc] initWithCallback:@selector(messageSent:) target:self recipients:self.toCell.textField.text subject:self.subjectCell.textField.text body:self.messageCell.textView.text options:options] autorelease];
 }
 
 
@@ -215,9 +197,9 @@ typedef enum {
 		[subjectCell becomeFirstResponder];
 	} else if (textField == subjectCell.textField) {
 		[subjectCell resignFirstResponder];
-		[messageTextView becomeFirstResponder];
+		[messageCell becomeFirstResponder];
 	} else {
-		[messageTextView resignFirstResponder];
+		[messageCell resignFirstResponder];
 		[self sendMessage];
 	}
 	

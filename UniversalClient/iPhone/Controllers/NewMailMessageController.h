@@ -8,20 +8,23 @@
 
 #import <UIKit/UIKit.h>
 #import "LETableViewControllerGrouped.h"
-#import "LETableViewCellTextEntry.h"
+
+
+@class LETableViewCellTextEntry;
+@class LETableViewCellTextView;
 
 
 @interface NewMailMessageController : LETableViewControllerGrouped <UITextFieldDelegate> {
 	LETableViewCellTextEntry *toCell;
 	LETableViewCellTextEntry *subjectCell;
-	UITextView *messageTextView;
+	LETableViewCellTextView *messageCell;
 	NSDictionary *replyToMessage;
 }
 
 
 @property(nonatomic, retain) LETableViewCellTextEntry *toCell;
 @property(nonatomic, retain) LETableViewCellTextEntry *subjectCell;
-@property(nonatomic, retain) UITextView *messageTextView;
+@property(nonatomic, retain) LETableViewCellTextView *messageCell;
 @property(nonatomic, retain) NSDictionary *replyToMessage;
 
 

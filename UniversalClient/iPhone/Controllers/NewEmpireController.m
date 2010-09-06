@@ -86,7 +86,6 @@ typedef enum {
 	self.navigationItem.title = @"New Empire";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)] autorelease];
-	self.hidesBottomBarWhenPushed = YES;
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"New Empire"]);
 	
 	self.nameCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];

@@ -185,10 +185,10 @@
 	LETableViewCellTextView *cell = (LETableViewCellTextView *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
 		cell = [[LETableViewCellTextView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-		cell.backgroundColor = [UIColor whiteColor];
+		cell.backgroundColor = CELL_BACKGROUND_COLOR;
 		cell.autoresizesSubviews = YES;
 		
-		cell.textView = [[[UITextView alloc] initWithFrame:CGRectMake(0, 6, 320, 140)] autorelease];
+		cell.textView = [[[UITextView alloc] initWithFrame:CGRectMake(5, 5, 310, 140)] autorelease];
 		cell.textView.textAlignment = UITextAlignmentLeft;
 		cell.textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
 		cell.textView.font = TEXT_ENTRY_FONT;
@@ -226,7 +226,7 @@
 
 
 + (CGFloat)getHeightForTableView:(UITableView *)tableView {
-	return 166.0;
+	return 151.0;
 }
 
 
