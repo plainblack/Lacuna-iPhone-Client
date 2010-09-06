@@ -13,6 +13,7 @@
 @interface ViewEmpireBoostsController : LETableViewControllerGrouped <UIActionSheetDelegate> {
 	NSMutableDictionary *empireBoosts;
 	NSInteger selectedSection;
+	NSTimer *timer;
 }
 
 

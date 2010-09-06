@@ -273,6 +273,9 @@ typedef enum {
 
 - (void)viewDidUnload {
 	self.empireBoosts = nil;
+	[self->timer invalidate];
+	[self->timer release];
+	self->timer = nil;	
 	[super viewDidUnload];
 }
 
@@ -284,26 +287,6 @@ typedef enum {
 
 #pragma mark -
 #pragma mark Instance Methods
-
-/*
-- (UITableViewCell *)setupCellForTableView:(UITableView *)tableView boostEndDate:(NSDate *)boostEndDate name:(NSString *)name {
-	if ([self isBoosting:boostEndDate]) {
-		LETableViewCellEmpireBoost *boostedCell = [LETableViewCellEmpireBoost getCellForTableView:tableView];
-		[boostedCell setExpireAt:boostEndDate];
-		return boostedCell;
-	} else {
-		LETableViewCellButton *energyButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-		energyButtonCell.textLabel.text = [NSString stringWithFormat:@"Purchase %@ Boost", name];
-		return energyButtonCell;
-	}
-}
-
-
-- (BOOL)isBoosting:(NSDate *)boostEndDate {
-	NSDate *now = [NSDate date];
-	return [boostEndDate compare:now] == NSOrderedDescending;
-}
- */
 
 
 - (UITableViewCell *)setupExpiresCellForTableView:(UITableView *)tableView secondsRemaining:(NSInteger)secondsRemaining {
@@ -367,8 +350,15 @@ typedef enum {
 - (id)boostsLoaded:(LEEmpireViewBoosts *)request {
 	self.navigationItem.title = @"Empire Boosts";
 	self.empireBoosts = [NSMutableDictionary dictionaryWithDictionary:request.boosts];
+	self->timer = [[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES] retain];
+
 	[self.tableView reloadData];
 	return nil;
+}
+
+
+- (void)handleTimer:(NSTimer *)theTimer {
+	[self.tableView reloadData];
 }
 
 
