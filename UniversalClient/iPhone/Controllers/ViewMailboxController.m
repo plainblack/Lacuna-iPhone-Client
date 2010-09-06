@@ -85,7 +85,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 	[self.mailbox addObserver:self forKeyPath:@"messageHeaders" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-	self.reloadTimer = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
+	self.reloadTimer = [NSTimer scheduledTimerWithTimeInterval:600 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
 	Session *session = [Session sharedInstance];
 	if (self.lastMessageAt) {
 		if ([self.lastMessageAt compare:session.empire.lastMessageAt] != NSOrderedSame) {
@@ -96,6 +96,7 @@
 	}else {
 		self.lastMessageAt = session.empire.lastMessageAt;
 	}
+	[session.empire addObserver:self forKeyPath:@"lastMessageAt" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 }
 
 
@@ -104,6 +105,8 @@
 	[self.reloadTimer invalidate];
 	self.reloadTimer = nil;
 	[self.mailbox removeObserver:self forKeyPath:@"messageHeaders"];
+	Session *session = [Session sharedInstance];
+	[session.empire removeObserver:self forKeyPath:@"lastMessageAt"];
 }
 
 
@@ -159,6 +162,10 @@
 	[[self navigationController] pushViewController:viewMailMessageController animated:YES];
 }
 
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+	return @"Archive";
+}
 
 #pragma mark -
 #pragma mark Memory management
@@ -276,6 +283,14 @@
 		[self.pageSegmentedControl setEnabled:[self.mailbox hasPreviousPage] forSegmentAtIndex:0];
 		[self.pageSegmentedControl setEnabled:[self.mailbox hasNextPage] forSegmentAtIndex:1];
 		[self.tableView reloadData];
+	} else if ([keyPath isEqual:@"lastMessageAt"]) {
+		Session *session = [Session sharedInstance];
+		NSLog(@"Last Message At Updated");
+		if ([self.lastMessageAt compare:session.empire.lastMessageAt] != NSOrderedSame) {
+			[self loadMessages];
+			self.lastMessageAt = session.empire.lastMessageAt;
+			[self.tableView reloadData];
+		}
 	}
 }
 

@@ -79,7 +79,7 @@
 	self.selfDestructAt = [Util date:[empireData objectForKey:@"self_destruct_date"]];
 	
 	NSDictionary *newestMessage = [empireData objectForKey:@"most_recent_message"];
-	if (newestMessage && (id)newestMessage != [NSNull null]) {
+	if (isNotNull(newestMessage)) {
 		NSString *dateReceivedString = [newestMessage objectForKey:@"date_received"];
 		if (dateReceivedString) {
 			self.lastMessageAt = [Util date:dateReceivedString];
