@@ -14,6 +14,7 @@
 
 
 @synthesize scrollView;
+@synthesize backgroundView;
 @synthesize surface;
 @synthesize buildings;
 
@@ -44,8 +45,12 @@
 	self.navigationItem.title = [NSString stringWithFormat:@"Attached Map"];
 
 	UIImage *surfaceImage = [UIImage imageNamed:[NSString stringWithFormat:@"assets/planet_side/%@.jpg", self.surface]];
-	self.scrollView.backgroundColor = [UIColor colorWithPatternImage:surfaceImage];
-
+	self.backgroundView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.contentSize.width, self.scrollView.contentSize.height)] autorelease];
+	self.backgroundView.contentMode = UIViewContentModeScaleAspectFill;
+	self.backgroundView.autoresizingMask = UIViewAutoresizingNone;
+	self.backgroundView.backgroundColor = [UIColor colorWithPatternImage:surfaceImage];
+	[self.scrollView addSubview:self.backgroundView];
+	
 	for (NSDictionary *building in self.buildings) {
 		NSInteger mapX = _intv([building objectForKey:@"x"]);
 		NSInteger mapY = _intv([building objectForKey:@"y"]);
@@ -55,7 +60,7 @@
 		NSInteger viewX = (mapX - BODY_BUILDINGS_MIN_X) * BODY_BUILDINGS_CELL_WIDTH;
 		NSInteger viewY = (mapY - BODY_BUILDINGS_MIN_Y) * BODY_BUILDINGS_CELL_HEIGHT;
 		imageView.frame = CGRectMake(viewX, viewY, BODY_BUILDINGS_CELL_WIDTH, BODY_BUILDINGS_CELL_HEIGHT);
-		[self.scrollView addSubview:imageView];
+		[self.backgroundView addSubview:imageView];
 	}
 }
 
@@ -77,6 +82,7 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     self.scrollView = nil;
+	self.backgroundView = nil;
 }
 
 

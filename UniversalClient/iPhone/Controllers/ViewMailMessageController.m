@@ -18,6 +18,7 @@
 #import "ViewAttachedTableController.h"
 #import "ViewAttachedMapController.h"
 #import "NewMailMessageController.h"
+#import "WebPageController.h"
 
 
 typedef enum {
@@ -236,7 +237,9 @@ typedef enum {
 				NSDictionary *attachment = [attachements objectForKey:key];
 				NSString *link = [attachment objectForKey:@"url"];
 				if (link) {
-					[[UIApplication sharedApplication] openURL:[NSURL URLWithString:link]];
+					WebPageController *webPageController = [WebPageController create];
+					[webPageController goToUrl:link];
+					[self presentModalViewController:webPageController animated:YES];
 				}
 			} else if ([key isEqualToString:@"table"]) {
 				NSArray *attachment = [attachements objectForKey:key];

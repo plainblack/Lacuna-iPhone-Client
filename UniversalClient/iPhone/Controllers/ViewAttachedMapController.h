@@ -11,12 +11,14 @@
 
 @interface ViewAttachedMapController : UIViewController {
 	UIScrollView *scrollView;
+	UIView *backgroundView;
 	NSString *surface;
 	NSArray *buildings;
 }
 
 
 @property(nonatomic, retain) IBOutlet UIScrollView *scrollView;
+@property(nonatomic, retain) IBOutlet UIView *backgroundView;
 @property(nonatomic, retain) NSString *surface;
 @property(nonatomic, retain) NSArray *buildings;
 

@@ -16,7 +16,7 @@
 @synthesize serverList;
 
 
-#pragma mark  --
+#pragma mark  -
 #pragma mark NSObject Methods
 
 - (void)dealloc {

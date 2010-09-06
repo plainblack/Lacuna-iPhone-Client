@@ -78,9 +78,11 @@
 
 - (void)loadMessage:(NSInteger)index {
 	self.messageDetails = [self.messageHeaders objectAtIndex:index];
-	[self.messageDetails setObject:[NSDecimalNumber numberWithInt:1] forKey:@"has_read"];
-	Session *session = [Session sharedInstance];
-	session.empire.numNewMessages = [session.empire.numNewMessages decimalNumberBySubtracting:[NSDecimalNumber one]];
+	if (!_boolv([self.messageDetails objectForKey:@"has_read"])) {
+		[self.messageDetails setObject:[NSDecimalNumber numberWithInt:1] forKey:@"has_read"];
+		Session *session = [Session sharedInstance];
+		session.empire.numNewMessages = [session.empire.numNewMessages decimalNumberBySubtracting:[NSDecimalNumber one]];
+	}
 	NSString *messageId = [Util idFromDict:self.messageDetails named:@"id"];
 	[[[LEInboxRead alloc] initWithCallback:@selector(messageDetailsLoaded:) target:self messageId:messageId] autorelease];
 }

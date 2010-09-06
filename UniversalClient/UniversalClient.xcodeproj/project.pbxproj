@@ -121,7 +121,6 @@
 		F6980ACF117A600E00BD2096 /* ViewMailboxController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6980ACD117A600E00BD2096 /* ViewMailboxController.m */; };
 		F6980AD0117A600E00BD2096 /* ViewMailboxController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6980ACE117A600E00BD2096 /* ViewMailboxController.xib */; };
 		F6980B05117A6CF900BD2096 /* ViewMailMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */; };
-		F6980B06117A6CF900BD2096 /* ViewMailMessageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6980B04117A6CF900BD2096 /* ViewMailMessageController.xib */; };
 		F6980B44117A738D00BD2096 /* LETableViewCellParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = F6980B43117A738D00BD2096 /* LETableViewCellParagraph.m */; };
 		F6980B78117A8BD700BD2096 /* NewMailMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6980B76117A8BD700BD2096 /* NewMailMessageController.m */; };
 		F6993B0E11C5CDF8003A7316 /* EditSavedEmpire.m in Sources */ = {isa = PBXBuildFile; fileRef = F6993B0C11C5CDF8003A7316 /* EditSavedEmpire.m */; };
@@ -537,7 +536,6 @@
 		F6980ACE117A600E00BD2096 /* ViewMailboxController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewMailboxController.xib; sourceTree = "<group>"; };
 		F6980B02117A6CF900BD2096 /* ViewMailMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMailMessageController.h; sourceTree = "<group>"; };
 		F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMailMessageController.m; sourceTree = "<group>"; };
-		F6980B04117A6CF900BD2096 /* ViewMailMessageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewMailMessageController.xib; sourceTree = "<group>"; };
 		F6980B42117A738D00BD2096 /* LETableViewCellParagraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellParagraph.h; sourceTree = "<group>"; };
 		F6980B43117A738D00BD2096 /* LETableViewCellParagraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellParagraph.m; sourceTree = "<group>"; };
 		F6980B75117A8BD700BD2096 /* NewMailMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMailMessageController.h; sourceTree = "<group>"; };
@@ -1631,7 +1629,6 @@
 				F6980ACE117A600E00BD2096 /* ViewMailboxController.xib */,
 				F6980B02117A6CF900BD2096 /* ViewMailMessageController.h */,
 				F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */,
-				F6980B04117A6CF900BD2096 /* ViewMailMessageController.xib */,
 				F6F1C21B12326FB100D69BB6 /* ViewMedalsController.h */,
 				F6F1C21C12326FB100D69BB6 /* ViewMedalsController.m */,
 				F6E5E63E1205CF4000365AA2 /* ViewMiningFleetShipsController.h */,
@@ -1749,7 +1746,6 @@
 				F6DD1FDC116D33FC0013C58D /* Default.png in Resources */,
 				F631A3F311755489005E40CC /* ViewBodyController.xib in Resources */,
 				F6980AD0117A600E00BD2096 /* ViewMailboxController.xib in Resources */,
-				F6980B06117A6CF900BD2096 /* ViewMailMessageController.xib in Resources */,
 				F69B7FFE118FB51B0049D4A1 /* ViewAttachedTableController.xib in Resources */,
 				F65D35B91195E00400454C2B /* iTunesArtwork in Resources */,
 				F65D36681195F05B00454C2B /* Entitlements.plist in Resources */,
