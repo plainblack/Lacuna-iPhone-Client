@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "LETableViewControllerGrouped.h"
+#import "SelectEmpireController.h"
 
 
 @class LETableViewCellTextEntry;
 @class LETableViewCellTextView;
 
 
-@interface NewMailMessageController : LETableViewControllerGrouped <UITextFieldDelegate> {
+@interface NewMailMessageController : LETableViewControllerGrouped <UITextFieldDelegate, SelectEmpireControllerDelegate> {
 	LETableViewCellTextEntry *toCell;
 	LETableViewCellTextEntry *subjectCell;
 	LETableViewCellTextView *messageCell;
@@ -28,6 +29,7 @@
 @property(nonatomic, retain) NSDictionary *replyToMessage;
 
 
+- (void)addTo:(NSString *)to;
 - (IBAction)cancelMessage;
 - (IBAction)sendMessage;
 

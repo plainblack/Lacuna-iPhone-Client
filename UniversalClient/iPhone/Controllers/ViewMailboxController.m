@@ -153,11 +153,10 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	ViewMailMessageController *viewMailMessageController = [[ViewMailMessageController alloc] initWithNibName:@"ViewMailMessageController" bundle:nil];
+	ViewMailMessageController *viewMailMessageController = [ViewMailMessageController create];
 	viewMailMessageController.mailbox = self.mailbox;
 	viewMailMessageController.messageIndex = indexPath.row;
 	[[self navigationController] pushViewController:viewMailMessageController animated:YES];
-	[viewMailMessageController release];
 }
 
 

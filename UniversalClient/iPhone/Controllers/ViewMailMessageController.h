@@ -7,17 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LETableViewControllerGrouped.h"
 
 
 @class Mailbox;
 
 
-@interface ViewMailMessageController : UITableViewController <UIActionSheetDelegate> {
+@interface ViewMailMessageController : LETableViewControllerGrouped <UIActionSheetDelegate> {
 	UISegmentedControl *messageSegmentedControl;
 	Mailbox *mailbox;
 	NSInteger messageIndex;
 	BOOL isObserving;
-	NSInteger numRows;
 }
 
 
@@ -28,6 +28,9 @@
 
 - (IBAction)archiveMessage;
 - (IBAction)replyToMessage;
+
+
++ (ViewMailMessageController *)create;
 
 
 @end

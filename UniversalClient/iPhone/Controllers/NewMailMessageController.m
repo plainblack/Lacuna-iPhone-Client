@@ -9,19 +9,25 @@
 #import "NewMailMessageController.h"
 #import "LEMacros.h"
 #import "LEInboxSend.h"
+#import "LEViewSectionTab.h"
+#import "LETableViewCellButton.h"
 #import "LETableViewCellTextEntry.h"
 #import "LETableViewCellTextView.h"
+#import "SelectEmpireController.h"
 
 
 typedef enum {
-	SECTION_HEADER,
+	SECTION_TO,
+	SECTION_SUBJECT,
 	SECTION_BODY
 } SECTION;
 
+
 typedef enum {
-	HEADER_ROW_TO,
-	HEADER_ROW_SUBJECT
-} HEADER_ROW;
+	TO_ROW_MAIN_CALL,
+	TO_ROW_ADD_EMPIRE,
+	TO_ROW_ADD_ALLIES
+} TO_ROW;
 
 
 @implementation NewMailMessageController
@@ -41,6 +47,10 @@ typedef enum {
 
 	self.navigationItem.title = @"New Message";
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(sendMessage)] autorelease];
+
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"To"],
+								 [LEViewSectionTab tableView:self.tableView createWithText:@"Subject"],
+								 [LEViewSectionTab tableView:self.tableView createWithText:@"Message"]);
 	
 	self.toCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
 	self.toCell.label.text = @"To";
@@ -80,14 +90,17 @@ typedef enum {
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	switch (section) {
-		case SECTION_HEADER:
-			return 2;
+		case SECTION_TO:
+			return 3;
+			break;
+		case SECTION_SUBJECT:
+			return 1;
 			break;
 		case SECTION_BODY:
 			return 1;
@@ -101,12 +114,28 @@ typedef enum {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	switch (indexPath.section) {
-		case SECTION_HEADER:
+		case SECTION_TO:
+			switch (indexPath.row) {
+				case TO_ROW_MAIN_CALL:
+					return [LETableViewCellTextEntry getHeightForTableView:tableView];
+					break;
+				case TO_ROW_ADD_EMPIRE:
+					return [LETableViewCellButton getHeightForTableView:tableView];
+					break;
+				case TO_ROW_ADD_ALLIES:
+					return [LETableViewCellButton getHeightForTableView:tableView];
+					break;
+				default:
+					return 0.0;
+					break;
+			}
 			return [tableView rowHeight];
+		case SECTION_SUBJECT:
+			return [LETableViewCellTextEntry getHeightForTableView:tableView];
 		case SECTION_BODY:
-			return 150.0f;
+			return [LETableViewCellTextView getHeightForTableView:tableView];
 		default:
-			return [tableView rowHeight];
+			return 0.0;
 	}
 }
 
@@ -115,21 +144,55 @@ typedef enum {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
 	switch (indexPath.section) {
-		case SECTION_HEADER:
+		case SECTION_TO:
 			switch (indexPath.row) {
-				case HEADER_ROW_TO:
+				case TO_ROW_MAIN_CALL:
 					return self.toCell;
 					break;
-				case HEADER_ROW_SUBJECT:
-					return self.subjectCell;
+				case TO_ROW_ADD_EMPIRE:
+					; //DO NOT REMOVE
+					LETableViewCellButton *addEmpireButton = [LETableViewCellButton getCellForTableView:tableView];
+					addEmpireButton.textLabel.text = @"Add Empire";
+					return addEmpireButton;
+					break;
+				case TO_ROW_ADD_ALLIES:
+					; //DO NOT REMOVE
+					LETableViewCellButton *addAlliesButton = [LETableViewCellButton getCellForTableView:tableView];
+					addAlliesButton.textLabel.text = @"Add Allies";
+					return addAlliesButton;
 					break;
 			}
+			break;
+		case SECTION_SUBJECT:
+			return self.subjectCell;
 			break;
 		case SECTION_BODY:
 			return self.messageCell;
 			break;
 	}
 	return nil;
+}
+
+
+#pragma mark -
+#pragma mark UITableViewDelegate Methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	switch (indexPath.section) {
+		case SECTION_TO:
+			switch (indexPath.row) {
+				case TO_ROW_ADD_EMPIRE:
+					; //DO NOT REMOVE
+					SelectEmpireController *selectEmpireController = [SelectEmpireController create];
+					selectEmpireController.delegate = self;
+					[self.navigationController pushViewController:selectEmpireController animated:YES];
+					break;
+				case TO_ROW_ADD_ALLIES:
+					[self addTo:@"@ally"];
+					break;
+			}
+			break;
+	}
 }
 
 
@@ -159,7 +222,24 @@ typedef enum {
 
 
 #pragma mark -
-#pragma mark Action Methods
+#pragma mark SelectEmpireControllerDelegate Methods
+
+- (void)selectedEmpire:(NSDictionary *)empire {
+	[self addTo:[empire objectForKey:@"name"]];
+	[self.navigationController popViewControllerAnimated:YES];
+}
+
+
+#pragma mark -
+#pragma mark Instance Methods
+
+- (void)addTo:(NSString *)to {
+	if ([self.toCell.textField.text length] > 0) {
+		self.toCell.textField.text = [NSString stringWithFormat:@"%@, %@", self.toCell.textField.text, to];
+	} else {
+		self.toCell.textField.text = to;
+	}
+}
 
 
 - (IBAction)cancelMessage {
