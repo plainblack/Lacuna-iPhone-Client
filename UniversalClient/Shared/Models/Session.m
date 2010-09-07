@@ -7,7 +7,6 @@
 //
 
 #import "Session.h"
-#import "DKDeferred+JSON.h"
 #import "LEEmpireLogin.h"
 #import "LEEmpireLogout.h"
 #import "LEBodyStatus.h"
@@ -200,7 +199,7 @@ static Session *sharedSession = nil;
 		}
 	}
 	if (!found) {
-		[self.savedEmpireList addObject:dict_(username, @"username")];
+		[self.savedEmpireList addObject:_dict(username, @"username")];
 		NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 		NSString *documentFolderPath = [searchPaths objectAtIndex:0];
 		NSString *empireListFileName = [documentFolderPath stringByAppendingPathComponent:@"empireList.dat"];

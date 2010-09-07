@@ -151,7 +151,9 @@ id _gatherResultsCallback(id results) {
     return [[DKDeferredURLConnection loadURL:url] 
             addBoth:curryTS((id)self, @selector(_cachedLoadURLCallback:results:), url)];
   } else {
-    [[DKDeferredCache sharedCache] setValue:_results forKey:url timeout:7200.0f];
+    [[DKDeferredCache sharedCache] 
+     setValue:_results forKey:url
+     timeout:[[DKDeferredCache sharedCache] defaultTimeout]];
     return _results;
   }
   return nil;
@@ -162,17 +164,6 @@ id _gatherResultsCallback(id results) {
 }
 
 + (id)loadURL:(NSString *)aUrl paused:(BOOL)_paused { 
-//  id ret;
-//  if (_paused) {
-//    ret = [DKDeferred deferred];
-//    [ret addBoth:callbackTS((id)self, _cbStartConnection:)];
-//    [ret pause];
-//    [ret callback:aUrl];
-//  } else {
-//  id ret = [DKDeferredURLConnection deferredURLConnection:aUrl];
-//  if (_paused)
-//    [ret pause];
-//  }
   return [[[DKDeferredURLConnection alloc] initWithURL:aUrl paused:_paused] autorelease];
 }
 
@@ -377,6 +368,10 @@ id _gatherResultsCallback(id results) {
 }
 
 - (NSComparisonResult)compareDates:(DKDeferred *)otherDeferred {
+  return -[self.started compare:otherDeferred.started];
+}
+
+- (NSComparisonResult)reverseCompareDates:(DKDeferred *)otherDeferred {
   return [self.started compare:otherDeferred.started];
 }
 
@@ -442,6 +437,10 @@ id _gatherResultsCallback(id results) {
 }
 
 - (id)_cbDeferred:(id)index succeeded:(id)succeeded result:(id)result {
+  if (isDeferred(result)) {
+    return [result addBoth:curryTS(self, 
+      @selector(_cbDeferred:succeeded:result:), index, succeeded)];
+  }
   int _index = [(NSNumber *)index intValue];
   BOOL _succeeded = [(NSNumber *)succeeded boolValue];
   result = (result == nil) ? [NSNull null] : result;
@@ -470,7 +469,7 @@ id _gatherResultsCallback(id results) {
 @synthesize result, d;
 
 - (id)initWithDeferred:(DKDeferred *)deferred {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     d = [[deferred addBoth:callbackTS(self, _get:)] retain];
   }
   return self;
@@ -581,6 +580,8 @@ id _gatherResultsCallback(id results) {
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
   id result;
   result = [action :arg];
+  if (!result)
+    result = [NSNull null];
   [self performSelector:@selector(_cbReturnFromThread:) 
                onThread:parentThread
              withObject:result
@@ -746,7 +747,7 @@ static NSInteger __urlConnectionCount;
       //NSLog(@"loading %@ : %@", self.started, url);
       if (!connection) {
         __urlConnectionCount -= 1;
-        NSLog(@"error:???");
+        //NSLog(@"error:???");
         [self errback:
          [NSError
           errorWithDomain:DKDeferredURLErrorDomain 
@@ -793,11 +794,14 @@ didReceiveResponse:(NSURLResponse *)response {
 
 - (void)connection:(NSURLConnection *)aConnection
   didFailWithError:(NSError *)error {
+  if (aConnection == connection) connection = nil;
   [aConnection release];
   NSLog(@"didFailWithError:%@", error);
   [self _cbProgressUpdate];
-  [self errback:error];
-  __urlConnectionCount -= 1;
+  if (self.fired == -1) { // could be multiple errors, only errback on the first
+    [self errback:error];
+    __urlConnectionCount -= 1;
+  }
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)aConnection {
@@ -826,7 +830,7 @@ didReceiveResponse:(NSURLResponse *)response {
 }
 
 - (void)dealloc {
-  [connection release];
+  if (connection) [connection release];
   [request release];
   [progressCallback release];
   [url release];
@@ -861,6 +865,8 @@ didReceiveResponse:(NSURLResponse *)response {
 static DKDeferredCache *__sharedCache;
 
 @implementation DKDeferredCache
+
+@synthesize defaultTimeout;
 
 /// DKCache Protocol
 - (id)setValue:(NSObject *)value forKey:(NSString *)key timeout:(NSTimeInterval)timeout {
@@ -970,15 +976,18 @@ static DKDeferredCache *__sharedCache;
     maxEntries = (_maxEntries < 1) ? 300 : _maxEntries;
     cullFrequency = (_cullFrequency < 1) ? 3 : _cullFrequency;
     operationQueue = [[NSOperationQueue alloc] init];
+    self.defaultTimeout = 7200.0;
     // init cache directory
     NSFileManager *fm = [NSFileManager defaultManager];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDirectory, YES);
     NSString *cachesPath = [paths objectAtIndex:0];
     dir = [[cachesPath stringByAppendingPathComponent:_dir] retain];
     if (![fm fileExistsAtPath:cachesPath]) {
+		//[fm createDirectoryAtPath:cachesPath attributes:nil];
 		[fm createDirectoryAtPath:cachesPath withIntermediateDirectories:YES attributes:nil error:nil];
     }
     if (![fm fileExistsAtPath:dir]) {
+		//[fm createDirectoryAtPath:dir attributes:nil];
 		[fm createDirectoryAtPath:dir withIntermediateDirectories:YES attributes:nil error:nil];
     }
   }
@@ -994,7 +1003,8 @@ static DKDeferredCache *__sharedCache;
 - (void)_cull {
   if ([self _getNumEntries] > maxEntries) {
     NSFileManager *fm = [NSFileManager defaultManager];
-	  NSArray *fileList = [fm contentsOfDirectoryAtPath:dir error:nil];
+    //NSArray *fileList = [fm directoryContentsAtPath:dir];
+    NSArray *fileList = [fm contentsOfDirectoryAtPath:dir error:nil];
     NSMutableArray *doomed = [NSMutableArray array];
     int count = 0;
     for (NSString *path in fileList) {
@@ -1011,8 +1021,9 @@ static DKDeferredCache *__sharedCache;
 }
 
 - (int)_getNumEntries {
-  NSArray *fileNames = [[NSFileManager defaultManager]
-                        contentsOfDirectoryAtPath:dir error:nil];
+  //NSArray *fileNames = [[NSFileManager defaultManager]
+  //						  directoryContentsAtPath:dir];
+  NSArray *fileNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:dir error:nil];
   if (!fileNames)
     return 0;
   return [fileNames count];
@@ -1176,11 +1187,26 @@ static DKDeferredCache *__sharedCache;
   if ((self = [super init])) {
     _queue = [[[DKMappedPriorityQueue alloc] init] retain];
     _runningDeferreds = [[[NSMutableDictionary alloc] init] retain];
-    concurrency = 10;
+    concurrency = 4;
     timeout = 10.0;
     wLock = [[[NSLock alloc] init] retain];
+    comparisonSelector = @selector(compareDates:);
   }
   return self;
+}
+
+- (SEL)comparisonSelector {
+  SEL ret;
+  @synchronized(self) {
+    ret = comparisonSelector;
+  }
+  return ret;
+}
+
+- (void)setComparisonSelector:(SEL)selecter {
+  @synchronized(self) {
+    comparisonSelector = selecter;
+  }
 }
 
 - (void)setFinalizeFunc:(id<DKCallback>)f {
@@ -1196,7 +1222,7 @@ static DKDeferredCache *__sharedCache;
 - (id)add:(DKDeferred *)d key:(id)k {
   id ret;
   [wLock lock];
-  ret = [_queue enqueue:d key:k prioritySelector:@selector(compareDates:)];
+  ret = [_queue enqueue:d key:k prioritySelector:comparisonSelector];
   [wLock unlock];
   if (ret) {
     [d addBoth:curryTS(self, @selector(_cbRemoveDeferred::), k)];
@@ -1237,6 +1263,7 @@ static DKDeferredCache *__sharedCache;
     if (!item || ![item count]) {
       break;
     }
+//    NSLog(@"resumeWaiting: %@ %@", [item objectAtIndex:0], [item objectAtIndex:1]);
     [[item retain] autorelease];
     [resumables addObject:item];
     [_runningDeferreds setObject:[item objectAtIndex:0]

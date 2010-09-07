@@ -30,7 +30,6 @@
 
 
 - (void)processSuccess {
-	NSLog(@"Loading System Data for '%@': %@", self.systemId, self.response);
 	NSDictionary *result = [self.response objectForKey:@"result"];
 	self.star = [result objectForKey:@"star"];
 	

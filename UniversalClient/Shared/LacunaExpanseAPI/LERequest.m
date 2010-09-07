@@ -52,6 +52,7 @@ static id<LERequestMonitor> delegate;
 
 
 - (void)dealloc {
+	NSLog(@"Dealloc called on a LERequest");
 	self->callback = nil;
 	[self->target release];
 	self->target = nil;
