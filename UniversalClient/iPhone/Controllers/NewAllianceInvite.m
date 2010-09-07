@@ -38,7 +38,7 @@
 	self.messageCell.label.text = @"Name";
 	
 	
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"To"], [LEViewSectionTab tableView:self.tableView createWithText:@"Message"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"To"], [LEViewSectionTab tableView:self.tableView withText:@"Message"]);
 	
 	if (!self.invitees) {
 		self.invitees = [NSMutableArray arrayWithCapacity:1];
@@ -122,9 +122,8 @@
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
 	self.messageCell = nil;
+    [super viewDidUnload];
 }
 
 

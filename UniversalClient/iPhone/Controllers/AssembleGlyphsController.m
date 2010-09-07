@@ -121,8 +121,8 @@
 
 
 - (void)viewDidUnload {
-    [super viewDidUnload];
 	self.glyphPicker = nil;
+    [super viewDidUnload];
 }
 
 

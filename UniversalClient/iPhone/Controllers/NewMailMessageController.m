@@ -48,9 +48,9 @@ typedef enum {
 	self.navigationItem.title = @"New Message";
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(sendMessage)] autorelease];
 
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"To"],
-								 [LEViewSectionTab tableView:self.tableView createWithText:@"Subject"],
-								 [LEViewSectionTab tableView:self.tableView createWithText:@"Message"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"To"],
+								 [LEViewSectionTab tableView:self.tableView withText:@"Subject"],
+								 [LEViewSectionTab tableView:self.tableView withText:@"Message"]);
 	
 	self.toCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
 	self.toCell.label.text = @"To";
@@ -207,7 +207,6 @@ typedef enum {
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
 	self.toCell = nil;
 	self.subjectCell = nil;
 	self.messageCell = nil;

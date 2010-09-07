@@ -38,7 +38,7 @@ NSString *messageText = @"Are you really sure you want to do this? This action c
 	
 	self.messageCell = [LETableViewCellTextView getCellForTableView:self.tableView];
 	
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Empire"], [LEViewSectionTab tableView:self.tableView createWithText:@"Message"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Empire"], [LEViewSectionTab tableView:self.tableView withText:@"Message"]);
 }
 
 
@@ -104,9 +104,8 @@ NSString *messageText = @"Are you really sure you want to do this? This action c
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
 	self.messageCell = nil;
+    [super viewDidUnload];
 }
 
 

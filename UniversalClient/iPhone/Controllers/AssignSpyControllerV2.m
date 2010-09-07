@@ -54,8 +54,8 @@
 }
 
 - (void)viewDidUnload {
-    [super viewDidUnload];
     self.assignmentPicker = nil;
+    [super viewDidUnload];
 }
 
 

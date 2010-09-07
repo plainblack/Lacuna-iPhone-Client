@@ -77,9 +77,9 @@ typedef enum {
 	self.passwordConfirmationCell.delegate = self;
 	self.passwordConfirmationCell.secureTextEntry = YES;
 	
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Instructions"],
-								 [LEViewSectionTab tableView:self.tableView createWithText:@"Request Code"],
-								 [LEViewSectionTab tableView:self.tableView createWithText:@"Reset Password"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Instructions"],
+								 [LEViewSectionTab tableView:self.tableView withText:@"Request Code"],
+								 [LEViewSectionTab tableView:self.tableView withText:@"Reset Password"]);
 }
 
 

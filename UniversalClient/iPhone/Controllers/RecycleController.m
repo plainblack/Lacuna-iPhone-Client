@@ -49,7 +49,7 @@ typedef enum {
 	self.navigationItem.title = @"Recycle";
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(save)] autorelease];
 	
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Recycle"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Recycle"]);
 	
 	Session *session = [Session sharedInstance];
 	NSDecimalNumber *maxValue = self.wasteRecycling.maxResources;
@@ -170,8 +170,6 @@ typedef enum {
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
 	[self.energyCell removeObserver:self forKeyPath:@"numericValue"];
 	[self.oreCell removeObserver:self forKeyPath:@"numericValue"];
 	[self.waterCell removeObserver:self forKeyPath:@"numericValue"];
@@ -179,6 +177,7 @@ typedef enum {
 	self.oreCell = nil;
 	self.waterCell = nil;
 	self.subsidizedCell = nil;
+    [super viewDidUnload];
 }
 
 

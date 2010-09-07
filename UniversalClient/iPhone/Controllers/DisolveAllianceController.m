@@ -38,7 +38,7 @@
 	self.disolveButtonCell = [LETableViewCellButton getCellForTableView:self.tableView];
 	self.disolveButtonCell.textLabel.text = @"Disolve Alliance";
 	
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Disolve Alliance"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Disolve Alliance"]);
 }
 
 
@@ -116,10 +116,9 @@
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
 	self.warningCell = nil;
 	self.disolveButtonCell = nil;
+    [super viewDidUnload];
 }
 
 

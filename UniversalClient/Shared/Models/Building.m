@@ -230,7 +230,7 @@
 - (NSArray *)sectionHeadersForTableView:(UITableView *)tableView {
 	NSMutableArray *sectionTabs = [NSMutableArray arrayWithCapacity:[self.sections count]];
 	for (NSDictionary *section in self.sections) {
-		[sectionTabs addObject:[LEViewSectionTab tableView:tableView createWithText:[section objectForKey:@"name"]]];
+		[sectionTabs addObject:[LEViewSectionTab tableView:tableView withText:[section objectForKey:@"name"]]];
 	}
 	return sectionTabs;
 }

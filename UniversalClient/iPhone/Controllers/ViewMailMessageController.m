@@ -65,9 +65,9 @@ typedef enum {
 						 fixed,
 						 nil];
 
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Header"],
-								 [LEViewSectionTab tableView:self.tableView createWithText:@"Attachements"],
-								 [LEViewSectionTab tableView:self.tableView createWithText:@"Message"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Header"],
+								 [LEViewSectionTab tableView:self.tableView withText:@"Attachements"],
+								 [LEViewSectionTab tableView:self.tableView withText:@"Message"]);
 }
 
 
@@ -292,10 +292,10 @@ typedef enum {
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
 	self.messageSegmentedControl = nil;
 	self.mailbox = nil;
 	self.messageIndex = 0;
+    [super viewDidUnload];
 }
 
 

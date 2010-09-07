@@ -36,7 +36,7 @@
 	self.nameCell.label.text = @"Name";
 	self.nameCell.textField.text = self.ship.name;
 	
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Rename Ship"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Rename Ship"]);
 }
 
 
@@ -88,8 +88,7 @@
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
+    [super viewDidUnload];
 }
 
 

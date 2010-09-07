@@ -207,6 +207,14 @@
 
 
 - (void)hideLogin {
+	__block NSInteger myWorldControllerIdx;
+	[self.tabBarController.viewControllers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+		if (obj == self.myWorldController) {
+			myWorldControllerIdx = idx;
+			*stop = YES;
+		}
+	}];
+	self.tabBarController.selectedIndex = myWorldControllerIdx;
 	[self.tabBarController dismissModalViewControllerAnimated:YES];
 }
 

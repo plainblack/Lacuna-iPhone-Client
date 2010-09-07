@@ -51,7 +51,7 @@ typedef enum {
 
 	self.navigationItem.title = @"Select Server";
 	
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Servers"], [LEViewSectionTab tableView:self.tableView createWithText:@"Custom"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Servers"], [LEViewSectionTab tableView:self.tableView withText:@"Custom"]);
 	self.servers = [[[Servers alloc] init] autorelease];
 
 	self.customerServerCell =  [LETableViewCellTextEntry getCellForTableView:self.tableView];
@@ -212,10 +212,9 @@ typedef enum {
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
 	self.servers = nil;
 	self.customerServerCell = nil;
+    [super viewDidUnload];
 }
 
 

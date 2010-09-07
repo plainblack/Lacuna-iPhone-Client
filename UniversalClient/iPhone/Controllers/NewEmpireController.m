@@ -86,7 +86,7 @@ typedef enum {
 	self.navigationItem.title = @"New Empire";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)] autorelease];
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"New Empire"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"New Empire"]);
 	
 	self.nameCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
 	self.nameCell.label.text = @"Name";
@@ -353,7 +353,6 @@ typedef enum {
 
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
 	self.nameCell = nil;
 	self.passwordCell = nil;
 	self.passwordConfirmationCell = nil;
@@ -365,7 +364,7 @@ typedef enum {
 	self.captchaImageCell = nil;
 	self.captchaSolutionCell = nil;
 	self.nextButton = nil;
-	[self viewDidUnload];
+    [super viewDidUnload];
 }
 
 

@@ -144,10 +144,10 @@ typedef enum {
 	[self calculatePoints];
 	self.navigationItem.title = [NSString stringWithFormat:@"%i / 45 points", self->points];
 	
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Species"],
-								 [LEViewSectionTab tableView:self.tableView createWithText:@"Habital Orbits"],
-								 [LEViewSectionTab tableView:self.tableView createWithText:@"Affinities"],
-								 [LEViewSectionTab tableView:self.tableView createWithText:@"Create Species"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Species"],
+								 [LEViewSectionTab tableView:self.tableView withText:@"Habital Orbits"],
+								 [LEViewSectionTab tableView:self.tableView withText:@"Affinities"],
+								 [LEViewSectionTab tableView:self.tableView withText:@"Create Species"]);
 }
 
 
@@ -310,7 +310,6 @@ typedef enum {
 
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     self.speciesNameCell = nil;
 	self.speciesDescriptionCell = nil;
 	self.orbitCells = nil;

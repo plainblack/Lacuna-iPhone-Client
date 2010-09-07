@@ -17,7 +17,7 @@
 @property(nonatomic, retain) UILabel *label;
 
 
-+ (LEViewSectionTab *)tableView:(UITableView *)tableView createWithText:(NSString *)text;
++ (LEViewSectionTab *)tableView:(UITableView *)tableView withText:(NSString *)text;
 + (CGFloat)getHeight;
 
 

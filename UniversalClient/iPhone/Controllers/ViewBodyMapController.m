@@ -128,7 +128,6 @@
 }
 
 - (void)viewDidUnload {
-    // Release any retained subviews of the main view.
 	self.scrollView = nil;
 	self.backgroundView = nil;
 	[buttonsByLoc release];

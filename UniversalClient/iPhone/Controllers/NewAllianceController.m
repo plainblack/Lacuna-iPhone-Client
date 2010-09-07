@@ -36,7 +36,7 @@
 	self.nameCell.label.text = @"Name";
 	
 	
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"New Alliance"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"New Alliance"]);
 }
 
 
@@ -78,9 +78,8 @@
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
 	self.nameCell = nil;
+    [super viewDidUnload];
 }
 
 

@@ -39,7 +39,7 @@ typedef enum {
 	
 	self.navigationItem.title = @"Select Empire";
 	
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Search"], [LEViewSectionTab tableView:self.tableView createWithText:@"Matches"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Search"], [LEViewSectionTab tableView:self.tableView withText:@"Matches"]);
 
 	self.nameCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
 	[self.nameCell setReturnKeyType:UIReturnKeySearch];
@@ -162,9 +162,8 @@ typedef enum {
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
 	self.nameCell = nil;
+    [super viewDidUnload];
 }
 
 

@@ -184,14 +184,13 @@
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-	NSLog(@"Test 1");
 	self.pageSegmentedControl = nil;
 	self.mailboxSegmentedControl = nil;
 	self.inboxBarButtonItems = nil;
 	self.otherMailboxBarButtonItems = nil;
 	self.mailbox = nil;
 	self.lastMessageAt = nil;
+    [super viewDidUnload];
 }
 
 

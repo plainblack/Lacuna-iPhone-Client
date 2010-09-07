@@ -192,7 +192,6 @@ typedef enum {
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
 	self.listChooser = nil;
 	self.bodyId = nil;
 	self.buildables = nil;
@@ -229,7 +228,7 @@ typedef enum {
 	
 	NSMutableArray *tmpSectionHeaders = [NSMutableArray arrayWithCapacity:[self.buildables count]];
 	for (NSDictionary *buildable in self.buildables) {
-		[tmpSectionHeaders addObject:[LEViewSectionTab tableView:self.tableView createWithText:[buildable objectForKey:@"name"]]];
+		[tmpSectionHeaders addObject:[LEViewSectionTab tableView:self.tableView withText:[buildable objectForKey:@"name"]]];
 	}
 	self.sectionHeaders = tmpSectionHeaders;
 
@@ -257,7 +256,7 @@ typedef enum {
 	
 	NSMutableArray *tmpSectionHeaders = [NSMutableArray arrayWithCapacity:[self.buildables count]];
 	for (NSDictionary *buildable in self.buildables) {
-		[tmpSectionHeaders addObject:[LEViewSectionTab tableView:self.tableView createWithText:[buildable objectForKey:@"name"]]];
+		[tmpSectionHeaders addObject:[LEViewSectionTab tableView:self.tableView withText:[buildable objectForKey:@"name"]]];
 	}
 	self.sectionHeaders = tmpSectionHeaders;
 	

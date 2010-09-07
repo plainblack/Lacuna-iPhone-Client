@@ -61,7 +61,7 @@ typedef enum {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Resources"], [LEViewSectionTab tableView:self.tableView createWithText:@"Infrastructure"], [LEViewSectionTab tableView:self.tableView createWithText:@"All"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Resources"], [LEViewSectionTab tableView:self.tableView withText:@"Infrastructure"], [LEViewSectionTab tableView:self.tableView withText:@"All"]);
 }
 
 
@@ -325,8 +325,7 @@ typedef enum {
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
+    [super viewDidUnload];
 }
 
 

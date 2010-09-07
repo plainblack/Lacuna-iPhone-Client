@@ -82,11 +82,11 @@ typedef enum {
 	
 	self.empires = session.savedEmpireList;
 	if ([self.empires count] > 0) {
-		self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Login"],
-									 [LEViewSectionTab tableView:self.tableView createWithText:@"Empires"],
+		self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Login"],
+									 [LEViewSectionTab tableView:self.tableView withText:@"Empires"],
 									 [NSNull null]);
 	} else {
-		self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Login"],
+		self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Login"],
 									 [NSNull null],
 									 [NSNull null]);
 	}
@@ -211,7 +211,7 @@ typedef enum {
 		[session forgetEmpireNamed:[empireData objectForKey:@"username"]];
 		self.empires = session.savedEmpireList;
 		if ([self.empires count] == 0) {
-			self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Login"],
+			self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Login"],
 										 [NSNull null],
 										 [NSNull null]);
 		}

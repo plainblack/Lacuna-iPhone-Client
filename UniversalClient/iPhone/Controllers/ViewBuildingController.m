@@ -172,10 +172,9 @@
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-	[super viewDidUnload];
 	self.selectedTableView = nil;
 	self.selectedIndexPath = nil;
+    [super viewDidUnload];
 }
 
 

@@ -91,8 +91,8 @@
 
 
 - (void)viewDidUnload {
-    [super viewDidUnload];
 	self.orePicker = nil;
+    [super viewDidUnload];
 }
 
 

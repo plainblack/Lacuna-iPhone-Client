@@ -53,12 +53,12 @@ typedef enum {
     self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
 	self.navigationItem.title = @"Loading";
 	
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Energy"],
-								 [LEViewSectionTab tableView:self.tableView createWithText:@"Food"],
-								 [LEViewSectionTab tableView:self.tableView createWithText:@"Happiness"],
-								 [LEViewSectionTab tableView:self.tableView createWithText:@"Ore"],
-								 [LEViewSectionTab tableView:self.tableView createWithText:@"Water"],
-								 [LEViewSectionTab tableView:self.tableView createWithText:@"Storage"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Energy"],
+								 [LEViewSectionTab tableView:self.tableView withText:@"Food"],
+								 [LEViewSectionTab tableView:self.tableView withText:@"Happiness"],
+								 [LEViewSectionTab tableView:self.tableView withText:@"Ore"],
+								 [LEViewSectionTab tableView:self.tableView withText:@"Water"],
+								 [LEViewSectionTab tableView:self.tableView withText:@"Storage"]);
 }
 
 

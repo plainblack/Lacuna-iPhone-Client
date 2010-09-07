@@ -42,7 +42,7 @@ typedef enum {
 	self.navigationItem.title = @"Found Empire";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)] autorelease];
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Found Empire"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Found Empire"]);
 	
 	self.friendCodeCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
 	self.friendCodeCell.label.text = @"Friend Code";
@@ -131,7 +131,7 @@ typedef enum {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
 	self.friendCodeCell = nil;
 	self.foundButtonCell = nil;
-	[self viewDidUnload];
+    [super viewDidUnload];
 }
 
 

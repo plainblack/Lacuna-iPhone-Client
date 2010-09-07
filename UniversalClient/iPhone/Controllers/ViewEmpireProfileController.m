@@ -80,8 +80,8 @@ typedef enum {
     self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout)] autorelease];
 	self.navigationItem.title = @"Loading";
 	
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Empire"],
-								 [LEViewSectionTab tableView:self.tableView createWithText:@"Actions"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Empire"],
+								 [LEViewSectionTab tableView:self.tableView withText:@"Actions"]);
 }
 
 

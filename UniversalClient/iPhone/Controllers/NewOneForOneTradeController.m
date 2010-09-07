@@ -46,7 +46,7 @@ typedef enum {
     [super viewDidLoad];
 	
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleDone target:self action:@selector(send)] autorelease];
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Have"], [LEViewSectionTab tableView:self.tableView createWithText:@"Want"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Have"], [LEViewSectionTab tableView:self.tableView withText:@"Want"]);
 	
 	if (!self.oneForOneTrade) {
 		self.oneForOneTrade = [[[OneForOneTrade alloc] init] autorelease];
@@ -153,9 +153,7 @@ typedef enum {
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
-	[super viewDidUnload];
+    [super viewDidUnload];
 }
 
 

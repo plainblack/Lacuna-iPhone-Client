@@ -49,7 +49,7 @@
 #pragma mark Class methods
 
 
-+ (LEViewSectionTab *)tableView:(UITableView *)tableView createWithText:(NSString *)text {
++ (LEViewSectionTab *)tableView:(UITableView *)tableView withText:(NSString *)text {
 	LEViewSectionTab *sectionTab = [[[LEViewSectionTab alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, SECTION_HEIGHT)] autorelease];
 	sectionTab.label.text = text;
 	return sectionTab;

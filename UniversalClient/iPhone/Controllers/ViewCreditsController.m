@@ -44,8 +44,8 @@ typedef enum {
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
     self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout)] autorelease];
 	
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Version"],
-								 [LEViewSectionTab tableView:self.tableView createWithText:@"Credits"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Version"],
+								 [LEViewSectionTab tableView:self.tableView withText:@"Credits"]);
 }
 
 
@@ -172,8 +172,8 @@ typedef enum {
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
 	self.leStatsCredits = nil;
+    [super viewDidUnload];
 }
 
 
@@ -195,9 +195,9 @@ typedef enum {
 #pragma mark Callback Methods
 
 - (id)creditsLoaded:(LEStatsCredits *)request {
-	NSMutableArray *tmp = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Version"]);
+	NSMutableArray *tmp = _array([LEViewSectionTab tableView:self.tableView withText:@"Version"]);
 	for (NSDictionary *creditGroup in request.creditGroups) {
-		[tmp addObject:[LEViewSectionTab tableView:self.tableView createWithText:[creditGroup objectForKey:@"title"]]];
+		[tmp addObject:[LEViewSectionTab tableView:self.tableView withText:[creditGroup objectForKey:@"title"]]];
 	}
 	self.sectionHeaders = tmp;
 	[self.tableView reloadData];

@@ -63,7 +63,7 @@ typedef enum {
     [super viewDidLoad];
 	
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleDone target:self action:@selector(send)] autorelease];
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Push To"], [LEViewSectionTab tableView:self.tableView createWithText:@"Items To Push"], [LEViewSectionTab tableView:self.tableView createWithText:@"Add"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Push To"], [LEViewSectionTab tableView:self.tableView withText:@"Items To Push"], [LEViewSectionTab tableView:self.tableView withText:@"Add"]);
 	
 	if (!self.itemPush) {
 		self.itemPush = [[[ItemPush alloc] init] autorelease];
@@ -354,8 +354,6 @@ typedef enum {
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
 	[super viewDidUnload];
 }
 

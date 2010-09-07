@@ -82,9 +82,9 @@ typedef enum {
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
     self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout)] autorelease];
 	
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"Body"],
-								 [LEViewSectionTab tableView:self.tableView createWithText:@"Actions"],
-								 [LEViewSectionTab tableView:self.tableView createWithText:@"Composition"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Body"],
+								 [LEViewSectionTab tableView:self.tableView withText:@"Actions"],
+								 [LEViewSectionTab tableView:self.tableView withText:@"Composition"]);
 }
 
 
@@ -477,9 +477,9 @@ typedef enum {
 
 		if (self.watchedBody) {
 			self.navigationItem.title = self.watchedBody.name;
-			self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:newBody.type],
-										 [LEViewSectionTab tableView:self.tableView createWithText:@"Actions"],
-										 [LEViewSectionTab tableView:self.tableView createWithText:@"Composition"]);
+			self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:newBody.type],
+										 [LEViewSectionTab tableView:self.tableView withText:@"Actions"],
+										 [LEViewSectionTab tableView:self.tableView withText:@"Composition"]);
 		} else {
 			self.navigationItem.title = @"";
 			self.sectionHeaders = nil;

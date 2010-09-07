@@ -42,7 +42,7 @@ typedef enum {
 	self.navigationItem.title = @"New Password";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView createWithText:@"New Password"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"New Password"]);
 	
 	self.oldPasswordCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
 	self.oldPasswordCell.label.text = @"Password";
@@ -159,10 +159,10 @@ typedef enum {
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
 	self.oldPasswordCell = nil;
 	self.newPasswordCell = nil;
 	self.newPasswordConfirmCell = nil;
+    [super viewDidUnload];
 }
 
 
