@@ -7,7 +7,9 @@
 //
 
 #import "LERequest.h"
-#import "DKDeferred+JSON.h"
+//#import "DKDeferred+JSON.h"
+#import "CJSONDataSerializer.h" 
+#import "CJSONDeserializer.h"
 #import "Session.h"
 #import "LEMacros.h"
 
@@ -29,7 +31,9 @@ static id<LERequestMonitor> delegate;
 
 
 @synthesize response;
-@synthesize deferred;
+//@synthesize deferred;
+@synthesize conn;
+@synthesize receivedData;
 
 
 - (id)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget {
@@ -52,12 +56,14 @@ static id<LERequestMonitor> delegate;
 
 
 - (void)dealloc {
-	NSLog(@"Dealloc called on a LERequest");
+	//NSLog(@"Dealloc called on a LERequest");
 	self->callback = nil;
 	[self->target release];
 	self->target = nil;
 	self.response = nil;
-	self.deferred = nil;
+//	self.deferred = nil;
+	self.conn = nil;
+	self.receivedData = nil;
 	[super dealloc];
 }
 
@@ -130,7 +136,7 @@ static id<LERequestMonitor> delegate;
 
 
 - (NSInteger)errorCode {
-	return intv([[self.response objectForKey:@"error"] objectForKey:@"code"]);
+	return _intv([[self.response objectForKey:@"error"] objectForKey:@"code"]);
 }
 
 - (void)requestFinished {
@@ -181,15 +187,46 @@ static id<LERequestMonitor> delegate;
 			url = [NSString stringWithFormat:@"%@/%@", session.serverUri, serviceUrl];
 		}
 	}
+	
+	/*
 	id service = [DKDeferred jsonService:url name:[self methodName]];
 	self.deferred = [service :[self params]];
 	[self.deferred addCallback:callbackTS(self, successCallback:)];
 	[self.deferred addErrback:callbackTS(self, errorCallback:)];
+	 */
+	
+	NSDictionary *methodCall = _dict([self methodName], @"method", 
+									 [self params], @"params", 
+									 [LERequest stringWithUUID], @"id", 
+									 @"1.1", @"version");
+	
+	NSError *error = NULL;
+	NSData *jsonData = [[CJSONDataSerializer serializer] serializeObject:methodCall error:&error];
+	
+	if (!jsonData && error) {
+		[self errorCallback:error];
+	} else {
+		NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]] autorelease];
+		[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+		[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+		[request setValue:@"TLE iOS Client" forHTTPHeaderField:@"User-Agent"];
+		[request setHTTPMethod:@"POST"];
+		[request setValue:[NSString stringWithFormat:@"%d", [jsonData length]] forHTTPHeaderField:@"Content-Length"];
+		[request setHTTPBody:jsonData];
+		
+		self.conn = [[[NSURLConnection alloc] initWithRequest:request delegate:self] autorelease];
+		if (self.conn) {
+			self.receivedData = [NSMutableData data];
+		} else {
+			[self errorCallback:[NSError errorWithDomain:@"LERequest" code:1 userInfo:nil]];
+		}
+	}
 }
 
 - (void)cancel {
 	self->canceled = YES;
-	[self.deferred cancel];
+	[self.conn cancel];
+	[self errorCallback:[NSError errorWithDomain:@"LERequest" code:2 userInfo:nil]];
 }
 
 
@@ -206,6 +243,60 @@ static id<LERequestMonitor> delegate;
 - (id)reloginComplete{
 	[self sendRequest];
 	return nil;
+}
+
+
+#pragma mark -
+#pragma mark NSURLConnection Callbacks
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+	[self.receivedData setLength:0];
+}
+
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+	[self.receivedData appendData:data];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+	//NSLog(@"Connection finished received %d bytes", [self.receivedData length]);
+	NSString *jsonString = [[[NSString alloc] initWithData:self.receivedData encoding:NSUTF8StringEncoding] autorelease];
+	//NSLog(@"Response data: %@", jsonString);
+	NSData *jsonData = [jsonString dataUsingEncoding:NSUTF32BigEndianStringEncoding];
+	//NSLog(@"jsonData: %@", jsonData);
+	NSError *error = nil;
+	NSDictionary *results = [[CJSONDeserializer deserializer] deserializeAsDictionary:jsonData error:&error];
+	//NSLog(@"results: %@", results);
+	//NSLog(@"error: %@", error);
+	self.conn = nil;
+	
+	if (!results && error) {
+		[self errorCallback:error];
+	} else {
+		NSDictionary *error = [results objectForKey:@"error"];
+		//NSLog(@"results error: %@", error);
+		if (isNotNull(error)) {
+			[self errorCallback:[NSError errorWithDomain:@"Server Error" code:3  userInfo:_dict(error, @"error")]];
+		} else {
+			[self successCallback:results];
+		}
+	}
+
+}
+
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+	[self errorCallback:error];
+	self.conn = nil;
+}
+
+
++ (NSString*) stringWithUUID {
+	CFUUIDRef uuidObj = CFUUIDCreate(nil);//create a new UUID
+	//get the string representation of the UUID
+	NSString *uuidString = (NSString*)CFUUIDCreateString(nil, uuidObj);
+	CFRelease(uuidObj);
+	return [uuidString autorelease];
 }
 
 

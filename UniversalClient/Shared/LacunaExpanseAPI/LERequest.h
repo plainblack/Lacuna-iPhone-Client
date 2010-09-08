@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@class DKDeferred;
+//@class DKDeferred;
 
 
 @protocol LERequestMonitor
@@ -25,13 +25,17 @@
 	NSDictionary *response;
 	BOOL wasError;
 	BOOL handledError;
-	DKDeferred *deferred;
+//	DKDeferred *deferred;
 	BOOL canceled;
+	NSURLConnection *conn;
+	NSMutableData *receivedData;
 }
 
 
-@property(nonatomic, retain) NSDictionary *response;
-@property(nonatomic, retain) DKDeferred *deferred;
+@property (nonatomic, retain) NSDictionary *response;
+//@property(nonatomic, retain) DKDeferred *deferred;
+@property (retain) NSURLConnection *conn;
+@property (retain) NSMutableData *receivedData;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target;
@@ -48,6 +52,6 @@
 
 + (void)setDelegate:(id<LERequestMonitor>)delegate;
 + (NSInteger)getCurrentRequestCount;
-
++ (NSString*) stringWithUUID;
 
 @end

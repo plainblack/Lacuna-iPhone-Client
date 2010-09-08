@@ -86,6 +86,8 @@ static NSDecimalNumber *ONE_HUNDRED_BILLION;
 	if (isNotNull(obj)) {
 		if ([obj isKindOfClass:[NSDecimalNumber class]]) {
 			result = obj;
+		}else if ([obj isKindOfClass:[NSNumber class]]) {
+			result = [NSDecimalNumber decimalNumberWithString:[obj stringValue]];
 		}else if ([obj isKindOfClass:[NSString class]]) {
 			result = [NSDecimalNumber decimalNumberWithString:obj];
 		} else {
