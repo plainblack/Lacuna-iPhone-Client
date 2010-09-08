@@ -67,7 +67,7 @@
 #pragma mark Class Methods
 
 + (LETableViewCellAttachedLink *)getCellForTableView:(UITableView *)tableView {
-    static NSString *CellIdentifier = @"AttachedImageCell";
+    static NSString *CellIdentifier = @"AttachedLinkCell";
 	
 	LETableViewCellAttachedLink *cell = (LETableViewCellAttachedLink *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {

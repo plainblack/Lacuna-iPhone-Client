@@ -180,7 +180,7 @@
 #pragma mark Class Methods
 
 + (LETableViewCellTextView *)getCellForTableView:(UITableView *)tableView {
-    static NSString *CellIdentifier = @"TextEntryCell";
+    static NSString *CellIdentifier = @"TextViewCell";
 	
 	LETableViewCellTextView *cell = (LETableViewCellTextView *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {

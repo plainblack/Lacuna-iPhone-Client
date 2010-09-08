@@ -125,7 +125,7 @@
 #pragma mark Class Methods
 
 + (LETableViewCellCurrentResources *)getCellForTableView:(UITableView *)tableView {
-    static NSString *CellIdentifier = @"BodyCell";
+    static NSString *CellIdentifier = @"CurrentResourceCell";
 	
 	LETableViewCellCurrentResources *cell = (LETableViewCellCurrentResources *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {

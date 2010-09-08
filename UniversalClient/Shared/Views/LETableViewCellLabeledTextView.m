@@ -182,7 +182,7 @@
 #pragma mark Class Methods
 
 + (LETableViewCellLabeledTextView *)getCellForTableView:(UITableView *)tableView {
-    static NSString *CellIdentifier = @"TextEntryCell";
+    static NSString *CellIdentifier = @"LabeledTextViewCell";
 	
 	LETableViewCellLabeledTextView *cell = (LETableViewCellLabeledTextView *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {

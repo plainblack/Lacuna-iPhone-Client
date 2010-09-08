@@ -216,7 +216,7 @@ static id<LERequestMonitor> delegate;
 - (void)cancel {
 	self->canceled = YES;
 	[self.conn cancel];
-	[self errorCallback:[NSError errorWithDomain:@"LERequest" code:2 userInfo:nil]];
+	[self errorCallback:[NSError errorWithDomain:@"LERequest" code:2 userInfo:_dict(@"LERequest Canceled", @"reason")]];
 }
 
 
@@ -259,6 +259,7 @@ static id<LERequestMonitor> delegate;
 	//NSLog(@"results: %@", results);
 	//NSLog(@"error: %@", error);
 	self.conn = nil;
+	self.receivedData = nil;
 	
 	if (!results && error) {
 		[self errorCallback:error];
