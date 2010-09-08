@@ -7,9 +7,7 @@
 //
 
 #import "LERequest.h"
-//#import "DKDeferred+JSON.h"
-#import "CJSONDataSerializer.h" 
-#import "CJSONDeserializer.h"
+#import "JSON.h"
 #import "Session.h"
 #import "LEMacros.h"
 
@@ -31,7 +29,6 @@ static id<LERequestMonitor> delegate;
 
 
 @synthesize response;
-//@synthesize deferred;
 @synthesize conn;
 @synthesize receivedData;
 
@@ -56,12 +53,10 @@ static id<LERequestMonitor> delegate;
 
 
 - (void)dealloc {
-	//NSLog(@"Dealloc called on a LERequest");
 	self->callback = nil;
 	[self->target release];
 	self->target = nil;
 	self.response = nil;
-//	self.deferred = nil;
 	self.conn = nil;
 	self.receivedData = nil;
 	[super dealloc];
@@ -188,21 +183,16 @@ static id<LERequestMonitor> delegate;
 		}
 	}
 	
-	/*
-	id service = [DKDeferred jsonService:url name:[self methodName]];
-	self.deferred = [service :[self params]];
-	[self.deferred addCallback:callbackTS(self, successCallback:)];
-	[self.deferred addErrback:callbackTS(self, errorCallback:)];
-	 */
-	
 	NSDictionary *methodCall = _dict([self methodName], @"method", 
 									 [self params], @"params", 
 									 [LERequest stringWithUUID], @"id", 
 									 @"1.1", @"version");
 	
 	NSError *error = NULL;
-	NSData *jsonData = [[CJSONDataSerializer serializer] serializeObject:methodCall error:&error];
-	
+	SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+	NSString *jsonString = [writer stringWithObject:methodCall error:&error];
+	NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+	[writer release];
 	if (!jsonData && error) {
 		[self errorCallback:error];
 	} else {
@@ -262,10 +252,10 @@ static id<LERequestMonitor> delegate;
 	//NSLog(@"Connection finished received %d bytes", [self.receivedData length]);
 	NSString *jsonString = [[[NSString alloc] initWithData:self.receivedData encoding:NSUTF8StringEncoding] autorelease];
 	//NSLog(@"Response data: %@", jsonString);
-	NSData *jsonData = [jsonString dataUsingEncoding:NSUTF32BigEndianStringEncoding];
-	//NSLog(@"jsonData: %@", jsonData);
 	NSError *error = nil;
-	NSDictionary *results = [[CJSONDeserializer deserializer] deserializeAsDictionary:jsonData error:&error];
+	SBJsonParser *parser = [[SBJsonParser alloc] init];
+	NSMutableDictionary *results = [parser objectWithString:jsonString error:&error];
+	[parser release];
 	//NSLog(@"results: %@", results);
 	//NSLog(@"error: %@", error);
 	self.conn = nil;

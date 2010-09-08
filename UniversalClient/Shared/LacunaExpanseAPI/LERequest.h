@@ -9,9 +9,6 @@
 #import <Foundation/Foundation.h>
 
 
-//@class DKDeferred;
-
-
 @protocol LERequestMonitor
 
 - (void)allRequestsComplete;
@@ -25,7 +22,6 @@
 	NSDictionary *response;
 	BOOL wasError;
 	BOOL handledError;
-//	DKDeferred *deferred;
 	BOOL canceled;
 	NSURLConnection *conn;
 	NSMutableData *receivedData;
@@ -33,7 +29,6 @@
 
 
 @property (nonatomic, retain) NSDictionary *response;
-//@property(nonatomic, retain) DKDeferred *deferred;
 @property (retain) NSURLConnection *conn;
 @property (retain) NSMutableData *receivedData;
 
