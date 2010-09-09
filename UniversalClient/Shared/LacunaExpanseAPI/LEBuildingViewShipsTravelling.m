@@ -43,7 +43,7 @@
 		[travellingShip parseData:travellingShipData];
 		[tmp addObject:travellingShip];
 	}
-	[tmp sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"dateArrives" ascending:YES])];
+	[tmp sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"dateArrives" ascending:YES] autorelease])];
 	self.travellingShips = tmp;
 }
 

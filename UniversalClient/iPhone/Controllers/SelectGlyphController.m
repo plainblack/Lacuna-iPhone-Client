@@ -42,7 +42,7 @@
 	if (!self.baseTradeBuilding.glyphs) {
 		[self.baseTradeBuilding loadTradeableGlyphs];
 	} else {
-		[self.baseTradeBuilding.glyphs sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES])];
+		[self.baseTradeBuilding.glyphs sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES] autorelease])];
 	}
 }
 
@@ -163,7 +163,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ([keyPath isEqual:@"glyphs"]) {
-		[self.baseTradeBuilding.glyphs sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES])];
+		[self.baseTradeBuilding.glyphs sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES] autorelease])];
 		[self.tableView reloadData];
 	}
 }

@@ -47,7 +47,7 @@
 		[self.buildables addObject:building];
 	}
 	
-	[self.buildables sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES])];
+	[self.buildables sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease])];
 	
 	[result objectForKey:@"building"];
 }

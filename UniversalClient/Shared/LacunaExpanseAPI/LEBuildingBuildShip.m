@@ -45,7 +45,7 @@
 		[shipBuildQueueItem parseData:shipBuildQueueItemData];
 		[tmp addObject:shipBuildQueueItem];
 	}
-	[tmp sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"dateCompleted" ascending:YES])];
+	[tmp sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"dateCompleted" ascending:YES] autorelease])];
 	self.shipBuildQueue = tmp;
 }
 

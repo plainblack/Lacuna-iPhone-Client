@@ -40,7 +40,7 @@
 		[tmp addObject:_dict(key, @"type", obj, @"amount")];
 	}];
 	
-	[tmp sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES])];
+	[tmp sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES] autorelease])];
 	
 	self.oreTypes = tmp;
 }

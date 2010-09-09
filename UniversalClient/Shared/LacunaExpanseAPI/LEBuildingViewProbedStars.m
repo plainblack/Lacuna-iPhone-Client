@@ -47,7 +47,7 @@
 		[star parseData:starData];
 		[tmp addObject:star];
 	}
-	[tmp sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES])];
+	[tmp sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease])];
 	self.probedStars = tmp;
 }
 

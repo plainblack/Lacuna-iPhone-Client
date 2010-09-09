@@ -67,7 +67,7 @@
 		[medalDictionary setObject:medalId forKey:@"id"];
 		[medalArray addObject:medalDictionary];
 	}
-	[medalArray sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES])];
+	[medalArray sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease])];
 	self.medals = medalArray;
 }
 

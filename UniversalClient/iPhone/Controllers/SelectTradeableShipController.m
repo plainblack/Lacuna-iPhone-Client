@@ -42,7 +42,7 @@
 	if (!self.baseTradeBuilding.ships) {
 		[self.baseTradeBuilding loadTradeableShips];
 	} else {
-		[self.baseTradeBuilding.ships sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES])];
+		[self.baseTradeBuilding.ships sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES] autorelease])];
 	}
 }
 
@@ -163,7 +163,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ([keyPath isEqual:@"ships"]) {
-		[self.baseTradeBuilding.ships sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES])];
+		[self.baseTradeBuilding.ships sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES] autorelease])];
 		[self.tableView reloadData];
 	}
 }

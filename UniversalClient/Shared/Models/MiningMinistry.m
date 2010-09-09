@@ -32,6 +32,7 @@
 
 - (void)dealloc {
 	self.platforms = nil;
+	self.fleetShips = nil;
 	[super dealloc];
 }
 

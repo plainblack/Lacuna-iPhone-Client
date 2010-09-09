@@ -47,7 +47,7 @@
 		
 		[tmp addObject:buildableShip];
 	}];
-	[tmp sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES])];
+	[tmp sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES] autorelease])];
 	self.buildableShips	= tmp;
 }
 

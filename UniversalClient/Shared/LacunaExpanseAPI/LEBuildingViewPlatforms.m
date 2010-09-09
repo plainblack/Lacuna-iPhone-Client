@@ -47,7 +47,7 @@
 		[miningPlatform parseData:platformData];
 		[tmp addObject:miningPlatform];
 	}
-	[tmp sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"asteroidName" ascending:YES])];
+	[tmp sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"asteroidName" ascending:YES] autorelease])];
 	self.platforms = tmp;
 }
 

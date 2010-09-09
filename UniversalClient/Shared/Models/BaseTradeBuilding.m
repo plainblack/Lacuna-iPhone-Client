@@ -105,7 +105,7 @@
 - (void)parseAdditionalData:(NSDictionary *)data {
 	NSDictionary *transportData = [data objectForKey:@"transport"];
 	if (transportData) {
-		self.maxCargoSize = [transportData objectForKey:@"max"];
+		self.maxCargoSize = [Util asNumber:[transportData objectForKey:@"max"]];
 	}
 }
 
@@ -492,7 +492,7 @@
 	[request.storedResources enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
 		[tmpArray addObject:_dict(key, @"type", obj, @"quantity")];
 	}];
-	[tmpArray sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES])];
+	[tmpArray sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES] autorelease])];
 	self.storedResources = tmpArray;
 	return nil;
 }

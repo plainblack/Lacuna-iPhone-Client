@@ -42,7 +42,7 @@
 	if (!self.baseTradeBuilding.storedResources) {
 		[self.baseTradeBuilding loadTradeableStoredResources];
 	} else {
-		[self.baseTradeBuilding.storedResources sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES])];
+		[self.baseTradeBuilding.storedResources sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES] autorelease])];
 	}
 }
 
@@ -182,7 +182,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ([keyPath isEqual:@"storedResources"]) {
-		[self.baseTradeBuilding.storedResources sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES])];
+		[self.baseTradeBuilding.storedResources sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES] autorelease])];
 		[self.tableView reloadData];
 	}
 }

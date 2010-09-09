@@ -81,7 +81,7 @@
 			self.leaderName = allianceMember.name;
 		}
 	}
-	[self.members sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES])];
+	[self.members sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease])];
 	self.dateLoaded = [NSDate date];
 }
 

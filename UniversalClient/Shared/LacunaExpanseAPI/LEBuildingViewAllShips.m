@@ -43,7 +43,7 @@
 		[ship parseData:shipData];
 		[tmp addObject:ship];
 	}
-	[tmp sortUsingDescriptors:_array([[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES])];
+	[tmp sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease])];
 	 self.ships = tmp;
 }
 
