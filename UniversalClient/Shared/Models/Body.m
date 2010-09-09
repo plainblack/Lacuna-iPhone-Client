@@ -50,8 +50,8 @@
 #pragma mark NSObject Methods
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"id:%@, name:%@, type:%@, surfaceImageName:%@, empireId:%@, empireName:%@, x:%@, y:%@, starId:%@, starName:%@, orbit:%@", 
-			self.id, self.name, self.type, self.surfaceImageName, self.empireId, self.empireName, self.x, self.y, self.starId, self.starName, self.orbit];
+	return [NSString stringWithFormat:@"id:%@, name:%@, type:%@, surfaceImageName:%@, empireId:%@, empireName:%@, x:%@, y:%@, starId:%@, starName:%@, orbit:%@, buildingCount:%@, needsSurfaceRefresh:%i", 
+			self.id, self.name, self.type, self.surfaceImageName, self.empireId, self.empireName, self.x, self.y, self.starId, self.starName, self.orbit, self.buildingCount, self.needsSurfaceRefresh];
 }
 
 
@@ -106,8 +106,8 @@
 	self.empireId = [Util idFromDict:empireData named:@"id"];
 	self.empireName = [empireData objectForKey:@"name"];
 	self.alignment = [empireData objectForKey:@"alignment"];
-	self.needsSurfaceRefresh = _intv([bodyData objectForKey:@"needs_surface_refresh"]);
-	self.buildingCount = [Util asNumber:[bodyData objectForKey:@"alignment"]];
+	self.needsSurfaceRefresh = _boolv([bodyData objectForKey:@"needs_surface_refresh"]);
+	self.buildingCount = [Util asNumber:[bodyData objectForKey:@"building_count"]];
 	if (!self.happiness) {
 		self.happiness = [[[NoLimitResource alloc] init] autorelease];
 	}

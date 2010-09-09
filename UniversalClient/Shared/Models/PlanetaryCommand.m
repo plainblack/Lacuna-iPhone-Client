@@ -9,8 +9,9 @@
 #import "PlanetaryCommand.h"
 #import "LEMacros.h"
 #import "Util.h"
+#import "Session.h"
 #import "BuildingUtil.h"
-#import "LETableViewCellLabeledText.h"
+#import "LETableViewCellLabeledIconText.h"
 
 
 @implementation PlanetaryCommand
@@ -37,17 +38,20 @@
 
 
 - (void)generateSections {
-	NSMutableDictionary *productionSection = [self generateProductionSection];
-	[[productionSection objectForKey:@"rows"] addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_NEXT_COLONY_COST]];
+	NSMutableDictionary *nextColonySection = _dict(
+												   [NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type",
+												   @"Next Colony", @"name",
+												   _array([NSDecimalNumber numberWithInt:BUILDING_ROW_NEXT_COLONY_COST], [NSDecimalNumber numberWithInt:BUILDING_ROW_CURRENT_HAPPINESS]), @"rows");
 	
-	self.sections = _array(productionSection, [self generateHealthSection], [self generateUpgradeSection]);
+	self.sections = _array([self generateProductionSection], nextColonySection, [self generateHealthSection], [self generateUpgradeSection]);
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForBuildingRow:(BUILDING_ROW)buildingRow {
 	switch (buildingRow) {
 		case BUILDING_ROW_NEXT_COLONY_COST:
-			return [LETableViewCellLabeledText getHeightForTableView:tableView];
+		case BUILDING_ROW_CURRENT_HAPPINESS:
+			return [LETableViewCellLabeledIconText getHeightForTableView:tableView];
 			break;
 		default:
 			return [super tableView:tableView heightForBuildingRow:buildingRow];
@@ -61,10 +65,20 @@
 	switch (buildingRow) {
 		case BUILDING_ROW_NEXT_COLONY_COST:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
-			LETableViewCellLabeledText *nextColonyCostCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-			nextColonyCostCell.label.text = @"Next Colony";
+			LETableViewCellLabeledIconText *nextColonyCostCell = [LETableViewCellLabeledIconText getCellForTableView:tableView isSelectable:NO];
+			nextColonyCostCell.label.text = @"Cost";
+			nextColonyCostCell.icon.image = HAPPINESS_ICON;
 			nextColonyCostCell.content.text = [Util prettyNSDecimalNumber:self.nextColonyCost];
 			cell = nextColonyCostCell;
+			break;
+		case BUILDING_ROW_CURRENT_HAPPINESS:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellLabeledIconText *currentHappinessCell = [LETableViewCellLabeledIconText getCellForTableView:tableView isSelectable:NO];
+			currentHappinessCell.label.text = @"Current";
+			currentHappinessCell.icon.image = HAPPINESS_ICON;
+			Session *session = [Session sharedInstance];
+			currentHappinessCell.content.text = [Util prettyNSDecimalNumber:session.body.happiness.current];
+			cell = currentHappinessCell;
 			break;
 		default:
 			cell = [super tableView:tableView cellForBuildingRow:buildingRow rowIndex:rowIndex];

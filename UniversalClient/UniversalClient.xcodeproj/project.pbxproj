@@ -213,6 +213,7 @@
 		F6D85A3B122DC06C00A44BD9 /* WebPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D85A39122DC06C00A44BD9 /* WebPageController.m */; };
 		F6D85A3C122DC06C00A44BD9 /* WebPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */; };
 		F6D85AA2122DEA1200A44BD9 /* FoundNewEmpireController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D85AA1122DEA1200A44BD9 /* FoundNewEmpireController.m */; };
+		F6D97B841238FF7C009EFC9E /* LETableViewCellLabeledIconText.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D97B831238FF7C009EFC9E /* LETableViewCellLabeledIconText.m */; };
 		F6D9AB3D121BFA13003E8D4E /* LEBuildingGetTradeableShips.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9AB3C121BFA13003E8D4E /* LEBuildingGetTradeableShips.m */; };
 		F6D9AB40121BFA25003E8D4E /* LEBuildingGetTradeablePrisoners.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9AB3F121BFA25003E8D4E /* LEBuildingGetTradeablePrisoners.m */; };
 		F6D9AB43121BFA31003E8D4E /* LEBuildingGetTradeablePlans.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9AB42121BFA31003E8D4E /* LEBuildingGetTradeablePlans.m */; };
@@ -711,6 +712,8 @@
 		F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebPageController.xib; sourceTree = "<group>"; };
 		F6D85AA0122DEA1200A44BD9 /* FoundNewEmpireController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoundNewEmpireController.h; sourceTree = "<group>"; };
 		F6D85AA1122DEA1200A44BD9 /* FoundNewEmpireController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoundNewEmpireController.m; sourceTree = "<group>"; };
+		F6D97B821238FF7C009EFC9E /* LETableViewCellLabeledIconText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellLabeledIconText.h; sourceTree = "<group>"; };
+		F6D97B831238FF7C009EFC9E /* LETableViewCellLabeledIconText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellLabeledIconText.m; sourceTree = "<group>"; };
 		F6D9AB3B121BFA13003E8D4E /* LEBuildingGetTradeableShips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetTradeableShips.h; sourceTree = "<group>"; };
 		F6D9AB3C121BFA13003E8D4E /* LEBuildingGetTradeableShips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetTradeableShips.m; sourceTree = "<group>"; };
 		F6D9AB3E121BFA25003E8D4E /* LEBuildingGetTradeablePrisoners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetTradeablePrisoners.h; sourceTree = "<group>"; };
@@ -1104,6 +1107,8 @@
 				F69809C4117A156E00BD2096 /* LETableViewCellUnbuildable.m */,
 				F6DD2062116D5B3C0013C58D /* LEViewSectionTab.h */,
 				F6DD2063116D5B3C0013C58D /* LEViewSectionTab.m */,
+				F6D97B821238FF7C009EFC9E /* LETableViewCellLabeledIconText.h */,
+				F6D97B831238FF7C009EFC9E /* LETableViewCellLabeledIconText.m */,
 			);
 			name = Views;
 			path = Shared/Views;
@@ -2001,6 +2006,7 @@
 				F64167CB1237A7F1009708A1 /* SBJsonBase.m in Sources */,
 				F64167CC1237A7F1009708A1 /* SBJsonParser.m in Sources */,
 				F64167CD1237A7F1009708A1 /* SBJsonWriter.m in Sources */,
+				F6D97B841238FF7C009EFC9E /* LETableViewCellLabeledIconText.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

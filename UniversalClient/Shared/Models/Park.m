@@ -11,6 +11,7 @@
 #import "Util.h"
 #import "LETableViewCellButton.h"
 #import "LETableViewCellLabeledText.h"
+#import "LETableViewCellLabeledIconText.h"
 #import "LEBuildingThrowParty.h"
 
 
@@ -51,7 +52,7 @@
 	NSDictionary *partyData = [data objectForKey:@"party"];
 	self.canThrowParty = [[partyData objectForKey:@"can_throw"] boolValue];
 	self.secondsRemaining = _intv([partyData objectForKey:@"seconds_remaining"]);
-	self.happinessPerParty = [partyData objectForKey:@"happiness_from_party"];
+	self.happinessPerParty = [Util asNumber:[partyData objectForKey:@"happiness"]];
 }
 
 
@@ -63,6 +64,8 @@
 	} else {
 		[partyRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_PARTY_PENDING]];
 	}
+	[partyRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_PARTY_HAPPINESS]];
+	
 	self.sections = _array([self generateProductionSection], _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Party", @"name", partyRows, @"rows"), [self generateHealthSection], [self generateUpgradeSection]);
 }
 
@@ -74,6 +77,9 @@
 			break;
 		case BUILDING_ROW_PARTY_PENDING:
 			return [LETableViewCellLabeledText getHeightForTableView:tableView];
+			break;
+		case BUILDING_ROW_PARTY_HAPPINESS:
+			return [LETableViewCellLabeledIconText getHeightForTableView:tableView];
 			break;
 		default:
 			return [super tableView:tableView heightForBuildingRow:buildingRow];
@@ -102,6 +108,14 @@
 				partyPendingCell.content.text = @"Not enough food";
 			}
 			cell = partyPendingCell;
+			break;
+		case BUILDING_ROW_PARTY_HAPPINESS:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellLabeledIconText *happinessGeneratesCell = [LETableViewCellLabeledIconText getCellForTableView:tableView isSelectable:NO];
+			happinessGeneratesCell.label.text = @"Generates";
+			happinessGeneratesCell.icon.image = HAPPINESS_ICON;
+			happinessGeneratesCell.content.text = [Util prettyNSDecimalNumber:self.happinessPerParty];
+			cell = happinessGeneratesCell;
 			break;
 		default:
 			cell = [super tableView:tableView cellForBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex];

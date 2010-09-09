@@ -284,7 +284,7 @@ typedef enum {
 					; //DO NOT REMOVE
 					LETableViewCellLabeledText *sizeCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					sizeCell.label.text = @"Size";
-					sizeCell.content.text = [NSString stringWithFormat:@"%@", session.body.size];
+					sizeCell.content.text = [NSString stringWithFormat:@"%@ (%@ used)", session.body.size, session.body.buildingCount];
 					cell = sizeCell;
 					break;
 				case COMPOSITION_ROW_ORE:
