@@ -100,7 +100,12 @@
 	
 	Session *session = [Session sharedInstance];
 	[session addObserver:self forKeyPath:@"body.buildingMap" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-	[session.body loadBuildingMap];
+	if (!session.body.buildingMap || session.body.needsSurfaceRefresh) {
+		[session.body loadBuildingMap];
+	} else {
+		NSLog(@"NOT LOADING MAP");
+	}
+
 	
 	self.navigationItem.title = @"Loading";
 }
