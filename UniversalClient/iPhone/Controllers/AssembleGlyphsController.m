@@ -127,8 +127,9 @@
 
 
 - (void)dealloc {
-    [super dealloc];
+	self.glyphPicker = nil;
 	self.archaeology = nil;
+    [super dealloc];
 }
 
 

@@ -179,6 +179,8 @@
 
 
 - (void)dealloc {
+	self.selectedTableView = nil;
+	self.selectedIndexPath = nil;
 	self.buildingId = nil;
 	self.urlPart = nil;
 	self.buttonsByLoc = nil;

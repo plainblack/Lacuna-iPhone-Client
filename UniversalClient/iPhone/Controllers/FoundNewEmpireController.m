@@ -128,7 +128,6 @@ typedef enum {
 }
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
 	self.friendCodeCell = nil;
 	self.foundButtonCell = nil;
     [super viewDidUnload];
@@ -136,6 +135,8 @@ typedef enum {
 
 
 - (void)dealloc {
+	self.friendCodeCell = nil;
+	self.foundButtonCell = nil;
 	self.empireId = nil;
 	self.username = nil;
 	self.password = nil;

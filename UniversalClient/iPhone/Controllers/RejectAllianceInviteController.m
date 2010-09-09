@@ -99,12 +99,12 @@
 }
 
 - (void)viewDidUnload {
-	self.messageCell = nil;
     [super viewDidUnload];
 }
 
 
 - (void)dealloc {
+	self.messageCell = nil;
 	self.embassy = nil;
 	self.invite = nil;
     [super dealloc];

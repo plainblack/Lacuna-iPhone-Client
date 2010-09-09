@@ -182,6 +182,13 @@ typedef enum {
 
 
 - (void)dealloc {
+	[self.energyCell removeObserver:self forKeyPath:@"numericValue"];
+	[self.oreCell removeObserver:self forKeyPath:@"numericValue"];
+	[self.waterCell removeObserver:self forKeyPath:@"numericValue"];
+	self.energyCell = nil;
+	self.oreCell = nil;
+	self.waterCell = nil;
+	self.subsidizedCell = nil;
 	self.wasteRecycling = nil;
     [super dealloc];
 }

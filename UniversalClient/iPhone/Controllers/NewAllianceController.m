@@ -84,6 +84,7 @@
 
 
 - (void)dealloc {
+	self.nameCell = nil;
 	self.embassy = nil;
     [super dealloc];
 }

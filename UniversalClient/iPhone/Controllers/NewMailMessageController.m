@@ -215,6 +215,9 @@ typedef enum {
 
 
 - (void)dealloc {
+	self.toCell = nil;
+	self.subjectCell = nil;
+	self.messageCell = nil;
 	self.replyToMessage = nil;
     [super dealloc];
 }

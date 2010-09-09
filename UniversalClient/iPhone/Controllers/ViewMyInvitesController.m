@@ -207,6 +207,10 @@ typedef enum {
 
 
 - (void)dealloc {
+	if (self ->watched) {
+		[self.embassy removeObserver:self forKeyPath:@"myInvites"];
+		self->watched = NO;
+	}
 	self.embassy = nil;
     [super dealloc];
 }

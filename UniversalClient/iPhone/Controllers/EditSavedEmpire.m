@@ -54,6 +54,9 @@
 
 
 - (void)dealloc {
+	self.username = nil;
+	self.password = nil;
+	self.server = nil;
 	self.empireName = nil;
     [super dealloc];
 }

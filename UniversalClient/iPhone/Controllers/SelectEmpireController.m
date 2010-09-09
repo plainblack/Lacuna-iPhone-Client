@@ -168,6 +168,7 @@ typedef enum {
 
 
 - (void)dealloc {
+	self.nameCell = nil;
 	self.empires = nil;
     [super dealloc];
 }

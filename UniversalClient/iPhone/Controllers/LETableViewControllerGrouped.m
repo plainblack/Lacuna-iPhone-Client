@@ -97,6 +97,7 @@
 
 
 - (void)dealloc {
+	self.sectionHeaders = nil;
     [super dealloc];
 }
 

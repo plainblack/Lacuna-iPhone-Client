@@ -123,6 +123,8 @@
 
 
 - (void)dealloc {
+	self.warningCell = nil;
+	self.disolveButtonCell = nil;
 	self.embassy = nil;
     [super dealloc];
 }

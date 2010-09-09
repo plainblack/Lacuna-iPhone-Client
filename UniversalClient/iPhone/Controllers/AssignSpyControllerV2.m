@@ -60,9 +60,10 @@
 
 
 - (void)dealloc {
-    [super dealloc];
+    self.assignmentPicker = nil;
 	self.intelligence = nil;
 	self.spy = nil;
+    [super dealloc];
 }
 
 

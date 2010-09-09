@@ -209,6 +209,18 @@ typedef enum {
 
 
 - (void)dealloc {
+	self.listChooser = nil;
+	self.bodyId = nil;
+	self.buildables = nil;
+	self.allBuildings = nil;
+	self.buildableBuildings = nil;
+	self.x = nil;
+	self.y = nil;
+	self.buildingsByLoc = nil;
+	self.buttonsByLoc = nil;
+	[leGetBuildables cancel];
+	self.leGetBuildables = nil;
+	self.tag = nil;
     [super dealloc];
 }
 

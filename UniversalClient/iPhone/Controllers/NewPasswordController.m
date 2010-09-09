@@ -167,6 +167,9 @@ typedef enum {
 
 
 - (void)dealloc {
+	self.oldPasswordCell = nil;
+	self.newPasswordCell = nil;
+	self.newPasswordConfirmCell = nil;
     [super dealloc];
 }
 

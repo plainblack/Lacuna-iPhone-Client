@@ -8,6 +8,7 @@
 
 #import "LETableViewCellAffinitySelector.h"
 #import "LEMacros.h"
+#import "Util.h"
 
 
 @interface LETableViewCellAffinitySelector (PrivateMethods)
@@ -24,6 +25,7 @@
 @synthesize minusButton;
 @synthesize plusButton;
 @synthesize pointsDelegate;
+@synthesize value;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -47,7 +49,7 @@
 	self.valueLabel = nil;
 	self.minusButton = nil;
 	self.plusButton = nil;
-	[value release];
+	self.value = nil;
     [super dealloc];
 }
 
@@ -66,12 +68,12 @@
 #pragma mark Instance Methods
 
 - (NSDecimalNumber *)rating {
-	return value;
+	return self.value;
 }
 
 
 - (void)setRating:(NSInteger)aRating {
-	value = [[NSDecimalNumber alloc] initWithInt:aRating];
+	self.value = [Util decimalFromInt:aRating];
 	[self updateValueLabel];
 }
 
@@ -80,7 +82,7 @@
 #pragma mark Action Methods
 
 - (IBAction)decreaseValue {
-	if (_intv(value) == 2) {
+	if (_intv(self.value) == 2) {
 		UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Are you sure"
 													 message:@"Setting an affinity to 1 puts you are a significant disadvantage and should only be done by expert players."
 													delegate:self
@@ -94,7 +96,7 @@
 
 
 - (IBAction)increaseValue {
-	value = [[NSDecimalNumber alloc] initWithInt:([value intValue] + 1)];
+	self.value = [Util decimalFromInt:([self.value intValue] + 1)];
 	[self.pointsDelegate updatePoints:1];
 	[self updateValueLabel];
 }
@@ -106,13 +108,13 @@
 
 - (void)updateValueLabel {
 	self.valueLabel.text = [value stringValue];
-	[self.minusButton setEnabled:(_intv(value) > 1)];
-	[self.plusButton setEnabled:(_intv(value) < 7)];
+	[self.minusButton setEnabled:(_intv(self.value) > 1)];
+	[self.plusButton setEnabled:(_intv(self.value) < 7)];
 }
 
 
 - (void)reallyDecreaseValue {
-	value = [[NSDecimalNumber alloc] initWithInt:([value intValue] - 1)];
+	self.value = [Util decimalFromInt:([self.value intValue] - 1)];
 	[self.pointsDelegate updatePoints:-1];
 	[self updateValueLabel];
 }

@@ -317,6 +317,10 @@ typedef enum {
 
 
 - (void)dealloc {
+	self.empires = nil;
+	self.empireNameCell = nil;
+	self.passwordCell = nil;
+	self.selectedServer = nil;
     [super dealloc];
 }
 

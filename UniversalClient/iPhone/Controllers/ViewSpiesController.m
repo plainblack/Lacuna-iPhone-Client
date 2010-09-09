@@ -242,6 +242,7 @@ typedef enum {
 
 
 - (void)dealloc {
+	self.pageSegmentedControl = nil;
 	self.intelligenceBuilding = nil;
 	self.spiesLastUpdated = nil;
 	self.selectedSpy = nil;

@@ -64,6 +64,12 @@
 
 
 - (void)dealloc {
+	self.toolbar = nil;
+	self.webView = nil;
+	self.activityIndicatorView = nil;
+	self.previousButton = nil;
+	self.nextButton = nil;
+	self.refreshButton = nil;
 	self.urlToLoad = nil;
     [super dealloc];
 }

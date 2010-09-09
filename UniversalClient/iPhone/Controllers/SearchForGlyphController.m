@@ -97,8 +97,9 @@
 
 
 - (void)dealloc {
-    [super dealloc];
+	self.orePicker = nil;
 	self.archaeology = nil;
+    [super dealloc];
 }
 
 

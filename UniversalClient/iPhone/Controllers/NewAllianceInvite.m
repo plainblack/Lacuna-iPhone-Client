@@ -128,6 +128,7 @@
 
 
 - (void)dealloc {
+	self.messageCell = nil;
 	self.embassy = nil;
 	self.invitees = nil;
     [super dealloc];

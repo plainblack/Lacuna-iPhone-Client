@@ -268,6 +268,10 @@ typedef enum {
 
 
 - (void)dealloc {
+	self.emailCell = nil;
+	self.resetCodeCell = nil;
+	self.passwordCell = nil;
+	self.passwordConfirmationCell = nil;
     [super dealloc];
 }
 

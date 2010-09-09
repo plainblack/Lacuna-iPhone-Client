@@ -224,6 +224,15 @@ typedef enum {
 
 
 - (void)dealloc {
+	if (self->watched) {
+		[self.embassy removeObserver:self forKeyPath:@"allianceStatus"];
+		if (self.watchedAllianceStatus) {
+			[self.watchedAllianceStatus removeObserver:self forKeyPath:@"members"];
+			[self.watchedAllianceStatus removeObserver:self forKeyPath:@"dateLoaded"];
+			self.watchedAllianceStatus = nil;
+		}
+		self->watched = NO;
+	}
 	self.embassy = nil;
     [super dealloc];
 }

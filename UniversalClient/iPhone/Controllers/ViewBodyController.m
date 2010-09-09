@@ -363,6 +363,7 @@ typedef enum {
 
 
 - (void)dealloc {
+	self.pageSegmentedControl = nil;
 	self.bodyId = nil;
     [super dealloc];
 }

@@ -369,6 +369,17 @@ typedef enum {
 
 
 - (void)dealloc {
+	self.nameCell = nil;
+	self.passwordCell = nil;
+	self.passwordConfirmationCell = nil;
+	self.emailCell = nil;
+	self.termsAgreeCell = nil;
+	self.termsLinkCell = nil;
+	self.rulesAgreeCell = nil;
+	self.rulesLinkCell = nil;
+	self.captchaImageCell = nil;
+	self.captchaSolutionCell = nil;
+	self.nextButton = nil;
 	self.captchaGuid = nil;
 	self.captchaUrl = nil;
 	self.empireId = nil;

@@ -300,6 +300,9 @@ typedef enum {
 
 
 - (void)dealloc {
+	self.messageSegmentedControl = nil;
+	self.mailbox = nil;
+	self.messageIndex = 0;
     [super dealloc];
 }
 

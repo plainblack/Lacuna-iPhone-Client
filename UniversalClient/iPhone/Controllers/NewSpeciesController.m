@@ -77,7 +77,7 @@ typedef enum {
 	self.speciesDescriptionCell = [LETableViewCellLabeledTextView getCellForTableView:self.tableView];
 	self.speciesDescriptionCell.label.text = @"Description";
 	
-	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:NUM_ORBITS];
+	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:7];
 	for (int index=0; index<NUM_ORBITS; index++) {
 		LETableViewCellOrbitSelector *orbitCell = [LETableViewCellOrbitSelector getCellForTableView:self.tableView];
 		orbitCell.label.text = [NSString stringWithFormat:@"Orbit %i", index+1];
@@ -329,6 +329,20 @@ typedef enum {
 
 
 - (void)dealloc {
+    self.speciesNameCell = nil;
+	self.speciesDescriptionCell = nil;
+	self.orbitCells = nil;
+	self.manufacturingCell = nil;
+	self.deceptionCell = nil;
+	self.researchCell = nil;
+	self.managementCell = nil;
+	self.farmingCell = nil;
+	self.miningCell = nil;
+	self.scienceCell = nil;
+	self.environmentalCell = nil;
+	self.politicalCell = nil;
+	self.tradeCell = nil;
+	self.growthCell = nil;
 	self.empireId = nil;
 	self.username = nil;
 	self.password = nil;
@@ -380,7 +394,6 @@ typedef enum {
 #pragma mark LESpeciesUpdatePointsDelegate
 
 - (void)updatePoints:(NSInteger)delta {
-	//points += delta;
 	[self calculatePoints];
 	self.navigationItem.title = [NSString stringWithFormat:@"%i / 45 points", self->points];
 }

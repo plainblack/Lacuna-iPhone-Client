@@ -20,11 +20,12 @@
 }
 
 
-@property(nonatomic, retain) UILabel *nameLabel;
-@property(nonatomic, retain) UILabel *valueLabel;
-@property(nonatomic, retain) UIButton *minusButton;
-@property(nonatomic, retain) UIButton *plusButton;
-@property(nonatomic, assign) id<LESpeciesPointsUpdateDelegate> pointsDelegate;
+@property (nonatomic, retain) UILabel *nameLabel;
+@property (nonatomic, retain) UILabel *valueLabel;
+@property (nonatomic, retain) UIButton *minusButton;
+@property (nonatomic, retain) UIButton *plusButton;
+@property (nonatomic, assign) id<LESpeciesPointsUpdateDelegate> pointsDelegate;
+@property (nonatomic, retain) NSDecimalNumber *value;
 
 
 - (IBAction)decreaseValue;

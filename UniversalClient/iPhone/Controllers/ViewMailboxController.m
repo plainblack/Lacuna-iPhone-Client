@@ -195,6 +195,12 @@
 
 
 - (void)dealloc {
+	self.pageSegmentedControl = nil;
+	self.mailboxSegmentedControl = nil;
+	self.inboxBarButtonItems = nil;
+	self.otherMailboxBarButtonItems = nil;
+	self.mailbox = nil;
+	self.lastMessageAt = nil;
     [super dealloc];
 }
 

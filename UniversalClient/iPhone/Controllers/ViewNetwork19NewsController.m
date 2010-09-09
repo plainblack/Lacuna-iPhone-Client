@@ -121,6 +121,7 @@
 
 
 - (void)dealloc {
+	self.newsItems = nil;
 	self.buildingId = nil;
 	self.urlPart = nil;
     [super dealloc];

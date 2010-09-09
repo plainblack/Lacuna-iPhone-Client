@@ -507,7 +507,6 @@ typedef enum {
 
 
 - (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
 	[self.leEmpireViewProfile cancel];
 	self.leEmpireViewProfile = nil;
 	self.empireProfile = nil;
@@ -516,6 +515,9 @@ typedef enum {
 
 
 - (void)dealloc {
+	[self.leEmpireViewProfile cancel];
+	self.leEmpireViewProfile = nil;
+	self.empireProfile = nil;
     [super dealloc];
 }
 

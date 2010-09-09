@@ -178,6 +178,7 @@ typedef enum {
 
 
 - (void)dealloc {
+	self.leStatsCredits = nil;
     [super dealloc];
 }
 

@@ -139,6 +139,12 @@
 
 
 - (void)dealloc {
+	self.scrollView = nil;
+	self.backgroundView = nil;
+	[buttonsByLoc release];
+	buttonsByLoc = nil;
+	[locsByButton release];
+	locsByButton = nil;
     [super dealloc];
 }
 

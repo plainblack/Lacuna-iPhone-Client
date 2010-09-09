@@ -56,6 +56,9 @@
 
 
 - (void)dealloc {
+	self.titleLabel = nil;
+	self.maxButton = nil;
+	self.numberPicker = nil;
 	self.delegate = nil;
 	self.maxValue = nil;
     [super dealloc];

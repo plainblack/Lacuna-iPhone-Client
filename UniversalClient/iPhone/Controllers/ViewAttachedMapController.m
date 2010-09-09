@@ -86,6 +86,8 @@
 
 
 - (void)dealloc {
+    self.scrollView = nil;
+	self.backgroundView = nil;
 	self.surface = nil;
 	self.buildings = nil;
     [super dealloc];

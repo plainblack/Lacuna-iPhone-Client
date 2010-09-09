@@ -20,6 +20,15 @@
 
 
 #pragma mark -
+#pragma mark NSObject Methods
+
+- (void)dealloc {
+	self.nextColonyCost = nil;
+	[super dealloc];
+}
+
+
+#pragma mark -
 #pragma mark Overriden Building Methods
 
 - (void)parseAdditionalData:(NSDictionary *)data {

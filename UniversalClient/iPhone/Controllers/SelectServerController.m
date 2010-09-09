@@ -52,7 +52,8 @@ typedef enum {
 	self.navigationItem.title = @"Select Server";
 	
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Servers"], [LEViewSectionTab tableView:self.tableView withText:@"Custom"]);
-	self.servers = [[[Servers alloc] init] autorelease];
+	self.servers = [[Servers alloc] init];
+	[self.servers release];
 
 	self.customerServerCell =  [LETableViewCellTextEntry getCellForTableView:self.tableView];
 	self.customerServerCell.label.text = @"URL";
@@ -219,6 +220,8 @@ typedef enum {
 
 
 - (void)dealloc {
+	self.servers = nil;
+	self.customerServerCell = nil;
     [super dealloc];
 }
 

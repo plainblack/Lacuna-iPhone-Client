@@ -155,13 +155,13 @@
 
 
 - (void)loadBuildingMap {
-	[[LEBodyGetBuildings alloc] initWithCallback:@selector(buildingMapLoaded:) target:self bodyId:self.id];
+	[[[LEBodyGetBuildings alloc] initWithCallback:@selector(buildingMapLoaded:) target:self bodyId:self.id] autorelease];
 }
 
 
 - (void)loadBuilding:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl {
 	[self clearBuilding];
-	[[LEBuildingView alloc] initWithCallback:@selector(buildingLoaded:) target:self buildingId:buildingId url:buildingUrl];
+	[[[LEBuildingView alloc] initWithCallback:@selector(buildingLoaded:) target:self buildingId:buildingId url:buildingUrl] autorelease];
 }
 
 

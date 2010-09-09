@@ -110,6 +110,7 @@ NSString *messageText = @"Are you really sure you want to do this? This action c
 
 
 - (void)dealloc {
+	self.messageCell = nil;
 	self.embassy = nil;
 	self.member = nil;
     [super dealloc];

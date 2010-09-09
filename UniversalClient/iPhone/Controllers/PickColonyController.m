@@ -56,6 +56,7 @@
 
 
 - (void)dealloc {
+    self.colonyPicker = nil;
 	self.colonies = nil;
     [super dealloc];
 }

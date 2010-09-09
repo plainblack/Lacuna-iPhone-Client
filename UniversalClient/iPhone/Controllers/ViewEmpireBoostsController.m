@@ -281,6 +281,10 @@ typedef enum {
 
 
 - (void)dealloc {
+	self.empireBoosts = nil;
+	[self->timer invalidate];
+	[self->timer release];
+	self->timer = nil;	
     [super dealloc];
 }
 

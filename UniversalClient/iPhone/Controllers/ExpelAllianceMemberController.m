@@ -105,6 +105,7 @@
 
 
 - (void)dealloc {
+	self.messageCell = nil;
 	self.embassy = nil;
 	self.member = nil;
     [super dealloc];

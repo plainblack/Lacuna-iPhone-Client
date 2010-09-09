@@ -148,6 +148,7 @@ typedef enum {
 
 
 - (void)dealloc {
+    self.assignmentPicker = nil;
 	self.intelligenceBuilding = nil;
 	self.spy = nil;
     [super dealloc];
