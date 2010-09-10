@@ -13,6 +13,7 @@
 #import "Session.h"
 #import "LETableViewCellLabeledText.h"
 #import "LETableViewCellLabeledParagraph.h"
+#import "LETableViewCellParagraph.h"
 #import "LETableViewCellLabeledSwitch.h"
 #import "Util.h"
 #import "LETableViewCellButton.h"
@@ -26,6 +27,7 @@
 #import "ViewRacialStatsController.h"
 #import "LEEmpireEditProfile.h"
 
+#define ISOLATIONIST_MSG @"Isolationist mode enabled. If you build an Espinoge Ministry or Colonize a second world you will no longer be an Isolationist and others can send spies to your colonies."
 
 typedef enum {
 	SECTION_EMPIRE,
@@ -44,7 +46,8 @@ typedef enum {
 	EMPIRE_ROW_PLAYER_NAME,
 	EMPIRE_ROW_EMAIL,
 	EMPIRE_ROW_SITTER_PASSWORD,
-	EMPIRE_ROW_ESSENTIA
+	EMPIRE_ROW_ESSENTIA,
+	EMPIRE_ROW_ISOLATIONIST
 } EMPIRE_ROW;
 
 typedef enum {
@@ -121,7 +124,11 @@ typedef enum {
 	if (session.empire.id) {
 		switch (section) {
 			case SECTION_EMPIRE:
-				return 10;
+				if (session.empire.isIsolationist) {
+					return 11;
+				} else {
+					return 10;
+				}
 				break;
 			case SECTION_ACTIONS:
 				return 7;
@@ -160,6 +167,9 @@ typedef enum {
 						break;
 					case EMPIRE_ROW_STATUS:
 						return [LETableViewCellLabeledParagraph getHeightForTableView:tableView text:self.empireProfile.status];
+						break;
+					case EMPIRE_ROW_ISOLATIONIST:
+						return [LETableViewCellParagraph getHeightForTableView:tableView text:ISOLATIONIST_MSG];
 						break;
 					default:
 						return 0.0;
@@ -310,6 +320,12 @@ typedef enum {
 						essentiaCell.label.text = @"Essentia";
 						essentiaCell.content.text = [NSString stringWithFormat:@"%@", session.empire.essentia];
 						cell = essentiaCell;
+						break;
+					case EMPIRE_ROW_ISOLATIONIST:
+						; //DO NOT REMOVE
+						LETableViewCellParagraph *isolationistCell = [LETableViewCellParagraph getCellForTableView:tableView];
+						isolationistCell.content.text = ISOLATIONIST_MSG;
+						cell = isolationistCell;
 						break;
 					default:
 						break;

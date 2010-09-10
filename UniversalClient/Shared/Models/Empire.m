@@ -68,7 +68,7 @@
 
 - (void)parseData:(NSDictionary *)empireData {
 	self.id = [Util idFromDict:empireData named:@"id"];
-	self.isIsolationist = _intv([empireData objectForKey:@"is_isolationist"]);
+	self.isIsolationist = _boolv([empireData objectForKey:@"is_isolationist"]);
 	self.name = [empireData objectForKey:@"name"];
 	self.statusMessage = [empireData objectForKey:@"status_message"];
 	self.homePlanetId = [empireData objectForKey:@"home_planet_id"];
