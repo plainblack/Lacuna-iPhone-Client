@@ -99,6 +99,10 @@
 								<reference key="IBUIToolbar" ref="399507541"/>
 							</object>
 						</object>
+						<object class="NSColor" key="IBUITintColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4wNDMxMzcyNTQ5IDAuMzIxNTY4NjI3NSAwLjYzOTIxNTY4NjMAA</bytes>
+						</object>
 					</object>
 					<object class="IBUIActivityIndicatorView" id="627131262">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -356,21 +360,14 @@
 					<string key="className">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Shared/DeferredKit/DKDeferred.h</string>
+						<string key="minorKey">NSObject+SBJSON.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Shared/JSON/NSObject+SBJSON.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Shared/JSON/SBJsonWriter.h</string>
+						<string key="minorKey">SBJsonWriter.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
