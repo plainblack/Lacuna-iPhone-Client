@@ -12,14 +12,20 @@
 
 @interface Observatory : Building {
 	NSMutableArray *probedStars;
+	NSInteger probedStarsPageNumber;
+	NSDecimalNumber *numProbedStars;
 }
 
 
 @property (nonatomic, retain) NSMutableArray *probedStars;
+@property (nonatomic, assign) NSInteger probedStarsPageNumber;
+@property (nonatomic, retain) NSDecimalNumber *numProbedStars;
 
 
-- (void)loadProbedStars;
+- (void)loadProbedStarsForPage:(NSInteger)pageNumber;
 - (void)abandonProbeAtStar:(NSString *)starId;
+- (bool)hasPreviousProbedStarsPage;
+- (bool)hasNextProbedStarsPage;
 
 
 @end

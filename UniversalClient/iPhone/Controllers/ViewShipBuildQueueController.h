@@ -14,10 +14,12 @@
 
 
 @interface ViewShipBuildQueueController : LETableViewControllerGrouped {
+	UISegmentedControl *pageSegmentedControl;
 	Shipyard *shipyard;
 }
 
 
+@property (nonatomic, retain) UISegmentedControl *pageSegmentedControl;
 @property (nonatomic, retain) Shipyard *shipyard;
 
 

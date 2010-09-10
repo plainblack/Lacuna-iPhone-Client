@@ -15,6 +15,10 @@
 	NSDate *prisonersUpdated;
 	NSMutableArray *foreignSpies;
 	NSDate *foreignSpiesUpdated;
+	NSInteger prisonersPageNumber;
+	NSInteger foreignSpyPageNumber;
+	NSDecimalNumber *numPrisoners;
+	NSDecimalNumber *numForeignSpy;
 }
 
 
@@ -22,12 +26,20 @@
 @property (nonatomic, retain) NSDate *prisonersUpdated;
 @property (nonatomic, retain) NSMutableArray *foreignSpies;
 @property (nonatomic, retain) NSDate *foreignSpiesUpdated;
+@property (nonatomic, assign) NSInteger prisonersPageNumber;
+@property (nonatomic, assign) NSInteger foreignSpyPageNumber;
+@property (nonatomic, retain) NSDecimalNumber *numPrisoners;
+@property (nonatomic, retain) NSDecimalNumber *numForeignSpy;
 
 
-- (void)loadPrisoners;
-- (void)loadForeignSpies;
+- (void)loadPrisonersForPage:(NSInteger)pageNumber;
+- (void)loadForeignSpiesForPage:(NSInteger)pageNumber;
 - (void)executePrisoner:(NSString *)prisonerId;
 - (void)releasePrisoner:(NSString *)prisonerId;
+- (bool)hasPreviousPrisonersPage;
+- (bool)hasNextPrisonersPage;
+- (bool)hasPreviousForeignSpyPage;
+- (bool)hasNextForeignSpyPage;
 
 
 @end

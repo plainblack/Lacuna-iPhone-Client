@@ -8,6 +8,7 @@
 
 #import "LEBuildingViewPrisoners.h"
 #import "LEMacros.h"
+#import "Util.h"
 #import "Session.h"
 
 
@@ -18,6 +19,7 @@
 @synthesize buildingUrl;
 @synthesize pageNumber;
 @synthesize prisoners;
+@synthesize numberPrisoners;
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl pageNumber:(NSInteger)inPageNumber {
@@ -29,12 +31,14 @@
 
 
 - (id)params {
-	return _array([Session sharedInstance].sessionId, self.buildingId, pageNumber);
+	return _array([Session sharedInstance].sessionId, self.buildingId, [NSDecimalNumber numberWithInt:self.pageNumber]);
 }
 
 
 - (void)processSuccess {
 	NSDictionary *result = [self.response objectForKey:@"result"];
+
+	self.numberPrisoners = [Util asNumber:[result objectForKey:@"captured_count"]];
 	self.prisoners = [result objectForKey:@"prisoners"];
 }
 
@@ -53,6 +57,7 @@
 	self.buildingId = nil;
 	self.buildingUrl = nil;
 	self.prisoners = nil;
+	self.numberPrisoners = nil;
 	[super dealloc];
 }
 

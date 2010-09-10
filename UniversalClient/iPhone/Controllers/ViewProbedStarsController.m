@@ -7,6 +7,7 @@
 //
 
 #import "ViewProbedStarsController.h"
+#import "LEMacros.h"
 #import "Util.h"
 #import "Observatory.h"
 #import "Star.h"
@@ -21,9 +22,17 @@ typedef enum {
 } ROW;
 
 
+@interface ViewProbedStarsController (PrivateMethods)
+
+- (void)togglePageButtons;
+
+@end
+
+
 @implementation ViewProbedStarsController
 
 
+@synthesize pageSegmentedControl;
 @synthesize observatory;
 @synthesize selectedStar;
 
@@ -38,6 +47,13 @@ typedef enum {
 	self.navigationItem.title = @"Probed Stars";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
+	self.pageSegmentedControl = [[[UISegmentedControl alloc] initWithItems:_array(UP_ARROW_ICON, DOWN_ARROW_ICON)] autorelease];
+	[self.pageSegmentedControl addTarget:self action:@selector(switchPage) forControlEvents:UIControlEventValueChanged]; 
+	self.pageSegmentedControl.momentary = YES;
+	self.pageSegmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
+	UIBarButtonItem *rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.pageSegmentedControl] autorelease];
+	self.navigationItem.rightBarButtonItem = rightBarButtonItem; 
+	
 	self.sectionHeaders = [NSArray array];
 }
 
@@ -46,7 +62,9 @@ typedef enum {
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	[self.observatory addObserver:self forKeyPath:@"probedStars" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
-	[self.observatory loadProbedStars];
+	[self.observatory loadProbedStarsForPage:1];
+
+	[self togglePageButtons];
 }
 
 
@@ -186,11 +204,13 @@ typedef enum {
 }
 
 - (void)viewDidUnload {
+	self.pageSegmentedControl = nil;
     [super viewDidUnload];
 }
 
 
 - (void)dealloc {
+	self.pageSegmentedControl = nil;
 	self.observatory = nil;
 	self.selectedStar = nil;
     [super dealloc];
@@ -210,6 +230,33 @@ typedef enum {
 
 
 #pragma mark -
+#pragma mark Callback Methods
+
+- (void) switchPage {
+	switch (self.pageSegmentedControl.selectedSegmentIndex) {
+		case 0:
+			[self.observatory loadProbedStarsForPage:(self.observatory.probedStarsPageNumber-1)];
+			break;
+		case 1:
+			[self.observatory loadProbedStarsForPage:(self.observatory.probedStarsPageNumber+1)];
+			break;
+		default:
+			NSLog(@"Invalid switchPage");
+			break;
+	}
+}
+
+
+#pragma mark -
+#pragma mark Private Methods
+
+- (void)togglePageButtons {
+	[self.pageSegmentedControl setEnabled:[self.observatory hasPreviousProbedStarsPage] forSegmentAtIndex:0];
+	[self.pageSegmentedControl setEnabled:[self.observatory hasNextProbedStarsPage] forSegmentAtIndex:1];
+}
+
+
+#pragma mark -
 #pragma mark Class Methods
 
 + (ViewProbedStarsController *)create {
@@ -222,6 +269,7 @@ typedef enum {
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ([keyPath isEqual:@"probedStars"]) {
+		[self togglePageButtons];
 		[self.tableView reloadData];
 	}
 }

@@ -7,6 +7,7 @@
 //
 
 #import "ViewShipBuildQueueController.h"
+#import "LEMacros.h"
 #import "Util.h"
 #import "Shipyard.h"
 #import "ShipBuildQueueItem.h"
@@ -19,9 +20,17 @@ typedef enum {
 } ROW;
 
 
+@interface ViewShipBuildQueueController (PrivateMethods)
+
+- (void)togglePageButtons;
+
+@end
+
+
 @implementation ViewShipBuildQueueController
 
 
+@synthesize pageSegmentedControl;
 @synthesize shipyard;
 
 
@@ -35,6 +44,13 @@ typedef enum {
 	self.navigationItem.title = @"Ship Build Queue";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
+	self.pageSegmentedControl = [[[UISegmentedControl alloc] initWithItems:_array(UP_ARROW_ICON, DOWN_ARROW_ICON)] autorelease];
+	[self.pageSegmentedControl addTarget:self action:@selector(switchPage) forControlEvents:UIControlEventValueChanged]; 
+	self.pageSegmentedControl.momentary = YES;
+	self.pageSegmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
+	UIBarButtonItem *rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.pageSegmentedControl] autorelease];
+	self.navigationItem.rightBarButtonItem = rightBarButtonItem; 
+	
 	self.sectionHeaders = [NSArray array];
 }
 
@@ -43,7 +59,9 @@ typedef enum {
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	[self.shipyard addObserver:self forKeyPath:@"buildQueue" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
-	[self.shipyard loadBuildQueue];
+	[self.shipyard loadBuildQueueForPage:1];
+
+	[self togglePageButtons];
 }
 
 
@@ -144,13 +162,42 @@ typedef enum {
 }
 
 - (void)viewDidUnload {
+	self.pageSegmentedControl = nil;
     [super viewDidUnload];
 }
 
 
 - (void)dealloc {
+	self.pageSegmentedControl = nil;
 	self.shipyard = nil;
     [super dealloc];
+}
+
+
+#pragma mark -
+#pragma mark Callback Methods
+
+- (void) switchPage {
+	switch (self.pageSegmentedControl.selectedSegmentIndex) {
+		case 0:
+			[self.shipyard loadBuildQueueForPage:(self.shipyard.buildQueuePageNumber-1)];
+			break;
+		case 1:
+			[self.shipyard loadBuildQueueForPage:(self.shipyard.buildQueuePageNumber+1)];
+			break;
+		default:
+			NSLog(@"Invalid switchPage");
+			break;
+	}
+}
+
+
+#pragma mark -
+#pragma mark Private Methods
+
+- (void)togglePageButtons {
+	[self.pageSegmentedControl setEnabled:[self.shipyard hasPreviousBuildQueuePage] forSegmentAtIndex:0];
+	[self.pageSegmentedControl setEnabled:[self.shipyard hasNextBuildQueuePage] forSegmentAtIndex:1];
 }
 
 
@@ -167,6 +214,7 @@ typedef enum {
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ([keyPath isEqual:@"buildQueue"]) {
+		[self togglePageButtons];
 		[self.tableView reloadData];
 	}
 }

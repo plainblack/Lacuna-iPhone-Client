@@ -8,6 +8,7 @@
 
 #import "LEBuildingViewForeignSpies.h"
 #import "LEMacros.h"
+#import "Util.h"
 #import "Session.h"
 
 
@@ -18,6 +19,7 @@
 @synthesize buildingUrl;
 @synthesize pageNumber;
 @synthesize foreignSpies;
+@synthesize numberForeignSpies;
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl pageNumber:(NSInteger)inPageNumber {
@@ -36,6 +38,7 @@
 - (void)processSuccess {
 	NSDictionary *result = [self.response objectForKey:@"result"];
 	
+	self.numberForeignSpies = [Util asNumber:[result objectForKey:@"spy_count"]];
 	self.foreignSpies = [result objectForKey:@"spies"];
 }
 
@@ -54,6 +57,7 @@
 	self.buildingId = nil;
 	self.buildingUrl = nil;
 	self.foreignSpies = nil;
+	self.numberForeignSpies = nil;
 	[super dealloc];
 }
 

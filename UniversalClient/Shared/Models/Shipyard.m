@@ -23,6 +23,8 @@
 @synthesize buildQueue;
 @synthesize buildableShips;
 @synthesize docksAvailable;
+@synthesize buildQueuePageNumber;
+@synthesize numBuildQueue;
 
 
 #pragma mark -
@@ -32,6 +34,7 @@
 	self.buildQueue = nil;
 	self.buildableShips = nil;
 	self.docksAvailable = nil;
+	self.numBuildQueue = nil;
 	[super dealloc];
 }
 
@@ -123,8 +126,9 @@
 #pragma mark -
 #pragma mark Instance Methods
 
-- (void)loadBuildQueue {
-	[[[LEBuildingViewShipBuildQueue alloc] initWithCallback:@selector(buildQueueLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+- (void)loadBuildQueueForPage:(NSInteger)pageNumber {
+	self.buildQueuePageNumber = pageNumber;
+	[[[LEBuildingViewShipBuildQueue alloc] initWithCallback:@selector(buildQueueLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl pageNumber:pageNumber] autorelease];
 }
 
 
@@ -138,11 +142,22 @@
 }
 
 
+- (bool)hasPreviousBuildQueuePage {
+	return (self.buildQueuePageNumber > 1);
+}
+
+
+- (bool)hasNextBuildQueuePage {
+	return (self.buildQueuePageNumber < [Util numPagesForCount:_intv(self.numBuildQueue)]);
+}
+
+
 #pragma mark -
 #pragma mark Callback Methods
 
 - (id)buildQueueLoaded:(LEBuildingViewShipBuildQueue *)request {
 	self.buildQueue = request.shipBuildQueue;
+	self.numBuildQueue = request.numberShipBuilding;
 	return nil;
 }
 

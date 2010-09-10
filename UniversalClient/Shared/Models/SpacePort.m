@@ -28,6 +28,8 @@
 @synthesize shipsUpdated;
 @synthesize travellingShips;
 @synthesize travellingShipsUpdated;
+@synthesize travellingShipsPageNumber;
+@synthesize numTravellingShips;
 
 
 #pragma mark -
@@ -39,6 +41,7 @@
 	self.shipsUpdated = nil;
 	self.travellingShips = nil;
 	self.travellingShipsUpdated = nil;
+	self.numTravellingShips = nil;
 	[super dealloc];
 }
 
@@ -154,8 +157,9 @@
 }
 
 
-- (void)loadTravellingShips {
-	[[[LEBuildingViewShipsTravelling alloc] initWithCallback:@selector(travellingShipsLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+- (void)loadTravellingShipsForPage:(NSInteger)pageNumber {
+	self.travellingShipsPageNumber = pageNumber;
+	[[[LEBuildingViewShipsTravelling alloc] initWithCallback:@selector(travellingShipsLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl pageNumber:pageNumber] autorelease];
 }
 
 
@@ -166,6 +170,16 @@
 
 - (void)ship:(Ship *)ship rename:(NSString *)newName {
 	[[[LEBuildingNameShip alloc] initWithCallback:@selector(shipRenamed:) target:self buildingId:self.id buildingUrl:self.buildingUrl shipId:ship.id name:newName] autorelease];
+}
+
+
+- (bool)hasPreviousTravellingShipsPage {
+	return (self.travellingShipsPageNumber > 1);
+}
+
+
+- (bool)hasNextTravellingShipsPage {
+	return (self.travellingShipsPageNumber < [Util numPagesForCount:_intv(self.numTravellingShips)]);
 }
 
 
@@ -181,6 +195,7 @@
 
 - (id)travellingShipsLoaded:(LEBuildingViewShipsTravelling *)request {
 	self.travellingShips = request.travellingShips;
+	self.numTravellingShips = request.numberOfShipsTravelling;
 	self.travellingShipsUpdated = [NSDate date];
 	return nil;
 }

@@ -15,6 +15,7 @@
 	NSString *buildingUrl;
 	NSInteger pageNumber;
 	NSMutableArray *prisoners;
+	NSDecimalNumber *numberPrisoners;
 }
 
 
@@ -22,6 +23,7 @@
 @property(nonatomic, retain) NSString *buildingUrl;
 @property(nonatomic, assign) NSInteger pageNumber;
 @property(nonatomic, retain) NSMutableArray *prisoners;
+@property(nonatomic, retain) NSDecimalNumber *numberPrisoners;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl pageNumber:(NSInteger)pageNumber;

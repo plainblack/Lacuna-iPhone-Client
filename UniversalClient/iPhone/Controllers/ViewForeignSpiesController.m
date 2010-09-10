@@ -21,9 +21,17 @@ typedef enum {
 } ROW;
 
 
+@interface ViewForeignSpiesController (PrivateMethods)
+
+- (void)togglePageButtons;
+
+@end
+
+
 @implementation ViewForeignSpiesController
 
 
+@synthesize pageSegmentedControl;
 @synthesize securityBuilding;
 @synthesize foreignSpiesLastUpdated;
 
@@ -37,6 +45,13 @@ typedef enum {
 	self.navigationItem.title = @"Foreign Spies";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
+	self.pageSegmentedControl = [[[UISegmentedControl alloc] initWithItems:_array(UP_ARROW_ICON, DOWN_ARROW_ICON)] autorelease];
+	[self.pageSegmentedControl addTarget:self action:@selector(switchPage) forControlEvents:UIControlEventValueChanged]; 
+	self.pageSegmentedControl.momentary = YES;
+	self.pageSegmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
+	UIBarButtonItem *rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.pageSegmentedControl] autorelease];
+	self.navigationItem.rightBarButtonItem = rightBarButtonItem; 
+	
 	self.sectionHeaders = [NSArray array];
 }
 
@@ -45,7 +60,7 @@ typedef enum {
     [super viewWillAppear:animated];
 	[self.securityBuilding addObserver:self forKeyPath:@"foreignSpiesUpdated" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
 	if (!self.securityBuilding.foreignSpies) {
-		[self.securityBuilding loadForeignSpies];
+		[self.securityBuilding loadForeignSpiesForPage:1];
 	} else {
 		if (self.foreignSpiesLastUpdated) {
 			if ([self.foreignSpiesLastUpdated compare:self.securityBuilding.foreignSpiesUpdated] == NSOrderedAscending) {
@@ -56,6 +71,8 @@ typedef enum {
 			self.foreignSpiesLastUpdated = self.securityBuilding.foreignSpiesUpdated;
 		}
 	}
+
+	[self togglePageButtons];
 }
 
 
@@ -183,14 +200,43 @@ typedef enum {
 }
 
 - (void)viewDidUnload {
+	self.pageSegmentedControl = nil;
 	[super viewDidUnload];
 }
 
 
 - (void)dealloc {
+	self.pageSegmentedControl = nil;
 	self.securityBuilding = nil;
 	self.foreignSpiesLastUpdated = nil;
     [super dealloc];
+}
+
+
+#pragma mark -
+#pragma mark Callback Methods
+
+- (void) switchPage {
+	switch (self.pageSegmentedControl.selectedSegmentIndex) {
+		case 0:
+			[self.securityBuilding loadForeignSpiesForPage:(self.securityBuilding.foreignSpyPageNumber-1)];
+			break;
+		case 1:
+			[self.securityBuilding loadForeignSpiesForPage:(self.securityBuilding.foreignSpyPageNumber+1)];
+			break;
+		default:
+			NSLog(@"Invalid switchPage");
+			break;
+	}
+}
+
+
+#pragma mark -
+#pragma mark Private Methods
+
+- (void)togglePageButtons {
+	[self.pageSegmentedControl setEnabled:[self.securityBuilding hasPreviousForeignSpyPage] forSegmentAtIndex:0];
+	[self.pageSegmentedControl setEnabled:[self.securityBuilding hasNextForeignSpyPage] forSegmentAtIndex:1];
 }
 
 
@@ -207,6 +253,7 @@ typedef enum {
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ([keyPath isEqual:@"foreignSpiesUpdated"]) {
+		[self togglePageButtons];
 		[self.tableView reloadData];
 		self.foreignSpiesLastUpdated = self.securityBuilding.foreignSpiesUpdated;
 	}

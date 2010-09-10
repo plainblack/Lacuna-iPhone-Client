@@ -14,17 +14,23 @@
 	NSMutableArray *buildQueue;
 	NSMutableArray *buildableShips;
 	NSDecimalNumber *docksAvailable;
+	NSInteger buildQueuePageNumber;
+	NSDecimalNumber *numBuildQueue;
 }
 
 
 @property (nonatomic, retain) NSMutableArray *buildQueue;
 @property (nonatomic, retain) NSMutableArray *buildableShips;
 @property (nonatomic, retain) NSDecimalNumber *docksAvailable;
+@property (nonatomic, assign) NSInteger buildQueuePageNumber;
+@property (nonatomic, retain) NSDecimalNumber *numBuildQueue;
 
 
-- (void)loadBuildQueue;
+- (void)loadBuildQueueForPage:(NSInteger)pageNumber;
 - (void)loadBuildableShips;
 - (void)buildShipOfType:(NSString *)shipType;
+- (bool)hasPreviousBuildQueuePage;
+- (bool)hasNextBuildQueuePage;
 
 
 @end

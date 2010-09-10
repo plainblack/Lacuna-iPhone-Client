@@ -19,6 +19,8 @@
 	NSDate *shipsUpdated;
 	NSMutableArray *travellingShips;
 	NSDate *travellingShipsUpdated;
+	NSInteger travellingShipsPageNumber;
+	NSDecimalNumber *numTravellingShips;
 }
 
 
@@ -27,12 +29,16 @@
 @property (nonatomic, retain) NSDate *shipsUpdated;
 @property (nonatomic, retain) NSMutableArray *travellingShips;
 @property (nonatomic, retain) NSDate *travellingShipsUpdated;
+@property (nonatomic, assign) NSInteger travellingShipsPageNumber;
+@property (nonatomic, retain) NSDecimalNumber *numTravellingShips;
 
 
 - (void)loadShips;
-- (void)loadTravellingShips;
+- (void)loadTravellingShipsForPage:(NSInteger)pageNumber;
 - (void)scuttleShip:(Ship *)ship;
 - (void)ship:(Ship *)ship rename:(NSString *)newName;
+- (bool)hasPreviousTravellingShipsPage;
+- (bool)hasNextTravellingShipsPage;
 
 
 @end

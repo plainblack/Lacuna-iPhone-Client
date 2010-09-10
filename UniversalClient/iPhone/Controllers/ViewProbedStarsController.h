@@ -15,11 +15,13 @@
 
 
 @interface ViewProbedStarsController : LETableViewControllerGrouped <UIActionSheetDelegate> {
+	UISegmentedControl *pageSegmentedControl;
 	Observatory *observatory;
 	Star *selectedStar;
 }
 
 
+@property (nonatomic, retain) UISegmentedControl *pageSegmentedControl;
 @property (nonatomic, retain) Observatory *observatory;
 @property (nonatomic, retain) Star *selectedStar;
 

@@ -19,6 +19,8 @@
 
 
 @synthesize probedStars;
+@synthesize probedStarsPageNumber;
+@synthesize numProbedStars;
 
 
 #pragma mark -
@@ -26,6 +28,7 @@
 
 - (void)dealloc {
 	self.probedStars = nil;
+	self.numProbedStars = nil;
 	[super dealloc];
 }
 
@@ -102,8 +105,9 @@
 #pragma mark -
 #pragma mark Instance Methods
 
-- (void)loadProbedStars {
-	[[[LEBuildingViewProbedStars alloc] initWithCallback:@selector(probedStarsLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+- (void)loadProbedStarsForPage:(NSInteger)pageNumber {
+	self.probedStarsPageNumber = pageNumber;
+	[[[LEBuildingViewProbedStars alloc] initWithCallback:@selector(probedStarsLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl pageNumber:pageNumber] autorelease];
 }
 
 
@@ -111,13 +115,22 @@
 	[[[LEBuildingAbandonProbe alloc] initWithCallback:@selector(probeAbandoned:) target:self buildingId:self.id buildingUrl:self.buildingUrl starId:starId] autorelease];
 }
 
+- (bool)hasPreviousProbedStarsPage {
+	return (self.probedStarsPageNumber > 1);
+}
+
+
+- (bool)hasNextProbedStarsPage {
+	return (self.probedStarsPageNumber < [Util numPagesForCount:_intv(self.numProbedStars)]);
+}
+
 
 #pragma mark -
 #pragma mark Callback Methods
 
 - (id)probedStarsLoaded:(LEBuildingViewProbedStars *)request {
-	NSLog(@"Probjed Star Data: %@", request.response);
 	self.probedStars = request.probedStars;
+	self.numProbedStars = request.starCount;
 	return nil;
 }
 

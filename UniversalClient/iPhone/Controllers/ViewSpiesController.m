@@ -80,10 +80,7 @@ typedef enum {
 		}
 	}
 
-	
-	[self.pageSegmentedControl setEnabled:[self.intelligenceBuilding hasPreviousSpyPage] forSegmentAtIndex:0];
-	[self.pageSegmentedControl setEnabled:[self.intelligenceBuilding hasNextSpyPage] forSegmentAtIndex:1];
-
+	[self togglePageButtons];
 }
 
 

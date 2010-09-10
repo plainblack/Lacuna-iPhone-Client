@@ -14,11 +14,13 @@
 
 
 @interface ViewForeignSpiesController : LETableViewControllerGrouped {
+	UISegmentedControl *pageSegmentedControl;
 	Security *securityBuilding;
 	NSDate *foreignSpiesLastUpdated;
 }
 
 
+@property (nonatomic, retain) UISegmentedControl *pageSegmentedControl;
 @property (nonatomic, retain) Security *securityBuilding;
 @property (nonatomic, retain) NSDate *foreignSpiesLastUpdated;
 

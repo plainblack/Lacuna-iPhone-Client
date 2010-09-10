@@ -15,11 +15,13 @@
 
 
 @interface ViewTravellingShipsController : LETableViewControllerGrouped {
+	UISegmentedControl *pageSegmentedControl;
 	SpacePort *spacePort;
 	NSDate *lastUpdated;
 }
 
 
+@property (nonatomic, retain) UISegmentedControl *pageSegmentedControl;
 @property (nonatomic, retain) SpacePort *spacePort;
 @property (nonatomic, retain) NSDate *lastUpdated;
 

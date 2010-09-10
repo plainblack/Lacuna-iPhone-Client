@@ -8,6 +8,7 @@
 
 #import "Security.h"
 #import "LEMacros.h"
+#import	"Util.h"
 #import "LETableViewCellButton.h"
 #import "LEBuildingExecutePrisoner.h"
 #import "LEBuildingReleasePrisoner.h"
@@ -25,6 +26,10 @@
 @synthesize prisonersUpdated;
 @synthesize foreignSpies;
 @synthesize foreignSpiesUpdated;
+@synthesize prisonersPageNumber;
+@synthesize foreignSpyPageNumber;
+@synthesize numPrisoners;
+@synthesize numForeignSpy;
 
 
 #pragma mark -
@@ -35,6 +40,8 @@
 	self.prisonersUpdated = nil;
 	self.foreignSpies = nil;
 	self.foreignSpiesUpdated = nil;
+	self.numPrisoners = nil;
+	self.numForeignSpy = nil;
 	[super dealloc];
 }
 
@@ -53,7 +60,7 @@
 	}
 	
 	if (reloadPrisoners) {
-		[self loadPrisoners];
+		[self loadPrisonersForPage:self.prisonersPageNumber];
 	}
 	
 	self.prisonersUpdated = [NSDate date];
@@ -131,13 +138,15 @@
 #pragma mark -
 #pragma mark Instance Methods
 
-- (void)loadPrisoners {
-	[[[LEBuildingViewPrisoners alloc] initWithCallback:@selector(pisonersLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl pageNumber:0] autorelease];
+- (void)loadPrisonersForPage:(NSInteger)pageNumber {
+	self.prisonersPageNumber = pageNumber;
+	[[[LEBuildingViewPrisoners alloc] initWithCallback:@selector(pisonersLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl pageNumber:pageNumber] autorelease];
 }
 
 
-- (void)loadForeignSpies {
-	[[[LEBuildingViewForeignSpies alloc] initWithCallback:@selector(foreignSpiesLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl pageNumber:0] autorelease];
+- (void)loadForeignSpiesForPage:(NSInteger)pageNumber {
+	self.foreignSpyPageNumber = pageNumber;
+	[[[LEBuildingViewForeignSpies alloc] initWithCallback:@selector(foreignSpiesLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl pageNumber:pageNumber] autorelease];
 }
 
 
@@ -148,6 +157,25 @@
 
 - (void)releasePrisoner:(NSString *)prisonerId {
 	[[[LEBuildingReleasePrisoner alloc] initWithCallback:@selector(releasedPrisoner:) target:self buildingId:self.id buildingUrl:self.buildingUrl prisonerId:prisonerId] autorelease];
+}
+
+- (bool)hasPreviousPrisonersPage {
+	return (self.prisonersPageNumber > 1);
+}
+
+
+- (bool)hasNextPrisonersPage {
+	return (self.prisonersPageNumber < [Util numPagesForCount:_intv(self.numPrisoners)]);
+}
+
+
+- (bool)hasPreviousForeignSpyPage {
+	return (self.foreignSpyPageNumber > 1);
+}
+
+
+- (bool)hasNextForeignSpyPage {
+	return (self.foreignSpyPageNumber < [Util numPagesForCount:_intv(self.numForeignSpy)]);
 }
 
 
@@ -163,12 +191,14 @@
 	}
 	
 	self.prisoners = tmpPrisoners;
+	self.numPrisoners = request.numberPrisoners;
 	self.prisonersUpdated = [NSDate date];
 	return nil;
 }
 
 - (id)foreignSpiesLoaded:(LEBuildingViewForeignSpies *)request {
 	self.foreignSpies = request.foreignSpies;
+	self.numForeignSpy = request.numberForeignSpies;
 	self.foreignSpiesUpdated = [NSDate date];
 	return nil;
 }

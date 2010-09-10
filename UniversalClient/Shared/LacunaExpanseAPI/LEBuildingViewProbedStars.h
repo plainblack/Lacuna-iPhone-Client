@@ -13,6 +13,7 @@
 @interface LEBuildingViewProbedStars : LERequest {
 	NSString *buildingId;
 	NSString *buildingUrl;
+	NSInteger pageNumber;
 	NSMutableArray *probedStars;
 	NSDecimalNumber *starCount;
 }
@@ -20,11 +21,12 @@
 
 @property (nonatomic, retain) NSString *buildingId;
 @property (nonatomic, retain) NSString *buildingUrl;
+@property (nonatomic, assign) NSInteger pageNumber;
 @property (nonatomic, retain) NSMutableArray *probedStars;
 @property (nonatomic, retain) NSDecimalNumber *starCount;
 
 
-- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl;
+- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl pageNumber:(NSInteger)pageNumber;
 
 
 @end
