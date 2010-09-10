@@ -13,7 +13,7 @@
 @class LEGetBuildables;
 
 
-@interface NewBuildingController : LETableViewControllerGrouped {
+@interface NewBuildingController : LETableViewControllerGrouped <UIActionSheetDelegate> {
 	UISegmentedControl *listChooser;
 	NSString *bodyId;
 	NSMutableDictionary *buildingsByLoc;

@@ -10,6 +10,7 @@
 #import "LEMacros.h"
 #import "Util.h"
 #import "Session.h"
+#import "BuildingUtil.h"
 #import "LETableViewCellBuildingStats.h"
 #import "LETableViewCellCost.h"
 #import "LETableViewCellButton.h"
@@ -176,7 +177,15 @@ typedef enum {
 		selectedBuilding = indexPath.section;
 		NSDictionary *building = [self.buildables objectAtIndex:selectedBuilding];
 		NSString *url = [building objectForKey:@"url"];
-		[[[LEBuildBuilding alloc] initWithCallback:@selector(buildingBuilt:) target:self bodyId:self.bodyId x:self.x y:self.y url:url] autorelease];
+		Session *session = [Session sharedInstance];
+		if (session.empire.isIsolationist && [url isEqualToString:ESPIONAGE_URL]) {
+			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Building this will take you out of Isolationist mode. This means spies can be sent to your Colonies. Are you sure you want to do this?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+			actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+			[actionSheet showFromTabBar:self.tabBarController.tabBar];
+			[actionSheet release];
+		} else {
+			[[[LEBuildBuilding alloc] initWithCallback:@selector(buildingBuilt:) target:self bodyId:self.bodyId x:self.x y:self.y url:url] autorelease];
+		}
 	}
 }
 
@@ -303,6 +312,16 @@ typedef enum {
 	}
 	
 	return nil;
+}
+
+
+#pragma mark -
+#pragma mark UIActionSheetDelegate Methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
+		[[[LEBuildBuilding alloc] initWithCallback:@selector(buildingBuilt:) target:self bodyId:self.bodyId x:self.x y:self.y url:ESPIONAGE_URL] autorelease];
+	}
 }
 
 

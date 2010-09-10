@@ -69,6 +69,7 @@
 
 - (void)parseData:(NSDictionary *)data;
 - (void)parseAdditionalData:(NSDictionary *)data;
+- (void)generateDestroyedSections;
 - (void)generateSections;
 - (NSMutableDictionary *)generateProductionSection;
 - (NSMutableDictionary *)generateHealthSection;

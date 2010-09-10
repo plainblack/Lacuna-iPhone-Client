@@ -153,12 +153,21 @@
 	
 	[self parseAdditionalData:data];
 	
-	[self generateSections];
+	if (_intv(self.efficiency) == 0) {
+		[self generateDestroyedSections];
+	} else {
+		[self generateSections];
+	}
 }
 
 
 - (void)parseAdditionalData:(NSDictionary *)data {
 	//Does nothing. You should override this for building specific functions
+}
+
+
+- (void)generateDestroyedSections {
+	self.sections = _array([self generateHealthSection], _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_DEMOLISH_BUTTON]), @"rows"));
 }
 
 
