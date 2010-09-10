@@ -92,7 +92,6 @@
 		F6724F56119F74F200D57E0D /* PickNumericValueController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6724F54119F74F200D57E0D /* PickNumericValueController.xib */; };
 		F678F71F11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = F678F71E11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.m */; };
 		F678F75511A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.m in Sources */ = {isa = PBXBuildFile; fileRef = F678F75411A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.m */; };
-		F67E11DA118A701A00D964FD /* AssignSpyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F67E11D9118A701A00D964FD /* AssignSpyController.m */; };
 		F67E11F1118A75BB00D964FD /* LETableViewCellSpyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F67E11F0118A75BB00D964FD /* LETableViewCellSpyInfo.m */; };
 		F683BC2511E40311009E64BF /* assets in Resources */ = {isa = PBXBuildFile; fileRef = F683B6A111E40310009E64BF /* assets */; };
 		F6863C16118E475A00861037 /* LETableViewCellAttachedLink.m in Sources */ = {isa = PBXBuildFile; fileRef = F6863C15118E475A00861037 /* LETableViewCellAttachedLink.m */; };
@@ -475,8 +474,6 @@
 		F678F71E11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellLabeledSwitch.m; sourceTree = "<group>"; };
 		F678F75311A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingSubsidizeRecycling.h; sourceTree = "<group>"; };
 		F678F75411A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingSubsidizeRecycling.m; sourceTree = "<group>"; };
-		F67E11D8118A701A00D964FD /* AssignSpyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssignSpyController.h; sourceTree = "<group>"; };
-		F67E11D9118A701A00D964FD /* AssignSpyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssignSpyController.m; sourceTree = "<group>"; };
 		F67E11EF118A75BB00D964FD /* LETableViewCellSpyInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellSpyInfo.h; sourceTree = "<group>"; };
 		F67E11F0118A75BB00D964FD /* LETableViewCellSpyInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellSpyInfo.m; sourceTree = "<group>"; };
 		F683B6A111E40310009E64BF /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
@@ -1462,8 +1459,6 @@
 				F6FB45CE11F53D9F00E24EAC /* AssembleGlyphsController.h */,
 				F6FB45CF11F53D9F00E24EAC /* AssembleGlyphsController.m */,
 				F6FB45D011F53D9F00E24EAC /* AssembleGlyphsController.xib */,
-				F67E11D8118A701A00D964FD /* AssignSpyController.h */,
-				F67E11D9118A701A00D964FD /* AssignSpyController.m */,
 				F6CF29DF1210E1F400D4A9AC /* AssignSpyControllerV2.h */,
 				F6CF29E01210E1F400D4A9AC /* AssignSpyControllerV2.m */,
 				F6CF29E11210E1F400D4A9AC /* AssignViewControllerV2.xib */,
@@ -1798,7 +1793,6 @@
 				F6A9C5EB1184C1CC001F0D9C /* ViewSpiesController.m in Sources */,
 				F6A9C6351184DF55001F0D9C /* RenameSpyController.m in Sources */,
 				F6A9C6381184DF61001F0D9C /* RenameBodyController.m in Sources */,
-				F67E11DA118A701A00D964FD /* AssignSpyController.m in Sources */,
 				F67E11F1118A75BB00D964FD /* LETableViewCellSpyInfo.m in Sources */,
 				F645746C118DD62A000897C4 /* LETableViewCellAttachedImage.m in Sources */,
 				F6863C16118E475A00861037 /* LETableViewCellAttachedLink.m in Sources */,

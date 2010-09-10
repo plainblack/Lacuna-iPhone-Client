@@ -188,7 +188,9 @@
 }
 
 
-- (void)spy:(Spy *)spy assign:(NSString *)assignment {
+- (void)spy:(Spy *)spy assign:(NSString *)assignment target:(id)target callback:(SEL)callback {
+	self->assignSpyTarget = target;
+	self->assignSpyCallback = callback;
 	[[[LEBuildingAssignSpy alloc] initWithCallback:@selector(spyAssigned:) target:self buildingId:self.id buildingUrl:self.buildingUrl spyId:spy.id assignment:assignment] autorelease];
 }
 
@@ -273,8 +275,14 @@
 		}
 	}
 	
+	[assignedSpy parseData:request.spyData];
+	NSLog(@"Mission Result: %@", request.mission);
+	if (request.mission) {
+		[request.mission setObject:assignedSpy forKey:@"spy"];
+		[self->assignSpyTarget performSelector:self->assignSpyCallback withObject:request.mission];
+	}
 	self.spiesUpdated = [NSDate date];
-	assignedSpy.assignment = request.assignment;
+
 	return nil;
 }
 

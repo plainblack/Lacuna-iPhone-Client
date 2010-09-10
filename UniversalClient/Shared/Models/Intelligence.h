@@ -21,6 +21,8 @@
 	NSArray *possibleAssignments;
 	NSDate *spiesUpdated;
 	NSInteger spyPageNumber;
+	id assignSpyTarget;
+	SEL assignSpyCallback;
 }
 
 
@@ -36,7 +38,7 @@
 - (void)loadSpiesForPage:(NSInteger)pageNumber;
 - (void)burnSpy:(Spy *)spy;
 - (void)spy:(Spy *)spy rename:(NSString *)newName;
-- (void)spy:(Spy *)spy assign:(NSString *)assignment;
+- (void)spy:(Spy *)spy assign:(NSString *)assignment target:(id)target callback:(SEL)callback;
 - (bool)hasPreviousSpyPage;
 - (bool)hasNextSpyPage;
 

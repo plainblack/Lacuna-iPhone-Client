@@ -96,7 +96,39 @@
 - (void)save {
 	NSInteger row = [self.assignmentPicker selectedRowInComponent:0];
 	NSString *assignment = [self.intelligence.possibleAssignments objectAtIndex:row];
-	[self.intelligence spy:self.spy assign:assignment];
+	[self.intelligence spy:self.spy assign:assignment target:self callback:@selector(spyAssigned:)];
+}
+
+
+#pragma mark -
+#pragma mark Callback Methods
+
+- (void)spyAssigned:(NSMutableDictionary *)mission {
+	NSString *result = [mission objectForKey:@"result"];
+	NSString *reason = [mission objectForKey:@"reason"];
+	Spy *assignedSpy = [mission objectForKey:@"spy"];
+
+	NSString *title = @"Mission Update";
+	NSString *message = [NSString stringWithFormat:@"%@: %@", assignedSpy.name, reason];
+	
+	if ([result isEqualToString:@"Accepted"]) {
+		title = @"Mission Accepted";
+	} else if ([result isEqualToString:@"Success"]) {
+		title = @"Mission Succeded";
+	} else if ([result isEqualToString:@"Bounce"]) {
+		title = @"Mission Foiled";
+	} else if ([result isEqualToString:@"Failure"]) {
+		title = @"Mission Failed";
+	}
+	UIAlertView *av = [[[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+	[av show];
+}
+
+
+#pragma mark -
+#pragma mark UIAlertViewDelegate Methods
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
 	[[self navigationController] popViewControllerAnimated:YES];
 }
 
