@@ -18,6 +18,8 @@
 @synthesize buildingUrl;
 @synthesize spyId;
 @synthesize assignment;
+@synthesize mission;
+@synthesize spyData;
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl spyId:(NSString *)inSpyId assignment:(NSString *)inAssignment {
@@ -35,7 +37,9 @@
 
 
 - (void)processSuccess {
-	//Does nothing
+	NSDictionary *result = [self.response objectForKey:@"result"];
+	self.mission = [result objectForKey:@"mission"];
+	self.spyData = [result objectForKey:@"spy"];
 }
 
 
@@ -54,6 +58,8 @@
 	self.buildingUrl = nil;
 	self.spyId = nil;
 	self.assignment = nil;
+	self.mission = nil;
+	self.spyData = nil;
 	[super dealloc];
 }
 

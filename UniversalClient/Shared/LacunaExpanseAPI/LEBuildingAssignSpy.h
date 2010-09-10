@@ -15,6 +15,8 @@
 	NSString *buildingUrl;
 	NSString *spyId;
 	NSString *assignment;
+	NSMutableDictionary *mission;
+	NSMutableDictionary *spyData;
 }
 
 
@@ -22,6 +24,8 @@
 @property(nonatomic, retain) NSString *buildingUrl;
 @property(nonatomic, retain) NSString *spyId;
 @property(nonatomic, retain) NSString *assignment;
+@property(nonatomic, retain) NSMutableDictionary *mission;
+@property(nonatomic, retain) NSMutableDictionary *spyData;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl spyId:(NSString *)spyId assignment:(NSString *)assignment;
