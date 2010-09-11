@@ -9,6 +9,7 @@
 #import "SelectGlyphController.h"
 #import "LEMacros.h"
 #import "Util.h"
+#import "Archaeology.h"
 #import "BaseTradeBuilding.h"
 #import "Glyph.h"
 #import "LEViewSectionTab.h"
@@ -16,10 +17,19 @@
 #import "LETableViewCellGlyph.h"
 
 
+@interface SelectGlyphController (PrivateMethods)
+
+- (void)setMyGlyphsTo:(NSMutableArray *)myGlyphs;
+
+@end
+
+
 @implementation SelectGlyphController
 
-
+@synthesize archaeology;
 @synthesize baseTradeBuilding;
+@synthesize filterGlyphs;
+@synthesize glyphs;
 @synthesize delegate;
 
 
@@ -38,11 +48,23 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	[self.baseTradeBuilding addObserver:self forKeyPath:@"glyphs" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
-	if (!self.baseTradeBuilding.glyphs) {
-		[self.baseTradeBuilding loadTradeableGlyphs];
+	if (self.archaeology) {
+		[self.archaeology addObserver:self forKeyPath:@"glyphs" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+		if (!self.archaeology.glyphs) {
+			[self.archaeology loadGlyphs];
+		} else {
+			[self setMyGlyphsTo:self.archaeology.glyphs];
+		}
 	} else {
-		[self.baseTradeBuilding.glyphs sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES] autorelease])];
+		[self.baseTradeBuilding addObserver:self forKeyPath:@"glyphs" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+		if (!self.baseTradeBuilding.glyphs) {
+			[self.baseTradeBuilding loadTradeableGlyphs];
+		} else {
+			[self setMyGlyphsTo:self.baseTradeBuilding.glyphs];
+		}
+	}
+	if (self.glyphs) {
+		[self.glyphs sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES] autorelease])];
 	}
 }
 
@@ -54,7 +76,11 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-	[self.baseTradeBuilding removeObserver:self forKeyPath:@"glyphs"];
+	if (self.archaeology) {
+		[self.archaeology removeObserver:self forKeyPath:@"glyphs"];
+	} else {
+		[self.baseTradeBuilding removeObserver:self forKeyPath:@"glyphs"];
+	}
 }
 
 
@@ -67,9 +93,9 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if (self.baseTradeBuilding && self.baseTradeBuilding.glyphs) {
-		if ([self.baseTradeBuilding.glyphs count] > 0) {
-			return [self.baseTradeBuilding.glyphs count];
+	if (self.glyphs) {
+		if ([self.glyphs count] > 0) {
+			return [self.glyphs count];
 		} else {
 			return 1;
 		}
@@ -80,8 +106,8 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (self.baseTradeBuilding && self.baseTradeBuilding.glyphs) {
-		if ([self.baseTradeBuilding.glyphs count] > 0) {
+	if (self.glyphs) {
+		if ([self.glyphs count] > 0) {
 			return [LETableViewCellGlyph getHeightForTableView:tableView];
 		} else {
 			return [LETableViewCellLabeledText getHeightForTableView:tableView];
@@ -97,9 +123,9 @@
     
     UITableViewCell *cell;
 	
-	if (self.baseTradeBuilding && self.baseTradeBuilding.glyphs) {
-		if ([self.baseTradeBuilding.glyphs count] > 0) {
-			Glyph *glyph = [self.baseTradeBuilding.glyphs objectAtIndex:indexPath.row];
+	if (self.glyphs) {
+		if ([self.glyphs count] > 0) {
+			Glyph *glyph = [self.glyphs objectAtIndex:indexPath.row];
 			LETableViewCellGlyph *glyphCell = [LETableViewCellGlyph getCellForTableView:tableView isSelectable:YES];
 			[glyphCell setGlyph:glyph];
 			cell = glyphCell;
@@ -124,7 +150,7 @@
 #pragma mark UITableViewDataSource Methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	Glyph *glyph = [self.baseTradeBuilding.glyphs objectAtIndex:indexPath.row];
+	Glyph *glyph = [self.glyphs objectAtIndex:indexPath.row];
 	[self.delegate glyphSelected:glyph];
 }
 
@@ -140,13 +166,31 @@
 }
 
 - (void)viewDidUnload {
+	self.glyphs = nil;
 	[super viewDidUnload];
 }
 
 
 - (void)dealloc {
+	self.archaeology = nil;
 	self.baseTradeBuilding = nil;
+	self.filterGlyphs = nil;
+	self.glyphs = nil;
     [super dealloc];
+}
+
+
+#pragma mark -
+#pragma mark PrivateMethods
+
+- (void)setMyGlyphsTo:(NSMutableArray *)myGlyphs {
+	self.glyphs = [myGlyphs mutableCopy];
+	if (self.filterGlyphs) {
+		NSLog(@"Pre filter count: %i", [self.glyphs count]);
+		[self.glyphs removeObjectsInArray:self.filterGlyphs];
+		NSLog(@"Post filter count: %i", [self.glyphs count]);
+	}
+	[self.glyphs sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES] autorelease])];
 }
 
 
@@ -163,7 +207,11 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ([keyPath isEqual:@"glyphs"]) {
-		[self.baseTradeBuilding.glyphs sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES] autorelease])];
+		if (self.archaeology) {
+			[self setMyGlyphsTo:self.archaeology.glyphs];
+		} else {
+			[self setMyGlyphsTo:self.baseTradeBuilding.glyphs];
+		}
 		[self.tableView reloadData];
 	}
 }

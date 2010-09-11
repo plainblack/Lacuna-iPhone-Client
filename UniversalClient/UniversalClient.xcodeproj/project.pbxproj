@@ -293,6 +293,8 @@
 		F6EF714F11FE7D1C00A93226 /* LEBuildingViewAllShips.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF714E11FE7D1C00A93226 /* LEBuildingViewAllShips.m */; };
 		F6EF716A11FE810900A93226 /* Ship.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF716911FE810900A93226 /* Ship.m */; };
 		F6F1C21D12326FB100D69BB6 /* ViewMedalsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F1C21C12326FB100D69BB6 /* ViewMedalsController.m */; };
+		F6F41902123B046800F93457 /* AssembleGlyphsControllerV2.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F41900123B046800F93457 /* AssembleGlyphsControllerV2.m */; };
+		F6F41903123B046800F93457 /* AssembleGlyphsControllerV2.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6F41901123B046800F93457 /* AssembleGlyphsControllerV2.xib */; };
 		F6F52409122C5D9D004E428A /* ViewCreditsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F52408122C5D9D004E428A /* ViewCreditsController.m */; };
 		F6F5240C122C5ED5004E428A /* LEStatsCredits.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F5240B122C5ED5004E428A /* LEStatsCredits.m */; };
 		F6F52440122C7D31004E428A /* LETableViewCellText.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F5243F122C7D31004E428A /* LETableViewCellText.m */; };
@@ -868,6 +870,9 @@
 		F6EF716911FE810900A93226 /* Ship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ship.m; sourceTree = "<group>"; };
 		F6F1C21B12326FB100D69BB6 /* ViewMedalsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMedalsController.h; sourceTree = "<group>"; };
 		F6F1C21C12326FB100D69BB6 /* ViewMedalsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMedalsController.m; sourceTree = "<group>"; };
+		F6F418FF123B046800F93457 /* AssembleGlyphsControllerV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssembleGlyphsControllerV2.h; sourceTree = "<group>"; };
+		F6F41900123B046800F93457 /* AssembleGlyphsControllerV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssembleGlyphsControllerV2.m; sourceTree = "<group>"; };
+		F6F41901123B046800F93457 /* AssembleGlyphsControllerV2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssembleGlyphsControllerV2.xib; sourceTree = "<group>"; };
 		F6F52407122C5D9D004E428A /* ViewCreditsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewCreditsController.h; sourceTree = "<group>"; };
 		F6F52408122C5D9D004E428A /* ViewCreditsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewCreditsController.m; sourceTree = "<group>"; };
 		F6F5240A122C5ED5004E428A /* LEStatsCredits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEStatsCredits.h; sourceTree = "<group>"; };
@@ -1619,6 +1624,9 @@
 				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
 				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
+				F6F418FF123B046800F93457 /* AssembleGlyphsControllerV2.h */,
+				F6F41900123B046800F93457 /* AssembleGlyphsControllerV2.m */,
+				F6F41901123B046800F93457 /* AssembleGlyphsControllerV2.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1712,6 +1720,7 @@
 				F6E4FD43122A916B00E78CBB /* ViewEmpireProfileController.xib in Resources */,
 				F6F5244E122C7EFF004E428A /* ViewCreditsController.xib in Resources */,
 				F6D85A3C122DC06C00A44BD9 /* WebPageController.xib in Resources */,
+				F6F41903123B046800F93457 /* AssembleGlyphsControllerV2.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2001,6 +2010,7 @@
 				F64167CC1237A7F1009708A1 /* SBJsonParser.m in Sources */,
 				F64167CD1237A7F1009708A1 /* SBJsonWriter.m in Sources */,
 				F6D97B841238FF7C009EFC9E /* LETableViewCellLabeledIconText.m in Sources */,
+				F6F41902123B046800F93457 /* AssembleGlyphsControllerV2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

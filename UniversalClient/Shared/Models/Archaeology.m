@@ -17,7 +17,7 @@
 #import "LEBuildingGlyphSearch.h"
 #import "LEBuildingGetOresAvailableForProcessing.h"
 #import "SearchForGlyphController.h"
-#import "AssembleGlyphsController.h"
+#import "AssembleGlyphsControllerV2.h"
 
 
 @implementation Archaeology
@@ -25,7 +25,6 @@
 
 @synthesize glyphs;
 @synthesize availableOreTypes;
-@synthesize itemName;
 @synthesize secondsRemaining;
 @synthesize delegate;
 
@@ -36,7 +35,6 @@
 - (void)dealloc {
 	self.glyphs = nil;
 	self.availableOreTypes = nil;
-	self.itemName = nil;
 	self.delegate = nil;
 	[super dealloc];
 }
@@ -146,9 +144,9 @@
 			break;
 		case BUILDING_ROW_GLYPH_ASSEMBLE:
 			; //DO NOT REMOVE
-			AssembleGlyphsController *assembleGlyphsController = [AssembleGlyphsController create];
-			assembleGlyphsController.archaeology = self;
-			return assembleGlyphsController;
+			AssembleGlyphsControllerV2 *assembleGlyphsControllerV2 = [AssembleGlyphsControllerV2 create];
+			assembleGlyphsControllerV2.archaeology = self;
+			return assembleGlyphsControllerV2;
 			break;
 		default:
 			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];
@@ -184,8 +182,13 @@
 #pragma mark Callback Methods
 
 - (id)glyphAssembeled:(LEBuildingGlyphAssemble *)request {
-	self.itemName = request.itemName;
-	[self.delegate assembleyComplete];
+	if ([request wasError]) {
+		[self.delegate assembleyFailed:[request errorMessage]];
+		[request markErrorHandled];
+	} else {
+		[self.delegate assembleyComplete:request.itemName];
+	}
+
 	return nil;
 }
 

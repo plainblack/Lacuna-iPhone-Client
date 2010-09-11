@@ -10,6 +10,7 @@
 #import "LETableViewControllerGrouped.h"
 
 
+@class Archaeology;
 @class BaseTradeBuilding;
 @class Glyph;
 
@@ -22,12 +23,18 @@
 
 
 @interface SelectGlyphController : LETableViewControllerGrouped {
+	Archaeology *archaeology;
 	BaseTradeBuilding *baseTradeBuilding;
+	NSArray *filterGlyphs;
+	NSMutableArray *glyphs;
 	id<SelectGlyphControllerDelegate> delegate;
 }
 
 
+@property (nonatomic, retain) Archaeology *archaeology;
 @property (nonatomic, retain) BaseTradeBuilding *baseTradeBuilding;
+@property (nonatomic, retain) NSArray *filterGlyphs;
+@property (nonatomic, retain) NSMutableArray *glyphs;
 @property (nonatomic, assign) id<SelectGlyphControllerDelegate> delegate;
 
 

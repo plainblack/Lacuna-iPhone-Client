@@ -156,15 +156,19 @@
 #pragma mark -
 #pragma mark Archaeology Delegate Methods
 
-- (void) assembleyComplete {
+- (void) assembleyComplete:(NSString *)itemName {
 	[archaeology loadGlyphs];
 
-	if (isNotNull(self.archaeology.itemName)) {
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Glyphs Assembled" message:[NSString stringWithFormat:@"You assembled a free %@.", self.archaeology.itemName] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-		[av show];
-	}
+	UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Glyphs Assembled" message:[NSString stringWithFormat:@"You assembled a %@ plan.", itemName] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+	[av show];
 	
 	[self.glyphPicker reloadAllComponents];
+}
+
+
+- (void) assembleyFailed:(NSString *)reason {
+	UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Failed" message:reason delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+	[av show];
 }
 
 
