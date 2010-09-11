@@ -22,14 +22,15 @@
 @synthesize playerName;
 @synthesize email;
 @synthesize sitterPassword;
+@synthesize notes;
 
 
 #pragma mark -
 #pragma mark NSObject Methods
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"description:%@, status:%@, city:%@, country:%@, skype:%@, playerName:%@, email:%@, sitterPassword:%@, medalCount:%i",
-			self.empireDescription, self.status, self.city, self.country, self.skype, self.playerName, self.email, self.sitterPassword, [self.medals count]];
+	return [NSString stringWithFormat:@"description:%@, status:%@, city:%@, country:%@, skype:%@, playerName:%@, email:%@, sitterPassword:%@, medalCount:%i, notes:%@",
+			self.empireDescription, self.status, self.city, self.country, self.skype, self.playerName, self.email, self.sitterPassword, [self.medals count], self.notes];
 }
 
 
@@ -37,12 +38,13 @@
 	self.empireDescription = nil;
 	self.status = nil;
 	self.medals = nil;
-	self.city;
-	self.country;
-	self.skype;
-	self.playerName;
-	self.email;
-	self.sitterPassword;
+	self.city = nil;
+	self.country = nil;
+	self.skype = nil;
+	self.playerName = nil;
+	self.email = nil;
+	self.sitterPassword = nil;
+	self.notes = nil;
 	[super dealloc];
 }
 
@@ -59,6 +61,7 @@
 	self.playerName = [data objectForKey:@"player_name"];
 	self.email = [data objectForKey:@"email"];
 	self.sitterPassword = [data objectForKey:@"sitter_password"];
+	self.notes = [data objectForKey:@"notes"];
 
 	NSMutableDictionary *medalsDictionary = [data objectForKey:@"medals"];
 	NSMutableArray *medalArray = [NSMutableArray arrayWithCapacity:[medalsDictionary count]];

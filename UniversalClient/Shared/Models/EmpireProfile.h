@@ -19,18 +19,20 @@
 	NSString *playerName;
 	NSString *email;
 	NSString *sitterPassword;
+	NSString *notes;
 }
 
 
-@property(nonatomic, retain) NSString *empireDescription;
-@property(nonatomic, retain) NSString *status;
-@property(nonatomic, retain) NSArray *medals;
-@property(nonatomic, retain) NSString *city;
-@property(nonatomic, retain) NSString *country;
-@property(nonatomic, retain) NSString *skype;
-@property(nonatomic, retain) NSString *playerName;
-@property(nonatomic, retain) NSString *email;
-@property(nonatomic, retain) NSString *sitterPassword;
+@property (nonatomic, retain) NSString *empireDescription;
+@property (nonatomic, retain) NSString *status;
+@property (nonatomic, retain) NSArray *medals;
+@property (nonatomic, retain) NSString *city;
+@property (nonatomic, retain) NSString *country;
+@property (nonatomic, retain) NSString *skype;
+@property (nonatomic, retain) NSString *playerName;
+@property (nonatomic, retain) NSString *email;
+@property (nonatomic, retain) NSString *sitterPassword;
+@property (nonatomic, retain) NSString *notes;
 
 
 - (void)parseData:(NSDictionary *)data;

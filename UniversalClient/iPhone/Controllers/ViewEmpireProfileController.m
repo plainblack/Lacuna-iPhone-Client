@@ -31,7 +31,8 @@
 
 typedef enum {
 	SECTION_EMPIRE,
-	SECTION_ACTIONS,
+	SECTION_EMPIRE_ACTIONS,
+	SECTION_ACCOUNT_ACTIONS,
 	SECTION_SELF_DESTRUCT
 } SECTION;
 
@@ -40,6 +41,7 @@ typedef enum {
 	EMPIRE_ROW_NAME,
 	EMPIRE_ROW_DESCRIPTION,
 	EMPIRE_ROW_STATUS,
+	EMPIRE_ROW_NOTES,
 	EMPIRE_ROW_CITY,
 	EMPIRE_ROW_COUNTRY,
 	EMPIRE_ROW_SKYPE,
@@ -50,15 +52,20 @@ typedef enum {
 	EMPIRE_ROW_ISOLATIONIST
 } EMPIRE_ROW;
 
+
 typedef enum {
-	ACTION_ROW_VIEW_EMPIRE_BOOSTS,
-	ACTION_ROW_PURCHASE_ESSENTIA,
-	ACTION_ROW_REDEEM_ESSENTIA_CODE,
-	ACTION_ROW_VIEW_MEDALS,
-	ACTION_ROW_VIEW_RACIAL_STATS,
-	ACTION_ROW_CHANGE_PASSWORD,
-	ACTION_ROW_SEND_INVITE
-} ACTION_ROW;
+	EMPIRE_ACTION_ROW_VIEW_EMPIRE_BOOSTS,
+	EMPIRE_ACTION_ROW_VIEW_MEDALS,
+	EMPIRE_ACTION_ROW_VIEW_RACIAL_STATS,
+} EMPIRE_ACTION_ROW;
+
+
+typedef enum {
+	ACCOUNT_ACTION_ROW_PURCHASE_ESSENTIA,
+	ACCOUNT_ACTION_ROW_REDEEM_ESSENTIA_CODE,
+	ACCOUNT_ACTION_ROW_CHANGE_PASSWORD,
+	ACCOUNT_ACTION_ROW_SEND_INVITE
+} ACCOUNT_ACTION_ROW;
 
 
 @implementation ViewEmpireProfileController
@@ -84,7 +91,9 @@ typedef enum {
 	self.navigationItem.title = @"Loading";
 	
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Empire"],
-								 [LEViewSectionTab tableView:self.tableView withText:@"Actions"]);
+								 [LEViewSectionTab tableView:self.tableView withText:@"Empire Actions"],
+								 [LEViewSectionTab tableView:self.tableView withText:@"Account Actions"],
+								 [LEViewSectionTab tableView:self.tableView withText:@"Self Destruct"]);
 }
 
 
@@ -99,7 +108,6 @@ typedef enum {
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-	[self.leEmpireViewProfile cancel];
 	self.leEmpireViewProfile = nil;
 	[super viewDidDisappear:animated];
 }
@@ -112,7 +120,7 @@ typedef enum {
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	Session *session = [Session sharedInstance];
 	if (session.empire.id) {
-		return 3;
+		return 4;
 	} else {
 		return 1;
 	}
@@ -130,8 +138,11 @@ typedef enum {
 					return 10;
 				}
 				break;
-			case SECTION_ACTIONS:
-				return 7;
+			case SECTION_EMPIRE_ACTIONS:
+				return 3;
+				break;
+			case SECTION_ACCOUNT_ACTIONS:
+				return 4;
 				break;
 			case SECTION_SELF_DESTRUCT:
 				return 1;
@@ -168,6 +179,9 @@ typedef enum {
 					case EMPIRE_ROW_STATUS:
 						return [LETableViewCellLabeledParagraph getHeightForTableView:tableView text:self.empireProfile.status];
 						break;
+					case EMPIRE_ROW_NOTES:
+						return [LETableViewCellLabeledParagraph getHeightForTableView:tableView text:self.empireProfile.notes];
+						break;
 					case EMPIRE_ROW_ISOLATIONIST:
 						return [LETableViewCellParagraph getHeightForTableView:tableView text:ISOLATIONIST_MSG];
 						break;
@@ -176,15 +190,24 @@ typedef enum {
 						break;
 				}
 				break;
-			case SECTION_ACTIONS:
+			case SECTION_EMPIRE_ACTIONS:
 				switch (indexPath.row) {
-					case ACTION_ROW_VIEW_EMPIRE_BOOSTS:
-					case ACTION_ROW_PURCHASE_ESSENTIA:
-					case ACTION_ROW_REDEEM_ESSENTIA_CODE:
-					case ACTION_ROW_VIEW_MEDALS:
-					case ACTION_ROW_VIEW_RACIAL_STATS:
-					case ACTION_ROW_CHANGE_PASSWORD:
-					case ACTION_ROW_SEND_INVITE:
+					case EMPIRE_ACTION_ROW_VIEW_EMPIRE_BOOSTS:
+					case EMPIRE_ACTION_ROW_VIEW_MEDALS:
+					case EMPIRE_ACTION_ROW_VIEW_RACIAL_STATS:
+						return [LETableViewCellButton getHeightForTableView:tableView];
+						break;
+					default:
+						return 0.0;
+						break;
+				}
+				break;
+			case SECTION_ACCOUNT_ACTIONS:
+				switch (indexPath.row) {
+					case ACCOUNT_ACTION_ROW_PURCHASE_ESSENTIA:
+					case ACCOUNT_ACTION_ROW_REDEEM_ESSENTIA_CODE:
+					case ACCOUNT_ACTION_ROW_CHANGE_PASSWORD:
+					case ACCOUNT_ACTION_ROW_SEND_INVITE:
 						return [LETableViewCellButton getHeightForTableView:tableView];
 						break;
 					default:
@@ -247,6 +270,19 @@ typedef enum {
 						statusCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 						statusCell.selectionStyle = UITableViewCellSelectionStyleBlue;
 						cell = statusCell;
+						break;
+					case EMPIRE_ROW_NOTES:
+						; //DO NOT REMOVE
+						LETableViewCellLabeledParagraph *notesCell = [LETableViewCellLabeledParagraph getCellForTableView:tableView];
+						notesCell.label.text = @"Notes";
+						if ((id)self.empireProfile.notes == [NSNull null]) {
+							notesCell.content.text = @"";
+						} else {
+							notesCell.content.text = self.empireProfile.notes;
+						}
+						notesCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+						notesCell.selectionStyle = UITableViewCellSelectionStyleBlue;
+						cell = notesCell;
 						break;
 					case EMPIRE_ROW_CITY:
 						; //DO NOT REMOVE
@@ -331,45 +367,52 @@ typedef enum {
 						break;
 				}
 				break;
-			case SECTION_ACTIONS:
+			case SECTION_EMPIRE_ACTIONS:
 				switch (indexPath.row) {
-					case ACTION_ROW_VIEW_EMPIRE_BOOSTS:
+					case EMPIRE_ACTION_ROW_VIEW_EMPIRE_BOOSTS:
 						; //DO NOT REMOVE
 						LETableViewCellButton *boostsButton = [LETableViewCellButton getCellForTableView:tableView];
 						boostsButton.textLabel.text = @"View Empire Boosts";
 						cell = boostsButton;
 						break;
-					case ACTION_ROW_PURCHASE_ESSENTIA:
-						; //DO NOT REMOVE
-						LETableViewCellButton *essentiaButton = [LETableViewCellButton getCellForTableView:tableView];
-						essentiaButton.textLabel.text = @"Purchase Essentia";
-						cell = essentiaButton;
-						break;
-					case ACTION_ROW_REDEEM_ESSENTIA_CODE:
-						; //DO NOT REMOVE
-						LETableViewCellButton *redeemEssentiaCodeButton = [LETableViewCellButton getCellForTableView:tableView];
-						redeemEssentiaCodeButton.textLabel.text = @"Redeem Essentia Code";
-						cell = redeemEssentiaCodeButton;
-						break;
-					case ACTION_ROW_VIEW_MEDALS:
+					case EMPIRE_ACTION_ROW_VIEW_MEDALS:
 						; //DO NOT REMOVE
 						LETableViewCellButton *medalButton = [LETableViewCellButton getCellForTableView:tableView];
 						medalButton.textLabel.text = @"View Medals";
 						cell = medalButton;
 						break;
-					case ACTION_ROW_VIEW_RACIAL_STATS:
+					case EMPIRE_ACTION_ROW_VIEW_RACIAL_STATS:
 						; //DO NOT REMOVE
 						LETableViewCellButton *racialStatsButton = [LETableViewCellButton getCellForTableView:tableView];
 						racialStatsButton.textLabel.text = @"View Racial Stats";
 						cell = racialStatsButton;
 						break;
-					case ACTION_ROW_CHANGE_PASSWORD:
+					default:
+						cell = nil;
+						break;
+				}
+				break;
+			case SECTION_ACCOUNT_ACTIONS:
+				switch (indexPath.row) {
+					case ACCOUNT_ACTION_ROW_PURCHASE_ESSENTIA:
+						; //DO NOT REMOVE
+						LETableViewCellButton *essentiaButton = [LETableViewCellButton getCellForTableView:tableView];
+						essentiaButton.textLabel.text = @"Purchase Essentia";
+						cell = essentiaButton;
+						break;
+					case ACCOUNT_ACTION_ROW_REDEEM_ESSENTIA_CODE:
+						; //DO NOT REMOVE
+						LETableViewCellButton *redeemEssentiaCodeButton = [LETableViewCellButton getCellForTableView:tableView];
+						redeemEssentiaCodeButton.textLabel.text = @"Redeem Essentia Code";
+						cell = redeemEssentiaCodeButton;
+						break;
+					case ACCOUNT_ACTION_ROW_CHANGE_PASSWORD:
 						; //DO NOT REMOVE
 						LETableViewCellButton *changePasswordButton = [LETableViewCellButton getCellForTableView:tableView];
 						changePasswordButton.textLabel.text = @"Change Password";
 						cell = changePasswordButton;
 						break;
-					case ACTION_ROW_SEND_INVITE:
+					case ACCOUNT_ACTION_ROW_SEND_INVITE:
 						; //DO NOT REMOVE
 						LETableViewCellButton *sendInviteButton = [LETableViewCellButton getCellForTableView:tableView];
 						sendInviteButton.textLabel.text = @"Send Friend Invite";
@@ -424,6 +467,11 @@ typedef enum {
 						EditEmpireProfileText *editStatusEmpireProfileText = [EditEmpireProfileText createForTextName:@"Status" textKey:@"status_message" text:self.empireProfile.status];
 						[self.navigationController pushViewController:editStatusEmpireProfileText animated:YES];
 						break;
+					case EMPIRE_ROW_NOTES:
+						; //DO NOT REMOVE
+						EditEmpireProfileText *editNotesEmpireProfileText = [EditEmpireProfileText createForTextName:@"Notes" textKey:@"notes" text:self.empireProfile.notes];
+						[self.navigationController pushViewController:editNotesEmpireProfileText animated:YES];
+						break;
 					case EMPIRE_ROW_CITY:
 						; //DO NOT REMOVE
 						EditTextFieldController *editCityController = [EditTextFieldController createForTextName:@"City" textValue:self.empireProfile.city];
@@ -462,43 +510,47 @@ typedef enum {
 						break;
 				}
 				break;
-			case SECTION_ACTIONS:
+			case SECTION_EMPIRE_ACTIONS:
 				switch (indexPath.row) {
-					case ACTION_ROW_VIEW_EMPIRE_BOOSTS:
+					case EMPIRE_ACTION_ROW_VIEW_EMPIRE_BOOSTS:
 						; //DO NOT REMOVE
 						ViewEmpireBoostsController *viewEmpireBoostsController = [ViewEmpireBoostsController create];
 						[self.navigationController pushViewController:viewEmpireBoostsController animated:YES];
 						break;
-					case ACTION_ROW_PURCHASE_ESSENTIA:
+					case EMPIRE_ACTION_ROW_VIEW_MEDALS:
+						; //DO NOT REMOVE
+						ViewMedalsController *viewMedalsController = [ViewMedalsController create];
+						viewMedalsController.medals = self.empireProfile.medals;
+						[self.navigationController pushViewController:viewMedalsController animated:YES];
+						break;
+					case EMPIRE_ACTION_ROW_VIEW_RACIAL_STATS:
+						; //DO NOT REMOVE
+						ViewRacialStatsController *viewRacialStatsController = [ViewRacialStatsController create];
+						[self.navigationController pushViewController:viewRacialStatsController animated:YES];
+						break;
+				}
+				break;
+			case SECTION_ACCOUNT_ACTIONS:
+				switch (indexPath.row) {
+					case ACCOUNT_ACTION_ROW_PURCHASE_ESSENTIA:
 						; //DO NOT REMOVE
 						NSString *purchaseUrl = [NSString stringWithFormat:@"%@pay?session_id=%@", session.serverUri, session.sessionId];
 						WebPageController *webPageController = [WebPageController create];
 						[webPageController goToUrl:purchaseUrl];
 						[self presentModalViewController:webPageController animated:YES];
 						break;
-					case ACTION_ROW_REDEEM_ESSENTIA_CODE:
+					case ACCOUNT_ACTION_ROW_REDEEM_ESSENTIA_CODE:
 						; //DO NOT REMOVE
 						EditTextFieldController *redeemEssentiaCodeController = [EditTextFieldController createForTextName:@"Essentia Code" textValue:@""];
 						redeemEssentiaCodeController.delegate = self;
 						[self.navigationController pushViewController:redeemEssentiaCodeController animated:YES];
 						break;
-					case ACTION_ROW_VIEW_MEDALS:
-						; //DO NOT REMOVE
-						ViewMedalsController *viewMedalsController = [ViewMedalsController create];
-						viewMedalsController.medals = self.empireProfile.medals;
-						[self.navigationController pushViewController:viewMedalsController animated:YES];
-						break;
-					case ACTION_ROW_VIEW_RACIAL_STATS:
-						; //DO NOT REMOVE
-						ViewRacialStatsController *viewRacialStatsController = [ViewRacialStatsController create];
-						[self.navigationController pushViewController:viewRacialStatsController animated:YES];
-						break;
-					case ACTION_ROW_CHANGE_PASSWORD:
+					case ACCOUNT_ACTION_ROW_CHANGE_PASSWORD:
 						; //DO NOT REMOVE
 						NewPasswordController *newPasswordController = [NewPasswordController create];
 						[self.navigationController pushViewController:newPasswordController animated:YES];
 						break;
-					case ACTION_ROW_SEND_INVITE:
+					case ACCOUNT_ACTION_ROW_SEND_INVITE:
 						; //DO NOT REMOVE
 						EditTextFieldController *sendInviteController = [EditTextFieldController createForTextName:@"Friend's Email" textValue:@""];
 						sendInviteController.delegate = self;
@@ -523,7 +575,6 @@ typedef enum {
 
 
 - (void)viewDidUnload {
-	[self.leEmpireViewProfile cancel];
 	self.leEmpireViewProfile = nil;
 	self.empireProfile = nil;
 	[super viewDidUnload];
@@ -531,7 +582,6 @@ typedef enum {
 
 
 - (void)dealloc {
-	[self.leEmpireViewProfile cancel];
 	self.leEmpireViewProfile = nil;
 	self.empireProfile = nil;
     [super dealloc];
