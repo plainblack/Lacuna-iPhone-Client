@@ -226,10 +226,10 @@ typedef enum {
 						; //DO NOT REMOVE
 						LETableViewCellLabeledParagraph *descriptionCell = [LETableViewCellLabeledParagraph getCellForTableView:tableView];
 						descriptionCell.label.text = @"Description";
-						if ((id)self.empireProfile.description == [NSNull null]) {
+						if ((id)self.empireProfile.empireDescription == [NSNull null]) {
 							descriptionCell.content.text = @"";
 						} else {
-							descriptionCell.content.text = self.empireProfile.description;
+							descriptionCell.content.text = self.empireProfile.empireDescription;
 						}
 						descriptionCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 						descriptionCell.selectionStyle = UITableViewCellSelectionStyleBlue;
@@ -416,7 +416,7 @@ typedef enum {
 					case EMPIRE_ROW_DESCRIPTION:
 						; //DO NOT REMOVE
 						NSLog(@"");
-						EditEmpireProfileText *editDescriptionEmpireProfileText = [EditEmpireProfileText createForTextName:@"Description" textKey:@"description" text:self.empireProfile.description];
+						EditEmpireProfileText *editDescriptionEmpireProfileText = [EditEmpireProfileText createForTextName:@"Description" textKey:@"description" text:self.empireProfile.empireDescription];
 						[self.navigationController pushViewController:editDescriptionEmpireProfileText animated:YES];
 						break;
 					case EMPIRE_ROW_STATUS:
