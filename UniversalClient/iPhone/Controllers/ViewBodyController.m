@@ -80,7 +80,9 @@ typedef enum {
 	
 	self.navigationItem.title = @"Loading";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
-    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout)] autorelease];
+	if ([self.navigationController.viewControllers objectAtIndex:0] == self) {
+		self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout)] autorelease];
+	}
 	
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Body"],
 								 [LEViewSectionTab tableView:self.tableView withText:@"Actions"],
