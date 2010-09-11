@@ -9,6 +9,7 @@
 #import "NoLimitResource.h"
 #import "LEMacros.h"
 #import "Util.h"
+#import "Session.h"
 
 
 @implementation NoLimitResource
@@ -41,22 +42,39 @@
 
 - (void)tick:(NSInteger)inInterval {
 	NSDecimalNumber *interval = [Util decimalFromInt:inInterval]; 
-	self.current = [self.current decimalNumberByAdding:[self.perSec decimalNumberByMultiplyingBy:interval]];
+	NSDecimalNumber *newValue = [self.current decimalNumberByAdding:[self.perSec decimalNumberByMultiplyingBy:interval]];
+	Session *session = [Session sharedInstance];
+	if (session.empire.isIsolationist && [newValue compare:[NSDecimalNumber zero]] == NSOrderedAscending) {
+		self.current = [NSDecimalNumber zero];
+	} else {
+		self.current = newValue;
+	}
 }
 
 
 - (void)addToCurrent:(NSDecimalNumber *)adjustment {
-	self.current = [self.current decimalNumberByAdding:adjustment];
+	NSDecimalNumber *newValue = [self.current decimalNumberByAdding:adjustment];
+	Session *session = [Session sharedInstance];
+	if (session.empire.isIsolationist && [newValue compare:[NSDecimalNumber zero]] == NSOrderedAscending) {
+		self.current = [NSDecimalNumber zero];
+	} else {
+		self.current = newValue;
+	}
 }
 
 				  
 - (void)subtractFromCurrent:(NSDecimalNumber *)adjustment {
-	self.current = [self.current decimalNumberBySubtracting:adjustment];
+	NSDecimalNumber *newValue = [self.current decimalNumberBySubtracting:adjustment];
+	Session *session = [Session sharedInstance];
+	if (session.empire.isIsolationist && [newValue compare:[NSDecimalNumber zero]] == NSOrderedAscending) {
+		self.current = [NSDecimalNumber zero];
+	} else {
+		self.current = newValue;
+	}
 }
 
 
 - (void)parseFromData:(NSDictionary *)data withPrefix:(NSString *)prefix{
-	
 	self.current = [Util asNumber:[data objectForKey:[NSString stringWithFormat:@"%@", prefix]]];
 	self.perHour = [Util asNumber:[data objectForKey:[NSString stringWithFormat:@"%@_hour", prefix]]];
 	self.perSec = [self.perHour decimalNumberByDividingBy:[NSDecimalNumber decimalNumberWithString:@"3600"]];

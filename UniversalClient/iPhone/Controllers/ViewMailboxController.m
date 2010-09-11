@@ -209,7 +209,6 @@
 #pragma mark Instance Methods
 
 - (void)clear {
-	NSLog(@"Test 2");
 	self.mailbox = nil;
 	self.lastMessageAt = nil;
 	self.mailboxSegmentedControl.selectedSegmentIndex = UISegmentedControlNoSegment;

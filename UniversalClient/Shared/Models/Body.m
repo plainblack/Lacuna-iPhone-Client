@@ -151,6 +151,7 @@
 	if (extraWaste) {
 		[self.happiness subtractFromCurrent:extraWaste];
 	}
+	self.needsRefresh = YES;
 }
 
 

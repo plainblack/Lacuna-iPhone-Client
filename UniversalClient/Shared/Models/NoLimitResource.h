@@ -27,6 +27,4 @@
 - (void)parseFromData:(NSDictionary *)data withPrefix:(NSString *)prefix;
 
 
-
-
 @end
