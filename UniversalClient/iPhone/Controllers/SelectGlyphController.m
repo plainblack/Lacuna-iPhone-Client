@@ -186,9 +186,7 @@
 - (void)setMyGlyphsTo:(NSMutableArray *)myGlyphs {
 	self.glyphs = [myGlyphs mutableCopy];
 	if (self.filterGlyphs) {
-		NSLog(@"Pre filter count: %i", [self.glyphs count]);
 		[self.glyphs removeObjectsInArray:self.filterGlyphs];
-		NSLog(@"Post filter count: %i", [self.glyphs count]);
 	}
 	[self.glyphs sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES] autorelease])];
 }

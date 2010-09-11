@@ -31,8 +31,6 @@
 - (id)params {
 	NSMutableArray *params = _array([Session sharedInstance].sessionId, self.buildingId, self.glyphIds);
 	
-	NSLog(@"Params: %@", params);
-	
 	return params;
 }
 

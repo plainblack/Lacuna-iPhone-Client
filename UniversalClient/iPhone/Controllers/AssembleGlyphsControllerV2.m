@@ -113,9 +113,15 @@
 			[glyphIds addObject:glyph.id];
 		}
 	}
-	NSLog(@"Selected Glyphs: %@", glyphIds);
-	self.archaeology.delegate = self;
-	[self.archaeology assembleGlyphs:glyphIds];
+	
+	if ([glyphIds count] > 0) {
+		self.archaeology.delegate = self;
+		[self.archaeology assembleGlyphs:glyphIds];
+	} else {
+		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Failed" message:@"You must select at least one glyph to combine" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+		[av show];
+	}
+
 }
 
 
@@ -157,7 +163,6 @@
 
 
 - (void)updateGlyph:(NSInteger)glyphIndex {
-	NSLog(@"Kevin setup glyph: %i", glyphIndex);
 	Glyph *glyph = [self.selectedGlyphs objectAtIndex:glyphIndex];
 	switch (glyphIndex) {
 		case 0:
