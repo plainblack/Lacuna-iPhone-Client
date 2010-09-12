@@ -10,7 +10,7 @@
 #import "LEMacros.h"
 #import "Util.h"
 #import "Session.h"
-#import "TravellingShip.h";
+#import "Ship.h";
 
 
 @implementation LEBuildingViewShipsTravelling
@@ -41,10 +41,10 @@
 	self.numberOfShipsTravelling = [Util asNumber:[result objectForKey:@"number_of_ships_travelling"]];
 	NSMutableArray *shipsTravellingData = [result objectForKey:@"ships_travelling"];
 	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[shipsTravellingData count]];
-	TravellingShip *travellingShip;
+	Ship *travellingShip;
 	
 	for (NSDictionary *travellingShipData in shipsTravellingData) {
-		travellingShip = [[[TravellingShip alloc] init] autorelease];
+		travellingShip = [[[Ship alloc] init] autorelease];
 		[travellingShip parseData:travellingShipData];
 		[tmp addObject:travellingShip];
 	}

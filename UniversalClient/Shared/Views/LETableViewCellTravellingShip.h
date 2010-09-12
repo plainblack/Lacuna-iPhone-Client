@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@class TravellingShip;
+@class Ship;
 
 
 @interface LETableViewCellTravellingShip : UITableViewCell {
@@ -28,7 +28,7 @@
 @property (nonatomic, retain) IBOutlet UIImageView *shipImageView;
 
 
-- (void)setTravellingShip:(TravellingShip *)travellingShip;
+- (void)setTravellingShip:(Ship *)ship;
 
 + (LETableViewCellTravellingShip *)getCellForTableView:(UITableView *)tableView;
 + (CGFloat)getHeightForTableView:(UITableView *)tableView;

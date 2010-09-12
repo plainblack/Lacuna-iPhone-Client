@@ -287,7 +287,6 @@
 		F6E8D56E1223E7F7001CD21D /* LEBuildingUpdateAlliance.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E8D56D1223E7F7001CD21D /* LEBuildingUpdateAlliance.m */; };
 		F6E8D5711223E817001CD21D /* LEBuildingLeaveAlliance.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E8D5701223E817001CD21D /* LEBuildingLeaveAlliance.m */; };
 		F6E8D5741223E82C001CD21D /* LEBuildingExpelMember.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E8D5731223E82C001CD21D /* LEBuildingExpelMember.m */; };
-		F6EB02561202F2FC001BFD68 /* TravellingShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB02551202F2FC001BFD68 /* TravellingShip.m */; };
 		F6EB025D1202F500001BFD68 /* LEBuildingViewShipsTravelling.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB025C1202F500001BFD68 /* LEBuildingViewShipsTravelling.m */; };
 		F6EB02661202FB01001BFD68 /* ViewTravellingShipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB02651202FB01001BFD68 /* ViewTravellingShipsController.m */; };
 		F6EEE87511F388E80095BCA4 /* LETableViewCellDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EEE87411F388E80095BCA4 /* LETableViewCellDictionary.m */; };
@@ -860,8 +859,6 @@
 		F6E8D5701223E817001CD21D /* LEBuildingLeaveAlliance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingLeaveAlliance.m; sourceTree = "<group>"; };
 		F6E8D5721223E82C001CD21D /* LEBuildingExpelMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingExpelMember.h; sourceTree = "<group>"; };
 		F6E8D5731223E82C001CD21D /* LEBuildingExpelMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingExpelMember.m; sourceTree = "<group>"; };
-		F6EB02541202F2FC001BFD68 /* TravellingShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TravellingShip.h; sourceTree = "<group>"; };
-		F6EB02551202F2FC001BFD68 /* TravellingShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TravellingShip.m; sourceTree = "<group>"; };
 		F6EB025B1202F500001BFD68 /* LEBuildingViewShipsTravelling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewShipsTravelling.h; sourceTree = "<group>"; };
 		F6EB025C1202F500001BFD68 /* LEBuildingViewShipsTravelling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewShipsTravelling.m; sourceTree = "<group>"; };
 		F6EB02641202FB01001BFD68 /* ViewTravellingShipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewTravellingShipsController.h; sourceTree = "<group>"; };
@@ -1453,8 +1450,6 @@
 				F6FD9E8611D7A6F3003785AD /* TimedActivity.m */,
 				F692B7C8121861EC00E740C1 /* Trade.h */,
 				F692B7C9121861EC00E740C1 /* Trade.m */,
-				F6EB02541202F2FC001BFD68 /* TravellingShip.h */,
-				F6EB02551202F2FC001BFD68 /* TravellingShip.m */,
 				F61D0C2111E2355600B06382 /* WasteRecycling.h */,
 				F61D0C2211E2355600B06382 /* WasteRecycling.m */,
 			);
@@ -1891,7 +1886,6 @@
 				F6D5A00B12012E43009DDA28 /* LEBuildingScuttleShip.m in Sources */,
 				F6D5A00E12012E5A009DDA28 /* LEBuildingNameShip.m in Sources */,
 				F6DEC052120247BF00716CE7 /* LETableViewCellShip.m in Sources */,
-				F6EB02561202F2FC001BFD68 /* TravellingShip.m in Sources */,
 				F6EB025D1202F500001BFD68 /* LEBuildingViewShipsTravelling.m in Sources */,
 				F6EB02661202FB01001BFD68 /* ViewTravellingShipsController.m in Sources */,
 				F6DB90E712039C33003293A7 /* LETableViewCellTravellingShip.m in Sources */,

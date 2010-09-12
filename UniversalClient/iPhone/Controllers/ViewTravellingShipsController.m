@@ -10,7 +10,7 @@
 #import "LEMacros.h"
 #import "Util.h"
 #import	"SpacePort.h"
-#import "TravellingShip.h"
+#import "Ship.h"
 #import "LETableViewCellLabeledText.h"
 #import "LETableViewCellTravellingShip.h"
 
@@ -133,7 +133,7 @@ typedef enum {
 	
 	if (self.spacePort && self.spacePort.travellingShips) {
 		if ([self.spacePort.travellingShips count] > 0) {
-			TravellingShip *currentShip = [self.spacePort.travellingShips objectAtIndex:indexPath.section];
+			Ship *currentShip = [self.spacePort.travellingShips objectAtIndex:indexPath.section];
 			switch (indexPath.row) {
 				case ROW_TRAVELLING_SHIP_INFO:
 					; //DO NOT REMOVE

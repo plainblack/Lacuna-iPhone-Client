@@ -102,10 +102,8 @@
 	[session addObserver:self forKeyPath:@"body.buildingMap" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 	if (!session.body.buildingMap || session.body.needsSurfaceRefresh) {
 		[session.body loadBuildingMap];
+		self.navigationItem.title = @"Loading";
 	}
-
-	
-	self.navigationItem.title = @"Loading";
 }
 
 

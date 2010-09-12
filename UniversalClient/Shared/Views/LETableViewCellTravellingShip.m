@@ -9,7 +9,7 @@
 #import "LETableViewCellTravellingShip.h"
 #import "LEMacros.h"
 #import "Util.h"
-#import "TravellingShip.h"
+#import "Ship.h"
 
 
 @implementation LETableViewCellTravellingShip
@@ -51,12 +51,12 @@
 #pragma mark -
 #pragma mark Instance Methods
 
-- (void)setTravellingShip:(TravellingShip *)travellingShip {
-	self.dateArrivesLabel.text = [Util formatDate:travellingShip.dateArrives];
-	self.typeLabel.text = [Util prettyCodeValue:travellingShip.type];
-	self.fromLabel.text = [NSString stringWithFormat:@"%@: %@", travellingShip.fromType, travellingShip.fromName];
-	self.toLabel.text = [NSString stringWithFormat:@"%@: %@", travellingShip.toType, travellingShip.toName];
-	NSString *shipImageName = [NSString stringWithFormat:@"assets/ships/%@.png", travellingShip.type];
+- (void)setTravellingShip:(Ship *)ship {
+	self.dateArrivesLabel.text = [Util formatDate:ship.dateArrives];
+	self.typeLabel.text = [Util prettyCodeValue:ship.type];
+	self.fromLabel.text = [NSString stringWithFormat:@"%@: %@", ship.fromType, ship.fromName];
+	self.toLabel.text = [NSString stringWithFormat:@"%@: %@", ship.toType, ship.toName];
+	NSString *shipImageName = [NSString stringWithFormat:@"assets/ships/%@.png", ship.type];
 	self.shipImageView.image = [UIImage imageNamed:shipImageName];
 }
 

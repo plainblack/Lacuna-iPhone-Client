@@ -237,10 +237,10 @@ typedef enum {
 - (void) switchPage {
 	switch (self.pageSegmentedControl.selectedSegmentIndex) {
 		case 0:
-			[self.spacePort loadForeignShipsForPage:(self.spacePort.foreignShipsPageNumber-1)];
+			[self.spacePort loadShipsForPage:(self.spacePort.shipsPageNumber-1)];
 			break;
 		case 1:
-			[self.spacePort loadForeignShipsForPage:(self.spacePort.foreignShipsPageNumber+1)];
+			[self.spacePort loadShipsForPage:(self.spacePort.shipsPageNumber+1)];
 			break;
 		default:
 			NSLog(@"Invalid switchPage");
@@ -253,8 +253,8 @@ typedef enum {
 #pragma mark Private Methods
 
 - (void)togglePageButtons {
-	[self.pageSegmentedControl setEnabled:[self.spacePort hasPreviousForeignShipsPage] forSegmentAtIndex:0];
-	[self.pageSegmentedControl setEnabled:[self.spacePort hasNextForeignShipsPage] forSegmentAtIndex:1];
+	[self.pageSegmentedControl setEnabled:[self.spacePort hasPreviousShipsPage] forSegmentAtIndex:0];
+	[self.pageSegmentedControl setEnabled:[self.spacePort hasNextShipsPage] forSegmentAtIndex:1];
 }
 
 

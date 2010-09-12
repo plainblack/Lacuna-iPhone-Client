@@ -130,13 +130,13 @@
 		case BUILDING_ROW_VIEW_TRAVELLING_SHIPS:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellButton *viewTravellingShipsCell = [LETableViewCellButton getCellForTableView:tableView];
-			viewTravellingShipsCell.textLabel.text = @"View Ships In Transit";
+			viewTravellingShipsCell.textLabel.text = @"Ships In Transit";
 			cell = viewTravellingShipsCell;
 			break;
 		case BUILDING_ROW_VIEW_FOREIGN_SHIPS:
 			; //DO NOT REMOVE THIS!!
 			LETableViewCellButton *viewForeignShipsCell = [LETableViewCellButton getCellForTableView:tableView];
-			viewForeignShipsCell.textLabel.text = @"View Foreign Ships Incoming";
+			viewForeignShipsCell.textLabel.text = @"Incoming Foreign Ships";
 			cell = viewForeignShipsCell;
 			break;
 		default:
