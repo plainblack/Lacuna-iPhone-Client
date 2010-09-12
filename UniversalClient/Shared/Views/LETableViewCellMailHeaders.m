@@ -62,16 +62,13 @@
 
 	UIColor *color;
 	if (_intv([message objectForKey:@"has_read"])) {
-		color = MAIL_TEXT_COLOR;
+		color = TEXT_COLOR;
 	} else {
 		color = UNREAD_MAIL_TEXT_COLOR;
 	}
 	self.subjectText.textColor = color;
-	self.toLabel.textColor = color;
 	self.toText.textColor = color;
-	self.fromLabel.textColor = color;
 	self.fromText.textColor = color;
-	self.dateLabel.textColor = color;
 	self.dateText.textColor = color;
 	
 }
@@ -102,8 +99,8 @@
 		cell.toLabel.backgroundColor = [UIColor clearColor];
 		cell.toLabel.textAlignment = UITextAlignmentRight;
 		cell.toLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin;
-		cell.toLabel.font = LABEL_FONT;
-		cell.toLabel.textColor = MAIL_TEXT_COLOR;
+		cell.toLabel.font = LABEL_SMALL_FONT;
+		cell.toLabel.textColor = LABEL_COLOR;
 		cell.toLabel.text = @"to:";
 		[cell.contentView addSubview:cell.toLabel];
 		cell.toText = [[[UILabel alloc] initWithFrame:CGRectMake(55, 25, 265, 15)] autorelease];
@@ -111,14 +108,14 @@
 		cell.toText.textAlignment = UITextAlignmentLeft;
 		cell.toText.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
 		cell.toText.font = LABEL_FONT;
-		cell.toText.textColor = MAIL_TEXT_COLOR;
+		cell.toText.textColor = TEXT_COLOR;
 		[cell.contentView addSubview:cell.toText];
 		
 		cell.fromLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 40, 50, 15)] autorelease];
 		cell.fromLabel.backgroundColor = [UIColor clearColor];
 		cell.fromLabel.textAlignment = UITextAlignmentRight;
 		cell.fromLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin;
-		cell.fromLabel.font = LABEL_FONT;
+		cell.fromLabel.font = LABEL_SMALL_FONT;
 		cell.fromLabel.textColor = MAIL_TEXT_COLOR;
 		cell.fromLabel.text = @"from:";
 		[cell.contentView addSubview:cell.fromLabel];
@@ -127,14 +124,14 @@
 		cell.fromText.textAlignment = UITextAlignmentLeft;
 		cell.fromText.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
 		cell.fromText.font = LABEL_FONT;
-		cell.fromText.textColor = MAIL_TEXT_COLOR;
+		cell.fromText.textColor = TEXT_COLOR;
 		[cell.contentView addSubview:cell.fromText];
 		
 		cell.dateLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 55, 50, 15)] autorelease];
 		cell.dateLabel.backgroundColor = [UIColor clearColor];
 		cell.dateLabel.textAlignment = UITextAlignmentRight;
 		cell.dateLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin;
-		cell.dateLabel.font = LABEL_FONT;
+		cell.dateLabel.font = LABEL_SMALL_FONT;
 		cell.dateLabel.textColor = MAIL_TEXT_COLOR;
 		cell.dateLabel.text = @"sent:";
 		[cell.contentView addSubview:cell.dateLabel];
@@ -143,7 +140,7 @@
 		cell.dateText.textAlignment = UITextAlignmentLeft;
 		cell.dateText.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
 		cell.dateText.font = LABEL_FONT;
-		cell.dateText.textColor = MAIL_TEXT_COLOR;
+		cell.dateText.textColor = TEXT_COLOR;
 		[cell.contentView addSubview:cell.dateText];
 	}
 	

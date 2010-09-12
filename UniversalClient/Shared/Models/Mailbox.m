@@ -77,13 +77,21 @@
 
 
 - (void)loadMessage:(NSInteger)index {
-	self.messageDetails = [self.messageHeaders objectAtIndex:index];
-	if (!_boolv([self.messageDetails objectForKey:@"has_read"])) {
-		[self.messageDetails setObject:[NSDecimalNumber numberWithInt:1] forKey:@"has_read"];
+	NSMutableDictionary *messageHeader = [self.messageHeaders objectAtIndex:index];
+	if (!_boolv([messageHeader objectForKey:@"has_read"])) {
+		[messageHeader setObject:[NSDecimalNumber numberWithInt:1] forKey:@"has_read"];
 		Session *session = [Session sharedInstance];
 		session.empire.numNewMessages = [session.empire.numNewMessages decimalNumberBySubtracting:[NSDecimalNumber one]];
 	}
-	NSString *messageId = [Util idFromDict:self.messageDetails named:@"id"];
+	NSString *messageId = [Util idFromDict:messageHeader named:@"id"];
+	if (self.messageDetails) {
+		NSString *messageDetailId = [Util idFromDict:self.messageDetails named:@"id"];
+		NSLog(@"Has Cached Message Details, newMessageId: %@, cachedMessageId: %@", messageId, messageDetailId);
+		if (![messageDetailId isEqualToString:messageId]) {
+			self.messageDetails = nil;
+			NSLog(@"Old message details. Clearing");
+		}
+	}
 	[[[LEInboxRead alloc] initWithCallback:@selector(messageDetailsLoaded:) target:self messageId:messageId] autorelease];
 }
 

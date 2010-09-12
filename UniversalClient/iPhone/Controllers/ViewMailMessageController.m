@@ -22,13 +22,6 @@
 #import "WebPageController.h"
 
 
-typedef enum {
-	SECTION_HEADERS,
-	SECTION_ATTACHEMENTS,
-	SECTION_BODY
-} SECTIONS;
-
-
 @implementation ViewMailMessageController
 
 
@@ -65,9 +58,12 @@ typedef enum {
 						 fixed,
 						 nil];
 
+	self.sectionHeaders = [NSMutableArray array];
+	/*
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Header"],
 								 [LEViewSectionTab tableView:self.tableView withText:@"Attachements"],
 								 [LEViewSectionTab tableView:self.tableView withText:@"Message"]);
+	*/
 }
 
 
@@ -99,27 +95,37 @@ typedef enum {
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+	if (self.mailbox.messageDetails) {
+		if (isNotNull(self->attachements)) {
+			return 3;
+		} else {
+			return 2;
+		}
+	} else {
+		return 1;
+	}
+
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	switch (section) {
-		case SECTION_HEADERS:
+		case 0:
 			return 1;
 			break;
-		case SECTION_ATTACHEMENTS:
-			; //DO NOT REMOVE
-			NSDictionary *attachements = [self.mailbox.messageDetails objectForKey:@"attachments"];
-			if (isNotNull(attachements)) {
-				return [attachements count];
+		case 1:
+			if (self.mailbox.messageDetails && isNotNull(self->attachements)) {
+				return [self->attachements count];
 			} else {
 				return 1;
 			}
-
 			break;
-		case SECTION_BODY:
-			return 1;
+		case 2:
+			if (self.mailbox.messageDetails && isNotNull(self->attachements)) {
+				return 1;
+			} else {
+				return 0;
+			}
 			break;
 		default:
 			return 0;
@@ -130,37 +136,47 @@ typedef enum {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	switch (indexPath.section) {
-		case SECTION_HEADERS:
-			; //DO NOT REMOVE
-			return [LETableViewCellMailHeaders getHeightForTableView:tableView];
-			break;
-		case SECTION_ATTACHEMENTS:
-			; //DO NOT REMOVE
-			NSDictionary *attachements = [self.mailbox.messageDetails objectForKey:@"attachments"];
-			if (isNotNull(attachements)) {
-				NSInteger attachmentIndex = indexPath.row;
-				NSString *key = [[attachements allKeys] objectAtIndex:attachmentIndex];
-				
-				if ([key isEqualToString:@"image"]) {
-					return [LETableViewCellAttachedImage getHeightForTableView:tableView];
-				} else if ([key isEqualToString:@"link"]) {
-					return [LETableViewCellAttachedLink getHeightForTableView:tableView];
-				} else if ([key isEqualToString:@"table"]) {
-					return [LETableViewCellButton getHeightForTableView:tableView];
-				} else if ([key isEqualToString:@"map"]) {
-					return [LETableViewCellButton getHeightForTableView:tableView];
-				} else {
-					return 0.0;
-				}
+		case 0:
+			if (self.mailbox.messageDetails) {
+				return [LETableViewCellMailHeaders getHeightForTableView:tableView];
 			} else {
 				return [LETableViewCellLabeledText getHeightForTableView:tableView];
 			}
-
 			break;
-		case SECTION_BODY:
-			; //DO NOT REMOVE
-			NSString *body = [self.mailbox.messageDetails objectForKey:@"body"];
-			return [LETableViewCellParagraph getHeightForTableView:tableView text:body];
+		case 1:
+			if (self.mailbox.messageDetails) {
+				if (isNotNull(self->attachements)) {
+					NSInteger attachmentIndex = indexPath.row;
+					NSString *key = [[attachements allKeys] objectAtIndex:attachmentIndex];
+					
+					if ([key isEqualToString:@"image"]) {
+						return [LETableViewCellAttachedImage getHeightForTableView:tableView];
+					} else if ([key isEqualToString:@"link"]) {
+						return [LETableViewCellAttachedLink getHeightForTableView:tableView];
+					} else if ([key isEqualToString:@"table"]) {
+						return [LETableViewCellButton getHeightForTableView:tableView];
+					} else if ([key isEqualToString:@"map"]) {
+						return [LETableViewCellButton getHeightForTableView:tableView];
+					} else {
+						return 0.0;
+					}
+				} else {
+					; //DO NOT REMOVE
+					NSString *body = [self.mailbox.messageDetails objectForKey:@"body"];
+					return [LETableViewCellParagraph getHeightForTableView:tableView text:body];
+				}
+			} else {
+				return 0.0;
+			}
+			break;
+		case 2:
+			if (self.mailbox.messageDetails && isNotNull(self->attachements)) {
+				; //DO NOT REMOVE
+				NSString *body = [self.mailbox.messageDetails objectForKey:@"body"];
+				return [LETableViewCellParagraph getHeightForTableView:tableView text:body];
+			} else {
+				return 0.0;
+			}
 			break;
 		default:
 			return 0.0;
@@ -174,63 +190,66 @@ typedef enum {
 	UITableViewCell *cell;
 	
 	switch (indexPath.section) {
-		case SECTION_HEADERS:
-			; //DO NOT REMOVE
-			LETableViewCellMailHeaders *headersCell = [LETableViewCellMailHeaders getCellForTableView:tableView];
-			[headersCell setMessage:self.mailbox.messageDetails];
-			cell = headersCell;
+		case 0:
+			if (self.mailbox.messageDetails) {
+				LETableViewCellMailHeaders *headersCell = [LETableViewCellMailHeaders getCellForTableView:tableView];
+				[headersCell setMessage:self.mailbox.messageDetails];
+				cell = headersCell;
+			} else {
+				LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+				loadingCell.label.text = @"Message";
+				loadingCell.content.text = @"Loading";
+				cell = loadingCell;
+			}
 			break;
-		case SECTION_ATTACHEMENTS:
-			; //DO NOT REMOVE
-			NSDictionary *attachements = [self.mailbox.messageDetails objectForKey:@"attachments"];
-			if (isNotNull(attachements)) {
-				NSInteger attachmentIndex = indexPath.row;
-				NSString *key = [[attachements allKeys] objectAtIndex:attachmentIndex];
-				
-				if ([key isEqualToString:@"image"]) {
-					LETableViewCellAttachedImage *imageCell = [LETableViewCellAttachedImage getCellForTableView:tableView];
-					[imageCell setData:[attachements objectForKey:key]];
-					cell = imageCell;
-				} else if ([key isEqualToString:@"link"]) {
-					LETableViewCellAttachedLink *linkCell = [LETableViewCellAttachedLink getCellForTableView:tableView];
-					[linkCell setData:[attachements objectForKey:key]];
-					cell = linkCell;
-				} else if ([key isEqualToString:@"table"]) {
-					LETableViewCellButton *tableCell = [LETableViewCellButton getCellForTableView:tableView];
-					tableCell.textLabel.text = @"Attached Table";
-					cell = tableCell;
-				} else if ([key isEqualToString:@"map"]) {
-					LETableViewCellButton *mapCell = [LETableViewCellButton getCellForTableView:tableView];
-					mapCell.textLabel.text = @"Attached Map";
-					cell = mapCell;
+		case 1:
+			if (self.mailbox.messageDetails) {
+				if (isNotNull(attachements)) {
+					NSInteger attachmentIndex = indexPath.row;
+					NSString *key = [[self->attachements allKeys] objectAtIndex:attachmentIndex];
+					
+					if ([key isEqualToString:@"image"]) {
+						LETableViewCellAttachedImage *imageCell = [LETableViewCellAttachedImage getCellForTableView:tableView];
+						[imageCell setData:[attachements objectForKey:key]];
+						cell = imageCell;
+					} else if ([key isEqualToString:@"link"]) {
+						LETableViewCellAttachedLink *linkCell = [LETableViewCellAttachedLink getCellForTableView:tableView];
+						[linkCell setData:[attachements objectForKey:key]];
+						cell = linkCell;
+					} else if ([key isEqualToString:@"table"]) {
+						LETableViewCellButton *tableCell = [LETableViewCellButton getCellForTableView:tableView];
+						tableCell.textLabel.text = @"Attached Table";
+						cell = tableCell;
+					} else if ([key isEqualToString:@"map"]) {
+						LETableViewCellButton *mapCell = [LETableViewCellButton getCellForTableView:tableView];
+						mapCell.textLabel.text = @"Attached Map";
+						cell = mapCell;
+					} else {
+						cell = nil;
+					}
 				} else {
-					cell = nil;
+					LETableViewCellParagraph *bodyCell = [LETableViewCellParagraph getCellForTableView:tableView];
+					bodyCell.content.text = [self.mailbox.messageDetails objectForKey:@"body"];
+					cell = bodyCell;
 				}
 			} else {
-				LETableViewCellLabeledText *noAttachementsCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-				noAttachementsCell.label.text = @"Attachements";
-				noAttachementsCell.content.text = @"None";
-				cell = noAttachementsCell;
+				cell = nil;
 			}
-
 			break;
-		case SECTION_BODY:
-			; //DO NOT REMOVE
-			LETableViewCellParagraph *bodyCell = [LETableViewCellParagraph getCellForTableView:tableView];
-			NSString *body = [self.mailbox.messageDetails objectForKey:@"body"];
-			if (body) {
-				bodyCell.content.text = body;
+		case 2:
+			if (self.mailbox.messageDetails && isNotNull(self->attachements)) {
+				LETableViewCellParagraph *bodyCell = [LETableViewCellParagraph getCellForTableView:tableView];
+				bodyCell.content.text = [self.mailbox.messageDetails objectForKey:@"body"];
+				cell = bodyCell;
 			} else {
-				bodyCell.content.text = @"Loading";
+				cell = nil;
 			}
-			bodyCell.content.textColor = MAIL_TEXT_COLOR;
-			cell = bodyCell;
 			break;
 		default:
 			cell = nil;
 			break;
 	}
-	
+
 	return cell;
 }
 
@@ -239,44 +258,41 @@ typedef enum {
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	switch (indexPath.section) {
-		case SECTION_ATTACHEMENTS:
-			; //DO NOT REMOVE
-			NSDictionary *attachements = [self.mailbox.messageDetails objectForKey:@"attachments"];
-			if (isNotNull(attachements)) {
-				NSInteger attachmentIndex = indexPath.row;
-				NSString *key = [[attachements allKeys] objectAtIndex:attachmentIndex];
-				
-				if ([key isEqualToString:@"image"]) {
-					NSDictionary *attachment = [attachements objectForKey:key];
-					NSString *link = [attachment objectForKey:@"link"];
-					if (link) {
-						[[UIApplication sharedApplication] openURL:[NSURL URLWithString:link]];
-					}
-				} else if ([key isEqualToString:@"link"]) {
-					NSDictionary *attachment = [attachements objectForKey:key];
-					NSString *link = [attachment objectForKey:@"url"];
-					if (link) {
-						WebPageController *webPageController = [WebPageController create];
-						[webPageController goToUrl:link];
-						[self presentModalViewController:webPageController animated:YES];
-					}
-				} else if ([key isEqualToString:@"table"]) {
-					NSArray *attachment = [attachements objectForKey:key];
-					NSLog(@"Table: %@", attachment);
-					ViewAttachedTableController *viewAttachedTableController = [[ViewAttachedTableController alloc] initWithNibName:@"ViewAttachedTableController" bundle:nil];
-					[viewAttachedTableController setAttachedTable:attachment];
-					[[self navigationController] pushViewController:viewAttachedTableController animated:YES];
-					[viewAttachedTableController release];
-				} else if ([key isEqualToString:@"map"]) {
-					NSDictionary *attachment = [attachements objectForKey:key];
-					ViewAttachedMapController *viewAttachedMapController = [[ViewAttachedMapController alloc] init];
-					[viewAttachedMapController setAttachedMap:attachment];
-					[[self navigationController] pushViewController:viewAttachedMapController animated:YES];
-					[viewAttachedMapController release];
+	if (isNotNull(self->attachements) && indexPath.section == 1) {
+		if (isNotNull(self->attachements)) {
+			NSInteger attachmentIndex = indexPath.row;
+			NSString *key = [[self->attachements allKeys] objectAtIndex:attachmentIndex];
+			
+			if ([key isEqualToString:@"image"]) {
+				NSDictionary *attachment = [self->attachements objectForKey:key];
+				NSString *link = [attachment objectForKey:@"link"];
+				if (link) {
+					WebPageController *webPageController = [WebPageController create];
+					[webPageController goToUrl:link];
+					[self presentModalViewController:webPageController animated:YES];
 				}
+			} else if ([key isEqualToString:@"link"]) {
+				NSDictionary *attachment = [self->attachements objectForKey:key];
+				NSString *link = [attachment objectForKey:@"url"];
+				if (link) {
+					WebPageController *webPageController = [WebPageController create];
+					[webPageController goToUrl:link];
+					[self presentModalViewController:webPageController animated:YES];
+				}
+			} else if ([key isEqualToString:@"table"]) {
+				NSArray *attachment = [self->attachements objectForKey:key];
+				ViewAttachedTableController *viewAttachedTableController = [[ViewAttachedTableController alloc] initWithNibName:@"ViewAttachedTableController" bundle:nil];
+				[viewAttachedTableController setAttachedTable:attachment];
+				[[self navigationController] pushViewController:viewAttachedTableController animated:YES];
+				[viewAttachedTableController release];
+			} else if ([key isEqualToString:@"map"]) {
+				NSDictionary *attachment = [self->attachements objectForKey:key];
+				ViewAttachedMapController *viewAttachedMapController = [[ViewAttachedMapController alloc] init];
+				[viewAttachedMapController setAttachedMap:attachment];
+				[[self navigationController] pushViewController:viewAttachedMapController animated:YES];
+				[viewAttachedMapController release];
 			}
-			break;
+		}
 	}
 }
 
@@ -341,7 +357,17 @@ typedef enum {
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ( [keyPath isEqual:@"messageDetails"]) {
+		NSLog(@"Message Details Loaded");
 		self.navigationItem.title = [self.mailbox.messageDetails objectForKey:@"subject"];
+		self->attachements = [self.mailbox.messageDetails objectForKey:@"attachments"];
+		if (isNotNull(self->attachements)) {
+			self.sectionHeaders = _array([NSNull null],
+										 [LEViewSectionTab tableView:self.tableView withText:@"Attachements"],
+										 [NSNull null]);
+		} else {
+			self.sectionHeaders = [NSMutableArray array];
+		}
+
 		
 		if (self.messageIndex <= 0) {
 			[self.messageSegmentedControl setEnabled:[self.mailbox hasPreviousPage] forSegmentAtIndex:0];

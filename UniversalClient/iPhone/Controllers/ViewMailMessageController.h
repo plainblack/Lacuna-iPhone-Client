@@ -18,6 +18,7 @@
 	Mailbox *mailbox;
 	NSInteger messageIndex;
 	BOOL isObserving;
+	NSDictionary *attachements;
 }
 
 

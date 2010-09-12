@@ -120,7 +120,6 @@ typedef enum {
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	Session *session = [Session sharedInstance];
 	if (self.empireProfile) {
 		return 4;
 	} else {
@@ -160,7 +159,6 @@ typedef enum {
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	Session *session = [Session sharedInstance];
 	if (self.empireProfile) {
 		switch (indexPath.section) {
 			case SECTION_EMPIRE:

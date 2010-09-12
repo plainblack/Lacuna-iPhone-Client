@@ -82,16 +82,17 @@
 		
 		UIImage *image = TIME_ICON;
 		cell.imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
-		cell.imageView.frame = CGRectMake(110, 10, 100, 100);
+		cell.imageView.frame = CGRectMake(135, 10, 50, 50);
 		cell.imageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+		cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
 		[cell.contentView addSubview:cell.imageView];
 		
-		cell.nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 110, 300, 20)] autorelease];
+		cell.nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 65, 300, 20)] autorelease];
 		cell.nameLabel.backgroundColor = [UIColor clearColor];
 		cell.nameLabel.textAlignment = UITextAlignmentCenter;
 		cell.nameLabel.font = TEXT_FONT;
 		cell.nameLabel.textColor = TEXT_COLOR;
-		cell.nameLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+		cell.nameLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.nameLabel];
 	}
 	
@@ -100,7 +101,7 @@
 
 
 + (CGFloat)getHeightForTableView:(UITableView *)tableView {
-	return 140.0;
+	return 90.0;
 }
 
 

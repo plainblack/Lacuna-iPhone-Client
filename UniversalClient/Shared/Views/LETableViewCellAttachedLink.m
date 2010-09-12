@@ -80,7 +80,7 @@
 		cell.nameLabel.textAlignment = UITextAlignmentCenter;
 		cell.nameLabel.font = TEXT_FONT;
 		cell.nameLabel.textColor = TEXT_COLOR;
-		cell.nameLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+		cell.nameLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
 		cell.nameLabel.text = @"TEST";
 		[cell.contentView addSubview:cell.nameLabel];
 	}
