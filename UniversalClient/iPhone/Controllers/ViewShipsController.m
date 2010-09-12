@@ -19,6 +19,7 @@
 
 typedef enum {
 	ROW_SHIP_INFO,
+	ROW_TASK,
 	ROW_RENAME_BUTTON,
 	ROW_SCUTTLE_BUTTON
 } ROW;
@@ -102,7 +103,7 @@ typedef enum {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (self.spacePort && self.spacePort.ships) {
-		return 3;
+		return 4;
 	} else {
 		return 1;
 	}
@@ -114,6 +115,9 @@ typedef enum {
 		switch (indexPath.row) {
 			case ROW_SHIP_INFO:
 				return [LETableViewCellShip getHeightForTableView:tableView];
+				break;
+			case ROW_TASK:
+				return [LETableViewCellLabeledText getHeightForTableView:tableView];
 				break;
 			case ROW_RENAME_BUTTON:
 			case ROW_SCUTTLE_BUTTON:
@@ -142,6 +146,13 @@ typedef enum {
 				LETableViewCellShip *infoCell = [LETableViewCellShip getCellForTableView:tableView isSelectable:NO];
 				[infoCell setShip:currentShip];
 				cell = infoCell;
+				break;
+			case ROW_TASK:
+				; //DO NOT REMOVE
+				LETableViewCellLabeledText *taskCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+				taskCell.label.text = @"Task";
+				taskCell.content.text = currentShip.task;
+				cell = taskCell;
 				break;
 			case ROW_RENAME_BUTTON:
 				; //DO NOT REMOVE

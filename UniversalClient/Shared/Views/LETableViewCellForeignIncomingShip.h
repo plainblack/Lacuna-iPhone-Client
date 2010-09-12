@@ -1,8 +1,8 @@
 //
-//  LETableViewCellTravellingShip.h
+//  LETableViewCellForeignIncomingShip.h
 //  UniversalClient
 //
-//  Created by Kevin Runde on 7/30/10.
+//  Created by Kevin Runde on 9/12/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
@@ -12,23 +12,21 @@
 @class Ship;
 
 
-@interface LETableViewCellTravellingShip : UITableViewCell {
-	UILabel *dateStartedLabel;
+@interface LETableViewCellForeignIncomingShip : UITableViewCell {
 	UILabel *dateArrivesLabel;
 	UILabel *fromNameLabel;
-	UILabel *toNameLabel;
+	UILabel *fromEmpireLabel;
 }
 
 
-@property (nonatomic, retain) IBOutlet UILabel *dateStartedLabel;
 @property (nonatomic, retain) IBOutlet UILabel *dateArrivesLabel;
 @property (nonatomic, retain) IBOutlet UILabel *fromNameLabel;
-@property (nonatomic, retain) IBOutlet UILabel *toNameLabel;
+@property (nonatomic, retain) IBOutlet UILabel *fromEmpireLabel;
 
 
 - (void)setShip:(Ship *)ship;
 
-+ (LETableViewCellTravellingShip *)getCellForTableView:(UITableView *)tableView;
++ (LETableViewCellForeignIncomingShip *)getCellForTableView:(UITableView *)tableView;
 + (CGFloat)getHeightForTableView:(UITableView *)tableView;
 
 

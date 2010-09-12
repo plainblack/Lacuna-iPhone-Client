@@ -1,24 +1,23 @@
 //
-//  LETableViewCellTravellingShip.m
+//  LETableViewCellForeignIncomingShip
 //  UniversalClient
 //
-//  Created by Kevin Runde on 7/30/10.
+//  Created by Kevin Runde on 9/12/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
-#import "LETableViewCellTravellingShip.h"
+#import "LETableViewCellForeignIncomingShip.h"
 #import "LEMacros.h"
 #import "Util.h"
 #import "Ship.h"
 
 
-@implementation LETableViewCellTravellingShip
+@implementation LETableViewCellForeignIncomingShip
 
 
-@synthesize dateStartedLabel;
 @synthesize dateArrivesLabel;
 @synthesize fromNameLabel;
-@synthesize toNameLabel;
+@synthesize fromEmpireLabel;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -30,18 +29,17 @@
 
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-
+	
     [super setSelected:selected animated:animated];
-
+	
     // Configure the view for the selected state
 }
 
 
 - (void)dealloc {
-	self.dateStartedLabel = nil;
 	self.dateArrivesLabel = nil;
 	self.fromNameLabel = nil;
-	self.toNameLabel = nil;
+	self.fromEmpireLabel = nil;
     [super dealloc];
 }
 
@@ -50,26 +48,30 @@
 #pragma mark Instance Methods
 
 - (void)setShip:(Ship *)ship {
-	self.dateStartedLabel.text = [Util formatDate:ship.dateStarted];
 	self.dateArrivesLabel.text = [Util formatDate:ship.dateArrives];
-	self.fromNameLabel.text = [NSString stringWithFormat:@"%@ (%@)", ship.fromName, ship.fromType];
-	self.toNameLabel.text = [NSString stringWithFormat:@"%@ (%@)", ship.toName, ship.toType];
+	self.fromNameLabel.text = ship.fromName;
+	if (isNotNull(ship.fromEmpireName)) {
+		self.fromEmpireLabel.text = ship.fromEmpireName;
+	} else {
+		self.fromEmpireLabel.text = @"UNKNOWN";
+	}
 }
 
 
 #pragma mark -
 #pragma mark Class Methods
 
-+ (LETableViewCellTravellingShip *)getCellForTableView:(UITableView *)tableView {
-    static NSString *CellIdentifier = @"TravellingShipCell";
++ (LETableViewCellForeignIncomingShip *)getCellForTableView:(UITableView *)tableView {
+    static NSString *CellIdentifier = @"ForeignIncomingShipCell";
+	CGFloat y;
 	
-	LETableViewCellTravellingShip *cell = (LETableViewCellTravellingShip *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	LETableViewCellForeignIncomingShip *cell = (LETableViewCellForeignIncomingShip *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-		cell = [[LETableViewCellTravellingShip alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+		cell = [[LETableViewCellForeignIncomingShip alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 		cell.backgroundColor = CELL_BACKGROUND_COLOR;
 		cell.autoresizesSubviews = YES;
-		CGFloat y = 10.0;
 		
+		y = 10.0;
 		UILabel *tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, y, 90, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
 		tmpLabel.textAlignment = UITextAlignmentRight;
@@ -78,7 +80,7 @@
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		tmpLabel.text = @"Arrives";
 		[cell.contentView addSubview:tmpLabel];
-		cell.dateArrivesLabel = [[[UILabel alloc] initWithFrame:CGRectMake(110, y, 200, 22)] autorelease];
+		cell.dateArrivesLabel = [[[UILabel alloc] initWithFrame:CGRectMake(110, y, 200, 20)] autorelease];
 		cell.dateArrivesLabel.backgroundColor = [UIColor clearColor];
 		cell.dateArrivesLabel.textAlignment = UITextAlignmentLeft;
 		cell.dateArrivesLabel.font = TEXT_FONT;
@@ -93,15 +95,15 @@
 		tmpLabel.font = LABEL_FONT;
 		tmpLabel.textColor = LABEL_COLOR;
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpLabel.text = @"Started";
+		tmpLabel.text = @"Sent by";
 		[cell.contentView addSubview:tmpLabel];
-		cell.dateStartedLabel = [[[UILabel alloc] initWithFrame:CGRectMake(110, y, 200, 22)] autorelease];
-		cell.dateStartedLabel.backgroundColor = [UIColor clearColor];
-		cell.dateStartedLabel.textAlignment = UITextAlignmentLeft;
-		cell.dateStartedLabel.font = TEXT_FONT;
-		cell.dateStartedLabel.textColor = TEXT_COLOR;
-		cell.dateStartedLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
-		[cell.contentView addSubview:cell.dateStartedLabel];
+		cell.fromEmpireLabel = [[[UILabel alloc] initWithFrame:CGRectMake(110, y, 200, 20)] autorelease];
+		cell.fromEmpireLabel.backgroundColor = [UIColor clearColor];
+		cell.fromEmpireLabel.textAlignment = UITextAlignmentLeft;
+		cell.fromEmpireLabel.font = TEXT_SMALL_FONT;
+		cell.fromEmpireLabel.textColor = TEXT_SMALL_COLOR;
+		cell.fromEmpireLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
+		[cell.contentView addSubview:cell.fromEmpireLabel];
 		y += 20;
 		
 		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, y, 90, 20)] autorelease];
@@ -110,7 +112,7 @@
 		tmpLabel.font = LABEL_FONT;
 		tmpLabel.textColor = LABEL_COLOR;
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpLabel.text = @"From";
+		tmpLabel.text = @"On";
 		[cell.contentView addSubview:tmpLabel];
 		cell.fromNameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(110, y, 200, 20)] autorelease];
 		cell.fromNameLabel.backgroundColor = [UIColor clearColor];
@@ -119,24 +121,7 @@
 		cell.fromNameLabel.textColor = TEXT_SMALL_COLOR;
 		cell.fromNameLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.fromNameLabel];
-		y += 20;
-		
-		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, y, 90, 20)] autorelease];
-		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentRight;
-		tmpLabel.font = LABEL_FONT;
-		tmpLabel.textColor = LABEL_COLOR;
-		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpLabel.text = @"To";
-		[cell.contentView addSubview:tmpLabel];
-		cell.toNameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(110, y, 200, 20)] autorelease];
-		cell.toNameLabel.backgroundColor = [UIColor clearColor];
-		cell.toNameLabel.textAlignment = UITextAlignmentLeft;
-		cell.toNameLabel.font = TEXT_SMALL_FONT;
-		cell.toNameLabel.textColor = TEXT_SMALL_COLOR;
-		cell.toNameLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
-		[cell.contentView addSubview:cell.toNameLabel];
-		
+
 		//Set Cell Defaults
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	}
@@ -146,7 +131,7 @@
 
 
 + (CGFloat)getHeightForTableView:(UITableView *)tableView {
-	return 100.0;
+	return 80.0;
 }
 
 

@@ -12,11 +12,13 @@
 #import	"SpacePort.h"
 #import "Ship.h"
 #import "LETableViewCellLabeledText.h"
+#import "LETableViewCellShip.h"
 #import "LETableViewCellTravellingShip.h"
 
 
 typedef enum {
-	ROW_TRAVELLING_SHIP_INFO,
+	ROW_SHIP_INFO,
+	ROW_TRAVELLING_INFO
 } ROW;
 
 
@@ -101,7 +103,16 @@ typedef enum {
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return 1;
+	if (self.spacePort && self.spacePort.travellingShips) {
+		if ([self.spacePort.travellingShips count] > 0) {
+			return 2;
+		} else {
+			return 1;
+		}
+		
+	} else {
+		return 1;
+	}
 }
 
 
@@ -109,7 +120,10 @@ typedef enum {
 	if (self.spacePort && self.spacePort.travellingShips) {
 		if ([self.spacePort.travellingShips count] > 0) {
 			switch (indexPath.row) {
-				case ROW_TRAVELLING_SHIP_INFO:
+				case ROW_SHIP_INFO:
+					return [LETableViewCellShip getHeightForTableView:tableView];
+					break;
+				case ROW_TRAVELLING_INFO:
 					return [LETableViewCellTravellingShip getHeightForTableView:tableView];
 					break;
 				default:
@@ -135,11 +149,17 @@ typedef enum {
 		if ([self.spacePort.travellingShips count] > 0) {
 			Ship *currentShip = [self.spacePort.travellingShips objectAtIndex:indexPath.section];
 			switch (indexPath.row) {
-				case ROW_TRAVELLING_SHIP_INFO:
+				case ROW_SHIP_INFO:
 					; //DO NOT REMOVE
-					LETableViewCellTravellingShip *infoCell = [LETableViewCellTravellingShip getCellForTableView:tableView];
-					[infoCell setTravellingShip:currentShip];
-					cell = infoCell;
+					LETableViewCellShip *shipInfoCell = [LETableViewCellShip getCellForTableView:tableView isSelectable:NO];
+					[shipInfoCell setShip:currentShip];
+					cell = shipInfoCell;
+					break;
+				case ROW_TRAVELLING_INFO:
+					; //DO NOT REMOVE
+					LETableViewCellTravellingShip *travellingInfoCell = [LETableViewCellTravellingShip getCellForTableView:tableView];
+					[travellingInfoCell setShip:currentShip];
+					cell = travellingInfoCell;
 					break;
 				default:
 					cell = nil;
