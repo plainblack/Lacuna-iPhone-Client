@@ -121,7 +121,7 @@ typedef enum {
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	Session *session = [Session sharedInstance];
-	if (session.empire.id) {
+	if (self.empireProfile) {
 		return 4;
 	} else {
 		return 1;
@@ -131,7 +131,7 @@ typedef enum {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	Session *session = [Session sharedInstance];
-	if (session.empire.id) {
+	if (self.empireProfile) {
 		switch (section) {
 			case SECTION_EMPIRE:
 				if (session.empire.isIsolationist) {
@@ -161,7 +161,7 @@ typedef enum {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	Session *session = [Session sharedInstance];
-	if (session.empire.id) {
+	if (self.empireProfile) {
 		switch (indexPath.section) {
 			case SECTION_EMPIRE:
 				switch (indexPath.row) {
@@ -236,7 +236,7 @@ typedef enum {
     UITableViewCell *cell;
 
 	Session *session = [Session sharedInstance];
-	if (session.empire.id) {
+	if (self.empireProfile) {
 		switch (indexPath.section) {
 			case SECTION_EMPIRE:
 				switch (indexPath.row) {
@@ -454,7 +454,7 @@ typedef enum {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	Session *session = [Session sharedInstance];
-	if (session.empire.id) {
+	if (self.empireProfile) {
 		switch (indexPath.section) {
 			case SECTION_EMPIRE:
 				switch (indexPath.row) {
