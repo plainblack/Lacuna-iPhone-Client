@@ -1,8 +1,8 @@
 //
-//  ViewTravellingShipsController.h
+//  ViewForeignShipsController.h
 //  UniversalClient
 //
-//  Created by Kevin Runde on 7/30/10.
+//  Created by Kevin Runde on 9/12/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
@@ -13,7 +13,7 @@
 @class SpacePort;
 
 
-@interface ViewTravellingShipsController : LETableViewControllerGrouped {
+@interface ViewForeignShipsController : LETableViewControllerGrouped {
 	UISegmentedControl *pageSegmentedControl;
 	SpacePort *spacePort;
 	NSDate *lastUpdated;
@@ -25,7 +25,7 @@
 @property (nonatomic, retain) NSDate *lastUpdated;
 
 
-+ (ViewTravellingShipsController *)create;
++ (ViewForeignShipsController *)create;
 
 
 @end

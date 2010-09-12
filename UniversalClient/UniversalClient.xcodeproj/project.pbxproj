@@ -18,6 +18,8 @@
 		28AD733F0D9D9553002E5188 /* MainWindow_Pad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow_Pad.xib */; };
 		28EEBFDD1118E19E00187D67 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28EEBFDC1118E19E00187D67 /* CoreData.framework */; };
 		28EEC04B1118E28000187D67 /* AppDelegate_Shared.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EEC04A1118E28000187D67 /* AppDelegate_Shared.m */; };
+		F60238B6123D596800268ADD /* LEBuildingViewForeignShips.m in Sources */ = {isa = PBXBuildFile; fileRef = F60238B5123D596800268ADD /* LEBuildingViewForeignShips.m */; };
+		F60238D3123D63B200268ADD /* ViewForeignShipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F60238D2123D63B200268ADD /* ViewForeignShipsController.m */; };
 		F603A8BE1177E7FC00BAC73A /* LETableViewCellBody.m in Sources */ = {isa = PBXBuildFile; fileRef = F603A8BD1177E7FC00BAC73A /* LETableViewCellBody.m */; };
 		F603A8EF1177F7F200BAC73A /* LETableViewCellCurrentResources.m in Sources */ = {isa = PBXBuildFile; fileRef = F603A8EE1177F7F200BAC73A /* LETableViewCellCurrentResources.m */; };
 		F603A91911780A0400BAC73A /* ViewBodyMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = F603A91811780A0400BAC73A /* ViewBodyMapController.m */; };
@@ -338,6 +340,10 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Shared/main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* UniversalClient_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UniversalClient_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* UniversalClient-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "UniversalClient-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		F60238B4123D596800268ADD /* LEBuildingViewForeignShips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewForeignShips.h; sourceTree = "<group>"; };
+		F60238B5123D596800268ADD /* LEBuildingViewForeignShips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewForeignShips.m; sourceTree = "<group>"; };
+		F60238D1123D63B200268ADD /* ViewForeignShipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewForeignShipsController.h; sourceTree = "<group>"; };
+		F60238D2123D63B200268ADD /* ViewForeignShipsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewForeignShipsController.m; sourceTree = "<group>"; };
 		F603A8BC1177E7FC00BAC73A /* LETableViewCellBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellBody.h; sourceTree = "<group>"; };
 		F603A8BD1177E7FC00BAC73A /* LETableViewCellBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellBody.m; sourceTree = "<group>"; };
 		F603A8ED1177F7F200BAC73A /* LETableViewCellCurrentResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellCurrentResources.h; sourceTree = "<group>"; };
@@ -1247,6 +1253,8 @@
 				F692B7BD121859E700E740C1 /* LEBuildingViewAvailableTrades.m */,
 				F6E5E62A1205CD9C00365AA2 /* LEBuildingViewFleetShips.h */,
 				F6E5E62B1205CD9C00365AA2 /* LEBuildingViewFleetShips.m */,
+				F60238B4123D596800268ADD /* LEBuildingViewForeignShips.h */,
+				F60238B5123D596800268ADD /* LEBuildingViewForeignShips.m */,
 				F6D48576120CD80D00D77FC3 /* LEBuildingViewForeignSpies.h */,
 				F6D48577120CD80D00D77FC3 /* LEBuildingViewForeignSpies.m */,
 				F692B7BF121859F700E740C1 /* LEBuildingViewMyTrades.h */,
@@ -1464,6 +1472,9 @@
 				F6FB45CE11F53D9F00E24EAC /* AssembleGlyphsController.h */,
 				F6FB45CF11F53D9F00E24EAC /* AssembleGlyphsController.m */,
 				F6FB45D011F53D9F00E24EAC /* AssembleGlyphsController.xib */,
+				F6F418FF123B046800F93457 /* AssembleGlyphsControllerV2.h */,
+				F6F41900123B046800F93457 /* AssembleGlyphsControllerV2.m */,
+				F6F41901123B046800F93457 /* AssembleGlyphsControllerV2.xib */,
 				F6CF29DF1210E1F400D4A9AC /* AssignSpyControllerV2.h */,
 				F6CF29E01210E1F400D4A9AC /* AssignSpyControllerV2.m */,
 				F6CF29E11210E1F400D4A9AC /* AssignViewControllerV2.xib */,
@@ -1578,6 +1589,8 @@
 				F6882CFB116EA08A009B624B /* ViewEmpireProfileController.h */,
 				F6882CFC116EA08A009B624B /* ViewEmpireProfileController.m */,
 				F6E4FD42122A916B00E78CBB /* ViewEmpireProfileController.xib */,
+				F60238D1123D63B200268ADD /* ViewForeignShipsController.h */,
+				F60238D2123D63B200268ADD /* ViewForeignShipsController.m */,
 				F6D485B6120CDEA000D77FC3 /* ViewForeignSpiesController.h */,
 				F6D485B7120CDEA000D77FC3 /* ViewForeignSpiesController.m */,
 				F6980ACC117A600E00BD2096 /* ViewMailboxController.h */,
@@ -1624,9 +1637,6 @@
 				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
 				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
-				F6F418FF123B046800F93457 /* AssembleGlyphsControllerV2.h */,
-				F6F41900123B046800F93457 /* AssembleGlyphsControllerV2.m */,
-				F6F41901123B046800F93457 /* AssembleGlyphsControllerV2.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2018,6 +2028,8 @@
 				F64167CD1237A7F1009708A1 /* SBJsonWriter.m in Sources */,
 				F6D97B841238FF7C009EFC9E /* LETableViewCellLabeledIconText.m in Sources */,
 				F6F41902123B046800F93457 /* AssembleGlyphsControllerV2.m in Sources */,
+				F60238B6123D596800268ADD /* LEBuildingViewForeignShips.m in Sources */,
+				F60238D3123D63B200268ADD /* ViewForeignShipsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

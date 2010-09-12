@@ -15,12 +15,14 @@
 
 
 @interface ViewShipsController : LETableViewControllerGrouped <UIActionSheetDelegate> {
+	UISegmentedControl *pageSegmentedControl;
 	SpacePort *spacePort;
 	Ship *ship;
 	NSDate *shipsLastUpdated;
 }
 
 
+@property (nonatomic, retain) UISegmentedControl *pageSegmentedControl;
 @property (nonatomic, retain) SpacePort *spacePort;
 @property (nonatomic, retain) Ship *ship;
 @property (nonatomic, retain) NSDate *shipsLastUpdated;

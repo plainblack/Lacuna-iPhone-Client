@@ -1,26 +1,26 @@
 //
-//  LEBuildingViewAllShips.m
+//  LEBuildingViewForeignShips.m
 //  UniversalClient
 //
-//  Created by Kevin Runde on 7/26/10.
+//  Created by Kevin Runde on 9/12/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
-#import "LEBuildingViewAllShips.h"
+#import "LEBuildingViewForeignShips.h"
 #import "LEMacros.h"
-#import "Util.h";
+#import "Util.h"
 #import "Session.h"
-#import "Ship.h";
+#import "TravellingShip.h";
 
 
-@implementation LEBuildingViewAllShips
+@implementation LEBuildingViewForeignShips
 
 
 @synthesize buildingId;
 @synthesize buildingUrl;
 @synthesize pageNumber;
-@synthesize ships;
-@synthesize numberOfShips;
+@synthesize foreignShips;
+@synthesize numberOfShipsForeign;
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl pageNumber:(NSInteger)inPageNumber {
@@ -38,18 +38,18 @@
 
 - (void)processSuccess {
 	NSDictionary *result = [self.response objectForKey:@"result"];
-	self.numberOfShips = [Util asNumber:[result objectForKey:@"number_of_ships"]];
-	NSMutableArray *shipsData = [result objectForKey:@"ships"];
-	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[shipsData count]];
-	Ship *ship;
+	self.numberOfShipsForeign = [Util asNumber:[result objectForKey:@"number_of_ships"]];
+	NSMutableArray *shipsForeignData = [result objectForKey:@"ships"];
+	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[shipsForeignData count]];
+	TravellingShip *travellingShip;
 	
-	for (NSDictionary *shipData in shipsData) {
-		ship = [[[Ship alloc] init] autorelease];
-		[ship parseData:shipData];
-		[tmp addObject:ship];
+	for (NSDictionary *travellingShipData in shipsForeignData) {
+		travellingShip = [[[TravellingShip alloc] init] autorelease];
+		[travellingShip parseData:travellingShipData];
+		[tmp addObject:travellingShip];
 	}
-	[tmp sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease])];
-	 self.ships = tmp;
+	[tmp sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"dateArrives" ascending:YES] autorelease])];
+	self.foreignShips = tmp;
 }
 
 
@@ -59,14 +59,15 @@
 
 
 - (NSString *)methodName {
-	return @"view_all_ships";
+	return @"view_foreign_ships";
 }
 
 
 - (void)dealloc {
 	self.buildingId = nil;
 	self.buildingUrl = nil;
-	self.ships = nil;
+	self.foreignShips = nil;
+	self.numberOfShipsForeign = nil;
 	[super dealloc];
 }
 

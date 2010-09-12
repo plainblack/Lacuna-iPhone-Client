@@ -24,9 +24,17 @@ typedef enum {
 } ROW;
 
 
+@interface ViewShipsController (PrivateMethods)
+
+- (void)togglePageButtons;
+
+@end
+
+
 @implementation ViewShipsController
 
 
+@synthesize pageSegmentedControl;
 @synthesize spacePort;
 @synthesize ship;
 @synthesize shipsLastUpdated;
@@ -42,6 +50,13 @@ typedef enum {
 	self.navigationItem.title = @"Ships";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
+	self.pageSegmentedControl = [[[UISegmentedControl alloc] initWithItems:_array(UP_ARROW_ICON, DOWN_ARROW_ICON)] autorelease];
+	[self.pageSegmentedControl addTarget:self action:@selector(switchPage) forControlEvents:UIControlEventValueChanged]; 
+	self.pageSegmentedControl.momentary = YES;
+	self.pageSegmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
+	UIBarButtonItem *rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.pageSegmentedControl] autorelease];
+	self.navigationItem.rightBarButtonItem = rightBarButtonItem; 
+	
 	self.sectionHeaders = [NSArray array];
 }
 
@@ -51,7 +66,7 @@ typedef enum {
     [super viewWillAppear:animated];
 	[self.spacePort addObserver:self forKeyPath:@"shipsUpdated" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
 	if (!self.spacePort.ships) {
-		[self.spacePort loadShips];
+		[self.spacePort loadShipsForPage:1];
 	} else {
 		if (self.shipsLastUpdated) {
 			if ([self.shipsLastUpdated compare:self.spacePort.shipsUpdated] == NSOrderedAscending) {
@@ -62,6 +77,8 @@ typedef enum {
 			self.shipsLastUpdated = self.spacePort.shipsUpdated;
 		}
 	}
+
+	[self togglePageButtons];
 }
 
 
@@ -215,6 +232,33 @@ typedef enum {
 
 
 #pragma mark -
+#pragma mark Callback Methods
+
+- (void) switchPage {
+	switch (self.pageSegmentedControl.selectedSegmentIndex) {
+		case 0:
+			[self.spacePort loadForeignShipsForPage:(self.spacePort.foreignShipsPageNumber-1)];
+			break;
+		case 1:
+			[self.spacePort loadForeignShipsForPage:(self.spacePort.foreignShipsPageNumber+1)];
+			break;
+		default:
+			NSLog(@"Invalid switchPage");
+			break;
+	}
+}
+
+
+#pragma mark -
+#pragma mark Private Methods
+
+- (void)togglePageButtons {
+	[self.pageSegmentedControl setEnabled:[self.spacePort hasPreviousForeignShipsPage] forSegmentAtIndex:0];
+	[self.pageSegmentedControl setEnabled:[self.spacePort hasNextForeignShipsPage] forSegmentAtIndex:1];
+}
+
+
+#pragma mark -
 #pragma mark Class Methods
 
 + (ViewShipsController *)create {
@@ -227,6 +271,7 @@ typedef enum {
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ([keyPath isEqual:@"shipsUpdated"]) {
+		[self togglePageButtons];
 		[self.tableView reloadData];
 		self.shipsLastUpdated = self.spacePort.shipsUpdated;
 	}

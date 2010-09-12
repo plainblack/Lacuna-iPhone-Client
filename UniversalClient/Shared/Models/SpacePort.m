@@ -17,7 +17,9 @@
 #import "LEBuildingNameShip.h"
 #import "LEBuildingScuttleShip.h"
 #import "LEBuildingViewShipsTravelling.h"
+#import "LEBuildingViewForeignShips.h"
 #import "ViewTravellingShipsController.h"
+#import "ViewForeignShipsController.h"
 
 
 @implementation SpacePort
@@ -26,10 +28,16 @@
 @synthesize dockedShips;
 @synthesize ships;
 @synthesize shipsUpdated;
+@synthesize shipsPageNumber;
+@synthesize numShips;
 @synthesize travellingShips;
 @synthesize travellingShipsUpdated;
 @synthesize travellingShipsPageNumber;
 @synthesize numTravellingShips;
+@synthesize foreignShips;
+@synthesize foreignShipsUpdated;
+@synthesize foreignShipsPageNumber;
+@synthesize numForeignShips;
 
 
 #pragma mark -
@@ -39,9 +47,13 @@
 	self.dockedShips = nil;
 	self.ships = nil;
 	self.shipsUpdated = nil;
+	self.numShips = nil;
 	self.travellingShips = nil;
 	self.travellingShipsUpdated = nil;
 	self.numTravellingShips = nil;
+	self.foreignShips = nil;
+	self.foreignShipsUpdated = nil;
+	self.numForeignShips = nil;
 	[super dealloc];
 }
 
@@ -77,6 +89,7 @@
 	NSMutableArray *actionRows = [NSMutableArray arrayWithCapacity:1];
 	[actionRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_SHIPS]];
 	[actionRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_TRAVELLING_SHIPS]];
+	[actionRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_FOREIGN_SHIPS]];
 	
 	self.sections = _array(productionSection, _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", actionRows, @"rows"), [self generateHealthSection], [self generateUpgradeSection]);
 }
@@ -89,6 +102,7 @@
 			break;
 		case BUILDING_ROW_VIEW_TRAVELLING_SHIPS:
 		case BUILDING_ROW_VIEW_SHIPS:
+		case BUILDING_ROW_VIEW_FOREIGN_SHIPS:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		default:
@@ -119,6 +133,12 @@
 			viewTravellingShipsCell.textLabel.text = @"View Ships In Transit";
 			cell = viewTravellingShipsCell;
 			break;
+		case BUILDING_ROW_VIEW_FOREIGN_SHIPS:
+			; //DO NOT REMOVE THIS!!
+			LETableViewCellButton *viewForeignShipsCell = [LETableViewCellButton getCellForTableView:tableView];
+			viewForeignShipsCell.textLabel.text = @"View Foreign Ships Incoming";
+			cell = viewForeignShipsCell;
+			break;
 		default:
 			cell = [super tableView:tableView cellForBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex];
 			break;
@@ -142,6 +162,12 @@
 			viewTravellingShipsController.spacePort = self;
 			return viewTravellingShipsController;
 			break;
+		case BUILDING_ROW_VIEW_FOREIGN_SHIPS:
+			; //DO NOT REMOVE
+			ViewForeignShipsController *viewForeignShipsController = [ViewForeignShipsController create];
+			viewForeignShipsController.spacePort = self;
+			return viewForeignShipsController;
+			break;
 		default:
 			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];
 			break;
@@ -152,14 +178,19 @@
 #pragma mark -
 #pragma mark Instance Methods
 
-- (void)loadShips {
-	[[[LEBuildingViewAllShips alloc] initWithCallback:@selector(shipsLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+- (void)loadShipsForPage:(NSInteger)pageNumber {
+	self.shipsPageNumber = pageNumber;
+	[[[LEBuildingViewAllShips alloc] initWithCallback:@selector(shipsLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl pageNumber:pageNumber] autorelease];
 }
 
 
-- (void)loadTravellingShipsForPage:(NSInteger)pageNumber {
-	self.travellingShipsPageNumber = pageNumber;
-	[[[LEBuildingViewShipsTravelling alloc] initWithCallback:@selector(travellingShipsLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl pageNumber:pageNumber] autorelease];
+- (bool)hasPreviousShipsPage {
+	return (self.shipsPageNumber > 1);
+}
+
+
+- (bool)hasNextShipsPage {
+	return (self.shipsPageNumber < [Util numPagesForCount:_intv(self.numShips)]);
 }
 
 
@@ -173,6 +204,12 @@
 }
 
 
+- (void)loadTravellingShipsForPage:(NSInteger)pageNumber {
+	self.travellingShipsPageNumber = pageNumber;
+	[[[LEBuildingViewShipsTravelling alloc] initWithCallback:@selector(travellingShipsLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl pageNumber:pageNumber] autorelease];
+}
+
+
 - (bool)hasPreviousTravellingShipsPage {
 	return (self.travellingShipsPageNumber > 1);
 }
@@ -183,20 +220,29 @@
 }
 
 
+- (void)loadForeignShipsForPage:(NSInteger)pageNumber {
+	self.foreignShipsPageNumber = pageNumber;
+	[[[LEBuildingViewForeignShips alloc] initWithCallback:@selector(foreignShipsLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl pageNumber:pageNumber] autorelease];
+}
+
+
+- (bool)hasPreviousForeignShipsPage {
+	return (self.foreignShipsPageNumber > 1);
+}
+
+
+- (bool)hasNextForeignShipsPage {
+	return (self.foreignShipsPageNumber < [Util numPagesForCount:_intv(self.numForeignShips)]);
+}
+
+
 #pragma mark -
 #pragma mark Callback Methods
 
 - (id)shipsLoaded:(LEBuildingViewAllShips *)request {
 	self.ships = request.ships;
+	self.numShips = request.numberOfShips;
 	self.shipsUpdated = [NSDate date];
-	return nil;
-}
-
-
-- (id)travellingShipsLoaded:(LEBuildingViewShipsTravelling *)request {
-	self.travellingShips = request.travellingShips;
-	self.numTravellingShips = request.numberOfShipsTravelling;
-	self.travellingShipsUpdated = [NSDate date];
 	return nil;
 }
 
@@ -227,6 +273,22 @@
 	
 	renamedShip.name = request.name;
 	self.shipsUpdated = [NSDate date];
+	return nil;
+}
+
+
+- (id)travellingShipsLoaded:(LEBuildingViewShipsTravelling *)request {
+	self.travellingShips = request.travellingShips;
+	self.numTravellingShips = request.numberOfShipsTravelling;
+	self.travellingShipsUpdated = [NSDate date];
+	return nil;
+}
+
+
+- (id)foreignShipsLoaded:(LEBuildingViewForeignShips *)request {
+	self.foreignShips = request.foreignShips;
+	self.numForeignShips = request.numberOfShipsForeign;
+	self.foreignShipsUpdated = [NSDate date];
 	return nil;
 }
 
