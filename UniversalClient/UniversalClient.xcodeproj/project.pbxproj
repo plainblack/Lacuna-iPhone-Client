@@ -172,7 +172,7 @@
 		F6AC4A2E116C0F9B001B967A /* LERequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC4A13116C0F9B001B967A /* LERequest.m */; };
 		F6AC4A2F116C0F9B001B967A /* LESpeciesCreate.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC4A15116C0F9B001B967A /* LESpeciesCreate.m */; };
 		F6AC4A30116C0F9B001B967A /* LESpeciesSetHuman.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC4A17116C0F9B001B967A /* LESpeciesSetHuman.m */; };
-		F6AC4A31116C0F9B001B967A /* LEUpgradeBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC4A19116C0F9B001B967A /* LEUpgradeBuilding.m */; };
+		F6AC4A31116C0F9B001B967A /* LEBuildingUpgrade.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC4A19116C0F9B001B967A /* LEBuildingUpgrade.m */; };
 		F6AC4A36116C0FAE001B967A /* Mailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC4A33116C0FAE001B967A /* Mailbox.m */; };
 		F6AC4A37116C0FAE001B967A /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC4A35116C0FAE001B967A /* Session.m */; };
 		F6AC4A50116C106E001B967A /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC4A4F116C106E001B967A /* KeychainItemWrapper.m */; };
@@ -637,8 +637,8 @@
 		F6AC4A15116C0F9B001B967A /* LESpeciesCreate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LESpeciesCreate.m; sourceTree = "<group>"; };
 		F6AC4A16116C0F9B001B967A /* LESpeciesSetHuman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LESpeciesSetHuman.h; sourceTree = "<group>"; };
 		F6AC4A17116C0F9B001B967A /* LESpeciesSetHuman.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LESpeciesSetHuman.m; sourceTree = "<group>"; };
-		F6AC4A18116C0F9B001B967A /* LEUpgradeBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEUpgradeBuilding.h; sourceTree = "<group>"; };
-		F6AC4A19116C0F9B001B967A /* LEUpgradeBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEUpgradeBuilding.m; sourceTree = "<group>"; };
+		F6AC4A18116C0F9B001B967A /* LEBuildingUpgrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingUpgrade.h; sourceTree = "<group>"; };
+		F6AC4A19116C0F9B001B967A /* LEBuildingUpgrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingUpgrade.m; sourceTree = "<group>"; };
 		F6AC4A32116C0FAE001B967A /* Mailbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mailbox.h; sourceTree = "<group>"; };
 		F6AC4A33116C0FAE001B967A /* Mailbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mailbox.m; sourceTree = "<group>"; };
 		F6AC4A34116C0FAE001B967A /* Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Session.h; sourceTree = "<group>"; };
@@ -1364,8 +1364,8 @@
 				F6B215A81232E4F900531EEE /* LESpeciesViewStats.m */,
 				F6F5240A122C5ED5004E428A /* LEStatsCredits.h */,
 				F6F5240B122C5ED5004E428A /* LEStatsCredits.m */,
-				F6AC4A18116C0F9B001B967A /* LEUpgradeBuilding.h */,
-				F6AC4A19116C0F9B001B967A /* LEUpgradeBuilding.m */,
+				F6AC4A18116C0F9B001B967A /* LEBuildingUpgrade.h */,
+				F6AC4A19116C0F9B001B967A /* LEBuildingUpgrade.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -1789,7 +1789,7 @@
 				F6AC4A2E116C0F9B001B967A /* LERequest.m in Sources */,
 				F6AC4A2F116C0F9B001B967A /* LESpeciesCreate.m in Sources */,
 				F6AC4A30116C0F9B001B967A /* LESpeciesSetHuman.m in Sources */,
-				F6AC4A31116C0F9B001B967A /* LEUpgradeBuilding.m in Sources */,
+				F6AC4A31116C0F9B001B967A /* LEBuildingUpgrade.m in Sources */,
 				F6AC4A36116C0FAE001B967A /* Mailbox.m in Sources */,
 				F6AC4A37116C0FAE001B967A /* Session.m in Sources */,
 				F6AC4A50116C106E001B967A /* KeychainItemWrapper.m in Sources */,
