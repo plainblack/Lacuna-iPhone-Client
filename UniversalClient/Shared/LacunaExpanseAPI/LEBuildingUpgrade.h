@@ -10,7 +10,7 @@
 #import "LERequest.h"
 
 
-@interface LEUpgradeBuilding : LERequest {
+@interface LEBuildingUpgrade : LERequest {
 	NSString *buildingId;
 	NSString *buildingUrl;
 	NSDictionary *buildingData;

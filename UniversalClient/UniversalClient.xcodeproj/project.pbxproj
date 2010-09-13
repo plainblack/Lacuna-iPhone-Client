@@ -1254,6 +1254,8 @@
 				F6A9C5941184A3B6001F0D9C /* LEBuildingTrainSpy.m */,
 				F6E8D56C1223E7F7001CD21D /* LEBuildingUpdateAlliance.h */,
 				F6E8D56D1223E7F7001CD21D /* LEBuildingUpdateAlliance.m */,
+				F6AC4A18116C0F9B001B967A /* LEBuildingUpgrade.h */,
+				F6AC4A19116C0F9B001B967A /* LEBuildingUpgrade.m */,
 				F6AC49FE116C0F9B001B967A /* LEBuildingView.h */,
 				F6AC49FF116C0F9B001B967A /* LEBuildingView.m */,
 				F6EF714D11FE7D1C00A93226 /* LEBuildingViewAllShips.h */,
@@ -1364,8 +1366,6 @@
 				F6B215A81232E4F900531EEE /* LESpeciesViewStats.m */,
 				F6F5240A122C5ED5004E428A /* LEStatsCredits.h */,
 				F6F5240B122C5ED5004E428A /* LEStatsCredits.m */,
-				F6AC4A18116C0F9B001B967A /* LEBuildingUpgrade.h */,
-				F6AC4A19116C0F9B001B967A /* LEBuildingUpgrade.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
