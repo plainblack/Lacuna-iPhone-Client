@@ -126,7 +126,6 @@
 #pragma mark Instance Methods
 
 - (void)loadPlans {
-	NSLog(@"Plans loading");
 	[[[LEBuildingViewPlans alloc] initWithCallback:@selector(plansLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
 }
 
@@ -142,7 +141,6 @@
 	}
 	
 	self.plans = tmpPlans;
-	NSLog(@"Plans loaded");
 	return nil;
 }
 
