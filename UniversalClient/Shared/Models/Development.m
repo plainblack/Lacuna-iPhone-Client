@@ -9,6 +9,7 @@
 #import "Development.h"
 #import	"LEMacros.h"
 #import "Util.h"
+#import "LEBuildingUpgrade.h"
 #import "LETableViewCellButton.h"
 #import "LETableViewCellLabeledText.h"
 #import "LEBuildingSubsidizeBuildQueue.h"
@@ -139,5 +140,16 @@
 	return nil;
 }
 
+
+- (id)buildingUpgrading:(LEBuildingUpgrade *)request {
+	[super buildingUpgrading:request];
+	NSDictionary *pendingBuildDict = [request.buildingData objectForKey:@"pending_build"]; 
+	if ( pendingBuildDict && ((id)pendingBuildDict != [NSNull null]) ) {
+		[self.buildQueue addObject:_dict(self.id, @"building_id", self.name, @"name", [self.level decimalNumberByAdding:[NSDecimalNumber one]], @"to_level", [pendingBuildDict objectForKey:@"seconds_remaining"], @"seconds_remaining", self.x, @"x", self.y, @"y")];
+		[self generateSections];
+	}
+	self.needsRefresh = YES;
+	return nil;
+}
 
 @end

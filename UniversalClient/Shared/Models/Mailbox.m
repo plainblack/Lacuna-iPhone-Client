@@ -86,10 +86,8 @@
 	NSString *messageId = [Util idFromDict:messageHeader named:@"id"];
 	if (self.messageDetails) {
 		NSString *messageDetailId = [Util idFromDict:self.messageDetails named:@"id"];
-		NSLog(@"Has Cached Message Details, newMessageId: %@, cachedMessageId: %@", messageId, messageDetailId);
 		if (![messageDetailId isEqualToString:messageId]) {
 			self.messageDetails = nil;
-			NSLog(@"Old message details. Clearing");
 		}
 	}
 	[[[LEInboxRead alloc] initWithCallback:@selector(messageDetailsLoaded:) target:self messageId:messageId] autorelease];

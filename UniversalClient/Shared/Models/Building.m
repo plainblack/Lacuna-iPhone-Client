@@ -427,7 +427,7 @@
 - (UIViewController *)tableView:(UITableView *)tableView didSelectBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex {
 	switch (buildingRow) {
 		case BUILDING_ROW_UPGRADE_BUTTON:
-			[[[LEBuildingUpgrade alloc] initWithCallback:@selector(upgradedBuilding:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+			[[[LEBuildingUpgrade alloc] initWithCallback:@selector(buildingUpgrading:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
 			break;
 		case BUILDING_ROW_DEMOLISH_BUTTON:
 			[[[LEBuildingDemolish alloc] initWithCallback:@selector(buildingDemolished:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
@@ -470,7 +470,7 @@
 }
 
 
-- (id)upgradedBuilding:(LEBuildingUpgrade *)request {
+- (id)buildingUpgrading:(LEBuildingUpgrade *)request {
 	NSDictionary *pendingBuildDict = [request.buildingData objectForKey:@"pending_build"]; 
 	if ( pendingBuildDict && ((id)pendingBuildDict != [NSNull null]) ) {
 		for (NSMutableDictionary *section in self.sections) {

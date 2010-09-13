@@ -11,7 +11,7 @@
 #import "Util.h"
 #import "LEViewSectionTab.h"
 #import "LEBuildingView.h"
-#import "LEUpgradeBuilding.h"
+#import "LEBuildingUpgrade.h"
 #import "LETableViewCellButton.h"
 #import "LETableViewCellBuildingStats.h"
 #import "LETableViewCellCost.h"

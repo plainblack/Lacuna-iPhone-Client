@@ -14,6 +14,9 @@
 #import "BuildingUtil.h"
 
 
+@class LEBuildingUpgrade;
+
+
 @interface Building : NSObject {
 	NSString *id;
 	NSString *buildingUrl;
@@ -87,6 +90,6 @@
 - (UIViewController *)tableView:(UITableView *)tableView didSelectBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex;
 - (BOOL)isConfirmCell:(NSIndexPath *)indexPath;
 - (NSString *)confirmMessage:(NSIndexPath *)indexPath;
-
+- (id)buildingUpgrading:(LEBuildingUpgrade *)request;
 	
 @end

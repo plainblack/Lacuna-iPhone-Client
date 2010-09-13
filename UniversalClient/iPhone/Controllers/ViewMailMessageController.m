@@ -357,7 +357,6 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ( [keyPath isEqual:@"messageDetails"]) {
-		NSLog(@"Message Details Loaded");
 		self.navigationItem.title = [self.mailbox.messageDetails objectForKey:@"subject"];
 		self->attachements = [self.mailbox.messageDetails objectForKey:@"attachments"];
 		if (isNotNull(self->attachements)) {
