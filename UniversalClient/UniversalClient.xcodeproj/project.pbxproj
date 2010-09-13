@@ -2067,6 +2067,7 @@
 				PRODUCT_NAME = UniversalClient;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C1035F83-69A0-4344-B8D3-48812CFFC03A";
 				SDKROOT = iphoneos4.1;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -2084,6 +2085,7 @@
 				PRODUCT_NAME = UniversalClient;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A1CCBBEC-E810-4736-AFD9-10A03CCDF834";
 				SDKROOT = iphoneos4.1;
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -2151,6 +2153,7 @@
 				PRODUCT_NAME = UniversalClient;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B59771EA-D525-4E2E-A034-5654074B6B52";
 				SDKROOT = iphoneos4.1;
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Distribution;

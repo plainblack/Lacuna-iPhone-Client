@@ -137,7 +137,7 @@
 		 * ENERGY
 		 */
 		//TOTAL
-		cell.energyTotalLabel = [[[UILabel alloc] initWithFrame:CGRectMake(7, 10, 74, 20)] autorelease];
+		cell.energyTotalLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 10, 74, 20)] autorelease];
 		cell.energyTotalLabel.backgroundColor = [UIColor clearColor];
 		cell.energyTotalLabel.textAlignment = UITextAlignmentRight;
 		cell.energyTotalLabel.font = TEXT_SMALL_FONT;
@@ -145,25 +145,25 @@
 		cell.energyTotalLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.energyTotalLabel];
 		//ICON
-		UIImageView *tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(83, 9, 22, 22)] autorelease];
+		UIImageView *tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(78, 9, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
 		tmpImageView.image = ENERGY_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		//PER HOUR
-		cell.energyPerHourLabel = [[[UILabel alloc] initWithFrame:CGRectMake(108, 10, 45, 20)] autorelease];
+		cell.energyPerHourLabel = [[[UILabel alloc] initWithFrame:CGRectMake(101, 10, 45, 20)] autorelease];
 		cell.energyPerHourLabel.backgroundColor = [UIColor clearColor];
 		cell.energyPerHourLabel.textAlignment = UITextAlignmentLeft;
 		cell.energyPerHourLabel.font = TEXT_SMALL_FONT;
 		cell.energyPerHourLabel.textColor = TEXT_SMALL_COLOR;
-		cell.energyPerHourLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+		cell.energyPerHourLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.energyPerHourLabel];
 		
 		/*
 		 * FOOD
 		 */
 		//TOTAL
-		cell.foodTotalLabel = [[[UILabel alloc] initWithFrame:CGRectMake(162, 10, 74, 20)] autorelease];
+		cell.foodTotalLabel = [[[UILabel alloc] initWithFrame:CGRectMake(165, 10, 74, 20)] autorelease];
 		cell.foodTotalLabel.backgroundColor = [UIColor clearColor];
 		cell.foodTotalLabel.textAlignment = UITextAlignmentRight;
 		cell.foodTotalLabel.font = TEXT_SMALL_FONT;
@@ -171,13 +171,13 @@
 		cell.foodTotalLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.foodTotalLabel];
 		//ICON
-		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(239, 9, 22, 22)] autorelease];
+		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(242, 9, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
 		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
 		tmpImageView.image = FOOD_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		//PER HOUR
-		cell.foodPerHourLabel = [[[UILabel alloc] initWithFrame:CGRectMake(264, 10, 45, 20)] autorelease];
+		cell.foodPerHourLabel = [[[UILabel alloc] initWithFrame:CGRectMake(267, 10, 45, 20)] autorelease];
 		cell.foodPerHourLabel.backgroundColor = [UIColor clearColor];
 		cell.foodPerHourLabel.textAlignment = UITextAlignmentLeft;
 		cell.foodPerHourLabel.font = TEXT_SMALL_FONT;
@@ -189,7 +189,7 @@
 		 * HAPPINESS
 		 */
 		//TOTAL
-		cell.happinessTotalLabel = [[[UILabel alloc] initWithFrame:CGRectMake(7, 39, 74, 20)] autorelease];
+		cell.happinessTotalLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 39, 74, 20)] autorelease];
 		cell.happinessTotalLabel.backgroundColor = [UIColor clearColor];
 		cell.happinessTotalLabel.textAlignment = UITextAlignmentRight;
 		cell.happinessTotalLabel.font = TEXT_SMALL_FONT;
@@ -197,39 +197,39 @@
 		cell.happinessTotalLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.happinessTotalLabel];
 		//ICON
-		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(83, 38, 22, 22)] autorelease];
+		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(78, 38, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
 		tmpImageView.image = HAPPINESS_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		//PER HOUR
-		cell.happinessPerHourLabel = [[[UILabel alloc] initWithFrame:CGRectMake(108, 39, 45, 20)] autorelease];
+		cell.happinessPerHourLabel = [[[UILabel alloc] initWithFrame:CGRectMake(101, 39, 45, 20)] autorelease];
 		cell.happinessPerHourLabel.backgroundColor = [UIColor clearColor];
 		cell.happinessPerHourLabel.textAlignment = UITextAlignmentLeft;
 		cell.happinessPerHourLabel.font = TEXT_SMALL_FONT;
 		cell.happinessPerHourLabel.textColor = TEXT_SMALL_COLOR;
-		cell.happinessPerHourLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+		cell.happinessPerHourLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.happinessPerHourLabel];
 		
 		/*
 		 * ORE
 		 */
 		//TOTAL
-		cell.oreTotalLabel = [[[UILabel alloc] initWithFrame:CGRectMake(162, 39, 74, 20)] autorelease];
+		cell.oreTotalLabel = [[[UILabel alloc] initWithFrame:CGRectMake(165, 39, 74, 20)] autorelease];
 		cell.oreTotalLabel.backgroundColor = [UIColor clearColor];
 		cell.oreTotalLabel.textAlignment = UITextAlignmentRight;
 		cell.oreTotalLabel.font = TEXT_SMALL_FONT;
 		cell.oreTotalLabel.textColor = TEXT_SMALL_COLOR;
-		cell.oreTotalLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
+		cell.oreTotalLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.oreTotalLabel];
 		//ICON
-		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(239, 38, 22, 22)] autorelease];
+		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(242, 38, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
 		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
 		tmpImageView.image = ORE_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		//PER HOUR
-		cell.orePerHourLabel = [[[UILabel alloc] initWithFrame:CGRectMake(264, 39, 45, 20)] autorelease];
+		cell.orePerHourLabel = [[[UILabel alloc] initWithFrame:CGRectMake(267, 39, 45, 20)] autorelease];
 		cell.orePerHourLabel.backgroundColor = [UIColor clearColor];
 		cell.orePerHourLabel.textAlignment = UITextAlignmentLeft;
 		cell.orePerHourLabel.font = TEXT_SMALL_FONT;
@@ -241,7 +241,7 @@
 		 * WASTE
 		 */
 		//TOTAL
-		cell.wasteTotalLabel = [[[UILabel alloc] initWithFrame:CGRectMake(7, 69, 74, 20)] autorelease];
+		cell.wasteTotalLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 69, 74, 20)] autorelease];
 		cell.wasteTotalLabel.backgroundColor = [UIColor clearColor];
 		cell.wasteTotalLabel.textAlignment = UITextAlignmentRight;
 		cell.wasteTotalLabel.font = TEXT_SMALL_FONT;
@@ -249,39 +249,39 @@
 		cell.wasteTotalLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.wasteTotalLabel];
 		//ICON
-		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(83, 68, 22, 22)] autorelease];
+		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(78, 68, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
 		tmpImageView.image = WASTE_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		//PER HOUR
-		cell.wastePerHourLabel = [[[UILabel alloc] initWithFrame:CGRectMake(108, 69, 45, 20)] autorelease];
+		cell.wastePerHourLabel = [[[UILabel alloc] initWithFrame:CGRectMake(101, 69, 45, 20)] autorelease];
 		cell.wastePerHourLabel.backgroundColor = [UIColor clearColor];
 		cell.wastePerHourLabel.textAlignment = UITextAlignmentLeft;
 		cell.wastePerHourLabel.font = TEXT_SMALL_FONT;
 		cell.wastePerHourLabel.textColor = TEXT_SMALL_COLOR;
-		cell.wastePerHourLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+		cell.wastePerHourLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.wastePerHourLabel];
 		
 		/*
 		 * WATER
 		 */
 		//TOTAL
-		cell.waterTotalLabel = [[[UILabel alloc] initWithFrame:CGRectMake(162, 69, 74, 20)] autorelease];
+		cell.waterTotalLabel = [[[UILabel alloc] initWithFrame:CGRectMake(165, 69, 74, 20)] autorelease];
 		cell.waterTotalLabel.backgroundColor = [UIColor clearColor];
 		cell.waterTotalLabel.textAlignment = UITextAlignmentRight;
 		cell.waterTotalLabel.font = TEXT_SMALL_FONT;
 		cell.waterTotalLabel.textColor = TEXT_SMALL_COLOR;
-		cell.waterTotalLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
+		cell.waterTotalLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.waterTotalLabel];
 		//ICON
-		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(239, 68, 22, 22)] autorelease];
+		tmpImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(242, 68, 22, 22)] autorelease];
 		tmpImageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
 		tmpImageView.contentMode = UIViewContentModeScaleAspectFit;
 		tmpImageView.image = WATER_ICON;
 		[cell.contentView addSubview:tmpImageView];
 		//PER HOUR
-		cell.waterPerHourLabel = [[[UILabel alloc] initWithFrame:CGRectMake(264, 69, 45, 20)] autorelease];
+		cell.waterPerHourLabel = [[[UILabel alloc] initWithFrame:CGRectMake(267, 69, 45, 20)] autorelease];
 		cell.waterPerHourLabel.backgroundColor = [UIColor clearColor];
 		cell.waterPerHourLabel.textAlignment = UITextAlignmentLeft;
 		cell.waterPerHourLabel.font = TEXT_SMALL_FONT;
