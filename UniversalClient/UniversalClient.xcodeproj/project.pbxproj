@@ -22,6 +22,8 @@
 		F60238D3123D63B200268ADD /* ViewForeignShipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F60238D2123D63B200268ADD /* ViewForeignShipsController.m */; };
 		F6023996123D7CD900268ADD /* LETableViewCellForeignIncomingShip.m in Resources */ = {isa = PBXBuildFile; fileRef = F6023995123D7CD900268ADD /* LETableViewCellForeignIncomingShip.m */; };
 		F60239B0123D7F3100268ADD /* LETableViewCellForeignIncomingShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6023995123D7CD900268ADD /* LETableViewCellForeignIncomingShip.m */; };
+		F6023A64123D920F00268ADD /* ViewPlansController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6023A63123D920F00268ADD /* ViewPlansController.m */; };
+		F6023A67123D922200268ADD /* LEBuildingViewPlans.m in Sources */ = {isa = PBXBuildFile; fileRef = F6023A66123D922200268ADD /* LEBuildingViewPlans.m */; };
 		F603A8BE1177E7FC00BAC73A /* LETableViewCellBody.m in Sources */ = {isa = PBXBuildFile; fileRef = F603A8BD1177E7FC00BAC73A /* LETableViewCellBody.m */; };
 		F603A8EF1177F7F200BAC73A /* LETableViewCellCurrentResources.m in Sources */ = {isa = PBXBuildFile; fileRef = F603A8EE1177F7F200BAC73A /* LETableViewCellCurrentResources.m */; };
 		F603A91911780A0400BAC73A /* ViewBodyMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = F603A91811780A0400BAC73A /* ViewBodyMapController.m */; };
@@ -347,6 +349,10 @@
 		F60238D2123D63B200268ADD /* ViewForeignShipsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewForeignShipsController.m; sourceTree = "<group>"; };
 		F6023994123D7CD900268ADD /* LETableViewCellForeignIncomingShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellForeignIncomingShip.h; sourceTree = "<group>"; };
 		F6023995123D7CD900268ADD /* LETableViewCellForeignIncomingShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellForeignIncomingShip.m; sourceTree = "<group>"; };
+		F6023A62123D920F00268ADD /* ViewPlansController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewPlansController.h; sourceTree = "<group>"; };
+		F6023A63123D920F00268ADD /* ViewPlansController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewPlansController.m; sourceTree = "<group>"; };
+		F6023A65123D922200268ADD /* LEBuildingViewPlans.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewPlans.h; sourceTree = "<group>"; };
+		F6023A66123D922200268ADD /* LEBuildingViewPlans.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewPlans.m; sourceTree = "<group>"; };
 		F603A8BC1177E7FC00BAC73A /* LETableViewCellBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellBody.h; sourceTree = "<group>"; };
 		F603A8BD1177E7FC00BAC73A /* LETableViewCellBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellBody.m; sourceTree = "<group>"; };
 		F603A8ED1177F7F200BAC73A /* LETableViewCellCurrentResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellCurrentResources.h; sourceTree = "<group>"; };
@@ -1264,6 +1270,8 @@
 				F692B7C0121859F700E740C1 /* LEBuildingViewMyTrades.m */,
 				F6864F9C1183A3FB009826A7 /* LEBuildingViewNews.h */,
 				F6864F9D1183A3FB009826A7 /* LEBuildingViewNews.m */,
+				F6023A65123D922200268ADD /* LEBuildingViewPlans.h */,
+				F6023A66123D922200268ADD /* LEBuildingViewPlans.m */,
 				F6E5E5DC1205C08C00365AA2 /* LEBuildingViewPlatforms.h */,
 				F6E5E5DD1205C08C00365AA2 /* LEBuildingViewPlatforms.m */,
 				F65DC35F11EE4E2E00A0A782 /* LEBuildingViewPrisoners.h */,
@@ -1613,6 +1621,8 @@
 				F6864F9A1183A131009826A7 /* ViewNetwork19NewsController.m */,
 				F6DF424E12288EB600A526FD /* ViewPendingInvitesController.h */,
 				F6DF424F12288EB600A526FD /* ViewPendingInvitesController.m */,
+				F6023A62123D920F00268ADD /* ViewPlansController.h */,
+				F6023A63123D920F00268ADD /* ViewPlansController.m */,
 				F65DC36C11EE533500A0A782 /* ViewPrisonersController.h */,
 				F65DC36D11EE533500A0A782 /* ViewPrisonersController.m */,
 				F61F6759120515410007427A /* ViewProbedStarsController.h */,
@@ -2032,6 +2042,8 @@
 				F6F41902123B046800F93457 /* AssembleGlyphsControllerV2.m in Sources */,
 				F60238B6123D596800268ADD /* LEBuildingViewForeignShips.m in Sources */,
 				F60238D3123D63B200268ADD /* ViewForeignShipsController.m in Sources */,
+				F6023A64123D920F00268ADD /* ViewPlansController.m in Sources */,
+				F6023A67123D922200268ADD /* LEBuildingViewPlans.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

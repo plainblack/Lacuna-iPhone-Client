@@ -11,13 +11,18 @@
 #import "Util.h"
 #import "Session.h"
 #import "BuildingUtil.h"
+#import "Plan.h"
+#import "LEBuildingViewPlans.h"
+#import "LETableViewCellButton.h"
 #import "LETableViewCellLabeledIconText.h"
+#import "ViewPlansController.h"
 
 
 @implementation PlanetaryCommand
 
 
 @synthesize nextColonyCost;
+@synthesize plans;
 
 
 #pragma mark -
@@ -25,6 +30,7 @@
 
 - (void)dealloc {
 	self.nextColonyCost = nil;
+	self.plans = nil;
 	[super dealloc];
 }
 
@@ -38,12 +44,15 @@
 
 
 - (void)generateSections {
-	NSMutableDictionary *nextColonySection = _dict(
-												   [NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type",
+	NSMutableDictionary *nextColonySection = _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_NEXT_COLONY], @"type",
 												   @"Next Colony", @"name",
 												   _array([NSDecimalNumber numberWithInt:BUILDING_ROW_NEXT_COLONY_COST], [NSDecimalNumber numberWithInt:BUILDING_ROW_CURRENT_HAPPINESS]), @"rows");
 	
-	self.sections = _array([self generateProductionSection], nextColonySection, [self generateHealthSection], [self generateUpgradeSection]);
+	NSMutableDictionary *actions = _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type",
+												   @"Actions", @"name",
+												   _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_PLANS]), @"rows");
+	
+	self.sections = _array([self generateProductionSection], actions, nextColonySection, [self generateHealthSection], [self generateUpgradeSection]);
 }
 
 
@@ -52,6 +61,9 @@
 		case BUILDING_ROW_NEXT_COLONY_COST:
 		case BUILDING_ROW_CURRENT_HAPPINESS:
 			return [LETableViewCellLabeledIconText getHeightForTableView:tableView];
+			break;
+		case BUILDING_ROW_VIEW_PLANS:
+			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		default:
 			return [super tableView:tableView heightForBuildingRow:buildingRow];
@@ -80,12 +92,58 @@
 			currentHappinessCell.content.text = [Util prettyNSDecimalNumber:session.body.happiness.current];
 			cell = currentHappinessCell;
 			break;
+		case BUILDING_ROW_VIEW_PLANS:
+			; //DO NOT REMOVE
+			LETableViewCellButton *viewPlansCell = [LETableViewCellButton getCellForTableView:tableView];
+			viewPlansCell.textLabel.text = @"View Plans";
+			cell = viewPlansCell;
+			break;
 		default:
 			cell = [super tableView:tableView cellForBuildingRow:buildingRow rowIndex:rowIndex];
 			break;
 	}
 	
 	return cell;
+}
+
+
+- (UIViewController *)tableView:(UITableView *)tableView didSelectBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex {
+	switch (buildingRow) {
+		case BUILDING_ROW_VIEW_PLANS:
+			; //DO NOT REMOVE
+			ViewPlansController *viewPlansController = [ViewPlansController create];
+			viewPlansController.planetaryCommand = self;
+			return viewPlansController;
+			break;
+		default:
+			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];
+			break;
+	}
+}
+
+
+#pragma mark -
+#pragma mark Instance Methods
+
+- (void)loadPlans {
+	NSLog(@"Plans loading");
+	[[[LEBuildingViewPlans alloc] initWithCallback:@selector(plansLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+}
+
+#pragma mark -
+#pragma mark Callback Methods
+
+- (id)plansLoaded:(LEBuildingViewPlans *)request {
+	NSMutableArray *tmpPlans = [NSMutableArray arrayWithCapacity:[request.plans count]];
+	for (NSDictionary *planData in request.plans) {
+		Plan *plan = [[[Plan alloc] init] autorelease];
+		[plan parseData:planData];
+		[tmpPlans addObject:plan];
+	}
+	
+	self.plans = tmpPlans;
+	NSLog(@"Plans loaded");
+	return nil;
 }
 
 

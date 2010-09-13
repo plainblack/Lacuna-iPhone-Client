@@ -12,10 +12,15 @@
 
 @interface PlanetaryCommand : Building {
 	NSDecimalNumber *nextColonyCost;
+	NSMutableArray *plans;
 }
 
 
 @property (nonatomic, retain) NSDecimalNumber *nextColonyCost;
+@property (nonatomic, retain) NSMutableArray *plans;
+
+
+- (void)loadPlans;
 
 
 @end

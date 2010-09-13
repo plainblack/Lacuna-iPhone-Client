@@ -345,6 +345,9 @@ typedef enum {
 		case SERVER_SELECT_REASON_LOGIN:
 			self.selectedServer = server;
 			[self.navigationController popViewControllerAnimated:YES];
+			if ([self.empireNameCell.textField.text length] > 0 && [self.passwordCell.textField.text length] > 0) {
+				[self doLogin];
+			}
 			break;
 		default:
 			break;

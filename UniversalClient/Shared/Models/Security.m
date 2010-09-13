@@ -196,6 +196,7 @@
 	return nil;
 }
 
+
 - (id)foreignSpiesLoaded:(LEBuildingViewForeignSpies *)request {
 	self.foreignSpies = request.foreignSpies;
 	self.numForeignSpy = request.numberForeignSpies;
