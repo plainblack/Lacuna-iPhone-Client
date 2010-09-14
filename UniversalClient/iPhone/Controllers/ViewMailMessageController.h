@@ -20,6 +20,8 @@
 	BOOL isObserving;
 	NSDictionary *attachements;
 	BOOL hasAttachements;
+	BOOL isArchiving;
+	BOOL isResending;
 }
 
 
@@ -29,7 +31,10 @@
 
 
 - (IBAction)archiveMessage;
+- (IBAction)resendMessage;
 - (IBAction)replyToMessage;
+- (IBAction)forwardMessage;
+- (IBAction)newMessage;
 
 
 + (ViewMailMessageController *)create;

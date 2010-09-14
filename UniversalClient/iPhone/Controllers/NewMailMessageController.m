@@ -37,6 +37,7 @@ typedef enum {
 @synthesize subjectCell;
 @synthesize messageCell;
 @synthesize replyToMessage;
+@synthesize forwardMessage;
 
 
 #pragma mark -
@@ -66,19 +67,25 @@ typedef enum {
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	if (replyToMessage) {
+	if (self.replyToMessage) {
 		self.navigationItem.title = @"Reply";
 		self.toCell.textField.text = [replyToMessage objectForKey:@"from"];
-		self.subjectCell.textField.text = [NSString stringWithFormat:@"RE: %@", [replyToMessage objectForKey:@"subject"]];
-		self.messageCell.textView.text = [NSString stringWithFormat:@"\nIn reply to:\n%@", [replyToMessage objectForKey:@"body"]];
+		self.subjectCell.textField.text = [NSString stringWithFormat:@"RE: %@", [self.replyToMessage objectForKey:@"subject"]];
+		self.messageCell.textView.text = [NSString stringWithFormat:@"\nIn reply to:\n%@", [self.replyToMessage objectForKey:@"body"]];
+	} else if (self.forwardMessage) {
+		self.navigationItem.title = @"Forward";
+		self.subjectCell.textField.text = [NSString stringWithFormat:@"FWD: %@", [self.forwardMessage objectForKey:@"subject"]];
+		self.messageCell.textView.text = [NSString stringWithFormat:@"\nBegin forwarded message:\n%@", [self.forwardMessage objectForKey:@"body"]];
 	}
 }
 
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
-	if (replyToMessage) {
+	if (self.replyToMessage) {
 		[self.messageCell becomeFirstResponder];
+		self.messageCell.textView.selectedRange = NSRangeZero;
+	} else if (self.forwardMessage) {
 		self.messageCell.textView.selectedRange = NSRangeZero;
 	} else {
 		[self.toCell becomeFirstResponder];
@@ -219,6 +226,7 @@ typedef enum {
 	self.subjectCell = nil;
 	self.messageCell = nil;
 	self.replyToMessage = nil;
+	self.forwardMessage = nil;
     [super dealloc];
 }
 
@@ -259,8 +267,10 @@ typedef enum {
 	
 	NSDictionary *options;
 	
-	if (replyToMessage) {
-		options = [NSDictionary dictionaryWithObject:[replyToMessage objectForKey:@"id"] forKey:@"in_reply_to"];
+	if (self.replyToMessage) {
+		options = [NSDictionary dictionaryWithObject:[self.replyToMessage objectForKey:@"id"] forKey:@"in_reply_to"];
+	} else if (self.forwardMessage) {
+		options = [NSDictionary dictionaryWithObject:[self.forwardMessage objectForKey:@"id"] forKey:@"forward"];
 	} else {
 		options = [NSDictionary dictionary];
 	}

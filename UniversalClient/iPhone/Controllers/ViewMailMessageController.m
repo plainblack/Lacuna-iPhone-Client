@@ -22,6 +22,12 @@
 #import "WebPageController.h"
 
 
+typedef enum {
+	REPLY_TO_BUTTON_INDEX,
+	FORWARD_BUTTON_INDEX
+} RESEND_BUTTON_INDEXES;
+
+
 @implementation ViewMailMessageController
 
 
@@ -54,7 +60,9 @@
 						 fixed,
 						 [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(archiveMessage)] autorelease],
 						 [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease],
-						 [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(replyToMessage)] autorelease],
+						 [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(resendMessage)] autorelease],
+						 [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil] autorelease],
+						 [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(newMessage)] autorelease],
 						 fixed,
 						 nil];
 
@@ -321,7 +329,9 @@
 #pragma mark -
 #pragma mark Action Methods
 
-- (void)archiveMessage {
+- (IBAction)archiveMessage {
+	self->isArchiving = YES;
+	self->isResending = NO;
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Archive message?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
 	actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
 	[actionSheet showFromTabBar:self.tabBarController.tabBar];
@@ -329,9 +339,31 @@
 }
 
 
-- (void)replyToMessage {
+- (IBAction)resendMessage {
+	self->isArchiving = NO;
+	self->isResending = YES;
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Reply", @"Forward", nil];
+	actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+	[actionSheet showFromTabBar:self.tabBarController.tabBar];
+	[actionSheet release];
+}
+
+- (IBAction)replyToMessage {
 	NewMailMessageController *newMailMessageController = [NewMailMessageController create];
 	newMailMessageController.replyToMessage = self.mailbox.messageDetails;
+	[[self navigationController] pushViewController:newMailMessageController animated:YES];
+}
+
+
+- (IBAction)forwardMessage {
+	NewMailMessageController *newMailMessageController = [NewMailMessageController create];
+	newMailMessageController.forwardMessage = self.mailbox.messageDetails;
+	[[self navigationController] pushViewController:newMailMessageController animated:YES];
+}
+
+
+- (IBAction)newMessage {
+	NewMailMessageController *newMailMessageController = [NewMailMessageController create];
 	[[self navigationController] pushViewController:newMailMessageController animated:YES];
 }
 
@@ -340,10 +372,23 @@
 #pragma mark UIActionSheetDelegate Methods
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
-		[self.mailbox archiveMessage:self.messageIndex];
-		[self.navigationController popViewControllerAnimated:YES];
+	if (self->isArchiving) {
+		if (actionSheet.destructiveButtonIndex == buttonIndex ) {
+			[self.mailbox archiveMessage:self.messageIndex];
+			[self.navigationController popViewControllerAnimated:YES];
+		}
+	} else if (self->isResending) {
+		switch (buttonIndex) {
+			case REPLY_TO_BUTTON_INDEX: //Archive
+				[self replyToMessage];
+				break;
+			case FORWARD_BUTTON_INDEX:
+				[self forwardMessage];
+				break;
+		}
 	}
+	self->isArchiving = NO;
+	self->isResending = NO;
 }
 
 

@@ -20,6 +20,7 @@
 	LETableViewCellTextEntry *subjectCell;
 	LETableViewCellTextView *messageCell;
 	NSDictionary *replyToMessage;
+	NSDictionary *forwardMessage;
 }
 
 
@@ -27,6 +28,7 @@
 @property(nonatomic, retain) LETableViewCellTextEntry *subjectCell;
 @property(nonatomic, retain) LETableViewCellTextView *messageCell;
 @property(nonatomic, retain) NSDictionary *replyToMessage;
+@property(nonatomic, retain) NSDictionary *forwardMessage;
 
 
 - (void)addTo:(NSString *)to;
