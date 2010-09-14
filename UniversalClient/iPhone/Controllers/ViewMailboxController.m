@@ -260,7 +260,7 @@
 			self.mailbox = [Mailbox loadSent];
 			break;
 		default:
-			NSLog(@"INVALID selectedSegmentIndex");
+			NSLog(@"INVALID selectedSegmentIndex: %i", self.mailboxSegmentedControl.selectedSegmentIndex);
 			break;
 	}
 	

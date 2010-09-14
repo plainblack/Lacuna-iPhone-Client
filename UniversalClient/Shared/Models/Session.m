@@ -155,7 +155,7 @@ static Session *sharedSession = nil;
 	if (status && [status respondsToSelector:@selector(objectForKey:)]) {
 		NSDictionary *serverStatus = [status objectForKey:@"server"];
 		if (serverStatus) {
-			NSString *newServerVersion = [serverStatus objectForKey:@"version"];
+			NSString *newServerVersion = [[serverStatus objectForKey:@"version"] stringValue];
 			if (self.serverVersion) {
 				if (![self.serverVersion isEqual:newServerVersion]) {
 					NSLog(@"Server version changed from: %@ to %@", self.serverVersion, newServerVersion);
@@ -164,6 +164,19 @@ static Session *sharedSession = nil;
 			} else {
 				self.serverVersion = newServerVersion;
 				NSLog(@"Server version is: %@", self.serverVersion);
+			}
+			NSArray *parts = [newServerVersion componentsSeparatedByString:@"."];
+			if ([parts count] == 2) {
+				NSLog(@"Part 1: %@", [parts objectAtIndex:0]);
+				NSLog(@"Part 2: %@", [parts objectAtIndex:1]);
+				NSInteger majorVersion = [[parts objectAtIndex:0] intValue];
+				if (majorVersion > SERVER_MAJOR) {
+					UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"ERROR" message:[NSString stringWithFormat:@"The server is reporting a Major Version upgrade. This version of the client will not work with it. Server major sersion is %i, but this client is compatible with major version %i.", majorVersion, SERVER_MAJOR] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+					[av show];
+				}
+			} else {
+				UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"ERROR" message:[NSString stringWithFormat:@"The server version is invalid. Please report this! Server Version %@", newServerVersion] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+				[av show];
 			}
 		}
 		

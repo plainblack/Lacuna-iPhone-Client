@@ -15,8 +15,7 @@
 #define isNotNull(__o) (__o && ((id)__o != [NSNull null]))
 
 //Supported Server Version
-#define SERVER_MAJOR 2
-#define SERVER_MINOR 0
+#define SERVER_MAJOR 1
 #define API_KEY @"iOS"
 
 //Time defs
