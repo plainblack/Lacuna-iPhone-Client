@@ -59,11 +59,6 @@
 						 nil];
 
 	self.sectionHeaders = [NSMutableArray array];
-	/*
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Header"],
-								 [LEViewSectionTab tableView:self.tableView withText:@"Attachements"],
-								 [LEViewSectionTab tableView:self.tableView withText:@"Message"]);
-	*/
 }
 
 
@@ -359,7 +354,7 @@
 	if ( [keyPath isEqual:@"messageDetails"]) {
 		self.navigationItem.title = [self.mailbox.messageDetails objectForKey:@"subject"];
 		self->attachements = [self.mailbox.messageDetails objectForKey:@"attachments"];
-		if (isNotNull(self->attachements)) {
+		if (isNotNull(self->attachements) && ([self->attachements count] > 0)) {
 			self.sectionHeaders = _array([NSNull null],
 										 [LEViewSectionTab tableView:self.tableView withText:@"Attachements"],
 										 [NSNull null]);

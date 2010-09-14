@@ -9,6 +9,7 @@
 #import "Util.h"
 #import "LEMacros.h"
 
+/*
 static NSDecimalNumber *NEGATIVE_ONE;
 static NSDecimalNumber *ONE_THOUSAND;
 static NSDecimalNumber *TEN_THOUSAND;
@@ -19,6 +20,7 @@ static NSDecimalNumber *ONE_HUNDRED_MILLION;
 static NSDecimalNumber *ONE_BILLION;
 static NSDecimalNumber *TEN_BILLION;
 static NSDecimalNumber *ONE_HUNDRED_BILLION;
+*/
 
 @implementation Util
 
@@ -120,57 +122,83 @@ static NSDecimalNumber *ONE_HUNDRED_BILLION;
 
 
 + (NSString *)prettyNSDecimalNumber:(NSDecimalNumber *)number {
-	if (!ONE_THOUSAND) {
-		NEGATIVE_ONE = [[NSDecimalNumber decimalNumberWithString:@"-1"] retain];
-		ONE_THOUSAND = [[NSDecimalNumber decimalNumberWithString:@"1000"] retain];
-		TEN_THOUSAND = [[NSDecimalNumber decimalNumberWithString:@"10000"] retain];
-		ONE_HUNDRED_THOUSAND = [[NSDecimalNumber decimalNumberWithString:@"100000"] retain];
-		ONE_MILLION = [[NSDecimalNumber decimalNumberWithString:@"1000000"] retain];
-		TEN_MILLION = [[NSDecimalNumber decimalNumberWithString:@"10000000"] retain];
-		ONE_HUNDRED_MILLION = [[NSDecimalNumber decimalNumberWithString:@"100000000"] retain];
-		ONE_BILLION = [[NSDecimalNumber decimalNumberWithString:@"1000000000"] retain];
-		TEN_BILLION = [[NSDecimalNumber decimalNumberWithString:@"10000000000"] retain];
-		ONE_HUNDRED_BILLION = [[NSDecimalNumber decimalNumberWithString:@"100000000000"] retain];
-	}
-
+	NSString *result;
+	bool isNegative = NO;
 	if (isNotNull(number)) {
-		NSNumberFormatter *formatter = [[[NSNumberFormatter alloc] init] autorelease];
-		[formatter setUsesSignificantDigits:YES];
-		[formatter setMaximumSignificantDigits:3];
-		[formatter setMinimumSignificantDigits:3];
-		NSDecimalNumber *compareNumber;
-		
-		if ([number compare:[NSDecimalNumber zero]] == NSOrderedAscending) {
-			compareNumber = [number decimalNumberByMultiplyingBy:NEGATIVE_ONE];
-		} else	{
-			compareNumber = number;
+		NSString *numberAsString = [number stringValue];
+		NSInteger numDigits = [numberAsString length];
+		NSRange dotRange = [numberAsString rangeOfString:@"."];
+		if (dotRange.location != NSNotFound) {
+			numDigits = dotRange.location;
+		}
+		if ([numberAsString characterAtIndex:0] == '-') {
+			numDigits--;
+			isNegative = YES;
+			numberAsString = [numberAsString substringFromIndex:1];
+		}
+		NSInteger numDigitsInRange = numDigits % 3;
+		NSInteger maxNumberRange = numDigits / 3;
+		if (numDigitsInRange == 0) {
+			numDigitsInRange = 3;
+			maxNumberRange--;
 		}
 		
-		if ([compareNumber compare:ONE_HUNDRED_BILLION] == NSOrderedDescending || [compareNumber compare:ONE_HUNDRED_BILLION] == NSOrderedSame) {
-			return [NSString stringWithFormat:@"%@B", [formatter stringFromNumber:[number decimalNumberByDividingBy:ONE_BILLION]]];
-		} else if ([compareNumber compare:TEN_BILLION] == NSOrderedDescending || [compareNumber compare:TEN_BILLION] == NSOrderedSame) {
-			return [NSString stringWithFormat:@"%@B", [formatter stringFromNumber:[number decimalNumberByDividingBy:ONE_BILLION]]];
-		} else if ([compareNumber compare:ONE_BILLION] == NSOrderedDescending || [compareNumber compare:ONE_BILLION] == NSOrderedSame) {
-			return [NSString stringWithFormat:@"%@B", [formatter stringFromNumber:[number decimalNumberByDividingBy:ONE_BILLION]]];
-		} else if ([compareNumber compare:ONE_HUNDRED_MILLION] == NSOrderedDescending || [compareNumber compare:ONE_HUNDRED_MILLION] == NSOrderedSame) {
-			return [NSString stringWithFormat:@"%@M", [formatter stringFromNumber:[number decimalNumberByDividingBy:ONE_MILLION]]];
-		} else if ([compareNumber compare:TEN_MILLION] == NSOrderedDescending || [compareNumber compare:TEN_MILLION] == NSOrderedSame) {
-			return [NSString stringWithFormat:@"%@M", [formatter stringFromNumber:[number decimalNumberByDividingBy:ONE_MILLION]]];
-		} else if ([compareNumber compare:ONE_MILLION] == NSOrderedDescending || [compareNumber compare:ONE_MILLION] == NSOrderedSame) {
-			return [NSString stringWithFormat:@"%@M", [formatter stringFromNumber:[number decimalNumberByDividingBy:ONE_MILLION]]];
-		} else if ([compareNumber compare:ONE_HUNDRED_THOUSAND] == NSOrderedDescending || [compareNumber compare:ONE_HUNDRED_THOUSAND] == NSOrderedSame) {
-			return [NSString stringWithFormat:@"%@K", [formatter stringFromNumber:[number decimalNumberByDividingBy:ONE_THOUSAND]]];
-		} else if ([compareNumber compare:TEN_THOUSAND] == NSOrderedDescending || [compareNumber compare:TEN_THOUSAND] == NSOrderedSame) {
-			return [NSString stringWithFormat:@"%@K", [formatter stringFromNumber:[number decimalNumberByDividingBy:ONE_THOUSAND]]];
-		} else if ([compareNumber compare:ONE_THOUSAND] == NSOrderedDescending || [compareNumber compare:ONE_THOUSAND] == NSOrderedSame) {
-			return [NSString stringWithFormat:@"%@K", [formatter stringFromNumber:[number decimalNumberByDividingBy:ONE_THOUSAND]]];
-		}else {
-			return [number stringValue];
+		if (numDigits == 1) {
+			result = [numberAsString substringToIndex:1];
+		} else if (numDigits == 2) {
+			result = [numberAsString substringToIndex:2];
+		} else if (numDigits == 3) {
+			result = [numberAsString substringToIndex:3];
+		} else {
+			NSString *base;
+			switch (numDigitsInRange) {
+				case 1:
+					if (isNegative) {
+						base = [NSString stringWithFormat:@"%@.%@", [numberAsString substringToIndex:1], [numberAsString substringWithRange:NSMakeRange(1, 1)]];
+					} else {
+						base = [NSString stringWithFormat:@"%@.%@", [numberAsString substringToIndex:1], [numberAsString substringWithRange:NSMakeRange(1, 2)]];
+					}
+					break;
+				case 2:
+					if (isNegative) {
+						base = [numberAsString substringToIndex:2];
+					} else {
+						base = [NSString stringWithFormat:@"%@.%@", [numberAsString substringToIndex:2], [numberAsString substringWithRange:NSMakeRange(2, 1)] ];
+					}
+					break;
+				case 3:
+					base = [numberAsString substringToIndex:3];
+					break;
+				default:
+					base = @"Unknown";
+					break;
+			}
+			switch (maxNumberRange) {
+				case 1:
+					result = [NSString stringWithFormat:@"%@%@", base, @"K"];
+					break;
+				case 2:
+					result = [NSString stringWithFormat:@"%@%@", base, @"M"];
+					break;
+				case 3:
+					result = [NSString stringWithFormat:@"%@%@", base, @"B"];
+					break;
+				case 4:
+					result = [NSString stringWithFormat:@"%@%@", base, @"T"];
+					break;
+				default:
+					result = [NSString stringWithFormat:@"%@%@", base, @"?"];
+					break;
+			}
 		}
 	} else {
-		return @"0";
+		result = @"0";
 	}
-
+	
+	if (isNegative) {
+		result = [NSString stringWithFormat:@"-%@", result];
+	}
+	return result;
 }
 
 

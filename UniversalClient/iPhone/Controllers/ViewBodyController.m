@@ -86,6 +86,28 @@ typedef enum {
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Body"],
 								 [LEViewSectionTab tableView:self.tableView withText:@"Actions"],
 								 [LEViewSectionTab tableView:self.tableView withText:@"Composition"]);
+	
+	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"0"]];
+	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"1"]];
+	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"12"]];
+	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"123"]];
+	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"1234"]];
+	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"12345"]];
+	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"123456"]];
+	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"1234567"]];
+	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"12345678"]];
+	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"123456789"]];
+	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"1234567890"]];
+	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"-1"]];
+	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"-12"]];
+	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"-123"]];
+	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"-1234"]];
+	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"-12345"]];
+	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"-123456"]];
+	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"-1234567"]];
+	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"-12345678"]];
+	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"-123456789"]];
+	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"-1234567890"]];
 }
 
 

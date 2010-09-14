@@ -230,7 +230,7 @@ typedef enum {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSString *msg = nil;
-	switch (indexPath.row) {
+	switch (indexPath.section) {
 		case EMPIRE_BOOST_SECTION_ENERGY:
 			msg = [NSString stringWithFormat:@"Are you sure you want to spend 2 essentia to boost your Energy Production by 25%%?"];
 			break;
@@ -367,43 +367,55 @@ typedef enum {
 
 
 - (id)boostedEnergy:(LEEmpireBoostEnergy *)request {
-	[self.empireBoosts setObject:request.boostEndDate forKey:@"energy"];
-	[self.tableView reloadData];
+	if (![request wasError]) {
+		[self.empireBoosts setObject:request.boostEndDate forKey:@"energy"];
+		[self.tableView reloadData];
+	}
 	return nil;
 }
 
 
 - (id)boostedFood:(LEEmpireBoostFood *)request {
-	[self.empireBoosts setObject:request.boostEndDate forKey:@"food"];
-	[self.tableView reloadData];
+	if (![request wasError]) {
+		[self.empireBoosts setObject:request.boostEndDate forKey:@"food"];
+		[self.tableView reloadData];
+	}
 	return nil;
 }
 
 
 - (id)boostedHappiness:(LEEmpireBoostHappiness *)request {
-	[self.empireBoosts setObject:request.boostEndDate forKey:@"happiness"];
-	[self.tableView reloadData];
+	if (![request wasError]) {
+		[self.empireBoosts setObject:request.boostEndDate forKey:@"happiness"];
+		[self.tableView reloadData];
+	}
 	return nil;
 }
 
 
 - (id)boostedOre:(LEEmpireBoostOre *)request {
-	[self.empireBoosts setObject:request.boostEndDate forKey:@"ore"];
-	[self.tableView reloadData];
+	if (![request wasError]) {
+		[self.empireBoosts setObject:request.boostEndDate forKey:@"ore"];
+		[self.tableView reloadData];
+	}
 	return nil;
 }
 
 
 - (id)boostedWater:(LEEmpireBoostWater *)request {
-	[self.empireBoosts setObject:request.boostEndDate forKey:@"water"];
-	[self.tableView reloadData];
+	if (![request wasError]) {
+		[self.empireBoosts setObject:request.boostEndDate forKey:@"water"];
+		[self.tableView reloadData];
+	}
 	return nil;
 }
 
 
 - (id)boostedStorage:(LEEmpireBoostStorage *)request {
-	[self.empireBoosts setObject:request.boostEndDate forKey:@"storage"];
-	[self.tableView reloadData];
+	if (![request wasError]) {
+		[self.empireBoosts setObject:request.boostEndDate forKey:@"storage"];
+		[self.tableView reloadData];
+	}
 	return nil;
 }
 
