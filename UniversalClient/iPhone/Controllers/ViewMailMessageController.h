@@ -19,6 +19,7 @@
 	NSInteger messageIndex;
 	BOOL isObserving;
 	NSDictionary *attachements;
+	BOOL hasAttachements;
 }
 
 

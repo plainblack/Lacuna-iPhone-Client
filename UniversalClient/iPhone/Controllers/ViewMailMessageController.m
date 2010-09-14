@@ -91,7 +91,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	if (self.mailbox.messageDetails) {
-		if (isNotNull(self->attachements)) {
+		if (self->hasAttachements) {
 			return 3;
 		} else {
 			return 2;
@@ -109,14 +109,14 @@
 			return 1;
 			break;
 		case 1:
-			if (self.mailbox.messageDetails && isNotNull(self->attachements)) {
+			if (self.mailbox.messageDetails && self->hasAttachements) {
 				return [self->attachements count];
 			} else {
 				return 1;
 			}
 			break;
 		case 2:
-			if (self.mailbox.messageDetails && isNotNull(self->attachements)) {
+			if (self.mailbox.messageDetails && self->hasAttachements) {
 				return 1;
 			} else {
 				return 0;
@@ -140,7 +140,7 @@
 			break;
 		case 1:
 			if (self.mailbox.messageDetails) {
-				if (isNotNull(self->attachements)) {
+				if (self->hasAttachements) {
 					NSInteger attachmentIndex = indexPath.row;
 					NSString *key = [[attachements allKeys] objectAtIndex:attachmentIndex];
 					
@@ -165,7 +165,7 @@
 			}
 			break;
 		case 2:
-			if (self.mailbox.messageDetails && isNotNull(self->attachements)) {
+			if (self.mailbox.messageDetails && self->hasAttachements) {
 				; //DO NOT REMOVE
 				NSString *body = [self.mailbox.messageDetails objectForKey:@"body"];
 				return [LETableViewCellParagraph getHeightForTableView:tableView text:body];
@@ -199,7 +199,7 @@
 			break;
 		case 1:
 			if (self.mailbox.messageDetails) {
-				if (isNotNull(attachements)) {
+				if (self->hasAttachements) {
 					NSInteger attachmentIndex = indexPath.row;
 					NSString *key = [[self->attachements allKeys] objectAtIndex:attachmentIndex];
 					
@@ -232,7 +232,7 @@
 			}
 			break;
 		case 2:
-			if (self.mailbox.messageDetails && isNotNull(self->attachements)) {
+			if (self.mailbox.messageDetails && self->hasAttachements) {
 				LETableViewCellParagraph *bodyCell = [LETableViewCellParagraph getCellForTableView:tableView];
 				bodyCell.content.text = [self.mailbox.messageDetails objectForKey:@"body"];
 				cell = bodyCell;
@@ -253,8 +253,8 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (isNotNull(self->attachements) && indexPath.section == 1) {
-		if (isNotNull(self->attachements)) {
+	if (self->hasAttachements && indexPath.section == 1) {
+		if (self->hasAttachements) {
 			NSInteger attachmentIndex = indexPath.row;
 			NSString *key = [[self->attachements allKeys] objectAtIndex:attachmentIndex];
 			
@@ -354,7 +354,8 @@
 	if ( [keyPath isEqual:@"messageDetails"]) {
 		self.navigationItem.title = [self.mailbox.messageDetails objectForKey:@"subject"];
 		self->attachements = [self.mailbox.messageDetails objectForKey:@"attachments"];
-		if (isNotNull(self->attachements) && ([self->attachements count] > 0)) {
+		self->hasAttachements = isNotNull(self->attachements) && ([self->attachements count] > 0);
+		if (self->hasAttachements) {
 			self.sectionHeaders = _array([NSNull null],
 										 [LEViewSectionTab tableView:self.tableView withText:@"Attachements"],
 										 [NSNull null]);
