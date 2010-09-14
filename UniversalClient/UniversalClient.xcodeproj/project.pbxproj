@@ -87,6 +87,7 @@
 		F64FA25D121CD36F00CBFC3E /* SelectGlyphController.m in Sources */ = {isa = PBXBuildFile; fileRef = F64FA25C121CD36F00CBFC3E /* SelectGlyphController.m */; };
 		F64FA283121CD67C00CBFC3E /* SelectPlanController.m in Sources */ = {isa = PBXBuildFile; fileRef = F64FA282121CD67C00CBFC3E /* SelectPlanController.m */; };
 		F64FA286121CD68A00CBFC3E /* SelectStoredResourceController.m in Sources */ = {isa = PBXBuildFile; fileRef = F64FA285121CD68A00CBFC3E /* SelectStoredResourceController.m */; };
+		F6531A0E123EFB7F00210C32 /* LETableViewCellLongLabeledText.m in Sources */ = {isa = PBXBuildFile; fileRef = F6531A0D123EFB7F00210C32 /* LETableViewCellLongLabeledText.m */; };
 		F65D35B91195E00400454C2B /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F65D35B81195E00400454C2B /* iTunesArtwork */; };
 		F65D36681195F05B00454C2B /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = F65D36671195F05B00454C2B /* Entitlements.plist */; };
 		F65DC32611EE09AE00A0A782 /* PlanetaryCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = F65DC32511EE09AE00A0A782 /* PlanetaryCommand.m */; };
@@ -293,7 +294,7 @@
 		F6E8D5741223E82C001CD21D /* LEBuildingExpelMember.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E8D5731223E82C001CD21D /* LEBuildingExpelMember.m */; };
 		F6EB025D1202F500001BFD68 /* LEBuildingViewShipsTravelling.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB025C1202F500001BFD68 /* LEBuildingViewShipsTravelling.m */; };
 		F6EB02661202FB01001BFD68 /* ViewTravellingShipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB02651202FB01001BFD68 /* ViewTravellingShipsController.m */; };
-		F6EEE87511F388E80095BCA4 /* LETableViewCellDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EEE87411F388E80095BCA4 /* LETableViewCellDictionary.m */; };
+		F6ECEE6F123E477500CACFED /* ViewDictionaryController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6ECEE6E123E477500CACFED /* ViewDictionaryController.m */; };
 		F6EF714211FE76EA00A93226 /* SpacePort.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF714111FE76EA00A93226 /* SpacePort.m */; };
 		F6EF714F11FE7D1C00A93226 /* LEBuildingViewAllShips.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF714E11FE7D1C00A93226 /* LEBuildingViewAllShips.m */; };
 		F6EF716A11FE810900A93226 /* Ship.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF716911FE810900A93226 /* Ship.m */; };
@@ -472,6 +473,8 @@
 		F64FA282121CD67C00CBFC3E /* SelectPlanController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPlanController.m; sourceTree = "<group>"; };
 		F64FA284121CD68A00CBFC3E /* SelectStoredResourceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectStoredResourceController.h; sourceTree = "<group>"; };
 		F64FA285121CD68A00CBFC3E /* SelectStoredResourceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectStoredResourceController.m; sourceTree = "<group>"; };
+		F6531A0C123EFB7F00210C32 /* LETableViewCellLongLabeledText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellLongLabeledText.h; sourceTree = "<group>"; };
+		F6531A0D123EFB7F00210C32 /* LETableViewCellLongLabeledText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellLongLabeledText.m; sourceTree = "<group>"; };
 		F65D35B81195E00400454C2B /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		F65D36671195F05B00454C2B /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		F65DC32411EE09AE00A0A782 /* PlanetaryCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanetaryCommand.h; sourceTree = "<group>"; };
@@ -873,8 +876,8 @@
 		F6EB025C1202F500001BFD68 /* LEBuildingViewShipsTravelling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewShipsTravelling.m; sourceTree = "<group>"; };
 		F6EB02641202FB01001BFD68 /* ViewTravellingShipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewTravellingShipsController.h; sourceTree = "<group>"; };
 		F6EB02651202FB01001BFD68 /* ViewTravellingShipsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewTravellingShipsController.m; sourceTree = "<group>"; };
-		F6EEE87311F388E80095BCA4 /* LETableViewCellDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellDictionary.h; sourceTree = "<group>"; };
-		F6EEE87411F388E80095BCA4 /* LETableViewCellDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellDictionary.m; sourceTree = "<group>"; };
+		F6ECEE6D123E477500CACFED /* ViewDictionaryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewDictionaryController.h; sourceTree = "<group>"; };
+		F6ECEE6E123E477500CACFED /* ViewDictionaryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewDictionaryController.m; sourceTree = "<group>"; };
 		F6EF714011FE76EA00A93226 /* SpacePort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpacePort.h; sourceTree = "<group>"; };
 		F6EF714111FE76EA00A93226 /* SpacePort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpacePort.m; sourceTree = "<group>"; };
 		F6EF714D11FE7D1C00A93226 /* LEBuildingViewAllShips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewAllShips.h; sourceTree = "<group>"; };
@@ -1069,8 +1072,6 @@
 				F69809C1117A155800BD2096 /* LETableViewCellCost.m */,
 				F603A8ED1177F7F200BAC73A /* LETableViewCellCurrentResources.h */,
 				F603A8EE1177F7F200BAC73A /* LETableViewCellCurrentResources.m */,
-				F6EEE87311F388E80095BCA4 /* LETableViewCellDictionary.h */,
-				F6EEE87411F388E80095BCA4 /* LETableViewCellDictionary.m */,
 				F6023994123D7CD900268ADD /* LETableViewCellForeignIncomingShip.h */,
 				F6023995123D7CD900268ADD /* LETableViewCellForeignIncomingShip.m */,
 				F6DA0DBE121D47E200705240 /* LETableViewCellGlyph.h */,
@@ -1085,6 +1086,8 @@
 				F6882D40116EB44F009B624B /* LETableViewCellLabeledText.m */,
 				F6F52507122C9854004E428A /* LETableViewCellLabeledTextView.h */,
 				F6F52508122C9854004E428A /* LETableViewCellLabeledTextView.m */,
+				F6531A0C123EFB7F00210C32 /* LETableViewCellLongLabeledText.h */,
+				F6531A0D123EFB7F00210C32 /* LETableViewCellLongLabeledText.m */,
 				F6C390C111F1ED14004FB38F /* LETableViewCellMailHeaders.h */,
 				F6C390C211F1ED14004FB38F /* LETableViewCellMailHeaders.m */,
 				F6C3906111F1E36C004FB38F /* LETableViewCellMailSelect.h */,
@@ -1593,6 +1596,8 @@
 				F6F52407122C5D9D004E428A /* ViewCreditsController.h */,
 				F6F52408122C5D9D004E428A /* ViewCreditsController.m */,
 				F6F5244D122C7EFF004E428A /* ViewCreditsController.xib */,
+				F6ECEE6D123E477500CACFED /* ViewDictionaryController.h */,
+				F6ECEE6E123E477500CACFED /* ViewDictionaryController.m */,
 				F6E3EFEE11B45BA000E7BC86 /* ViewEmpireBoostsController.h */,
 				F6E3EFEF11B45BA000E7BC86 /* ViewEmpireBoostsController.m */,
 				F6882CFB116EA08A009B624B /* ViewEmpireProfileController.h */,
@@ -1884,7 +1889,6 @@
 				F6C3906311F1E36C004FB38F /* LETableViewCellMailSelect.m in Sources */,
 				F6C390C311F1ED14004FB38F /* LETableViewCellMailHeaders.m in Sources */,
 				F6C390EE11F23D54004FB38F /* LETableViewCellBuildQueueItem.m in Sources */,
-				F6EEE87511F388E80095BCA4 /* LETableViewCellDictionary.m in Sources */,
 				F64C43D911F3B50E002981EC /* FoodReserve.m in Sources */,
 				F64C43DC11F3B527002981EC /* OreStorage.m in Sources */,
 				F64C43F611F3C37A002981EC /* Archaeology.m in Sources */,
@@ -2044,6 +2048,8 @@
 				F60238D3123D63B200268ADD /* ViewForeignShipsController.m in Sources */,
 				F6023A64123D920F00268ADD /* ViewPlansController.m in Sources */,
 				F6023A67123D922200268ADD /* LEBuildingViewPlans.m in Sources */,
+				F6ECEE6F123E477500CACFED /* ViewDictionaryController.m in Sources */,
+				F6531A0E123EFB7F00210C32 /* LETableViewCellLongLabeledText.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

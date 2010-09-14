@@ -17,7 +17,6 @@
 #import "LETableViewCellCurrentResources.h"
 #import "ViewBodyMapController.h"
 #import "RenameBodyController.h"
-#import "LETableViewCellDictionary.h"
 #import "PickColonyController.h"
 #import "ViewCreditsController.h"
 #import "LEBodyAbandon.h"
@@ -44,8 +43,7 @@ typedef enum {
 
 typedef enum {
 	COMPOSITION_ROW_SIZE,
-	COMPOSITION_ROW_WATER,
-	COMPOSITION_ROW_ORE
+	COMPOSITION_ROW_WATER
 } COMPOSITION_ROW;
 
 	
@@ -63,6 +61,7 @@ typedef enum {
 @synthesize pageSegmentedControl;
 @synthesize bodyId;
 @synthesize watchedBody;
+@synthesize oreKeysSorted;
 
 
 #pragma mark -
@@ -111,6 +110,7 @@ typedef enum {
 	if (isNotNull(session.body)) {
 		[session.body addObserver:self forKeyPath:@"needsRefresh" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
 		self.watchedBody = session.body;
+		self.oreKeysSorted = [[session.body.ores allKeys] sortedArrayUsingSelector:@selector(compare:)];
 	}
 
 	if (![session.body.id isEqualToString:self.bodyId]) {
@@ -142,6 +142,7 @@ typedef enum {
 	if (isNotNull(self.watchedBody)) {
 		[self.watchedBody removeObserver:self forKeyPath:@"needsRefresh"];
 		self.watchedBody = nil;
+		self.oreKeysSorted = nil;
 	}
     [super viewDidDisappear:animated];
 }
@@ -184,7 +185,7 @@ typedef enum {
 				return 3;
 				break;
 			case SECTION_COMPOSITION:
-				return 3;
+				return 2 + [self.oreKeysSorted count];
 				break;
 			default:
 				return 0;
@@ -212,16 +213,7 @@ typedef enum {
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		case SECTION_COMPOSITION:
-			switch (indexPath.row) {
-				case COMPOSITION_ROW_ORE:
-					; //DON'T REMOVE
-					Session *session = [Session sharedInstance];
-					return [LETableViewCellDictionary getHeightForTableView:tableView numItems:[session.body.ores count]];
-					break;
-				default:
-					return [LETableViewCellLabeledText getHeightForTableView:tableView];
-					break;
-			}
+			return [LETableViewCellLabeledText getHeightForTableView:tableView];
 			break;
 		default:
 			return 5.0;
@@ -289,12 +281,6 @@ typedef enum {
 					sizeCell.content.text = [NSString stringWithFormat:@"%@ (%@ used)", session.body.size, session.body.buildingCount];
 					cell = sizeCell;
 					break;
-				case COMPOSITION_ROW_ORE:
-					; //DO NOT REMOVE
-					LETableViewCellDictionary *oresCell = [LETableViewCellDictionary getCellForTableView:tableView];
-					[oresCell setHeading:@"Ore" Data:session.body.ores];
-					cell = oresCell;
-					break;
 				case COMPOSITION_ROW_WATER:
 					; //DO NOT REMOVE
 					LETableViewCellLabeledText *waterCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
@@ -303,7 +289,13 @@ typedef enum {
 					cell = waterCell;
 					break;
 				default:
-					cell = nil;
+					; //DO NOT REMOVE
+					id oreTypeKey = [self.oreKeysSorted objectAtIndex:(indexPath.row-2)];
+					id oreTypeValue = [self.watchedBody.ores objectForKey:oreTypeKey];
+					LETableViewCellLabeledText *oreTypeCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+					oreTypeCell.label.text = [Util prettyCodeValue:[NSString stringWithFormat:@"%@", oreTypeKey]];
+					oreTypeCell.content.text = [NSString stringWithFormat:@"%@", oreTypeValue];
+					cell = oreTypeCell;
 					break;
 			}
 			break;
@@ -367,6 +359,8 @@ typedef enum {
 - (void)dealloc {
 	self.pageSegmentedControl = nil;
 	self.bodyId = nil;
+	self.watchedBody = nil;
+	self.oreKeysSorted = nil;
     [super dealloc];
 }
 
@@ -472,8 +466,10 @@ typedef enum {
 		if (isNotNull(newBody)) {
 			[newBody addObserver:self forKeyPath:@"needsRefresh" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
 			self.watchedBody = newBody;
+			self.oreKeysSorted = [[newBody.ores allKeys] sortedArrayUsingSelector:@selector(compare:)];
 		} else {
 			self.watchedBody = nil;
+			self.oreKeysSorted = nil;
 		}
 
 		

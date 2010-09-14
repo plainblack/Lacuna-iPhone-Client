@@ -11,14 +11,14 @@
 #import "MiningMinistry.h"
 #import "MiningPlatform.h"
 #import "LETableViewCellLabeledText.h"
-#import "LETableViewCellDictionary.h"
 #import "LETableViewCellButton.h"
+#import "ViewDictionaryController.h"
 
 
 typedef enum {
 	ROW_PLATFORM_LOCATION,
 	ROW_SHIPPING_CAPACTITY,
-	ROW_ORE_PER_HOUR,
+	ROW_ORE_COMPOSITION,
 	ROW_ABANDON_PLATFORM
 } ROW;
 
@@ -92,7 +92,6 @@ typedef enum {
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (self.miningMinistry && self.miningMinistry.platforms) {
 		if ([self.miningMinistry.platforms count] > 0) {
-			MiningPlatform *miningPlatform = [self.miningMinistry.platforms objectAtIndex:indexPath.section];
 			switch (indexPath.row) {
 				case ROW_PLATFORM_LOCATION:
 					return [LETableViewCellLabeledText getHeightForTableView:tableView];
@@ -100,8 +99,8 @@ typedef enum {
 				case ROW_SHIPPING_CAPACTITY:
 					return [LETableViewCellLabeledText getHeightForTableView:tableView];
 					break;
-				case ROW_ORE_PER_HOUR:
-					return [LETableViewCellDictionary getHeightForTableView:tableView numItems:[miningPlatform.oresPerHour count]];
+				case ROW_ORE_COMPOSITION:
+					return [LETableViewCellButton getHeightForTableView:tableView];
 					break;
 				case ROW_ABANDON_PLATFORM:
 					return [LETableViewCellButton getHeightForTableView:tableView];
@@ -143,11 +142,11 @@ typedef enum {
 					shippingCapacityCell.content.text = [NSString stringWithFormat:@"%@%%", miningPlatform.shippingCapacity];
 					cell = shippingCapacityCell;
 					break;
-				case ROW_ORE_PER_HOUR:
+				case ROW_ORE_COMPOSITION:
 					; //DO NOT REMOVE
-					LETableViewCellDictionary *oresPerHourCell = [LETableViewCellDictionary getCellForTableView:tableView];
-					[oresPerHourCell setHeading:@"Ore Per Hour" Data:miningPlatform.oresPerHour];
-					cell = oresPerHourCell;
+					LETableViewCellButton *oreCompositionCell = [LETableViewCellButton getCellForTableView:tableView];
+					oreCompositionCell.textLabel.text = @"View Ore Types";
+					cell = oreCompositionCell;
 					break;
 				case ROW_ABANDON_PLATFORM:
 					; //DO NOT REMOVE
@@ -185,6 +184,12 @@ typedef enum {
 		if ([self.miningMinistry.platforms count] > 0) {
 			MiningPlatform *miningPlatform = [self.miningMinistry.platforms objectAtIndex:indexPath.section];
 			switch (indexPath.row) {
+				case ROW_ORE_COMPOSITION:
+					; //DO NOT REMOVE
+					ViewDictionaryController *viewDictionaryController = [ViewDictionaryController createWithName:@"Ore By Type" useLongLabels:NO];
+					viewDictionaryController.data = miningPlatform.oresPerHour;
+					[self.navigationController pushViewController:viewDictionaryController animated:YES];
+					break;
 				case ROW_ABANDON_PLATFORM:
 					self.selectedMiningPlatform = miningPlatform;
 					UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"Abandon Platform %@?", miningPlatform.asteroidName] delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];

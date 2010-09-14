@@ -8,7 +8,8 @@
 
 #import "OreStorage.h"
 #import "LEMacros.h"
-#import "LETableViewCellDictionary.h"
+#import "LETableViewCellButton.h"
+#import "ViewDictionaryController.h"
 
 
 @implementation OreStorage
@@ -39,7 +40,6 @@
 - (void)generateSections {
 	NSMutableDictionary *productionSection = [self generateProductionSection];
 	[[productionSection objectForKey:@"rows"] addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_STORED_ORE]];
-	
 	self.sections = _array(productionSection, [self generateHealthSection], [self generateUpgradeSection]);
 }
 
@@ -47,7 +47,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForBuildingRow:(BUILDING_ROW)buildingRow {
 	switch (buildingRow) {
 		case BUILDING_ROW_STORED_ORE:
-			return [LETableViewCellDictionary getHeightForTableView:tableView numItems:[self.storedOre count]];
+			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		default:
 			return [super tableView:tableView heightForBuildingRow:buildingRow];
@@ -61,8 +61,8 @@
 	switch (buildingRow) {
 		case BUILDING_ROW_STORED_ORE:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
-			LETableViewCellDictionary *storedOreCell = [LETableViewCellDictionary getCellForTableView:tableView];
-			[storedOreCell setHeading:@"Stored Ore" Data:self.storedOre];
+			LETableViewCellButton *storedOreCell = [LETableViewCellButton getCellForTableView:tableView];
+			storedOreCell.textLabel.text = @"View Ore By Type";
 			cell = storedOreCell;
 			break;
 		default:
@@ -72,6 +72,22 @@
 	
 	return cell;
 }
+
+
+- (UIViewController *)tableView:(UITableView *)tableView didSelectBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex {
+	switch (buildingRow) {
+		case BUILDING_ROW_STORED_ORE:
+			; //DO NOT REMOVE
+			ViewDictionaryController *viewDictionaryController = [ViewDictionaryController createWithName:@"Ore By Type" useLongLabels:NO];
+			viewDictionaryController.data = self.storedOre;
+			return viewDictionaryController;
+			break;
+		default:
+			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];
+			break;
+	}
+}
+
 
 
 @end

@@ -8,7 +8,8 @@
 
 #import "FoodReserve.h"
 #import "LEMacros.h"
-#import "LETableViewCellDictionary.h"
+#import "LETableViewCellButton.h"
+#import "ViewDictionaryController.h"
 
 
 @implementation FoodReserve
@@ -37,7 +38,6 @@
 - (void)generateSections {
 	NSMutableDictionary *productionSection = [self generateProductionSection];
 	[[productionSection objectForKey:@"rows"] addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_STORED_FOOD]];
-	
 	self.sections = _array(productionSection, [self generateHealthSection], [self generateUpgradeSection]);
 }
 
@@ -45,7 +45,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForBuildingRow:(BUILDING_ROW)buildingRow {
 	switch (buildingRow) {
 		case BUILDING_ROW_STORED_FOOD:
-			return [LETableViewCellDictionary getHeightForTableView:tableView numItems:[self.storedFood count]];
+			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		default:
 			return [super tableView:tableView heightForBuildingRow:buildingRow];
@@ -59,8 +59,8 @@
 	switch (buildingRow) {
 		case BUILDING_ROW_STORED_FOOD:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
-			LETableViewCellDictionary *storedFoodCell = [LETableViewCellDictionary getCellForTableView:tableView];
-			[storedFoodCell setHeading:@"Stored Food" Data:self.storedFood];
+			LETableViewCellButton *storedFoodCell = [LETableViewCellButton getCellForTableView:tableView];
+			storedFoodCell.textLabel.text = @"View Food By Type";
 			cell = storedFoodCell;
 			break;
 		default:
@@ -70,6 +70,22 @@
 	
 	return cell;
 }
+
+
+- (UIViewController *)tableView:(UITableView *)tableView didSelectBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex {
+	switch (buildingRow) {
+		case BUILDING_ROW_STORED_FOOD:
+			; //DO NOT REMOVE
+			ViewDictionaryController *viewDictionaryController = [ViewDictionaryController createWithName:@"Food By Type" useLongLabels:NO];
+			viewDictionaryController.data = self.storedFood;
+			return viewDictionaryController;
+			break;
+		default:
+			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];
+			break;
+	}
+}
+
 
 
 @end

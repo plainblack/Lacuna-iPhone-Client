@@ -10,14 +10,14 @@
 #import "Ship.h"
 #import "LEMacros.h"
 #import "Util.h"
-#import "LETableViewCellButton.h"
-#import "LETableViewCellDictionary.h"
 #import "LEBuildingViewAllShips.h"
-#import "ViewShipsController.h"
 #import "LEBuildingNameShip.h"
 #import "LEBuildingScuttleShip.h"
 #import "LEBuildingViewShipsTravelling.h"
 #import "LEBuildingViewForeignShips.h"
+#import "LETableViewCellButton.h"
+#import "ViewDictionaryController.h"
+#import "ViewShipsController.h"
 #import "ViewTravellingShipsController.h"
 #import "ViewForeignShipsController.h"
 
@@ -83,23 +83,24 @@
 
 - (void)generateSections {
 	
-	NSMutableDictionary *productionSection = [self generateProductionSection];
-	[[productionSection objectForKey:@"rows"] addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_DOCKED_SHIPS]];
-
-	NSMutableArray *actionRows = [NSMutableArray arrayWithCapacity:1];
-	[actionRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_SHIPS]];
-	[actionRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_TRAVELLING_SHIPS]];
-	[actionRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_FOREIGN_SHIPS]];
+	NSMutableArray *localShipRows = [NSMutableArray arrayWithCapacity:1];
+	[localShipRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_DOCKED_SHIPS]];
+	[localShipRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_TRAVELLING_SHIPS]];
+	[localShipRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_SHIPS]];
 	
-	self.sections = _array(productionSection, _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", actionRows, @"rows"), [self generateHealthSection], [self generateUpgradeSection]);
+	NSMutableArray *foreignShipRows = [NSMutableArray arrayWithCapacity:1];
+	[foreignShipRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_FOREIGN_SHIPS]];
+	
+	self.sections = _array([self generateProductionSection],
+						   _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_LOCAL_SHIPS], @"type", @"Local Ships", @"name", localShipRows, @"rows"), 
+						   _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_FOREIGN_SHIPS], @"type", @"Foreign Ships", @"name", foreignShipRows, @"rows"), 
+						   [self generateHealthSection], [self generateUpgradeSection]);
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForBuildingRow:(BUILDING_ROW)buildingRow {
 	switch (buildingRow) {
 		case BUILDING_ROW_DOCKED_SHIPS:
-			return [LETableViewCellDictionary getHeightForTableView:tableView numItems:[self.dockedShips count]];
-			break;
 		case BUILDING_ROW_VIEW_TRAVELLING_SHIPS:
 		case BUILDING_ROW_VIEW_SHIPS:
 		case BUILDING_ROW_VIEW_FOREIGN_SHIPS:
@@ -117,14 +118,14 @@
 	switch (buildingRow) {
 		case BUILDING_ROW_DOCKED_SHIPS:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
-			LETableViewCellDictionary *dockedShipsCell = [LETableViewCellDictionary getCellForTableView:tableView];
-			[dockedShipsCell setHeading:@"Docked Ships" Data:self.dockedShips];
+			LETableViewCellButton *dockedShipsCell = [LETableViewCellButton getCellForTableView:tableView];
+			dockedShipsCell.textLabel.text = @"Docked Ship Count";
 			cell = dockedShipsCell;
 			break;
 		case BUILDING_ROW_VIEW_SHIPS:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellButton *viewShipsCell = [LETableViewCellButton getCellForTableView:tableView];
-			viewShipsCell.textLabel.text = @"View Ships";
+			viewShipsCell.textLabel.text = @"View All Ships";
 			cell = viewShipsCell;
 			break;
 		case BUILDING_ROW_VIEW_TRAVELLING_SHIPS:
@@ -136,7 +137,7 @@
 		case BUILDING_ROW_VIEW_FOREIGN_SHIPS:
 			; //DO NOT REMOVE THIS!!
 			LETableViewCellButton *viewForeignShipsCell = [LETableViewCellButton getCellForTableView:tableView];
-			viewForeignShipsCell.textLabel.text = @"Incoming Foreign Ships";
+			viewForeignShipsCell.textLabel.text = @"Incoming Ships";
 			cell = viewForeignShipsCell;
 			break;
 		default:
@@ -150,6 +151,12 @@
 
 - (UIViewController *)tableView:(UITableView *)tableView didSelectBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex {
 	switch (buildingRow) {
+		case BUILDING_ROW_DOCKED_SHIPS:
+			; //DO NOT REMOVE
+			ViewDictionaryController *viewDictionaryController = [ViewDictionaryController createWithName:@"Docked Ship Count" useLongLabels:YES];
+			viewDictionaryController.data = self.dockedShips;
+			return viewDictionaryController;
+			break;
 		case BUILDING_ROW_VIEW_SHIPS:
 			; //DO NOT REMOVE
 			ViewShipsController *viewShipsController = [ViewShipsController create];

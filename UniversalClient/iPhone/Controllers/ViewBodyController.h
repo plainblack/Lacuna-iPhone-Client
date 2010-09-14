@@ -18,6 +18,7 @@
 	UISegmentedControl *pageSegmentedControl;
 	NSString *bodyId;
 	Body *watchedBody;
+	NSArray *oreKeysSorted;
 	PickColonyController* pickColonyController;
 	BOOL watchingSession;
 }
@@ -26,6 +27,7 @@
 @property (nonatomic, retain) UISegmentedControl *pageSegmentedControl;
 @property(nonatomic, retain) NSString *bodyId;
 @property(nonatomic, retain) Body *watchedBody;
+@property(nonatomic, retain) NSArray *oreKeysSorted;
 
 
 - (IBAction)clear;
