@@ -42,6 +42,15 @@
 }
 
 
+- (void)viewDidDisappear:(BOOL)animated {
+	[super viewDidDisappear:YES];
+	
+	if (self.webView.isLoading) {
+		[self.webView stopLoading];
+	}
+}
+
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;
 }
