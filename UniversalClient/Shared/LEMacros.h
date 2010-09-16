@@ -42,8 +42,6 @@
 #define SEPARATOR_COLOR [UIColor whiteColor]
 
 //FONT SETTINGS
-//#define LABEL_COLOR [UIColor colorWithWhite:0.7 alpha:1.0]
-//#define LABEL_SMALL_COLOR [UIColor colorWithWhite:0.7 alpha:1.0]
 #define LABEL_COLOR [UIColor blackColor]
 #define LABEL_SMALL_COLOR [UIColor blackColor]
 #define TEXT_COLOR [UIColor whiteColor]
@@ -52,7 +50,6 @@
 #define TEXT_ENTRY_COLOR [UIColor blackColor]
 #define BUTTON_TEXT_COLOR [UIColor colorWithRed:1.0 green:192.0/255.0 blue:0.0 alpha:1.0]
 #define HEADER_TEXT_COLOR [UIColor colorWithRed:1.0 green:192.0/255.0 blue:0.0 alpha:1.0]
-//#define WARNING_COLOR [UIColor colorWithRed:1.0 green:0.8 blue:0.8 alpha:1.0]
 #define WARNING_COLOR [UIColor yellowColor]
 #define MAIL_TEXT_COLOR [UIColor blackColor]
 #define UNREAD_MAIL_TEXT_COLOR [UIColor colorWithRed:0.0 green:0.5 blue:0.0 alpha:1.0]

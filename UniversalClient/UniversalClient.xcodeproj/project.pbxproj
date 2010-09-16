@@ -76,6 +76,8 @@
 		F642C668122A154B00C596A7 /* ViewUniverseController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F642C666122A154B00C596A7 /* ViewUniverseController.xib */; };
 		F642C66C122A155C00C596A7 /* ViewStatsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F642C66A122A155C00C596A7 /* ViewStatsController.m */; };
 		F642C66D122A155C00C596A7 /* ViewStatsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F642C66B122A155C00C596A7 /* ViewStatsController.xib */; };
+		F643335012406826006170E8 /* ViewMailMessageWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = F643334F12406826006170E8 /* ViewMailMessageWebController.m */; };
+		F64333591240697E006170E8 /* LETableViewCellWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = F64333581240697E006170E8 /* LETableViewCellWebView.m */; };
 		F645746C118DD62A000897C4 /* LETableViewCellAttachedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F645746B118DD62A000897C4 /* LETableViewCellAttachedImage.m */; };
 		F64C43D911F3B50E002981EC /* FoodReserve.m in Sources */ = {isa = PBXBuildFile; fileRef = F64C43D811F3B50E002981EC /* FoodReserve.m */; };
 		F64C43DC11F3B527002981EC /* OreStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = F64C43DB11F3B527002981EC /* OreStorage.m */; };
@@ -292,6 +294,9 @@
 		F6E8D56E1223E7F7001CD21D /* LEBuildingUpdateAlliance.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E8D56D1223E7F7001CD21D /* LEBuildingUpdateAlliance.m */; };
 		F6E8D5711223E817001CD21D /* LEBuildingLeaveAlliance.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E8D5701223E817001CD21D /* LEBuildingLeaveAlliance.m */; };
 		F6E8D5741223E82C001CD21D /* LEBuildingExpelMember.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E8D5731223E82C001CD21D /* LEBuildingExpelMember.m */; };
+		F6E98BDD1241A59A00F8640D /* ViewPublicEmpireProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E98BDC1241A59A00F8640D /* ViewPublicEmpireProfileController.m */; };
+		F6E98BE01241AD0E00F8640D /* LEEmpireViewPublicProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E98BDF1241AD0E00F8640D /* LEEmpireViewPublicProfile.m */; };
+		F6E98BE61241AE1900F8640D /* PublicEmpireProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E98BE51241AE1900F8640D /* PublicEmpireProfile.m */; };
 		F6EB025D1202F500001BFD68 /* LEBuildingViewShipsTravelling.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB025C1202F500001BFD68 /* LEBuildingViewShipsTravelling.m */; };
 		F6EB02661202FB01001BFD68 /* ViewTravellingShipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB02651202FB01001BFD68 /* ViewTravellingShipsController.m */; };
 		F6ECEE6F123E477500CACFED /* ViewDictionaryController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6ECEE6E123E477500CACFED /* ViewDictionaryController.m */; };
@@ -452,6 +457,10 @@
 		F642C669122A155C00C596A7 /* ViewStatsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewStatsController.h; sourceTree = "<group>"; };
 		F642C66A122A155C00C596A7 /* ViewStatsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewStatsController.m; sourceTree = "<group>"; };
 		F642C66B122A155C00C596A7 /* ViewStatsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewStatsController.xib; sourceTree = "<group>"; };
+		F643334E12406826006170E8 /* ViewMailMessageWebController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMailMessageWebController.h; sourceTree = "<group>"; };
+		F643334F12406826006170E8 /* ViewMailMessageWebController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMailMessageWebController.m; sourceTree = "<group>"; };
+		F64333571240697E006170E8 /* LETableViewCellWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellWebView.h; sourceTree = "<group>"; };
+		F64333581240697E006170E8 /* LETableViewCellWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellWebView.m; sourceTree = "<group>"; };
 		F645746A118DD62A000897C4 /* LETableViewCellAttachedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellAttachedImage.h; sourceTree = "<group>"; };
 		F645746B118DD62A000897C4 /* LETableViewCellAttachedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellAttachedImage.m; sourceTree = "<group>"; };
 		F64C43D711F3B50E002981EC /* FoodReserve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodReserve.h; sourceTree = "<group>"; };
@@ -872,6 +881,12 @@
 		F6E8D5701223E817001CD21D /* LEBuildingLeaveAlliance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingLeaveAlliance.m; sourceTree = "<group>"; };
 		F6E8D5721223E82C001CD21D /* LEBuildingExpelMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingExpelMember.h; sourceTree = "<group>"; };
 		F6E8D5731223E82C001CD21D /* LEBuildingExpelMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingExpelMember.m; sourceTree = "<group>"; };
+		F6E98BDB1241A59A00F8640D /* ViewPublicEmpireProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewPublicEmpireProfileController.h; sourceTree = "<group>"; };
+		F6E98BDC1241A59A00F8640D /* ViewPublicEmpireProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewPublicEmpireProfileController.m; sourceTree = "<group>"; };
+		F6E98BDE1241AD0E00F8640D /* LEEmpireViewPublicProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireViewPublicProfile.h; sourceTree = "<group>"; };
+		F6E98BDF1241AD0E00F8640D /* LEEmpireViewPublicProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireViewPublicProfile.m; sourceTree = "<group>"; };
+		F6E98BE41241AE1900F8640D /* PublicEmpireProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicEmpireProfile.h; sourceTree = "<group>"; };
+		F6E98BE51241AE1900F8640D /* PublicEmpireProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicEmpireProfile.m; sourceTree = "<group>"; };
 		F6EB025B1202F500001BFD68 /* LEBuildingViewShipsTravelling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewShipsTravelling.h; sourceTree = "<group>"; };
 		F6EB025C1202F500001BFD68 /* LEBuildingViewShipsTravelling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewShipsTravelling.m; sourceTree = "<group>"; };
 		F6EB02641202FB01001BFD68 /* ViewTravellingShipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewTravellingShipsController.h; sourceTree = "<group>"; };
@@ -1129,6 +1144,8 @@
 				F69809C4117A156E00BD2096 /* LETableViewCellUnbuildable.m */,
 				F6DD2062116D5B3C0013C58D /* LEViewSectionTab.h */,
 				F6DD2063116D5B3C0013C58D /* LEViewSectionTab.m */,
+				F64333571240697E006170E8 /* LETableViewCellWebView.h */,
+				F64333581240697E006170E8 /* LETableViewCellWebView.m */,
 			);
 			name = Views;
 			path = Shared/Views;
@@ -1341,6 +1358,8 @@
 				F6E3F01D11B46BBB00E7BC86 /* LEEmpireViewBoosts.m */,
 				F6AC49F8116C0F9B001B967A /* LEEmpireViewProfile.h */,
 				F6AC49F9116C0F9B001B967A /* LEEmpireViewProfile.m */,
+				F6E98BDE1241AD0E00F8640D /* LEEmpireViewPublicProfile.h */,
+				F6E98BDF1241AD0E00F8640D /* LEEmpireViewPublicProfile.m */,
 				F6AC49FC116C0F9B001B967A /* LEGetBuildables.h */,
 				F6AC49FD116C0F9B001B967A /* LEGetBuildables.m */,
 				F6AC4A02116C0F9B001B967A /* LEGetSystem.h */,
@@ -1437,6 +1456,8 @@
 				F65DC32511EE09AE00A0A782 /* PlanetaryCommand.m */,
 				F65DC38711EE58FB00A0A782 /* Prisoner.h */,
 				F65DC38811EE58FB00A0A782 /* Prisoner.m */,
+				F6E98BE41241AE1900F8640D /* PublicEmpireProfile.h */,
+				F6E98BE51241AE1900F8640D /* PublicEmpireProfile.m */,
 				F6FD9E7C11D7A42C003785AD /* ResourceCost.h */,
 				F6FD9E7D11D7A42C003785AD /* ResourceCost.m */,
 				F6FD9E6C11D7A05D003785AD /* ResourceGeneration.h */,
@@ -1653,6 +1674,10 @@
 				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
 				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
+				F643334E12406826006170E8 /* ViewMailMessageWebController.h */,
+				F643334F12406826006170E8 /* ViewMailMessageWebController.m */,
+				F6E98BDB1241A59A00F8640D /* ViewPublicEmpireProfileController.h */,
+				F6E98BDC1241A59A00F8640D /* ViewPublicEmpireProfileController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2050,6 +2075,11 @@
 				F6023A67123D922200268ADD /* LEBuildingViewPlans.m in Sources */,
 				F6ECEE6F123E477500CACFED /* ViewDictionaryController.m in Sources */,
 				F6531A0E123EFB7F00210C32 /* LETableViewCellLongLabeledText.m in Sources */,
+				F643335012406826006170E8 /* ViewMailMessageWebController.m in Sources */,
+				F64333591240697E006170E8 /* LETableViewCellWebView.m in Sources */,
+				F6E98BDD1241A59A00F8640D /* ViewPublicEmpireProfileController.m in Sources */,
+				F6E98BE01241AD0E00F8640D /* LEEmpireViewPublicProfile.m in Sources */,
+				F6E98BE61241AE1900F8640D /* PublicEmpireProfile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

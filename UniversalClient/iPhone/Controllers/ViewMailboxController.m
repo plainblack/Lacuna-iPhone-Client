@@ -10,7 +10,8 @@
 #import "LEMacros.h"
 #import "Mailbox.h"
 #import "Session.h"
-#import "ViewMailMessageController.h"
+//#import "ViewMailMessageController.h"
+#import "ViewMailMessageWebController.h"
 #import "NewMailMessageController.h"
 #import "LETableViewCellMailSelect.h"
 
@@ -162,9 +163,11 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	ViewMailMessageController *viewMailMessageController = [ViewMailMessageController create];
+	//ViewMailMessageController *viewMailMessageController = [ViewMailMessageController create];
+	ViewMailMessageWebController *viewMailMessageController = [ViewMailMessageWebController create];
 	viewMailMessageController.mailbox = self.mailbox;
 	viewMailMessageController.messageIndex = indexPath.row;
+	
 	[[self navigationController] pushViewController:viewMailMessageController animated:YES];
 }
 
