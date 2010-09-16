@@ -302,7 +302,8 @@
 		[self.tableView reloadData];
 	} else if ([keyPath isEqual:@"lastMessageAt"]) {
 		Session *session = [Session sharedInstance];
-		if ([self.lastMessageAt compare:session.empire.lastMessageAt] != NSOrderedSame) {
+		if ([self.lastMessageAt compare:session.empire.lastMessageAt] == NSOrderedDescending) {
+			NSLog(@"sess.empire.lastMessageAt is newer");
 			[self loadMessages];
 			self.lastMessageAt = session.empire.lastMessageAt;
 			[self.tableView reloadData];

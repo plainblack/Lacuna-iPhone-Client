@@ -47,29 +47,36 @@
 #pragma mark Instance Methods
 
 - (void)setContent:(NSString *)content {
-	NSRegularExpression *widthImageRegex = [NSRegularExpression regularExpressionWithPattern:@"\\{(build|essentia)\\}"
-																					 options:NSRegularExpressionCaseInsensitive
-																					   error:nil];
-	NSRegularExpression *heightImageRegex = [NSRegularExpression regularExpressionWithPattern:@"\\{(energy|food|happiness|ore|plots|time|waste|water)\\}"
-																					  options:NSRegularExpressionCaseInsensitive
-																						error:nil];
-	NSRegularExpression *linkRegex = [NSRegularExpression regularExpressionWithPattern:@"\\[(.*)\\]"
-																			   options:NSRegularExpressionCaseInsensitive
-																				 error:nil];
-	NSRegularExpression *boldRegex = [NSRegularExpression regularExpressionWithPattern:@"\\*(.*)\\*"
-																			   options:NSRegularExpressionCaseInsensitive
-																				 error:nil];
-	NSRegularExpression *empireProfileRegex = [NSRegularExpression regularExpressionWithPattern:@"\\{Empire\\s(\\d+)\\s(.*?)\\}"
-																						options:NSRegularExpressionCaseInsensitive
-																						  error:nil];
 	self->loadingContent = YES;
-	NSMutableString *mutableString = [content mutableCopy];
-	[widthImageRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<img src=\"assets/iphone ui/$1.png\" width=\"22\" />"];
-	[heightImageRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<img src=\"assets/iphone ui/$1.png\" height=\"22\" />"];
-	[linkRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<a href=\"$1\">$1</a>"];
-	[boldRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<b>$1</b>"];
-	[empireProfileRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<a href=\"empire://$1\">$2</a>"];
-	NSString *htmlString = [NSString stringWithFormat:@"<html><head><style>a:link {color:#FFC000;}</style><script>document.ontouchmove = function(event) { event.preventDefault(); }</script></head><body style=\"background-color:transparent; color: #FFF; width: %f;\">%@</body></html>", self.webView.frame.size.width-20, mutableString];
+	NSString *htmlString;
+	if (isNotNull(content)) {
+		NSRegularExpression *widthImageRegex = [NSRegularExpression regularExpressionWithPattern:@"\\{(build|essentia)\\}"
+																						 options:NSRegularExpressionCaseInsensitive
+																						   error:nil];
+		NSRegularExpression *heightImageRegex = [NSRegularExpression regularExpressionWithPattern:@"\\{(energy|food|happiness|ore|plots|time|waste|water)\\}"
+																						  options:NSRegularExpressionCaseInsensitive
+																							error:nil];
+		NSRegularExpression *linkRegex = [NSRegularExpression regularExpressionWithPattern:@"\\[(.*)\\]"
+																				   options:NSRegularExpressionCaseInsensitive
+																					 error:nil];
+		NSRegularExpression *boldRegex = [NSRegularExpression regularExpressionWithPattern:@"\\*(.*)\\*"
+																				   options:NSRegularExpressionCaseInsensitive
+																					 error:nil];
+		NSRegularExpression *empireProfileRegex = [NSRegularExpression regularExpressionWithPattern:@"\\{Empire\\s(\\d+)\\s(.*?)\\}"
+																							options:NSRegularExpressionCaseInsensitive
+																							  error:nil];
+		self->loadingContent = YES;
+		NSMutableString *mutableString = [content mutableCopy];
+		[widthImageRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<img src=\"assets/iphone ui/$1.png\" width=\"22\" />"];
+		[heightImageRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<img src=\"assets/iphone ui/$1.png\" height=\"22\" />"];
+		[linkRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<a href=\"$1\">$1</a>"];
+		[boldRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<b>$1</b>"];
+		[empireProfileRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<a href=\"empire://$1\">$2</a>"];
+		htmlString = [NSString stringWithFormat:@"<html><head><style>a:link {color:#FFC000;}</style><script>document.ontouchmove = function(event) { event.preventDefault(); }</script></head><body style=\"background-color:transparent; color: #FFF; width: %f;\">%@</body></html>", self.webView.frame.size.width-20, mutableString];
+	} else {
+		htmlString = [NSString stringWithFormat:@"<html><head><style>a:link {color:#FFC000;}</style><script>document.ontouchmove = function(event) { event.preventDefault(); }</script></head><body style=\"background-color:transparent; color: #FFF; width: %f;\"></body></html>", self.webView.frame.size.width-20];
+	}
+
 	NSString *path = [[NSBundle mainBundle] bundlePath];
 	NSURL *baseURL = [NSURL fileURLWithPath:path];
 	[self.webView loadHTMLString:htmlString baseURL:baseURL];

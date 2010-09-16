@@ -1142,10 +1142,10 @@
 				F6DB90E612039C33003293A7 /* LETableViewCellTravellingShip.m */,
 				F69809C3117A156E00BD2096 /* LETableViewCellUnbuildable.h */,
 				F69809C4117A156E00BD2096 /* LETableViewCellUnbuildable.m */,
-				F6DD2062116D5B3C0013C58D /* LEViewSectionTab.h */,
-				F6DD2063116D5B3C0013C58D /* LEViewSectionTab.m */,
 				F64333571240697E006170E8 /* LETableViewCellWebView.h */,
 				F64333581240697E006170E8 /* LETableViewCellWebView.m */,
+				F6DD2062116D5B3C0013C58D /* LEViewSectionTab.h */,
+				F6DD2063116D5B3C0013C58D /* LEViewSectionTab.m */,
 			);
 			name = Views;
 			path = Shared/Views;
