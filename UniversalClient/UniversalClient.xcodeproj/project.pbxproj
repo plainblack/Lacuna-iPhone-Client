@@ -1633,6 +1633,8 @@
 				F6980ACE117A600E00BD2096 /* ViewMailboxController.xib */,
 				F6980B02117A6CF900BD2096 /* ViewMailMessageController.h */,
 				F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */,
+				F643334E12406826006170E8 /* ViewMailMessageWebController.h */,
+				F643334F12406826006170E8 /* ViewMailMessageWebController.m */,
 				F6F1C21B12326FB100D69BB6 /* ViewMedalsController.h */,
 				F6F1C21C12326FB100D69BB6 /* ViewMedalsController.m */,
 				F6E5E63E1205CF4000365AA2 /* ViewMiningFleetShipsController.h */,
@@ -1653,6 +1655,8 @@
 				F65DC36D11EE533500A0A782 /* ViewPrisonersController.m */,
 				F61F6759120515410007427A /* ViewProbedStarsController.h */,
 				F61F675A120515410007427A /* ViewProbedStarsController.m */,
+				F6E98BDB1241A59A00F8640D /* ViewPublicEmpireProfileController.h */,
+				F6E98BDC1241A59A00F8640D /* ViewPublicEmpireProfileController.m */,
 				F6B2155D1232D20B00531EEE /* ViewRacialStatsController.h */,
 				F6B2155E1232D20B00531EEE /* ViewRacialStatsController.m */,
 				F61F65CE1204C6030007427A /* ViewShipBuildQueueController.h */,
@@ -1674,10 +1678,6 @@
 				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
 				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
-				F643334E12406826006170E8 /* ViewMailMessageWebController.h */,
-				F643334F12406826006170E8 /* ViewMailMessageWebController.m */,
-				F6E98BDB1241A59A00F8640D /* ViewPublicEmpireProfileController.h */,
-				F6E98BDC1241A59A00F8640D /* ViewPublicEmpireProfileController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

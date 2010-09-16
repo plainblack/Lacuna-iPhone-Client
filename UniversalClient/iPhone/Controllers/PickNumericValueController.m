@@ -26,14 +26,12 @@
 	
 	self.view.autoresizesSubviews = YES;
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	self.view.backgroundColor = CELL_BACKGROUND_COLOR;
 	
 	if (self.maxValue) {
 		maxButton.hidden = NO;
 	} else {
 		maxButton.hidden = YES;
 	}
-
 }
 
 
@@ -69,12 +67,16 @@
 #pragma mark UIPickerViewDataSource Methods
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-	return 6;
+	return self->numDigits;
 }
 
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-	return 10;
+	if (component == 0) {
+		return self->leftMostDigit+1;
+	} else {
+		return 10;
+	}
 }
 
 
@@ -90,14 +92,12 @@
 #pragma mark Instance Methods
 
 -(IBAction) save {
-	NSInteger value = 0;
-	value += [self.numberPicker selectedRowInComponent:0] * 100000;
-	value += [self.numberPicker selectedRowInComponent:1] * 10000;
-	value += [self.numberPicker selectedRowInComponent:2] * 1000;
-	value += [self.numberPicker selectedRowInComponent:3] * 100;
-	value += [self.numberPicker selectedRowInComponent:4] * 10;
-	value += [self.numberPicker selectedRowInComponent:5];
-	[self.delegate newNumericValue:[Util decimalFromInt:value]];
+	NSMutableString *valueAsString = [NSMutableString stringWithCapacity:self->numDigits];
+	
+	for (int index=0; index < self->numDigits; index++) {
+		[valueAsString appendFormat:@"%i", [self.numberPicker selectedRowInComponent:index]];
+	}
+	[self.delegate newNumericValue:[NSDecimalNumber decimalNumberWithString:valueAsString]];
 	[self dismissModalViewControllerAnimated:YES];
 }
 
@@ -113,14 +113,21 @@
 
 
 -(void) setValue:(NSDecimalNumber *)value {
-	NSInteger tmp = [value intValue];
-	
-	[self.numberPicker selectRow:(tmp/100000)%10 inComponent:0 animated:YES];
-	[self.numberPicker selectRow:(tmp/10000)%10 inComponent:1 animated:YES];
-	[self.numberPicker selectRow:(tmp/1000)%10 inComponent:2 animated:YES];
-	[self.numberPicker selectRow:(tmp/100)%10 inComponent:3 animated:YES];
-	[self.numberPicker selectRow:(tmp/10)%10 inComponent:4 animated:YES];
-	[self.numberPicker selectRow:tmp%10 inComponent:5 animated:YES];
+	NSDecimalNumberHandler *roundingBehavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundDown scale:0 raiseOnExactness:FALSE raiseOnOverflow:TRUE raiseOnUnderflow:TRUE raiseOnDivideByZero:TRUE]; 
+	value = [value decimalNumberByRoundingAccordingToBehavior:roundingBehavior];
+	NSString *valueAsString = [value stringValue];
+	NSInteger valueNumDigits = [valueAsString length];
+	NSInteger diff = (self->numDigits - valueNumDigits);
+
+	for (int index=0; index < valueNumDigits; index++) {
+		if (index == valueNumDigits-1) {
+			[self.numberPicker selectRow:_intv([valueAsString substringFromIndex:index]) inComponent:(index+diff) animated:YES];
+		} else {
+			NSRange range = NSMakeRange(index, 1);
+			NSInteger digit = _intv([valueAsString substringWithRange:range]);
+			[self.numberPicker selectRow:digit inComponent:(index+diff) animated:YES];
+		}
+	}
 }
 
 
@@ -130,7 +137,16 @@
 +(PickNumericValueController *) createWithDelegate:(id<PickNumericValueControllerDelegate>)delegate maxValue:(NSDecimalNumber *)maxValue {
 	PickNumericValueController *pickNumericValueController = [[[PickNumericValueController alloc] initWithNibName:@"PickNumericValueController" bundle:nil] autorelease];
 	pickNumericValueController.delegate = delegate;
-	pickNumericValueController.maxValue = maxValue;
+	if (maxValue) {
+		NSDecimalNumberHandler *roundingBehavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundDown scale:0 raiseOnExactness:FALSE raiseOnOverflow:TRUE raiseOnUnderflow:TRUE raiseOnDivideByZero:TRUE]; 
+		pickNumericValueController.maxValue = [maxValue decimalNumberByRoundingAccordingToBehavior:roundingBehavior];
+		NSString *maxValueAsString = [pickNumericValueController.maxValue stringValue];
+		pickNumericValueController->numDigits = [maxValueAsString length];
+		pickNumericValueController->leftMostDigit = _intv([maxValueAsString substringToIndex:1]);
+	} else {
+		pickNumericValueController.maxValue = [NSDecimalNumber decimalNumberWithString:@"999999"];
+	}
+
 	return pickNumericValueController;
 }
 

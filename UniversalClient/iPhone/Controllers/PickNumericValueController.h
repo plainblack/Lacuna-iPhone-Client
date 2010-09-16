@@ -23,6 +23,8 @@
 	UIPickerView *numberPicker;
 	id<PickNumericValueControllerDelegate> delegate;
 	NSDecimalNumber *maxValue;
+	NSInteger numDigits;
+	NSInteger leftMostDigit;
 }
 
 

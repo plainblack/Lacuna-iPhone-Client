@@ -129,8 +129,8 @@
 	
 	if (self.includeQuantity) {
 		self->pickNumericValueController = [[PickNumericValueController createWithDelegate:self maxValue:nil] retain];
-		pickNumericValueController.titleLabel.text = [self.selectedResourceType capitalizedString];
 		[self presentModalViewController:pickNumericValueController animated:YES];
+		pickNumericValueController.titleLabel.text = [self.selectedResourceType capitalizedString];
 	} else {
 		[self.delegate resourceTypeSelected:self.selectedResourceType withQuantity:nil];
 	}
