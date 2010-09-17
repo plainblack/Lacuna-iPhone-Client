@@ -21,22 +21,25 @@
 	NSTimer *reloadTimer;
 	NSDate *lastMessageAt;
 	BOOL observingMailbox;
+	NSString *showMessageId;
 }
 
 
-@property(nonatomic, retain) UISegmentedControl *pageSegmentedControl;
-@property(nonatomic, retain) UISegmentedControl *mailboxSegmentedControl;
-@property(nonatomic, retain) NSArray *inboxBarButtonItems;
-@property(nonatomic, retain) NSArray *otherMailboxBarButtonItems;
-@property(nonatomic, retain) Mailbox *mailbox;
-@property(nonatomic, retain) NSTimer *reloadTimer;
-@property(nonatomic, retain) NSDate *lastMessageAt;
+@property (nonatomic, retain) UISegmentedControl *pageSegmentedControl;
+@property (nonatomic, retain) UISegmentedControl *mailboxSegmentedControl;
+@property (nonatomic, retain) NSArray *inboxBarButtonItems;
+@property (nonatomic, retain) NSArray *otherMailboxBarButtonItems;
+@property (nonatomic, retain) Mailbox *mailbox;
+@property (nonatomic, retain) NSTimer *reloadTimer;
+@property (nonatomic, retain) NSDate *lastMessageAt;
+@property (nonatomic, retain) NSString *showMessageId; 
 
 
 - (void)clear;
 - (IBAction)newMessage;
 - (IBAction)switchMailBox;
 - (void)loadMessages;
+- (void)showMessageById:(NSString *)messageId;
 
 
 @end

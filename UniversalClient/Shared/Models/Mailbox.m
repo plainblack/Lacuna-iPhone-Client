@@ -83,7 +83,12 @@
 		Session *session = [Session sharedInstance];
 		session.empire.numNewMessages = [session.empire.numNewMessages decimalNumberBySubtracting:[NSDecimalNumber one]];
 	}
-	NSString *messageId = [Util idFromDict:messageHeader named:@"id"];
+	[self loadMessageById:[Util idFromDict:messageHeader named:@"id"]];
+}
+
+
+- (void)loadMessageById:(NSString *)messageId {
+	NSLog(@"Loading messageId: %@", messageId);
 	if (self.messageDetails) {
 		NSString *messageDetailId = [Util idFromDict:self.messageDetails named:@"id"];
 		if (![messageDetailId isEqualToString:messageId]) {

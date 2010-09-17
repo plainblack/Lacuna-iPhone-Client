@@ -39,6 +39,7 @@ typedef enum {
 - (void)loadMessage:(NSInteger)index;
 - (void)archiveMessage:(NSInteger)index;
 - (void)loadMessageHeaders;
+- (void)loadMessageById:(NSString *)messageId;
 
 
 + (Mailbox *)loadArchived;

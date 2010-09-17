@@ -17,12 +17,14 @@
 	UIPickerView *assignmentPicker;
 	Intelligence *intelligence;
 	Spy *spy;
+	NSDictionary *assignedMission;
 }
 
 
 @property (nonatomic, retain) IBOutlet UIPickerView *assignmentPicker;
 @property (nonatomic, retain) Intelligence *intelligence;
 @property (nonatomic, retain) Spy *spy;
+@property (nonatomic, retain) NSDictionary *assignedMission;
 
 
 - (IBAction)cancel;

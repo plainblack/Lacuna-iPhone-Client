@@ -35,6 +35,7 @@ typedef enum {
 @synthesize messageSegmentedControl;
 @synthesize mailbox;
 @synthesize messageIndex;
+@synthesize messageId;
 @synthesize bodyCell;
 
 
@@ -81,7 +82,15 @@ typedef enum {
 	[self.mailbox addObserver:self forKeyPath:@"messageDetails" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 	[self.mailbox addObserver:self forKeyPath:@"messageHeaders" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 	isObserving = YES;
-	[self.mailbox loadMessage:self.messageIndex];
+	if (self.messageId) {
+		NSLog(@"Loading messageId: %@", self.messageId);
+		[self.mailbox loadMessageById:self.messageId];
+		self.messageSegmentedControl.hidden = YES;
+	} else {
+		[self.mailbox loadMessage:self.messageIndex];
+		self.messageSegmentedControl.hidden = NO;
+	}
+
 }
 
 
@@ -326,6 +335,7 @@ typedef enum {
 	self.messageIndex = 0;
 	[self.bodyCell removeObserver:self forKeyPath:@"height"];
 	self.bodyCell = nil;
+	self.messageId = nil;
     [super dealloc];
 }
 
@@ -429,7 +439,9 @@ typedef enum {
 
 		[self.tableView reloadData];
 	} else if ( [keyPath isEqualToString:@"messageHeaders"]) {
-		[self.mailbox loadMessage:self.messageIndex];
+		if (!self.messageId) {
+			[self.mailbox loadMessage:self.messageIndex];
+		}
 	} else if ( [keyPath isEqualToString:@"height"]) {
 		[self.tableView reloadData];
 	}

@@ -26,6 +26,7 @@
 @synthesize mailbox;
 @synthesize reloadTimer;
 @synthesize lastMessageAt;
+@synthesize showMessageId;
 
 
 #pragma mark -
@@ -204,6 +205,7 @@
 	self.otherMailboxBarButtonItems = nil;
 	self.mailbox = nil;
 	self.lastMessageAt = nil;
+	self.showMessageId = nil;
     [super dealloc];
 }
 
@@ -216,6 +218,19 @@
 	self.lastMessageAt = nil;
 	self.mailboxSegmentedControl.selectedSegmentIndex = UISegmentedControlNoSegment;
 	[self.tableView reloadData];
+}
+
+
+- (void)showMessageById:(NSString *)messageId {
+	if (self.mailbox) {
+		ViewMailMessageWebController *viewMailMessageController = [ViewMailMessageWebController create];
+		viewMailMessageController.mailbox = self.mailbox;
+		viewMailMessageController.messageId = messageId;
+		
+		[[self navigationController] pushViewController:viewMailMessageController animated:YES];
+	} else {
+		self.showMessageId = messageId;
+	}
 }
 
 
@@ -276,6 +291,14 @@
 		[self setToolbarItems:self.inboxBarButtonItems animated:NO];
 	} else {
 		[self setToolbarItems:self.otherMailboxBarButtonItems animated:NO];
+	}
+	
+	if (self.showMessageId) {
+		ViewMailMessageWebController *viewMailMessageController = [ViewMailMessageWebController create];
+		viewMailMessageController.mailbox = self.mailbox;
+		viewMailMessageController.messageId = self.showMessageId;
+		self.showMessageId = nil;
+		[[self navigationController] pushViewController:viewMailMessageController animated:YES];
 	}
 }
 

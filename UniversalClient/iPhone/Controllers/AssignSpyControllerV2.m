@@ -10,6 +10,7 @@
 #import "LEMacros.h"
 #import "Intelligence.h"
 #import "Spy.h"
+#import "AppDelegate_Phone.h"
 
 
 @implementation AssignSpyControllerV2
@@ -18,6 +19,7 @@
 @synthesize assignmentPicker;
 @synthesize intelligence;
 @synthesize spy;
+@synthesize assignedMission;
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -55,6 +57,7 @@
 
 - (void)viewDidUnload {
     self.assignmentPicker = nil;
+	self.assignedMission = nil;
     [super viewDidUnload];
 }
 
@@ -63,6 +66,7 @@
     self.assignmentPicker = nil;
 	self.intelligence = nil;
 	self.spy = nil;
+	self.assignedMission = nil;
     [super dealloc];
 }
 
@@ -104,8 +108,10 @@
 #pragma mark Callback Methods
 
 - (void)spyAssigned:(NSMutableDictionary *)mission {
+	self.assignedMission = mission;
 	NSString *result = [mission objectForKey:@"result"];
 	NSString *reason = [mission objectForKey:@"reason"];
+	NSString *messageId = [mission objectForKey:@"message_id"];
 	Spy *assignedSpy = [mission objectForKey:@"spy"];
 
 	NSString *title = @"Mission Update";
@@ -120,7 +126,15 @@
 	} else if ([result isEqualToString:@"Failure"]) {
 		title = @"Mission Failed";
 	}
-	UIAlertView *av = [[[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+	
+	UIAlertView *av;
+	
+	if (messageId) {
+		av = [[[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Message", nil] autorelease];
+	} else {
+		av = [[[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+	}
+
 	[av show];
 }
 
@@ -130,6 +144,15 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
 	[[self navigationController] popViewControllerAnimated:YES];
+	if (buttonIndex != alertView.cancelButtonIndex) {
+		NSString *messageId = [self.assignedMission objectForKey:@"message_id"];
+		if (!messageId) {
+			messageId = @"19840";
+		}
+		AppDelegate_Phone *appDelegate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
+		[appDelegate showMessage:messageId];
+	}
+	self.assignedMission = nil;
 }
 
 

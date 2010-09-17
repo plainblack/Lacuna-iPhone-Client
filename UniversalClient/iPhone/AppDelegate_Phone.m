@@ -134,7 +134,16 @@
 
 
 #pragma mark -
-#pragma mark KVO Methods
+#pragma mark Instance Methods
+
+- (void)showMessage:(NSString *)messageId {
+	self.tabBarController.selectedViewController = self.mailNavigationController;
+	[self.mailboxController showMessageById:messageId];
+}
+
+
+#pragma mark -
+#pragma mark TabBarController Delegate Methods
 
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
@@ -207,14 +216,7 @@
 
 
 - (void)hideLogin {
-	__block NSInteger myWorldControllerIdx;
-	[self.tabBarController.viewControllers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
-		if (obj == self.myWorldController) {
-			myWorldControllerIdx = idx;
-			*stop = YES;
-		}
-	}];
-	self.tabBarController.selectedIndex = myWorldControllerIdx;
+	self.tabBarController.selectedViewController = self.myWorldsNavigationController;
 	[self.tabBarController dismissModalViewControllerAnimated:YES];
 }
 

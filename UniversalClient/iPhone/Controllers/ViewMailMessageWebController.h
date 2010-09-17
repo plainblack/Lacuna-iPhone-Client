@@ -19,6 +19,7 @@
 	UISegmentedControl *messageSegmentedControl;
 	Mailbox *mailbox;
 	NSInteger messageIndex;
+	NSString *messageId;
 	BOOL isObserving;
 	NSDictionary *attachements;
 	BOOL hasAttachements;
@@ -31,6 +32,7 @@
 @property(nonatomic, retain) UISegmentedControl *messageSegmentedControl;
 @property(nonatomic, retain) Mailbox *mailbox;
 @property(nonatomic, assign) NSInteger messageIndex;
+@property(nonatomic, retain) NSString *messageId;
 @property(nonatomic, retain) LETableViewCellWebView *bodyCell;
 
 

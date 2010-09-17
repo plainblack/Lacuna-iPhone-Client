@@ -34,5 +34,8 @@
 @property(nonatomic, retain) IBOutlet ViewMailboxController *mailboxController;
 
 
+- (void)showMessage:(NSString *)messageId;
+
+
 @end
 
