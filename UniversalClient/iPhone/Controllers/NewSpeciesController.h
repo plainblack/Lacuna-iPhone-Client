@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LETableViewControllerGrouped.h"
 #import "LETableViewCellTextEntry.h"
-#import "LETableViewCellAffinitySelector.h"
+#import "LETableViewCellAffinitySelectorV2.h"
 #import "LESpeciesPointsUpdateDelegate.h"
 #import "LETableViewCellLabeledTextView.h"
 
@@ -22,17 +22,17 @@
 	LETableViewCellTextEntry *speciesNameCell;
 	LETableViewCellLabeledTextView *speciesDescriptionCell;
 	NSArray *orbitCells;
-	LETableViewCellAffinitySelector *manufacturingCell;
-	LETableViewCellAffinitySelector *deceptionCell;
-	LETableViewCellAffinitySelector *researchCell;
-	LETableViewCellAffinitySelector *managementCell;
-	LETableViewCellAffinitySelector *farmingCell;
-	LETableViewCellAffinitySelector *miningCell;
-	LETableViewCellAffinitySelector *scienceCell;
-	LETableViewCellAffinitySelector *environmentalCell;
-	LETableViewCellAffinitySelector *politicalCell;
-	LETableViewCellAffinitySelector *tradeCell;
-	LETableViewCellAffinitySelector *growthCell;
+	LETableViewCellAffinitySelectorV2 *manufacturingCell;
+	LETableViewCellAffinitySelectorV2 *deceptionCell;
+	LETableViewCellAffinitySelectorV2 *researchCell;
+	LETableViewCellAffinitySelectorV2 *managementCell;
+	LETableViewCellAffinitySelectorV2 *farmingCell;
+	LETableViewCellAffinitySelectorV2 *miningCell;
+	LETableViewCellAffinitySelectorV2 *scienceCell;
+	LETableViewCellAffinitySelectorV2 *environmentalCell;
+	LETableViewCellAffinitySelectorV2 *politicalCell;
+	LETableViewCellAffinitySelectorV2 *tradeCell;
+	LETableViewCellAffinitySelectorV2 *growthCell;
 	
 }
 
@@ -43,17 +43,17 @@
 @property(nonatomic, retain) LETableViewCellTextEntry *speciesNameCell;
 @property(nonatomic, retain) LETableViewCellLabeledTextView *speciesDescriptionCell;
 @property(nonatomic, retain) NSArray *orbitCells;
-@property(nonatomic, retain) LETableViewCellAffinitySelector *manufacturingCell;
-@property(nonatomic, retain) LETableViewCellAffinitySelector *deceptionCell;
-@property(nonatomic, retain) LETableViewCellAffinitySelector *researchCell;
-@property(nonatomic, retain) LETableViewCellAffinitySelector *managementCell;
-@property(nonatomic, retain) LETableViewCellAffinitySelector *farmingCell;
-@property(nonatomic, retain) LETableViewCellAffinitySelector *miningCell;
-@property(nonatomic, retain) LETableViewCellAffinitySelector *scienceCell;
-@property(nonatomic, retain) LETableViewCellAffinitySelector *environmentalCell;
-@property(nonatomic, retain) LETableViewCellAffinitySelector *politicalCell;
-@property(nonatomic, retain) LETableViewCellAffinitySelector *tradeCell;
-@property(nonatomic, retain) LETableViewCellAffinitySelector *growthCell;
+@property(nonatomic, retain) LETableViewCellAffinitySelectorV2 *manufacturingCell;
+@property(nonatomic, retain) LETableViewCellAffinitySelectorV2 *deceptionCell;
+@property(nonatomic, retain) LETableViewCellAffinitySelectorV2 *researchCell;
+@property(nonatomic, retain) LETableViewCellAffinitySelectorV2 *managementCell;
+@property(nonatomic, retain) LETableViewCellAffinitySelectorV2 *farmingCell;
+@property(nonatomic, retain) LETableViewCellAffinitySelectorV2 *miningCell;
+@property(nonatomic, retain) LETableViewCellAffinitySelectorV2 *scienceCell;
+@property(nonatomic, retain) LETableViewCellAffinitySelectorV2 *environmentalCell;
+@property(nonatomic, retain) LETableViewCellAffinitySelectorV2 *politicalCell;
+@property(nonatomic, retain) LETableViewCellAffinitySelectorV2 *tradeCell;
+@property(nonatomic, retain) LETableViewCellAffinitySelectorV2 *growthCell;
 
 
 - (IBAction)cancel;

@@ -128,7 +128,7 @@
 	self.selectedResourceType = [self.baseTradeBuilding.resourceTypes objectAtIndex:indexPath.row];
 	
 	if (self.includeQuantity) {
-		self->pickNumericValueController = [[PickNumericValueController createWithDelegate:self maxValue:nil] retain];
+		self->pickNumericValueController = [[PickNumericValueController createWithDelegate:self maxValue:nil hidesZero:NO] retain];
 		[self presentModalViewController:pickNumericValueController animated:YES];
 		pickNumericValueController.titleLabel.text = [self.selectedResourceType capitalizedString];
 	} else {

@@ -131,7 +131,7 @@
 			max = self.baseTradeBuilding.maxCargoSize;
 		}
 	}
-	self->pickNumericValueController = [[PickNumericValueController createWithDelegate:self maxValue:max] retain];
+	self->pickNumericValueController = [[PickNumericValueController createWithDelegate:self maxValue:max hidesZero:NO] retain];
 	[self presentModalViewController:self->pickNumericValueController animated:YES];
 	self->pickNumericValueController.titleLabel.text = [[self.selectedStoredResource objectForKey:@"type"] capitalizedString];
 }

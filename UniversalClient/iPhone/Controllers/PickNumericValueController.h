@@ -25,6 +25,7 @@
 	NSDecimalNumber *maxValue;
 	NSInteger numDigits;
 	NSInteger leftMostDigit;
+	BOOL hideZero;
 }
 
 
@@ -33,6 +34,7 @@
 @property (nonatomic, retain) IBOutlet UIPickerView *numberPicker;
 @property (nonatomic, assign) id<PickNumericValueControllerDelegate> delegate;
 @property (nonatomic, retain) NSDecimalNumber *maxValue;
+@property (nonatomic, assign) BOOL hideZero;
 
 
 -(IBAction) save;
@@ -41,7 +43,7 @@
 -(void) setValue:(NSDecimalNumber *)value;
 
 
-+(PickNumericValueController *) createWithDelegate:(id<PickNumericValueControllerDelegate>)delegate maxValue:(NSDecimalNumber *)maxValue;
++(PickNumericValueController *) createWithDelegate:(id<PickNumericValueControllerDelegate>)delegate maxValue:(NSDecimalNumber *)maxValue hidesZero:(BOOL)hidesZero;
 
 
 @end

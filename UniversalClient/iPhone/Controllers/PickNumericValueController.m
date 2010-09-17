@@ -19,6 +19,7 @@
 @synthesize numberPicker;
 @synthesize delegate;
 @synthesize maxValue;
+@synthesize hideZero;
 
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -73,9 +74,18 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
 	if (component == 0) {
-		return self->leftMostDigit+1;
+		if (self.hideZero) {
+			return self->leftMostDigit;
+		} else {
+			return self->leftMostDigit+1;
+		}
+
 	} else {
-		return 10;
+		if (self.hideZero) {
+			return 9;
+		} else {
+			return 10;
+		}
 	}
 }
 
@@ -84,7 +94,11 @@
 #pragma mark UIPickerViewDelegate Methods
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-	return [NSString stringWithFormat:@"%i", row];
+	if (self.hideZero) {
+		return [NSString stringWithFormat:@"%i", row+1];
+	} else {
+		return [NSString stringWithFormat:@"%i", row];
+	}
 }
 
 
@@ -95,7 +109,11 @@
 	NSMutableString *valueAsString = [NSMutableString stringWithCapacity:self->numDigits];
 	
 	for (int index=0; index < self->numDigits; index++) {
-		[valueAsString appendFormat:@"%i", [self.numberPicker selectedRowInComponent:index]];
+		if (self.hideZero) {
+			[valueAsString appendFormat:@"%i", [self.numberPicker selectedRowInComponent:index]+1];
+		} else {
+			[valueAsString appendFormat:@"%i", [self.numberPicker selectedRowInComponent:index]];
+		}
 	}
 	[self.delegate newNumericValue:[NSDecimalNumber decimalNumberWithString:valueAsString]];
 	[self dismissModalViewControllerAnimated:YES];
@@ -121,11 +139,20 @@
 
 	for (int index=0; index < valueNumDigits; index++) {
 		if (index == valueNumDigits-1) {
-			[self.numberPicker selectRow:_intv([valueAsString substringFromIndex:index]) inComponent:(index+diff) animated:YES];
+			if (self.hideZero) {
+				[self.numberPicker selectRow:_intv([valueAsString substringFromIndex:index])-1 inComponent:(index+diff) animated:YES];
+			} else {
+				[self.numberPicker selectRow:_intv([valueAsString substringFromIndex:index]) inComponent:(index+diff) animated:YES];
+			}
+
 		} else {
 			NSRange range = NSMakeRange(index, 1);
 			NSInteger digit = _intv([valueAsString substringWithRange:range]);
-			[self.numberPicker selectRow:digit inComponent:(index+diff) animated:YES];
+			if (self.hideZero) {
+				[self.numberPicker selectRow:digit-1 inComponent:(index+diff) animated:YES];
+			} else {
+				[self.numberPicker selectRow:digit inComponent:(index+diff) animated:YES];
+			}
 		}
 	}
 }
@@ -134,11 +161,12 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+(PickNumericValueController *) createWithDelegate:(id<PickNumericValueControllerDelegate>)delegate maxValue:(NSDecimalNumber *)maxValue {
++(PickNumericValueController *) createWithDelegate:(id<PickNumericValueControllerDelegate>)delegate maxValue:(NSDecimalNumber *)maxValue hidesZero:(BOOL)hidesZero {
 	PickNumericValueController *pickNumericValueController = [[[PickNumericValueController alloc] initWithNibName:@"PickNumericValueController" bundle:nil] autorelease];
 	pickNumericValueController.delegate = delegate;
 	if (maxValue) {
 		NSDecimalNumberHandler *roundingBehavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundDown scale:0 raiseOnExactness:FALSE raiseOnOverflow:TRUE raiseOnUnderflow:TRUE raiseOnDivideByZero:TRUE]; 
+		pickNumericValueController.hideZero = hidesZero;
 		pickNumericValueController.maxValue = [maxValue decimalNumberByRoundingAccordingToBehavior:roundingBehavior];
 		NSString *maxValueAsString = [pickNumericValueController.maxValue stringValue];
 		pickNumericValueController->numDigits = [maxValueAsString length];
