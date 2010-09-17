@@ -90,67 +90,67 @@ typedef enum {
 	self.manufacturingCell.nameLabel.text = @"Manufacturing";
 	self.manufacturingCell.pointsDelegate = self;
 	self.manufacturingCell.viewController = self;
-	[self.manufacturingCell setRating:3];
+	[self.manufacturingCell setRating:4];
 	
 	self.deceptionCell = [LETableViewCellAffinitySelectorV2 getCellForTableView:self.tableView];
 	self.deceptionCell.nameLabel.text = @"Deception";
 	self.deceptionCell.pointsDelegate = self;
 	self.deceptionCell.viewController = self;
-	[self.deceptionCell setRating:3];
+	[self.deceptionCell setRating:4];
 	
 	self.researchCell = [LETableViewCellAffinitySelectorV2 getCellForTableView:self.tableView];
 	self.researchCell.nameLabel.text = @"Research";
 	self.researchCell.pointsDelegate = self;
 	self.researchCell.viewController = self;
-	[self.researchCell setRating:3];
+	[self.researchCell setRating:4];
 	
 	self.managementCell = [LETableViewCellAffinitySelectorV2 getCellForTableView:self.tableView];
 	self.managementCell.nameLabel.text = @"Management";
 	self.managementCell.pointsDelegate = self;
 	self.managementCell.viewController = self;
-	[self.managementCell setRating:3];
+	[self.managementCell setRating:4];
 	
 	self.farmingCell = [LETableViewCellAffinitySelectorV2 getCellForTableView:self.tableView];
 	self.farmingCell.nameLabel.text = @"Farming";
 	self.farmingCell.pointsDelegate = self;
 	self.farmingCell.viewController = self;
-	[self.farmingCell setRating:3];
+	[self.farmingCell setRating:4];
 	
 	self.miningCell = [LETableViewCellAffinitySelectorV2 getCellForTableView:self.tableView];
 	self.miningCell.nameLabel.text = @"Mining";
 	self.miningCell.pointsDelegate = self;
 	self.miningCell.viewController = self;
-	[self.miningCell setRating:3];
+	[self.miningCell setRating:4];
 	
 	self.scienceCell = [LETableViewCellAffinitySelectorV2 getCellForTableView:self.tableView];
 	self.scienceCell.nameLabel.text = @"Science";
 	self.scienceCell.pointsDelegate = self;
 	self.scienceCell.viewController = self;
-	[self.scienceCell setRating:3];
+	[self.scienceCell setRating:4];
 	
 	self.environmentalCell = [LETableViewCellAffinitySelectorV2 getCellForTableView:self.tableView];
 	self.environmentalCell.nameLabel.text = @"Environmental";
 	self.environmentalCell.pointsDelegate = self;
 	self.environmentalCell.viewController = self;
-	[self.environmentalCell setRating:3];
+	[self.environmentalCell setRating:4];
 	
 	self.politicalCell = [LETableViewCellAffinitySelectorV2 getCellForTableView:self.tableView];
 	self.politicalCell.nameLabel.text = @"Political";
 	self.politicalCell.pointsDelegate = self;
 	self.politicalCell.viewController = self;
-	[self.politicalCell setRating:3];
+	[self.politicalCell setRating:4];
 	
 	self.tradeCell = [LETableViewCellAffinitySelectorV2 getCellForTableView:self.tableView];
 	self.tradeCell.nameLabel.text = @"Trade";
 	self.tradeCell.pointsDelegate = self;
 	self.tradeCell.viewController = self;
-	[self.tradeCell setRating:3];
+	[self.tradeCell setRating:4];
 	
 	self.growthCell = [LETableViewCellAffinitySelectorV2 getCellForTableView:self.tableView];
 	self.growthCell.nameLabel.text = @"Growth";
 	self.growthCell.pointsDelegate = self;
 	self.growthCell.viewController = self;
-	[self.growthCell setRating:3];
+	[self.growthCell setRating:4];
 	
 	[self calculatePoints];
 	self.navigationItem.title = [NSString stringWithFormat:@"%i / 45 points", self->points];
@@ -440,29 +440,19 @@ typedef enum {
 			newPoints++;
 		}
 	}
-	NSLog(@"New Point Step 1: %i", newPoints);
+
 	newPoints += _intv([self.manufacturingCell rating]);
-	NSLog(@"New Point Step 2: %i", newPoints);
 	newPoints += _intv([self.deceptionCell rating]);
-	NSLog(@"New Point Step 3: %i", newPoints);
 	newPoints += _intv([self.researchCell rating]);
-	NSLog(@"New Point Step 4: %i", newPoints);
 	newPoints += _intv([self.managementCell rating]);
-	NSLog(@"New Point Step 5: %i", newPoints);
 	newPoints += _intv([self.farmingCell rating]);
-	NSLog(@"New Point Step 6: %i", newPoints);
 	newPoints += _intv([self.miningCell rating]);
-	NSLog(@"New Point Step 7: %i", newPoints);
 	newPoints += _intv([self.scienceCell rating]);
-	NSLog(@"New Point Step 8: %i", newPoints);
 	newPoints += _intv([self.environmentalCell rating]);
-	NSLog(@"New Point Step 9: %i", newPoints);
 	newPoints += _intv([self.politicalCell rating]);
-	NSLog(@"New Point Step 10: %i", newPoints);
 	newPoints += _intv([self.tradeCell rating]);
-	NSLog(@"New Point Step 11: %i", newPoints);
 	newPoints += _intv([self.growthCell rating]);
-	NSLog(@"New Point Step 12: %i", newPoints);
+
 	self->points = newPoints;
 }
 
