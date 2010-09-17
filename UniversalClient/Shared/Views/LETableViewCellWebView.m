@@ -76,9 +76,9 @@
 		[boldRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<b>$1</b>"];
 		[empireProfileRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<a href=\"empire://$1\">$2</a>"];
 		[newlineRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<br />"];
-		htmlString = [NSString stringWithFormat:@"<html><head><style>a:link {color:#FFC000;}</style><script>document.ontouchmove = function(event) { event.preventDefault(); }</script></head><body style=\"background-color:transparent; color: #FFF; width: %f;\">%@</body></html>", self.webView.frame.size.width-20, mutableString];
+		htmlString = [NSString stringWithFormat:@"<html><head><style>a:link {color:#FFC000;}</style></head><body style=\"background-color:transparent; color: #FFF; width: %f; font-family: sans-serif; font-size: 14px;\">%@</body></html>", self.webView.frame.size.width-20, mutableString];
 	} else {
-		htmlString = [NSString stringWithFormat:@"<html><head><style>a:link {color:#FFC000;}</style><script>document.ontouchmove = function(event) { event.preventDefault(); }</script></head><body style=\"background-color:transparent; color: #FFF; width: %f;\"></body></html>", self.webView.frame.size.width-20];
+		htmlString = [NSString stringWithFormat:@"<html><head><style>a:link {color:#FFC000;}</style></head><body style=\"background-color:transparent; color: #FFF; width: %f;\"></body></html>", self.webView.frame.size.width-20];
 	}
 
 	NSString *path = [[NSBundle mainBundle] bundlePath];
@@ -136,11 +136,18 @@
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		cell.height = MIN_HEIGHT;
 		
-		cell.webView = [[[UIWebView alloc] initWithFrame:CGRectMake(5, 0, 310, 34)] autorelease];
+		cell.webView = [[[UIWebView alloc] initWithFrame:CGRectMake(5, 0, 300, 34)] autorelease];
 		cell.webView.backgroundColor = [UIColor clearColor];
 		cell.webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		cell.webView.opaque = NO;
 		cell.webView.delegate = cell;
+		
+		for (id subview in cell.webView.subviews) {
+			if ([[subview class] isSubclassOfClass: [UIScrollView class]]) {
+				((UIScrollView *)subview).scrollEnabled = NO;
+			}
+		}
+		
 		[cell.contentView addSubview:cell.webView];
 	}
 	
