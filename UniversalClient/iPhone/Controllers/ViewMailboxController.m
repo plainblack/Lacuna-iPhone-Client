@@ -324,13 +324,14 @@
 		[self.pageSegmentedControl setEnabled:[self.mailbox hasNextPage] forSegmentAtIndex:1];
 		[self.tableView reloadData];
 	} else if ([keyPath isEqual:@"lastMessageAt"]) {
+		NSLog(@"session.empire.lastMessageAt changed");
 		Session *session = [Session sharedInstance];
-		if ([self.lastMessageAt compare:session.empire.lastMessageAt] == NSOrderedDescending) {
-			NSLog(@"sess.empire.lastMessageAt is newer");
+		if ([self.lastMessageAt compare:session.empire.lastMessageAt] == NSOrderedAscending) {
+			NSLog(@"session.empire.lastMessageAt is newer");
 			[self loadMessages];
-			self.lastMessageAt = session.empire.lastMessageAt;
 			[self.tableView reloadData];
 		}
+		self.lastMessageAt = session.empire.lastMessageAt;
 	}
 }
 
