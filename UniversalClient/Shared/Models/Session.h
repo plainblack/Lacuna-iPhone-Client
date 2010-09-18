@@ -23,16 +23,19 @@
 	id reloginTarget;
 	SEL reloginSelector;
 	NSString *serverUri;
+	NSDictionary *itemDescriptions;
 }
 
-@property(nonatomic, retain) NSString *sessionId;
-@property(nonatomic, retain) Empire *empire;
-@property(nonatomic, retain) Body *body;
-@property(nonatomic, assign) BOOL isLoggedIn;
-@property(nonatomic, retain) NSMutableArray *savedEmpireList;
-@property(nonatomic, retain) NSString *serverVersion;
-@property(nonatomic, retain) NSDate *lastTick;
-@property(nonatomic, retain) NSString *serverUri;
+
+@property (nonatomic, retain) NSString *sessionId;
+@property (nonatomic, retain) Empire *empire;
+@property (nonatomic, retain) Body *body;
+@property (nonatomic, assign) BOOL isLoggedIn;
+@property (nonatomic, retain) NSMutableArray *savedEmpireList;
+@property (nonatomic, retain) NSString *serverVersion;
+@property (nonatomic, retain) NSDate *lastTick;
+@property (nonatomic, retain) NSString *serverUri;
+@property (nonatomic, retain) NSDictionary *itemDescriptions;
 
 
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password;
@@ -43,6 +46,11 @@
 - (void)loadBody:(NSString *)bodyId;
 - (void)loggedInEmpireData:(NSDictionary *)empireData sessionId:(NSString *)sessionId password:(NSString *)password;
 - (void)saveToKeyChainForUsername:(NSString *)username password:(NSString *)password;
+- (void)readItemDescriptions;
+- (NSString *)descriptionForBuilding:(NSString *)buildingUrl;
+- (NSString *)wikiLinkForBuilding:(NSString *)buildingUrl;
+- (NSString *)descriptionForShip:(NSString *)shipType;
+- (NSString *)wikiLinkForShip:(NSString *)shipType;
 
 
 + (Session *)sharedInstance;

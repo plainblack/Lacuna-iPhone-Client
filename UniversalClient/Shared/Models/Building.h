@@ -77,6 +77,7 @@
 - (NSMutableDictionary *)generateProductionSection;
 - (NSMutableDictionary *)generateHealthSection;
 - (NSMutableDictionary *)generateUpgradeSection;
+- (NSMutableDictionary *)generateGeneralInfoSection;
 - (void)tick:(NSInteger)interval;
 
 - (NSInteger)sectionCount;

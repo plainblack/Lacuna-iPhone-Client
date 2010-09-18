@@ -15,14 +15,18 @@
 #import "LETableViewCellCost.h"
 #import "LETableViewCellButton.h"
 #import "LETableViewCellUnbuildable.h"
+#import "LETableViewCellParagraph.h"
 #import "LEGetBuildables.h"
 #import "LEBuildBuilding.h"
 #import "LEViewSectionTab.h"
+#import "WebPageController.h"
 
 
 typedef enum {
 	ROW_BUILDING_STATS,
 	ROW_COST,
+	ROW_DESCRIPTION,
+	ROW_WIKI,
 	ROW_BUILD
 } ROW;
 
@@ -72,11 +76,12 @@ typedef enum {
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return 5;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	NSDictionary *building = [self.buildables objectAtIndex:indexPath.section];
 	switch (indexPath.row) {
 		case ROW_BUILDING_STATS:
 			return [LETableViewCellBuildingStats getHeightForTableView:tableView];
@@ -84,9 +89,16 @@ typedef enum {
 		case ROW_COST:
 			return [LETableViewCellCost getHeightForTableView:tableView];
 			break;
+		case ROW_DESCRIPTION:
+			; //DO NOT REMOVE
+			Session *session = [Session sharedInstance];
+			return [LETableViewCellParagraph getHeightForTableView:tableView text:[session descriptionForBuilding:[building objectForKey:@"url"]]];
+			break;
+		case ROW_WIKI:
+			return [LETableViewCellButton getHeightForTableView:tableView];
+			break;
 		case ROW_BUILD:
 			; //DO NOT REMOVE
-			NSDictionary *building = [self.buildables objectAtIndex:indexPath.section];
 			NSDictionary *build = [building objectForKey:@"build"];
 			BOOL canBuild = [[build objectForKey:@"can"] boolValue];
 			if (canBuild) {
@@ -136,6 +148,21 @@ typedef enum {
 			[costCell setWaterCost:[Util asNumber:[cost objectForKey:@"water"]]];
 			cell = costCell;
 			break;
+		case ROW_DESCRIPTION:
+			; //DO NOT REMOVE
+			NSDictionary *building = [self.buildables objectAtIndex:indexPath.section];
+			Session *session = [Session sharedInstance];
+			NSString *description = [session descriptionForBuilding:[building objectForKey:@"url"]];
+			LETableViewCellParagraph *descriptionCell = [LETableViewCellParagraph getCellForTableView:tableView];
+			descriptionCell.content.text = description;
+			cell = descriptionCell;
+			break;
+		case ROW_WIKI:
+			; //DO NOT REMOVE
+			LETableViewCellButton *wikiCell = [LETableViewCellButton getCellForTableView:tableView];
+			wikiCell.textLabel.text = @"View Wiki Page";
+			cell = wikiCell;
+			break;
 		case ROW_BUILD:
 			; //DO NOT REMOVE
 			BOOL canBuild = [[build objectForKey:@"can"] boolValue];
@@ -173,7 +200,14 @@ typedef enum {
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.row == ROW_BUILD) {
+	if (indexPath.row == ROW_WIKI) {
+		NSDictionary *building = [self.buildables objectAtIndex:indexPath.section];
+		Session *session = [Session sharedInstance];
+		NSString *url = [session wikiLinkForBuilding:[building objectForKey:@"url"]];
+		WebPageController *webPageController = [WebPageController create];
+		webPageController.urlToLoad = url;
+		[self.navigationController pushViewController:webPageController animated:YES];
+	} else if (indexPath.row == ROW_BUILD) {
 		selectedBuilding = indexPath.section;
 		NSDictionary *building = [self.buildables objectAtIndex:selectedBuilding];
 		NSString *url = [building objectForKey:@"url"];

@@ -67,7 +67,6 @@
 
 
 - (void)parseData:(NSDictionary *)empireData {
-	NSLog(@"Empire Data: %@", empireData);
 	self.id = [Util idFromDict:empireData named:@"id"];
 	self.isIsolationist = _boolv([empireData objectForKey:@"is_isolationist"]);
 	self.name = [empireData objectForKey:@"name"];

@@ -95,6 +95,7 @@
 	
 	[tmp addObject:[self generateHealthSection]];
 	[tmp addObject:[self generateUpgradeSection]];
+	[tmp addObject:[self generateGeneralInfoSection]];
 	self.sections = tmp;
 }
 

@@ -53,7 +53,7 @@
 	NSMutableArray *actionRows = [NSMutableArray arrayWithCapacity:1];
 	[actionRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_PROBED_STARS]];
 	
-	self.sections = _array(productionSection, _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", actionRows, @"rows"), [self generateHealthSection], [self generateUpgradeSection]);
+	self.sections = _array(productionSection, _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", actionRows, @"rows"), [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
 }
 
 

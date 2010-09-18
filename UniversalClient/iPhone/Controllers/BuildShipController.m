@@ -8,6 +8,7 @@
 
 #import "BuildShipController.h"
 #import "Util.h"
+#import "Session.h"
 #import "Shipyard.h"
 #import "BuildableShip.h"
 #import "LETableViewCellLabeledText.h"
@@ -15,11 +16,15 @@
 #import "LETableViewCellCost.h"
 #import "LETableViewCellButton.h"
 #import "LETableViewCellUnbuildable.h"
+#import "LETableViewCellParagraph.h"
+#import "WebPageController.h"
 
 
 typedef enum {
 	ROW_BUILDABLE_SHIP,
 	ROW_SHIP_COST,
+	ROW_DESCRIPTION,
+	ROW_WIKI_BUTTON,
 	ROW_BUILD_BUTTON
 } ROW;
 
@@ -78,7 +83,7 @@ typedef enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (self.shipyard && self.shipyard.buildableShips) {
 		if ([self.shipyard.buildableShips count] > 0) {
-			return 3;
+			return 5;
 		} else {
 			return 1;
 		}
@@ -99,6 +104,14 @@ typedef enum {
 					break;
 				case ROW_SHIP_COST:
 					return [LETableViewCellCost getHeightForTableView:tableView];
+				case ROW_DESCRIPTION:
+					; //DO NOT REMOVE
+					Session *session = [Session sharedInstance];
+					return [LETableViewCellParagraph getHeightForTableView:tableView text:[session descriptionForShip:currentShip.type]];
+					break;
+				case ROW_WIKI_BUTTON:
+					return [LETableViewCellButton getHeightForTableView:tableView];
+					break;
 				case ROW_BUILD_BUTTON:
 					if (currentShip.canBuild) {
 						return [LETableViewCellButton getHeightForTableView:tableView];
@@ -140,6 +153,20 @@ typedef enum {
 					LETableViewCellCost *shipCostCell = [LETableViewCellCost getCellForTableView:tableView];
 					[shipCostCell setResourceCost:currentShip.buildCost];
 					cell = shipCostCell;
+					break;
+				case ROW_DESCRIPTION:
+					; //DO NOT REMOVE
+					Session *session = [Session sharedInstance];
+					NSString *description = [session descriptionForShip:currentShip.type];
+					LETableViewCellParagraph *descriptionCell = [LETableViewCellParagraph getCellForTableView:tableView];
+					descriptionCell.content.text = description;
+					cell = descriptionCell;
+					break;
+				case ROW_WIKI_BUTTON:
+					; //DO NOT REMOVE
+					LETableViewCellButton *wikiCell = [LETableViewCellButton getCellForTableView:tableView];
+					wikiCell.textLabel.text = @"View Wiki Page";
+					cell = wikiCell;
 					break;
 				case ROW_BUILD_BUTTON:
 					if (currentShip.canBuild) {
@@ -197,13 +224,21 @@ typedef enum {
 	if (self.shipyard && self.shipyard.buildableShips) {
 		if ([self.shipyard.buildableShips count] > 0) {
 			BuildableShip *currentShip = [self.shipyard.buildableShips objectAtIndex:indexPath.section];
-			if (currentShip.canBuild) {
-				switch (indexPath.row) {
-					case ROW_BUILD_BUTTON:
+			switch (indexPath.row) {
+				case ROW_WIKI_BUTTON:
+					; //DO NOT REMOVE
+					Session *session = [Session sharedInstance];
+					NSString *url = [session wikiLinkForShip:currentShip.type];
+					WebPageController *webPageController = [WebPageController create];
+					webPageController.urlToLoad = url;
+					[self.navigationController pushViewController:webPageController animated:YES];
+					break;
+				case ROW_BUILD_BUTTON:
+					if (currentShip.canBuild) {
 						[self.shipyard buildShipOfType:currentShip.type];
 						[self.navigationController popViewControllerAnimated:YES];
-						break;
-				}
+					}
+					break;
 			}
 		}
 	}

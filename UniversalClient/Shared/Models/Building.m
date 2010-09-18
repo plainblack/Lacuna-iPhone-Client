@@ -19,6 +19,7 @@
 #import "LETableViewCellUnbuildable.h"
 #import "LETableViewCellProgress.h"
 #import "LETableViewCellBuildingStorage.h"
+#import "LETableViewCellParagraph.h"
 #import "LEBuildingUpgrade.h"
 #import "LEBuildingDemolish.h"
 #import "LEBuildingDowngrade.h"
@@ -28,6 +29,7 @@
 #import "LEBuildingThrowParty.h"
 #import "ViewSpiesController.h"
 #import "LEBuildingRepair.h"
+#import "WebPageController.h"
 
 @implementation Building
 
@@ -172,7 +174,7 @@
 
 
 - (void)generateSections {
-	self.sections = _array([self generateProductionSection], [self generateHealthSection], [self generateUpgradeSection]);
+	self.sections = _array([self generateProductionSection], [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
 }
 
 
@@ -213,8 +215,13 @@
 		[rowArray addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_DOWNGRADE_BUTTON]];
 		[rowArray addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_DEMOLISH_BUTTON]];
 	}
-
+	
 	return _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_UPGRADE], @"type", @"Upgrade", @"name", rowArray, @"rows");
+}
+
+
+- (NSMutableDictionary *)generateGeneralInfoSection {
+	return _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_GENERAL_INFO], @"type", @"General Info", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_DESCRIPTION], [NSDecimalNumber numberWithInt:BUILDING_ROW_WIKI_BUTTON]), @"rows");
 }
 
 
@@ -267,6 +274,7 @@
 		case BUILDING_ROW_DEMOLISH_BUTTON:
 		case BUILDING_ROW_DOWNGRADE_BUTTON:
 		case BUILDING_ROW_REPAIR_BUTTON:
+		case BUILDING_ROW_WIKI_BUTTON:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		case BUILDING_ROW_UPGRADE_CANNOT:
@@ -282,6 +290,11 @@
 		case BUILDING_ROW_STORAGE:
 		case BUILDING_ROW_UPGRADE_STORAGE:
 			return [LETableViewCellBuildingStorage getHeightForTableView:tableView];
+			break;
+		case BUILDING_ROW_DESCRIPTION:
+			; //DO NOT REMOVE
+			Session *session = [Session sharedInstance];
+			return [LETableViewCellParagraph getHeightForTableView:tableView text:[session descriptionForBuilding:self.buildingUrl]];
 			break;
 		default:
 			return tableView.rowHeight;
@@ -403,6 +416,20 @@
 			repairButtonCell.textLabel.text = @"Repair";
 			cell = repairButtonCell;
 			break;
+		case BUILDING_ROW_DESCRIPTION:
+			; //DO NOT REMOVE
+			Session *session = [Session sharedInstance];
+			NSString *description = [session descriptionForBuilding:self.buildingUrl];
+			LETableViewCellParagraph *descriptionCell = [LETableViewCellParagraph getCellForTableView:tableView];
+			descriptionCell.content.text = description;
+			cell = descriptionCell;
+			break;
+		case BUILDING_ROW_WIKI_BUTTON:
+			; //DO NOT REMOVE
+			LETableViewCellButton *wikiCell = [LETableViewCellButton getCellForTableView:tableView];
+			wikiCell.textLabel.text = @"View Wiki Page";
+			cell = wikiCell;
+			break;
 		default:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellLabeledText *defaultCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
@@ -428,18 +455,32 @@
 	switch (buildingRow) {
 		case BUILDING_ROW_UPGRADE_BUTTON:
 			[[[LEBuildingUpgrade alloc] initWithCallback:@selector(buildingUpgrading:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+			return nil;
 			break;
 		case BUILDING_ROW_DEMOLISH_BUTTON:
 			[[[LEBuildingDemolish alloc] initWithCallback:@selector(buildingDemolished:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+			return nil;
 			break;
 		case BUILDING_ROW_DOWNGRADE_BUTTON:
 			[[[LEBuildingDowngrade alloc] initWithCallback:@selector(buildingDowngraded:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+			return nil;
 			break;
 		case BUILDING_ROW_REPAIR_BUTTON:
 			[[[LEBuildingRepair alloc] initWithCallback:@selector(buildingRepaired:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+			return nil;
+			break;
+		case BUILDING_ROW_WIKI_BUTTON:
+			; //DO NOT REMOVE
+			Session *session = [Session sharedInstance];
+			NSString *url = [session wikiLinkForBuilding:self.buildingUrl];
+			WebPageController *webPageController = [WebPageController create];
+			webPageController.urlToLoad = url;
+			return webPageController;
+			break;
+		default:
+			return nil;
 			break;
 	}
-	return nil;
 }
 
 

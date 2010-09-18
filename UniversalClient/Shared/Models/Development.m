@@ -75,7 +75,7 @@
 		[buildQueueRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_EMPTY]];
 	}
 
-	self.sections = _array([self generateProductionSection], _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Build Queue", @"name", buildQueueRows, @"rows"), [self generateHealthSection], [self generateUpgradeSection]);
+	self.sections = _array([self generateProductionSection], _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Build Queue", @"name", buildQueueRows, @"rows"), [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
 }
 
 

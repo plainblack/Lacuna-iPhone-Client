@@ -13,6 +13,7 @@
 #import "LEMacros.h"
 #import "KeychainItemWrapper.h"
 #import "Util.h"
+#import "JSON.h"
 
 
 static Session *sharedSession = nil;
@@ -29,6 +30,7 @@ static Session *sharedSession = nil;
 @synthesize body;
 @synthesize lastTick;
 @synthesize serverUri;
+@synthesize itemDescriptions;
 
 
 #pragma mark -
@@ -83,6 +85,8 @@ static Session *sharedSession = nil;
 		if (!self.savedEmpireList) {
 			self.savedEmpireList = [NSMutableArray arrayWithCapacity:1];
 		}
+
+		[self readItemDescriptions];
 		
 		self.lastTick = [NSDate date];
 		self->timer = [[NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES] retain];
@@ -103,6 +107,7 @@ static Session *sharedSession = nil;
 	[self->timer release];
 	self->timer = nil;
 	self.serverUri = nil;
+	self.itemDescriptions = nil;
 	[super dealloc];
 }
 
@@ -240,6 +245,102 @@ static Session *sharedSession = nil;
 	[keychainItemWrapper setObject:username forKey:(id)kSecAttrAccount];
 	[keychainItemWrapper setObject:password forKey:(id)kSecValueData];
 	[keychainItemWrapper setObject:self.serverUri forKey:(id)kSecAttrService];
+}
+
+
+- (void)readItemDescriptions {
+	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"assets/resources" ofType:@"json"];
+	NSLog(@"Reading servers from: %@", filePath);
+	if (filePath) {
+		NSString *myText = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+		if (myText) {
+			SBJsonParser *parser = [[SBJsonParser alloc] init];
+			id obj = [parser objectWithString:myText];
+			self.itemDescriptions = obj;
+			[parser release];
+		}
+	}
+	__block NSInteger longest = 0;
+	__block NSString *url;
+	NSDictionary *buildings = [self.itemDescriptions objectForKey:@"buildings"];
+	[buildings enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+		if (![@"/planetarycommand" isEqualToString:key]) {
+			NSString *description = [obj objectForKey:@"description"];
+			if ([description length] > longest) {
+				longest = [description length];
+				url = key;
+			}
+		}
+	}];
+	NSLog(@"Longest Description is, %i characters for building: %@", longest, url);
+}
+
+
+- (NSString *)descriptionForBuilding:(NSString *)buildingUrl {
+	NSString *description = nil;
+	NSDictionary *buildings = [self.itemDescriptions objectForKey:@"buildings"];
+	if (buildings) {
+		NSDictionary *item = [buildings objectForKey:buildingUrl];
+		if (item) {
+			description = [item objectForKey:@"description"];
+		}
+	}
+	if (description) {
+		return description;
+	} else {
+		return @"Not Available";
+	}
+}
+
+
+- (NSString *)wikiLinkForBuilding:(NSString *)buildingUrl {
+	NSString *wikiUrl = nil;
+	NSDictionary *buildings = [self.itemDescriptions objectForKey:@"buildings"];
+	if (buildings) {
+		NSDictionary *item = [buildings objectForKey:buildingUrl];
+		if (item) {
+			wikiUrl = [item objectForKey:@"wiki"];
+		}
+	}
+	if (wikiUrl) {
+		return wikiUrl;
+	} else {
+		return @"http://community.lacunaexpanse.com/wiki";
+	}
+}
+
+
+- (NSString *)descriptionForShip:(NSString *)shipType {
+	NSString *description = nil;
+	NSDictionary *ships = [self.itemDescriptions objectForKey:@"ships"];
+	if (ships) {
+		NSDictionary *item = [ships objectForKey:shipType];
+		if (item) {
+			description = [item objectForKey:@"description"];
+		}
+	}
+	if (description) {
+		return description;
+	} else {
+		return @"Not Available";
+	}
+}
+
+
+- (NSString *)wikiLinkForShip:(NSString *)shipType {
+	NSString *wikiUrl = nil;
+	NSDictionary *ships = [self.itemDescriptions objectForKey:@"ships"];
+	if (ships) {
+		NSDictionary *item = [ships objectForKey:shipType];
+		if (item) {
+			wikiUrl = [item objectForKey:@"description"];
+		}
+	}
+	if (wikiUrl) {
+		return wikiUrl;
+	} else {
+		return @"Not Available";
+	}
 }
 
 

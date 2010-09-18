@@ -94,7 +94,7 @@
 	self.sections = _array([self generateProductionSection],
 						   _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_LOCAL_SHIPS], @"type", @"Local Ships", @"name", localShipRows, @"rows"), 
 						   _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_FOREIGN_SHIPS], @"type", @"Foreign Ships", @"name", foreignShipRows, @"rows"), 
-						   [self generateHealthSection], [self generateUpgradeSection]);
+						   [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
 }
 
 
