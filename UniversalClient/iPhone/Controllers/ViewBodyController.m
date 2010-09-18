@@ -15,7 +15,7 @@
 #import "LETableViewCellLabeledText.h"
 #import "LETableViewCellBody.h"
 #import "LETableViewCellCurrentResources.h"
-#import "ViewBodyMapController.h"
+#import "ViewBodyMapControllerV2.h"
 #import "RenameBodyController.h"
 #import "PickColonyController.h"
 #import "ViewCreditsController.h"
@@ -338,7 +338,7 @@ typedef enum {
 		switch (indexPath.row) {
 			case ACTION_ROW_VIEW_BUILDINGS:
 				; //DO NOT REMOVE
-				ViewBodyMapController *viewBodyMapController = [[ViewBodyMapController alloc] init];
+				ViewBodyMapControllerV2 *viewBodyMapController = [[ViewBodyMapControllerV2 alloc] init];
 				[self.navigationController pushViewController:viewBodyMapController animated:YES];
 				[viewBodyMapController release];
 				break;

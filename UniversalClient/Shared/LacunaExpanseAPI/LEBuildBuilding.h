@@ -15,6 +15,7 @@
 	NSDecimalNumber *x;
 	NSDecimalNumber *y;
 	NSString *url;
+	NSMutableDictionary *building;
 	NSString *buildingId;
 }
 
@@ -23,6 +24,7 @@
 @property(nonatomic, retain) NSDecimalNumber *x;
 @property(nonatomic, retain) NSDecimalNumber *y;
 @property(nonatomic, retain) NSString *url;
+@property(nonatomic, retain) NSMutableDictionary *building;
 @property(nonatomic, retain) NSString *buildingId;
 
 

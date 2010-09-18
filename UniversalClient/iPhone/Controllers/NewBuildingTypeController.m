@@ -305,7 +305,6 @@ typedef enum {
 	Session *session = [Session sharedInstance];
 	NewBuildingController *newBuildingController = [NewBuildingController create];
 	newBuildingController.bodyId = session.body.id;
-	newBuildingController.buildingsByLoc = session.body.buildingMap;
 	newBuildingController.buttonsByLoc = buttonsByLoc;
 	newBuildingController.x = x;
 	newBuildingController.y	= y;

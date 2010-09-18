@@ -11,6 +11,8 @@
 #import "Util.h"
 #import "Session.h"
 #import "BuildingUtil.h"
+#import "LEBodyMapCell.h"
+#import "MapBuilding.h"
 #import "LETableViewCellBuildingStats.h"
 #import "LETableViewCellCost.h"
 #import "LETableViewCellButton.h"
@@ -34,7 +36,6 @@ typedef enum {
 
 
 @synthesize listChooser;
-@synthesize buildingsByLoc;
 @synthesize buttonsByLoc;
 @synthesize bodyId;
 @synthesize buildables;
@@ -242,7 +243,6 @@ typedef enum {
 	self.buildableBuildings = nil;
 	self.x = nil;
 	self.y = nil;
-	self.buildingsByLoc = nil;
 	self.buttonsByLoc = nil;
 	[leGetBuildables cancel];
 	self.leGetBuildables = nil;
@@ -259,7 +259,6 @@ typedef enum {
 	self.buildableBuildings = nil;
 	self.x = nil;
 	self.y = nil;
-	self.buildingsByLoc = nil;
 	self.buttonsByLoc = nil;
 	[leGetBuildables cancel];
 	self.leGetBuildables = nil;
@@ -335,13 +334,20 @@ typedef enum {
 		[building setObject:url forKey:@"url"];
 		[building setObject:[NSDecimalNumber numberWithInt:0] forKey:@"level"];
 		[building setObject:image forKey:@"image"];
+		[building setObject:[NSDecimalNumber decimalNumberWithString:@"100"] forKey:@"efficiency"];
+		[building setObject:[request.building objectForKey:@"pending_build"] forKey:@"pending_build"];
+		
 		NSString *loc = [NSString stringWithFormat:@"%@x%@", self.x, self.y];
-		[self.buildingsByLoc setObject:building forKey:loc];
-		UIButton *button = [self.buttonsByLoc objectForKey:loc];
-		UIImage *tmp = [UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/100/%@.png", [building objectForKey:@"image"]]];
-		tmp = [Util imageWithImage:tmp scaledToSize:CGSizeMake(BODY_BUILDINGS_CELL_WIDTH, BODY_BUILDINGS_CELL_HEIGHT)];
-		[button setBackgroundImage:tmp forState:UIControlStateNormal];
-		//[self.navigationController popViewControllerAnimated:TRUE];
+		LEBodyMapCell *mapCell = [self.buttonsByLoc objectForKey:loc];
+
+		if (mapCell) {
+			if (!mapCell.mapBuilding) {
+				mapCell.mapBuilding = [[[MapBuilding alloc] init] autorelease];
+				Session *session = [Session sharedInstance];
+				[session.body.buildingMap setObject:mapCell.mapBuilding forKey:loc];
+			}
+			[mapCell.mapBuilding parseData:building];
+		}
 		[self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:([self.navigationController.viewControllers count]-3)] animated:YES];
 	}
 	

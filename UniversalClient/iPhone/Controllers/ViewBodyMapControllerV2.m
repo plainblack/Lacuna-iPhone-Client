@@ -1,28 +1,28 @@
-    //
-//  ViewBodyMapController.m
+//
+//  ViewBodyMapControllerV2.m
 //  UniversalClient
 //
-//  Created by Kevin Runde on 4/15/10.
+//  Created by Kevin Runde on 9/17/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
-#import "ViewBodyMapController.h"
+#import "ViewBodyMapControllerV2.h"
 #import "LEMacros.h"
 #import "Util.h"
-#import "LEBodyGetBuildings.h"
+#import "Session.h"
+#import "LEBodyMapCell.h"
+#import "MapBuilding.h"
 #import "ViewBuildingController.h"
 #import "NewBuildingTypeController.h"
-#import "Session.h"
 
 
-@implementation ViewBodyMapController
+@implementation ViewBodyMapControllerV2
 
 
 @synthesize scrollView;
 @synthesize backgroundView;
 
 
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView {
 	self.scrollView = [[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 367)] autorelease];
 	self.scrollView.autoresizesSubviews = YES;
@@ -34,7 +34,7 @@
 	self.view = self.scrollView;
 }
 
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 	Session *session = [Session sharedInstance];
@@ -46,33 +46,32 @@
 	self.backgroundView.contentMode = UIViewContentModeScaleAspectFill;
 	self.backgroundView.autoresizingMask = UIViewAutoresizingNone;
 	[self.scrollView addSubview:self.backgroundView];
-
-	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
+	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];  
+	BOOL showMapOverlay = [userDefaults boolForKey:@"showMapOverlay"];
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:(showMapOverlay ? @"Hide" : @"Show") style:UIBarButtonItemStylePlain target:self action:@selector(switchOverlay)] autorelease];
+
 	buttonsByLoc = [[NSMutableDictionary alloc] initWithCapacity:BODY_BUILDINGS_NUM_ROWS*BODY_BUILDINGS_NUM_COLS];
-	locsByButton = [[NSMutableDictionary alloc] initWithCapacity:BODY_BUILDINGS_NUM_ROWS*BODY_BUILDINGS_NUM_COLS];
 	int currentX = 0;
 	for (int x=BODY_BUILDINGS_MIN_X; x<=BODY_BUILDINGS_MAX_X; x++) {
 		int currentY = 0;
 		for (int y=BODY_BUILDINGS_MAX_Y; y>=BODY_BUILDINGS_MIN_Y; y--) {
 			NSString *loc = [NSString stringWithFormat:@"%ix%i", x, y];
-			UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-			button.autoresizesSubviews = YES;
-			[button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-			button.frame = CGRectMake(currentX, currentY, BODY_BUILDINGS_CELL_WIDTH, BODY_BUILDINGS_CELL_HEIGHT);
-			button.contentMode = UIViewContentModeScaleToFill;
-			button.imageView.contentMode = UIViewContentModeScaleToFill;
-			button.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-			button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+			LEBodyMapCell *button = [[[LEBodyMapCell alloc] initWithFrame:CGRectMake(currentX, currentY, BODY_BUILDINGS_CELL_WIDTH, BODY_BUILDINGS_CELL_HEIGHT)] autorelease];
+			button.buildingX = [Util decimalFromInt:x];
+			button.buildingY = [Util decimalFromInt:y];
+			[button target:self callback:@selector(mapCellClicked:)];
 			[self.backgroundView addSubview:button];
 			[buttonsByLoc setObject:button forKey:loc];
-			[locsByButton setObject:loc forKey:[NSValue valueWithNonretainedObject:button]];
-
-			NSDictionary *building = [session.body.buildingMap objectForKey:loc];
-			if (building) {
-				[button setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/100/%@.png", [building objectForKey:@"image"]]] forState:UIControlStateNormal];
+			button.showOverlay = showMapOverlay;
+			
+			MapBuilding *mapBuilding = [session.body.buildingMap objectForKey:loc];
+			if (isNotNull(mapBuilding)) {
+				button.mapBuilding = mapBuilding;
 			} else {
-				[button setBackgroundImage:[UIImage imageNamed:@"/assets/planet_side/build.png"] forState:UIControlStateNormal];
+				button.mapBuilding = nil;
 			}
 			
 			currentY += BODY_BUILDINGS_CELL_HEIGHT;
@@ -89,7 +88,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
+	
 	
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];  
 	float bodyMapZoom = [userDefaults floatForKey:@"bodyMapZoom"];
@@ -133,8 +132,6 @@
 	self.backgroundView = nil;
 	[buttonsByLoc release];
 	buttonsByLoc = nil;
-	[locsByButton release];
-	locsByButton = nil;
     [super viewDidUnload];
 }
 
@@ -144,8 +141,6 @@
 	self.backgroundView = nil;
 	[buttonsByLoc release];
 	buttonsByLoc = nil;
-	[locsByButton release];
-	locsByButton = nil;
     [super dealloc];
 }
 
@@ -153,33 +148,40 @@
 #pragma mark -
 #pragma mark Callbacks
 
-- (void)buttonClicked:(id)sender {
-	Session *session = [Session sharedInstance];
-	NSString *loc = [locsByButton objectForKey:[NSValue valueWithNonretainedObject:sender]];
-	NSDictionary *building = [session.body.buildingMap objectForKey:loc];
-	NSInteger tmp;
-	NSDecimalNumber *x;
-	NSDecimalNumber *y;
-	NSScanner *scanner = [NSScanner scannerWithString:loc];
-	[scanner scanInteger:&tmp];
-	x = [Util decimalFromInt:tmp];
-	[scanner setScanLocation:[scanner scanLocation]+1];
-	[scanner scanInteger:&tmp];
-	y = [Util decimalFromInt:tmp];
+- (void)switchOverlay {
+	[UIView beginAnimations:@"page curl" context:nil];
+	__block BOOL isCurlUp = YES;
+	[buttonsByLoc enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+		LEBodyMapCell *button = obj;
+		isCurlUp = button.showOverlay;
+		button.showOverlay = !button.showOverlay;
+	}];
+	[UIView setAnimationDuration:1.0];
+	[UIView setAnimationTransition:(isCurlUp ? UIViewAnimationTransitionCurlUp : UIViewAnimationTransitionCurlDown) forView:self.backgroundView cache:NO];
+	[UIView commitAnimations];
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];  
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:(isCurlUp ? @"Show" : @"Hide") style:UIBarButtonItemStylePlain target:self action:@selector(switchOverlay)] autorelease];
+	[userDefaults setBool:(!isCurlUp) forKey:@"showMapOverlay"];
+	[userDefaults synchronize];
+}
 
-	if (building) {
+- (void)mapCellClicked:(LEBodyMapCell *)bodyMapCell {
+	if (isNotNull(bodyMapCell.mapBuilding)) {
 		ViewBuildingController *viewBuildingController = [ViewBuildingController create];
-		viewBuildingController.buildingId = [Util idFromDict:building named:@"id"];
-		viewBuildingController.urlPart = [building objectForKey:@"url"];
-		[[self navigationController] pushViewController:viewBuildingController animated:YES];
+		viewBuildingController.buildingId = bodyMapCell.mapBuilding.id;
+		viewBuildingController.urlPart = bodyMapCell.mapBuilding.buildingUrl;
+		[self.navigationController pushViewController:viewBuildingController animated:YES];
 	} else {
-		NewBuildingTypeController *newBuildingTypeController = [NewBuildingTypeController create];
-		newBuildingTypeController.buttonsByLoc = buttonsByLoc;
-		newBuildingTypeController.x = x;
-		newBuildingTypeController.y	= y;
-		[[self navigationController] pushViewController:newBuildingTypeController animated:YES];
+		Session *session = [Session sharedInstance];
+		if (session.body.canBuild) {
+			NewBuildingTypeController *newBuildingTypeController = [NewBuildingTypeController create];
+			newBuildingTypeController.buttonsByLoc = self->buttonsByLoc;
+			newBuildingTypeController.x = bodyMapCell.buildingX;
+			newBuildingTypeController.y	= bodyMapCell.buildingY;
+			[self.navigationController pushViewController:newBuildingTypeController animated:YES];
+		}
 	}
-
+	
 }
 
 
@@ -195,6 +197,7 @@
 	NSLog(@"scrollViewDidEndZooming: %f", scale);
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];  
 	[userDefaults setFloat:scale forKey:@"bodyMapZoom"];
+	[userDefaults synchronize];
 }
 
 
@@ -210,13 +213,13 @@
 		for (int x=BODY_BUILDINGS_MIN_X; x<=BODY_BUILDINGS_MAX_X; x++) {
 			for (int y=BODY_BUILDINGS_MIN_Y; y<=BODY_BUILDINGS_MAX_Y; y++) {
 				NSString *key = [NSString stringWithFormat:@"%ix%i", x, y];
-				UIButton *button = [buttonsByLoc objectForKey:key];
-				NSDictionary *building = [session.body.buildingMap objectForKey:key];
+				LEBodyMapCell *button = [buttonsByLoc objectForKey:key];
+				MapBuilding *mapBuilding = [session.body.buildingMap objectForKey:key];
 				
-				if (building) {
-					[button setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/100/%@.png", [building objectForKey:@"image"]]] forState:UIControlStateNormal];
+				if (mapBuilding) {
+					button.mapBuilding = mapBuilding;
 				} else {
-					[button setBackgroundImage:[UIImage imageNamed:@"/assets/planet_side/build.png"] forState:UIControlStateNormal];
+					button.mapBuilding = nil;
 				}
 			}
 		}
@@ -226,3 +229,4 @@
 
 
 @end
+

@@ -15,6 +15,7 @@
 
 
 @class LEBuildingUpgrade;
+@class MapBuilding;
 
 
 @interface Building : NSObject {
@@ -79,6 +80,7 @@
 - (NSMutableDictionary *)generateUpgradeSection;
 - (NSMutableDictionary *)generateGeneralInfoSection;
 - (void)tick:(NSInteger)interval;
+- (MapBuilding *)findMapBuilding;
 
 - (NSInteger)sectionCount;
 - (NSInteger)numRowsInSection:(NSInteger)section;

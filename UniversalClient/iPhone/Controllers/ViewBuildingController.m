@@ -41,8 +41,6 @@
 
 @synthesize buildingId;
 @synthesize urlPart;
-@synthesize buildingsByLoc;
-@synthesize buttonsByLoc;
 @synthesize selectedTableView;
 @synthesize selectedIndexPath;
 @synthesize watchedBuilding;
@@ -183,8 +181,6 @@
 	self.selectedIndexPath = nil;
 	self.buildingId = nil;
 	self.urlPart = nil;
-	self.buttonsByLoc = nil;
-	self.buildingsByLoc = nil;
     [super dealloc];
 }
 

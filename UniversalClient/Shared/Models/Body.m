@@ -9,9 +9,10 @@
 #import "Body.h"
 #import "LEMacros.h"
 #import "Util.h"
+#import "BuildingUtil.h"
+#import "MapBuilding.h"
 #import "LEBodyGetBuildings.h"
 #import "LEBuildingView.h"
-#import "BuildingUtil.h"
 
 
 @implementation Body
@@ -44,6 +45,7 @@
 @synthesize surfaceImageName;
 @synthesize currentBuilding;
 @synthesize needsRefresh;
+@dynamic canBuild;
 
 
 #pragma mark -
@@ -87,7 +89,15 @@
 
 
 #pragma mark -
-#pragma mark NSObject Methods
+#pragma mark Getters/Setters
+
+- (BOOL)canBuild {
+	return [self.buildingCount compare:self.size] == NSOrderedAscending;
+}
+
+
+#pragma mark -
+#pragma mark Instance Methods
 
 - (void)parseData:(NSDictionary *)bodyData {
 	self.id = [Util idFromDict:bodyData named:@"id"];
@@ -151,6 +161,15 @@
 	if (extraWaste) {
 		[self.happiness subtractFromCurrent:extraWaste];
 	}
+
+	[self.buildingMap enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+		MapBuilding *mapBuilding = obj;
+		[mapBuilding tick:interval];
+		if (mapBuilding.needsReload) {
+			[self loadBuildingMap];
+		}
+	}];
+	
 	self.needsRefresh = YES;
 }
 
@@ -162,6 +181,7 @@
 
 - (void)loadBuilding:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl {
 	[self clearBuilding];
+
 	[[[LEBuildingView alloc] initWithCallback:@selector(buildingLoaded:) target:self buildingId:buildingId url:buildingUrl] autorelease];
 }
 
@@ -177,7 +197,17 @@
 
 - (id)buildingMapLoaded:(LEBodyGetBuildings *)request {
 	self.surfaceImageName = request.surfaceImageName;
-	self.buildingMap = request.buildings;
+	//self.buildingMap = request.buildings;
+	NSMutableDictionary *tmp = [NSMutableDictionary dictionaryWithCapacity:[request.buildings count]];
+	
+	[request.buildings enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+		MapBuilding *mapBuilding = [[MapBuilding alloc] init];
+		[mapBuilding parseData:obj];
+		[tmp setObject:mapBuilding forKey:key];
+		[mapBuilding release];
+	}];
+	self.buildingMap = tmp;
+
 	return nil;
 }
 

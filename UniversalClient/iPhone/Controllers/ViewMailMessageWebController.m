@@ -83,7 +83,6 @@ typedef enum {
 	[self.mailbox addObserver:self forKeyPath:@"messageHeaders" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 	isObserving = YES;
 	if (self.messageId) {
-		NSLog(@"Loading messageId: %@", self.messageId);
 		[self.mailbox loadMessageById:self.messageId];
 		self.messageSegmentedControl.hidden = YES;
 	} else {

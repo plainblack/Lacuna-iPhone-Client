@@ -16,7 +16,6 @@
 @interface NewBuildingController : LETableViewControllerGrouped <UIActionSheetDelegate> {
 	UISegmentedControl *listChooser;
 	NSString *bodyId;
-	NSMutableDictionary *buildingsByLoc;
 	NSMutableDictionary *buttonsByLoc;
 	NSArray *buildables;
 	NSArray *allBuildings;
@@ -30,9 +29,8 @@
 
 
 @property(nonatomic, retain) UISegmentedControl *listChooser;
-@property(nonatomic, retain) NSMutableDictionary *buildingsByLoc;
-@property(nonatomic, retain) NSMutableDictionary *buttonsByLoc;
 @property(nonatomic, retain) NSString *bodyId;
+@property(nonatomic, retain) NSMutableDictionary *buttonsByLoc;
 @property(nonatomic, retain) NSArray *buildables;
 @property(nonatomic, retain) NSArray *allBuildings;
 @property(nonatomic, retain) NSArray *buildableBuildings;

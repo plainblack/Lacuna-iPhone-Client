@@ -70,6 +70,7 @@
 @property (nonatomic, retain) NSString *surfaceImageName;
 @property (nonatomic, retain) Building *currentBuilding;
 @property (nonatomic, assign) BOOL needsRefresh;
+@property (nonatomic, readonly) BOOL canBuild;
 
 
 - (void)parseData:(NSDictionary *)bodyData;

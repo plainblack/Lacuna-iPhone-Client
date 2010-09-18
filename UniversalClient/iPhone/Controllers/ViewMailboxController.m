@@ -324,10 +324,8 @@
 		[self.pageSegmentedControl setEnabled:[self.mailbox hasNextPage] forSegmentAtIndex:1];
 		[self.tableView reloadData];
 	} else if ([keyPath isEqual:@"lastMessageAt"]) {
-		NSLog(@"session.empire.lastMessageAt changed");
 		Session *session = [Session sharedInstance];
 		if ([self.lastMessageAt compare:session.empire.lastMessageAt] == NSOrderedAscending) {
-			NSLog(@"session.empire.lastMessageAt is newer");
 			[self loadMessages];
 			[self.tableView reloadData];
 		}

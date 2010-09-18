@@ -11,6 +11,7 @@
 #import "LEMacros.h"
 #import "Util.h"
 #import "Session.h"
+#import "MapBuilding.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellLabeledText.h"
 #import "LETableViewCellButton.h"
@@ -230,6 +231,13 @@
 	if (self.pendingBuild && self.pendingBuild.secondsRemaining <= 0) {
 		self.needsReload = YES;
 	}
+}
+
+
+- (MapBuilding *)findMapBuilding {
+	Session *session = [Session sharedInstance];
+	MapBuilding *mapBuilding = [session.body.buildingMap objectForKey:[NSString stringWithFormat:@"%@x%@", self.x, self.y]];
+	return mapBuilding;
 }
 
 
@@ -513,7 +521,7 @@
 
 - (id)buildingUpgrading:(LEBuildingUpgrade *)request {
 	NSDictionary *pendingBuildDict = [request.buildingData objectForKey:@"pending_build"]; 
-	if ( pendingBuildDict && ((id)pendingBuildDict != [NSNull null]) ) {
+	if (isNotNull(pendingBuildDict)) {
 		for (NSMutableDictionary *section in self.sections) {
 			if ([[section objectForKey:@"type"] isEqual:[NSDecimalNumber numberWithInt:BUILDING_SECTION_UPGRADE]]) {
 				[section setObject:_array([NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_STATS], [NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_PROGRESS]) forKey:@"rows"];
@@ -526,16 +534,17 @@
 		} else {
 			[self.pendingBuild parseData:pendingBuildDict];
 		}
+		
+		MapBuilding *mapBuilding = [self findMapBuilding];
+		[mapBuilding updatePendingBuild:pendingBuildDict];
+		
 		self.canUpgrade = NO;
 	} else {
 		for (NSMutableDictionary *section in self.sections) {
 			if ([[section objectForKey:@"type"] isEqual:[NSDecimalNumber numberWithInt:BUILDING_SECTION_UPGRADE]]) {
-				NSLog(@"Is not Building");
 				if (self.canUpgrade) {
-					NSLog(@"Can upgrade");
 					[section setObject:_array([NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_STATS], [NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_COST], [NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_BUTTON], [NSDecimalNumber numberWithInt:BUILDING_ROW_DEMOLISH_BUTTON], [NSDecimalNumber numberWithInt:BUILDING_ROW_DOWNGRADE_BUTTON]) forKey:@"rows"];
 				} else {
-					NSLog(@"Can NOT upgrade");
 					[section setObject:_array([NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_STATS], [NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_COST], [NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_CANNOT], [NSDecimalNumber numberWithInt:BUILDING_ROW_DEMOLISH_BUTTON], [NSDecimalNumber numberWithInt:BUILDING_ROW_DOWNGRADE_BUTTON]) forKey:@"rows"];
 				}
 			}
@@ -562,6 +571,8 @@
 
 - (id)buildingRepaired:(LEBuildingRepair *)request {
 	self.needsReload = YES;
+	MapBuilding *mapBuilding = [self findMapBuilding];
+	[mapBuilding repaired];
 	return nil;
 }
 

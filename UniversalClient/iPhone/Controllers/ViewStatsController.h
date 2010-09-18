@@ -10,7 +10,6 @@
 
 
 @interface ViewStatsController : UIViewController {
-
 }
 
 

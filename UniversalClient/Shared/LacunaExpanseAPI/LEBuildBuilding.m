@@ -19,6 +19,7 @@
 @synthesize x;
 @synthesize y;
 @synthesize url;
+@synthesize building;
 @synthesize buildingId;
 
 
@@ -27,7 +28,6 @@
 	self.x = inX;
 	self.y = inY;
 	self.url = inUrl;
-	NSLog(@"Build Building URL: %@", self.url);
 	return [self initWithCallback:inCallback target:(NSObject *)inTarget];
 }
 
@@ -39,9 +39,8 @@
 
 - (void)processSuccess {
 	NSDictionary *result = [self.response objectForKey:@"result"];
-	NSDictionary *building = [result objectForKey:@"building"];
+	self.building = [result objectForKey:@"building"];
 	self.buildingId = [Util idFromDict:building named:@"id"];
-	NSLog(@"BUILD SUCCESS: %@", result);
 }
 
 
@@ -60,6 +59,7 @@
 	self.x = nil;
 	self.y = nil;
 	self.url = nil;
+	self.building = nil;
 	self.buildingId = nil;
 	[super dealloc];
 }
