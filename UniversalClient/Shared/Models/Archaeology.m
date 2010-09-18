@@ -64,7 +64,7 @@
 
 
 - (void)parseAdditionalData:(NSDictionary *)data {
-	NSDictionary *workData = [data objectForKey:@"work"];
+	NSDictionary *workData = [[data objectForKey:@"building"] objectForKey:@"work"];
 	if (workData) {
 		self.secondsRemaining = _intv([workData objectForKey:@"seconds_remaining"]);
 	}
@@ -217,13 +217,7 @@
 
 - (id)searchedForGlyph:(LEBuildingGlyphSearch *)request {
 	[self parseData:request.result];
-	NSLog(@"mapBuilding: %@", [self findMapBuilding]);
-	NSLog(@"data: %@", request.result);
-	if ([request.result objectForKey:@"work"]) {
-		[[request.result objectForKey:@"building"] setObject:[request.result objectForKey:@"work"] forKey:@"work"];
-	}
 	[[self findMapBuilding] parseData:[request.result objectForKey:@"building"]];
-	NSLog(@"mapBuilding: %@", [self findMapBuilding]);
 	self.needsRefresh = YES;
 	return nil;
 }

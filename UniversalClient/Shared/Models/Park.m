@@ -144,13 +144,7 @@
 
 - (id)throwingParty:(LEBuildingThrowParty *)request {
 	[self parseData:request.result];
-	NSLog(@"mapBuilding: %@", [self findMapBuilding]);
-	NSLog(@"data: %@", request.result);
-	if ([request.result objectForKey:@"work"]) {
-		[[request.result objectForKey:@"building"] setObject:[request.result objectForKey:@"work"] forKey:@"work"];
-	}
 	[[self findMapBuilding] parseData:[request.result objectForKey:@"building"]];
-	NSLog(@"mapBuilding: %@", [self findMapBuilding]);
 	self.needsRefresh = YES;
 	return nil;
 }

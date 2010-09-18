@@ -70,12 +70,16 @@
 		self.sectionHeaders = [session.body.currentBuilding sectionHeadersForTableView:self.tableView];
 		self.navigationItem.title = session.body.currentBuilding.name;
 		self.watchedBuilding = session.body.currentBuilding;
+		
+		if (self.watchedBuilding.needsRefresh) {
+			[self.tableView reloadData];
+		}
 	} else {
 		[session.body loadBuilding:self.buildingId buildingUrl:self.urlPart];
+		self.navigationItem.title = @"Loading";
 	}
 	[session.body addObserver:self forKeyPath:@"currentBuilding" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 
-	self.navigationItem.title = @"Loading";
 }
 
 

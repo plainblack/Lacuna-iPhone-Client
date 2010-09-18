@@ -212,14 +212,7 @@ typedef enum {
 
 - (id)recyclStarted:(LEBuildingRecycle *)request {
 	[self.wasteRecycling parseData:request.result];
-	//KEVIN TODO: Remove Debug code once smith fixes the server bug with the work section
-	NSLog(@"mapBuilding: %@", [self.wasteRecycling findMapBuilding]);
-	NSLog(@"data: %@", request.result);
-	if ([request.result objectForKey:@"work"]) {
-		[[request.result objectForKey:@"building"] setObject:[request.result objectForKey:@"work"] forKey:@"work"];
-	}
 	[[self.wasteRecycling findMapBuilding] parseData:[request.result objectForKey:@"building"]];
-	NSLog(@"mapBuilding: %@", [self.wasteRecycling findMapBuilding]);
 	self.wasteRecycling.needsRefresh = YES;
 
 	if (request.subsidized) {
