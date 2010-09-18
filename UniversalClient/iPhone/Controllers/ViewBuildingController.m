@@ -63,8 +63,17 @@
     [super viewWillAppear:animated];
 
 	Session *session = [Session sharedInstance];
+	if ([session.body.currentBuilding.id isEqualToString:self.buildingId]) {
+		NSLog(@"No need to reload");
+		[session.body.currentBuilding addObserver:self forKeyPath:@"needsRefresh" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+		[session.body.currentBuilding addObserver:self forKeyPath:@"demolished" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+		self.sectionHeaders = [session.body.currentBuilding sectionHeadersForTableView:self.tableView];
+		self.navigationItem.title = session.body.currentBuilding.name;
+		self.watchedBuilding = session.body.currentBuilding;
+	} else {
+		[session.body loadBuilding:self.buildingId buildingUrl:self.urlPart];
+	}
 	[session.body addObserver:self forKeyPath:@"currentBuilding" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-	[session.body loadBuilding:self.buildingId buildingUrl:self.urlPart];
 
 	self.navigationItem.title = @"Loading";
 }
@@ -77,7 +86,6 @@
 	[session.body removeObserver:self forKeyPath:@"currentBuilding"];
 	if (isNotNull(self.watchedBuilding)) {
 		[self.watchedBuilding removeObserver:self forKeyPath:@"needsRefresh"];
-		[self.watchedBuilding removeObserver:self forKeyPath:@"pendingBuild"];
 		[self.watchedBuilding removeObserver:self forKeyPath:@"demolished"];
 		self.watchedBuilding = nil;
 	}
@@ -212,14 +220,12 @@
 		
 		if (isNotNull(self.watchedBuilding)) {
 			[self.watchedBuilding removeObserver:self forKeyPath:@"needsRefresh"];
-			[self.watchedBuilding removeObserver:self forKeyPath:@"pendingBuild"];
 			[self.watchedBuilding removeObserver:self forKeyPath:@"demolished"];
 		}
 		
 		Building *newBuilding = (Building *)[change objectForKey:NSKeyValueChangeNewKey];
 		if (newBuilding && ((id)newBuilding != [NSNull null])) {
 			[newBuilding addObserver:self forKeyPath:@"needsRefresh" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-			[newBuilding addObserver:self forKeyPath:@"pendingBuild" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 			[newBuilding addObserver:self forKeyPath:@"demolished" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 			self.sectionHeaders = [newBuilding sectionHeadersForTableView:self.tableView];
 			self.navigationItem.title = newBuilding.name;
@@ -228,8 +234,6 @@
 
 		[self.tableView reloadData];
 	} else if ([keyPath isEqual:@"needsRefresh"]) {
-		[self.tableView reloadData];
-	} else if ([keyPath isEqual:@"pendingBuild"]) {
 		[self.tableView reloadData];
 	} else if ([keyPath isEqual:@"demolished"]) {
 		Session *session = [Session sharedInstance];

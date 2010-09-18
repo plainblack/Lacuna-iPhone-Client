@@ -16,6 +16,8 @@
 	NSDecimalNumber *x;
 	NSDecimalNumber *y;
 	NSString *tag;
+	NSDecimalNumber *buildQueueMaxSize;
+	NSDecimalNumber *buildQueueSize;
 }
 
 
@@ -24,6 +26,9 @@
 @property(nonatomic, retain) NSDecimalNumber *x;
 @property(nonatomic, retain) NSDecimalNumber *y;
 @property(nonatomic, retain) NSString *tag;
+@property(nonatomic, retain) NSDecimalNumber *buildQueueMaxSize;
+@property(nonatomic, retain) NSDecimalNumber *buildQueueSize;
+@property(nonatomic, readonly) BOOL buildQueueHasSpace;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target bodyId:(NSString *)bodyId x:(NSDecimalNumber *)x y:(NSDecimalNumber *)y tag:(NSString *)tag;

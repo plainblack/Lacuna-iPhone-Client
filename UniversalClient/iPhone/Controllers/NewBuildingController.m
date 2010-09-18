@@ -316,6 +316,11 @@ typedef enum {
 	
 	[self.tableView reloadData];
 	
+	if (!request.buildQueueHasSpace) {
+		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Your build queue is full. You must wait for another building to complete. Building/Upgrading your Development Ministery allows you to have more buildings in your queue." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+		[av show];
+	}
+	
 	return nil;
 }
 

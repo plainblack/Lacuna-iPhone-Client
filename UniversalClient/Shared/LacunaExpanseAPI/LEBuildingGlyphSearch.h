@@ -15,6 +15,7 @@
 	NSString *buildingUrl;
 	NSString *oreType;
 	NSInteger secondsRemaining;
+	NSMutableDictionary *result;
 }
 
 
@@ -22,6 +23,7 @@
 @property(nonatomic, retain) NSString *buildingUrl;
 @property(nonatomic, retain) NSString *oreType;
 @property(nonatomic, assign) NSInteger secondsRemaining;
+@property(nonatomic, retain) NSMutableDictionary *result;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl oreType:(NSString *)oreType;

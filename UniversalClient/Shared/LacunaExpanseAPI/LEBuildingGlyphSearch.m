@@ -18,6 +18,7 @@
 @synthesize buildingUrl;
 @synthesize oreType;
 @synthesize secondsRemaining;
+@synthesize result;
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl oreType:(NSString *)inOreType {
@@ -34,8 +35,8 @@
 
 
 - (void)processSuccess {
-	NSDictionary *result = [self.response objectForKey:@"result"];
-	self.secondsRemaining = _intv([result objectForKey:@"seconds_remaining"]);
+	self.result = [self.response objectForKey:@"result"];
+	self.secondsRemaining = _intv([self.result objectForKey:@"seconds_remaining"]);
 }
 
 

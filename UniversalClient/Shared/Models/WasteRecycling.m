@@ -156,7 +156,9 @@
 #pragma mark Callback Methods
 
 - (id)subsidizedRecycling:(LEBuildingSubsidizeRecycling *)request {
-	self.needsReload = YES;
+	[self parseData:request.result];
+	[[self findMapBuilding] parseData:[request.result objectForKey:@"building"]];
+	self.needsRefresh = YES;
 	return nil;
 }
 

@@ -16,6 +16,7 @@
 
 @synthesize buildingId;
 @synthesize buildingUrl;
+@synthesize result;
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl {
@@ -31,6 +32,7 @@
 
 
 - (void)processSuccess {
+	self.result = [self.response objectForKey:@"result"];
 }
 
 

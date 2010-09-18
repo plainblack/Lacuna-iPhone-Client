@@ -17,6 +17,7 @@
 	NSDecimalNumber *ore;
 	NSDecimalNumber *water;
 	BOOL subsidized;
+	NSMutableDictionary *result;
 }
 
 
@@ -25,7 +26,8 @@
 @property(nonatomic, retain) NSDecimalNumber *energy;
 @property(nonatomic, retain) NSDecimalNumber *ore;
 @property(nonatomic, retain) NSDecimalNumber *water;
-@property(nonatomic) BOOL subsidized;
+@property(nonatomic, assign) BOOL subsidized;
+@property(nonatomic, retain) NSMutableDictionary *result;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl energy:(NSDecimalNumber *)energy ore:(NSDecimalNumber *)ore water:(NSDecimalNumber *)water subsidized:(BOOL)subsidized;

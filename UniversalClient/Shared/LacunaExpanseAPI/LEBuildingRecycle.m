@@ -20,6 +20,7 @@
 @synthesize ore;
 @synthesize water;
 @synthesize subsidized;
+@synthesize result;
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl energy:(NSDecimalNumber *)inEnergy ore:(NSDecimalNumber *)inOre water:(NSDecimalNumber *)inWater subsidized:(BOOL)inSubsidized {
@@ -39,7 +40,7 @@
 
 
 - (void)processSuccess {
-	//Does nothing
+	self.result = [self.response objectForKey:@"result"];
 }
 
 

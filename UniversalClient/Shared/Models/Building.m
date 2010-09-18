@@ -551,6 +551,7 @@
 		}
 		self.pendingBuild = nil;
 	}
+	self.needsRefresh = YES;
 	
 	return nil;
 }
@@ -564,15 +565,17 @@
 
 - (id)buildingDowngraded:(LEBuildingDowngrade *)request {
 	[self parseData:request.result];
+	[[self findMapBuilding] parseData:[request.result objectForKey:@"building"]];
 	self.needsRefresh = YES;
 	return nil;
 }
 
 
 - (id)buildingRepaired:(LEBuildingRepair *)request {
-	self.needsReload = YES;
-	MapBuilding *mapBuilding = [self findMapBuilding];
-	[mapBuilding repaired];
+	[self parseData:request.result];
+	[[self findMapBuilding] parseData:[request.result objectForKey:@"building"]];
+	self.needsRefresh = YES;
+	
 	return nil;
 }
 

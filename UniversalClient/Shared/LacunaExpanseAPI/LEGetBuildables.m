@@ -9,6 +9,7 @@
 #import "LEGetBuildables.h"
 #import "Session.h"
 #import "LEMacros.h"
+#import "Util.h"
 
 
 @implementation LEGetBuildables
@@ -19,6 +20,9 @@
 @synthesize x;
 @synthesize y;
 @synthesize tag;
+@synthesize buildQueueMaxSize;
+@synthesize buildQueueSize;
+@dynamic buildQueueHasSpace;
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget bodyId:(NSString *)inBodyId x:(NSDecimalNumber *)inX y:(NSDecimalNumber *)inY  tag:(NSString *)inTag{
@@ -36,6 +40,14 @@
 }
 
 
+#pragma mark --
+#pragma mark Getters/Setters
+
+- (BOOL)buildQueueHasSpace {
+	return [self.buildQueueSize compare:self.buildQueueMaxSize] == NSOrderedAscending;
+}
+
+
 - (void)processSuccess {
 	NSDictionary *result = [self.response objectForKey:@"result"];
 	NSDictionary *buildableDict = [result objectForKey:@"buildable"];
@@ -48,6 +60,10 @@
 	}
 	
 	[self.buildables sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease])];
+	
+	NSDictionary *buildQueueData = [result objectForKey:@"build_queue"];
+	self.buildQueueMaxSize = [Util asNumber:[buildQueueData objectForKey:@"max"]];
+	self.buildQueueSize = [Util asNumber:[buildQueueData objectForKey:@"current"]];
 	
 	[result objectForKey:@"building"];
 }
@@ -69,6 +85,8 @@
 	self.x = nil;
 	self.y = nil;
 	self.tag = nil;
+	self.buildQueueMaxSize = nil;
+	self.buildQueueSize = nil;
 	[super dealloc];
 }
 
