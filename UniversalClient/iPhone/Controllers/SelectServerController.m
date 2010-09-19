@@ -57,6 +57,7 @@ typedef enum {
 
 	self.customerServerCell =  [LETableViewCellTextEntry getCellForTableView:self.tableView];
 	self.customerServerCell.label.text = @"URL";
+	self.customerServerCell.keyboardType = UIKeyboardTypeURL;
 	self.customerServerCell.delegate = self;
 
 }

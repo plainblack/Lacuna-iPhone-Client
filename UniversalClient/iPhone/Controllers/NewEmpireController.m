@@ -104,6 +104,7 @@ typedef enum {
 	
 	self.emailCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
 	self.emailCell.label.text = @"Email";
+	self.emailCell.keyboardType = UIKeyboardTypeEmailAddress;
 	self.emailCell.delegate = self;
 
 	self.termsAgreeCell = [LETableViewCellLabeledSwitch getCellForTableView:self.tableView];
