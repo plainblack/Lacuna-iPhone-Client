@@ -56,6 +56,7 @@
 
 	Session *session = [Session sharedInstance];
 	[session addObserver:self forKeyPath:@"isLoggedIn" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+	[session addObserver:self forKeyPath:@"lacunanMessageId" options:(NSKeyValueObservingOptionNew) context:NULL];
 	
 	return YES;
 }
@@ -160,7 +161,8 @@
 #pragma mark KVO Methods
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-	if ( [keyPath isEqual:@"numNewMessages"]) {
+	Session *session = (Session *)object;
+	if ( [keyPath isEqualToString:@"numNewMessages"]) {
 		Empire *empire = (Empire *)object;
 		if (empire) {
 			if(_intv(empire.numNewMessages) > 0) {
@@ -169,8 +171,7 @@
 				self.mailTabBarItem.badgeValue = nil;
 			}
 		}
-	} else if ( [keyPath isEqual:@"isLoggedIn"]) {
-		Session *session = (Session *)object;
+	} else if ( [keyPath isEqualToString:@"isLoggedIn"]) {
 		[change objectForKey:NSKeyValueChangeNewKey];
 		if (session.isLoggedIn) {
 			if(_intv(session.empire.numNewMessages) > 0) {
@@ -189,7 +190,12 @@
 			[session.empire removeObserver:self forKeyPath:@"numNewMessages"];
 			[self displayLoginAnimated:YES];
 		}
+	} else if ([keyPath isEqualToString:@"lacunanMessageId"]) {
+		if (session.lacunanMessageId) {
+			[self showMessage:session.lacunanMessageId];
+		}
 	}
+
 }
 
 

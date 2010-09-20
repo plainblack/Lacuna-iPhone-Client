@@ -24,6 +24,7 @@
 	SEL reloginSelector;
 	NSString *serverUri;
 	NSDictionary *itemDescriptions;
+	NSString *lacunanMessageId;
 }
 
 
@@ -36,6 +37,7 @@
 @property (nonatomic, retain) NSDate *lastTick;
 @property (nonatomic, retain) NSString *serverUri;
 @property (nonatomic, retain) NSDictionary *itemDescriptions;
+@property (nonatomic, retain) NSString *lacunanMessageId;
 
 
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password;

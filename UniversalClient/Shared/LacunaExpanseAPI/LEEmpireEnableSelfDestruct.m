@@ -27,7 +27,7 @@
 
 
 - (void)processSuccess {
-	NSLog(@"Enable Self Desctruct Response: %@", self.response);
+	//Does nothing for now
 }
 
 

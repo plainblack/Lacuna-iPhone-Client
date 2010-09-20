@@ -31,6 +31,7 @@ static Session *sharedSession = nil;
 @synthesize lastTick;
 @synthesize serverUri;
 @synthesize itemDescriptions;
+@synthesize lacunanMessageId;
 
 
 #pragma mark -
@@ -108,6 +109,7 @@ static Session *sharedSession = nil;
 	self->timer = nil;
 	self.serverUri = nil;
 	self.itemDescriptions = nil;
+	self.lacunanMessageId = nil;
 	[super dealloc];
 }
 
