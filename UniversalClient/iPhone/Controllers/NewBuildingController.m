@@ -173,17 +173,11 @@ typedef enum {
 				cell = buildCell;
 			} else {
 				LETableViewCellUnbuildable *unbuildableCell = [LETableViewCellUnbuildable getCellForTableView:tableView];
-				NSArray *reason = [build objectForKey:@"reason"];
-				if ([reason count] > 2) {
-					id data = [reason objectAtIndex:2];
-					if ([data isKindOfClass:[NSArray class]]) {
-						[unbuildableCell setReason:[NSString stringWithFormat:@"%@ (%@:%@)", [reason objectAtIndex:1], [data objectAtIndex:0], [data objectAtIndex:1]]];
-					} else {
-						[unbuildableCell setReason:[NSString stringWithFormat:@"%@ (%@)", [reason objectAtIndex:1], data]];
-					}
-
-				} else {
+				id reason = [build objectForKey:@"reason"];
+				if ([reason isKindOfClass:[NSArray class]]) {
 					[unbuildableCell setReason:[NSString stringWithFormat:@"%@", [reason objectAtIndex:1]]];
+				} else {
+					[unbuildableCell setReason:[NSString stringWithFormat:@"%@", reason]];
 				}
 				cell = unbuildableCell;
 			}

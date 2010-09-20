@@ -175,23 +175,11 @@ typedef enum {
 						cell = buildShipCell;
 					} else {
 						LETableViewCellUnbuildable *unbuildableCell = [LETableViewCellUnbuildable getCellForTableView:tableView];
-						if ([currentShip.reason respondsToSelector:@selector(count)]) {
-							NSArray *reason = currentShip.reason;
-							if ([reason count] > 2) {
-								id data = [reason objectAtIndex:2];
-								if ([data isKindOfClass:[NSArray class]]) {
-									[unbuildableCell setReason:[NSString stringWithFormat:@"%@ (%@:%@)", [reason objectAtIndex:1], [data objectAtIndex:0], [data objectAtIndex:1]]];
-								} else {
-									[unbuildableCell setReason:[NSString stringWithFormat:@"%@ (%@)", [reason objectAtIndex:1], data]];
-								}
-								
-							} else {
-								[unbuildableCell setReason:[NSString stringWithFormat:@"%@", [reason objectAtIndex:1]]];
-							}
+						if ([currentShip.reason isKindOfClass:[NSArray class]]) {
+							[unbuildableCell setReason:[NSString stringWithFormat:@"%@", [currentShip.reason objectAtIndex:1]]];
 						} else {
 							[unbuildableCell setReason:[NSString stringWithFormat:@"%@", currentShip.reason]];
 						}
-
 						cell = unbuildableCell;
 					}
 					break;

@@ -351,15 +351,10 @@
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellUnbuildable *unbuildableCell = [LETableViewCellUnbuildable getCellForTableView:tableView];
 			if ([self.cannotUpgradeReason isKindOfClass:[NSArray class]]) {
-				if ([self.cannotUpgradeReason count] > 2) {
-					[unbuildableCell setReason:[NSString stringWithFormat:@"%@ (%@)", [self.cannotUpgradeReason objectAtIndex:1], [self.cannotUpgradeReason objectAtIndex:2]]];
-				} else {
-					[unbuildableCell setReason:[NSString stringWithFormat:@"%@", [self.cannotUpgradeReason objectAtIndex:1]]];
-				}
+				[unbuildableCell setReason:[NSString stringWithFormat:@"%@", [self.cannotUpgradeReason objectAtIndex:1]]];
 			} else {
 				[unbuildableCell setReason:[NSString stringWithFormat:@"%@", self.cannotUpgradeReason]];
 			}
-			
 			cell = unbuildableCell;
 			break;
 		case BUILDING_ROW_UPGRADE_PROGRESS:
