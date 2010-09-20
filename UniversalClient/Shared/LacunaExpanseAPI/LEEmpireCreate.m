@@ -38,13 +38,11 @@
 	if (self.email && ([self.email length] > 0)) {
 		[params setObject:self.email forKey:@"email"];
 	}
-	NSLog(@"Empire Create Params: %@", params);
 	return params;
 }
 
 
 - (void)processSuccess {
-	NSLog(@"Response: %@", self.response);
 	NSString *result = [self.response objectForKey:@"result"];
 	self.empireId = result;
 }

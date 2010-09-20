@@ -46,8 +46,6 @@
 	if (!self.allianceStatus) {
 		self.allianceStatus = [result objectForKey:@"alliance"];
 	}
-	NSLog(@"Response: %@", self.response);
-	NSLog(@"allianceStatus: %@", self.allianceStatus);
 }
 
 

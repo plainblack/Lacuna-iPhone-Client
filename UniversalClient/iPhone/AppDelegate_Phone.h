@@ -15,7 +15,7 @@
 @class ViewMailboxController;
 
 
-@interface AppDelegate_Phone : AppDelegate_Shared <UITabBarDelegate, LERequestMonitor> {
+@interface AppDelegate_Phone : AppDelegate_Shared <UITabBarDelegate, LERequestMonitor, UIAlertViewDelegate> {
 	UITabBarController *tabBarController;
 	UITabBarItem *mailTabBarItem;
 	UINavigationController *myWorldsNavigationController;

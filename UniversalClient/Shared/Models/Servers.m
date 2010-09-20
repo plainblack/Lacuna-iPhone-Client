@@ -30,7 +30,6 @@
 
 - (void)readServers {
 	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"servers" ofType:@"json"];
-	NSLog(@"Reading servers from: %@", filePath);
 	if (filePath) {
 		NSString *myText = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
 		if (myText) {
@@ -47,12 +46,10 @@
 	NSError *error = nil;
 	NSString *myText = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://www.lacunaexpanse.com/servers.json"] encoding:NSUTF8StringEncoding error:&error];
 	if (myText) {
-		NSLog(@"Text of remote server.json: %@", myText);
 		SBJsonParser *parser = [[SBJsonParser alloc] init];
 		id obj = [parser objectWithString:myText];
 		self.serverList = obj;
 		[parser release];
-		NSLog(@"Server List: %@", self.serverList);
 	} else {
 		NSLog(@"Error getting servers.json");
 	}

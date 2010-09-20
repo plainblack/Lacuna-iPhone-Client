@@ -229,6 +229,7 @@
 		
 		[[self navigationController] pushViewController:viewMailMessageController animated:YES];
 	} else {
+		NSLog(@"No mailbox yet.");
 		self.showMessageId = messageId;
 	}
 }
@@ -293,6 +294,11 @@
 		[self setToolbarItems:self.otherMailboxBarButtonItems animated:NO];
 	}
 	
+	[self performSelector:@selector(delayedShowMessage) withObject:nil afterDelay:0.5];
+}
+
+
+- (void) delayedShowMessage {
 	if (self.showMessageId) {
 		ViewMailMessageWebController *viewMailMessageController = [ViewMailMessageWebController create];
 		viewMailMessageController.mailbox = self.mailbox;

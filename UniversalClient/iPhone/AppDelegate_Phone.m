@@ -192,10 +192,24 @@
 		}
 	} else if ([keyPath isEqualToString:@"lacunanMessageId"]) {
 		if (session.lacunanMessageId) {
-			[self showMessage:session.lacunanMessageId];
+			UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Welcome" message:@"Welcome to Lacuna Expanse. The Lacunan's have a message for you. Shall I taked you to your Inbox to view it?" delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil] autorelease];
+			[av show];
 		}
 	}
 
+}
+
+
+#pragma mark -
+#pragma mark UIAlertViewDelegate Methods
+
+- (void) alertView:(UIAlertView *) alertView clickedButtonAtIndex:(int)index {
+	Session *session = [Session sharedInstance];
+	if (index != [alertView cancelButtonIndex]) {
+		if (session.lacunanMessageId) {
+			[self showMessage:session.lacunanMessageId];
+		}
+	}
 }
 
 
