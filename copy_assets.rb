@@ -32,4 +32,4 @@ def syncDirs(sourceDirName, targetDirName)
   end
 end
 
-syncDirs("/users/rundeks/Dropbox/space game/assets", "/users/rundeks/dev/iPhone/Lacuna-iPhone-Client/UniversalClient/assets")
+syncDirs("/users/rundeks/Dropbox/space game/iphone ui", "/users/rundeks/dev/iPhone/Lacuna-iPhone-Client/UniversalClient/assets/iphone ui")

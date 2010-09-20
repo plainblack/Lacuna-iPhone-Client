@@ -10,14 +10,17 @@
 
 
 @interface LEViewSectionTab : UIView {
+	UIImageView *icon;
 	UILabel *label;
 }
 
 
+@property(nonatomic, retain) UIImageView *icon;
 @property(nonatomic, retain) UILabel *label;
 
 
 + (LEViewSectionTab *)tableView:(UITableView *)tableView withText:(NSString *)text;
++ (LEViewSectionTab *)tableView:(UITableView *)tableView withText:(NSString *)text withIcon:(UIImage *)icon;
 + (CGFloat)getHeight;
 
 

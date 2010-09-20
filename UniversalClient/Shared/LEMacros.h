@@ -29,6 +29,7 @@
 #define TIME_ICON [UIImage imageNamed:@"assets/iphone ui/time.png"]
 #define WASTE_ICON [UIImage imageNamed:@"assets/iphone ui/waste.png"]
 #define WATER_ICON [UIImage imageNamed:@"assets/iphone ui/water.png"]
+#define STORAGE_ICON [UIImage imageNamed:@"assets/iphone ui/storage.png"]
 #define UP_ARROW_ICON [UIImage imageNamed:@"assets/iphone ui/icon_arrow_up.png"]
 #define DOWN_ARROW_ICON [UIImage imageNamed:@"assets/iphone ui/icon_arrow_down.png"]
 

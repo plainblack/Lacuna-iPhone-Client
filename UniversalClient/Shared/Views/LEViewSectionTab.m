@@ -17,6 +17,7 @@
 @implementation LEViewSectionTab
 
 
+@synthesize icon;
 @synthesize label;
 
 
@@ -29,6 +30,12 @@
 		tabImageView.frame = CGRectMake(20, SECTION_HEIGHT-IMAGE_HEIGHT, IMAGE_WIDTH, IMAGE_HEIGHT);
 		[self addSubview:tabImageView];
 		
+		self.icon = [[[UIImageView alloc] initWithFrame:CGRectMake(25, SECTION_HEIGHT-IMAGE_HEIGHT+3, 22, 22)] autorelease];
+		self.icon.backgroundColor = [UIColor clearColor];
+		self.icon.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+		self.icon.contentMode = UIViewContentModeScaleAspectFit;
+		[self addSubview:self.icon];
+
 		self.label = [[[UILabel alloc] initWithFrame:CGRectMake(30, SECTION_HEIGHT-IMAGE_HEIGHT, IMAGE_WIDTH-20, IMAGE_HEIGHT)] autorelease];
 		self.label.backgroundColor = [UIColor clearColor];
 		self.label.textColor = HEADER_TEXT_COLOR;
@@ -39,7 +46,20 @@
 }
 
 
+- (void)layoutSubviews {
+	NSLog(@"layoutSubview called!");
+	if (self.icon.image) {
+		self.icon.frame = CGRectMake(25, SECTION_HEIGHT-IMAGE_HEIGHT+3, 22, 22);
+		self.label.frame = CGRectMake(50, SECTION_HEIGHT-IMAGE_HEIGHT, IMAGE_WIDTH-40, IMAGE_HEIGHT);
+	} else {
+		self.icon.frame = CGRectMake(0, 0, 0, 0);
+		self.label.frame = CGRectMake(30, SECTION_HEIGHT-IMAGE_HEIGHT, IMAGE_WIDTH-20, IMAGE_HEIGHT);
+	}
+}
+
+
 - (void)dealloc {
+	self.icon = nil;
 	self.label = nil;
     [super dealloc];
 }
@@ -50,8 +70,13 @@
 
 
 + (LEViewSectionTab *)tableView:(UITableView *)tableView withText:(NSString *)text {
+	return [LEViewSectionTab tableView:tableView withText:text withIcon:nil];
+}
+
++ (LEViewSectionTab *)tableView:(UITableView *)tableView withText:(NSString *)text withIcon:(UIImage *)icon {
 	LEViewSectionTab *sectionTab = [[[LEViewSectionTab alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, SECTION_HEIGHT)] autorelease];
 	sectionTab.label.text = text;
+	sectionTab.icon.image = icon;
 	return sectionTab;
 }
 
