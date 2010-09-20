@@ -93,7 +93,6 @@
 
 
 - (void)goToUrl:(NSString *)url {
-	NSLog(@"WebView: %@, URL: %@", self.webView, url);
 	if (self.webView) {
 		[self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
 	} else {

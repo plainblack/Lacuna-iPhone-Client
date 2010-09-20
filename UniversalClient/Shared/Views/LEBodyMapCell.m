@@ -7,9 +7,10 @@
 //
 
 #import "LEBodyMapCell.h"
-#import "MapBuilding.h"
+#import "LEMacros.h"
 #import "Util.h"
 #import "Session.h"
+#import "MapBuilding.h"
 
 #define LEVEL_FONT [UIFont fontWithName:@"Verdana-Bold" size:20.0]
 #define TIME_FONT [UIFont fontWithName:@"Verdana-Bold" size:10.0]
@@ -54,7 +55,9 @@
 			
 			//Draw workTime
 			if (self.mapBuilding.work) {
+				[WARNING_COLOR setFill];
 				[[Util prettyDuration:self.mapBuilding.work.secondsRemaining] drawInRect:CGRectMake(5.0, 15.0, 90.0, 10.0) withFont:TIME_FONT lineBreakMode:UILineBreakModeTailTruncation alignment:UITextAlignmentRight];
+				[[UIColor whiteColor] setFill];
 			}
 			
 			//Draw level

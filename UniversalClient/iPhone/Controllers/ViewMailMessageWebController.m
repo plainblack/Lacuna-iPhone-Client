@@ -458,9 +458,9 @@ typedef enum {
 }
 
 
-- (void)showEmpireProfile:(NSString *)empireId {
+- (void)showEmpireProfile:(NSString *)inEmpireId {
 	ViewPublicEmpireProfileController *viewPublicEmpireProfileController = [ViewPublicEmpireProfileController create];
-	viewPublicEmpireProfileController.empireId = empireId;
+	viewPublicEmpireProfileController.empireId = inEmpireId;
 	[self.navigationController pushViewController:viewPublicEmpireProfileController animated:YES];
 }
 

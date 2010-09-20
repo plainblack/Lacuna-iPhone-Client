@@ -260,19 +260,6 @@ static Session *sharedSession = nil;
 			[parser release];
 		}
 	}
-	__block NSInteger longest = 0;
-	__block NSString *url;
-	NSDictionary *buildings = [self.itemDescriptions objectForKey:@"buildings"];
-	[buildings enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-		if (![@"/planetarycommand" isEqualToString:key]) {
-			NSString *description = [obj objectForKey:@"description"];
-			if ([description length] > longest) {
-				longest = [description length];
-				url = key;
-			}
-		}
-	}];
-	NSLog(@"Longest Description is, %i characters for building: %@", longest, url);
 }
 
 

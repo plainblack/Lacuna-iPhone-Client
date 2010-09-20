@@ -72,6 +72,7 @@ typedef enum {
     [super viewWillAppear:animated];
 	
 	Session *session = [Session sharedInstance];
+	NSLog(@"Loading empire Id: %@", self.empireId);
 	[[[LEEmpireViewPublicProfile alloc] initWithCallback:@selector(profileLoaded:) target:self sessionId:session.sessionId empireId:self.empireId] autorelease];
 }
 
@@ -165,7 +166,6 @@ typedef enum {
     
     UITableViewCell *cell;
 	
-	Session *session = [Session sharedInstance];
 	if (self.profile) {
 		switch (indexPath.section) {
 			case SECTION_EMPIRE:
@@ -174,7 +174,7 @@ typedef enum {
 						; //DO NOT REMOVE
 						LETableViewCellLabeledText *empireNameCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 						empireNameCell.label.text = @"Empire";
-						empireNameCell.content.text = session.empire.name;
+						empireNameCell.content.text = self.profile.name;
 						cell = empireNameCell;
 						break;
 					case EMPIRE_ROW_DESCRIPTION:
