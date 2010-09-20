@@ -25,6 +25,7 @@
 	LEGetBuildables *leGetBuildables;
 	NSInteger selectedBuilding;
 	NSString *tag;
+	NSString *selectedBuildingUrl;
 }
 
 
@@ -38,6 +39,7 @@
 @property(nonatomic, retain) NSDecimalNumber *y;
 @property(nonatomic, retain) LEGetBuildables *leGetBuildables;
 @property(nonatomic, retain) NSString *tag;
+@property(nonatomic, retain) NSString *selectedBuildingUrl;
 
 
 - (IBAction)switchList;

@@ -45,6 +45,7 @@ typedef enum {
 @synthesize y;
 @synthesize leGetBuildables;
 @synthesize tag;
+@synthesize selectedBuildingUrl;
 
 
 #pragma mark -
@@ -207,7 +208,8 @@ typedef enum {
 		NSDictionary *building = [self.buildables objectAtIndex:selectedBuilding];
 		NSString *url = [building objectForKey:@"url"];
 		Session *session = [Session sharedInstance];
-		if (session.empire.isIsolationist && [url isEqualToString:ESPIONAGE_URL]) {
+		if (session.empire.isIsolationist && ([url isEqualToString:ESPIONAGE_URL] || [url isEqualToString:MUNITIONS_LAB_URL])) {
+			self.selectedBuildingUrl = url;
 			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Building this will take you out of Isolationist mode. This means spies can be sent to your Colonies. Are you sure you want to do this?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
 			actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
 			[actionSheet showFromTabBar:self.tabBarController.tabBar];
@@ -241,6 +243,7 @@ typedef enum {
 	[leGetBuildables cancel];
 	self.leGetBuildables = nil;
 	self.tag = nil;
+	self.selectedBuildingUrl = nil;
 	[super viewDidUnload];
 }
 
@@ -257,6 +260,7 @@ typedef enum {
 	[leGetBuildables cancel];
 	self.leGetBuildables = nil;
 	self.tag = nil;
+	self.selectedBuildingUrl = nil;
     [super dealloc];
 }
 
@@ -359,7 +363,9 @@ typedef enum {
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
-		[[[LEBuildBuilding alloc] initWithCallback:@selector(buildingBuilt:) target:self bodyId:self.bodyId x:self.x y:self.y url:ESPIONAGE_URL] autorelease];
+		[[[LEBuildBuilding alloc] initWithCallback:@selector(buildingBuilt:) target:self bodyId:self.bodyId x:self.x y:self.y url:self.selectedBuildingUrl] autorelease];
+		self.selectedBuildingUrl = nil;
+
 	}
 }
 

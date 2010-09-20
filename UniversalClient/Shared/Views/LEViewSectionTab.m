@@ -47,7 +47,6 @@
 
 
 - (void)layoutSubviews {
-	NSLog(@"layoutSubview called!");
 	if (self.icon.image) {
 		self.icon.frame = CGRectMake(25, SECTION_HEIGHT-IMAGE_HEIGHT+3, 22, 22);
 		self.label.frame = CGRectMake(50, SECTION_HEIGHT-IMAGE_HEIGHT, IMAGE_WIDTH-40, IMAGE_HEIGHT);

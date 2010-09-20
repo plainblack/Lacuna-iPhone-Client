@@ -15,6 +15,7 @@
 #define FOOD_RESERVE_URL @"/foodreserve"
 #define INTELLIGENCE_URL @"/intelligence"
 #define MINING_MINISTRY_URL @"/miningministry"
+#define MUNITIONS_LAB_URL @"/munitionslab"
 #define NETWORK_19_URL @"/network19"
 #define OBSERVATORY_URL @"/observatory"
 #define ORE_STORAGE_URL @"/orestorage"
