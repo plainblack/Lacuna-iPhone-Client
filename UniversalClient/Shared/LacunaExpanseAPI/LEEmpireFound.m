@@ -17,6 +17,7 @@
 @synthesize sessionId;
 @synthesize inviteCode;
 @synthesize empireData;
+@synthesize welcomeMessageId;
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget empireId:(NSString *)inEmpireId inviteCode:(NSString *)inInviteCode {
@@ -40,8 +41,10 @@
 
 - (void)processSuccess {
 	NSDictionary *result = [self.response objectForKey:@"result"];
-	NSDictionary *status = [result objectForKey:@"status"];
 	self.sessionId = [result objectForKey:@"session_id"];
+	self.welcomeMessageId = [result objectForKey:@"welcome_message_id"];
+
+	NSDictionary *status = [result objectForKey:@"status"];
 	self.empireData = [status objectForKey:@"empire"];
 }
 
@@ -61,6 +64,7 @@
 	self.sessionId = nil;
 	self.inviteCode = nil;
 	self.empireData = nil;
+	self.welcomeMessageId = nil;
 	[super dealloc];
 }
 

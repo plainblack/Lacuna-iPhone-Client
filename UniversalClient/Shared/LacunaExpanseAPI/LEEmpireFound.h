@@ -15,6 +15,7 @@
 	NSString *sessionId;
 	NSString *inviteCode;
 	NSDictionary *empireData;
+	NSString *welcomeMessageId;
 }
 
 
@@ -22,6 +23,7 @@
 @property(nonatomic, retain) NSString *sessionId;
 @property(nonatomic, retain) NSString *inviteCode;
 @property(nonatomic, retain) NSDictionary *empireData;
+@property(nonatomic, retain) NSString *welcomeMessageId;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target empireId:(NSString *)empireId inviteCode:(NSString *)inviteCode;
