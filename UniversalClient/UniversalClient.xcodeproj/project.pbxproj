@@ -22,7 +22,6 @@
 		F6023A67123D922200268ADD /* LEBuildingViewPlans.m in Sources */ = {isa = PBXBuildFile; fileRef = F6023A66123D922200268ADD /* LEBuildingViewPlans.m */; };
 		F603A8BE1177E7FC00BAC73A /* LETableViewCellBody.m in Sources */ = {isa = PBXBuildFile; fileRef = F603A8BD1177E7FC00BAC73A /* LETableViewCellBody.m */; };
 		F603A8EF1177F7F200BAC73A /* LETableViewCellCurrentResources.m in Sources */ = {isa = PBXBuildFile; fileRef = F603A8EE1177F7F200BAC73A /* LETableViewCellCurrentResources.m */; };
-		F603A91911780A0400BAC73A /* ViewBodyMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = F603A91811780A0400BAC73A /* ViewBodyMapController.m */; };
 		F60AF5171224A483005B2F0E /* AllianceStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = F60AF5161224A483005B2F0E /* AllianceStatus.m */; };
 		F60AF51B1224A48D005B2F0E /* AllianceMember.m in Sources */ = {isa = PBXBuildFile; fileRef = F60AF51A1224A48D005B2F0E /* AllianceMember.m */; };
 		F60AF51E1224A4A5005B2F0E /* PendingAllianceInvite.m in Sources */ = {isa = PBXBuildFile; fileRef = F60AF51D1224A4A5005B2F0E /* PendingAllianceInvite.m */; };
@@ -128,7 +127,6 @@
 		F6980A4D117A447200BD2096 /* NewBuildingController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6980A4C117A447200BD2096 /* NewBuildingController.m */; };
 		F6980ACF117A600E00BD2096 /* ViewMailboxController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6980ACD117A600E00BD2096 /* ViewMailboxController.m */; };
 		F6980AD0117A600E00BD2096 /* ViewMailboxController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6980ACE117A600E00BD2096 /* ViewMailboxController.xib */; };
-		F6980B05117A6CF900BD2096 /* ViewMailMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */; };
 		F6980B44117A738D00BD2096 /* LETableViewCellParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = F6980B43117A738D00BD2096 /* LETableViewCellParagraph.m */; };
 		F6980B78117A8BD700BD2096 /* NewMailMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6980B76117A8BD700BD2096 /* NewMailMessageController.m */; };
 		F6993B0E11C5CDF8003A7316 /* EditSavedEmpire.m in Sources */ = {isa = PBXBuildFile; fileRef = F6993B0C11C5CDF8003A7316 /* EditSavedEmpire.m */; };
@@ -362,8 +360,6 @@
 		F603A8BD1177E7FC00BAC73A /* LETableViewCellBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellBody.m; sourceTree = "<group>"; };
 		F603A8ED1177F7F200BAC73A /* LETableViewCellCurrentResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellCurrentResources.h; sourceTree = "<group>"; };
 		F603A8EE1177F7F200BAC73A /* LETableViewCellCurrentResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellCurrentResources.m; sourceTree = "<group>"; };
-		F603A91711780A0400BAC73A /* ViewBodyMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewBodyMapController.h; sourceTree = "<group>"; };
-		F603A91811780A0400BAC73A /* ViewBodyMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewBodyMapController.m; sourceTree = "<group>"; };
 		F60AF5151224A483005B2F0E /* AllianceStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllianceStatus.h; sourceTree = "<group>"; };
 		F60AF5161224A483005B2F0E /* AllianceStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllianceStatus.m; sourceTree = "<group>"; };
 		F60AF5191224A48D005B2F0E /* AllianceMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllianceMember.h; sourceTree = "<group>"; };
@@ -563,8 +559,6 @@
 		F6980ACC117A600E00BD2096 /* ViewMailboxController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMailboxController.h; sourceTree = "<group>"; };
 		F6980ACD117A600E00BD2096 /* ViewMailboxController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMailboxController.m; sourceTree = "<group>"; };
 		F6980ACE117A600E00BD2096 /* ViewMailboxController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewMailboxController.xib; sourceTree = "<group>"; };
-		F6980B02117A6CF900BD2096 /* ViewMailMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMailMessageController.h; sourceTree = "<group>"; };
-		F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMailMessageController.m; sourceTree = "<group>"; };
 		F6980B42117A738D00BD2096 /* LETableViewCellParagraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellParagraph.h; sourceTree = "<group>"; };
 		F6980B43117A738D00BD2096 /* LETableViewCellParagraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellParagraph.m; sourceTree = "<group>"; };
 		F6980B75117A8BD700BD2096 /* NewMailMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMailMessageController.h; sourceTree = "<group>"; };
@@ -1625,8 +1619,6 @@
 				F631A3D111754AEF005E40CC /* ViewBodyController.h */,
 				F631A3D211754AEF005E40CC /* ViewBodyController.m */,
 				F631A3F211755489005E40CC /* ViewBodyController.xib */,
-				F603A91711780A0400BAC73A /* ViewBodyMapController.h */,
-				F603A91811780A0400BAC73A /* ViewBodyMapController.m */,
 				F69809A51179FFFB00BD2096 /* ViewBuildingController.h */,
 				F69809A61179FFFB00BD2096 /* ViewBuildingController.m */,
 				F6F52407122C5D9D004E428A /* ViewCreditsController.h */,
@@ -1646,8 +1638,6 @@
 				F6980ACC117A600E00BD2096 /* ViewMailboxController.h */,
 				F6980ACD117A600E00BD2096 /* ViewMailboxController.m */,
 				F6980ACE117A600E00BD2096 /* ViewMailboxController.xib */,
-				F6980B02117A6CF900BD2096 /* ViewMailMessageController.h */,
-				F6980B03117A6CF900BD2096 /* ViewMailMessageController.m */,
 				F643334E12406826006170E8 /* ViewMailMessageWebController.h */,
 				F643334F12406826006170E8 /* ViewMailMessageWebController.m */,
 				F6F1C21B12326FB100D69BB6 /* ViewMedalsController.h */,
@@ -1855,7 +1845,6 @@
 				F631A3D311754AEF005E40CC /* ViewBodyController.m in Sources */,
 				F603A8BE1177E7FC00BAC73A /* LETableViewCellBody.m in Sources */,
 				F603A8EF1177F7F200BAC73A /* LETableViewCellCurrentResources.m in Sources */,
-				F603A91911780A0400BAC73A /* ViewBodyMapController.m in Sources */,
 				F69809A71179FFFB00BD2096 /* ViewBuildingController.m in Sources */,
 				F69809BC117A14FE00BD2096 /* LETableViewCellBuildingStats.m in Sources */,
 				F69809BF117A154500BD2096 /* LETableViewCellProgress.m in Sources */,
@@ -1863,7 +1852,6 @@
 				F69809C5117A156E00BD2096 /* LETableViewCellUnbuildable.m in Sources */,
 				F6980A4D117A447200BD2096 /* NewBuildingController.m in Sources */,
 				F6980ACF117A600E00BD2096 /* ViewMailboxController.m in Sources */,
-				F6980B05117A6CF900BD2096 /* ViewMailMessageController.m in Sources */,
 				F6980B44117A738D00BD2096 /* LETableViewCellParagraph.m in Sources */,
 				F6980B78117A8BD700BD2096 /* NewMailMessageController.m in Sources */,
 				F6864F9B1183A131009826A7 /* ViewNetwork19NewsController.m in Sources */,
@@ -2155,10 +2143,10 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.1;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -2170,11 +2158,11 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.1;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -2186,11 +2174,11 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.1;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Distribution;
 		};

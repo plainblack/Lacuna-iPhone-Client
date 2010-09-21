@@ -77,6 +77,7 @@
 		[empireProfileRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<a href=\"empire://$1\">$2</a>"];
 		[newlineRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<br />"];
 		htmlString = [NSString stringWithFormat:@"<html><head><style>a:link {color:#FFC000;}</style></head><body style=\"background-color:transparent; color: #FFF; width: %f; font-family: sans-serif; font-size: 14px;\">%@</body></html>", self.webView.frame.size.width-20, mutableString];
+		[mutableString release];
 	} else {
 		htmlString = [NSString stringWithFormat:@"<html><head><style>a:link {color:#FFC000;}</style></head><body style=\"background-color:transparent; color: #FFF; width: %f;\"></body></html>", self.webView.frame.size.width-20];
 	}
@@ -97,7 +98,9 @@
 			[self.delegate showEmpireProfile:url.host];
 		} else {
 			NSString *urlAsString = [[request URL] absoluteString];
-			[self.delegate showWebPage:urlAsString];
+			if ([[urlAsString substringToIndex:4] isEqualToString:@"http"]) {
+				[self.delegate showWebPage:urlAsString];
+			}
 		}
 	}
 	return self->loadingContent;

@@ -39,7 +39,6 @@
 
 	self.view.autoresizesSubviews = YES;
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	[self.navigationController setToolbarHidden:NO animated:NO];
 	[self.navigationController.toolbar setTintColor:TINT_COLOR];
 
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
@@ -76,6 +75,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	
+	[self.navigationController setToolbarHidden:NO animated:NO];
+
 	if (self.mailboxSegmentedControl.selectedSegmentIndex == UISegmentedControlNoSegment) {
 		self.mailboxSegmentedControl.selectedSegmentIndex = 0;
 	} else {

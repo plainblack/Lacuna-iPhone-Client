@@ -48,11 +48,14 @@
 	[self.scrollView addSubview:self.backgroundView];
 	
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+	self.navigationController.toolbar.tintColor = self.navigationController.navigationBar.tintColor;
+
+	UIBarButtonItem *flexable = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+	UIBarButtonItem	*pageCurl = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(switchOverlay)] autorelease];
+	[self setToolbarItems:_array(flexable, pageCurl) animated:NO];
 
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];  
 	BOOL showMapOverlay = [userDefaults boolForKey:@"showMapOverlay"];
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:(showMapOverlay ? @"Hide" : @"Show") style:UIBarButtonItemStylePlain target:self action:@selector(switchOverlay)] autorelease];
-
 	buttonsByLoc = [[NSMutableDictionary alloc] initWithCapacity:BODY_BUILDINGS_NUM_ROWS*BODY_BUILDINGS_NUM_COLS];
 	int currentX = 0;
 	for (int x=BODY_BUILDINGS_MIN_X; x<=BODY_BUILDINGS_MAX_X; x++) {
@@ -89,6 +92,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	
+	[self.navigationController setToolbarHidden:NO animated:YES];
 	
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];  
 	float bodyMapZoom = [userDefaults floatForKey:@"bodyMapZoom"];
@@ -103,6 +107,12 @@
 		[session.body loadBuildingMap];
 		self.navigationItem.title = @"Loading";
 	}
+}
+
+
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+	[self.navigationController setToolbarHidden:YES animated:YES];
 }
 
 
@@ -160,7 +170,6 @@
 	[UIView setAnimationTransition:(isCurlUp ? UIViewAnimationTransitionCurlUp : UIViewAnimationTransitionCurlDown) forView:self.backgroundView cache:NO];
 	[UIView commitAnimations];
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];  
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:(isCurlUp ? @"Show" : @"Hide") style:UIBarButtonItemStylePlain target:self action:@selector(switchOverlay)] autorelease];
 	[userDefaults setBool:(!isCurlUp) forKey:@"showMapOverlay"];
 	[userDefaults synchronize];
 }

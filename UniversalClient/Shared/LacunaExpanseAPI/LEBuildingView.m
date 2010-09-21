@@ -20,7 +20,6 @@
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId url:(NSString *)inBuildingUrl {
-	NSLog(@"Loading Building: id:%@, url:%@", inBuildingId, inBuildingUrl);
 	self.buildingId = inBuildingId;
 	self.buildingUrl = inBuildingUrl;
 	return [self initWithCallback:inCallback target:(NSObject *)inTarget];

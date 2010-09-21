@@ -67,6 +67,9 @@ typedef enum {
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+
+	[self.navigationController setToolbarHidden:YES animated:YES];
+
 	if (self.replyToMessage) {
 		self.navigationItem.title = @"Reply";
 		self.toCell.textField.text = [replyToMessage objectForKey:@"from"];
@@ -92,6 +95,10 @@ typedef enum {
 	}
 }
 
+
+- (void)viewWillDisappear:(BOOL)animated {
+	[self.navigationController setToolbarHidden:NO animated:YES];
+}
 	
 #pragma mark -
 #pragma mark Table view data source

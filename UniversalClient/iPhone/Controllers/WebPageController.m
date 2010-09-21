@@ -26,7 +26,6 @@
 	[super viewDidLoad];
 	
 	self.webView.hidden = YES;
-	//self.toolbar.tintColor = TINT_COLOR;
 	
 	if (self.urlToLoad) {
 		[self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlToLoad]]];
