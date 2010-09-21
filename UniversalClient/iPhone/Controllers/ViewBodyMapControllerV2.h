@@ -16,11 +16,13 @@
 	UIScrollView *scrollView;
 	UIView *backgroundView;
 	NSMutableDictionary *buttonsByLoc;
+	UILabel *plotsLabel;
 }
 
 
 @property(nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property(nonatomic, retain) IBOutlet UIView *backgroundView;
+@property(nonatomic, retain) IBOutlet UILabel *plotsLabel;
 
 
 @end

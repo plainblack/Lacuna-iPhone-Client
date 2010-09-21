@@ -21,7 +21,7 @@
 
 @synthesize scrollView;
 @synthesize backgroundView;
-
+@synthesize plotsLabel;
 
 - (void)loadView {
 	self.scrollView = [[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 367)] autorelease];
@@ -50,9 +50,14 @@
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	self.navigationController.toolbar.tintColor = self.navigationController.navigationBar.tintColor;
 
+	self.plotsLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 200.0, 22.0)] autorelease];
+	self.plotsLabel.font = TEXT_FONT;
+	self.plotsLabel.textColor = TEXT_COLOR;
+	self.plotsLabel.backgroundColor = [UIColor clearColor];
+	UIBarButtonItem *plotBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.plotsLabel] autorelease];
 	UIBarButtonItem *flexable = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
-	UIBarButtonItem	*pageCurl = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(switchOverlay)] autorelease];
-	[self setToolbarItems:_array(flexable, pageCurl) animated:NO];
+	UIBarButtonItem	*pageCurl = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPageCurl target:self action:@selector(switchOverlay)] autorelease];
+	[self setToolbarItems:_array(plotBarButtonItem, flexable, pageCurl) animated:NO];
 
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];  
 	BOOL showMapOverlay = [userDefaults boolForKey:@"showMapOverlay"];
@@ -92,6 +97,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	
+	
+	Session *session = [Session sharedInstance];
+	self.navigationItem.title = session.body.name;
 	[self.navigationController setToolbarHidden:NO animated:YES];
 	
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];  
@@ -101,11 +109,10 @@
 	}
 	self.scrollView.zoomScale = bodyMapZoom;
 	
-	Session *session = [Session sharedInstance];
 	[session addObserver:self forKeyPath:@"body.buildingMap" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 	if (!session.body.buildingMap || session.body.needsSurfaceRefresh) {
 		[session.body loadBuildingMap];
-		self.navigationItem.title = @"Loading";
+		self.plotsLabel.text = @"Loading";
 	}
 }
 
@@ -142,6 +149,7 @@
 	self.backgroundView = nil;
 	[buttonsByLoc release];
 	buttonsByLoc = nil;
+	self.plotsLabel = nil;
     [super viewDidUnload];
 }
 
@@ -151,6 +159,7 @@
 	self.backgroundView = nil;
 	[buttonsByLoc release];
 	buttonsByLoc = nil;
+	self.plotsLabel = nil;
     [super dealloc];
 }
 
@@ -232,7 +241,7 @@
 				}
 			}
 		}
-		self.navigationItem.title = [NSString stringWithFormat:@"%@/%@ Buildings", session.body.buildingCount, session.body.size];
+		self.plotsLabel.text = [NSString stringWithFormat:@"%@/%@ Buildings", session.body.buildingCount, session.body.size];
 	}
 }
 
