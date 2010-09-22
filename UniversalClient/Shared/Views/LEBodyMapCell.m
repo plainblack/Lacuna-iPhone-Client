@@ -122,11 +122,13 @@
 
 		//Adjust retain/release
 		[mapBuildingValue retain];
-		[self->mapBuilding release];
 		
 		//Adjust KVO targets
 		[self->mapBuilding removeObserver:self forKeyPath:@"needsRefresh"];
 		[mapBuildingValue addObserver:self forKeyPath:@"needsRefresh" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+
+		//Adjust retain/release
+		[self->mapBuilding release];
 
 		self->mapBuilding = mapBuildingValue;
 		[self setNeedsDisplay];
