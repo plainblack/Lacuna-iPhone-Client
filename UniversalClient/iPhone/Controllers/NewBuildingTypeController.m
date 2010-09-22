@@ -226,81 +226,6 @@ typedef enum {
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSString *tag;
-	
-	switch (indexPath.section) {
-		case SECTION_INFRASTRUCTURE:
-			switch (indexPath.row) {
-				case INFRASTRCUTURE_ROW_COLONIZATION:
-					tag = @"Colonization";
-					break;
-				case INFRASTRCUTURE_ROW_CONSTRUCTION:
-					tag = @"Construction";
-					break;
-				case INFRASTRCUTURE_ROW_HAPPINESS:
-					tag = @"Happiness";
-					break;
-				case INFRASTRCUTURE_ROW_INTELLIGENCE:
-					tag = @"Intelligence";
-					break;
-				case INFRASTRCUTURE_ROW_SHIPS:
-					tag = @"Ships";
-					break;
-				case INFRASTRCUTURE_ROW_TRADE:
-					tag = @"Trade";
-					break;
-				case INFRASTRCUTURE_ROW_ALL:
-					tag = @"Infrastructure";
-					break;
-				default:
-					tag = @"Infrastructure";
-					break;
-			}
-			break;
-		case SECTION_RESOURCES:
-			switch (indexPath.row) {
-				case RESOURCE_ROW_ENERGY:
-					tag = @"Energy";
-					break;
-				case RESOURCE_ROW_FOOD:
-					tag = @"Food";
-					break;
-				case RESOURCE_ROW_ORE:
-					tag = @"Ore";
-					break;
-				case RESOURCE_ROW_STORAGE:
-					tag = @"Storage";
-					break;
-				case RESOURCE_ROW_WASTE:
-					tag = @"Waste";
-					break;
-				case RESOURCE_ROW_WATER:
-					tag = @"Water";
-					break;
-				case RESOURCE_ROW_ALL:
-					tag = @"Resources";
-					break;
-				default:
-					tag = @"Resources";
-					break;
-			}
-			break;
-		case SECTION_ALL:
-			switch (indexPath.row) {
-				case ALL_ROW_FREE_PLANS:
-					tag = @"Plan";
-					break;
-				case ALL_ROW_ALL:
-					tag = @"";
-					break;
-				default:
-					break;
-			}
-			break;
-		default:
-			tag =nil;
-			break;
-	}
 	
 	Session *session = [Session sharedInstance];
 	NewBuildingController *newBuildingController = [NewBuildingController create];
@@ -308,7 +233,81 @@ typedef enum {
 	newBuildingController.buttonsByLoc = buttonsByLoc;
 	newBuildingController.x = x;
 	newBuildingController.y	= y;
-	newBuildingController.tag = tag;
+	switch (indexPath.section) {
+		case SECTION_INFRASTRUCTURE:
+			switch (indexPath.row) {
+				case INFRASTRCUTURE_ROW_COLONIZATION:
+					newBuildingController.tag = @"Colonization";
+					break;
+				case INFRASTRCUTURE_ROW_CONSTRUCTION:
+					newBuildingController.tag = @"Construction";
+					break;
+				case INFRASTRCUTURE_ROW_HAPPINESS:
+					newBuildingController.tag = @"Happiness";
+					break;
+				case INFRASTRCUTURE_ROW_INTELLIGENCE:
+					newBuildingController.tag = @"Intelligence";
+					break;
+				case INFRASTRCUTURE_ROW_SHIPS:
+					newBuildingController.tag = @"Ships";
+					break;
+				case INFRASTRCUTURE_ROW_TRADE:
+					newBuildingController.tag = @"Trade";
+					break;
+				case INFRASTRCUTURE_ROW_ALL:
+					newBuildingController.tag = @"Infrastructure";
+					break;
+				default:
+					newBuildingController.tag = @"Infrastructure";
+					break;
+			}
+			break;
+		case SECTION_RESOURCES:
+			switch (indexPath.row) {
+				case RESOURCE_ROW_ENERGY:
+					newBuildingController.tag = @"Energy";
+					break;
+				case RESOURCE_ROW_FOOD:
+					newBuildingController.tag = @"Food";
+					break;
+				case RESOURCE_ROW_ORE:
+					newBuildingController.tag = @"Ore";
+					break;
+				case RESOURCE_ROW_STORAGE:
+					newBuildingController.tag = @"Storage";
+					break;
+				case RESOURCE_ROW_WASTE:
+					newBuildingController.tag = @"Waste";
+					break;
+				case RESOURCE_ROW_WATER:
+					newBuildingController.tag = @"Water";
+					break;
+				case RESOURCE_ROW_ALL:
+					newBuildingController.tag = @"Resources";
+					break;
+				default:
+					newBuildingController.tag = @"Resources";
+					break;
+			}
+			break;
+		case SECTION_ALL:
+			switch (indexPath.row) {
+				case ALL_ROW_FREE_PLANS:
+					newBuildingController.tag = @"Plan";
+					break;
+				case ALL_ROW_ALL:
+					newBuildingController.tag = @"";
+					break;
+				default:
+					newBuildingController.tag = @"";
+					break;
+			}
+			break;
+		default:
+			newBuildingController.tag = @"";
+			break;
+	}
+	
 	[[self navigationController] pushViewController:newBuildingController animated:YES];
 }
 

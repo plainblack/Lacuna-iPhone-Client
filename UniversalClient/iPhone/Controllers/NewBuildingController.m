@@ -240,7 +240,7 @@ typedef enum {
 	self.x = nil;
 	self.y = nil;
 	self.buttonsByLoc = nil;
-	[leGetBuildables cancel];
+	[self.leGetBuildables cancel];
 	self.leGetBuildables = nil;
 	self.tag = nil;
 	self.selectedBuildingUrl = nil;
@@ -257,7 +257,7 @@ typedef enum {
 	self.x = nil;
 	self.y = nil;
 	self.buttonsByLoc = nil;
-	[leGetBuildables cancel];
+	[self.leGetBuildables cancel];
 	self.leGetBuildables = nil;
 	self.tag = nil;
 	self.selectedBuildingUrl = nil;
@@ -318,7 +318,8 @@ typedef enum {
 		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Your build queue is full. You must wait for another building to complete. Building/Upgrading your Development Ministery allows you to have more buildings in your queue." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 		[av show];
 	}
-	
+
+	self.leGetBuildables = nil;
 	return nil;
 }
 
@@ -365,7 +366,6 @@ typedef enum {
 	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
 		[[[LEBuildBuilding alloc] initWithCallback:@selector(buildingBuilt:) target:self bodyId:self.bodyId x:self.x y:self.y url:self.selectedBuildingUrl] autorelease];
 		self.selectedBuildingUrl = nil;
-
 	}
 }
 

@@ -54,6 +54,7 @@
 	self.plotsLabel.font = TEXT_FONT;
 	self.plotsLabel.textColor = TEXT_COLOR;
 	self.plotsLabel.backgroundColor = [UIColor clearColor];
+	self.plotsLabel.text = [NSString stringWithFormat:@"%@/%@ Buildings", session.body.buildingCount, session.body.size];
 	UIBarButtonItem *plotBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.plotsLabel] autorelease];
 	UIBarButtonItem *flexable = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
 	UIBarButtonItem	*pageCurl = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPageCurl target:self action:@selector(switchOverlay)] autorelease];
