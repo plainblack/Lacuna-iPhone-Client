@@ -18,6 +18,7 @@
 @synthesize typeLabel;
 @synthesize holdSizeLabel;
 @synthesize speedLabel;
+@synthesize stealthLabel;
 @synthesize shipImageView;
 
 
@@ -41,6 +42,7 @@
 	self.typeLabel = nil;
 	self.holdSizeLabel = nil;
 	self.speedLabel = nil;
+	self.stealthLabel = nil;
 	self.shipImageView = nil;
     [super dealloc];
 }
@@ -53,6 +55,7 @@
 	self.typeLabel.text = [Util prettyCodeValue:buildableShip.type];
 	self.holdSizeLabel.text = [NSString stringWithFormat:@"%@", [buildableShip.attributes objectForKey:@"hold_size"]];
 	self.speedLabel.text = [NSString stringWithFormat:@"%@", [buildableShip.attributes objectForKey:@"speed"]];
+	self.stealthLabel.text = [NSString stringWithFormat:@"%@", [buildableShip.attributes objectForKey:@"stealth"]];
 	NSString *shipImageName = [NSString stringWithFormat:@"assets/ships/%@.png", buildableShip.type];
 	self.shipImageView.image = [UIImage imageNamed:shipImageName];
 }
@@ -113,6 +116,22 @@
 		cell.speedLabel.textColor = TEXT_SMALL_COLOR;
 		cell.speedLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.speedLabel];
+		
+		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, 70, 60, 20)] autorelease];
+		tmpLabel.backgroundColor = [UIColor clearColor];
+		tmpLabel.textAlignment = UITextAlignmentRight;
+		tmpLabel.font = LABEL_FONT;
+		tmpLabel.textColor = LABEL_COLOR;
+		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+		tmpLabel.text = @"Stealth";
+		[cell.contentView addSubview:tmpLabel];
+		cell.stealthLabel = [[[UILabel alloc] initWithFrame:CGRectMake(185, 70, 130, 20)] autorelease];
+		cell.stealthLabel.backgroundColor = [UIColor clearColor];
+		cell.stealthLabel.textAlignment = UITextAlignmentLeft;
+		cell.stealthLabel.font = TEXT_SMALL_FONT;
+		cell.stealthLabel.textColor = TEXT_SMALL_COLOR;
+		cell.stealthLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+		[cell.contentView addSubview:cell.stealthLabel];
 		
 		//Set Cell Defaults
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
