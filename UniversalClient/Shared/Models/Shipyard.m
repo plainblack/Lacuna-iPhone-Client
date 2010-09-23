@@ -14,7 +14,7 @@
 #import "LEBuildingBuildShip.h"
 #import "LETableViewCellButton.h"
 #import "ViewShipBuildQueueController.h"
-#import "BuildShipController.h"
+#import "BuildShipTypeController.h"
 
 
 @implementation Shipyard
@@ -111,9 +111,9 @@
 			break;
 		case BUILDING_ROW_BUILD_SHIP:
 			; //DO NOT REMOVE
-			BuildShipController *buildShipController = [BuildShipController create];
-			buildShipController.shipyard = self;
-			return buildShipController;
+			BuildShipTypeController *buildShipTypeController = [BuildShipTypeController create];
+			buildShipTypeController.shipyard = self;
+			return buildShipTypeController;
 			return nil;
 			break;
 		default:
@@ -132,8 +132,8 @@
 }
 
 
-- (void)loadBuildableShips {
-	[[[LEBuildingGetBuildableShips alloc] initWithCallback:@selector(buildableShipsLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+- (void)loadBuildableShipsForType:(NSString *)type {
+	[[[LEBuildingGetBuildableShips alloc] initWithCallback:@selector(buildableShipsLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl type:type] autorelease];
 }
 
 

@@ -20,17 +20,19 @@
 @synthesize buildingUrl;
 @synthesize buildableShips;
 @synthesize docksAvailable;
+@synthesize type;
 
 
-- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl {
+- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl type:(NSString *)inType {
 	self.buildingId = inBuildingId;
 	self.buildingUrl = inBuildingUrl;
+	self.type = inType;
 	return [self initWithCallback:inCallback target:(NSObject *)inTarget];
 }
 
 
 - (id)params {
-	return _array([Session sharedInstance].sessionId, self.buildingId);
+	return _array([Session sharedInstance].sessionId, self.buildingId, self.type);
 }
 
 

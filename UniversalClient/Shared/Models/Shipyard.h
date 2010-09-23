@@ -27,7 +27,7 @@
 
 
 - (void)loadBuildQueueForPage:(NSInteger)pageNumber;
-- (void)loadBuildableShips;
+- (void)loadBuildableShipsForType:(NSString *)type;
 - (void)buildShipOfType:(NSString *)shipType;
 - (bool)hasPreviousBuildQueuePage;
 - (bool)hasNextBuildQueuePage;

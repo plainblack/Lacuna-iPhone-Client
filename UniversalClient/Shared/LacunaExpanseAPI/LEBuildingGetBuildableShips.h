@@ -15,6 +15,7 @@
 	NSString *buildingUrl;
 	NSMutableArray *buildableShips;
 	NSDecimalNumber *docksAvailable;
+	NSString *type;
 }
 
 
@@ -22,9 +23,10 @@
 @property(nonatomic, retain) NSString *buildingUrl;
 @property(nonatomic, retain) NSMutableArray *buildableShips;
 @property(nonatomic, retain) NSDecimalNumber *docksAvailable;
+@property(nonatomic, retain) NSString *type;
 
 
-- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl;
+- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl type:(NSString*)type;
 
 
 @end

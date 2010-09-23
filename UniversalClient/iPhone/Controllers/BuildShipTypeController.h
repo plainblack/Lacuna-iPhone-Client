@@ -1,8 +1,8 @@
 //
-//  BuildShipController.h
+//  BuildShipTypeController.h
 //  UniversalClient
 //
-//  Created by Kevin Runde on 7/31/10.
+//  Created by Kevin Runde on 9/23/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
@@ -13,17 +13,15 @@
 @class Shipyard;
 
 
-@interface BuildShipController : LETableViewControllerGrouped {
+@interface BuildShipTypeController : LETableViewControllerGrouped {
 	Shipyard *shipyard;
-	NSString *tag;
 }
 
 
 @property (nonatomic, retain) Shipyard *shipyard;
-@property (nonatomic, retain) NSString *tag;
 
 
-+ (BuildShipController *)create;
++ (BuildShipTypeController *)create;
 
 
 @end

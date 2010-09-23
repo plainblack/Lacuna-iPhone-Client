@@ -33,6 +33,7 @@ typedef enum {
 
 
 @synthesize shipyard;
+@synthesize tag;
 
 
 #pragma mark -
@@ -53,7 +54,7 @@ typedef enum {
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	[self.shipyard addObserver:self forKeyPath:@"buildableShips" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
-	[self.shipyard loadBuildableShips];
+	[self.shipyard loadBuildableShipsForType:self.tag];
 }
 
 
@@ -250,6 +251,7 @@ typedef enum {
 
 - (void)dealloc {
 	self.shipyard = nil;
+	self.tag = nil;
     [super dealloc];
 }
 
