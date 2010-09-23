@@ -91,14 +91,16 @@
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<reference key="IBUIFont" ref="484282275"/>
-								<int key="IBUIButtonType">1</int>
-								<string key="IBUINormalTitle">X</string>
 								<reference key="IBUIHighlightedTitleColor" ref="255573300"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="81196135"/>
+								<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="675885089">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">assets/iphone ui/x_button.png</string>
+								</object>
 							</object>
 						</object>
 						<string key="NSFrame">{{6, 5}, {78, 111}}</string>
@@ -148,14 +150,13 @@
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<reference key="IBUIFont" ref="484282275"/>
-								<int key="IBUIButtonType">1</int>
-								<string key="IBUINormalTitle">X</string>
 								<reference key="IBUIHighlightedTitleColor" ref="255573300"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="81196135"/>
+								<reference key="IBUINormalBackgroundImage" ref="675885089"/>
 							</object>
 						</object>
 						<string key="NSFrame">{{84, 5}, {78, 111}}</string>
@@ -202,14 +203,13 @@
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<reference key="IBUIFont" ref="484282275"/>
-								<int key="IBUIButtonType">1</int>
-								<string key="IBUINormalTitle">X</string>
 								<reference key="IBUIHighlightedTitleColor" ref="255573300"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="81196135"/>
+								<reference key="IBUINormalBackgroundImage" ref="675885089"/>
 							</object>
 						</object>
 						<string key="NSFrame">{{162, 5}, {78, 111}}</string>
@@ -256,14 +256,13 @@
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<reference key="IBUIFont" ref="484282275"/>
-								<int key="IBUIButtonType">1</int>
-								<string key="IBUINormalTitle">X</string>
 								<reference key="IBUIHighlightedTitleColor" ref="255573300"/>
 								<object class="NSColor" key="IBUINormalTitleColor">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="81196135"/>
+								<reference key="IBUINormalBackgroundImage" ref="675885089"/>
 							</object>
 						</object>
 						<string key="NSFrame">{{240, 5}, {78, 111}}</string>
@@ -980,8 +979,17 @@
 		<string key="IBDocument.LastKnownRelativeProjectPath">../../UniversalClient.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">assets/iphone ui/green_button.png</string>
-			<string key="NS.object.0">{16, 16}</string>
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<object class="NSArray" key="dict.sortedKeys">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>assets/iphone ui/green_button.png</string>
+				<string>assets/iphone ui/x_button.png</string>
+			</object>
+			<object class="NSMutableArray" key="dict.values">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>{16, 16}</string>
+				<string>{16, 16}</string>
+			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">123</string>
 	</data>
