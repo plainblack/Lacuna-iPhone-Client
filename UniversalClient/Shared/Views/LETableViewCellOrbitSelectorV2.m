@@ -1,18 +1,18 @@
 //
-//  LETableViewCellAffinitySelectorV2.m
+//  LETableViewCellOribtSelector.m
 //  UniversalClient
 //
-//  Created by Kevin Runde on 9/16/10.
+//  Created by Kevin Runde on 9/22/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
-#import "LETableViewCellAffinitySelectorV2.h"
+#import "LETableViewCellOrbitSelectorV2.h"
 #import "LEMacros.h"
 #import "Util.h"
 #import "PickNumericValueController.h"
 
 
-@implementation LETableViewCellAffinitySelectorV2
+@implementation LETableViewCellOrbitSelectorV2
 
 
 @synthesize nameLabel;
@@ -52,18 +52,9 @@
 #pragma mark PickNumericValueController Methods
 
 - (void)newNumericValue:(NSDecimalNumber *)value {
-	if ([value isEqualToNumber:[NSDecimalNumber one]]) {
-		UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Are you sure"
-													 message:@"Setting an affinity to 1 puts you are a significant disadvantage and should only be done by expert players."
-													delegate:self
-										   cancelButtonTitle:@"Cancel"
-										   otherButtonTitles:@"OK", nil];
-		[av show];
-	} else {
-		self.numericValue = value;
-		[self.numberButton setTitle:[self.numericValue stringValue] forState:UIControlStateNormal];
-		[self.pointsDelegate updatePoints];
-	}
+	self.numericValue = value;
+	[self.numberButton setTitle:[self.numericValue stringValue] forState:UIControlStateNormal];
+	[self.pointsDelegate updatePoints];
 }
 
 
@@ -116,12 +107,12 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (LETableViewCellAffinitySelectorV2 *)getCellForTableView:(UITableView *)tableView {
-	static NSString *CellIdentifier = @"AffinitySelectorCellV2";
++ (LETableViewCellOrbitSelectorV2 *)getCellForTableView:(UITableView *)tableView {
+	static NSString *CellIdentifier = @"OribtSelectorCell";
 	
-	LETableViewCellAffinitySelectorV2 *cell = (LETableViewCellAffinitySelectorV2 *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	LETableViewCellOrbitSelectorV2 *cell = (LETableViewCellOrbitSelectorV2 *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-		cell = [[LETableViewCellAffinitySelectorV2 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+		cell = [[LETableViewCellOrbitSelectorV2 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 		cell.backgroundColor = CELL_BACKGROUND_COLOR;
 		cell.autoresizesSubviews = YES;
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -141,7 +132,7 @@
 		cell.numberButton.titleLabel.textColor = TEXT_ENTRY_COLOR;
 		[cell.numberButton addTarget:cell action:@selector(editNumericValue) forControlEvents:UIControlEventTouchUpInside];
 		[cell.contentView addSubview:cell.numberButton];
-
+		
 		UITapGestureRecognizer *tapRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:cell action:@selector(callTapped:)] autorelease];
 		[cell.contentView addGestureRecognizer:tapRecognizer];
 	}

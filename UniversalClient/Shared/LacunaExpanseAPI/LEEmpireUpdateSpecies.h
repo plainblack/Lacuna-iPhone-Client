@@ -10,11 +10,12 @@
 #import "LERequest.h"
 
 
-@interface LESpeciesCreate : LERequest {
+@interface LEEmpireUpdateSpecies : LERequest {
 	NSString *empireId;
 	NSString *name;
 	NSString *description;
-	NSArray *habitableOrbits;
+	NSDecimalNumber *minOrbit;
+	NSDecimalNumber *maxOrbit;
 	NSDecimalNumber *manufacturingAffinity;
 	NSDecimalNumber *deceptionAffinity;
 	NSDecimalNumber *researchAffinity;
@@ -32,7 +33,8 @@
 @property(nonatomic, retain) NSString *empireId;
 @property(nonatomic, retain) NSString *name;
 @property(nonatomic, retain) NSString *description;
-@property(nonatomic, retain) NSArray *habitableOrbits;
+@property(nonatomic, retain) NSDecimalNumber *minOrbit;
+@property(nonatomic, retain) NSDecimalNumber *maxOrbit;
 @property(nonatomic, retain) NSDecimalNumber *manufacturingAffinity;
 @property(nonatomic, retain) NSDecimalNumber *deceptionAffinity;
 @property(nonatomic, retain) NSDecimalNumber *researchAffinity;
@@ -48,7 +50,8 @@
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target empireId:(NSString *)empireId
 						   name:(NSString*) name description:(NSString *) description
-				habitableOrbits:(NSArray *) habitableOrbits
+					   minOrbit:(NSDecimalNumber *) minOrbit
+					   maxOrbit:(NSDecimalNumber *) maxOrbit
 		  manufacturingAffinity:(NSDecimalNumber *) manufacturingAffinity
 			  deceptionAffinity:(NSDecimalNumber *) deceptionAffinity
 			   researchAffinity:(NSDecimalNumber *) researchAffinity

@@ -9,9 +9,8 @@
 #import "NewSpeciesController.h"
 #import "LEMacros.h"
 #import "LEViewSectionTab.h"
-#import "LESpeciesCreate.h"
+#import "LEEmpireUpdateSpecies.h"
 #import "Session.h"
-#import "LETableViewCellOrbitSelector.h"
 #import "LETableViewCellButton.h"
 #import "FoundNewEmpireController.h"
 
@@ -30,6 +29,12 @@ typedef enum {
 } SPECIES_ROWS;
 
 
+typedef enum {
+	ORBIT_ROW_MIN,
+	ORBIT_ROW_MAX
+} ORBIT_ROWS;
+
+
 @interface NewSpeciesController (PrivateMethods)
 
 - (void)calculatePoints;
@@ -45,7 +50,8 @@ typedef enum {
 @synthesize password;
 @synthesize speciesNameCell;
 @synthesize speciesDescriptionCell;
-@synthesize orbitCells;
+@synthesize minOrbitCell;
+@synthesize maxOrbitCell;
 @synthesize manufacturingCell;
 @synthesize deceptionCell;
 @synthesize researchCell;
@@ -57,6 +63,7 @@ typedef enum {
 @synthesize politicalCell;
 @synthesize tradeCell;
 @synthesize growthCell;
+@synthesize speciesTemplate;
 
 
 #pragma mark -
@@ -66,90 +73,94 @@ typedef enum {
     [super viewDidLoad];
 
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
-	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)] autorelease];
 	
 	//Setup Cells
 	self.speciesNameCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
 	self.speciesNameCell.label.text = @"Name";
 	self.speciesNameCell.delegate = self;
+	self.speciesNameCell.textField.text = [self.speciesTemplate objectForKey:@"name"];
 	
 	self.speciesDescriptionCell = [LETableViewCellLabeledTextView getCellForTableView:self.tableView];
 	self.speciesDescriptionCell.label.text = @"Description";
+	self.speciesDescriptionCell.textView.text = [self.speciesTemplate objectForKey:@"description"];
 	
-	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:7];
-	for (int index=0; index<NUM_ORBITS; index++) {
-		LETableViewCellOrbitSelector *orbitCell = [LETableViewCellOrbitSelector getCellForTableView:self.tableView];
-		orbitCell.label.text = [NSString stringWithFormat:@"Orbit %i", index+1];
-		orbitCell.pointsDelegate = self;
-		[tmp addObject:orbitCell];
-	}
-	self.orbitCells = tmp;
+	self.minOrbitCell = [LETableViewCellOrbitSelectorV2 getCellForTableView:self.tableView];
+	self.minOrbitCell.nameLabel.text = @"Minimum Orbit";
+	self.minOrbitCell.pointsDelegate = self;
+	self.minOrbitCell.viewController = self;
+	[self.minOrbitCell setRating:_intv([self.speciesTemplate objectForKey:@"min_orbit"])];
+	
+	self.maxOrbitCell = [LETableViewCellOrbitSelectorV2 getCellForTableView:self.tableView];
+	self.maxOrbitCell.nameLabel.text = @"Maximum Orbit";
+	self.maxOrbitCell.pointsDelegate = self;
+	self.maxOrbitCell.viewController = self;
+	[self.maxOrbitCell setRating:_intv([self.speciesTemplate objectForKey:@"max_orbit"])];
 	
 	self.manufacturingCell = [LETableViewCellAffinitySelectorV2 getCellForTableView:self.tableView];
 	self.manufacturingCell.nameLabel.text = @"Manufacturing";
 	self.manufacturingCell.pointsDelegate = self;
 	self.manufacturingCell.viewController = self;
-	[self.manufacturingCell setRating:4];
+	[self.manufacturingCell setRating:_intv([self.speciesTemplate objectForKey:@"manufacturing_affinity"])];
 	
 	self.deceptionCell = [LETableViewCellAffinitySelectorV2 getCellForTableView:self.tableView];
 	self.deceptionCell.nameLabel.text = @"Deception";
 	self.deceptionCell.pointsDelegate = self;
 	self.deceptionCell.viewController = self;
-	[self.deceptionCell setRating:4];
+	[self.deceptionCell setRating:_intv([self.speciesTemplate objectForKey:@"deception_affinity"])];
 	
 	self.researchCell = [LETableViewCellAffinitySelectorV2 getCellForTableView:self.tableView];
 	self.researchCell.nameLabel.text = @"Research";
 	self.researchCell.pointsDelegate = self;
 	self.researchCell.viewController = self;
-	[self.researchCell setRating:4];
+	[self.researchCell setRating:_intv([self.speciesTemplate objectForKey:@"research_affinity"])];
 	
 	self.managementCell = [LETableViewCellAffinitySelectorV2 getCellForTableView:self.tableView];
 	self.managementCell.nameLabel.text = @"Management";
 	self.managementCell.pointsDelegate = self;
 	self.managementCell.viewController = self;
-	[self.managementCell setRating:4];
+	[self.managementCell setRating:_intv([self.speciesTemplate objectForKey:@"management_affinity"])];
 	
 	self.farmingCell = [LETableViewCellAffinitySelectorV2 getCellForTableView:self.tableView];
 	self.farmingCell.nameLabel.text = @"Farming";
 	self.farmingCell.pointsDelegate = self;
 	self.farmingCell.viewController = self;
-	[self.farmingCell setRating:4];
+	[self.farmingCell setRating:_intv([self.speciesTemplate objectForKey:@"farming_affinity"])];
 	
 	self.miningCell = [LETableViewCellAffinitySelectorV2 getCellForTableView:self.tableView];
 	self.miningCell.nameLabel.text = @"Mining";
 	self.miningCell.pointsDelegate = self;
 	self.miningCell.viewController = self;
-	[self.miningCell setRating:4];
+	[self.miningCell setRating:_intv([self.speciesTemplate objectForKey:@"mining_affinity"])];
 	
 	self.scienceCell = [LETableViewCellAffinitySelectorV2 getCellForTableView:self.tableView];
 	self.scienceCell.nameLabel.text = @"Science";
 	self.scienceCell.pointsDelegate = self;
 	self.scienceCell.viewController = self;
-	[self.scienceCell setRating:4];
+	[self.scienceCell setRating:_intv([self.speciesTemplate objectForKey:@"science_affinity"])];
 	
 	self.environmentalCell = [LETableViewCellAffinitySelectorV2 getCellForTableView:self.tableView];
 	self.environmentalCell.nameLabel.text = @"Environmental";
 	self.environmentalCell.pointsDelegate = self;
 	self.environmentalCell.viewController = self;
-	[self.environmentalCell setRating:4];
+	[self.environmentalCell setRating:_intv([self.speciesTemplate objectForKey:@"environmental_affinity"])];
 	
 	self.politicalCell = [LETableViewCellAffinitySelectorV2 getCellForTableView:self.tableView];
 	self.politicalCell.nameLabel.text = @"Political";
 	self.politicalCell.pointsDelegate = self;
 	self.politicalCell.viewController = self;
-	[self.politicalCell setRating:4];
+	[self.politicalCell setRating:_intv([self.speciesTemplate objectForKey:@"political_affinity"])];
 	
 	self.tradeCell = [LETableViewCellAffinitySelectorV2 getCellForTableView:self.tableView];
 	self.tradeCell.nameLabel.text = @"Trade";
 	self.tradeCell.pointsDelegate = self;
 	self.tradeCell.viewController = self;
-	[self.tradeCell setRating:4];
+	[self.tradeCell setRating:_intv([self.speciesTemplate objectForKey:@"trade_affinity"])];
 	
 	self.growthCell = [LETableViewCellAffinitySelectorV2 getCellForTableView:self.tableView];
 	self.growthCell.nameLabel.text = @"Growth";
 	self.growthCell.pointsDelegate = self;
 	self.growthCell.viewController = self;
-	[self.growthCell setRating:4];
+	[self.growthCell setRating:_intv([self.speciesTemplate objectForKey:@"growth_affinity"])];
 	
 	[self calculatePoints];
 	self.navigationItem.title = [NSString stringWithFormat:@"%i / 45 points", self->points];
@@ -175,7 +186,7 @@ typedef enum {
 			return 2;
 			break;
 		case SECTION_HABITAL_ORBITS:
-			return [orbitCells count];
+			return 2;
 			break;
 		case SECTION_AFFINITIES:
 			return 11;
@@ -206,8 +217,6 @@ typedef enum {
 			}
 			break;
 		case SECTION_HABITAL_ORBITS:
-			return [LETableViewCellOrbitSelector getHeightForTableView:tableView];
-			break;
 		case SECTION_AFFINITIES:
 			return [LETableViewCellAffinitySelectorV2 getHeightForTableView:tableView];
 			break;
@@ -239,7 +248,16 @@ typedef enum {
 			}
 			break;
 		case SECTION_HABITAL_ORBITS:
-			cell = [orbitCells objectAtIndex:indexPath.row];
+			switch (indexPath.row) {
+				case ORBIT_ROW_MIN:
+					cell = self.minOrbitCell;
+					break;
+				case ORBIT_ROW_MAX:
+					cell = self.maxOrbitCell;
+					break;
+				default:
+					break;
+			}
 			break;
 		case SECTION_AFFINITIES:
 			switch (indexPath.row) {
@@ -322,7 +340,8 @@ typedef enum {
 - (void)viewDidUnload {
     self.speciesNameCell = nil;
 	self.speciesDescriptionCell = nil;
-	self.orbitCells = nil;
+	self.minOrbitCell = nil;
+	self.maxOrbitCell = nil;
 	self.manufacturingCell = nil;
 	self.deceptionCell = nil;
 	self.researchCell = nil;
@@ -341,7 +360,8 @@ typedef enum {
 - (void)dealloc {
     self.speciesNameCell = nil;
 	self.speciesDescriptionCell = nil;
-	self.orbitCells = nil;
+	self.minOrbitCell = nil;
+	self.maxOrbitCell = nil;
 	self.manufacturingCell = nil;
 	self.deceptionCell = nil;
 	self.researchCell = nil;
@@ -356,6 +376,7 @@ typedef enum {
 	self.empireId = nil;
 	self.username = nil;
 	self.password = nil;
+	self.speciesTemplate = nil;
     [super dealloc];
 }
 
@@ -364,38 +385,34 @@ typedef enum {
 #pragma mark Instance methods
 
 - (IBAction)createSpecies {
-	if (self->points > 45) {
+	if (_intv(self.maxOrbitCell.rating) < _intv(self.minOrbitCell.rating)) {
+		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Invalid Orbits" message:@"Max Orbit must be greater than or equal to min orbit." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+		[av show];
+	} else if (self->points > 45) {
 		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Too many points" message:[NSString stringWithFormat:@"You have spent %i points, but you can only spend 45 points.", self->points] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 		[av show];
 	} else if (self->points < 45) {
 		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Too few points" message:[NSString stringWithFormat:@"You have spent %i points, but you must spend 45 points.", self->points] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 		[av show];
-		
 	} else {
-		NSMutableArray *orbitArray = [NSMutableArray arrayWithCapacity: NUM_ORBITS];
-		for (int index=0; index<NUM_ORBITS; index++) {
-			LETableViewCellOrbitSelector *cell = [orbitCells objectAtIndex:index];
-			if ([cell isSelected]) {
-				[orbitArray addObject:[NSDecimalNumber numberWithInteger:(index+1)]];
-			}
-		}
 		self.pendingRequest = YES;
-		[[[LESpeciesCreate alloc] initWithCallback:@selector(speciesCreated:) target:self
+		[[[LEEmpireUpdateSpecies alloc] initWithCallback:@selector(speciesCreated:) target:self
 										  empireId:self.empireId
 											  name:self.speciesNameCell.textField.text
 									   description:self.speciesDescriptionCell.textView.text
-								   habitableOrbits:orbitArray
-							 manufacturingAffinity:manufacturingCell.rating
-								 deceptionAffinity:deceptionCell.rating
-								  researchAffinity:researchCell.rating
-								managementAffinity:managementCell.rating
-								   farmingAffinity:farmingCell.rating
-									miningAffinity:miningCell.rating
-								   scienceAffinity:scienceCell.rating
-							 environmentalAffinity:environmentalCell.rating
-								 politicalAffinity:politicalCell.rating
-									 tradeAffinity:tradeCell.rating
-									growthAffinity:growthCell.rating] autorelease];
+										  minOrbit:self.minOrbitCell.rating
+										  maxOrbit:self.maxOrbitCell.rating
+							 manufacturingAffinity:self.manufacturingCell.rating
+								 deceptionAffinity:self.deceptionCell.rating
+								  researchAffinity:self.researchCell.rating
+								managementAffinity:self.managementCell.rating
+								   farmingAffinity:self.farmingCell.rating
+									miningAffinity:self.miningCell.rating
+								   scienceAffinity:self.scienceCell.rating
+							 environmentalAffinity:self.environmentalCell.rating
+								 politicalAffinity:self.politicalCell.rating
+									 tradeAffinity:self.tradeCell.rating
+									growthAffinity:self.growthCell.rating] autorelease];
 	}
 }
 
@@ -403,7 +420,7 @@ typedef enum {
 #pragma mark -
 #pragma mark LESpeciesUpdatePointsDelegate
 
-- (void)updatePoints:(NSInteger)delta {
+- (void)updatePoints {
 	[self calculatePoints];
 	self.navigationItem.title = [NSString stringWithFormat:@"%i / 45 points", self->points];
 }
@@ -433,13 +450,8 @@ typedef enum {
 #pragma mark PrivateMethods
 
 - (void)calculatePoints {
-	NSInteger newPoints = 0;
-	for (LETableViewCellOrbitSelector *orbitCell in self.orbitCells) {
-		if([orbitCell isSelected]) {
-			newPoints++;
-		}
-	}
-
+	
+	NSInteger newPoints = _intv(self.maxOrbitCell.rating) - _intv(self.minOrbitCell.rating) + 1;
 	newPoints += _intv([self.manufacturingCell rating]);
 	newPoints += _intv([self.deceptionCell rating]);
 	newPoints += _intv([self.researchCell rating]);
@@ -459,7 +471,7 @@ typedef enum {
 #pragma mark -
 #pragma mark Callbacks
 
-- (id)speciesCreated:(LESpeciesCreate *) request {
+- (id)speciesCreated:(LEEmpireUpdateSpecies *) request {
 	self.pendingRequest = NO;
 	if ([request wasError]) {
 		switch ([request errorCode]) {

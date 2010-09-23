@@ -6,17 +6,18 @@
 //  Copyright 2010 n/a. All rights reserved.
 //
 
-#import "LESpeciesCreate.h"
+#import "LEEmpireUpdateSpecies.h"
 #import "LEMacros.h"
 
 
-@implementation LESpeciesCreate
+@implementation LEEmpireUpdateSpecies
 
 
 @synthesize empireId;
 @synthesize name;
 @synthesize description;
-@synthesize habitableOrbits;
+@synthesize minOrbit;
+@synthesize maxOrbit;
 @synthesize manufacturingAffinity;
 @synthesize deceptionAffinity;
 @synthesize researchAffinity;
@@ -32,7 +33,8 @@
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget empireId:(NSString *)inEmpireId
 						   name:(NSString*) inName description:(NSString *) inDescription
-				habitableOrbits:(NSArray *) inHabitableOrbits
+					   minOrbit:(NSDecimalNumber *) inMinOrbit
+					   maxOrbit:(NSDecimalNumber *) inMaxOrbit
 		  manufacturingAffinity:(NSDecimalNumber *) inManufacturingAffinity
 			  deceptionAffinity:(NSDecimalNumber *) inDeceptionAffinity
 			   researchAffinity:(NSDecimalNumber *) inResearchAffinity
@@ -47,7 +49,8 @@
 	self.empireId = inEmpireId;
 	self.name = inName;
 	self.description = inDescription;
-	self.habitableOrbits = inHabitableOrbits;
+	self.minOrbit = inMinOrbit;
+	self.maxOrbit = inMaxOrbit;
 	self.manufacturingAffinity = inManufacturingAffinity;
 	self.deceptionAffinity = inDeceptionAffinity;
 	self.researchAffinity = inResearchAffinity;
@@ -65,10 +68,9 @@
 
 
 - (id)params {
-	NSDictionary *speciesParams = _dict(name, @"name", description, @"description", habitableOrbits, @"habitable_orbits", manufacturingAffinity, @"manufacturing_affinity", deceptionAffinity, @"deception_affinity", researchAffinity, @"research_affinity", managementAffinity, @"management_affinity", farmingAffinity, @"farming_affinity", miningAffinity, @"mining_affinity", scienceAffinity, @"science_affinity", environmentalAffinity, @"environmental_affinity", politicalAffinity, @"political_affinity", tradeAffinity, @"trade_affinity", growthAffinity, @"growth_affinity");
+	NSDictionary *speciesParams = _dict(self.name, @"name", self.description, @"description", self.minOrbit, @"min_orbit", self.maxOrbit, @"max_orbit", self.manufacturingAffinity, @"manufacturing_affinity", self.deceptionAffinity, @"deception_affinity", self.researchAffinity, @"research_affinity", self.managementAffinity, @"management_affinity", self.farmingAffinity, @"farming_affinity", self.miningAffinity, @"mining_affinity", self.scienceAffinity, @"science_affinity", self.environmentalAffinity, @"environmental_affinity", self.politicalAffinity, @"political_affinity", self.tradeAffinity, @"trade_affinity", self.growthAffinity, @"growth_affinity");
 	NSArray *tmp = _array(self.empireId, speciesParams);
-	NSLog(@"Species Params: %@", speciesParams);
-	NSLog(@"Creating species: %@", tmp);
+	NSLog(@"Update Species Params: %@", speciesParams);
 	return tmp;
 }
 
@@ -79,12 +81,12 @@
 
 
 - (NSString *)serviceUrl {
-	return @"species";
+	return @"empire";
 }
 
 
 - (NSString *)methodName {
-	return @"create";
+	return @"update_species";
 }
 
 
@@ -92,7 +94,8 @@
 	self.empireId = nil;
 	self.name = nil;
 	self.description = nil;
-	self.habitableOrbits = nil;
+	self.minOrbit = nil;
+	self.maxOrbit = nil;
 	self.manufacturingAffinity = nil;
 	self.deceptionAffinity = nil;
 	self.researchAffinity = nil;

@@ -6,32 +6,22 @@
 //  Copyright 2010 n/a. All rights reserved.
 //
 
-#import "SelectNewEmpireSpeciesController.h"
+#import "SelectSpeciesTemplateController.h"
 #import "LEMacros.h"
 #import "Util.h"
-#import "LETableViewCellParagraph.h"
 #import "LETableViewCellButton.h"
-#import "LESpeciesSetHuman.h"
-#import "LESpeciesCreate.h"
+#import "LETableViewCellLabeledText.h"
+#import "LEEmpireGetSpeciesTemplates.h"
 #import "NewSpeciesController.h"
-#import "FoundNewEmpireController.h"
 
 
-#define SELECT_MESSAGE @"You can select to be human which is average in all affinities and can live on Orbit 3 planets or you can create a custom species so you can choose your affinities levels and habitial planets."
-
-typedef enum {
-	ROW_SELECT_MESSAGE,
-	ROW_HUMAN,
-	ROW_CUSTOM
-} ROW;
-
-
-@implementation SelectNewEmpireSpeciesController
+@implementation SelectSpeciesTemplateController
 
 
 @synthesize empireId;
 @synthesize username;
 @synthesize password;
+@synthesize templates;
 
 
 #pragma mark -
@@ -52,6 +42,10 @@ typedef enum {
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	
+	if (!self.templates) {
+		[[[LEEmpireGetSpeciesTemplates alloc] initWithCallback:@selector(speciesTemplatesLoaded:) target:self] autorelease];
+	}
 }
 
 
@@ -69,22 +63,15 @@ typedef enum {
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return 3;
+	return MAX([self.templates count], 1);
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	switch (indexPath.row) {
-		case ROW_SELECT_MESSAGE:
-			return [LETableViewCellParagraph getHeightForTableView:tableView text:SELECT_MESSAGE];
-			break;
-		case ROW_HUMAN:
-		case ROW_CUSTOM:
-			return [LETableViewCellButton getHeightForTableView:tableView];
-			break;
-		default:
-			return 0.0;
-			break;
+	if ([self.templates count] > 0) {
+		return [LETableViewCellButton getHeightForTableView:tableView];
+	} else {
+		return [LETableViewCellLabeledText getHeightForTableView:tableView];
 	}
 }
 
@@ -92,29 +79,24 @@ typedef enum {
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell;
-
-	switch (indexPath.row) {
-		case ROW_SELECT_MESSAGE:
-			; //DO NOT REMOVE
-			LETableViewCellParagraph *selectMessageCell = [LETableViewCellParagraph getCellForTableView:tableView];
-			selectMessageCell.content.text = SELECT_MESSAGE;
-			cell = selectMessageCell;
-			break;
-		case ROW_HUMAN:
-			; //DO NOT REMOVE
-			LETableViewCellButton *humanSelectButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-			humanSelectButtonCell.textLabel.text = @"Human";
-			cell = humanSelectButtonCell;
-			break;
-		case ROW_CUSTOM:
-			; //DO NOT REMOVE
-			LETableViewCellButton *customSelectButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-			customSelectButtonCell.textLabel.text = @"Custom";
-			cell = customSelectButtonCell;
-			break;
-		default:
-			cell = nil;
-			break;
+	
+	if (self.templates) {
+		if ([self.templates count] > 0) {
+			NSMutableDictionary *template = [self.templates objectAtIndex:indexPath.row];
+			LETableViewCellButton *templateCell = [LETableViewCellButton getCellForTableView:tableView];
+			templateCell.textLabel.text = [template objectForKey:@"name"];
+			cell = templateCell;
+		} else {
+			LETableViewCellLabeledText *emptyCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+			emptyCell.label.text = @"Templates";
+			emptyCell.content.text = @"None";
+			cell = emptyCell;
+		}
+	} else {
+		LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+		loadingCell.label.text = @"Templates";
+		loadingCell.content.text = @"Loading";
+		cell = loadingCell;
 	}
 
     return cell;
@@ -125,18 +107,16 @@ typedef enum {
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	switch (indexPath.row) {
-		case ROW_HUMAN:
-			[[[LESpeciesSetHuman alloc] initWithCallback:@selector(humanSet:) target:self empireId:self.empireId] autorelease];
-			break;
-		case ROW_CUSTOM:
-			; //DO NOT REMOVE
+	if (self.templates) {
+		if ([self.templates count] > 0) {
+			NSMutableDictionary *template = [self.templates objectAtIndex:indexPath.row];
 			NewSpeciesController *newSpeciesController = [NewSpeciesController create];
 			newSpeciesController.empireId = self.empireId;
 			newSpeciesController.username = self.username;
 			newSpeciesController.password = self.password;
+			newSpeciesController.speciesTemplate = template;
 			[self.navigationController pushViewController:newSpeciesController animated:YES];
-			break;
+		}
 	}
 }
 
@@ -152,11 +132,13 @@ typedef enum {
 }
 
 - (void)viewDidUnload {
+	self.templates = nil;
     [super viewDidUnload];
 }
 
 
 - (void)dealloc {
+	self.templates = nil;
 	self.empireId = nil;
 	self.username = nil;
 	self.password = nil;
@@ -175,13 +157,10 @@ typedef enum {
 #pragma mark -
 #pragma mark Callback Methods
 
-- (id)humanSet:(LESpeciesSetHuman *)request {
+- (id)speciesTemplatesLoaded:(LEEmpireGetSpeciesTemplates *)request {
 	if (![request wasError]) {
-		FoundNewEmpireController *foundNewEmpireController = [FoundNewEmpireController create];
-		foundNewEmpireController.empireId = self.empireId;
-		foundNewEmpireController.username = self.username;
-		foundNewEmpireController.password = self.password;
-		[self.navigationController pushViewController:foundNewEmpireController animated:YES];
+		self.templates = request.templates;
+		[self.tableView reloadData];
 	}
 	
 	return nil;
@@ -191,8 +170,8 @@ typedef enum {
 #pragma mark -
 #pragma mark Class Methods
 
-+ (SelectNewEmpireSpeciesController *)create {
-	return [[[SelectNewEmpireSpeciesController alloc] init] autorelease];
++ (SelectSpeciesTemplateController *)create {
+	return [[[SelectSpeciesTemplateController alloc] init] autorelease];
 }
 
 

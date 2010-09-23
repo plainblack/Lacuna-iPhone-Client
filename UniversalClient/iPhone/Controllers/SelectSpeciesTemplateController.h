@@ -10,22 +10,24 @@
 #import "LETableViewControllerGrouped.h"
 
 
-@interface SelectNewEmpireSpeciesController : LETableViewControllerGrouped {
+@interface SelectSpeciesTemplateController : LETableViewControllerGrouped {
 	NSString *empireId;
 	NSString *username;
 	NSString *password;
+	NSMutableArray *templates;
 }
 
 
 @property (nonatomic, retain) NSString *empireId;
 @property (nonatomic, retain) NSString *username;
 @property (nonatomic, retain) NSString *password;
+@property (nonatomic, retain) NSMutableArray *templates;
 
 
 - (IBAction)cancel;
 
 
-+ (SelectNewEmpireSpeciesController *)create;
++ (SelectSpeciesTemplateController *)create;
 
 
 @end

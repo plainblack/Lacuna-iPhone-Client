@@ -135,8 +135,6 @@
 		F69B7FFE118FB51B0049D4A1 /* ViewAttachedTableController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F69B7FFC118FB51A0049D4A1 /* ViewAttachedTableController.xib */; };
 		F69D2895117242B400D7277E /* LETableViewControllerGrouped.m in Sources */ = {isa = PBXBuildFile; fileRef = F69D2894117242B400D7277E /* LETableViewControllerGrouped.m */; };
 		F69D299211725FA400D7277E /* NewSpeciesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F69D299111725FA400D7277E /* NewSpeciesController.m */; };
-		F69D29B71172654500D7277E /* LETableViewCellOrbitSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = F69D29B61172654500D7277E /* LETableViewCellOrbitSelector.m */; };
-		F69D29BA1172655700D7277E /* LETableViewCellAffinitySelector.m in Sources */ = {isa = PBXBuildFile; fileRef = F69D29B91172655700D7277E /* LETableViewCellAffinitySelector.m */; };
 		F6A9C5951184A3B6001F0D9C /* LEBuildingTrainSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A9C5941184A3B6001F0D9C /* LEBuildingTrainSpy.m */; };
 		F6A9C5B01184BB3C001F0D9C /* LEBuildingViewSpies.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A9C5AF1184BB3C001F0D9C /* LEBuildingViewSpies.m */; };
 		F6A9C5B31184BB6D001F0D9C /* LEBuildingBurnSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A9C5B21184BB6D001F0D9C /* LEBuildingBurnSpy.m */; };
@@ -166,8 +164,7 @@
 		F6AC4A2C116C0F9B001B967A /* LEInboxViewSent.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC4A0F116C0F9B001B967A /* LEInboxViewSent.m */; };
 		F6AC4A2D116C0F9B001B967A /* LERenameBody.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC4A11116C0F9B001B967A /* LERenameBody.m */; };
 		F6AC4A2E116C0F9B001B967A /* LERequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC4A13116C0F9B001B967A /* LERequest.m */; };
-		F6AC4A2F116C0F9B001B967A /* LESpeciesCreate.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC4A15116C0F9B001B967A /* LESpeciesCreate.m */; };
-		F6AC4A30116C0F9B001B967A /* LESpeciesSetHuman.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC4A17116C0F9B001B967A /* LESpeciesSetHuman.m */; };
+		F6AC4A2F116C0F9B001B967A /* LEEmpireUpdateSpecies.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC4A15116C0F9B001B967A /* LEEmpireUpdateSpecies.m */; };
 		F6AC4A31116C0F9B001B967A /* LEBuildingUpgrade.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC4A19116C0F9B001B967A /* LEBuildingUpgrade.m */; };
 		F6AC4A36116C0FAE001B967A /* Mailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC4A33116C0FAE001B967A /* Mailbox.m */; };
 		F6AC4A37116C0FAE001B967A /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = F6AC4A35116C0FAE001B967A /* Session.m */; };
@@ -190,7 +187,7 @@
 		F6D02A1C1230699F000D8811 /* LEEmpireResetPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D02A1B1230699F000D8811 /* LEEmpireResetPassword.m */; };
 		F6D1DF9B122B2191007A9A4B /* LEEmpireFetchCaptcha.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D1DF9A122B2191007A9A4B /* LEEmpireFetchCaptcha.m */; };
 		F6D1DFB8122B266F007A9A4B /* LETableViewCellServerSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D1DFB7122B266F007A9A4B /* LETableViewCellServerSelect.m */; };
-		F6D1E018122B33DE007A9A4B /* SelectNewEmpireSpeciesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D1E017122B33DE007A9A4B /* SelectNewEmpireSpeciesController.m */; };
+		F6D1E018122B33DE007A9A4B /* SelectSpeciesTemplateController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D1E017122B33DE007A9A4B /* SelectSpeciesTemplateController.m */; };
 		F6D3F66D1221776A0090E31E /* NewTradeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3F66C1221776A0090E31E /* NewTradeController.m */; };
 		F6D3F6A812218AD10090E31E /* LEBuildingAddTrade.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3F6A712218AD10090E31E /* LEBuildingAddTrade.m */; };
 		F6D3F6BB122193C30090E31E /* SelectTradeablePrisonerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3F6BA122193C30090E31E /* SelectTradeablePrisonerController.m */; };
@@ -228,6 +225,8 @@
 		F6DD2026116D561F0013C58D /* LETableViewCellButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DD2025116D561F0013C58D /* LETableViewCellButton.m */; };
 		F6DD2064116D5B3C0013C58D /* LEViewSectionTab.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DD2063116D5B3C0013C58D /* LEViewSectionTab.m */; };
 		F6DEC052120247BF00716CE7 /* LETableViewCellShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DEC051120247BF00716CE7 /* LETableViewCellShip.m */; };
+		F6DF1A9E124AE18C00A34DE2 /* LEEmpireGetSpeciesTemplates.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF1A9D124AE18C00A34DE2 /* LEEmpireGetSpeciesTemplates.m */; };
+		F6DF1B04124AED7F00A34DE2 /* LETableViewCellOrbitSelectorV2.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF1B03124AED7F00A34DE2 /* LETableViewCellOrbitSelectorV2.m */; };
 		F6DF22DA12293D660023FE65 /* EditTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF22D912293D660023FE65 /* EditTextViewController.m */; };
 		F6DF23231229558C0023FE65 /* EditTextFieldController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF23221229558C0023FE65 /* EditTextFieldController.m */; };
 		F6DF239F122960BE0023FE65 /* LEBuildingDowngrade.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF239E122960BE0023FE65 /* LEBuildingDowngrade.m */; };
@@ -573,10 +572,6 @@
 		F69D2894117242B400D7277E /* LETableViewControllerGrouped.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewControllerGrouped.m; sourceTree = "<group>"; };
 		F69D299011725FA400D7277E /* NewSpeciesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewSpeciesController.h; sourceTree = "<group>"; };
 		F69D299111725FA400D7277E /* NewSpeciesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewSpeciesController.m; sourceTree = "<group>"; };
-		F69D29B51172654500D7277E /* LETableViewCellOrbitSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellOrbitSelector.h; sourceTree = "<group>"; };
-		F69D29B61172654500D7277E /* LETableViewCellOrbitSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellOrbitSelector.m; sourceTree = "<group>"; };
-		F69D29B81172655700D7277E /* LETableViewCellAffinitySelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellAffinitySelector.h; sourceTree = "<group>"; };
-		F69D29B91172655700D7277E /* LETableViewCellAffinitySelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellAffinitySelector.m; sourceTree = "<group>"; };
 		F69D29BB11726B6E00D7277E /* LESpeciesPointsUpdateDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LESpeciesPointsUpdateDelegate.h; sourceTree = "<group>"; };
 		F6A9C5931184A3B6001F0D9C /* LEBuildingTrainSpy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingTrainSpy.h; sourceTree = "<group>"; };
 		F6A9C5941184A3B6001F0D9C /* LEBuildingTrainSpy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingTrainSpy.m; sourceTree = "<group>"; };
@@ -637,10 +632,8 @@
 		F6AC4A11116C0F9B001B967A /* LERenameBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LERenameBody.m; sourceTree = "<group>"; };
 		F6AC4A12116C0F9B001B967A /* LERequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LERequest.h; sourceTree = "<group>"; };
 		F6AC4A13116C0F9B001B967A /* LERequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LERequest.m; sourceTree = "<group>"; };
-		F6AC4A14116C0F9B001B967A /* LESpeciesCreate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LESpeciesCreate.h; sourceTree = "<group>"; };
-		F6AC4A15116C0F9B001B967A /* LESpeciesCreate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LESpeciesCreate.m; sourceTree = "<group>"; };
-		F6AC4A16116C0F9B001B967A /* LESpeciesSetHuman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LESpeciesSetHuman.h; sourceTree = "<group>"; };
-		F6AC4A17116C0F9B001B967A /* LESpeciesSetHuman.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LESpeciesSetHuman.m; sourceTree = "<group>"; };
+		F6AC4A14116C0F9B001B967A /* LEEmpireUpdateSpecies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireUpdateSpecies.h; sourceTree = "<group>"; };
+		F6AC4A15116C0F9B001B967A /* LEEmpireUpdateSpecies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireUpdateSpecies.m; sourceTree = "<group>"; };
 		F6AC4A18116C0F9B001B967A /* LEBuildingUpgrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingUpgrade.h; sourceTree = "<group>"; };
 		F6AC4A19116C0F9B001B967A /* LEBuildingUpgrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingUpgrade.m; sourceTree = "<group>"; };
 		F6AC4A32116C0FAE001B967A /* Mailbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mailbox.h; sourceTree = "<group>"; };
@@ -684,8 +677,8 @@
 		F6D1DF9A122B2191007A9A4B /* LEEmpireFetchCaptcha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireFetchCaptcha.m; sourceTree = "<group>"; };
 		F6D1DFB6122B266F007A9A4B /* LETableViewCellServerSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellServerSelect.h; sourceTree = "<group>"; };
 		F6D1DFB7122B266F007A9A4B /* LETableViewCellServerSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellServerSelect.m; sourceTree = "<group>"; };
-		F6D1E016122B33DE007A9A4B /* SelectNewEmpireSpeciesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectNewEmpireSpeciesController.h; sourceTree = "<group>"; };
-		F6D1E017122B33DE007A9A4B /* SelectNewEmpireSpeciesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectNewEmpireSpeciesController.m; sourceTree = "<group>"; };
+		F6D1E016122B33DE007A9A4B /* SelectSpeciesTemplateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectSpeciesTemplateController.h; sourceTree = "<group>"; };
+		F6D1E017122B33DE007A9A4B /* SelectSpeciesTemplateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectSpeciesTemplateController.m; sourceTree = "<group>"; };
 		F6D3F66B1221776A0090E31E /* NewTradeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTradeController.h; sourceTree = "<group>"; };
 		F6D3F66C1221776A0090E31E /* NewTradeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTradeController.m; sourceTree = "<group>"; };
 		F6D3F6A612218AD10090E31E /* LEBuildingAddTrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingAddTrade.h; sourceTree = "<group>"; };
@@ -758,6 +751,10 @@
 		F6DD2063116D5B3C0013C58D /* LEViewSectionTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEViewSectionTab.m; sourceTree = "<group>"; };
 		F6DEC050120247BF00716CE7 /* LETableViewCellShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellShip.h; sourceTree = "<group>"; };
 		F6DEC051120247BF00716CE7 /* LETableViewCellShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellShip.m; sourceTree = "<group>"; };
+		F6DF1A9C124AE18C00A34DE2 /* LEEmpireGetSpeciesTemplates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireGetSpeciesTemplates.h; sourceTree = "<group>"; };
+		F6DF1A9D124AE18C00A34DE2 /* LEEmpireGetSpeciesTemplates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireGetSpeciesTemplates.m; sourceTree = "<group>"; };
+		F6DF1B02124AED7F00A34DE2 /* LETableViewCellOrbitSelectorV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellOrbitSelectorV2.h; sourceTree = "<group>"; };
+		F6DF1B03124AED7F00A34DE2 /* LETableViewCellOrbitSelectorV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellOrbitSelectorV2.m; sourceTree = "<group>"; };
 		F6DF22D812293D660023FE65 /* EditTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTextViewController.h; sourceTree = "<group>"; };
 		F6DF22D912293D660023FE65 /* EditTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTextViewController.m; sourceTree = "<group>"; };
 		F6DF23211229558C0023FE65 /* EditTextFieldController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTextFieldController.h; sourceTree = "<group>"; };
@@ -1066,8 +1063,6 @@
 			isa = PBXGroup;
 			children = (
 				F69D29BB11726B6E00D7277E /* LESpeciesPointsUpdateDelegate.h */,
-				F69D29B81172655700D7277E /* LETableViewCellAffinitySelector.h */,
-				F69D29B91172655700D7277E /* LETableViewCellAffinitySelector.m */,
 				F6EF50231242EA9600EA1B92 /* LETableViewCellAffinitySelectorV2.h */,
 				F6EF50241242EA9600EA1B92 /* LETableViewCellAffinitySelectorV2.m */,
 				F645746A118DD62A000897C4 /* LETableViewCellAttachedImage.h */,
@@ -1118,8 +1113,6 @@
 				F6864FCD1183A912009826A7 /* LETableViewCellNewsItem.m */,
 				F6132E59119E3A78000F99A9 /* LETableViewCellNumberEntry.h */,
 				F6132E5A119E3A78000F99A9 /* LETableViewCellNumberEntry.m */,
-				F69D29B51172654500D7277E /* LETableViewCellOrbitSelector.h */,
-				F69D29B61172654500D7277E /* LETableViewCellOrbitSelector.m */,
 				F6980B42117A738D00BD2096 /* LETableViewCellParagraph.h */,
 				F6980B43117A738D00BD2096 /* LETableViewCellParagraph.m */,
 				F6E4C973121E0ED70028FFE8 /* LETableViewCellPlan.h */,
@@ -1153,6 +1146,8 @@
 				F6DD2063116D5B3C0013C58D /* LEViewSectionTab.m */,
 				F6F4ADA412444D1B00B0509A /* LEBodyMapCell.h */,
 				F6F4ADA512444D1B00B0509A /* LEBodyMapCell.m */,
+				F6DF1B02124AED7F00A34DE2 /* LETableViewCellOrbitSelectorV2.h */,
+				F6DF1B03124AED7F00A34DE2 /* LETableViewCellOrbitSelectorV2.m */,
 			);
 			name = Views;
 			path = Shared/Views;
@@ -1349,6 +1344,8 @@
 				F6E349D21227DE1F001E39B5 /* LEEmpireFind.m */,
 				F6AC49F2116C0F9B001B967A /* LEEmpireFound.h */,
 				F6AC49F3116C0F9B001B967A /* LEEmpireFound.m */,
+				F6DF1A9C124AE18C00A34DE2 /* LEEmpireGetSpeciesTemplates.h */,
+				F6DF1A9D124AE18C00A34DE2 /* LEEmpireGetSpeciesTemplates.m */,
 				F6B2148C1232AAFF00531EEE /* LEEmpireInviteFriend.h */,
 				F6B2148D1232AAFF00531EEE /* LEEmpireInviteFriend.m */,
 				F6AC49F4116C0F9B001B967A /* LEEmpireLogin.h */,
@@ -1361,12 +1358,16 @@
 				F6D02A1B1230699F000D8811 /* LEEmpireResetPassword.m */,
 				F6D02A171230698B000D8811 /* LEEmpireSendPasswordResetMessage.h */,
 				F6D02A181230698B000D8811 /* LEEmpireSendPasswordResetMessage.m */,
+				F6AC4A14116C0F9B001B967A /* LEEmpireUpdateSpecies.h */,
+				F6AC4A15116C0F9B001B967A /* LEEmpireUpdateSpecies.m */,
 				F6E3F01C11B46BBB00E7BC86 /* LEEmpireViewBoosts.h */,
 				F6E3F01D11B46BBB00E7BC86 /* LEEmpireViewBoosts.m */,
 				F6AC49F8116C0F9B001B967A /* LEEmpireViewProfile.h */,
 				F6AC49F9116C0F9B001B967A /* LEEmpireViewProfile.m */,
 				F6E98BDE1241AD0E00F8640D /* LEEmpireViewPublicProfile.h */,
 				F6E98BDF1241AD0E00F8640D /* LEEmpireViewPublicProfile.m */,
+				F6B215A71232E4F900531EEE /* LEEmpireViewSpeciesStats.h */,
+				F6B215A81232E4F900531EEE /* LEEmpireViewSpeciesStats.m */,
 				F6AC49FC116C0F9B001B967A /* LEGetBuildables.h */,
 				F6AC49FD116C0F9B001B967A /* LEGetBuildables.m */,
 				F6AC4A02116C0F9B001B967A /* LEGetSystem.h */,
@@ -1387,12 +1388,6 @@
 				F6AC4A11116C0F9B001B967A /* LERenameBody.m */,
 				F6AC4A12116C0F9B001B967A /* LERequest.h */,
 				F6AC4A13116C0F9B001B967A /* LERequest.m */,
-				F6AC4A14116C0F9B001B967A /* LESpeciesCreate.h */,
-				F6AC4A15116C0F9B001B967A /* LESpeciesCreate.m */,
-				F6AC4A16116C0F9B001B967A /* LESpeciesSetHuman.h */,
-				F6AC4A17116C0F9B001B967A /* LESpeciesSetHuman.m */,
-				F6B215A71232E4F900531EEE /* LEEmpireViewSpeciesStats.h */,
-				F6B215A81232E4F900531EEE /* LEEmpireViewSpeciesStats.m */,
 				F6F5240A122C5ED5004E428A /* LEStatsCredits.h */,
 				F6F5240B122C5ED5004E428A /* LEStatsCredits.m */,
 			);
@@ -1437,6 +1432,8 @@
 				F692B8551218779D00E740C1 /* ItemPush.m */,
 				F6AC4A32116C0FAE001B967A /* Mailbox.h */,
 				F6AC4A33116C0FAE001B967A /* Mailbox.m */,
+				F6F4ADC11244590600B0509A /* MapBuilding.h */,
+				F6F4ADC21244590600B0509A /* MapBuilding.m */,
 				F6E5E5A91205A9A000365AA2 /* MiningMinistry.h */,
 				F6E5E5AA1205A9A000365AA2 /* MiningMinistry.m */,
 				F6E5E5D91205BE1C00365AA2 /* MiningPlatform.h */,
@@ -1497,8 +1494,6 @@
 				F692B7C9121861EC00E740C1 /* Trade.m */,
 				F61D0C2111E2355600B06382 /* WasteRecycling.h */,
 				F61D0C2211E2355600B06382 /* WasteRecycling.m */,
-				F6F4ADC11244590600B0509A /* MapBuilding.h */,
-				F6F4ADC21244590600B0509A /* MapBuilding.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -1593,14 +1588,14 @@
 				F6E349C81227D94E001E39B5 /* SelectEmpireController.m */,
 				F64FA25B121CD36F00CBFC3E /* SelectGlyphController.h */,
 				F64FA25C121CD36F00CBFC3E /* SelectGlyphController.m */,
-				F6D1E016122B33DE007A9A4B /* SelectNewEmpireSpeciesController.h */,
-				F6D1E017122B33DE007A9A4B /* SelectNewEmpireSpeciesController.m */,
 				F64FA281121CD67C00CBFC3E /* SelectPlanController.h */,
 				F64FA282121CD67C00CBFC3E /* SelectPlanController.m */,
 				F6F8550B1220B0500000CD09 /* SelectResourceTypeController.h */,
 				F6F8550C1220B0500000CD09 /* SelectResourceTypeController.m */,
 				F642C5601229E5EB00C596A7 /* SelectServerController.h */,
 				F642C5611229E5EB00C596A7 /* SelectServerController.m */,
+				F6D1E016122B33DE007A9A4B /* SelectSpeciesTemplateController.h */,
+				F6D1E017122B33DE007A9A4B /* SelectSpeciesTemplateController.m */,
 				F64FA284121CD68A00CBFC3E /* SelectStoredResourceController.h */,
 				F64FA285121CD68A00CBFC3E /* SelectStoredResourceController.m */,
 				F6D3F6B9122193C30090E31E /* SelectTradeablePrisonerController.h */,
@@ -1619,6 +1614,8 @@
 				F631A3D111754AEF005E40CC /* ViewBodyController.h */,
 				F631A3D211754AEF005E40CC /* ViewBodyController.m */,
 				F631A3F211755489005E40CC /* ViewBodyController.xib */,
+				F6F4AD9512444A4700B0509A /* ViewBodyMapControllerV2.h */,
+				F6F4AD9612444A4700B0509A /* ViewBodyMapControllerV2.m */,
 				F69809A51179FFFB00BD2096 /* ViewBuildingController.h */,
 				F69809A61179FFFB00BD2096 /* ViewBuildingController.m */,
 				F6F52407122C5D9D004E428A /* ViewCreditsController.h */,
@@ -1662,12 +1659,12 @@
 				F61F675A120515410007427A /* ViewProbedStarsController.m */,
 				F6E98BDB1241A59A00F8640D /* ViewPublicEmpireProfileController.h */,
 				F6E98BDC1241A59A00F8640D /* ViewPublicEmpireProfileController.m */,
-				F6B2155D1232D20B00531EEE /* ViewSpeciesStatsController.h */,
-				F6B2155E1232D20B00531EEE /* ViewSpeciesStatsController.m */,
 				F61F65CE1204C6030007427A /* ViewShipBuildQueueController.h */,
 				F61F65CF1204C6030007427A /* ViewShipBuildQueueController.m */,
 				F6D59F9B120120EE009DDA28 /* ViewShipsController.h */,
 				F6D59F9C120120EE009DDA28 /* ViewShipsController.m */,
+				F6B2155D1232D20B00531EEE /* ViewSpeciesStatsController.h */,
+				F6B2155E1232D20B00531EEE /* ViewSpeciesStatsController.m */,
 				F6A9C5E91184C1CC001F0D9C /* ViewSpiesController.h */,
 				F6A9C5EA1184C1CC001F0D9C /* ViewSpiesController.m */,
 				F642C669122A155C00C596A7 /* ViewStatsController.h */,
@@ -1683,8 +1680,6 @@
 				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
 				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
-				F6F4AD9512444A4700B0509A /* ViewBodyMapControllerV2.h */,
-				F6F4AD9612444A4700B0509A /* ViewBodyMapControllerV2.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1823,8 +1818,7 @@
 				F6AC4A2C116C0F9B001B967A /* LEInboxViewSent.m in Sources */,
 				F6AC4A2D116C0F9B001B967A /* LERenameBody.m in Sources */,
 				F6AC4A2E116C0F9B001B967A /* LERequest.m in Sources */,
-				F6AC4A2F116C0F9B001B967A /* LESpeciesCreate.m in Sources */,
-				F6AC4A30116C0F9B001B967A /* LESpeciesSetHuman.m in Sources */,
+				F6AC4A2F116C0F9B001B967A /* LEEmpireUpdateSpecies.m in Sources */,
 				F6AC4A31116C0F9B001B967A /* LEBuildingUpgrade.m in Sources */,
 				F6AC4A36116C0FAE001B967A /* Mailbox.m in Sources */,
 				F6AC4A37116C0FAE001B967A /* Session.m in Sources */,
@@ -1840,8 +1834,6 @@
 				F6882DF7116EC6E7009B624B /* LETableViewCellMedal.m in Sources */,
 				F69D2895117242B400D7277E /* LETableViewControllerGrouped.m in Sources */,
 				F69D299211725FA400D7277E /* NewSpeciesController.m in Sources */,
-				F69D29B71172654500D7277E /* LETableViewCellOrbitSelector.m in Sources */,
-				F69D29BA1172655700D7277E /* LETableViewCellAffinitySelector.m in Sources */,
 				F631A3D311754AEF005E40CC /* ViewBodyController.m in Sources */,
 				F603A8BE1177E7FC00BAC73A /* LETableViewCellBody.m in Sources */,
 				F603A8EF1177F7F200BAC73A /* LETableViewCellCurrentResources.m in Sources */,
@@ -2046,7 +2038,7 @@
 				F642C66C122A155C00C596A7 /* ViewStatsController.m in Sources */,
 				F6D1DF9B122B2191007A9A4B /* LEEmpireFetchCaptcha.m in Sources */,
 				F6D1DFB8122B266F007A9A4B /* LETableViewCellServerSelect.m in Sources */,
-				F6D1E018122B33DE007A9A4B /* SelectNewEmpireSpeciesController.m in Sources */,
+				F6D1E018122B33DE007A9A4B /* SelectSpeciesTemplateController.m in Sources */,
 				F6F52409122C5D9D004E428A /* ViewCreditsController.m in Sources */,
 				F6F5240C122C5ED5004E428A /* LEStatsCredits.m in Sources */,
 				F6F52440122C7D31004E428A /* LETableViewCellText.m in Sources */,
@@ -2088,6 +2080,8 @@
 				F6F4AD9712444A4700B0509A /* ViewBodyMapControllerV2.m in Sources */,
 				F6F4ADA612444D1B00B0509A /* LEBodyMapCell.m in Sources */,
 				F6F4ADC31244590600B0509A /* MapBuilding.m in Sources */,
+				F6DF1A9E124AE18C00A34DE2 /* LEEmpireGetSpeciesTemplates.m in Sources */,
+				F6DF1B04124AED7F00A34DE2 /* LETableViewCellOrbitSelectorV2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

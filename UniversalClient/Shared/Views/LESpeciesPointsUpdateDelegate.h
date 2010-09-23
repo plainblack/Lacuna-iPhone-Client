@@ -12,7 +12,7 @@
 @protocol LESpeciesPointsUpdateDelegate
 
 
-- (void)updatePoints:(NSInteger)delta;
+- (void)updatePoints;
 
 
 @end

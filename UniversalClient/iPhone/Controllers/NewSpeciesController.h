@@ -10,6 +10,7 @@
 #import "LETableViewControllerGrouped.h"
 #import "LETableViewCellTextEntry.h"
 #import "LETableViewCellAffinitySelectorV2.h"
+#import "LETableViewCellOrbitSelectorV2.h"
 #import "LESpeciesPointsUpdateDelegate.h"
 #import "LETableViewCellLabeledTextView.h"
 
@@ -21,7 +22,8 @@
 	NSInteger points;
 	LETableViewCellTextEntry *speciesNameCell;
 	LETableViewCellLabeledTextView *speciesDescriptionCell;
-	NSArray *orbitCells;
+	LETableViewCellOrbitSelectorV2 *minOrbitCell;
+	LETableViewCellOrbitSelectorV2 *maxOrbitCell;
 	LETableViewCellAffinitySelectorV2 *manufacturingCell;
 	LETableViewCellAffinitySelectorV2 *deceptionCell;
 	LETableViewCellAffinitySelectorV2 *researchCell;
@@ -33,7 +35,7 @@
 	LETableViewCellAffinitySelectorV2 *politicalCell;
 	LETableViewCellAffinitySelectorV2 *tradeCell;
 	LETableViewCellAffinitySelectorV2 *growthCell;
-	
+	NSMutableDictionary *speciesTemplate;
 }
 
 
@@ -42,7 +44,8 @@
 @property(nonatomic, retain) NSString *password;
 @property(nonatomic, retain) LETableViewCellTextEntry *speciesNameCell;
 @property(nonatomic, retain) LETableViewCellLabeledTextView *speciesDescriptionCell;
-@property(nonatomic, retain) NSArray *orbitCells;
+@property(nonatomic, retain) LETableViewCellOrbitSelectorV2 *minOrbitCell;
+@property(nonatomic, retain) LETableViewCellOrbitSelectorV2 *maxOrbitCell;
 @property(nonatomic, retain) LETableViewCellAffinitySelectorV2 *manufacturingCell;
 @property(nonatomic, retain) LETableViewCellAffinitySelectorV2 *deceptionCell;
 @property(nonatomic, retain) LETableViewCellAffinitySelectorV2 *researchCell;
@@ -54,6 +57,7 @@
 @property(nonatomic, retain) LETableViewCellAffinitySelectorV2 *politicalCell;
 @property(nonatomic, retain) LETableViewCellAffinitySelectorV2 *tradeCell;
 @property(nonatomic, retain) LETableViewCellAffinitySelectorV2 *growthCell;
+@property(nonatomic, retain) NSMutableDictionary *speciesTemplate;
 
 
 - (IBAction)cancel;

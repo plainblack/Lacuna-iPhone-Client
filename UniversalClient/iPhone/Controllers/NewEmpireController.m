@@ -16,7 +16,7 @@
 #import "LETableViewCellLabeledSwitch.h"
 #import "LEEmpireFetchCaptcha.h"
 #import "LEEmpireCreate.h"
-#import "SelectNewEmpireSpeciesController.h"
+#import "SelectSpeciesTemplateController.h"
 #import "WebPageController.h"
 
 
@@ -425,7 +425,7 @@ typedef enum {
 #pragma mark PrivateMethods
 
 - (void)showSpeciesSelect {
-	SelectNewEmpireSpeciesController *selectNewEmpireSpeciesController = [SelectNewEmpireSpeciesController create];
+	SelectSpeciesTemplateController *selectNewEmpireSpeciesController = [SelectSpeciesTemplateController create];
 	selectNewEmpireSpeciesController.empireId = self.empireId;
 	selectNewEmpireSpeciesController.username = self.nameCell.textField.text;
 	selectNewEmpireSpeciesController.password = self.passwordCell.textField.text;
