@@ -49,7 +49,9 @@
 #pragma mark Instance Methods
 
 - (void)setData:(NSDictionary *)data {
-	self.medalNameLabel.text = [data objectForKey:@"name"];
+	if (isNotNull([data objectForKey:@"name"])) {
+		self.medalNameLabel.text = [data objectForKey:@"name"];
+	}
 	self.dateLabel.text = [Util prettyDate:[data objectForKey:@"date"]];
 	NSString *note = [data objectForKey:@"note"];
 	if (isNotNull(note)) {
@@ -75,6 +77,7 @@
 		
 		cell.imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(20, 10, 50, 50)] autorelease];
 		cell.imageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+		cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
 		[cell.contentView addSubview:cell.imageView];
 
 		cell.medalNameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(78, 10, 222, 20)] autorelease];

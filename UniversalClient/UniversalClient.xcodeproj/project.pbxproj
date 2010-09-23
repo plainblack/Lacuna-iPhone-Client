@@ -178,8 +178,8 @@
 		F6B214971232AB4F00531EEE /* LEEmpireDisableSelfDestruct.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B214961232AB4F00531EEE /* LEEmpireDisableSelfDestruct.m */; };
 		F6B2149A1232AB7500531EEE /* LEEmpireRedeemEssentiaCode.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B214991232AB7500531EEE /* LEEmpireRedeemEssentiaCode.m */; };
 		F6B2155C1232D20200531EEE /* NewPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B2155B1232D20200531EEE /* NewPasswordController.m */; };
-		F6B2155F1232D20B00531EEE /* ViewRacialStatsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B2155E1232D20B00531EEE /* ViewRacialStatsController.m */; };
-		F6B215A91232E4F900531EEE /* LESpeciesViewStats.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B215A81232E4F900531EEE /* LESpeciesViewStats.m */; };
+		F6B2155F1232D20B00531EEE /* ViewSpeciesStatsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B2155E1232D20B00531EEE /* ViewSpeciesStatsController.m */; };
+		F6B215A91232E4F900531EEE /* LEEmpireViewSpeciesStats.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B215A81232E4F900531EEE /* LEEmpireViewSpeciesStats.m */; };
 		F6B21667123324E000531EEE /* LEBodyAbandon.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B21666123324E000531EEE /* LEBodyAbandon.m */; };
 		F6C3906311F1E36C004FB38F /* LETableViewCellMailSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */; };
 		F6C390C311F1ED14004FB38F /* LETableViewCellMailHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C390C211F1ED14004FB38F /* LETableViewCellMailHeaders.m */; };
@@ -661,10 +661,10 @@
 		F6B214991232AB7500531EEE /* LEEmpireRedeemEssentiaCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireRedeemEssentiaCode.m; sourceTree = "<group>"; };
 		F6B2155A1232D20200531EEE /* NewPasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPasswordController.h; sourceTree = "<group>"; };
 		F6B2155B1232D20200531EEE /* NewPasswordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPasswordController.m; sourceTree = "<group>"; };
-		F6B2155D1232D20B00531EEE /* ViewRacialStatsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewRacialStatsController.h; sourceTree = "<group>"; };
-		F6B2155E1232D20B00531EEE /* ViewRacialStatsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewRacialStatsController.m; sourceTree = "<group>"; };
-		F6B215A71232E4F900531EEE /* LESpeciesViewStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LESpeciesViewStats.h; sourceTree = "<group>"; };
-		F6B215A81232E4F900531EEE /* LESpeciesViewStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LESpeciesViewStats.m; sourceTree = "<group>"; };
+		F6B2155D1232D20B00531EEE /* ViewSpeciesStatsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewSpeciesStatsController.h; sourceTree = "<group>"; };
+		F6B2155E1232D20B00531EEE /* ViewSpeciesStatsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewSpeciesStatsController.m; sourceTree = "<group>"; };
+		F6B215A71232E4F900531EEE /* LEEmpireViewSpeciesStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireViewSpeciesStats.h; sourceTree = "<group>"; };
+		F6B215A81232E4F900531EEE /* LEEmpireViewSpeciesStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireViewSpeciesStats.m; sourceTree = "<group>"; };
 		F6B21665123324E000531EEE /* LEBodyAbandon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBodyAbandon.h; sourceTree = "<group>"; };
 		F6B21666123324E000531EEE /* LEBodyAbandon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBodyAbandon.m; sourceTree = "<group>"; };
 		F6C3906111F1E36C004FB38F /* LETableViewCellMailSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellMailSelect.h; sourceTree = "<group>"; };
@@ -1391,8 +1391,8 @@
 				F6AC4A15116C0F9B001B967A /* LESpeciesCreate.m */,
 				F6AC4A16116C0F9B001B967A /* LESpeciesSetHuman.h */,
 				F6AC4A17116C0F9B001B967A /* LESpeciesSetHuman.m */,
-				F6B215A71232E4F900531EEE /* LESpeciesViewStats.h */,
-				F6B215A81232E4F900531EEE /* LESpeciesViewStats.m */,
+				F6B215A71232E4F900531EEE /* LEEmpireViewSpeciesStats.h */,
+				F6B215A81232E4F900531EEE /* LEEmpireViewSpeciesStats.m */,
 				F6F5240A122C5ED5004E428A /* LEStatsCredits.h */,
 				F6F5240B122C5ED5004E428A /* LEStatsCredits.m */,
 			);
@@ -1662,8 +1662,8 @@
 				F61F675A120515410007427A /* ViewProbedStarsController.m */,
 				F6E98BDB1241A59A00F8640D /* ViewPublicEmpireProfileController.h */,
 				F6E98BDC1241A59A00F8640D /* ViewPublicEmpireProfileController.m */,
-				F6B2155D1232D20B00531EEE /* ViewRacialStatsController.h */,
-				F6B2155E1232D20B00531EEE /* ViewRacialStatsController.m */,
+				F6B2155D1232D20B00531EEE /* ViewSpeciesStatsController.h */,
+				F6B2155E1232D20B00531EEE /* ViewSpeciesStatsController.m */,
 				F61F65CE1204C6030007427A /* ViewShipBuildQueueController.h */,
 				F61F65CF1204C6030007427A /* ViewShipBuildQueueController.m */,
 				F6D59F9B120120EE009DDA28 /* ViewShipsController.h */,
@@ -2063,8 +2063,8 @@
 				F6B214971232AB4F00531EEE /* LEEmpireDisableSelfDestruct.m in Sources */,
 				F6B2149A1232AB7500531EEE /* LEEmpireRedeemEssentiaCode.m in Sources */,
 				F6B2155C1232D20200531EEE /* NewPasswordController.m in Sources */,
-				F6B2155F1232D20B00531EEE /* ViewRacialStatsController.m in Sources */,
-				F6B215A91232E4F900531EEE /* LESpeciesViewStats.m in Sources */,
+				F6B2155F1232D20B00531EEE /* ViewSpeciesStatsController.m in Sources */,
+				F6B215A91232E4F900531EEE /* LEEmpireViewSpeciesStats.m in Sources */,
 				F6B21667123324E000531EEE /* LEBodyAbandon.m in Sources */,
 				F64167C91237A7F1009708A1 /* NSObject+SBJSON.m in Sources */,
 				F64167CA1237A7F1009708A1 /* NSString+SBJSON.m in Sources */,

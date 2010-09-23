@@ -10,7 +10,7 @@
 #import "LERequest.h"
 
 
-@interface LESpeciesViewStats : LERequest {
+@interface LEEmpireViewSpeciesStats : LERequest {
 	NSMutableDictionary *stats;
 }
 

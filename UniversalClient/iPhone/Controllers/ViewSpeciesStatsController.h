@@ -10,7 +10,7 @@
 #import "LETableViewControllerGrouped.h"
 
 
-@interface ViewRacialStatsController : LETableViewControllerGrouped {
+@interface ViewSpeciesStatsController : LETableViewControllerGrouped {
 	NSDictionary *racialStats;
 }
 
@@ -18,7 +18,7 @@
 @property (nonatomic, retain) NSDictionary *racialStats;
 
 
-+ (ViewRacialStatsController *)create;
++ (ViewSpeciesStatsController *)create;
 
 
 @end

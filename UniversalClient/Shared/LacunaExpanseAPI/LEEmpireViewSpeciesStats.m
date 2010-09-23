@@ -6,13 +6,13 @@
 //  Copyright 2010 n/a. All rights reserved.
 //
 
-#import "LESpeciesViewStats.h"
+#import "LEEmpireViewSpeciesStats.h"
 #import "Session.h"
 #import "LEMacros.h"
 #import "Util.h"
 
 
-@implementation LESpeciesViewStats
+@implementation LEEmpireViewSpeciesStats
 
 
 @synthesize stats;
@@ -32,17 +32,16 @@
 - (void)processSuccess {
 	NSMutableDictionary *results = [self.response objectForKey:@"result"];
 	self.stats = [results objectForKey:@"species"];
-	NSLog(@"Stats: %@", self.stats);
 }
 
 
 - (NSString *)serviceUrl {
-	return @"species";
+	return @"empire";
 }
 
 
 - (NSString *)methodName {
-	return @"view_stats";
+	return @"view_species_stats";
 }
 
 

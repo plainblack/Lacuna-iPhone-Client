@@ -24,7 +24,7 @@
 #import "ViewMedalsController.h"
 #import "EditTextFieldController.h"
 #import "NewPasswordController.h"
-#import "ViewRacialStatsController.h"
+#import "ViewSpeciesStatsController.h"
 #import "LEEmpireEditProfile.h"
 
 #define ISOLATIONIST_MSG @"Isolationist mode enabled. If you build an Espinoge Ministry or Colonize a second world you will no longer be an Isolationist and others can send spies to your colonies."
@@ -525,7 +525,7 @@ typedef enum {
 						break;
 					case EMPIRE_ACTION_ROW_VIEW_RACIAL_STATS:
 						; //DO NOT REMOVE
-						ViewRacialStatsController *viewRacialStatsController = [ViewRacialStatsController create];
+						ViewSpeciesStatsController *viewRacialStatsController = [ViewSpeciesStatsController create];
 						[self.navigationController pushViewController:viewRacialStatsController animated:YES];
 						break;
 				}
