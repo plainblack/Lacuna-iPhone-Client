@@ -20,6 +20,10 @@
 	NSString *email;
 	NSString *sitterPassword;
 	NSString *notes;
+	BOOL skipHappinessWarnings;
+	BOOL skipResourceWarnings;
+	BOOL skipPollutionWarnings;
+	BOOL skipMedalMessages;
 }
 
 
@@ -33,6 +37,10 @@
 @property (nonatomic, retain) NSString *email;
 @property (nonatomic, retain) NSString *sitterPassword;
 @property (nonatomic, retain) NSString *notes;
+@property (nonatomic, assign) BOOL skipHappinessWarnings;
+@property (nonatomic, assign) BOOL skipResourceWarnings;
+@property (nonatomic, assign) BOOL skipPollutionWarnings;
+@property (nonatomic, assign) BOOL skipMedalMessages;
 
 
 - (void)parseData:(NSDictionary *)data;

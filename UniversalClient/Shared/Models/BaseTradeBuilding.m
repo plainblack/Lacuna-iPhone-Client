@@ -335,7 +335,7 @@
 }
 
 
-- (NSDecimalNumber *)calculateStorageForGlyphs:(NSInteger)numGlyphs plans:(NSInteger)numPlans storedResources:(NSDecimalNumber *)numStoredResources {
+- (NSDecimalNumber *)calculateStorageForGlyphs:(NSInteger)numGlyphs plans:(NSInteger)numPlans prisoners:(NSInteger)numPrisoners storedResources:(NSDecimalNumber *)numStoredResources ships:(NSInteger)numShips {
 	NSDecimalNumber *total = [NSDecimalNumber zero];
 	if (numGlyphs > 0) {
 		total = [total decimalNumberByAdding:[self.cargoUserPerGlyph decimalNumberByMultiplyingBy:[Util decimalFromInt:numGlyphs]]];
@@ -343,9 +343,15 @@
 	if (numPlans > 0) {
 		total = [total decimalNumberByAdding:[self.cargoUserPerPlan decimalNumberByMultiplyingBy:[Util decimalFromInt:numPlans]]];
 	}
+	if (numPrisoners > 0) {
+		total = [total decimalNumberByAdding:[self.cargoUserPerPrisoner decimalNumberByMultiplyingBy:[Util decimalFromInt:numPrisoners]]];
+	}
 	if (_intv(numStoredResources) > 0) {
 		NSDecimalNumber *tmp = [self.cargoUserPerStoredResource decimalNumberByMultiplyingBy:numStoredResources];
 		total = [total decimalNumberByAdding:tmp];
+	}
+	if (numShips > 0) {
+		total = [total decimalNumberByAdding:[self.cargoUserPerShip decimalNumberByMultiplyingBy:[Util decimalFromInt:numShips]]];
 	}
 	
 	return total;

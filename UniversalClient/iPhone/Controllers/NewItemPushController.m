@@ -14,11 +14,14 @@
 #import "ItemPush.h"
 #import "Glyph.h"
 #import "Plan.h"
+#import "Prisoner.h"
+#import "Ship.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellLabeledText.h"
 #import "LETableViewCellButton.h"
 #import "LETableViewCellGlyph.h"
 #import "LETableViewCellPlan.h"
+#import "LETableViewCellShip.h"
 #import "PickColonyController.h"
 #import "SelectGlyphController.h"
 #import "SelectPlanController.h"
@@ -37,7 +40,9 @@ typedef enum {
 	ADD_ROW_TOTAL,
 	ADD_ROW_GLYPH,
 	ADD_ROW_PLAN,
-	ADD_ROW_RESOURCE
+	ADD_ROW_PRISONER,
+	ADD_ROW_RESOURCE,
+	ADD_ROW_SHIP,
 } ADD_ROWS;
 
 
@@ -124,7 +129,7 @@ typedef enum {
 			}
 			break;
 		case SECTION_ADD:
-			return 4;
+			return 6;
 			break;
 		default:
 			return 0;
@@ -147,6 +152,10 @@ typedef enum {
 					return [LETableViewCellGlyph getHeightForTableView:tableView];
 				} else if ([type isEqualToString:@"plan"]) {
 					return [LETableViewCellPlan getHeightForTableView:tableView];
+				} else if ([type isEqualToString:@"prisoner"]) {
+					return [LETableViewCellLabeledText getHeightForTableView:tableView];
+				} else if ([type isEqualToString:@"ship"]) {
+					return [LETableViewCellShip getHeightForTableView:tableView];
 				} else {
 					return [LETableViewCellLabeledText getHeightForTableView:tableView];
 				}
@@ -201,6 +210,17 @@ typedef enum {
 					LETableViewCellPlan *planCell = [LETableViewCellPlan getCellForTableView:tableView isSelectable:NO];
 					[planCell setPlan:plan];
 					cell = planCell;
+				} else if ([type isEqualToString:@"prisoner"]) {
+					Prisoner *prisoner = [self.baseTradeBuilding.prisonersById objectForKey:[item objectForKey:@"prisoner_id"]];
+					LETableViewCellLabeledText *prisonerCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+					prisonerCell.label.text = [NSString stringWithFormat:@"Level %@", prisoner.level];
+					prisonerCell.content.text = prisoner.name;
+					cell = prisonerCell;
+				} else if ([type isEqualToString:@"ship"]) {
+					Ship *ship = [self.baseTradeBuilding.shipsById objectForKey:[item objectForKey:@"ship_id"]];
+					LETableViewCellShip *shipCell = [LETableViewCellShip getCellForTableView:tableView isSelectable:NO];
+					[shipCell setShip:ship];
+					cell = shipCell;
 				} else {
 					LETableViewCellLabeledText *itemCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					itemCell.label.text = [type capitalizedString];
@@ -220,6 +240,8 @@ typedef enum {
 					; //DO NOT REMOVE
 					NSInteger numGlyphs = 0;
 					NSInteger numPlans = 0;
+					NSInteger numPrisoners = 0;
+					NSInteger numShips = 0;
 					NSDecimalNumber *numStoredResources = [NSDecimalNumber zero];
 					
 					for (NSDictionary *item in self.itemPush.items) {
@@ -228,11 +250,15 @@ typedef enum {
 							numGlyphs++;
 						} else if ([type isEqualToString:@"plan"]) {
 							numPlans++;
+						} else if ([type isEqualToString:@"prisoner"]) {
+							numPrisoners++;
+						} else if ([type isEqualToString:@"ship"]) {
+							numShips++;
 						} else {
 							numStoredResources = [numStoredResources decimalNumberByAdding:[item objectForKey:@"quantity"]];
 						}
 					}
-					NSDecimalNumber *total = [self.baseTradeBuilding calculateStorageForGlyphs:numGlyphs plans:numPlans storedResources:numStoredResources];
+					NSDecimalNumber *total = [self.baseTradeBuilding calculateStorageForGlyphs:numGlyphs plans:numPlans prisoners:numPrisoners storedResources:numStoredResources ships:numShips];
 					LETableViewCellLabeledText *totalCargoCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					totalCargoCell.label.text = @"Cargo Size";
 					if (self.baseTradeBuilding.maxCargoSize) {
@@ -254,11 +280,23 @@ typedef enum {
 					addPlanButton.textLabel.text = @"Add Plan";
 					cell = addPlanButton;
 					break;
+				case ADD_ROW_PRISONER:
+					; //DO NOT REMOVE
+					LETableViewCellButton *addPrisonerButton = [LETableViewCellButton getCellForTableView:tableView];
+					addPrisonerButton.textLabel.text = @"Add Prisoner";
+					cell = addPrisonerButton;
+					break;
 				case ADD_ROW_RESOURCE:
 					; //DO NOT REMOVE
 					LETableViewCellButton *addResourceButton = [LETableViewCellButton getCellForTableView:tableView];
 					addResourceButton.textLabel.text = @"Add Resource";
 					cell = addResourceButton;
+					break;
+				case ADD_ROW_SHIP:
+					; //DO NOT REMOVE
+					LETableViewCellButton *addShipButton = [LETableViewCellButton getCellForTableView:tableView];
+					addShipButton.textLabel.text = @"Add Ship";
+					cell = addShipButton;
 					break;
 			}
 			break;
@@ -292,12 +330,26 @@ typedef enum {
 					self->selectPlanController.baseTradeBuilding = self.baseTradeBuilding;
 					[self.navigationController pushViewController:self->selectPlanController animated:YES];
 					break;
+				case ADD_ROW_PRISONER:
+					; //DO NOT REMOVE
+					self->selectTradeablePrisonerController = [[SelectTradeablePrisonerController create] retain];
+					self->selectTradeablePrisonerController.delegate = self;
+					self->selectTradeablePrisonerController.baseTradeBuilding = self.baseTradeBuilding;
+					[self.navigationController pushViewController:self->selectTradeablePrisonerController animated:YES];
+					break;
 				case ADD_ROW_RESOURCE:
 					; //DO NOT REMOVE
 					self->selectStoredResourceController = [[SelectStoredResourceController create] retain];
 					self->selectStoredResourceController.delegate = self;
 					self->selectStoredResourceController.baseTradeBuilding = self.baseTradeBuilding;
 					[self.navigationController pushViewController:self->selectStoredResourceController animated:YES];
+					break;
+				case ADD_ROW_SHIP:
+					; //DO NOT REMOVE
+					self->selectTradeableShipController = [[SelectTradeableShipController create] retain];
+					self->selectTradeableShipController.delegate = self;
+					self->selectTradeableShipController.baseTradeBuilding = self.baseTradeBuilding;
+					[self.navigationController pushViewController:self->selectTradeableShipController animated:YES];
 					break;
 			}
 			break;
@@ -335,6 +387,10 @@ typedef enum {
 			[self.baseTradeBuilding.glyphs addObject:[self.baseTradeBuilding.glyphsById objectForKey:[item objectForKey:@"glyph_id"]]];
 		} else if ([type isEqualToString:@"plan"]) {
 			[self.baseTradeBuilding.plans addObject:[self.baseTradeBuilding.plansById objectForKey:[item objectForKey:@"plan_id"]]];
+		} else if ([type isEqualToString:@"prisoner"]) {
+			[self.baseTradeBuilding.prisoners addObject:[self.baseTradeBuilding.prisonersById objectForKey:[item objectForKey:@"prisoner_id"]]];
+		} else if ([type isEqualToString:@"ship"]) {
+			[self.baseTradeBuilding.ships addObject:[self.baseTradeBuilding.shipsById objectForKey:[item objectForKey:@"ship_id"]]];
 		} else {
 			[self.baseTradeBuilding addTradeableStoredResource:item];
 		}
@@ -364,7 +420,9 @@ typedef enum {
 	[self->pickColonyController release];
 	[self->selectGlyphController release];
 	[self->selectPlanController release];
+	[self->selectTradeablePrisonerController release];
 	[self->selectStoredResourceController release];
+	[self->selectTradeableShipController release];
     [super dealloc];
 }
 
@@ -427,6 +485,19 @@ typedef enum {
 
 
 #pragma mark -
+#pragma mark SelectTradeablePrisonerController Methods
+
+- (void)prisonerSelected:(Prisoner *)prisoner {
+	[self.itemPush addPrisoner:prisoner.id];
+	[self.navigationController popViewControllerAnimated:YES];
+	[self->selectTradeablePrisonerController release];
+	self->selectTradeablePrisonerController = nil;
+	[self.baseTradeBuilding.prisoners removeObject:prisoner];
+	[self.tableView reloadData];
+}
+
+
+#pragma mark -
 #pragma mark SelectStoredResourcesDelegate Methods
 
 - (void)storedResourceSelected:(NSDictionary *)storedResource {
@@ -436,6 +507,19 @@ typedef enum {
 	self->selectStoredResourceController = nil;
 	//[self.baseTradeBuilding.storedResources removeObject:storedResource];
 	[self.baseTradeBuilding removeTradeableStoredResource:storedResource];
+	[self.tableView reloadData];
+}
+
+
+#pragma mark -
+#pragma mark SelectTradeableShipController Methods
+
+- (void)shipSelected:(Ship *)ship {
+	[self.itemPush addShip:ship.id];
+	[self.navigationController popViewControllerAnimated:YES];
+	[self->selectTradeableShipController release];
+	self->selectTradeableShipController = nil;
+	[self.baseTradeBuilding.ships removeObject:ship];
 	[self.tableView reloadData];
 }
 

@@ -26,6 +26,8 @@
 #import "NewPasswordController.h"
 #import "ViewSpeciesStatsController.h"
 #import "LEEmpireEditProfile.h"
+#import "ViewEmpireMailSettingController.h"
+
 
 #define ISOLATIONIST_MSG @"Isolationist mode enabled. If you build an Espinoge Ministry or Colonize a second world you will no longer be an Isolationist and others can send spies to your colonies."
 
@@ -64,7 +66,8 @@ typedef enum {
 	ACCOUNT_ACTION_ROW_PURCHASE_ESSENTIA,
 	ACCOUNT_ACTION_ROW_REDEEM_ESSENTIA_CODE,
 	ACCOUNT_ACTION_ROW_CHANGE_PASSWORD,
-	ACCOUNT_ACTION_ROW_SEND_INVITE
+	ACCOUNT_ACTION_ROW_SEND_INVITE,
+	ACCOUNT_ACTION_ROW_MAIL_SETTINGS,
 } ACCOUNT_ACTION_ROW;
 
 
@@ -143,7 +146,7 @@ typedef enum {
 				return 3;
 				break;
 			case SECTION_ACCOUNT_ACTIONS:
-				return 4;
+				return 5;
 				break;
 			case SECTION_SELF_DESTRUCT:
 				return 1;
@@ -208,6 +211,7 @@ typedef enum {
 					case ACCOUNT_ACTION_ROW_REDEEM_ESSENTIA_CODE:
 					case ACCOUNT_ACTION_ROW_CHANGE_PASSWORD:
 					case ACCOUNT_ACTION_ROW_SEND_INVITE:
+					case ACCOUNT_ACTION_ROW_MAIL_SETTINGS:
 						return [LETableViewCellButton getHeightForTableView:tableView];
 						break;
 					default:
@@ -418,6 +422,12 @@ typedef enum {
 						sendInviteButton.textLabel.text = @"Send Friend Invite";
 						cell = sendInviteButton;
 						break;
+					case ACCOUNT_ACTION_ROW_MAIL_SETTINGS:
+						; //DO NOT REMOVE
+						LETableViewCellButton *mailSettingsButton = [LETableViewCellButton getCellForTableView:tableView];
+						mailSettingsButton.textLabel.text = @"Mail Settings";
+						cell = mailSettingsButton;
+						break;
 					default:
 						cell = nil;
 						break;
@@ -555,6 +565,12 @@ typedef enum {
 						EditTextFieldController *sendInviteController = [EditTextFieldController createForTextName:@"Friend's Email" textValue:@""];
 						sendInviteController.delegate = self;
 						[self.navigationController pushViewController:sendInviteController animated:YES];
+						break;
+					case ACCOUNT_ACTION_ROW_MAIL_SETTINGS:
+						; //DO NOT REMOVE
+						ViewEmpireMailSettingController *viewEmpireMailSettingController = [ViewEmpireMailSettingController create];
+						viewEmpireMailSettingController.empireProfile = self.empireProfile;
+						[self.navigationController pushViewController:viewEmpireMailSettingController animated:YES];
 						break;
 				}
 				break;

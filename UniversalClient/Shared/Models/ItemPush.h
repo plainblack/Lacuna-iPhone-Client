@@ -19,9 +19,11 @@
 @property (nonatomic, retain) NSMutableArray *items;
 
 
-- (void)addResourceType:(NSString *)resourceType withQuantity:(NSDecimalNumber *)quantity;
 - (void)addGlyph:(NSString *)glyphId;
 - (void)addPlan:(NSString *)planId;
+- (void)addPrisoner:(NSString *)prisonerId;
+- (void)addResourceType:(NSString *)resourceType withQuantity:(NSDecimalNumber *)quantity;
+- (void)addShip:(NSString *)shipId;
 
 
 @end

@@ -93,7 +93,7 @@
 - (void)loadTradeableStoredResources;
 - (void)removeTradeableStoredResource:(NSDictionary *)storedResource;
 - (void)addTradeableStoredResource:(NSDictionary *)storedResource;
-- (NSDecimalNumber *)calculateStorageForGlyphs:(NSInteger)numGlyphs plans:(NSInteger)numPlans storedResources:(NSDecimalNumber *)numStoredResources;
+- (NSDecimalNumber *)calculateStorageForGlyphs:(NSInteger)numGlyphs plans:(NSInteger)numPlans prisoners:(NSInteger)numPrisoners storedResources:(NSDecimalNumber *)numStoredResources ships:(NSInteger)numShips;
 - (void)loadAvailableTradesForPage:(NSInteger)pageNumber;
 - (bool)hasPreviousAvailableTradePage;
 - (bool)hasNextAvailableTradePage;

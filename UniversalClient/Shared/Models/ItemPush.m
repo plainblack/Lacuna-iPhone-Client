@@ -37,11 +37,6 @@
 #pragma mark -
 #pragma mark Instance Methods
 
-- (void)addResourceType:(NSString *)resourceType withQuantity:(NSDecimalNumber *)quantity {
-	[self.items addObject:_dict(resourceType, @"type", quantity, @"quantity")];
-}
-
-
 - (void)addGlyph:(NSString *)glyphId {
 	[self.items addObject:_dict(@"glyph", @"type", glyphId, @"glyph_id")];
 }
@@ -49,6 +44,21 @@
 
 - (void)addPlan:(NSString *)planId {
 	[self.items addObject:_dict(@"plan", @"type", planId, @"plan_id")];
+}
+
+
+- (void)addPrisoner:(NSString *)prisonerId {
+	[self.items addObject:_dict(@"prisoner", @"type", prisonerId, @"prisoner_id")];
+}
+
+
+- (void)addResourceType:(NSString *)resourceType withQuantity:(NSDecimalNumber *)quantity {
+	[self.items addObject:_dict(resourceType, @"type", quantity, @"quantity")];
+}
+
+
+- (void)addShip:(NSString *)shipId {
+	[self.items addObject:_dict(@"ship", @"type", shipId, @"ship_id")];
 }
 
 

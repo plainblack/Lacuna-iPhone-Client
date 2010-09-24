@@ -11,20 +11,24 @@
 #import "PickColonyController.h"
 #import "SelectGlyphController.h"
 #import "SelectPlanController.h"
+#import "SelectTradeablePrisonerController.h"
 #import "SelectStoredResourceController.h"
+#import "SelectTradeableShipController.h"
 
 
 @class BaseTradeBuilding;
 @class ItemPush;
 
 
-@interface NewItemPushController : LETableViewControllerGrouped <UIActionSheetDelegate, PickColonyDelegate, SelectGlyphControllerDelegate, SelectPlanControllerDelegate, SelectStoredResourceControllerDelegate> {
+@interface NewItemPushController : LETableViewControllerGrouped <UIActionSheetDelegate, PickColonyDelegate, SelectGlyphControllerDelegate, SelectPlanControllerDelegate, SelectTradeablePrisonerControllerDelegate, SelectStoredResourceControllerDelegate, SelectTradeableShipControllerDelegate> {
 	BaseTradeBuilding *baseTradeBuilding;
 	ItemPush *itemPush;
 	PickColonyController *pickColonyController;
 	SelectGlyphController *selectGlyphController;
 	SelectPlanController *selectPlanController;
+	SelectTradeablePrisonerController *selectTradeablePrisonerController;
 	SelectStoredResourceController *selectStoredResourceController;
+	SelectTradeableShipController *selectTradeableShipController;
 }
 
 

@@ -23,6 +23,11 @@
 @synthesize email;
 @synthesize sitterPassword;
 @synthesize notes;
+@synthesize skipHappinessWarnings;
+@synthesize skipResourceWarnings;
+@synthesize skipPollutionWarnings;
+@synthesize skipMedalMessages;
+
 
 
 #pragma mark -
@@ -62,6 +67,10 @@
 	self.email = [data objectForKey:@"email"];
 	self.sitterPassword = [data objectForKey:@"sitter_password"];
 	self.notes = [data objectForKey:@"notes"];
+	self.skipHappinessWarnings = _boolv([data objectForKey:@"skip_happiness_warnings"]);
+	self.skipResourceWarnings = _boolv([data objectForKey:@"skip_resource_warnings"]);
+	self.skipPollutionWarnings = _boolv([data objectForKey:@"skip_pollution_warnings"]);
+	self.skipMedalMessages = _boolv([data objectForKey:@"skip_medal_messages"]);
 
 	NSMutableDictionary *medalsDictionary = [data objectForKey:@"medals"];
 	NSMutableArray *medalArray = [NSMutableArray arrayWithCapacity:[medalsDictionary count]];
