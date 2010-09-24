@@ -61,11 +61,10 @@
 									<double key="NSSize">15</double>
 									<int key="NSfFlags">16</int>
 								</object>
-								<int key="IBUIButtonType">1</int>
-								<double key="IBUIImageEdgeInsets.top">5</double>
-								<double key="IBUIImageEdgeInsets.bottom">5</double>
-								<double key="IBUIImageEdgeInsets.left">5</double>
-								<double key="IBUIImageEdgeInsets.right">5</double>
+								<double key="IBUIImageEdgeInsets.top">10</double>
+								<double key="IBUIImageEdgeInsets.bottom">10</double>
+								<double key="IBUIImageEdgeInsets.left">10</double>
+								<double key="IBUIImageEdgeInsets.right">10</double>
 								<int key="IBUILineBreakMode">0</int>
 								<string key="IBUINormalTitle">Select Glyph</string>
 								<object class="NSColor" key="IBUIHighlightedTitleColor" id="255573300">
@@ -79,6 +78,10 @@
 								<object class="NSColor" key="IBUINormalTitleShadowColor" id="81196135">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
+								</object>
+								<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="498405314">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">assets/iphone ui/glyph-box.png</string>
 								</object>
 							</object>
 							<object class="IBUIButton" id="1015404060">
@@ -126,7 +129,6 @@
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<reference key="IBUIFont" ref="484282275"/>
-								<int key="IBUIButtonType">1</int>
 								<double key="IBUIImageEdgeInsets.top">10</double>
 								<double key="IBUIImageEdgeInsets.bottom">10</double>
 								<double key="IBUIImageEdgeInsets.left">10</double>
@@ -139,6 +141,7 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="81196135"/>
+								<reference key="IBUINormalBackgroundImage" ref="498405314"/>
 							</object>
 							<object class="IBUIButton" id="742597100">
 								<reference key="NSNextResponder" ref="625832860"/>
@@ -179,11 +182,10 @@
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<reference key="IBUIFont" ref="484282275"/>
-								<int key="IBUIButtonType">1</int>
-								<double key="IBUIImageEdgeInsets.top">5</double>
-								<double key="IBUIImageEdgeInsets.bottom">5</double>
-								<double key="IBUIImageEdgeInsets.left">5</double>
-								<double key="IBUIImageEdgeInsets.right">5</double>
+								<double key="IBUIImageEdgeInsets.top">10</double>
+								<double key="IBUIImageEdgeInsets.bottom">10</double>
+								<double key="IBUIImageEdgeInsets.left">10</double>
+								<double key="IBUIImageEdgeInsets.right">10</double>
 								<int key="IBUILineBreakMode">0</int>
 								<string key="IBUINormalTitle">Select Glyph</string>
 								<reference key="IBUIHighlightedTitleColor" ref="255573300"/>
@@ -192,6 +194,7 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="81196135"/>
+								<reference key="IBUINormalBackgroundImage" ref="498405314"/>
 							</object>
 							<object class="IBUIButton" id="621885562">
 								<reference key="NSNextResponder" ref="879675672"/>
@@ -232,7 +235,6 @@
 								<int key="IBUIContentHorizontalAlignment">0</int>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<reference key="IBUIFont" ref="484282275"/>
-								<int key="IBUIButtonType">1</int>
 								<double key="IBUIImageEdgeInsets.top">10</double>
 								<double key="IBUIImageEdgeInsets.bottom">10</double>
 								<double key="IBUIImageEdgeInsets.left">10</double>
@@ -245,6 +247,7 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="81196135"/>
+								<reference key="IBUINormalBackgroundImage" ref="498405314"/>
 							</object>
 							<object class="IBUIButton" id="893463983">
 								<reference key="NSNextResponder" ref="814622122"/>
@@ -982,11 +985,13 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>assets/iphone ui/glyph-box.png</string>
 				<string>assets/iphone ui/green_button.png</string>
 				<string>assets/iphone ui/x_button.png</string>
 			</object>
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>{16, 16}</string>
 				<string>{16, 16}</string>
 				<string>{16, 16}</string>
 			</object>
