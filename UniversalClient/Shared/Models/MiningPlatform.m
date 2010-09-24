@@ -24,6 +24,9 @@
 @synthesize id;
 @synthesize asteroidId;
 @synthesize asteroidName;
+@synthesize asteroidImageName;
+@synthesize asteroidX;
+@synthesize asteroidY;
 @synthesize oresPerHour;
 @synthesize shippingCapacity;
 
@@ -35,6 +38,9 @@
 	self.id = nil;
 	self.asteroidId = nil;
 	self.asteroidName = nil;
+	self.asteroidImageName = nil;
+	self.asteroidX = nil;
+	self.asteroidY = nil;
 	self.oresPerHour = nil;
 	self.shippingCapacity = nil;
 	[super dealloc];
@@ -42,8 +48,8 @@
 
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"id:%@, asteroidId:%@, asteroidName:%@, oresPerHour:%@, shippingCapacity:%@",
-			self.id, self.asteroidId, self.asteroidName, self.oresPerHour, self.shippingCapacity];
+	return [NSString stringWithFormat:@"id:%@, asteroidId:%@, asteroidName:%@, asteroidImageName: %@, asteroidX:%@, asteroidY:%@, oresPerHour:%@, shippingCapacity:%@",
+			self.id, self.asteroidId, self.asteroidName, self.asteroidImageName, self.asteroidX, self.asteroidY, self.oresPerHour, self.shippingCapacity];
 }
 
 
@@ -55,6 +61,9 @@
 	NSDictionary *asteroidData = [data objectForKey:@"asteroid"];
 	self.asteroidId = [Util idFromDict:asteroidData named:@"id"];
 	self.asteroidName = [asteroidData objectForKey:@"name"];
+	self.asteroidImageName = [asteroidData objectForKey:@"image"];
+	self.asteroidX = [Util asNumber:[asteroidData objectForKey:@"x"]];
+	self.asteroidY = [Util asNumber:[asteroidData objectForKey:@"y"]];
 	
 	if (!self.oresPerHour) {
 		self.oresPerHour = [NSMutableDictionary dictionaryWithCapacity:20];

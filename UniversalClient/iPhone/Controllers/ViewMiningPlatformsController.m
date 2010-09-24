@@ -11,13 +11,13 @@
 #import "MiningMinistry.h"
 #import "MiningPlatform.h"
 #import "LETableViewCellLabeledText.h"
+#import "LETableViewCellMiningPlatform.h"
 #import "LETableViewCellButton.h"
 #import "ViewDictionaryController.h"
 
 
 typedef enum {
-	ROW_PLATFORM_LOCATION,
-	ROW_SHIPPING_CAPACTITY,
+	ROW_PLATFORM_INFO,
 	ROW_ORE_COMPOSITION,
 	ROW_ABANDON_PLATFORM
 } ROW;
@@ -78,7 +78,7 @@ typedef enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (self.miningMinistry && self.miningMinistry.platforms) {
 		if ([self.miningMinistry.platforms count] > 0) {
-			return 4;
+			return 3;
 		} else {
 			return 1;
 		}
@@ -93,11 +93,8 @@ typedef enum {
 	if (self.miningMinistry && self.miningMinistry.platforms) {
 		if ([self.miningMinistry.platforms count] > 0) {
 			switch (indexPath.row) {
-				case ROW_PLATFORM_LOCATION:
-					return [LETableViewCellLabeledText getHeightForTableView:tableView];
-					break;
-				case ROW_SHIPPING_CAPACTITY:
-					return [LETableViewCellLabeledText getHeightForTableView:tableView];
+				case ROW_PLATFORM_INFO:
+					return [LETableViewCellMiningPlatform getHeightForTableView:tableView];
 					break;
 				case ROW_ORE_COMPOSITION:
 					return [LETableViewCellButton getHeightForTableView:tableView];
@@ -128,19 +125,11 @@ typedef enum {
 		if ([self.miningMinistry.platforms count] > 0) {
 			MiningPlatform *miningPlatform = [self.miningMinistry.platforms objectAtIndex:indexPath.section];
 			switch (indexPath.row) {
-				case ROW_PLATFORM_LOCATION:
+				case ROW_PLATFORM_INFO:
 					; //DO NOT REMOVE
-					LETableViewCellLabeledText *locationCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-					locationCell.label.text = @"Asteroid";
-					locationCell.content.text = miningPlatform.asteroidName;
-					cell = locationCell;
-					break;
-				case ROW_SHIPPING_CAPACTITY:
-					; //DO NOT REMOVE
-					LETableViewCellLabeledText *shippingCapacityCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-					shippingCapacityCell.label.text = @"Shipping";
-					shippingCapacityCell.content.text = [NSString stringWithFormat:@"%@%%", miningPlatform.shippingCapacity];
-					cell = shippingCapacityCell;
+					LETableViewCellMiningPlatform *miningPlatformCell = [LETableViewCellMiningPlatform getCellForTableView:tableView];
+					[miningPlatformCell setMiningPlatform:miningPlatform];
+					cell = miningPlatformCell;
 					break;
 				case ROW_ORE_COMPOSITION:
 					; //DO NOT REMOVE

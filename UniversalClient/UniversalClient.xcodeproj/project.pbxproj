@@ -207,6 +207,7 @@
 		F6D5A00B12012E43009DDA28 /* LEBuildingScuttleShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D5A00A12012E43009DDA28 /* LEBuildingScuttleShip.m */; };
 		F6D5A00E12012E5A009DDA28 /* LEBuildingNameShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D5A00D12012E5A009DDA28 /* LEBuildingNameShip.m */; };
 		F6D7683C124B6EAE00BA85FB /* BuildShipTypeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D7683B124B6EAE00BA85FB /* BuildShipTypeController.m */; };
+		F6D7689B124B77FE00BA85FB /* LETableViewCellMiningPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D7689A124B77FE00BA85FB /* LETableViewCellMiningPlatform.m */; };
 		F6D7CAD4122FBEA6003F698F /* ForgotPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D7CAD3122FBEA6003F698F /* ForgotPasswordController.m */; };
 		F6D85A3B122DC06C00A44BD9 /* WebPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D85A39122DC06C00A44BD9 /* WebPageController.m */; };
 		F6D85A3C122DC06C00A44BD9 /* WebPageController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */; };
@@ -716,6 +717,8 @@
 		F6D5A00D12012E5A009DDA28 /* LEBuildingNameShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingNameShip.m; sourceTree = "<group>"; };
 		F6D7683A124B6EAE00BA85FB /* BuildShipTypeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildShipTypeController.h; sourceTree = "<group>"; };
 		F6D7683B124B6EAE00BA85FB /* BuildShipTypeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildShipTypeController.m; sourceTree = "<group>"; };
+		F6D76899124B77FE00BA85FB /* LETableViewCellMiningPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellMiningPlatform.h; sourceTree = "<group>"; };
+		F6D7689A124B77FE00BA85FB /* LETableViewCellMiningPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellMiningPlatform.m; sourceTree = "<group>"; };
 		F6D7CAD2122FBEA6003F698F /* ForgotPasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordController.h; sourceTree = "<group>"; };
 		F6D7CAD3122FBEA6003F698F /* ForgotPasswordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordController.m; sourceTree = "<group>"; };
 		F6D85A38122DC06C00A44BD9 /* WebPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebPageController.h; sourceTree = "<group>"; };
@@ -1146,6 +1149,8 @@
 				F6F4ADA512444D1B00B0509A /* LEBodyMapCell.m */,
 				F6DF1B02124AED7F00A34DE2 /* LETableViewCellOrbitSelectorV2.h */,
 				F6DF1B03124AED7F00A34DE2 /* LETableViewCellOrbitSelectorV2.m */,
+				F6D76899124B77FE00BA85FB /* LETableViewCellMiningPlatform.h */,
+				F6D7689A124B77FE00BA85FB /* LETableViewCellMiningPlatform.m */,
 			);
 			name = Views;
 			path = Shared/Views;
@@ -2078,6 +2083,7 @@
 				F6DF1A9E124AE18C00A34DE2 /* LEEmpireGetSpeciesTemplates.m in Sources */,
 				F6DF1B04124AED7F00A34DE2 /* LETableViewCellOrbitSelectorV2.m in Sources */,
 				F6D7683C124B6EAE00BA85FB /* BuildShipTypeController.m in Sources */,
+				F6D7689B124B77FE00BA85FB /* LETableViewCellMiningPlatform.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
