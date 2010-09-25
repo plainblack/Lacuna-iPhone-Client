@@ -9,13 +9,14 @@
 #import "LoginController.h"
 #import "LEMacros.h"
 #import "LETableViewCellButton.h"
+#import "LETableViewCellSavedEmpire.h"
 #import "LEViewSectionTab.h"
 #import "Session.h"
 #import "KeychainItemWrapper.h"
 #import "ViewEmpireProfileController.h"
 #import "NewEmpireController.h"
 #import "EditSavedEmpire.h"
-#import "SelectServerController.h"
+#import "EditSavedEmpireV2.h"
 #import "SelectServerController.h"
 #import "ForgotPasswordController.h"
 
@@ -138,8 +139,37 @@ typedef enum {
     return 3;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	switch (indexPath.section) {
+		case SECTION_LOGIN_FORM:
+			switch (indexPath.row) {
+				case LOGIN_FORM_ROW_EMPIRE_NAME:
+				case LOGIN_FORM_ROW_PASSWORD:
+					return [LETableViewCellTextEntry getHeightForTableView:tableView];
+					break;
+				case LOGIN_FORM_ROW_SERVER:
+				case LOGIN_FORM_ROW_LOGIN_BUTTON:
+				case LOGIN_FORM_ROW_FORGOT_PASSWORD_BUTTON:
+					return [LETableViewCellButton getHeightForTableView:tableView];
+					break;
+				default:
+					return 0.0;
+					break;
+			}
+			break;
+		case SECTION_REMEMBERED_ACCOUNT:
+			return [LETableViewCellSavedEmpire getHeightForTableView:tableView];
+			break;
+		case SECTION_CREATE_NEW:
+			return [LETableViewCellButton getHeightForTableView:tableView];
+			break;
+		default:
+			return 0.0;
+			break;
+	}
+}
 
-// Customize the appearance of table view cells.
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
 	switch (indexPath.section) {
@@ -181,9 +211,8 @@ typedef enum {
 		case SECTION_REMEMBERED_ACCOUNT:
 			; //DO NOT REMOVE
 			NSDictionary *empireData = [self.empires objectAtIndex:indexPath.row];
-			LETableViewCellButton *rememberedAccountCell = [LETableViewCellButton getCellForTableView:tableView];
-			rememberedAccountCell.textLabel.text = [empireData objectForKey:@"username"];
-			rememberedAccountCell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+			LETableViewCellSavedEmpire *rememberedAccountCell = [LETableViewCellSavedEmpire getCellForTableView:tableView];
+			[rememberedAccountCell setData:empireData];
 			return rememberedAccountCell;
 			break;
 		case SECTION_CREATE_NEW:
@@ -289,9 +318,16 @@ typedef enum {
 			; //DO NOT REMOVE
 			NSDictionary *empireData = [self.empires objectAtIndex:indexPath.row];
 			NSString *username = [empireData objectForKey:@"username"];
-			EditSavedEmpire *editSavedEmpire = [[[EditSavedEmpire alloc] initWithNibName:@"EditSavedEmpire" bundle:nil] autorelease];
-			editSavedEmpire.empireName = username;
-			[self.navigationController pushViewController:editSavedEmpire animated:YES];
+			if (NO) {
+				EditSavedEmpire *editSavedEmpire = [[[EditSavedEmpire alloc] initWithNibName:@"EditSavedEmpire" bundle:nil] autorelease];
+				editSavedEmpire.empireName = username;
+				[self.navigationController pushViewController:editSavedEmpire animated:YES];
+			} else {
+				EditSavedEmpireV2 *editSavedEmpire = [EditSavedEmpireV2 create];
+				editSavedEmpire.empireKey = username;
+				[self.navigationController pushViewController:editSavedEmpire animated:YES];
+			}
+
 			break;
 	}
 }

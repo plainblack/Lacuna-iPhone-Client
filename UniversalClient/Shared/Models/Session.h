@@ -53,7 +53,7 @@
 - (NSString *)wikiLinkForBuilding:(NSString *)buildingUrl;
 - (NSString *)descriptionForShip:(NSString *)shipType;
 - (NSString *)wikiLinkForShip:(NSString *)shipType;
-
+- (void)updatedSavedEmpire:(NSString *)empireName uri:(NSString *)uri;
 
 + (Session *)sharedInstance;
 

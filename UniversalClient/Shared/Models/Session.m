@@ -221,20 +221,8 @@ static Session *sharedSession = nil;
 	NSString *username = [inEmpireData objectForKey:@"name"];
 	[self saveToKeyChainForUsername:username password:inPassword];
 	
-	BOOL found = NO;
-	for (NSDictionary *savedEmpire in self.savedEmpireList) {
-		if ([[savedEmpire objectForKey:@"username"] isEqualToString:username]){
-			found = YES;
-		}
-	}
-	if (!found) {
-		[self.savedEmpireList addObject:_dict(username, @"username")];
-		NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-		NSString *documentFolderPath = [searchPaths objectAtIndex:0];
-		NSString *empireListFileName = [documentFolderPath stringByAppendingPathComponent:@"empireList.dat"];
-		[self.savedEmpireList writeToFile:empireListFileName atomically:YES];
-	}
-
+	[self updatedSavedEmpire:username uri:self.serverUri];
+	
 	self.sessionId = inSessionId;
 	self.empire = [[Empire alloc] init];
 	[self.empire parseData:inEmpireData];
@@ -330,6 +318,24 @@ static Session *sharedSession = nil;
 	} else {
 		return @"Not Available";
 	}
+}
+
+
+- (void)updatedSavedEmpire:(NSString *)empireName uri:(NSString *)uri {
+	BOOL found = NO;
+	for (NSMutableDictionary *savedEmpire in self.savedEmpireList) {
+		if ([[savedEmpire objectForKey:@"username"] isEqualToString:empireName]){
+			found = YES;
+			[savedEmpire setObject:uri forKey:@"uri"];
+		}
+	}
+	if (!found) {
+		[self.savedEmpireList addObject:_dict(empireName, @"username", uri, @"uri")];
+	}
+	NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentFolderPath = [searchPaths objectAtIndex:0];
+	NSString *empireListFileName = [documentFolderPath stringByAppendingPathComponent:@"empireList.dat"];
+	[self.savedEmpireList writeToFile:empireListFileName atomically:YES];
 }
 
 
