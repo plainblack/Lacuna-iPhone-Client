@@ -21,6 +21,7 @@
 	NSArray *oreKeysSorted;
 	PickColonyController* pickColonyController;
 	BOOL watchingSession;
+	NSTimer *reloadTimer;
 }
 
 
@@ -28,6 +29,7 @@
 @property(nonatomic, retain) NSString *bodyId;
 @property(nonatomic, retain) Body *watchedBody;
 @property(nonatomic, retain) NSArray *oreKeysSorted;
+@property (nonatomic, retain) NSTimer *reloadTimer;
 
 
 - (IBAction)clear;

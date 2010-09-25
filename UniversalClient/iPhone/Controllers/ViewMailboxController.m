@@ -200,6 +200,8 @@
 
 
 - (void)dealloc {
+	[self.reloadTimer invalidate];
+	self.reloadTimer = nil;
 	self.pageSegmentedControl = nil;
 	self.mailboxSegmentedControl = nil;
 	self.inboxBarButtonItems = nil;
@@ -343,7 +345,6 @@
 
 #pragma mark -
 #pragma mark Timer Callback
-
 
 - (void)handleTimer:(NSTimer *)theTimer {
 	NSLog(@"handleTimer");

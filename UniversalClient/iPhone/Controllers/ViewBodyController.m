@@ -62,6 +62,7 @@ typedef enum {
 @synthesize bodyId;
 @synthesize watchedBody;
 @synthesize oreKeysSorted;
+@synthesize reloadTimer;
 
 
 #pragma mark -
@@ -119,6 +120,8 @@ typedef enum {
 		self.bodyId = session.empire.homePlanetId;
 	}
 	
+	self.reloadTimer = [NSTimer scheduledTimerWithTimeInterval:600 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
+
 	if ([session.empire.planets count] > 1) {
 		self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Change" style:UIBarButtonItemStylePlain target:self action:@selector(pickColony)] autorelease];
 	} else {
@@ -155,6 +158,8 @@ typedef enum {
 
 
 - (void)viewDidDisappear:(BOOL)animated {
+	[self.reloadTimer invalidate];
+	self.reloadTimer = nil;
 	Session *session = [Session sharedInstance];
 	if (self->watchingSession) {
 		[session removeObserver:self forKeyPath:@"body"];
@@ -379,6 +384,8 @@ typedef enum {
 
 
 - (void)dealloc {
+	[self.reloadTimer invalidate];
+	self.reloadTimer = nil;
 	self.pageSegmentedControl = nil;
 	self.bodyId = nil;
 	self.watchedBody = nil;
@@ -462,6 +469,14 @@ typedef enum {
 	} else {
 		Session *session = [Session sharedInstance];
 		self.bodyId = session.empire.homePlanetId;
+		[self loadBody];
+	}
+}
+
+
+- (void)handleTimer:(NSTimer *)theTimer {
+	NSLog(@"handleTimer");
+	if (theTimer == self.reloadTimer) {
 		[self loadBody];
 	}
 }
