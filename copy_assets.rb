@@ -32,5 +32,32 @@ def syncDirs(sourceDirName, targetDirName)
   end
 end
 
+def cleanDirs(toCleanDirName, masterDirName)
+  Dir.foreach(toCleanDirName) do |x|
+    toCleanPathName = "#{toCleanDirName}/#{x}";
+    masterPathName = "#{masterDirName}/#{x}";
+    if File.exists?(masterPathName)
+      if File.directory?(toCleanPathName)
+        if x != "." && x != ".." && x != ".DS_Store" && x != ".git"
+          cleanDirs(toCleanPathName, masterPathName)
+        end
+      end
+    else
+      if x != "resources.json" && x != ".DS_Store" && x != ".git"
+        if File.directory?(toCleanPathName) 
+          puts "#{toCleanPathName} is missing from master"
+          #Dir.mkdir(masterPathName)
+        else
+          puts "#{toCleanPathName} is missing from master"
+          #File.copy(toCleanPathName, masterPathName)
+        end
+      end
+    end
+  end
+end
+
 syncDirs("/users/rundeks/Dropbox/space game/iphone ui", "/users/rundeks/dev/iPhone/Lacuna-iPhone-Client/UniversalClient/assets/iphone ui")
 syncDirs("../Lacuna-Assets", "/users/rundeks/dev/iPhone/Lacuna-iPhone-Client/UniversalClient/assets")
+
+cleanDirs("/users/rundeks/dev/iPhone/Lacuna-iPhone-Client/UniversalClient/assets/iphone ui", "/users/rundeks/Dropbox/space game/iphone ui")
+cleanDirs("/users/rundeks/dev/iPhone/Lacuna-iPhone-Client/UniversalClient/assets", "../Lacuna-Assets")
