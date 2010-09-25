@@ -6,7 +6,7 @@ def syncDirs(sourceDirName, targetDirName)
     targetPathName = "#{targetDirName}/#{x}";
     if File.exists?(targetPathName)
       if File.directory?(sourcePathName)
-        if x != "." && x != ".." && x != ".DS_Store"
+        if x != "." && x != ".." && x != ".DS_Store" && x != ".git"
           syncDirs(sourcePathName, targetPathName)
         end
       else
@@ -18,7 +18,7 @@ def syncDirs(sourceDirName, targetDirName)
         end
       end
     else
-      if x != "400" && x != "300" && !( (sourceDirName =~ /planet_side$/) && (x =~ /[0-9].png$/) ) && x != "ui RyanKnope" && x != "ui" && x != "web ui"
+      if x != "400" && x != "300" && !( (sourceDirName =~ /planet_side$/) && (x =~ /[0-9].png$/) ) && x != "ui RyanKnope" && x != "ui" && x != "web ui" && x != ".git"
         if File.directory?(sourcePathName) 
           puts "#{sourcePathName} is missing, making"
           Dir.mkdir(targetPathName)
@@ -33,3 +33,4 @@ def syncDirs(sourceDirName, targetDirName)
 end
 
 syncDirs("/users/rundeks/Dropbox/space game/iphone ui", "/users/rundeks/dev/iPhone/Lacuna-iPhone-Client/UniversalClient/assets/iphone ui")
+syncDirs("../Lacuna-Assets", "/users/rundeks/dev/iPhone/Lacuna-iPhone-Client/UniversalClient/assets")
