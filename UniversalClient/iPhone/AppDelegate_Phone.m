@@ -89,18 +89,12 @@
 - (void)applicationWillResignActive:(UIApplication *)application {
 	//IS NO SUPER METHOD SO DON'T CALL IT!
 	//[super applicationDidBecomeActive:application];
-	NSLog(@"Will resign active");
-
 	[self.internetReachability stopNotifier];
 
 	if ([LERequest getCurrentRequestCount] > 0) {
-		NSLog(@"Active requests!");
 		[LERequest setDelegate:self];
 		self->backgroundTask = [application beginBackgroundTaskWithExpirationHandler:^{
-			NSLog(@"WTF should this do?");
 		}];
-	} else {
-		NSLog(@"No active requests");
 	}
 
 }
@@ -109,14 +103,12 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
 	//IS NO SUPER METHOD SO DON'T CALL IT!
 	//[super applicationDidEnterBackground:application];
-	NSLog(@"Entered background");
 }
 
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
 	//IS NO SUPER METHOD SO DON'T CALL IT!
 	//[super applicationWillEnterForeground:application];
-	NSLog(@"Will enter foreground");
 }
 
 
@@ -284,26 +276,17 @@
 			statusString = @"Reachable WiFi";
             break;
     }
-	NSLog(@"%@", statusString);
 	
 	if (netStatus == NotReachable) {
 		if (!self.notConnectedView.superview) {
-			NSLog(@"Adding warning");
 			[window addSubview:self.notConnectedView];
-			NSLog(@"Added: %@", self.notConnectedView.superview);
-		} else {
-			NSLog(@"Warning already displayed");
 		}
 
 	} else {
 		if (self.notConnectedView.superview) {
-			NSLog(@"Removing warning");
 			[self.notConnectedView removeFromSuperview];
-		} else {
-			NSLog(@"Warning already hidden");
 		}
 	}
-
 }
 
 

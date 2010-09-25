@@ -228,6 +228,13 @@
 		F6DA5A56124E69DD005D11F6 /* LEStatsColonyRank.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5A55124E69DD005D11F6 /* LEStatsColonyRank.m */; };
 		F6DA5A59124E69E9005D11F6 /* LEStatsSpyRank.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5A58124E69E9005D11F6 /* LEStatsSpyRank.m */; };
 		F6DA5A5C124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5A5B124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.m */; };
+		F6DA5A68124E770B005D11F6 /* ViewStatsControllerV2.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5A66124E770B005D11F6 /* ViewStatsControllerV2.m */; };
+		F6DA5A69124E770B005D11F6 /* ViewStatsControllerV2.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6DA5A67124E770B005D11F6 /* ViewStatsControllerV2.xib */; };
+		F6DA5A75124E7E61005D11F6 /* ViewWeeklyMedalWinnersController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5A74124E7E61005D11F6 /* ViewWeeklyMedalWinnersController.m */; };
+		F6DA5A84124E8399005D11F6 /* ViewSpyRankingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5A83124E8399005D11F6 /* ViewSpyRankingsController.m */; };
+		F6DA5A87124E83A7005D11F6 /* ViewColonyRankingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5A86124E83A7005D11F6 /* ViewColonyRankingsController.m */; };
+		F6DA5A8A124E83B3005D11F6 /* ViewEmpireRankingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5A89124E83B3005D11F6 /* ViewEmpireRankingsController.m */; };
+		F6DA5ABF124E9550005D11F6 /* LETableViewCellMedalWinnerMedal.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5ABE124E9550005D11F6 /* LETableViewCellMedalWinnerMedal.m */; };
 		F6DB3C1A12268603002DA174 /* NewAllianceInvite.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DB3C1912268603002DA174 /* NewAllianceInvite.m */; };
 		F6DB8AE51211718D00F3AB4B /* LEEmpireBoostStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DB8AE41211718D00F3AB4B /* LEEmpireBoostStorage.m */; };
 		F6DB90E712039C33003293A7 /* LETableViewCellTravellingShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DB90E612039C33003293A7 /* LETableViewCellTravellingShip.m */; };
@@ -766,6 +773,19 @@
 		F6DA5A58124E69E9005D11F6 /* LEStatsSpyRank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEStatsSpyRank.m; sourceTree = "<group>"; };
 		F6DA5A5A124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEStatsWeeklyMedalWinners.h; sourceTree = "<group>"; };
 		F6DA5A5B124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEStatsWeeklyMedalWinners.m; sourceTree = "<group>"; };
+		F6DA5A65124E770B005D11F6 /* ViewStatsControllerV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewStatsControllerV2.h; sourceTree = "<group>"; };
+		F6DA5A66124E770B005D11F6 /* ViewStatsControllerV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewStatsControllerV2.m; sourceTree = "<group>"; };
+		F6DA5A67124E770B005D11F6 /* ViewStatsControllerV2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewStatsControllerV2.xib; sourceTree = "<group>"; };
+		F6DA5A73124E7E61005D11F6 /* ViewWeeklyMedalWinnersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewWeeklyMedalWinnersController.h; sourceTree = "<group>"; };
+		F6DA5A74124E7E61005D11F6 /* ViewWeeklyMedalWinnersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewWeeklyMedalWinnersController.m; sourceTree = "<group>"; };
+		F6DA5A82124E8399005D11F6 /* ViewSpyRankingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewSpyRankingsController.h; sourceTree = "<group>"; };
+		F6DA5A83124E8399005D11F6 /* ViewSpyRankingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewSpyRankingsController.m; sourceTree = "<group>"; };
+		F6DA5A85124E83A7005D11F6 /* ViewColonyRankingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewColonyRankingsController.h; sourceTree = "<group>"; };
+		F6DA5A86124E83A7005D11F6 /* ViewColonyRankingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewColonyRankingsController.m; sourceTree = "<group>"; };
+		F6DA5A88124E83B3005D11F6 /* ViewEmpireRankingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewEmpireRankingsController.h; sourceTree = "<group>"; };
+		F6DA5A89124E83B3005D11F6 /* ViewEmpireRankingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewEmpireRankingsController.m; sourceTree = "<group>"; };
+		F6DA5ABD124E9550005D11F6 /* LETableViewCellMedalWinnerMedal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellMedalWinnerMedal.h; sourceTree = "<group>"; };
+		F6DA5ABE124E9550005D11F6 /* LETableViewCellMedalWinnerMedal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellMedalWinnerMedal.m; sourceTree = "<group>"; };
 		F6DB3C1812268603002DA174 /* NewAllianceInvite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewAllianceInvite.h; sourceTree = "<group>"; };
 		F6DB3C1912268603002DA174 /* NewAllianceInvite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewAllianceInvite.m; sourceTree = "<group>"; };
 		F6DB8AE31211718D00F3AB4B /* LEEmpireBoostStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireBoostStorage.h; sourceTree = "<group>"; };
@@ -1140,6 +1160,8 @@
 				F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */,
 				F6882DF5116EC6E7009B624B /* LETableViewCellMedal.h */,
 				F6882DF6116EC6E7009B624B /* LETableViewCellMedal.m */,
+				F6DA5ABD124E9550005D11F6 /* LETableViewCellMedalWinnerMedal.h */,
+				F6DA5ABE124E9550005D11F6 /* LETableViewCellMedalWinnerMedal.m */,
 				F6D76899124B77FE00BA85FB /* LETableViewCellMiningPlatform.h */,
 				F6D7689A124B77FE00BA85FB /* LETableViewCellMiningPlatform.m */,
 				F6864FCC1183A912009826A7 /* LETableViewCellNewsItem.h */,
@@ -1421,14 +1443,14 @@
 				F6AC4A11116C0F9B001B967A /* LERenameBody.m */,
 				F6AC4A12116C0F9B001B967A /* LERequest.h */,
 				F6AC4A13116C0F9B001B967A /* LERequest.m */,
+				F6DA5A54124E69DD005D11F6 /* LEStatsColonyRank.h */,
+				F6DA5A55124E69DD005D11F6 /* LEStatsColonyRank.m */,
 				F6F5240A122C5ED5004E428A /* LEStatsCredits.h */,
 				F6F5240B122C5ED5004E428A /* LEStatsCredits.m */,
 				F6DA5A4E124E69BF005D11F6 /* LEStatsEmpireRank.h */,
 				F6DA5A4F124E69BF005D11F6 /* LEStatsEmpireRank.m */,
 				F6DA5A51124E69CC005D11F6 /* LEStatsFindEmpireRank.h */,
 				F6DA5A52124E69CC005D11F6 /* LEStatsFindEmpireRank.m */,
-				F6DA5A54124E69DD005D11F6 /* LEStatsColonyRank.h */,
-				F6DA5A55124E69DD005D11F6 /* LEStatsColonyRank.m */,
 				F6DA5A57124E69E9005D11F6 /* LEStatsSpyRank.h */,
 				F6DA5A58124E69E9005D11F6 /* LEStatsSpyRank.m */,
 				F6DA5A5A124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.h */,
@@ -1659,6 +1681,8 @@
 				F6F4AD9612444A4700B0509A /* ViewBodyMapControllerV2.m */,
 				F69809A51179FFFB00BD2096 /* ViewBuildingController.h */,
 				F69809A61179FFFB00BD2096 /* ViewBuildingController.m */,
+				F6DA5A85124E83A7005D11F6 /* ViewColonyRankingsController.h */,
+				F6DA5A86124E83A7005D11F6 /* ViewColonyRankingsController.m */,
 				F6F52407122C5D9D004E428A /* ViewCreditsController.h */,
 				F6F52408122C5D9D004E428A /* ViewCreditsController.m */,
 				F6F5244D122C7EFF004E428A /* ViewCreditsController.xib */,
@@ -1671,6 +1695,8 @@
 				F6882CFB116EA08A009B624B /* ViewEmpireProfileController.h */,
 				F6882CFC116EA08A009B624B /* ViewEmpireProfileController.m */,
 				F6E4FD42122A916B00E78CBB /* ViewEmpireProfileController.xib */,
+				F6DA5A88124E83B3005D11F6 /* ViewEmpireRankingsController.h */,
+				F6DA5A89124E83B3005D11F6 /* ViewEmpireRankingsController.m */,
 				F60238D1123D63B200268ADD /* ViewForeignShipsController.h */,
 				F60238D2123D63B200268ADD /* ViewForeignShipsController.m */,
 				F6D485B6120CDEA000D77FC3 /* ViewForeignSpiesController.h */,
@@ -1710,14 +1736,21 @@
 				F6B2155E1232D20B00531EEE /* ViewSpeciesStatsController.m */,
 				F6A9C5E91184C1CC001F0D9C /* ViewSpiesController.h */,
 				F6A9C5EA1184C1CC001F0D9C /* ViewSpiesController.m */,
+				F6DA5A82124E8399005D11F6 /* ViewSpyRankingsController.h */,
+				F6DA5A83124E8399005D11F6 /* ViewSpyRankingsController.m */,
 				F642C669122A155C00C596A7 /* ViewStatsController.h */,
 				F642C66A122A155C00C596A7 /* ViewStatsController.m */,
 				F642C66B122A155C00C596A7 /* ViewStatsController.xib */,
+				F6DA5A65124E770B005D11F6 /* ViewStatsControllerV2.h */,
+				F6DA5A66124E770B005D11F6 /* ViewStatsControllerV2.m */,
+				F6DA5A67124E770B005D11F6 /* ViewStatsControllerV2.xib */,
 				F6EB02641202FB01001BFD68 /* ViewTravellingShipsController.h */,
 				F6EB02651202FB01001BFD68 /* ViewTravellingShipsController.m */,
 				F642C664122A154B00C596A7 /* ViewUniverseController.h */,
 				F642C665122A154B00C596A7 /* ViewUniverseController.m */,
 				F642C666122A154B00C596A7 /* ViewUniverseController.xib */,
+				F6DA5A73124E7E61005D11F6 /* ViewWeeklyMedalWinnersController.h */,
+				F6DA5A74124E7E61005D11F6 /* ViewWeeklyMedalWinnersController.m */,
 				F6D85A38122DC06C00A44BD9 /* WebPageController.h */,
 				F6D85A39122DC06C00A44BD9 /* WebPageController.m */,
 				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
@@ -1822,6 +1855,7 @@
 				F6D85A3C122DC06C00A44BD9 /* WebPageController.xib in Resources */,
 				F6F41903123B046800F93457 /* AssembleGlyphsControllerV2.xib in Resources */,
 				F6023996123D7CD900268ADD /* LETableViewCellForeignIncomingShip.m in Resources */,
+				F6DA5A69124E770B005D11F6 /* ViewStatsControllerV2.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2132,6 +2166,12 @@
 				F6DA5A56124E69DD005D11F6 /* LEStatsColonyRank.m in Sources */,
 				F6DA5A59124E69E9005D11F6 /* LEStatsSpyRank.m in Sources */,
 				F6DA5A5C124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.m in Sources */,
+				F6DA5A68124E770B005D11F6 /* ViewStatsControllerV2.m in Sources */,
+				F6DA5A75124E7E61005D11F6 /* ViewWeeklyMedalWinnersController.m in Sources */,
+				F6DA5A84124E8399005D11F6 /* ViewSpyRankingsController.m in Sources */,
+				F6DA5A87124E83A7005D11F6 /* ViewColonyRankingsController.m in Sources */,
+				F6DA5A8A124E83B3005D11F6 /* ViewEmpireRankingsController.m in Sources */,
+				F6DA5ABF124E9550005D11F6 /* LETableViewCellMedalWinnerMedal.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
