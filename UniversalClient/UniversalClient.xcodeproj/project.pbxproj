@@ -223,6 +223,11 @@
 		F6D9AB49121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9AB48121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.m */; };
 		F6DA0DC0121D47E200705240 /* LETableViewCellGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA0DBF121D47E200705240 /* LETableViewCellGlyph.m */; };
 		F6DA0DF1121D4D0F00705240 /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA0DF0121D4D0F00705240 /* Plan.m */; };
+		F6DA5A50124E69BF005D11F6 /* LEStatsEmpireRank.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5A4F124E69BF005D11F6 /* LEStatsEmpireRank.m */; };
+		F6DA5A53124E69CC005D11F6 /* LEStatsFindEmpireRank.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5A52124E69CC005D11F6 /* LEStatsFindEmpireRank.m */; };
+		F6DA5A56124E69DD005D11F6 /* LEStatsColonyRank.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5A55124E69DD005D11F6 /* LEStatsColonyRank.m */; };
+		F6DA5A59124E69E9005D11F6 /* LEStatsSpyRank.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5A58124E69E9005D11F6 /* LEStatsSpyRank.m */; };
+		F6DA5A5C124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5A5B124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.m */; };
 		F6DB3C1A12268603002DA174 /* NewAllianceInvite.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DB3C1912268603002DA174 /* NewAllianceInvite.m */; };
 		F6DB8AE51211718D00F3AB4B /* LEEmpireBoostStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DB8AE41211718D00F3AB4B /* LEEmpireBoostStorage.m */; };
 		F6DB90E712039C33003293A7 /* LETableViewCellTravellingShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DB90E612039C33003293A7 /* LETableViewCellTravellingShip.m */; };
@@ -751,6 +756,16 @@
 		F6DA0DBF121D47E200705240 /* LETableViewCellGlyph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellGlyph.m; sourceTree = "<group>"; };
 		F6DA0DEF121D4D0F00705240 /* Plan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plan.h; sourceTree = "<group>"; };
 		F6DA0DF0121D4D0F00705240 /* Plan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plan.m; sourceTree = "<group>"; };
+		F6DA5A4E124E69BF005D11F6 /* LEStatsEmpireRank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEStatsEmpireRank.h; sourceTree = "<group>"; };
+		F6DA5A4F124E69BF005D11F6 /* LEStatsEmpireRank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEStatsEmpireRank.m; sourceTree = "<group>"; };
+		F6DA5A51124E69CC005D11F6 /* LEStatsFindEmpireRank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEStatsFindEmpireRank.h; sourceTree = "<group>"; };
+		F6DA5A52124E69CC005D11F6 /* LEStatsFindEmpireRank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEStatsFindEmpireRank.m; sourceTree = "<group>"; };
+		F6DA5A54124E69DD005D11F6 /* LEStatsColonyRank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEStatsColonyRank.h; sourceTree = "<group>"; };
+		F6DA5A55124E69DD005D11F6 /* LEStatsColonyRank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEStatsColonyRank.m; sourceTree = "<group>"; };
+		F6DA5A57124E69E9005D11F6 /* LEStatsSpyRank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEStatsSpyRank.h; sourceTree = "<group>"; };
+		F6DA5A58124E69E9005D11F6 /* LEStatsSpyRank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEStatsSpyRank.m; sourceTree = "<group>"; };
+		F6DA5A5A124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEStatsWeeklyMedalWinners.h; sourceTree = "<group>"; };
+		F6DA5A5B124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEStatsWeeklyMedalWinners.m; sourceTree = "<group>"; };
 		F6DB3C1812268603002DA174 /* NewAllianceInvite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewAllianceInvite.h; sourceTree = "<group>"; };
 		F6DB3C1912268603002DA174 /* NewAllianceInvite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewAllianceInvite.m; sourceTree = "<group>"; };
 		F6DB8AE31211718D00F3AB4B /* LEEmpireBoostStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireBoostStorage.h; sourceTree = "<group>"; };
@@ -1408,6 +1423,16 @@
 				F6AC4A13116C0F9B001B967A /* LERequest.m */,
 				F6F5240A122C5ED5004E428A /* LEStatsCredits.h */,
 				F6F5240B122C5ED5004E428A /* LEStatsCredits.m */,
+				F6DA5A4E124E69BF005D11F6 /* LEStatsEmpireRank.h */,
+				F6DA5A4F124E69BF005D11F6 /* LEStatsEmpireRank.m */,
+				F6DA5A51124E69CC005D11F6 /* LEStatsFindEmpireRank.h */,
+				F6DA5A52124E69CC005D11F6 /* LEStatsFindEmpireRank.m */,
+				F6DA5A54124E69DD005D11F6 /* LEStatsColonyRank.h */,
+				F6DA5A55124E69DD005D11F6 /* LEStatsColonyRank.m */,
+				F6DA5A57124E69E9005D11F6 /* LEStatsSpyRank.h */,
+				F6DA5A58124E69E9005D11F6 /* LEStatsSpyRank.m */,
+				F6DA5A5A124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.h */,
+				F6DA5A5B124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -2102,6 +2127,11 @@
 				F6D97D52124CC3A800B2C676 /* EditSavedEmpireV2.m in Sources */,
 				F6310B54124D6BCC00B5F77B /* LETableViewCellSavedEmpire.m in Sources */,
 				F6D162B7124E1D8700820AAE /* Reachability.m in Sources */,
+				F6DA5A50124E69BF005D11F6 /* LEStatsEmpireRank.m in Sources */,
+				F6DA5A53124E69CC005D11F6 /* LEStatsFindEmpireRank.m in Sources */,
+				F6DA5A56124E69DD005D11F6 /* LEStatsColonyRank.m in Sources */,
+				F6DA5A59124E69E9005D11F6 /* LEStatsSpyRank.m in Sources */,
+				F6DA5A5C124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
