@@ -130,8 +130,6 @@
 		F6980AD0117A600E00BD2096 /* ViewMailboxController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6980ACE117A600E00BD2096 /* ViewMailboxController.xib */; };
 		F6980B44117A738D00BD2096 /* LETableViewCellParagraph.m in Sources */ = {isa = PBXBuildFile; fileRef = F6980B43117A738D00BD2096 /* LETableViewCellParagraph.m */; };
 		F6980B78117A8BD700BD2096 /* NewMailMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6980B76117A8BD700BD2096 /* NewMailMessageController.m */; };
-		F6993B0E11C5CDF8003A7316 /* EditSavedEmpire.m in Sources */ = {isa = PBXBuildFile; fileRef = F6993B0C11C5CDF8003A7316 /* EditSavedEmpire.m */; };
-		F6993B0F11C5CDF8003A7316 /* EditSavedEmpire.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6993B0D11C5CDF8003A7316 /* EditSavedEmpire.xib */; };
 		F69B7FFD118FB51A0049D4A1 /* ViewAttachedTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = F69B7FFB118FB51A0049D4A1 /* ViewAttachedTableController.m */; };
 		F69B7FFE118FB51B0049D4A1 /* ViewAttachedTableController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F69B7FFC118FB51A0049D4A1 /* ViewAttachedTableController.xib */; };
 		F69D2895117242B400D7277E /* LETableViewControllerGrouped.m in Sources */ = {isa = PBXBuildFile; fileRef = F69D2894117242B400D7277E /* LETableViewControllerGrouped.m */; };
@@ -567,9 +565,6 @@
 		F6980B43117A738D00BD2096 /* LETableViewCellParagraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellParagraph.m; sourceTree = "<group>"; };
 		F6980B75117A8BD700BD2096 /* NewMailMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMailMessageController.h; sourceTree = "<group>"; };
 		F6980B76117A8BD700BD2096 /* NewMailMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMailMessageController.m; sourceTree = "<group>"; };
-		F6993B0B11C5CDF8003A7316 /* EditSavedEmpire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditSavedEmpire.h; sourceTree = "<group>"; };
-		F6993B0C11C5CDF8003A7316 /* EditSavedEmpire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditSavedEmpire.m; sourceTree = "<group>"; };
-		F6993B0D11C5CDF8003A7316 /* EditSavedEmpire.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditSavedEmpire.xib; sourceTree = "<group>"; };
 		F69B7FFA118FB51A0049D4A1 /* ViewAttachedTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewAttachedTableController.h; sourceTree = "<group>"; };
 		F69B7FFB118FB51A0049D4A1 /* ViewAttachedTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewAttachedTableController.m; sourceTree = "<group>"; };
 		F69B7FFC118FB51A0049D4A1 /* ViewAttachedTableController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewAttachedTableController.xib; sourceTree = "<group>"; };
@@ -1135,6 +1130,8 @@
 				F6E4C974121E0ED70028FFE8 /* LETableViewCellPlan.m */,
 				F69809BD117A154500BD2096 /* LETableViewCellProgress.h */,
 				F69809BE117A154500BD2096 /* LETableViewCellProgress.m */,
+				F6310B52124D6BCC00B5F77B /* LETableViewCellSavedEmpire.h */,
+				F6310B53124D6BCC00B5F77B /* LETableViewCellSavedEmpire.m */,
 				F6D1DFB6122B266F007A9A4B /* LETableViewCellServerSelect.h */,
 				F6D1DFB7122B266F007A9A4B /* LETableViewCellServerSelect.m */,
 				F6DEC050120247BF00716CE7 /* LETableViewCellShip.h */,
@@ -1160,8 +1157,6 @@
 				F64333581240697E006170E8 /* LETableViewCellWebView.m */,
 				F6DD2062116D5B3C0013C58D /* LEViewSectionTab.h */,
 				F6DD2063116D5B3C0013C58D /* LEViewSectionTab.m */,
-				F6310B52124D6BCC00B5F77B /* LETableViewCellSavedEmpire.h */,
-				F6310B53124D6BCC00B5F77B /* LETableViewCellSavedEmpire.m */,
 			);
 			name = Views;
 			path = Shared/Views;
@@ -1534,9 +1529,8 @@
 				F6D55EFC1225EBAE00AA79BD /* DisolveAllianceController.m */,
 				F6E3E57D11BB0A3200A031CF /* EditEmpireProfileText.h */,
 				F6E3E57E11BB0A3200A031CF /* EditEmpireProfileText.m */,
-				F6993B0B11C5CDF8003A7316 /* EditSavedEmpire.h */,
-				F6993B0C11C5CDF8003A7316 /* EditSavedEmpire.m */,
-				F6993B0D11C5CDF8003A7316 /* EditSavedEmpire.xib */,
+				F6D97D50124CC3A800B2C676 /* EditSavedEmpireV2.h */,
+				F6D97D51124CC3A800B2C676 /* EditSavedEmpireV2.m */,
 				F6DF23211229558C0023FE65 /* EditTextFieldController.h */,
 				F6DF23221229558C0023FE65 /* EditTextFieldController.m */,
 				F6DF22D812293D660023FE65 /* EditTextViewController.h */,
@@ -1695,8 +1689,6 @@
 				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
 				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
-				F6D97D50124CC3A800B2C676 /* EditSavedEmpireV2.h */,
-				F6D97D51124CC3A800B2C676 /* EditSavedEmpireV2.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1785,7 +1777,6 @@
 				F65D35B91195E00400454C2B /* iTunesArtwork in Resources */,
 				F65D36681195F05B00454C2B /* Entitlements.plist in Resources */,
 				F6724F56119F74F200D57E0D /* PickNumericValueController.xib in Resources */,
-				F6993B0F11C5CDF8003A7316 /* EditSavedEmpire.xib in Resources */,
 				F683BC2511E40311009E64BF /* assets in Resources */,
 				F6FB45A411F52C1F00E24EAC /* SearchForGlyphController.xib in Resources */,
 				F6CF29E31210E1F400D4A9AC /* AssignViewControllerV2.xib in Resources */,
@@ -1898,7 +1889,6 @@
 				F6E3E57F11BB0A3200A031CF /* EditEmpireProfileText.m in Sources */,
 				F6E3E58211BB0EA500A031CF /* LEEmpireEditProfile.m in Sources */,
 				F6E3E5E011BB1E8500A031CF /* LETableViewCellTextView.m in Sources */,
-				F6993B0E11C5CDF8003A7316 /* EditSavedEmpire.m in Sources */,
 				F68DC4FB11CD1B0D00144A49 /* EmpireProfile.m in Sources */,
 				F6E766BE11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.m in Sources */,
 				F6E7671111D68C6400778C1D /* Empire.m in Sources */,

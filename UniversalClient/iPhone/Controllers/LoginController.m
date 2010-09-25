@@ -15,7 +15,6 @@
 #import "KeychainItemWrapper.h"
 #import "ViewEmpireProfileController.h"
 #import "NewEmpireController.h"
-#import "EditSavedEmpire.h"
 #import "EditSavedEmpireV2.h"
 #import "SelectServerController.h"
 #import "ForgotPasswordController.h"
@@ -318,15 +317,9 @@ typedef enum {
 			; //DO NOT REMOVE
 			NSDictionary *empireData = [self.empires objectAtIndex:indexPath.row];
 			NSString *username = [empireData objectForKey:@"username"];
-			if (NO) {
-				EditSavedEmpire *editSavedEmpire = [[[EditSavedEmpire alloc] initWithNibName:@"EditSavedEmpire" bundle:nil] autorelease];
-				editSavedEmpire.empireName = username;
-				[self.navigationController pushViewController:editSavedEmpire animated:YES];
-			} else {
-				EditSavedEmpireV2 *editSavedEmpire = [EditSavedEmpireV2 create];
-				editSavedEmpire.empireKey = username;
-				[self.navigationController pushViewController:editSavedEmpire animated:YES];
-			}
+			EditSavedEmpireV2 *editSavedEmpire = [EditSavedEmpireV2 create];
+			editSavedEmpire.empireKey = username;
+			[self.navigationController pushViewController:editSavedEmpire animated:YES];
 
 			break;
 	}
