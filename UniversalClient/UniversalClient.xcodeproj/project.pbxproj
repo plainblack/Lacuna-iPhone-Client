@@ -184,6 +184,8 @@
 		F6CF29E31210E1F400D4A9AC /* AssignViewControllerV2.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6CF29E11210E1F400D4A9AC /* AssignViewControllerV2.xib */; };
 		F6D02A191230698B000D8811 /* LEEmpireSendPasswordResetMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D02A181230698B000D8811 /* LEEmpireSendPasswordResetMessage.m */; };
 		F6D02A1C1230699F000D8811 /* LEEmpireResetPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D02A1B1230699F000D8811 /* LEEmpireResetPassword.m */; };
+		F6D162B7124E1D8700820AAE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D162B6124E1D8700820AAE /* Reachability.m */; };
+		F6D162D3124E1DD300820AAE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D162D2124E1DD300820AAE /* SystemConfiguration.framework */; };
 		F6D1DF9B122B2191007A9A4B /* LEEmpireFetchCaptcha.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D1DF9A122B2191007A9A4B /* LEEmpireFetchCaptcha.m */; };
 		F6D1DFB8122B266F007A9A4B /* LETableViewCellServerSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D1DFB7122B266F007A9A4B /* LETableViewCellServerSelect.m */; };
 		F6D1E018122B33DE007A9A4B /* SelectSpeciesTemplateController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D1E017122B33DE007A9A4B /* SelectSpeciesTemplateController.m */; };
@@ -673,6 +675,9 @@
 		F6D02A181230698B000D8811 /* LEEmpireSendPasswordResetMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireSendPasswordResetMessage.m; sourceTree = "<group>"; };
 		F6D02A1A1230699F000D8811 /* LEEmpireResetPassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireResetPassword.h; sourceTree = "<group>"; };
 		F6D02A1B1230699F000D8811 /* LEEmpireResetPassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireResetPassword.m; sourceTree = "<group>"; };
+		F6D162B5124E1D8700820AAE /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		F6D162B6124E1D8700820AAE /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		F6D162D2124E1DD300820AAE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F6D1DF99122B2191007A9A4B /* LEEmpireFetchCaptcha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireFetchCaptcha.h; sourceTree = "<group>"; };
 		F6D1DF9A122B2191007A9A4B /* LEEmpireFetchCaptcha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireFetchCaptcha.m; sourceTree = "<group>"; };
 		F6D1DFB6122B266F007A9A4B /* LETableViewCellServerSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellServerSelect.h; sourceTree = "<group>"; };
@@ -966,6 +971,7 @@
 				F6F4AED712447B1100B0509A /* Foundation.framework in Frameworks */,
 				F6F4AED912447B1100B0509A /* Security.framework in Frameworks */,
 				F6F4AEDB12447B1100B0509A /* UIKit.framework in Frameworks */,
+				F6D162D3124E1DD300820AAE /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1004,6 +1010,8 @@
 				F6AC4A4E116C106E001B967A /* KeychainItemWrapper.h */,
 				F6AC4A4F116C106E001B967A /* KeychainItemWrapper.m */,
 				F6AC49E6116C0F7E001B967A /* LEMacros.h */,
+				F6D162B5124E1D8700820AAE /* Reachability.h */,
+				F6D162B6124E1D8700820AAE /* Reachability.m */,
 				8D1107310486CEB800E47090 /* UniversalClient-Info.plist */,
 				2819307C112F81BE00ECF9B4 /* UniversalClient.xcdatamodeld */,
 				F6AC49E7116C0F7E001B967A /* Util.h */,
@@ -1060,6 +1068,7 @@
 				F6F4AED612447B1100B0509A /* Foundation.framework */,
 				F6F4AED812447B1100B0509A /* Security.framework */,
 				F6F4AEDA12447B1100B0509A /* UIKit.framework */,
+				F6D162D2124E1DD300820AAE /* SystemConfiguration.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2092,6 +2101,7 @@
 				F6D74917124C2F4500DCD74D /* ViewEmpireMailSettingController.m in Sources */,
 				F6D97D52124CC3A800B2C676 /* EditSavedEmpireV2.m in Sources */,
 				F6310B54124D6BCC00B5F77B /* LETableViewCellSavedEmpire.m in Sources */,
+				F6D162B7124E1D8700820AAE /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

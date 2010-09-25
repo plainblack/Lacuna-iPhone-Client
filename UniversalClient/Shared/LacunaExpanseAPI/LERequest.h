@@ -25,6 +25,7 @@
 	BOOL canceled;
 	NSURLConnection *conn;
 	NSMutableData *receivedData;
+	NSInteger retryCount;
 }
 
 

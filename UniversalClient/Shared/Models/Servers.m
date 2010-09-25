@@ -52,9 +52,8 @@
 		[parser release];
 	} else {
 		NSLog(@"Error getting servers.json");
+		self.serverList = [NSMutableArray array];
 	}
-
-	
 }
 
 

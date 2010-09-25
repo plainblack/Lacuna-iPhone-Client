@@ -13,12 +13,14 @@
 #import "ViewMailboxController.h"
 #import "LERequest.h"
 #import "LoginController.h"
+#import "Reachability.h"
 
 
 @interface AppDelegate_Phone(PrivateMethod)
 
 - (void)displayLoginAnimated:(BOOL)animated;
 - (void)hideLogin;
+- (void)testReachability:(Reachability *)reachability;
 
 @end
 
@@ -32,6 +34,8 @@
 @synthesize myWorldController;
 @synthesize mailNavigationController;
 @synthesize mailboxController;
+@synthesize internetReachability;
+@synthesize notConnectedView;
 
 
 #pragma mark -
@@ -53,6 +57,12 @@
 
 	[application setStatusBarStyle:UIStatusBarStyleBlackOpaque];
 	[application setStatusBarHidden:NO withAnimation:YES];
+	
+	// Observe the kNetworkReachabilityChangedNotification. When that notification is posted, the
+    // method "reachabilityChanged" will be called. 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
+
+	self.internetReachability = [Reachability reachabilityForInternetConnection];
 
 	Session *session = [Session sharedInstance];
 	[session addObserver:self forKeyPath:@"isLoggedIn" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
@@ -65,6 +75,10 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 	//IS NO SUPER METHOD SO DON'T CALL IT!
 	//[super applicationDidBecomeActive:application];
+
+	[self.internetReachability startNotifier];
+	[self testReachability:self.internetReachability];
+
 	Session *session = [Session sharedInstance];
 	if (!session.isLoggedIn) {
 		[self displayLoginAnimated:NO];
@@ -76,6 +90,9 @@
 	//IS NO SUPER METHOD SO DON'T CALL IT!
 	//[super applicationDidBecomeActive:application];
 	NSLog(@"Will resign active");
+
+	[self.internetReachability stopNotifier];
+
 	if ([LERequest getCurrentRequestCount] > 0) {
 		NSLog(@"Active requests!");
 		[LERequest setDelegate:self];
@@ -130,6 +147,8 @@
 	self.myWorldController = nil;
 	self.mailNavigationController = nil;
 	self.mailboxController = nil;
+	self.internetReachability = nil;
+	self.notConnectedView = nil;
 	[super dealloc];
 }
 
@@ -224,6 +243,16 @@
 
 
 #pragma mark -
+#pragma mark Callback methods
+
+- (void) reachabilityChanged:(NSNotification* )note {
+	Reachability* curReach = [note object];
+	NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
+	[self testReachability:curReach];
+}
+
+
+#pragma mark -
 #pragma mark PrivateMethod
 
 - (void)displayLoginAnimated:(BOOL)animated {
@@ -238,6 +267,43 @@
 - (void)hideLogin {
 	self.tabBarController.selectedViewController = self.myWorldsNavigationController;
 	[self.tabBarController dismissModalViewControllerAnimated:YES];
+}
+
+
+- (void)testReachability:(Reachability *)reachability {
+    NetworkStatus netStatus = [reachability currentReachabilityStatus];
+	NSString *statusString;
+	switch (netStatus) {
+        case NotReachable:
+            statusString = @"Access Not Available";
+            break;
+        case ReachableViaWWAN:
+            statusString = @"Reachable WWAN";
+            break;
+        case ReachableViaWiFi:
+			statusString = @"Reachable WiFi";
+            break;
+    }
+	NSLog(@"%@", statusString);
+	
+	if (netStatus == NotReachable) {
+		if (!self.notConnectedView.superview) {
+			NSLog(@"Adding warning");
+			[window addSubview:self.notConnectedView];
+			NSLog(@"Added: %@", self.notConnectedView.superview);
+		} else {
+			NSLog(@"Warning already displayed");
+		}
+
+	} else {
+		if (self.notConnectedView.superview) {
+			NSLog(@"Removing warning");
+			[self.notConnectedView removeFromSuperview];
+		} else {
+			NSLog(@"Warning already hidden");
+		}
+	}
+
 }
 
 

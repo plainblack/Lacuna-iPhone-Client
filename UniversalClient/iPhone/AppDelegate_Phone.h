@@ -11,6 +11,7 @@
 #import "LERequest.h"
 
 
+@class Reachability;
 @class ViewBodyController;
 @class ViewMailboxController;
 
@@ -23,6 +24,8 @@
 	UINavigationController *mailNavigationController;
 	ViewMailboxController *mailboxController;
 	UIBackgroundTaskIdentifier backgroundTask;
+	Reachability *internetReachability;
+	UIView *notConnectedView;
 }
 
 
@@ -32,6 +35,8 @@
 @property(nonatomic, retain) IBOutlet ViewBodyController *myWorldController;
 @property(nonatomic, retain) IBOutlet UINavigationController *mailNavigationController;
 @property(nonatomic, retain) IBOutlet ViewMailboxController *mailboxController;
+@property(nonatomic, retain) Reachability *internetReachability;
+@property(nonatomic, retain) IBOutlet UIView *notConnectedView;
 
 
 - (void)showMessage:(NSString *)messageId;

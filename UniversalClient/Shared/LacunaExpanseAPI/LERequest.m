@@ -38,6 +38,7 @@ static id<LERequestMonitor> delegate;
 	self->canceled = NO;
 	self->wasError = NO;
 	self->handledError = NO;
+	self->retryCount = 0;
 	
 	self->callback = inCallback;
 	self->target = inTarget;
@@ -98,9 +99,23 @@ static id<LERequestMonitor> delegate;
 	NSLog(@"Error: %@", err);
 	NSLog(@"Details: %@", err.userInfo);
 	
+	if (err.code == -1009) {
+		//Network appears to be offline so retry.
+		if (self->retryCount < 2) {
+			[self performSelector:@selector(sendRequest) withObject:nil afterDelay:1];
+			self->retryCount++;
+			return nil;
+		} else {
+			self.response = _dict(_dict(@"Could not connect to server.", @"message"), @"error");
+		}
+
+	} else {
+		self.response = err.userInfo;
+	}
+
+	
 	self->wasError = YES;
 	self->handledError = NO;
-	self.response = err.userInfo;
 	
 	if ([self errorCode] == 1006) {
 		Session *session = [Session sharedInstance];
