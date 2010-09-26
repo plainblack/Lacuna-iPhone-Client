@@ -20,7 +20,9 @@
 @synthesize empires;
 
 
-- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget {
+- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget sortBy:(NSString *)inSortBy empireName:(NSString *)inEmpireName {
+	self.sortBy = inSortBy;
+	self.empireName = inEmpireName;
 	return [super initWithCallback:inCallback target:inTarget];
 }
 

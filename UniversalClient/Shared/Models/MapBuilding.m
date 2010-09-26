@@ -58,7 +58,9 @@
 
 - (void)parseData:(NSDictionary *)data {
 	self.id = [Util idFromDict:data named:@"id"];
-	self.buildingUrl = [data objectForKey:@"url"];
+	if ([data objectForKey:@"url"]) {
+		self.buildingUrl = [data objectForKey:@"url"];
+	}
 	self.name = [data objectForKey:@"name"];
 	self.imageName = [data objectForKey:@"image"];
 	self.image = [UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/100/%@.png", self.imageName]];

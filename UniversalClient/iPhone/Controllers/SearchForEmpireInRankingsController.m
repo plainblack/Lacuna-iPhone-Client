@@ -1,19 +1,19 @@
 //
-//  SelectEmpireController.m
+//  SearchForEmpireInRankingsController.m
 //  UniversalClient
 //
-//  Created by Kevin Runde on 8/27/10.
+//  Created by Kevin Runde on 9/25/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
-#import "SelectEmpireController.h"
+#import "SearchForEmpireInRankingsController.h"
 #import "LEMacros.h"
 #import "Session.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellButton.h"
 #import "LETableViewCellLabeledText.h"
 #import "LETableViewCellTextEntry.h"
-#import "LEEmpireFind.h"
+#import "LEStatsFindEmpireRank.h"
 
 
 typedef enum {
@@ -22,9 +22,10 @@ typedef enum {
 } SECTION;
 
 
-@implementation SelectEmpireController
+@implementation SearchForEmpireInRankingsController
 
 
+@synthesize sortBy;
 @synthesize empires;
 @synthesize delegate;
 @synthesize nameCell;
@@ -36,10 +37,10 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.navigationItem.title = @"Select Empire";
+	self.navigationItem.title = @"Search For Empire";
 	
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Search"], [LEViewSectionTab tableView:self.tableView withText:@"Matches"]);
-
+	
 	self.nameCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
 	[self.nameCell setReturnKeyType:UIReturnKeySearch];
 	self.nameCell.delegate = self;
@@ -122,7 +123,7 @@ typedef enum {
 					noMatchesCell.content.text = @"No Matches";
 					cell = noMatchesCell;
 				}
-
+				
 			} else {
 				LETableViewCellLabeledText *searchCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 				searchCell.content.text = @"Enter a name";
@@ -167,6 +168,7 @@ typedef enum {
 
 
 - (void)dealloc {
+	self.sortBy = nil;
 	self.nameCell = nil;
 	self.empires = nil;
     [super dealloc];
@@ -177,15 +179,15 @@ typedef enum {
 #pragma mark Action Methods
 
 - (void)searchForEmpire:(NSString *)empireName {
-	[[[LEEmpireFind alloc] initWithCallback:@selector(empiresFound:) target:self empireName:empireName] autorelease];
+	[[[LEStatsFindEmpireRank alloc] initWithCallback:@selector(empiresFound:) target:self sortBy:self.sortBy empireName:empireName] autorelease];
 }
 
 
 #pragma mark -
 #pragma mark Callback Methods
 
-- (void)empiresFound:(LEEmpireFind *)request {
-	self.empires = request.empiresFound;
+- (void)empiresFound:(LEStatsFindEmpireRank *)request {
+	self.empires = request.empires;
 	[self.tableView reloadData];
 }
 
@@ -208,8 +210,8 @@ typedef enum {
 #pragma mark -
 #pragma mark Class Methods
 
-+ (SelectEmpireController *)create {
-	return [[[SelectEmpireController alloc] init] autorelease];
++ (SearchForEmpireInRankingsController *)create {
+	return [[[SearchForEmpireInRankingsController alloc] init] autorelease];
 }
 
 

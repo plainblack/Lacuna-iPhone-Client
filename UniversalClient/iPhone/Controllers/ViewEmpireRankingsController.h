@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "LETableViewControllerGrouped.h"
+#import "SearchForEmpireInRankingsController.h"
 
 
-@interface ViewEmpireRankingsController : LETableViewControllerGrouped {
+@interface ViewEmpireRankingsController : LETableViewControllerGrouped <SearchForEmpireInRankingsControllerDelegate> {
 	UISegmentedControl *pageSegmentedControl;
 	NSString *sortBy;
 	NSMutableArray *empires;

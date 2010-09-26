@@ -235,6 +235,7 @@
 		F6DA5A87124E83A7005D11F6 /* ViewColonyRankingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5A86124E83A7005D11F6 /* ViewColonyRankingsController.m */; };
 		F6DA5A8A124E83B3005D11F6 /* ViewEmpireRankingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5A89124E83B3005D11F6 /* ViewEmpireRankingsController.m */; };
 		F6DA5ABF124E9550005D11F6 /* LETableViewCellMedalWinnerMedal.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5ABE124E9550005D11F6 /* LETableViewCellMedalWinnerMedal.m */; };
+		F6DA5B51124E9C6B005D11F6 /* SearchForEmpireInRankingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5B50124E9C6B005D11F6 /* SearchForEmpireInRankingsController.m */; };
 		F6DB3C1A12268603002DA174 /* NewAllianceInvite.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DB3C1912268603002DA174 /* NewAllianceInvite.m */; };
 		F6DB8AE51211718D00F3AB4B /* LEEmpireBoostStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DB8AE41211718D00F3AB4B /* LEEmpireBoostStorage.m */; };
 		F6DB90E712039C33003293A7 /* LETableViewCellTravellingShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DB90E612039C33003293A7 /* LETableViewCellTravellingShip.m */; };
@@ -786,6 +787,8 @@
 		F6DA5A89124E83B3005D11F6 /* ViewEmpireRankingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewEmpireRankingsController.m; sourceTree = "<group>"; };
 		F6DA5ABD124E9550005D11F6 /* LETableViewCellMedalWinnerMedal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellMedalWinnerMedal.h; sourceTree = "<group>"; };
 		F6DA5ABE124E9550005D11F6 /* LETableViewCellMedalWinnerMedal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellMedalWinnerMedal.m; sourceTree = "<group>"; };
+		F6DA5B4F124E9C6B005D11F6 /* SearchForEmpireInRankingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchForEmpireInRankingsController.h; sourceTree = "<group>"; };
+		F6DA5B50124E9C6B005D11F6 /* SearchForEmpireInRankingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchForEmpireInRankingsController.m; sourceTree = "<group>"; };
 		F6DB3C1812268603002DA174 /* NewAllianceInvite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewAllianceInvite.h; sourceTree = "<group>"; };
 		F6DB3C1912268603002DA174 /* NewAllianceInvite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewAllianceInvite.m; sourceTree = "<group>"; };
 		F6DB8AE31211718D00F3AB4B /* LEEmpireBoostStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireBoostStorage.h; sourceTree = "<group>"; };
@@ -1644,6 +1647,8 @@
 				F6D59FF312012AA9009DDA28 /* RenameShipController.m */,
 				F6A9C6331184DF55001F0D9C /* RenameSpyController.h */,
 				F6A9C6341184DF55001F0D9C /* RenameSpyController.m */,
+				F6DA5B4F124E9C6B005D11F6 /* SearchForEmpireInRankingsController.h */,
+				F6DA5B50124E9C6B005D11F6 /* SearchForEmpireInRankingsController.m */,
 				F6FB45A011F52C1F00E24EAC /* SearchForGlyphController.h */,
 				F6FB45A111F52C1F00E24EAC /* SearchForGlyphController.m */,
 				F6FB45A211F52C1F00E24EAC /* SearchForGlyphController.xib */,
@@ -2172,6 +2177,7 @@
 				F6DA5A87124E83A7005D11F6 /* ViewColonyRankingsController.m in Sources */,
 				F6DA5A8A124E83B3005D11F6 /* ViewEmpireRankingsController.m in Sources */,
 				F6DA5ABF124E9550005D11F6 /* LETableViewCellMedalWinnerMedal.m in Sources */,
+				F6DA5B51124E9C6B005D11F6 /* SearchForEmpireInRankingsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

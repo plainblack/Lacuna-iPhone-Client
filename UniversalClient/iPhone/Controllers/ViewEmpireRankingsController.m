@@ -73,12 +73,21 @@ typedef enum {
 	
 	self.sectionHeaders = [NSArray array];
 	
+	self.navigationController.toolbar.tintColor = TINT_COLOR;
+	
+	self.toolbarItems = _array(
+		[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease],
+		[[[UIBarButtonItem alloc] initWithTitle:@"Search for Empire" style:UIBarButtonItemStyleBordered target:self action:@selector(searchForEmpire)] autorelease],
+		[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]
+	);
+	
 	self->pageNumber = 1;
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	[self.navigationController setToolbarHidden:NO animated:NO];
 	[self togglePageButtons];
 	[[[LEStatsEmpireRank alloc] initWithCallback:@selector(empiresLoaded:) target:self sortBy:self.sortBy pageNumber:self->pageNumber] autorelease];
 }
@@ -88,6 +97,11 @@ typedef enum {
     [super viewDidAppear:animated];
 }
 
+
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+	[self.navigationController setToolbarHidden:YES animated:NO];
+}
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
@@ -288,6 +302,17 @@ typedef enum {
 
 
 #pragma mark -
+#pragma mark SearchForEmpireInRankingsControllerDelegate Methods
+
+- (void)selectedEmpire:(NSDictionary *)empire {
+	[self.navigationController popViewControllerAnimated:YES];
+	self->pageNumber = _intv([empire objectForKey:@"page_number"]);
+	[self togglePageButtons];
+	[[[LEStatsEmpireRank alloc] initWithCallback:@selector(empiresLoaded:) target:self sortBy:self.sortBy pageNumber:self->pageNumber] autorelease];
+}
+
+
+#pragma mark -
 #pragma mark Private Methods
 
 - (void)togglePageButtons {
@@ -338,6 +363,15 @@ typedef enum {
 			break;
 	}
 	[self togglePageButtons];
+}
+
+
+- (void) searchForEmpire {
+	NSLog(@"Search called");
+	SearchForEmpireInRankingsController *searchForEmpireInRankingsController = [SearchForEmpireInRankingsController create];
+	searchForEmpireInRankingsController.sortBy = self.sortBy;
+	searchForEmpireInRankingsController.delegate = self;
+	[self.navigationController pushViewController:searchForEmpireInRankingsController animated:YES];
 }
 
 
