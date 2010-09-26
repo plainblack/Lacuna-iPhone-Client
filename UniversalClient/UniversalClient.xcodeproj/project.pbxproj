@@ -244,6 +244,8 @@
 		F6DD2026116D561F0013C58D /* LETableViewCellButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DD2025116D561F0013C58D /* LETableViewCellButton.m */; };
 		F6DD2064116D5B3C0013C58D /* LEViewSectionTab.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DD2063116D5B3C0013C58D /* LEViewSectionTab.m */; };
 		F6DEC052120247BF00716CE7 /* LETableViewCellShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DEC051120247BF00716CE7 /* LETableViewCellShip.m */; };
+		F6DEDFC4124FBFAA00030329 /* LEMapGetStars.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DEDFC3124FBFAA00030329 /* LEMapGetStars.m */; };
+		F6DEDFD1124FC26100030329 /* StarMap.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DEDFD0124FC26100030329 /* StarMap.m */; };
 		F6DF1A9E124AE18C00A34DE2 /* LEEmpireGetSpeciesTemplates.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF1A9D124AE18C00A34DE2 /* LEEmpireGetSpeciesTemplates.m */; };
 		F6DF1B04124AED7F00A34DE2 /* LETableViewCellOrbitSelectorV2.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF1B03124AED7F00A34DE2 /* LETableViewCellOrbitSelectorV2.m */; };
 		F6DF22DA12293D660023FE65 /* EditTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF22D912293D660023FE65 /* EditTextViewController.m */; };
@@ -804,6 +806,10 @@
 		F6DD2063116D5B3C0013C58D /* LEViewSectionTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEViewSectionTab.m; sourceTree = "<group>"; };
 		F6DEC050120247BF00716CE7 /* LETableViewCellShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellShip.h; sourceTree = "<group>"; };
 		F6DEC051120247BF00716CE7 /* LETableViewCellShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellShip.m; sourceTree = "<group>"; };
+		F6DEDFC2124FBFAA00030329 /* LEMapGetStars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEMapGetStars.h; sourceTree = "<group>"; };
+		F6DEDFC3124FBFAA00030329 /* LEMapGetStars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEMapGetStars.m; sourceTree = "<group>"; };
+		F6DEDFCF124FC26100030329 /* StarMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarMap.h; sourceTree = "<group>"; };
+		F6DEDFD0124FC26100030329 /* StarMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarMap.m; sourceTree = "<group>"; };
 		F6DF1A9C124AE18C00A34DE2 /* LEEmpireGetSpeciesTemplates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireGetSpeciesTemplates.h; sourceTree = "<group>"; };
 		F6DF1A9D124AE18C00A34DE2 /* LEEmpireGetSpeciesTemplates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireGetSpeciesTemplates.m; sourceTree = "<group>"; };
 		F6DF1B02124AED7F00A34DE2 /* LETableViewCellOrbitSelectorV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellOrbitSelectorV2.h; sourceTree = "<group>"; };
@@ -1462,6 +1468,8 @@
 				F6DA5A58124E69E9005D11F6 /* LEStatsSpyRank.m */,
 				F6DA5A5A124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.h */,
 				F6DA5A5B124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.m */,
+				F6DEDFC2124FBFAA00030329 /* LEMapGetStars.h */,
+				F6DEDFC3124FBFAA00030329 /* LEMapGetStars.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -1566,6 +1574,8 @@
 				F692B7C9121861EC00E740C1 /* Trade.m */,
 				F61D0C2111E2355600B06382 /* WasteRecycling.h */,
 				F61D0C2211E2355600B06382 /* WasteRecycling.m */,
+				F6DEDFCF124FC26100030329 /* StarMap.h */,
+				F6DEDFD0124FC26100030329 /* StarMap.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -2182,6 +2192,8 @@
 				F6DA5A8A124E83B3005D11F6 /* ViewEmpireRankingsController.m in Sources */,
 				F6DA5ABF124E9550005D11F6 /* LETableViewCellMedalWinnerMedal.m in Sources */,
 				F6DA5B51124E9C6B005D11F6 /* SearchForEmpireInRankingsController.m in Sources */,
+				F6DEDFC4124FBFAA00030329 /* LEMapGetStars.m in Sources */,
+				F6DEDFD1124FC26100030329 /* StarMap.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
