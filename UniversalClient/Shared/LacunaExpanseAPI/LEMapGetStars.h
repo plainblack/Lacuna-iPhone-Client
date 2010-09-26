@@ -25,6 +25,7 @@
 @property (nonatomic, retain) NSDecimalNumber *bottomRightY;
 @property (nonatomic, retain) NSMutableArray *stars;
 
+
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target topLeftX:(NSDecimalNumber *)topLeftX topLeftY:(NSDecimalNumber *)topLeftY bottomRightX:(NSDecimalNumber *)bottomRightX bottomRightY:(NSDecimalNumber *)bottomRightY;
 
 

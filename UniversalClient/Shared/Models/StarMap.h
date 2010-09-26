@@ -9,14 +9,20 @@
 #import <Foundation/Foundation.h>
 
 
+@class Star;
+
+
 @interface StarMap : NSObject {
 	NSMutableDictionary *sectors;
+	NSDate *lastUpdate;
 }
 
 
 @property (retain) NSMutableDictionary *sectors;
+@property (retain) NSDate *lastUpdate;
 
-- (NSDictionary *)gridX:(NSDecimalNumber *)gridX gridY:(NSDecimalNumber *)gridY;
+
+- (Star *)gridX:(NSDecimalNumber *)gridX gridY:(NSDecimalNumber *)gridY;
 
 
 @end

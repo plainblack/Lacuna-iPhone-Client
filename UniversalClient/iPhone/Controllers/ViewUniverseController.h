@@ -9,9 +9,23 @@
 #import <UIKit/UIKit.h>
 
 
-@interface ViewUniverseController : UIViewController {
+@class StarMap;
 
+
+@interface ViewUniverseController : UIViewController <UIScrollViewDelegate> {
+	UIScrollView *scrollView;
+	UIView *map;
+	NSMutableDictionary *inUseCells;
+	NSMutableArray *reusableCells;
+	StarMap *starMap;
 }
+
+
+@property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, retain) IBOutlet UIView *map;
+@property (nonatomic, retain) NSMutableDictionary *inUseCells;
+@property (nonatomic, retain) NSMutableArray *reusableCells;
+@property (nonatomic, retain) StarMap *starMap;
 
 
 - (IBAction)logout;

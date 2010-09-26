@@ -25,6 +25,10 @@
 	NSString *serverUri;
 	NSDictionary *itemDescriptions;
 	NSString *lacunanMessageId;
+	NSDecimalNumber *universeMinX;
+	NSDecimalNumber *universeMaxX;
+	NSDecimalNumber *universeMinY;
+	NSDecimalNumber *universeMaxY;
 }
 
 
@@ -38,6 +42,10 @@
 @property (nonatomic, retain) NSString *serverUri;
 @property (nonatomic, retain) NSDictionary *itemDescriptions;
 @property (nonatomic, retain) NSString *lacunanMessageId;
+@property (nonatomic, retain) NSDecimalNumber *universeMinX;
+@property (nonatomic, retain) NSDecimalNumber *universeMaxX;
+@property (nonatomic, retain) NSDecimalNumber *universeMinY;
+@property (nonatomic, retain) NSDecimalNumber *universeMaxY;
 
 
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password;
