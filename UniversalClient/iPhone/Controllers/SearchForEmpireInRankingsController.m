@@ -116,7 +116,7 @@ typedef enum {
 				if ([self.empires count] > 0) {
 					NSDictionary *empire = [self.empires objectAtIndex:indexPath.row];
 					LETableViewCellButton *empireButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-					empireButtonCell.textLabel.text = [empire objectForKey:@"name"];
+					empireButtonCell.textLabel.text = [empire objectForKey:@"empire_name"];
 					cell = empireButtonCell;
 				} else {
 					LETableViewCellLabeledText *noMatchesCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
