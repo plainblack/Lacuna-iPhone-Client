@@ -22,6 +22,7 @@
 		F6023A67123D922200268ADD /* LEBuildingViewPlans.m in Sources */ = {isa = PBXBuildFile; fileRef = F6023A66123D922200268ADD /* LEBuildingViewPlans.m */; };
 		F603A8BE1177E7FC00BAC73A /* LETableViewCellBody.m in Sources */ = {isa = PBXBuildFile; fileRef = F603A8BD1177E7FC00BAC73A /* LETableViewCellBody.m */; };
 		F603A8EF1177F7F200BAC73A /* LETableViewCellCurrentResources.m in Sources */ = {isa = PBXBuildFile; fileRef = F603A8EE1177F7F200BAC73A /* LETableViewCellCurrentResources.m */; };
+		F6093DD7124EFD7C00BB267E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6093DD6124EFD7C00BB267E /* QuartzCore.framework */; };
 		F60AF5171224A483005B2F0E /* AllianceStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = F60AF5161224A483005B2F0E /* AllianceStatus.m */; };
 		F60AF51B1224A48D005B2F0E /* AllianceMember.m in Sources */ = {isa = PBXBuildFile; fileRef = F60AF51A1224A48D005B2F0E /* AllianceMember.m */; };
 		F60AF51E1224A4A5005B2F0E /* PendingAllianceInvite.m in Sources */ = {isa = PBXBuildFile; fileRef = F60AF51D1224A4A5005B2F0E /* PendingAllianceInvite.m */; };
@@ -375,6 +376,7 @@
 		F603A8BD1177E7FC00BAC73A /* LETableViewCellBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellBody.m; sourceTree = "<group>"; };
 		F603A8ED1177F7F200BAC73A /* LETableViewCellCurrentResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellCurrentResources.h; sourceTree = "<group>"; };
 		F603A8EE1177F7F200BAC73A /* LETableViewCellCurrentResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellCurrentResources.m; sourceTree = "<group>"; };
+		F6093DD6124EFD7C00BB267E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F60AF5151224A483005B2F0E /* AllianceStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllianceStatus.h; sourceTree = "<group>"; };
 		F60AF5161224A483005B2F0E /* AllianceStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllianceStatus.m; sourceTree = "<group>"; };
 		F60AF5191224A48D005B2F0E /* AllianceMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllianceMember.h; sourceTree = "<group>"; };
@@ -1010,6 +1012,7 @@
 				F6F4AED912447B1100B0509A /* Security.framework in Frameworks */,
 				F6F4AEDB12447B1100B0509A /* UIKit.framework in Frameworks */,
 				F6D162D3124E1DD300820AAE /* SystemConfiguration.framework in Frameworks */,
+				F6093DD7124EFD7C00BB267E /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1068,6 +1071,7 @@
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				F6093DD6124EFD7C00BB267E /* QuartzCore.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";

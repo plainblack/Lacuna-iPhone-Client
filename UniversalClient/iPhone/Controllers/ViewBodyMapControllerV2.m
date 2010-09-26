@@ -15,7 +15,6 @@
 #import "ViewBuildingController.h"
 #import "NewBuildingTypeController.h"
 
-
 @implementation ViewBodyMapControllerV2
 
 
@@ -169,18 +168,19 @@
 #pragma mark Callbacks
 
 - (void)switchOverlay {
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	BOOL showMapOverlay = ![userDefaults boolForKey:@"showMapOverlay"];
+
 	[UIView beginAnimations:@"page curl" context:nil];
-	__block BOOL isCurlUp = YES;
 	[buttonsByLoc enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
 		LEBodyMapCell *button = obj;
-		isCurlUp = button.showOverlay;
-		button.showOverlay = !button.showOverlay;
+		button.showOverlay = showMapOverlay;
 	}];
 	[UIView setAnimationDuration:1.0];
-	[UIView setAnimationTransition:(isCurlUp ? UIViewAnimationTransitionCurlUp : UIViewAnimationTransitionCurlDown) forView:self.backgroundView cache:NO];
+	[UIView setAnimationTransition:(showMapOverlay ? UIViewAnimationTransitionCurlDown : UIViewAnimationTransitionCurlUp) forView:self.backgroundView cache:NO];
 	[UIView commitAnimations];
-	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];  
-	[userDefaults setBool:(!isCurlUp) forKey:@"showMapOverlay"];
+	[self.backgroundView setNeedsDisplay];
+	[userDefaults setBool:showMapOverlay forKey:@"showMapOverlay"];
 	[userDefaults synchronize];
 }
 
