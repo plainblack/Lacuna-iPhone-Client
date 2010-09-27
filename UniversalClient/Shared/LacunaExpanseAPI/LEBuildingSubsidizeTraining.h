@@ -1,8 +1,8 @@
 //
-//  LEBuildingSubsidizeBuildQueue.h
+//  LEBuildingSubsidizeTraining.h
 //  UniversalClient
 //
-//  Created by Kevin Runde on 6/26/10.
+//  Created by Kevin Runde on 9/27/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 #import "LERequest.h"
 
 
-@interface LEBuildingSubsidizeBuildQueue : LERequest {
+@interface LEBuildingSubsidizeTraining : LERequest {
 	NSString *buildingId;
 	NSString *buildingUrl;
 	NSMutableDictionary *result;

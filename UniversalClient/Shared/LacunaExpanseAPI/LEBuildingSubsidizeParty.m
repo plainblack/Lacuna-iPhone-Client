@@ -1,17 +1,18 @@
 //
-//  LEBuildingSubsidizeBuildQueue.m
+//  LEBuildingSubsidizeParty.m
 //  UniversalClient
 //
-//  Created by Kevin Runde on 6/26/10.
+//  Created by Kevin Runde on 9/27/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
-#import "LEBuildingSubsidizeBuildQueue.h"
+#import "LEBuildingSubsidizeParty.h"
 #import "LEMacros.h"
 #import "Session.h"
 
 
-@implementation LEBuildingSubsidizeBuildQueue
+@implementation LEBuildingSubsidizeParty
+
 
 @synthesize buildingId;
 @synthesize buildingUrl;
@@ -41,7 +42,7 @@
 
 
 - (NSString *)methodName {
-	return @"subsidize_build_queue";
+	return @"subsidize_party";
 }
 
 
