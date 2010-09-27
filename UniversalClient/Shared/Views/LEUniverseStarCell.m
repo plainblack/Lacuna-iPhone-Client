@@ -59,7 +59,7 @@
 		[inStar retain];
 		[self->star release];
 		self->star = inStar;
-		self->dataLabel.text = [NSString stringWithFormat:@"%@\n(%@x%@)", self->star.name, self->star.x, self->star.y];
+		self->dataLabel.text = [NSString stringWithFormat:@"%@\n(%@ x %@)", self->star.name, self->star.x, self->star.y];
 		self->imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"assets/star_map/%@.png", star.color]];
 	}
 }
