@@ -1337,8 +1337,14 @@
 				F6E8D5581223E778001CD21D /* LEBuildingSendInvite.m */,
 				F6E766BC11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.h */,
 				F6E766BD11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.m */,
+				F6B249251250B4BE001AFEC9 /* LEBuildingSubsidizeParty.h */,
+				F6B249261250B4BE001AFEC9 /* LEBuildingSubsidizeParty.m */,
 				F678F75311A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.h */,
 				F678F75411A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.m */,
+				F6B249221250B46C001AFEC9 /* LEBuildingSubsidizeSearch.h */,
+				F6B249231250B46C001AFEC9 /* LEBuildingSubsidizeSearch.m */,
+				F6B249281250B4DE001AFEC9 /* LEBuildingSubsidizeTraining.h */,
+				F6B249291250B4DE001AFEC9 /* LEBuildingSubsidizeTraining.m */,
 				F6E3EFBA11B4389A00E7BC86 /* LEBuildingThrowParty.h */,
 				F6E3EFBB11B4389A00E7BC86 /* LEBuildingThrowParty.m */,
 				F6F854C512203FF20000CD09 /* LEBuildingTradeOneForOne.h */,
@@ -1471,12 +1477,6 @@
 				F6DA5A58124E69E9005D11F6 /* LEStatsSpyRank.m */,
 				F6DA5A5A124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.h */,
 				F6DA5A5B124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.m */,
-				F6B249221250B46C001AFEC9 /* LEBuildingSubsidizeSearch.h */,
-				F6B249231250B46C001AFEC9 /* LEBuildingSubsidizeSearch.m */,
-				F6B249251250B4BE001AFEC9 /* LEBuildingSubsidizeParty.h */,
-				F6B249261250B4BE001AFEC9 /* LEBuildingSubsidizeParty.m */,
-				F6B249281250B4DE001AFEC9 /* LEBuildingSubsidizeTraining.h */,
-				F6B249291250B4DE001AFEC9 /* LEBuildingSubsidizeTraining.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;

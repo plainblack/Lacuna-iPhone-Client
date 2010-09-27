@@ -9,6 +9,7 @@
 #import "LEBuildingTrainSpy.h"
 #import "LEMacros.h"
 #import "Session.h"
+#import "Util.h"
 
 
 @implementation LEBuildingTrainSpy
@@ -35,8 +36,8 @@
 
 - (void)processSuccess {
 	NSDictionary *result = [self.response objectForKey:@"result"];
-	self.trained = [result objectForKey:@"trained"];
-	self.notTrained = [result objectForKey:@"not_trained"];
+	self.trained = [Util asNumber:[result objectForKey:@"trained"]];
+	self.notTrained = [Util asNumber:[result objectForKey:@"not_trained"]];
 }
 
 

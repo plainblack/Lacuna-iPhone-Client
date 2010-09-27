@@ -12,6 +12,7 @@
 #import "LEBuildingViewShipBuildQueue.h"
 #import "LEBuildingGetBuildableShips.h"
 #import "LEBuildingBuildShip.h"
+#import	"LEBuildingSubsidizeBuildQueue.h"
 #import "LETableViewCellButton.h"
 #import "ViewShipBuildQueueController.h"
 #import "BuildShipTypeController.h"
@@ -59,6 +60,7 @@
 	NSMutableArray *actionRows = [NSMutableArray arrayWithCapacity:1];
 	[actionRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_SHIP_BUILD_QUEUE]];
 	[actionRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_BUILD_SHIP]];
+	[actionRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_SUBSIDIZE]]; //KEVIN TODO only show if has builds pending
 	
 	self.sections = _array(productionSection, _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", actionRows, @"rows"), [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
 }
@@ -68,6 +70,7 @@
 	switch (buildingRow) {
 		case BUILDING_ROW_VIEW_SHIP_BUILD_QUEUE:
 		case BUILDING_ROW_BUILD_SHIP:
+		case BUILDING_ROW_SUBSIDIZE:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		default:
@@ -92,6 +95,12 @@
 			buildShipCell.textLabel.text = @"Build Ship";
 			cell = buildShipCell;
 			break;
+		case BUILDING_ROW_SUBSIDIZE:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *subsidizeButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			subsidizeButtonCell.textLabel.text = @"Subsidize Build Queue";
+			cell = subsidizeButtonCell;
+			break;
 		default:
 			cell = [super tableView:tableView cellForBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex];
 			break;
@@ -114,6 +123,10 @@
 			BuildShipTypeController *buildShipTypeController = [BuildShipTypeController create];
 			buildShipTypeController.shipyard = self;
 			return buildShipTypeController;
+			return nil;
+			break;
+		case BUILDING_ROW_SUBSIDIZE:
+			[[[LEBuildingSubsidizeBuildQueue alloc] initWithCallback:@selector(subsidizedBuildQueue:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
 			return nil;
 			break;
 		default:
@@ -173,5 +186,14 @@
 	self.buildQueue = request.shipBuildQueue;
 	return nil;
 }
+
+
+- (id)subsidizedBuildQueue:(LEBuildingSubsidizeBuildQueue *)request {
+	[self parseData:request.result];
+	[[self findMapBuilding] parseData:[request.result objectForKey:@"building"]];
+	self.needsRefresh = YES;
+	return nil;
+}
+
 
 @end

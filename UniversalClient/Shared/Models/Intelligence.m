@@ -18,6 +18,7 @@
 #import "LEBuildingBurnSpy.h"
 #import "LEBuildingNameSpy.h"
 #import "LEBuildingViewSpies.h"
+#import "LEBuildingSubsidizeTraining.h"
 #import "Spy.h"
 
 
@@ -85,6 +86,8 @@
 	[spyRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_SPY_BUILD_COST]];
 	[spyRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_SPIES_BUTTON]];
 	
+	[spyRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_SUBSIDIZE]]; //KEVIN TODO ONLY SHOW IF HAS SPIES TRAINING
+	
 	if ([self.numSpies compare:self.maxSpies] == NSOrderedAscending) {
 		[spyRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_BUILD_SPY_BUTTON]];
 	}
@@ -100,6 +103,7 @@
 			break;
 		case BUILDING_ROW_BUILD_SPY_BUTTON:
 		case BUILDING_ROW_VIEW_SPIES_BUTTON:
+		case BUILDING_ROW_SUBSIDIZE:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		case BUILDING_ROW_NUM_SPIES:
@@ -140,6 +144,12 @@
 			viewSpiesButtonCell.textLabel.text = @"View spies";
 			cell = viewSpiesButtonCell;
 			break;
+		case BUILDING_ROW_SUBSIDIZE:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *subsidizeButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			subsidizeButtonCell.textLabel.text = @"Subsidize Training";
+			cell = subsidizeButtonCell;
+			break;
 		default:
 			cell = [super tableView:tableView cellForBuildingRow:buildingRow rowIndex:rowIndex];
 			break;
@@ -160,6 +170,10 @@
 			ViewSpiesController *viewSpiesController = [ViewSpiesController create];
 			viewSpiesController.intelligenceBuilding = self;
 			return viewSpiesController;
+			break;
+		case BUILDING_ROW_SUBSIDIZE:
+			[[[LEBuildingSubsidizeTraining alloc] initWithCallback:@selector(subsidizedTraining:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+			return nil;
 			break;
 		default:
 			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];
@@ -214,6 +228,7 @@
 		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Your spy could not be trained. You probably don't have enough resources to train one." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 		[av show];
 	}
+	[self generateSections];
 	self.needsRefresh = YES;
 	
 	self.spiesUpdated = [NSDate date];
@@ -238,6 +253,7 @@
 
 
 - (id)spyBurnt:(LEBuildingBurnSpy *)request {
+	self.numSpies = [self.numSpies decimalNumberBySubtracting:[NSDecimalNumber one]];
 	Spy *spyToRemove;
 	for (Spy *newSpy in self.spies) {
 		if ([newSpy.id isEqualToString:request.spyId]) {
@@ -249,6 +265,8 @@
 	}
 	
 	self.spiesUpdated = [NSDate date];
+	[self generateSections];
+	self.needsRefresh = YES;
 	return nil;
 }
 
@@ -283,6 +301,15 @@
 	}
 	self.spiesUpdated = [NSDate date];
 
+	return nil;
+}
+
+
+- (id)subsidizedTraining:(LEBuildingSubsidizeTraining *)request {
+	[self parseData:request.result];
+	[[self findMapBuilding] parseData:[request.result objectForKey:@"building"]];
+	self.spies = nil;
+	self.needsRefresh = YES;
 	return nil;
 }
 

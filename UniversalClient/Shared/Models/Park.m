@@ -13,6 +13,7 @@
 #import "LETableViewCellLabeledText.h"
 #import "LETableViewCellLabeledIconText.h"
 #import "LEBuildingThrowParty.h"
+#import "LEBuildingSubsidizeParty.h"
 
 
 @implementation Park
@@ -63,8 +64,9 @@
 		[partyRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_THROW_PARTY]];
 	} else {
 		[partyRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_PARTY_PENDING]];
+		[partyRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_PARTY_HAPPINESS]];
+		[partyRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_SUBSIDIZE]];
 	}
-	[partyRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_PARTY_HAPPINESS]];
 	
 	self.sections = _array([self generateProductionSection], _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Party", @"name", partyRows, @"rows"), [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
 }
@@ -73,6 +75,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForBuildingRow:(BUILDING_ROW)buildingRow {
 	switch (buildingRow) {
 		case BUILDING_ROW_THROW_PARTY:
+		case BUILDING_ROW_SUBSIDIZE:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		case BUILDING_ROW_PARTY_PENDING:
@@ -109,6 +112,12 @@
 			}
 			cell = partyPendingCell;
 			break;
+		case BUILDING_ROW_SUBSIDIZE:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *subsidizeButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			subsidizeButtonCell.textLabel.text = @"Subsidize Party";
+			cell = subsidizeButtonCell;
+			break;
 		case BUILDING_ROW_PARTY_HAPPINESS:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellLabeledIconText *happinessGeneratesCell = [LETableViewCellLabeledIconText getCellForTableView:tableView isSelectable:NO];
@@ -132,6 +141,10 @@
 			[[[LEBuildingThrowParty alloc] initWithCallback:@selector(throwingParty:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
 			return nil;
 			break;
+		case BUILDING_ROW_SUBSIDIZE:
+			[[[LEBuildingSubsidizeParty alloc] initWithCallback:@selector(subsidizedParty:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+			return nil;
+			break;
 		default:
 			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];
 			break;
@@ -143,6 +156,14 @@
 #pragma mark Callback Methods
 
 - (id)throwingParty:(LEBuildingThrowParty *)request {
+	[self parseData:request.result];
+	[[self findMapBuilding] parseData:[request.result objectForKey:@"building"]];
+	self.needsRefresh = YES;
+	return nil;
+}
+
+
+- (id)subsidizedParty:(LEBuildingSubsidizeParty *)request {
 	[self parseData:request.result];
 	[[self findMapBuilding] parseData:[request.result objectForKey:@"building"]];
 	self.needsRefresh = YES;

@@ -18,6 +18,7 @@
 #import "LEBuildingGetOresAvailableForProcessing.h"
 #import "SearchForGlyphController.h"
 #import "AssembleGlyphsControllerV2.h"
+#import "LEBuildingSubsidizeSearch.h"
 
 
 @implementation Archaeology
@@ -67,7 +68,10 @@
 	NSDictionary *workData = [[data objectForKey:@"building"] objectForKey:@"work"];
 	if (workData) {
 		self.secondsRemaining = _intv([workData objectForKey:@"seconds_remaining"]);
+	} else {
+		self.secondsRemaining = 0;
 	}
+
 }
 
 
@@ -76,6 +80,7 @@
 	NSMutableArray *glyphRows = [NSMutableArray arrayWithCapacity:2];
 	if (self.secondsRemaining > 0) {
 		[glyphRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_GLYPH_SEARCHING]];
+		[glyphRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_SUBSIDIZE]];
 	} else {
 		[glyphRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_GLYPH_SEARCH]];
 	}
@@ -88,9 +93,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForBuildingRow:(BUILDING_ROW)buildingRow {
 	switch (buildingRow) {
 		case BUILDING_ROW_GLYPH_SEARCH:
-			return [LETableViewCellButton getHeightForTableView:tableView];
-			break;
 		case BUILDING_ROW_GLYPH_ASSEMBLE:
+		case BUILDING_ROW_SUBSIDIZE:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		case BUILDING_ROW_GLYPH_SEARCHING:
@@ -125,6 +129,12 @@
 			searchingCell.content.text = [Util prettyDuration:self.secondsRemaining];
 			cell = searchingCell;
 			break;
+		case BUILDING_ROW_SUBSIDIZE:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *subsidizeButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			subsidizeButtonCell.textLabel.text = @"Subsidize Search";
+			cell = subsidizeButtonCell;
+			break;
 		default:
 			cell = [super tableView:tableView cellForBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex];
 			break;
@@ -147,6 +157,10 @@
 			AssembleGlyphsControllerV2 *assembleGlyphsControllerV2 = [AssembleGlyphsControllerV2 create];
 			assembleGlyphsControllerV2.archaeology = self;
 			return assembleGlyphsControllerV2;
+			break;
+		case BUILDING_ROW_SUBSIDIZE:
+			[[[LEBuildingSubsidizeSearch alloc] initWithCallback:@selector(subsidizedSearch:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+			return nil;
 			break;
 		default:
 			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];
@@ -216,6 +230,14 @@
 
 
 - (id)searchedForGlyph:(LEBuildingGlyphSearch *)request {
+	[self parseData:request.result];
+	[[self findMapBuilding] parseData:[request.result objectForKey:@"building"]];
+	self.needsRefresh = YES;
+	return nil;
+}
+
+
+- (id)subsidizedSearch:(LEBuildingSubsidizeSearch *)request {
 	[self parseData:request.result];
 	[[self findMapBuilding] parseData:[request.result objectForKey:@"building"]];
 	self.needsRefresh = YES;
