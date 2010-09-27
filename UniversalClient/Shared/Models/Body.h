@@ -7,20 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseMapItem.h"
 #import "StoredResource.h"
 #import "NoLimitResource.h"
 #import "Building.h"
 
 
-@interface Body : NSObject {
+@interface Body : BaseMapItem {
 	NSString *id;
-	NSDecimalNumber *x;
-	NSDecimalNumber *y;
 	NSString *starId;
 	NSString *starName;
 	NSDecimalNumber *orbit;
-	NSString *type;
-	NSString *name;
 	NSString *imageName;
 	NSDecimalNumber *size;
 	NSDecimalNumber *planetWater;
@@ -44,13 +41,9 @@
 
 
 @property (nonatomic, retain) NSString *id;
-@property (nonatomic, retain) NSDecimalNumber *x;
-@property (nonatomic, retain) NSDecimalNumber *y;
 @property (nonatomic, retain) NSString *starId;
 @property (nonatomic, retain) NSString *starName;
 @property (nonatomic, retain) NSDecimalNumber *orbit;
-@property (nonatomic, retain) NSString *type;
-@property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *imageName;
 @property (nonatomic, retain) NSDecimalNumber *size;
 @property (nonatomic, retain) NSDecimalNumber *planetWater;
@@ -73,7 +66,7 @@
 @property (nonatomic, readonly) BOOL canBuild;
 
 
-- (void)parseData:(NSDictionary *)bodyData;
+- (void)parseData:(NSMutableDictionary *)bodyData;
 - (void)tick:(NSInteger)interval;
 - (void)loadBuildingMap;
 - (void)loadBuilding:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl;

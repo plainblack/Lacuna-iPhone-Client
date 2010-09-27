@@ -12,7 +12,7 @@
 @class Star;
 
 
-@interface LEUniverseCell : UIView {
+@interface LEUniverseStarCell : UIView {
 	Star *star;
 	UILabel *dataLabel;
 	UIImageView *imageView;

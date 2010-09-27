@@ -8,6 +8,7 @@
 
 #import "StarMap.h"
 #import "LEMapGetStars.h"
+#import "BaseMapItem.h"
 #import "Star.h"
 #import "Body.h"
 
@@ -49,7 +50,7 @@
 #pragma mark -
 #pragma mark Instance Methods
 
-- (Star *)gridX:(NSDecimalNumber *)gridX gridY:(NSDecimalNumber *)gridY {
+- (BaseMapItem *)gridX:(NSDecimalNumber *)gridX gridY:(NSDecimalNumber *)gridY {
 	NSDecimalNumber *sectorX = [self gridToSector:gridX];
 	NSDecimalNumber *sectorY = [self gridToSector:gridY];
 	NSString *sectorKey = [NSString stringWithFormat:@"%@x%@", sectorX, sectorY];
@@ -59,7 +60,7 @@
 			return nil;
 		} else {
 			NSString *gridKey = [NSString stringWithFormat:@"%@x%@", gridX, gridY];
-			Star *cell = [sector objectForKey:gridKey];
+			BaseMapItem *cell = [sector objectForKey:gridKey];
 			return cell;
 		}
 	} else {
@@ -80,10 +81,6 @@
 	NSDecimalNumber *topLeftY = [sectorY decimalNumberByMultiplyingBy:SECTOR_SIZE];
 	NSDecimalNumber *bottomRightX = [[sectorX decimalNumberByMultiplyingBy:SECTOR_SIZE] decimalNumberByAdding:SECTOR_SIZE];
 	NSDecimalNumber *bottomRightY = [[sectorY decimalNumberByMultiplyingBy:SECTOR_SIZE] decimalNumberByAdding:SECTOR_SIZE];
-	NSLog(@"Top Left X: %@", topLeftX);
-	NSLog(@"Top Left Y: %@", topLeftY);
-	NSLog(@"Bottom Right X: %@", bottomRightX);
-	NSLog(@"Bottom Right Y: %@", bottomRightY);
 	[[[LEMapGetStars alloc] initWithCallback:@selector(sectorLoaded:) target:self topLeftX:topLeftX topLeftY:topLeftY bottomRightX:bottomRightX bottomRightY:bottomRightY] autorelease];
 	[self.sectors setObject:[NSNull null] forKey:sectorKey];
 }
@@ -105,11 +102,15 @@
 	NSLog(@"Sector Loaded Sector %@", sectorKey);
 	
 	NSMutableDictionary *tmp = [NSMutableDictionary dictionaryWithCapacity:5];
-	for (NSDictionary *starData in request.stars) {
+	for (NSMutableDictionary *starData in request.stars) {
 		Star *star = [[[Star alloc] init] autorelease];
 		[star parseData:starData];
 		[tmp setObject:star forKey:[NSString stringWithFormat:@"%@x%@", star.x, star.y]];
-		//KEVIN TODO: Handle bodies next
+		for (NSMutableDictionary *bodyData in [starData objectForKey:@"bodies"]) {
+			Body *body = [[[Body alloc] init] autorelease];
+			[body parseData:bodyData];
+			[tmp setObject:body forKey:[NSString stringWithFormat:@"%@x%@", body.x, body.y]];
+		}
 	}
 	[self.sectors setObject:tmp forKey:sectorKey];
 	self.lastUpdate = [NSDate date];

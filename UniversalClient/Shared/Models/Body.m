@@ -19,13 +19,9 @@
 
 
 @synthesize id;
-@synthesize x;
-@synthesize y;
 @synthesize starId;
 @synthesize starName;
 @synthesize orbit;
-@synthesize type;
-@synthesize name;
 @synthesize imageName;
 @synthesize size;
 @synthesize planetWater;
@@ -59,13 +55,9 @@
 
 - (void)dealloc {
 	self.id = nil;
-	self.x = nil;
-	self.y = nil;
 	self.starId = nil;
 	self.starName = nil;
 	self.orbit = nil;
-	self.type = nil;
-	self.name = nil;
 	self.imageName = nil;
 	self.size = nil;
 	self.planetWater = nil;
@@ -99,15 +91,12 @@
 #pragma mark -
 #pragma mark Instance Methods
 
-- (void)parseData:(NSDictionary *)bodyData {
+- (void)parseData:(NSMutableDictionary *)bodyData {
+	[super parseData:bodyData];
 	self.id = [Util idFromDict:bodyData named:@"id"];
-	self.x = [Util asNumber:[bodyData objectForKey:@"x"]];
-	self.y = [Util asNumber:[bodyData objectForKey:@"y"]];
 	self.starId = [bodyData objectForKey:@"star_id"];
 	self.starName = [bodyData objectForKey:@"star_name"];
 	self.orbit = [Util asNumber:[bodyData objectForKey:@"orbit"]];
-	self.type = [[bodyData objectForKey:@"type"] capitalizedString];
-	self.name = [bodyData objectForKey:@"name"];
 	self.imageName = [bodyData objectForKey:@"image"];
 	self.size = [Util asNumber:[bodyData objectForKey:@"size"]];
 	self.planetWater = [Util asNumber:[bodyData objectForKey:@"water"]];

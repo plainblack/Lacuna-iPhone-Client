@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@class Star;
+@class BaseMapItem;
 
 
 @interface StarMap : NSObject {
@@ -22,7 +22,7 @@
 @property (retain) NSDate *lastUpdate;
 
 
-- (Star *)gridX:(NSDecimalNumber *)gridX gridY:(NSDecimalNumber *)gridY;
+- (BaseMapItem *)gridX:(NSDecimalNumber *)gridX gridY:(NSDecimalNumber *)gridY;
 
 
 @end

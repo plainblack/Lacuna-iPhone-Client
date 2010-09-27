@@ -7,27 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseMapItem.h"
 
 
-@interface Star : NSObject {
+@interface Star : BaseMapItem {
 	NSString *id;
 	NSString *color;
-	NSString *name;
-	NSDecimalNumber *x;
-	NSDecimalNumber *y;
-	NSDecimalNumber *z;
 }
 
 
 @property (nonatomic, retain) NSString *id;
 @property (nonatomic, retain) NSString *color;
-@property (nonatomic, retain) NSString *name;
-@property (nonatomic, retain) NSDecimalNumber *x;
-@property (nonatomic, retain) NSDecimalNumber *y;
-@property (nonatomic, retain) NSDecimalNumber *z;
 
 
-- (void)parseData:(NSDictionary *)data;
+- (void)parseData:(NSMutableDictionary *)data;
 
 
 @end

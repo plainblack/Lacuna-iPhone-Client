@@ -11,8 +11,11 @@
 #import "Util.h"
 #import "Session.h"
 #import "StarMap.h"
+#import "BaseMapItem.h"
+#import "Body.h"
 #import "Star.h"
-#import "LEUniverseCell.h"
+#import "LEUniverseStarCell.h"
+#import "LEUniverseBodyCell.h"
 
 #define MAP_CELL_SIZE 50
 #define HALF_MAP_CELL_SIZE MAP_CELL_SIZE/2
@@ -20,8 +23,10 @@
 
 @interface ViewUniverseController (PrivateMethods)
 
-- (LEUniverseCell *)getCell;
-- (void)releaseCell:(LEUniverseCell *)cell;
+- (LEUniverseBodyCell *)getBodyCellForType:(NSString *)type;
+- (LEUniverseStarCell *)getStarCell;
+- (void)releaseBodyCell:(LEUniverseBodyCell *)cell;
+- (void)releaseStarCell:(LEUniverseStarCell *)cell;
 - (void)tileView;
 
 @end
@@ -32,8 +37,10 @@
 
 @synthesize scrollView;
 @synthesize map;
-@synthesize inUseCells;
-@synthesize reusableCells;
+@synthesize inUseStarCells;
+@synthesize reusableStarCells;
+@synthesize inUseBodyCells;
+@synthesize reusableBodyCells;
 @synthesize starMap;
 
 
@@ -51,16 +58,26 @@
 		self.starMap = [[[StarMap alloc] init] autorelease];
 	}
 	
-	if (!self.reusableCells) {
-		self.reusableCells = [NSMutableArray arrayWithCapacity:20];
+	if (!self.reusableStarCells) {
+		self.reusableStarCells = [NSMutableArray arrayWithCapacity:5];
 	}
 	
-	if (self.inUseCells) {
-		[self.inUseCells removeAllObjects];
+	if (self.inUseStarCells) {
+		[self.inUseStarCells removeAllObjects];
 	} else {
-		self.inUseCells = [NSMutableDictionary dictionaryWithCapacity:50];
+		self.inUseStarCells = [NSMutableDictionary dictionaryWithCapacity:5];
 	}
 	
+	if (!self.reusableBodyCells) {
+		self.reusableBodyCells = [NSMutableArray arrayWithCapacity:10];
+	}
+	
+	if (self.inUseBodyCells) {
+		[self.inUseBodyCells removeAllObjects];
+	} else {
+		self.inUseBodyCells = [NSMutableDictionary dictionaryWithCapacity:20];
+	}
+		
 	NSDecimalNumber *xSize;
 	if ([session.universeMinX compare:[NSDecimalNumber zero]] == NSOrderedAscending) {
 		xSize = [session.universeMaxX decimalNumberBySubtracting:session.universeMinX];
@@ -116,14 +133,16 @@
 
 
 - (void)didReceiveMemoryWarning {
-	[self.reusableCells removeAllObjects];
+	[self.reusableStarCells removeAllObjects];
+	[self.reusableBodyCells removeAllObjects];
     [super didReceiveMemoryWarning];
 }
 
 - (void)viewDidUnload {
 	self.scrollView = nil;
 	self.map = nil;
-	self.inUseCells = nil;
+	self.inUseStarCells = nil;
+	self.inUseBodyCells = nil;
     [super viewDidUnload];
 }
 
@@ -131,8 +150,10 @@
 - (void)dealloc {
 	self.scrollView = nil;
 	self.map = nil;
-	self.inUseCells = nil;
-	self.reusableCells = nil;
+	self.inUseStarCells = nil;
+	self.reusableStarCells = nil;
+	self.inUseBodyCells = nil;
+	self.reusableBodyCells = nil;
     [super dealloc];
 }
 
@@ -156,24 +177,58 @@
 #pragma mark -
 #pragma mark PrivateMethods
 
-- (LEUniverseCell *)getCell {
-	LEUniverseCell *cell;
+- (LEUniverseStarCell *)getStarCell {
+	LEUniverseStarCell *cell;
 	
-	if ([self.reusableCells count] > 0) {
-		cell = [self.reusableCells objectAtIndex:0];
-		[self.reusableCells removeObject:cell];
+	if ([self.reusableStarCells count] > 0) {
+		cell = [self.reusableStarCells objectAtIndex:0];
+		[self.reusableStarCells removeObject:cell];
 	} else {
-		cell = [[LEUniverseCell alloc] initWithFrame:CGRectMake(0.0, 0.0, 225.0, 225.0)];
+		cell = [[LEUniverseStarCell alloc] initWithFrame:CGRectMake(0.0, 0.0, 225.0, 225.0)];
 	}
 
 	return cell;
 }
 
 
-- (void)releaseCell:(LEUniverseCell *)cell {
+- (void)releaseStarCell:(LEUniverseStarCell *)cell {
 	[cell removeFromSuperview];
 	[cell reset];
-	[self.reusableCells addObject:cell];
+	[self.reusableStarCells addObject:cell];
+}
+
+
+- (LEUniverseBodyCell *)getBodyCell:(NSString *)type {
+	LEUniverseBodyCell *cell;
+	
+	if ([self.reusableBodyCells count] > 0) {
+		cell = [self.reusableBodyCells objectAtIndex:0];
+		[self.reusableBodyCells removeObject:cell];
+		if ([type isEqualToString:@"asteroid"]) {
+			cell.frame = CGRectMake(0.0, 0.0, 22.5, 22.5);
+		} else if ([type isEqualToString:@"gas giant"]) {
+			cell.frame = CGRectMake(0.0, 0.0, 87, 87);
+		} else {
+			cell.frame = CGRectMake(0.0, 0.0, 45.75, 45.75);
+		}
+	} else {
+		if ([type isEqualToString:@"asteroid"]) {
+			cell = [[LEUniverseBodyCell alloc] initWithFrame:CGRectMake(0.0, 0.0, 22.5, 22.5)];
+		} else if ([type isEqualToString:@"gas giant"]) {
+			cell = [[LEUniverseBodyCell alloc] initWithFrame:CGRectMake(0.0, 0.0, 87, 87)];
+		} else {
+			cell = [[LEUniverseBodyCell alloc] initWithFrame:CGRectMake(0.0, 0.0, 45.75, 45.75)];
+		}
+	}
+	
+	return cell;
+}
+
+
+- (void)releaseBodyCell:(LEUniverseBodyCell *)cell {
+	[cell removeFromSuperview];
+	[cell reset];
+	[self.reusableBodyCells addObject:cell];
 }
 
 
@@ -192,17 +247,28 @@
 	visibleBounds = CGRectApplyAffineTransform(visibleBounds, CGAffineTransformInvert(self.map.transform));
 	NSMutableArray *keysToRemove = [NSMutableArray arrayWithCapacity:10];
 	
-	[self.inUseCells enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-		LEUniverseCell *cell = obj;
+	[self.inUseStarCells enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+		LEUniverseStarCell *cell = obj;
 		if (!CGRectIntersectsRect(cell.frame, visibleBounds)) {
-			[self releaseCell:cell];
+			[self releaseStarCell:cell];
 			[keysToRemove addObject:key];
 		}
 	}];
 	[keysToRemove enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-		[self.inUseCells removeObjectForKey:obj];
+		[self.inUseStarCells removeObjectForKey:obj];
 	}];
-    
+	
+	[self.inUseBodyCells enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+		LEUniverseBodyCell *cell = obj;
+		if (!CGRectIntersectsRect(cell.frame, visibleBounds)) {
+			[self releaseBodyCell:cell];
+			[keysToRemove addObject:key];
+		}
+	}];
+	[keysToRemove enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		[self.inUseBodyCells removeObjectForKey:obj];
+	}];
+	
 	float minX = CGRectGetMinX(visibleBounds);
 	float maxX = CGRectGetMaxX(visibleBounds);
 	float minY = CGRectGetMinY(visibleBounds);
@@ -212,25 +278,37 @@
 	int minCellY = floorf(minY/MAP_CELL_SIZE);
 	int maxCellY = floorf(maxY/MAP_CELL_SIZE);
 	
-	NSString *key;
-	LEUniverseCell *cell;
 	for (int x = minCellX; x <= maxCellX; x++) {
 		for (int y = minCellY; y <= maxCellY; y++) {
 			NSDecimalNumber *gridX = [[Util decimalFromInt:x] decimalNumberByAdding:session.universeMinX];
 			NSDecimalNumber *gridY = [[[Util decimalFromInt:y] decimalNumberByAdding:session.universeMinY] decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]];
 			
-			Star *star = [self.starMap gridX:gridX gridY:gridY];
+			BaseMapItem *item = [self.starMap gridX:gridX gridY:gridY];
 			
-			if (star) {
-				key = [NSString stringWithFormat:@"%ix%i", x, y];
-				cell = [self.inUseCells objectForKey:key];
-				if (!cell) {
-					NSLog(@"Creating cell for star %@,%@: %@", gridX, gridY, star);
-					cell = [self getCell];
-					[cell setStar:star];
-					cell.center = CGPointMake(x*MAP_CELL_SIZE + HALF_MAP_CELL_SIZE, y*MAP_CELL_SIZE + HALF_MAP_CELL_SIZE);
-					[self.map addSubview:cell];
-					[self.inUseCells setObject:cell forKey:key];
+			if (item) {
+				NSString *key = [NSString stringWithFormat:@"%ix%i", x, y];
+				if ([item.type isEqualToString:@"star"]) {
+					Star *star = (Star *)item;
+					LEUniverseStarCell *cell = [self.inUseStarCells objectForKey:key];
+					if (!cell) {
+						NSLog(@"Creating cell for star %@,%@: %@", gridX, gridY, star.name);
+						cell = [self getStarCell];
+						[cell setStar:star];
+						cell.center = CGPointMake(x*MAP_CELL_SIZE + HALF_MAP_CELL_SIZE, y*MAP_CELL_SIZE + HALF_MAP_CELL_SIZE);
+						[self.map addSubview:cell];
+						[self.inUseStarCells setObject:cell forKey:key];
+					}
+				} else {
+					Body *body = (Body *)item;
+					LEUniverseBodyCell *cell = [self.inUseBodyCells objectForKey:key];
+					if (!cell) {
+						NSLog(@"Creating cell for habitable planet %@,%@: %@", gridX, gridY, body.name);
+						cell = [self getBodyCell:body.type];
+						[cell setBody:body];
+						cell.center = CGPointMake(x*MAP_CELL_SIZE + HALF_MAP_CELL_SIZE, y*MAP_CELL_SIZE + HALF_MAP_CELL_SIZE);
+						[self.map addSubview:cell];
+						[self.inUseBodyCells setObject:cell forKey:key];
+					}
 				}
 			}
 		}

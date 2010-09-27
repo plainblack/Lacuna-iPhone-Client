@@ -216,7 +216,7 @@ static Session *sharedSession = nil;
 			[self.empire parseData:empireStatus];
 		}
 
-		NSDictionary *bodyStatus = [status objectForKey:@"body"];
+		NSMutableDictionary *bodyStatus = [status objectForKey:@"body"];
 		if (bodyStatus) {
 			[self.body parseData:bodyStatus];
 		}
