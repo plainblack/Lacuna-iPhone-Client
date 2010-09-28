@@ -182,6 +182,36 @@
 }
 
 
+- (BOOL)isConfirmCell:(NSIndexPath *)indexPath {
+	NSDictionary *section = [self.sections objectAtIndex:indexPath.section];
+	NSArray *rows = [section objectForKey:@"rows"];
+	
+	switch (_intv([rows objectAtIndex:indexPath.row])) {
+		case BUILDING_ROW_SUBSIDIZE:
+			return YES;
+			break;
+		default:
+			return [super isConfirmCell:indexPath];
+			break;
+	}
+}
+
+
+- (NSString *)confirmMessage:(NSIndexPath *)indexPath {
+	NSDictionary *section = [self.sections objectAtIndex:indexPath.section];
+	NSArray *rows = [section objectForKey:@"rows"];
+	
+	switch (_intv([rows objectAtIndex:indexPath.row])) {
+		case BUILDING_ROW_SUBSIDIZE:
+			return @"This will cost you 1 essentia per spy training. Do you wish to continue?";
+			break;
+		default:
+			return [super confirmMessage:indexPath];
+			break;
+	}
+}
+
+
 #pragma mark -
 #pragma mark Instance Methods
 
