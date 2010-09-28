@@ -33,6 +33,7 @@
 
 
 - (IBAction)logout;
+- (IBAction)showGotoPage;
 
 
 @end

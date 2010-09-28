@@ -53,6 +53,8 @@
 	if ([self.navigationController.viewControllers objectAtIndex:0] == self) {
 		self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout)] autorelease];
 	}
+	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Go To" style:UIBarButtonItemStyleBordered target:self action:@selector(showGotoPage)] autorelease];
 	
 	if (!self.starMap) {
 		self.starMap = [[[StarMap alloc] init] autorelease];
@@ -230,6 +232,33 @@
 }
 
 
+- (IBAction)showGotoPage {
+	//NSDecimalNumber *gridX = [[Util decimalFromInt:x] decimalNumberByAdding:session.universeMinX];
+	//NSDecimalNumber *gridY = [[[Util decimalFromInt:y] decimalNumberByAdding:session.universeMinY] decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]];
+
+	
+	Session *session = [Session sharedInstance];
+	if (session.body) {
+		NSLog(@"Has Body at: %@, %@", session.body.x, session.body.y);
+		NSDecimalNumber *tmpX = [session.body.x decimalNumberByMultiplyingBy:[Util decimalFromInt:MAP_CELL_SIZE]];
+		NSDecimalNumber *tmpY = [session.body.y decimalNumberByMultiplyingBy:[Util decimalFromInt:MAP_CELL_SIZE]];
+		
+		tmpX = [tmpX decimalNumberByAdding:session.universeMinX];
+		tmpY = [[tmpY decimalNumberByAdding:session.universeMinY] decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]];
+
+		CGFloat topLeftX = [tmpX floatValue];
+		CGFloat topLeftY = [tmpY floatValue];
+		
+		CGRect scrollToRect = CGRectMake(topLeftX, topLeftY, MAP_CELL_SIZE, MAP_CELL_SIZE);
+		NSLog(@"Scroll to rect: %f, %f, %f, %f", scrollToRect.origin.x, scrollToRect.origin.y, scrollToRect.size.width, scrollToRect.size.height);
+		[self.scrollView scrollRectToVisible:scrollToRect animated:NO];
+	}
+}
+
+
+#pragma mark -
+#pragma mark PrivateMethods
+
 - (void)tileView {
 	Session *session = [Session sharedInstance];
 	CGRect visibleBounds = self.scrollView.bounds;
@@ -280,7 +309,6 @@
 					Star *star = (Star *)item;
 					LEUniverseStarCell *cell = [self.inUseStarCells objectForKey:key];
 					if (!cell) {
-						NSLog(@"Creating cell for star %@,%@: %@", gridX, gridY, star.name);
 						cell = [self getStarCell];
 						[cell setStar:star];
 						cell.center = CGPointMake(x*MAP_CELL_SIZE + HALF_MAP_CELL_SIZE, y*MAP_CELL_SIZE + HALF_MAP_CELL_SIZE);
@@ -291,7 +319,6 @@
 					Body *body = (Body *)item;
 					LEUniverseBodyCell *cell = [self.inUseBodyCells objectForKey:key];
 					if (!cell) {
-						NSLog(@"Creating cell for habitable planet %@,%@: %@", gridX, gridY, body.name);
 						cell = [self getBodyCellForSize:_intv(body.size)];
 						[cell setBody:body];
 						cell.center = CGPointMake(x*MAP_CELL_SIZE + HALF_MAP_CELL_SIZE, y*MAP_CELL_SIZE + HALF_MAP_CELL_SIZE);
