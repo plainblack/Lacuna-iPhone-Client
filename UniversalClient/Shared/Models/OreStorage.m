@@ -78,7 +78,7 @@
 	switch (buildingRow) {
 		case BUILDING_ROW_STORED_ORE:
 			; //DO NOT REMOVE
-			ViewDictionaryController *viewDictionaryController = [ViewDictionaryController createWithName:@"Ore By Type" useLongLabels:NO];
+			ViewDictionaryController *viewDictionaryController = [ViewDictionaryController createWithName:@"Ore By Type" useLongLabels:NO icon:ORE_ICON];
 			viewDictionaryController.data = self.storedOre;
 			return viewDictionaryController;
 			break;

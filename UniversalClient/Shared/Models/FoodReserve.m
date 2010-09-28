@@ -76,7 +76,7 @@
 	switch (buildingRow) {
 		case BUILDING_ROW_STORED_FOOD:
 			; //DO NOT REMOVE
-			ViewDictionaryController *viewDictionaryController = [ViewDictionaryController createWithName:@"Food By Type" useLongLabels:NO];
+			ViewDictionaryController *viewDictionaryController = [ViewDictionaryController createWithName:@"Food By Type" useLongLabels:NO icon:FOOD_ICON];
 			viewDictionaryController.data = self.storedFood;
 			return viewDictionaryController;
 			break;

@@ -13,6 +13,7 @@
 #import "LEViewSectionTab.h"
 #import "LETableViewCellButton.h"
 #import "LETableViewCellLabeledText.h"
+#import "LETableViewCellLabeledIconText.h"
 #import "LETableViewCellBody.h"
 #import "LETableViewCellCurrentResources.h"
 #import "ViewBodyMapControllerV2.h"
@@ -87,28 +88,6 @@ typedef enum {
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Body"],
 								 [LEViewSectionTab tableView:self.tableView withText:@"Actions"],
 								 [LEViewSectionTab tableView:self.tableView withText:@"Composition"]);
-	
-	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"0"]];
-	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"1"]];
-	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"12"]];
-	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"123"]];
-	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"1234"]];
-	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"12345"]];
-	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"123456"]];
-	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"1234567"]];
-	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"12345678"]];
-	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"123456789"]];
-	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"1234567890"]];
-	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"-1"]];
-	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"-12"]];
-	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"-123"]];
-	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"-1234"]];
-	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"-12345"]];
-	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"-123456"]];
-	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"-1234567"]];
-	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"-12345678"]];
-	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"-123456789"]];
-	[Util prettyNSDecimalNumber:[NSDecimalNumber decimalNumberWithString:@"-1234567890"]];
 }
 
 
@@ -240,7 +219,7 @@ typedef enum {
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		case SECTION_COMPOSITION:
-			return [LETableViewCellLabeledText getHeightForTableView:tableView];
+			return [LETableViewCellLabeledIconText getHeightForTableView:tableView];
 			break;
 		default:
 			return 5.0;
@@ -303,15 +282,17 @@ typedef enum {
 			switch (indexPath.row) {
 				case COMPOSITION_ROW_SIZE:
 					; //DO NOT REMOVE
-					LETableViewCellLabeledText *sizeCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-					sizeCell.label.text = @"Size";
+					LETableViewCellLabeledIconText *sizeCell = [LETableViewCellLabeledIconText getCellForTableView:tableView isSelectable:NO];
+					sizeCell.label.text = @"Plots";
+					sizeCell.icon.image = PLOTS_ICON;
 					sizeCell.content.text = [NSString stringWithFormat:@"%@ (%@ used)", session.body.size, session.body.buildingCount];
 					cell = sizeCell;
 					break;
 				case COMPOSITION_ROW_WATER:
 					; //DO NOT REMOVE
-					LETableViewCellLabeledText *waterCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+					LETableViewCellLabeledIconText *waterCell = [LETableViewCellLabeledIconText getCellForTableView:tableView isSelectable:NO];
 					waterCell.label.text = @"Water";
+					waterCell.icon.image = WATER_ICON;
 					waterCell.content.text = [NSString stringWithFormat:@"%@", session.body.planetWater];
 					cell = waterCell;
 					break;
@@ -319,8 +300,9 @@ typedef enum {
 					; //DO NOT REMOVE
 					id oreTypeKey = [self.oreKeysSorted objectAtIndex:(indexPath.row-2)];
 					id oreTypeValue = [self.watchedBody.ores objectForKey:oreTypeKey];
-					LETableViewCellLabeledText *oreTypeCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+					LETableViewCellLabeledIconText *oreTypeCell = [LETableViewCellLabeledIconText getCellForTableView:tableView isSelectable:NO];
 					oreTypeCell.label.text = [Util prettyCodeValue:[NSString stringWithFormat:@"%@", oreTypeKey]];
+					oreTypeCell.icon.image = ORE_ICON;
 					oreTypeCell.content.text = [NSString stringWithFormat:@"%@", oreTypeValue];
 					cell = oreTypeCell;
 					break;

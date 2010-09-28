@@ -49,15 +49,18 @@
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	self.navigationController.toolbar.tintColor = self.navigationController.navigationBar.tintColor;
 
-	self.plotsLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 200.0, 22.0)] autorelease];
+	self.plotsLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, 100.0, 22.0)] autorelease];
 	self.plotsLabel.font = TEXT_FONT;
 	self.plotsLabel.textColor = TEXT_COLOR;
 	self.plotsLabel.backgroundColor = [UIColor clearColor];
-	self.plotsLabel.text = [NSString stringWithFormat:@"%@/%@ Buildings", session.body.buildingCount, session.body.size];
-	UIBarButtonItem *plotBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.plotsLabel] autorelease];
+	self.plotsLabel.text = [NSString stringWithFormat:@"%@/%@", session.body.buildingCount, session.body.size];
+	UIBarButtonItem *numOfPlotsBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.plotsLabel] autorelease];
+	UIImageView *plotIconView = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 22.0, 22.0)] autorelease];
+	plotIconView.image = PLOTS_ICON;
+	UIBarButtonItem *plotIconBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:plotIconView] autorelease];
 	UIBarButtonItem *flexable = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
 	UIBarButtonItem	*pageCurl = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPageCurl target:self action:@selector(switchOverlay)] autorelease];
-	[self setToolbarItems:_array(plotBarButtonItem, flexable, pageCurl) animated:NO];
+	[self setToolbarItems:_array(plotIconBarButtonItem, numOfPlotsBarButtonItem, flexable, pageCurl) animated:NO];
 
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];  
 	BOOL showMapOverlay = [userDefaults boolForKey:@"showMapOverlay"];
@@ -242,7 +245,7 @@
 				}
 			}
 		}
-		self.plotsLabel.text = [NSString stringWithFormat:@"%@/%@ Buildings", session.body.buildingCount, session.body.size];
+		self.plotsLabel.text = [NSString stringWithFormat:@"%@/%@", session.body.buildingCount, session.body.size];
 	}
 }
 

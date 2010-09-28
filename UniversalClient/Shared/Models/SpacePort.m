@@ -153,7 +153,7 @@
 	switch (buildingRow) {
 		case BUILDING_ROW_DOCKED_SHIPS:
 			; //DO NOT REMOVE
-			ViewDictionaryController *viewDictionaryController = [ViewDictionaryController createWithName:@"Docked Ship Count" useLongLabels:YES];
+			ViewDictionaryController *viewDictionaryController = [ViewDictionaryController createWithName:@"Docked Ship Count" useLongLabels:YES icon:nil];
 			viewDictionaryController.data = self.dockedShips;
 			return viewDictionaryController;
 			break;

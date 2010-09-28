@@ -14,6 +14,7 @@
 	NSString *name;
 	NSDictionary *data;
 	NSArray *keysSorted;
+	UIImage *icon;
 	BOOL useLongLabels;
 }
 
@@ -22,7 +23,7 @@
 @property (nonatomic, retain) NSArray *keysSorted;
 
 
-+ (ViewDictionaryController *)createWithName:(NSString *)name useLongLabels:(BOOL)useLongLabels;
++ (ViewDictionaryController *)createWithName:(NSString *)name useLongLabels:(BOOL)useLongLabels icon:(UIImage *)icon;
 
 
 @end

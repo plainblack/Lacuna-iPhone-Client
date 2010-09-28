@@ -26,6 +26,7 @@
 #define FOOD_ICON [UIImage imageNamed:@"assets/iphone ui/food.png"]
 #define HAPPINESS_ICON [UIImage imageNamed:@"assets/iphone ui/happiness.png"]
 #define ORE_ICON [UIImage imageNamed:@"assets/iphone ui/ore.png"]
+#define PLOTS_ICON [UIImage imageNamed:@"assets/iphone ui/plots.png"]
 #define TIME_ICON [UIImage imageNamed:@"assets/iphone ui/time.png"]
 #define WASTE_ICON [UIImage imageNamed:@"assets/iphone ui/waste.png"]
 #define WATER_ICON [UIImage imageNamed:@"assets/iphone ui/water.png"]

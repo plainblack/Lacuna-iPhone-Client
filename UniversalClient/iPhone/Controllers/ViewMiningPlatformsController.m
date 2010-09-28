@@ -7,6 +7,7 @@
 //
 
 #import "ViewMiningPlatformsController.h"
+#import "LEMacros.h"
 #import "Util.h"
 #import "MiningMinistry.h"
 #import "MiningPlatform.h"
@@ -175,7 +176,7 @@ typedef enum {
 			switch (indexPath.row) {
 				case ROW_ORE_COMPOSITION:
 					; //DO NOT REMOVE
-					ViewDictionaryController *viewDictionaryController = [ViewDictionaryController createWithName:@"Ore By Type" useLongLabels:NO];
+					ViewDictionaryController *viewDictionaryController = [ViewDictionaryController createWithName:@"Ore By Type" useLongLabels:NO icon:ORE_ICON];
 					viewDictionaryController.data = miningPlatform.oresPerHour;
 					[self.navigationController pushViewController:viewDictionaryController animated:YES];
 					break;

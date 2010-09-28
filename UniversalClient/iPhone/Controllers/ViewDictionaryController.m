@@ -11,6 +11,7 @@
 #import "Util.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellLabeledText.h"
+#import "LETableViewCellLabeledIconText.h"
 #import "LETableViewCellLongLabeledText.h"
 
 
@@ -65,6 +66,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (self->useLongLabels) {
 		return [LETableViewCellLongLabeledText getHeightForTableView:tableView];
+	} else if (self->icon) {
+		return [LETableViewCellLabeledIconText getHeightForTableView:tableView];
 	} else {
 		return [LETableViewCellLabeledText getHeightForTableView:tableView];
 	}
@@ -81,6 +84,14 @@
 			id value = [self.data objectForKey:key];
 			LETableViewCellLongLabeledText *emptyCell = [LETableViewCellLongLabeledText getCellForTableView:tableView isSelectable:NO];
 			emptyCell.label.text = [Util prettyCodeValue:[NSString stringWithFormat:@"%@", key]];
+			emptyCell.content.text = [NSString stringWithFormat:@"%@", value];
+			cell = emptyCell;
+		} else if (self->icon) {
+			id key = [self.keysSorted objectAtIndex:indexPath.row];
+			id value = [self.data objectForKey:key];
+			LETableViewCellLabeledIconText *emptyCell = [LETableViewCellLabeledIconText getCellForTableView:tableView isSelectable:NO];
+			emptyCell.label.text = [Util prettyCodeValue:[NSString stringWithFormat:@"%@", key]];
+			emptyCell.icon.image = self->icon;
 			emptyCell.content.text = [NSString stringWithFormat:@"%@", value];
 			cell = emptyCell;
 		} else {
@@ -123,6 +134,8 @@
 	self.keysSorted = nil;
 	[self->name release];
 	self->name = nil;
+	[self->icon release];
+	self->icon = nil;
     [super dealloc];
 }
 
@@ -130,10 +143,12 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (ViewDictionaryController *)createWithName:(NSString *)name useLongLabels:(BOOL)useLongLabels {
++ (ViewDictionaryController *)createWithName:(NSString *)name useLongLabels:(BOOL)useLongLabels icon:(UIImage *)icon {
 	ViewDictionaryController *viewDictionaryController = [[[ViewDictionaryController alloc] init] autorelease];
 	viewDictionaryController->name = name;
 	[viewDictionaryController->name retain];
+	viewDictionaryController->icon = icon;
+	[viewDictionaryController->icon retain];
 	viewDictionaryController->useLongLabels = useLongLabels;
 	return viewDictionaryController;
 }
