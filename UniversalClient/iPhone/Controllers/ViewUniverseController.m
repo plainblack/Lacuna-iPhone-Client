@@ -23,7 +23,7 @@
 
 @interface ViewUniverseController (PrivateMethods)
 
-- (LEUniverseBodyCell *)getBodyCellForType:(NSString *)type;
+- (LEUniverseBodyCell *)getBodyCellForSize:(NSInteger)size;
 - (LEUniverseStarCell *)getStarCell;
 - (void)releaseBodyCell:(LEUniverseBodyCell *)cell;
 - (void)releaseStarCell:(LEUniverseStarCell *)cell;
@@ -198,27 +198,16 @@
 }
 
 
-- (LEUniverseBodyCell *)getBodyCell:(NSString *)type {
+- (LEUniverseBodyCell *)getBodyCellForSize:(NSInteger)size {
 	LEUniverseBodyCell *cell;
+	CGFloat computedSize = ( (100.0 - ABS(size - 100.0)) / (100.0 / 50.0) ) + 15.0;
 	
 	if ([self.reusableBodyCells count] > 0) {
 		cell = [self.reusableBodyCells objectAtIndex:0];
 		[self.reusableBodyCells removeObject:cell];
-		if ([type isEqualToString:@"asteroid"]) {
-			cell.frame = CGRectMake(0.0, 0.0, 22.5, 22.5);
-		} else if ([type isEqualToString:@"gas giant"]) {
-			cell.frame = CGRectMake(0.0, 0.0, 87, 87);
-		} else {
-			cell.frame = CGRectMake(0.0, 0.0, 45.75, 45.75);
-		}
+		cell.frame = CGRectMake(0.0, 0.0, computedSize, computedSize);
 	} else {
-		if ([type isEqualToString:@"asteroid"]) {
-			cell = [[LEUniverseBodyCell alloc] initWithFrame:CGRectMake(0.0, 0.0, 22.5, 22.5)];
-		} else if ([type isEqualToString:@"gas giant"]) {
-			cell = [[LEUniverseBodyCell alloc] initWithFrame:CGRectMake(0.0, 0.0, 87, 87)];
-		} else {
-			cell = [[LEUniverseBodyCell alloc] initWithFrame:CGRectMake(0.0, 0.0, 45.75, 45.75)];
-		}
+		cell = [[LEUniverseBodyCell alloc] initWithFrame:CGRectMake(0.0, 0.0, computedSize, computedSize)];
 	}
 	
 	return cell;
@@ -303,7 +292,7 @@
 					LEUniverseBodyCell *cell = [self.inUseBodyCells objectForKey:key];
 					if (!cell) {
 						NSLog(@"Creating cell for habitable planet %@,%@: %@", gridX, gridY, body.name);
-						cell = [self getBodyCell:body.type];
+						cell = [self getBodyCellForSize:_intv(body.size)];
 						[cell setBody:body];
 						cell.center = CGPointMake(x*MAP_CELL_SIZE + HALF_MAP_CELL_SIZE, y*MAP_CELL_SIZE + HALF_MAP_CELL_SIZE);
 						[self.map addSubview:cell];
