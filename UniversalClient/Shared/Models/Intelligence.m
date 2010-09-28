@@ -135,13 +135,13 @@
 		case BUILDING_ROW_BUILD_SPY_BUTTON:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellButton *buildSpyButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-			buildSpyButtonCell.textLabel.text = @"Build spy";
+			buildSpyButtonCell.textLabel.text = @"Train Spy";
 			cell = buildSpyButtonCell;
 			break;
 		case BUILDING_ROW_VIEW_SPIES_BUTTON:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellButton *viewSpiesButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-			viewSpiesButtonCell.textLabel.text = @"View spies";
+			viewSpiesButtonCell.textLabel.text = @"View Spies";
 			cell = viewSpiesButtonCell;
 			break;
 		case BUILDING_ROW_SUBSIDIZE:
@@ -231,6 +231,7 @@
 	[self generateSections];
 	self.needsRefresh = YES;
 	
+	self.spies = nil;
 	self.spiesUpdated = [NSDate date];
 	return nil;
 }
@@ -294,7 +295,6 @@
 	}
 	
 	[assignedSpy parseData:request.spyData];
-	NSLog(@"Mission Result: %@", request.mission);
 	if (request.mission) {
 		[request.mission setObject:assignedSpy forKey:@"spy"];
 		[self->assignSpyTarget performSelector:self->assignSpyCallback withObject:request.mission];

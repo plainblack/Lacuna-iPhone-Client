@@ -40,6 +40,7 @@
 	NSString *surfaceImageName;
 	Building *currentBuilding;
 	BOOL needsRefresh;
+	NSMutableSet *incomingForeignShips;
 }
 
 
@@ -71,6 +72,7 @@
 @property (nonatomic, retain) Building *currentBuilding;
 @property (nonatomic, assign) BOOL needsRefresh;
 @property (nonatomic, readonly) BOOL canBuild;
+@property (nonatomic, retain) NSMutableSet *incomingForeignShips;
 
 
 - (void)parseData:(NSDictionary *)bodyData;

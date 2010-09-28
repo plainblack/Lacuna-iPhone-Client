@@ -46,14 +46,15 @@
 @synthesize currentBuilding;
 @synthesize needsRefresh;
 @dynamic canBuild;
+@synthesize incomingForeignShips;
 
 
 #pragma mark -
 #pragma mark NSObject Methods
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"id:%@, name:%@, type:%@, surfaceImageName:%@, empireId:%@, empireName:%@, x:%@, y:%@, starId:%@, starName:%@, orbit:%@, buildingCount:%@, needsSurfaceRefresh:%i", 
-			self.id, self.name, self.type, self.surfaceImageName, self.empireId, self.empireName, self.x, self.y, self.starId, self.starName, self.orbit, self.buildingCount, self.needsSurfaceRefresh];
+	return [NSString stringWithFormat:@"id:%@, name:%@, type:%@, surfaceImageName:%@, empireId:%@, empireName:%@, x:%@, y:%@, starId:%@, starName:%@, orbit:%@, buildingCount:%@, needsSurfaceRefresh:%i, incomingForeignShips:%@", 
+			self.id, self.name, self.type, self.surfaceImageName, self.empireId, self.empireName, self.x, self.y, self.starId, self.starName, self.orbit, self.buildingCount, self.needsSurfaceRefresh, self.incomingForeignShips];
 }
 
 
@@ -84,6 +85,7 @@
 	self.surfaceImageName = nil;
 	[self.currentBuilding removeObserver:self forKeyPath:@"needsReload"];
 	self.currentBuilding = nil;
+	self.incomingForeignShips = nil;
 	[super dealloc];
 }
 
@@ -142,6 +144,32 @@
 		self.water = [[[StoredResource alloc] init] autorelease];
 	}
 	[self.water parseFromData:bodyData withPrefix:@"water"];
+	
+	NSMutableArray *incomingForeignShipData = [bodyData objectForKey:@"incoming_foreign_ships"];
+	if (isNotNull(incomingForeignShipData)) {
+		NSLog(@"INCOMING FOREIGN SHIP DATE: %@", incomingForeignShipData);
+		NSMutableSet *newSet = [NSMutableSet setWithCapacity:[incomingForeignShipData count]];
+		for (NSMutableDictionary *tmp in incomingForeignShipData) {
+			[newSet addObject:[tmp objectForKey:@"date_arrives"]];
+		}
+		NSMutableSet *warnAboutSet;
+		warnAboutSet = [newSet mutableCopy];
+		if (self.incomingForeignShips) {
+			[warnAboutSet minusSet:self.incomingForeignShips];
+		}
+		if ([warnAboutSet count] > 0) {
+			UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"INCOMING SHIPS!" message:@"Incoming Foreign Ships detected. Go to your Spaceport for more information." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+			[av show];
+		}
+		[warnAboutSet release];
+		self.incomingForeignShips = newSet;
+	} else {
+		if (self.incomingForeignShips) {
+			self.incomingForeignShips = nil;
+		}
+	}
+
+	
 	self.needsRefresh = YES;
 }
 

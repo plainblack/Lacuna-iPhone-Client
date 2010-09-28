@@ -213,6 +213,7 @@ static id<LERequestMonitor> delegate;
 	} else {
 		NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]] autorelease];
 		[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+		[request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
 		[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
 		[request setValue:@"TLE iOS Client" forHTTPHeaderField:@"User-Agent"];
 		[request setHTTPMethod:@"POST"];
