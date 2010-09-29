@@ -33,7 +33,6 @@
 
 
 - (void)processSuccess {
-	NSLog(@"abandon_probe response: %@", self.response);
 }
 
 

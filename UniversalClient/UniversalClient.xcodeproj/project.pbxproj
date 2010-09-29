@@ -225,6 +225,8 @@
 		F6D9AB49121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9AB48121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.m */; };
 		F6D9EB0812535DF0005437D7 /* LEMapSearchStars.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9EB0712535DF0005437D7 /* LEMapSearchStars.m */; };
 		F6D9EB3F12536346005437D7 /* ViewUniverseItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9EB3E12536346005437D7 /* ViewUniverseItemController.m */; };
+		F6D9EC371253934A005437D7 /* LEBuildingGetShipsFor.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9EC361253934A005437D7 /* LEBuildingGetShipsFor.m */; };
+		F6D9EC4D125396BE005437D7 /* ViewUniverseMiningPlatformsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9EC4C125396BE005437D7 /* ViewUniverseMiningPlatformsController.m */; };
 		F6DA0DC0121D47E200705240 /* LETableViewCellGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA0DBF121D47E200705240 /* LETableViewCellGlyph.m */; };
 		F6DA0DF1121D4D0F00705240 /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA0DF0121D4D0F00705240 /* Plan.m */; };
 		F6DA5A50124E69BF005D11F6 /* LEStatsEmpireRank.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5A4F124E69BF005D11F6 /* LEStatsEmpireRank.m */; };
@@ -776,6 +778,10 @@
 		F6D9EB0712535DF0005437D7 /* LEMapSearchStars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEMapSearchStars.m; sourceTree = "<group>"; };
 		F6D9EB3D12536346005437D7 /* ViewUniverseItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewUniverseItemController.h; sourceTree = "<group>"; };
 		F6D9EB3E12536346005437D7 /* ViewUniverseItemController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewUniverseItemController.m; sourceTree = "<group>"; };
+		F6D9EC351253934A005437D7 /* LEBuildingGetShipsFor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetShipsFor.h; sourceTree = "<group>"; };
+		F6D9EC361253934A005437D7 /* LEBuildingGetShipsFor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetShipsFor.m; sourceTree = "<group>"; };
+		F6D9EC4B125396BE005437D7 /* ViewUniverseMiningPlatformsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewUniverseMiningPlatformsController.h; sourceTree = "<group>"; };
+		F6D9EC4C125396BE005437D7 /* ViewUniverseMiningPlatformsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewUniverseMiningPlatformsController.m; sourceTree = "<group>"; };
 		F6DA0DBE121D47E200705240 /* LETableViewCellGlyph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellGlyph.h; sourceTree = "<group>"; };
 		F6DA0DBF121D47E200705240 /* LETableViewCellGlyph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellGlyph.m; sourceTree = "<group>"; };
 		F6DA0DEF121D4D0F00705240 /* Plan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plan.h; sourceTree = "<group>"; };
@@ -1494,6 +1500,8 @@
 				F6DEDFC3124FBFAA00030329 /* LEMapGetStars.m */,
 				F6D9EB0612535DF0005437D7 /* LEMapSearchStars.h */,
 				F6D9EB0712535DF0005437D7 /* LEMapSearchStars.m */,
+				F6D9EC351253934A005437D7 /* LEBuildingGetShipsFor.h */,
+				F6D9EC361253934A005437D7 /* LEBuildingGetShipsFor.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -1805,6 +1813,8 @@
 				F69D0F5A1252D02E00C12296 /* UniverseGotoController.m */,
 				F6D9EB3D12536346005437D7 /* ViewUniverseItemController.h */,
 				F6D9EB3E12536346005437D7 /* ViewUniverseItemController.m */,
+				F6D9EC4B125396BE005437D7 /* ViewUniverseMiningPlatformsController.h */,
+				F6D9EC4C125396BE005437D7 /* ViewUniverseMiningPlatformsController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2230,6 +2240,8 @@
 				F69D0F5B1252D02E00C12296 /* UniverseGotoController.m in Sources */,
 				F6D9EB0812535DF0005437D7 /* LEMapSearchStars.m in Sources */,
 				F6D9EB3F12536346005437D7 /* ViewUniverseItemController.m in Sources */,
+				F6D9EC371253934A005437D7 /* LEBuildingGetShipsFor.m in Sources */,
+				F6D9EC4D125396BE005437D7 /* ViewUniverseMiningPlatformsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,7 +18,6 @@
 @implementation Body
 
 
-@synthesize id;
 @synthesize starId;
 @synthesize starName;
 @synthesize orbit;
@@ -54,7 +53,6 @@
 
 
 - (void)dealloc {
-	self.id = nil;
 	self.starId = nil;
 	self.starName = nil;
 	self.orbit = nil;
@@ -93,7 +91,6 @@
 
 - (void)parseData:(NSMutableDictionary *)bodyData {
 	[super parseData:bodyData];
-	self.id = [Util idFromDict:bodyData named:@"id"];
 	self.starId = [bodyData objectForKey:@"star_id"];
 	self.starName = [bodyData objectForKey:@"star_name"];
 	self.orbit = [Util asNumber:[bodyData objectForKey:@"orbit"]];

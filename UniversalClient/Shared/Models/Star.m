@@ -14,7 +14,6 @@
 @implementation Star
 
 
-@synthesize id;
 @synthesize color;
 
 
@@ -22,7 +21,6 @@
 #pragma mark Object Methods
 
 - (void)dealloc {
-	self.id = nil;
 	self.color = nil;
 	[super dealloc];
 }
@@ -39,7 +37,6 @@
 
 - (void)parseData:(NSMutableDictionary *)data {
 	[data setObject:@"star" forKey:@"type"];
-	self.id = [Util idFromDict:data named:@"id"];
 	[super parseData:data];
 	self.color = [data objectForKey:@"color"];
 }

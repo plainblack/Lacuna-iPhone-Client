@@ -14,7 +14,6 @@
 
 
 @interface Body : BaseMapItem {
-	NSString *id;
 	NSString *starId;
 	NSString *starName;
 	NSDecimalNumber *orbit;
@@ -40,7 +39,6 @@
 }
 
 
-@property (nonatomic, retain) NSString *id;
 @property (nonatomic, retain) NSString *starId;
 @property (nonatomic, retain) NSString *starName;
 @property (nonatomic, retain) NSDecimalNumber *orbit;

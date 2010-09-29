@@ -13,6 +13,7 @@
 @implementation BaseMapItem
 
 
+@synthesize id;
 @synthesize type;
 @synthesize name;
 @synthesize x;
@@ -23,6 +24,7 @@
 #pragma mark Object Methods
 
 - (void)dealloc {
+	self.id = nil;
 	self.type = nil;
 	self.name = nil;
 	self.x = nil;
@@ -32,8 +34,8 @@
 
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"type:%@, name:%@, x:%@, y:%@",
-			self.type, self.name, self.x, self.y];
+	return [NSString stringWithFormat:@"id:%@, type:%@, name:%@, x:%@, y:%@",
+			self.id, self.type, self.name, self.x, self.y];
 }
 
 
@@ -41,6 +43,7 @@
 #pragma mark Instance Methods
 
 - (void)parseData:(NSMutableDictionary *)data {
+	self.id = [Util idFromDict:data named:@"id"];
 	self.type = [data objectForKey:@"type"];
 	self.name = [data objectForKey:@"name"];
 	self.x = [Util asNumber:[data objectForKey:@"x"]];

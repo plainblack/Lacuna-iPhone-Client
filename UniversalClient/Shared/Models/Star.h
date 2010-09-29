@@ -11,12 +11,10 @@
 
 
 @interface Star : BaseMapItem {
-	NSString *id;
 	NSString *color;
 }
 
 
-@property (nonatomic, retain) NSString *id;
 @property (nonatomic, retain) NSString *color;
 
 

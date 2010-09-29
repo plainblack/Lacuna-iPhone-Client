@@ -31,7 +31,6 @@
 
 
 - (void)processSuccess {
-	NSLog(@"Renaming Body '%@' to '%@': %@", self.bodyId, self.newBodyName, self.response);
 	self.result = [self.response objectForKey:@"result"];
 	
 }

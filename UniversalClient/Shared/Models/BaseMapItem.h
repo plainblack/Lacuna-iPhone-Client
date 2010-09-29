@@ -10,6 +10,7 @@
 
 
 @interface BaseMapItem : NSObject {
+	NSString *id;
 	NSString *type;
 	NSString *name;
 	NSDecimalNumber *x;
@@ -17,6 +18,7 @@
 }
 
 
+@property (nonatomic, retain) NSString *id;
 @property (nonatomic, retain) NSString *type;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSDecimalNumber *x;
