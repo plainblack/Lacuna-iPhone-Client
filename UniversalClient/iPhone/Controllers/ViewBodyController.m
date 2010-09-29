@@ -431,19 +431,17 @@ typedef enum {
 
 - (void)pickColony {
 	Session *session = [Session	 sharedInstance];
-	NSMutableArray *colonies = [NSMutableArray arrayWithCapacity:[session.empire.planets count]];
-	[session.empire.planets enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
-		if (![session.body.id isEqualToString:key]) {
-			[colonies addObject:_dict(key, @"id", obj, @"name")];
-		}
-	}];
-	if ([colonies count] > 1) {
+	if ([session.empire.planets count] > 2) {
 		self->pickColonyController = [[PickColonyController create] retain];
 		self->pickColonyController.delegate = self;
-		self->pickColonyController.colonies = colonies;
+		self->pickColonyController.colonies = session.empire.planets;
 		[self presentModalViewController:self->pickColonyController animated:YES];
 	} else {
-		self.bodyId = [Util idFromDict:[colonies objectAtIndex:0] named:@"id"];
+		if ([[[session.empire.planets objectAtIndex:0] objectForKey:@"id"] isEqualToString:self.bodyId]) {
+			self.bodyId = [[session.empire.planets objectAtIndex:1] objectForKey:@"id"];
+		} else {
+			self.bodyId = [[session.empire.planets objectAtIndex:0] objectForKey:@"id"];
+		}
 		[self loadBody];
 	}
 }

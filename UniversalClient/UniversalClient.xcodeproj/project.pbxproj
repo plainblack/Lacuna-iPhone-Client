@@ -133,6 +133,7 @@
 		F6980B78117A8BD700BD2096 /* NewMailMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6980B76117A8BD700BD2096 /* NewMailMessageController.m */; };
 		F69B7FFD118FB51A0049D4A1 /* ViewAttachedTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = F69B7FFB118FB51A0049D4A1 /* ViewAttachedTableController.m */; };
 		F69B7FFE118FB51B0049D4A1 /* ViewAttachedTableController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F69B7FFC118FB51A0049D4A1 /* ViewAttachedTableController.xib */; };
+		F69D0F5B1252D02E00C12296 /* UniverseGotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = F69D0F5A1252D02E00C12296 /* UniverseGotoController.m */; };
 		F69D2895117242B400D7277E /* LETableViewControllerGrouped.m in Sources */ = {isa = PBXBuildFile; fileRef = F69D2894117242B400D7277E /* LETableViewControllerGrouped.m */; };
 		F69D299211725FA400D7277E /* NewSpeciesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F69D299111725FA400D7277E /* NewSpeciesController.m */; };
 		F6A9C5951184A3B6001F0D9C /* LEBuildingTrainSpy.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A9C5941184A3B6001F0D9C /* LEBuildingTrainSpy.m */; };
@@ -590,6 +591,8 @@
 		F69B7FFA118FB51A0049D4A1 /* ViewAttachedTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewAttachedTableController.h; sourceTree = "<group>"; };
 		F69B7FFB118FB51A0049D4A1 /* ViewAttachedTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewAttachedTableController.m; sourceTree = "<group>"; };
 		F69B7FFC118FB51A0049D4A1 /* ViewAttachedTableController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewAttachedTableController.xib; sourceTree = "<group>"; };
+		F69D0F591252D02E00C12296 /* UniverseGotoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UniverseGotoController.h; sourceTree = "<group>"; };
+		F69D0F5A1252D02E00C12296 /* UniverseGotoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UniverseGotoController.m; sourceTree = "<group>"; };
 		F69D2893117242B400D7277E /* LETableViewControllerGrouped.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewControllerGrouped.h; sourceTree = "<group>"; };
 		F69D2894117242B400D7277E /* LETableViewControllerGrouped.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewControllerGrouped.m; sourceTree = "<group>"; };
 		F69D299011725FA400D7277E /* NewSpeciesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewSpeciesController.h; sourceTree = "<group>"; };
@@ -1790,6 +1793,8 @@
 				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
 				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
+				F69D0F591252D02E00C12296 /* UniverseGotoController.h */,
+				F69D0F5A1252D02E00C12296 /* UniverseGotoController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2212,6 +2217,7 @@
 				F6DEDFFA124FDADE00030329 /* LEUniverseStarCell.m in Sources */,
 				F6DEE1D6125033FA00030329 /* LEUniverseBodyCell.m in Sources */,
 				F6DEE1D91250341800030329 /* BaseMapItem.m in Sources */,
+				F69D0F5B1252D02E00C12296 /* UniverseGotoController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

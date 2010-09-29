@@ -22,7 +22,7 @@
 	NSDate *lastMessageAt;
 	NSDecimalNumber *numNewMessages;
 	NSDecimalNumber *essentia;
-	NSDictionary *planets;
+	NSMutableArray *planets;
 	BOOL selfDestructActive;
 	NSDate *selfDestructAt;
 	EmpireProfile *profile;
@@ -39,7 +39,7 @@
 @property (nonatomic, retain) NSDate *lastMessageAt;
 @property (nonatomic, retain) NSDecimalNumber *numNewMessages;
 @property (nonatomic, retain) NSDecimalNumber *essentia;
-@property (nonatomic, retain) NSDictionary *planets;
+@property (nonatomic, retain) NSMutableArray *planets;
 @property (nonatomic, assign) BOOL selfDestructActive;
 @property (nonatomic, retain) NSDate *selfDestructAt;
 @property (nonatomic, retain) EmpireProfile *profile;

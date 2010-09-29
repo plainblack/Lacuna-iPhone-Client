@@ -31,7 +31,7 @@
 @property (nonatomic, retain) NSString *sortBy;
 @property (nonatomic, retain) NSMutableArray *empires;
 @property (nonatomic, assign) id<SearchForEmpireInRankingsControllerDelegate> delegate;
-@property (nonatomic, assign) LETableViewCellTextEntry *nameCell;
+@property (nonatomic, retain) LETableViewCellTextEntry *nameCell;
 
 
 - (void)searchForEmpire:(NSString *)empireName;

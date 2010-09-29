@@ -49,12 +49,16 @@ static NSDecimalNumber *ONE_HUNDRED_BILLION;
 
 + (NSString *)idFromDict:(NSDictionary *)dict named:(NSString *)name {
 	id obj = [dict objectForKey:name];
+	return [Util asString:obj];
+}
+
+
++ (NSString *)asString:(id)obj {
 	if ([obj respondsToSelector:@selector(stringValue)]) {
 		return [obj stringValue];
 	} else {
 		return (NSString *)obj;
 	}
-
 }
 
 
