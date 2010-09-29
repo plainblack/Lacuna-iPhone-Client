@@ -424,11 +424,17 @@ typedef enum {
 	self.baseTradeBuilding = nil;
 	self.itemPush = nil;
 	[self->pickColonyController release];
+	self->pickColonyController = nil;
 	[self->selectGlyphController release];
+	self->selectGlyphController = nil;
 	[self->selectPlanController release];
+	self->selectPlanController = nil;
 	[self->selectTradeablePrisonerController release];
+	self->selectTradeablePrisonerController = nil;
 	[self->selectStoredResourceController release];
+	self->selectStoredResourceController = nil;
 	[self->selectTradeableShipController release];
+	self->selectTradeableShipController = nil;
     [super dealloc];
 }
 
@@ -460,6 +466,7 @@ typedef enum {
 	self.itemPush.targetId = colonyId;
 	[self dismissModalViewControllerAnimated:YES];
 	[self->pickColonyController release];
+	self->pickColonyController = nil;
 	[self.tableView reloadData];
 }
 

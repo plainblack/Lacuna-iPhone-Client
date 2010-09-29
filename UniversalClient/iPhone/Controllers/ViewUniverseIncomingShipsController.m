@@ -159,23 +159,6 @@ typedef enum {
 }
 
 
-
-
-#pragma mark -
-#pragma mark Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (self.incomingShips) {
-		if ([self.incomingShips count] > 0) {
-			NSMutableDictionary *incomingShip = [self.incomingShips objectAtIndex:indexPath.row];
-			ViewPublicEmpireProfileController *viewPublicEmpireProfileController = [ViewPublicEmpireProfileController create];
-			viewPublicEmpireProfileController.empireId = [incomingShip objectForKey:@"empire_id"];
-			[self.navigationController pushViewController:viewPublicEmpireProfileController animated:YES];
-		}
-	}
-}
-
-
 #pragma mark -
 #pragma mark Memory management
 
@@ -185,6 +168,7 @@ typedef enum {
     
     // Relinquish ownership any cached data, images, etc that aren't in use.
 }
+
 
 - (void)viewDidUnload {
 	self.incomingShips = nil;

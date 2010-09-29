@@ -20,6 +20,7 @@
 #import "RenameBodyController.h"
 #import "ViewUniverseMiningPlatformsController.h"
 #import "ViewUniverseIncomingShipsController.h"
+#import "SendShipController.h"
 
 
 typedef enum {
@@ -268,7 +269,11 @@ typedef enum {
 				break;
 			case ROW_SEND_SHIP:
 				; //DO NOT REMOVE
-				NSLog(@"Send ship");
+				Session *session = [Session sharedInstance];
+				SendShipController *sendShipController = [SendShipController create];
+				sendShipController.mapItem = self.mapItem;
+				sendShipController.sendFromBodyId = session.body.id;
+				[self.navigationController pushViewController:sendShipController animated:YES];
 				break;
 			case ROW_RENAME:
 				; //DO NOT REMOVE

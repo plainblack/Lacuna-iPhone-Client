@@ -269,6 +269,8 @@
 		F6DF43C21228B48500A526FD /* ExpelAllianceMemberController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF43C11228B48500A526FD /* ExpelAllianceMemberController.m */; };
 		F6DF43C51228B49400A526FD /* PromoteAllianceMemberController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF43C41228B49400A526FD /* PromoteAllianceMemberController.m */; };
 		F6E0B7451253A3A400D0C870 /* ViewUniverseIncomingShipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E0B7441253A3A400D0C870 /* ViewUniverseIncomingShipsController.m */; };
+		F6E0B77A1253AD2A00D0C870 /* SendShipController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E0B7791253AD2A00D0C870 /* SendShipController.m */; };
+		F6E0B7981253B02C00D0C870 /* LEBuildingSendShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E0B7971253B02C00D0C870 /* LEBuildingSendShip.m */; };
 		F6E349C91227D94E001E39B5 /* SelectEmpireController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E349C81227D94E001E39B5 /* SelectEmpireController.m */; };
 		F6E349D31227DE1F001E39B5 /* LEEmpireFind.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E349D21227DE1F001E39B5 /* LEEmpireFind.m */; };
 		F6E3E57F11BB0A3200A031CF /* EditEmpireProfileText.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3E57E11BB0A3200A031CF /* EditEmpireProfileText.m */; };
@@ -865,6 +867,10 @@
 		F6DF43C41228B49400A526FD /* PromoteAllianceMemberController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromoteAllianceMemberController.m; sourceTree = "<group>"; };
 		F6E0B7431253A3A400D0C870 /* ViewUniverseIncomingShipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewUniverseIncomingShipsController.h; sourceTree = "<group>"; };
 		F6E0B7441253A3A400D0C870 /* ViewUniverseIncomingShipsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewUniverseIncomingShipsController.m; sourceTree = "<group>"; };
+		F6E0B7781253AD2A00D0C870 /* SendShipController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendShipController.h; sourceTree = "<group>"; };
+		F6E0B7791253AD2A00D0C870 /* SendShipController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendShipController.m; sourceTree = "<group>"; };
+		F6E0B7961253B02C00D0C870 /* LEBuildingSendShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingSendShip.h; sourceTree = "<group>"; };
+		F6E0B7971253B02C00D0C870 /* LEBuildingSendShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingSendShip.m; sourceTree = "<group>"; };
 		F6E349C71227D94E001E39B5 /* SelectEmpireController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectEmpireController.h; sourceTree = "<group>"; };
 		F6E349C81227D94E001E39B5 /* SelectEmpireController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectEmpireController.m; sourceTree = "<group>"; };
 		F6E349D11227DE1F001E39B5 /* LEEmpireFind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireFind.h; sourceTree = "<group>"; };
@@ -1505,6 +1511,8 @@
 				F6D9EB0712535DF0005437D7 /* LEMapSearchStars.m */,
 				F6D9EC351253934A005437D7 /* LEBuildingGetShipsFor.h */,
 				F6D9EC361253934A005437D7 /* LEBuildingGetShipsFor.m */,
+				F6E0B7961253B02C00D0C870 /* LEBuildingSendShip.h */,
+				F6E0B7971253B02C00D0C870 /* LEBuildingSendShip.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -1820,6 +1828,8 @@
 				F6D9EC4C125396BE005437D7 /* ViewUniverseMiningPlatformsController.m */,
 				F6E0B7431253A3A400D0C870 /* ViewUniverseIncomingShipsController.h */,
 				F6E0B7441253A3A400D0C870 /* ViewUniverseIncomingShipsController.m */,
+				F6E0B7781253AD2A00D0C870 /* SendShipController.h */,
+				F6E0B7791253AD2A00D0C870 /* SendShipController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2248,6 +2258,8 @@
 				F6D9EC371253934A005437D7 /* LEBuildingGetShipsFor.m in Sources */,
 				F6D9EC4D125396BE005437D7 /* ViewUniverseMiningPlatformsController.m in Sources */,
 				F6E0B7451253A3A400D0C870 /* ViewUniverseIncomingShipsController.m in Sources */,
+				F6E0B77A1253AD2A00D0C870 /* SendShipController.m in Sources */,
+				F6E0B7981253B02C00D0C870 /* LEBuildingSendShip.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
