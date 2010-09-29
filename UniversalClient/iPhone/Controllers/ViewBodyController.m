@@ -147,6 +147,9 @@ typedef enum {
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+	if (self.watchedBody) {
+		self.navigationItem.title = self.watchedBody.name;
+	}
 	[self.tableView reloadData];
 }
 

@@ -17,6 +17,7 @@
 #import "LETableViewCellLabeledIconText.h"
 #import "LETableViewCellBody.h"
 #import "LETableViewCellStar.h"
+#import "RenameBodyController.h"
 
 
 typedef enum {
@@ -38,6 +39,7 @@ typedef enum {
 	ROW_SEND_SHIP,
 	ROW_PLOTS,
 	ROW_WATER,
+	ROW_RENAME
 } ROWS;
 
 
@@ -116,6 +118,7 @@ typedef enum {
 			case ROW_VIEW_INCOMING_SHIPS:
 			case ROW_VIEW_MINING_PLATFORMS:
 			case ROW_SEND_SHIP:
+			case ROW_RENAME:
 				return [LETableViewCellButton getHeightForTableView:tableView];
 				break;
 			case ROW_PLOTS:
@@ -216,6 +219,12 @@ typedef enum {
 				waterCell.content.text = [((Body *)self.mapItem).planetWater stringValue];
 				cell = waterCell;
 				break;
+			case ROW_RENAME:
+				; //DO NOT REMOVE
+				LETableViewCellButton *renameButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+				renameButtonCell.textLabel.text = @"Rename";
+				cell = renameButtonCell;
+				break;
 			default:
 				cell = nil;
 				break;
@@ -255,6 +264,12 @@ typedef enum {
 				; //DO NOT REMOVE
 				NSLog(@"Send ship");
 				break;
+			case ROW_RENAME:
+				; //DO NOT REMOVE
+				RenameBodyController *renameBodyController = [RenameBodyController create];
+				renameBodyController.body = (Body *)self.mapItem;
+				[self.navigationController pushViewController:renameBodyController animated:YES];
+				break;
 		}
 	}
 }
@@ -288,9 +303,22 @@ typedef enum {
 
 - (void)genSectionInfo {
 	if (self.mapItem) {
-		self.sections = [NSMutableArray arrayWithCapacity:3];
+		self.sections = [NSMutableArray arrayWithCapacity:4];
 
-		[self.sections addObject:_dict([NSDecimalNumber numberWithInt:SECTION_INFO], @"type", [self.mapItem.type capitalizedString], @"name", _array([NSDecimalNumber numberWithInt:ROW_INFO]), @"rows")];
+		if ([self.mapItem.type isEqualToString:@"asteroid"] || [self.mapItem.type isEqualToString:@"gas giant"] || [self.mapItem.type isEqualToString:@"habitable planet"]) {
+			Session *session = [Session sharedInstance];
+			Body *body = ((Body *)self.mapItem);
+			if ([body.empireId isEqualToString:session.empire.id]) {
+				[self.sections addObject:_dict([NSDecimalNumber numberWithInt:SECTION_INFO], @"type", [self.mapItem.type capitalizedString], @"name", _array([NSDecimalNumber numberWithInt:ROW_INFO], [NSDecimalNumber numberWithInt:ROW_RENAME]), @"rows")];
+			} else {
+				[self.sections addObject:_dict([NSDecimalNumber numberWithInt:SECTION_INFO], @"type", [self.mapItem.type capitalizedString], @"name", _array([NSDecimalNumber numberWithInt:ROW_INFO]), @"rows")];
+			}
+
+		} else {
+			[self.sections addObject:_dict([NSDecimalNumber numberWithInt:SECTION_INFO], @"type", [self.mapItem.type capitalizedString], @"name", _array([NSDecimalNumber numberWithInt:ROW_INFO]), @"rows")];
+		}
+		
+
 		if ([self.mapItem.type isEqualToString:@"habitable planet"]) {
 			[self.sections addObject:_dict([NSDecimalNumber numberWithInt:SECTION_SPY_ACTIONS], @"type", @"Spies", @"name", _array([NSDecimalNumber numberWithInt:ROW_VIEW_SPIES], [NSDecimalNumber numberWithInt:ROW_SEND_SPY]), @"rows")];
 		}
