@@ -13,6 +13,8 @@
 @implementation LEUniverseStarCell
 
 
+@synthesize star;
+
 #pragma mark -
 #pragma mark NSObject Methods
 
@@ -35,6 +37,9 @@
 		self->dataLabel.numberOfLines = 0;
 		self->dataLabel.textAlignment = UITextAlignmentCenter;
 		[self addSubview:self->dataLabel];
+		
+		UITapGestureRecognizer *tapRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(callTapped:)] autorelease];
+		[self addGestureRecognizer:tapRecognizer];
     }
     return self;
 }
@@ -47,6 +52,8 @@
 	self->imageView = nil;
 	[self->dataLabel release];
 	self->dataLabel = nil;
+	self->target = nil;
+	self->callback = nil;
     [super dealloc];
 }
 
@@ -65,11 +72,27 @@
 }
 
 
+- (void)setTarget:(id)inTarget callback:(SEL)inCallback {
+	self->target = inTarget;
+	self->callback = inCallback;
+}
+
+
 - (void)reset {
 	[self->star release];
 	self->star = nil;
 	self->imageView.image = nil;
 	self->dataLabel.text = @"";
+	self->target = nil;
+	self->callback = nil;
+}
+
+
+#pragma mark -
+#pragma mark Gesture Recognizer Methods
+
+- (void)callTapped:(UIGestureRecognizer *)gestureRecognizer {
+	[self->target performSelector:self->callback withObject:self];
 }
 
 

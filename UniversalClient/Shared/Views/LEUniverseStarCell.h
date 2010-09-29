@@ -16,10 +16,15 @@
 	Star *star;
 	UILabel *dataLabel;
 	UIImageView *imageView;
+	id target;
+	SEL callback;
 }
 
 
-- (void)setStar:(Star *)star;
+@property (nonatomic, retain) Star *star;
+
+
+- (void)setTarget:(id)target callback:(SEL)callback;
 - (void)reset;
 
 

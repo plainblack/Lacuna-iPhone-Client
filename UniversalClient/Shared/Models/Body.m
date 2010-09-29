@@ -48,8 +48,8 @@
 #pragma mark NSObject Methods
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"id:%@, name:%@, type:%@, surfaceImageName:%@, empireId:%@, empireName:%@, x:%@, y:%@, starId:%@, starName:%@, orbit:%@, buildingCount:%@, needsSurfaceRefresh:%i", 
-			self.id, self.name, self.type, self.surfaceImageName, self.empireId, self.empireName, self.x, self.y, self.starId, self.starName, self.orbit, self.buildingCount, self.needsSurfaceRefresh];
+	return [NSString stringWithFormat:@"id:%@, name:%@, type:%@, surfaceImageName:%@, empireId:%@, empireName:%@, x:%@, y:%@, starId:%@, starName:%@, orbit:%@, buildingCount:%@, needsSurfaceRefresh:%i, planetWater: %@, ores:%@", 
+			self.id, self.name, self.type, self.surfaceImageName, self.empireId, self.empireName, self.x, self.y, self.starId, self.starName, self.orbit, self.buildingCount, self.needsSurfaceRefresh, self.planetWater, self.ores];
 }
 
 

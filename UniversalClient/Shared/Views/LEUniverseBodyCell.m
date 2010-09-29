@@ -12,6 +12,9 @@
 @implementation LEUniverseBodyCell
 
 
+@synthesize body;
+
+
 #pragma mark -
 #pragma mark NSObject Methods
 
@@ -31,6 +34,8 @@
 		self->imageViewAlignmentRing.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		[self addSubview:self->imageViewAlignmentRing];
 		
+		UITapGestureRecognizer *tapRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(callTapped:)] autorelease];
+		[self addGestureRecognizer:tapRecognizer];
     }
     return self;
 }
@@ -43,6 +48,8 @@
 	self->imageViewBody = nil;
 	[self->imageViewAlignmentRing release];
 	self->imageViewAlignmentRing = nil;
+	self->target = nil;
+	self->callback = nil;
     [super dealloc];
 }
 
@@ -66,11 +73,27 @@
 }
 
 
+- (void)setTarget:(id)inTarget callback:(SEL)inCallback {
+	self->target = inTarget;
+	self->callback = inCallback;
+}
+
+
 - (void)reset {
 	[self->body release];
 	self->body = nil;
 	self->imageViewBody.image = nil;
 	self->imageViewAlignmentRing.image = nil;
+	self->target = nil;
+	self->callback = nil;
+}
+
+
+#pragma mark -
+#pragma mark Gesture Recognizer Methods
+
+- (void)callTapped:(UIGestureRecognizer *)gestureRecognizer {
+	[self->target performSelector:self->callback withObject:self];
 }
 
 

@@ -17,6 +17,7 @@
 #import "LEUniverseStarCell.h"
 #import "LEUniverseBodyCell.h"
 #import "UniverseGotoController.h"
+#import "ViewUniverseItemController.h"
 
 #define MAP_CELL_SIZE 50
 #define HALF_MAP_CELL_SIZE MAP_CELL_SIZE/2
@@ -192,8 +193,10 @@
 		cell = [self.reusableStarCells objectAtIndex:0];
 		[self.reusableStarCells removeObject:cell];
 	} else {
-		cell = [[LEUniverseStarCell alloc] initWithFrame:CGRectMake(0.0, 0.0, 225.0, 225.0)];
+		cell = [[LEUniverseStarCell alloc] initWithFrame:CGRectMake(0.0, 0.0, 150.0, 150)];
 	}
+
+	[cell setTarget:self callback:@selector(starPressed:)];
 
 	return cell;
 }
@@ -217,6 +220,8 @@
 	} else {
 		cell = [[LEUniverseBodyCell alloc] initWithFrame:CGRectMake(0.0, 0.0, computedSize, computedSize)];
 	}
+	
+	[cell setTarget:self callback:@selector(bodyPressed:)];
 	
 	return cell;
 }
@@ -343,6 +348,27 @@
 	
 	CGRect scrollToRect = CGRectMake(topLeftX, topLeftY, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
 	[self.scrollView scrollRectToVisible:scrollToRect animated:NO];
+}
+
+
+#pragma mark -
+#pragma mark Callback Methods
+
+- (id)bodyPressed:(LEUniverseBodyCell *)cell {
+	ViewUniverseItemController *viewUniverseItemController = [ViewUniverseItemController create];
+	viewUniverseItemController.mapItem = cell.body;
+	[self.navigationController pushViewController:viewUniverseItemController animated:YES];
+
+	return nil;
+}
+
+
+- (id)starPressed:(LEUniverseStarCell *)cell {
+	ViewUniverseItemController *viewUniverseItemController = [ViewUniverseItemController create];
+	viewUniverseItemController.mapItem = cell.star;
+	[self.navigationController pushViewController:viewUniverseItemController animated:YES];
+	
+	return nil;
 }
 
 

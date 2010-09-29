@@ -16,10 +16,15 @@
 	Body *body;
 	UIImageView *imageViewBody;
 	UIImageView *imageViewAlignmentRing;
+	id target;
+	SEL callback;
 }
 
 
-- (void)setBody:(Body *)body;
+@property (nonatomic, retain) Body *body;
+
+
+- (void)setTarget:(id)target callback:(SEL)callback;
 - (void)reset;
 
 
