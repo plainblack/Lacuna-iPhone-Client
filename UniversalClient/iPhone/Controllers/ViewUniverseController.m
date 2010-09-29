@@ -28,6 +28,7 @@
 - (void)releaseBodyCell:(LEUniverseBodyCell *)cell;
 - (void)releaseStarCell:(LEUniverseStarCell *)cell;
 - (void)tileView;
+- (void)gotoGridX:(NSDecimalNumber *)gridX gridY:(NSDecimalNumber *)gridY;
 
 @end
 
@@ -106,9 +107,13 @@
 	self.map.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	[self.scrollView addSubview:self.map];
 	
-	float midX = (self.scrollView.contentSize.width/2) - (self.scrollView.frame.size.width/2);
-	float midY = (self.scrollView.contentSize.height/2) - (self.scrollView.frame.size.height/2);
-	self.scrollView.contentOffset = CGPointMake(midX, midY);
+	if (session.body) {
+		[self gotoGridX:session.body.x gridY:session.body.y];
+	} else {
+		float midX = (self.scrollView.contentSize.width/2) - (self.scrollView.frame.size.width/2);
+		float midY = (self.scrollView.contentSize.height/2) - (self.scrollView.frame.size.height/2);
+		self.scrollView.contentOffset = CGPointMake(midX, midY);
+	}
 }
 
 
@@ -233,25 +238,9 @@
 
 
 - (IBAction)showGotoPage {
-	//NSDecimalNumber *gridX = [[Util decimalFromInt:x] decimalNumberByAdding:session.universeMinX];
-	//NSDecimalNumber *gridY = [[[Util decimalFromInt:y] decimalNumberByAdding:session.universeMinY] decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]];
-
-	
 	Session *session = [Session sharedInstance];
 	if (session.body) {
-		NSLog(@"Has Body at: %@, %@", session.body.x, session.body.y);
-		NSDecimalNumber *tmpX = [session.body.x decimalNumberByMultiplyingBy:[Util decimalFromInt:MAP_CELL_SIZE]];
-		NSDecimalNumber *tmpY = [session.body.y decimalNumberByMultiplyingBy:[Util decimalFromInt:MAP_CELL_SIZE]];
-		
-		tmpX = [tmpX decimalNumberByAdding:session.universeMinX];
-		tmpY = [[tmpY decimalNumberByAdding:session.universeMinY] decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]];
-
-		CGFloat topLeftX = [tmpX floatValue];
-		CGFloat topLeftY = [tmpY floatValue];
-		
-		CGRect scrollToRect = CGRectMake(topLeftX, topLeftY, MAP_CELL_SIZE, MAP_CELL_SIZE);
-		NSLog(@"Scroll to rect: %f, %f, %f, %f", scrollToRect.origin.x, scrollToRect.origin.y, scrollToRect.size.width, scrollToRect.size.height);
-		[self.scrollView scrollRectToVisible:scrollToRect animated:NO];
+		[self gotoGridX:session.body.x gridY:session.body.y];
 	}
 }
 
@@ -329,6 +318,28 @@
 			}
 		}
 	}
+}
+
+
+- (void)gotoGridX:(NSDecimalNumber *)gridX gridY:(NSDecimalNumber *)gridY {
+	Session *session = [Session sharedInstance];
+	NSLog(@"Grid x,y: %@, %@", gridX, gridY);
+	NSDecimalNumber *cellX = [gridX decimalNumberBySubtracting:session.universeMinX];
+	NSDecimalNumber *cellY = [[gridY decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]] decimalNumberBySubtracting:session.universeMinY];
+	
+	NSLog(@"Cell x,y: %@,%@", cellX, cellY);
+	
+	NSDecimalNumber *tmpX = [cellX decimalNumberByMultiplyingBy:[Util decimalFromInt:MAP_CELL_SIZE]];
+	NSDecimalNumber *tmpY = [cellY decimalNumberByMultiplyingBy:[Util decimalFromInt:MAP_CELL_SIZE]];
+	
+	NSLog(@"Real x,y: %@, %@", tmpX, tmpY);
+	
+	CGFloat topLeftX = [tmpX floatValue] - (self.scrollView.frame.size.width/2) + HALF_MAP_CELL_SIZE;
+	CGFloat topLeftY = [tmpY floatValue] - (self.scrollView.frame.size.height/2) + HALF_MAP_CELL_SIZE;
+	
+	CGRect scrollToRect = CGRectMake(topLeftX, topLeftY, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+	NSLog(@"Scroll to rect: %f, %f, %f, %f", scrollToRect.origin.x, scrollToRect.origin.y, scrollToRect.size.width, scrollToRect.size.height);
+	[self.scrollView scrollRectToVisible:scrollToRect animated:NO];
 }
 
 
