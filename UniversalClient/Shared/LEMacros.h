@@ -23,6 +23,7 @@
 
 //Images
 #define ENERGY_ICON [UIImage imageNamed:@"assets/iphone ui/energy.png"]
+#define ESSENTIA_ICON [UIImage imageNamed:@"assets/iphone ui/essentia.png"]
 #define FOOD_ICON [UIImage imageNamed:@"assets/iphone ui/food.png"]
 #define HAPPINESS_ICON [UIImage imageNamed:@"assets/iphone ui/happiness.png"]
 #define ORE_ICON [UIImage imageNamed:@"assets/iphone ui/ore.png"]

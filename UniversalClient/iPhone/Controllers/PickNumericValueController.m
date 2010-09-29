@@ -164,16 +164,15 @@
 +(PickNumericValueController *) createWithDelegate:(id<PickNumericValueControllerDelegate>)delegate maxValue:(NSDecimalNumber *)maxValue hidesZero:(BOOL)hidesZero {
 	PickNumericValueController *pickNumericValueController = [[[PickNumericValueController alloc] initWithNibName:@"PickNumericValueController" bundle:nil] autorelease];
 	pickNumericValueController.delegate = delegate;
-	if (maxValue) {
-		NSDecimalNumberHandler *roundingBehavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundDown scale:0 raiseOnExactness:FALSE raiseOnOverflow:TRUE raiseOnUnderflow:TRUE raiseOnDivideByZero:TRUE]; 
-		pickNumericValueController.hideZero = hidesZero;
-		pickNumericValueController.maxValue = [maxValue decimalNumberByRoundingAccordingToBehavior:roundingBehavior];
-		NSString *maxValueAsString = [pickNumericValueController.maxValue stringValue];
-		pickNumericValueController->numDigits = [maxValueAsString length];
-		pickNumericValueController->leftMostDigit = _intv([maxValueAsString substringToIndex:1]);
-	} else {
-		pickNumericValueController.maxValue = [NSDecimalNumber decimalNumberWithString:@"999999"];
+	if (!maxValue) {
+		maxValue = [NSDecimalNumber decimalNumberWithString:@"999999"];
 	}
+	NSDecimalNumberHandler *roundingBehavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundDown scale:0 raiseOnExactness:FALSE raiseOnOverflow:TRUE raiseOnUnderflow:TRUE raiseOnDivideByZero:TRUE]; 
+	pickNumericValueController.hideZero = hidesZero;
+	pickNumericValueController.maxValue = [maxValue decimalNumberByRoundingAccordingToBehavior:roundingBehavior];
+	NSString *maxValueAsString = [pickNumericValueController.maxValue stringValue];
+	pickNumericValueController->numDigits = [maxValueAsString length];
+	pickNumericValueController->leftMostDigit = _intv([maxValueAsString substringToIndex:1]);
 
 	return pickNumericValueController;
 }

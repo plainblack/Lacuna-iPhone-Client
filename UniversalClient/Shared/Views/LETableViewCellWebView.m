@@ -47,6 +47,7 @@
 #pragma mark Instance Methods
 
 - (void)setContent:(NSString *)content {
+	self.height = MIN_HEIGHT;
 	self->loadingContent = YES;
 	NSString *htmlString;
 	if (isNotNull(content)) {
@@ -139,8 +140,9 @@
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		cell.height = MIN_HEIGHT;
 		
-		cell.webView = [[[UIWebView alloc] initWithFrame:CGRectMake(5, 0, 300, 34)] autorelease];
+		cell.webView = [[[UIWebView alloc] initWithFrame:CGRectMake(5, 0, 290, 34)] autorelease];
 		cell.webView.backgroundColor = [UIColor clearColor];
+		cell.webView.autoresizesSubviews = YES;
 		cell.webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		cell.webView.opaque = NO;
 		cell.webView.delegate = cell;

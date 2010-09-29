@@ -12,6 +12,7 @@
 #import "LEMacros.h"
 #import "Session.h"
 #import "LETableViewCellLabeledText.h"
+#import "LETableViewCellLabeledIconText.h"
 #import "LETableViewCellLabeledParagraph.h"
 #import "LETableViewCellParagraph.h"
 #import "LETableViewCellLabeledSwitch.h"
@@ -137,9 +138,9 @@ typedef enum {
 		switch (section) {
 			case SECTION_EMPIRE:
 				if (session.empire.isIsolationist) {
-					return 11;
+					return 12;
 				} else {
-					return 10;
+					return 11;
 				}
 				break;
 			case SECTION_EMPIRE_ACTIONS:
@@ -173,8 +174,10 @@ typedef enum {
 					case EMPIRE_ROW_PLAYER_NAME:
 					case EMPIRE_ROW_EMAIL:
 					case EMPIRE_ROW_SITTER_PASSWORD:
-					case EMPIRE_ROW_ESSENTIA:
 						return [LETableViewCellLabeledText getHeightForTableView:tableView];
+						break;
+					case EMPIRE_ROW_ESSENTIA:
+						return [LETableViewCellLabeledIconText getHeightForTableView:tableView];
 						break;
 					case EMPIRE_ROW_DESCRIPTION:
 						return [LETableViewCellLabeledParagraph getHeightForTableView:tableView text:self.empireProfile.empireDescription];
@@ -356,8 +359,9 @@ typedef enum {
 						break;
 					case EMPIRE_ROW_ESSENTIA:
 						; //DO NOT REMOVE
-						LETableViewCellLabeledText *essentiaCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+						LETableViewCellLabeledIconText *essentiaCell = [LETableViewCellLabeledIconText getCellForTableView:tableView isSelectable:NO];
 						essentiaCell.label.text = @"Essentia";
+						essentiaCell.icon.image = ESSENTIA_ICON;
 						essentiaCell.content.text = [NSString stringWithFormat:@"%@", session.empire.essentia];
 						cell = essentiaCell;
 						break;

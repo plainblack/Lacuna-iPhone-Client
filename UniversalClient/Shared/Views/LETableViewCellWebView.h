@@ -34,7 +34,6 @@
 
 - (void)setContent:(NSString *)content;
 
-
 + (LETableViewCellWebView *)getCellForTableView:(UITableView *)tableView;
 
 
