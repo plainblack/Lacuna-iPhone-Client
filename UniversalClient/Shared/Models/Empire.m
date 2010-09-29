@@ -83,7 +83,6 @@
 		[tmpPlanets addObject:_dict([Util asString:key], @"id", obj, @"name")];
 	}];
 	self.planets = tmpPlanets;
-	NSLog(@"Planets: %@", planets);
 	
 	NSDictionary *newestMessage = [empireData objectForKey:@"most_recent_message"];
 	if (isNotNull(newestMessage)) {

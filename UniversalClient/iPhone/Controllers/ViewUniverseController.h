@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "UniverseGotoController.h"
 
 @class StarMap;
 
 
-@interface ViewUniverseController : UIViewController <UIScrollViewDelegate> {
+@interface ViewUniverseController : UIViewController <UIScrollViewDelegate, UniverseGotoControllerDelegate> {
 	UIScrollView *scrollView;
 	UIView *map;
 	NSMutableDictionary *inUseStarCells;

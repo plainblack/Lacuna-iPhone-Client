@@ -223,6 +223,7 @@
 		F6D9AB43121BFA31003E8D4E /* LEBuildingGetTradeablePlans.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9AB42121BFA31003E8D4E /* LEBuildingGetTradeablePlans.m */; };
 		F6D9AB46121BFA3F003E8D4E /* LEBuildingGetTradeableGlyphs.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9AB45121BFA3F003E8D4E /* LEBuildingGetTradeableGlyphs.m */; };
 		F6D9AB49121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9AB48121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.m */; };
+		F6D9EB0812535DF0005437D7 /* LEMapSearchStars.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9EB0712535DF0005437D7 /* LEMapSearchStars.m */; };
 		F6DA0DC0121D47E200705240 /* LETableViewCellGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA0DBF121D47E200705240 /* LETableViewCellGlyph.m */; };
 		F6DA0DF1121D4D0F00705240 /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA0DF0121D4D0F00705240 /* Plan.m */; };
 		F6DA5A50124E69BF005D11F6 /* LEStatsEmpireRank.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5A4F124E69BF005D11F6 /* LEStatsEmpireRank.m */; };
@@ -770,6 +771,8 @@
 		F6D9AB45121BFA3F003E8D4E /* LEBuildingGetTradeableGlyphs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetTradeableGlyphs.m; sourceTree = "<group>"; };
 		F6D9AB47121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetTradeableStoredResources.h; sourceTree = "<group>"; };
 		F6D9AB48121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetTradeableStoredResources.m; sourceTree = "<group>"; };
+		F6D9EB0612535DF0005437D7 /* LEMapSearchStars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEMapSearchStars.h; sourceTree = "<group>"; };
+		F6D9EB0712535DF0005437D7 /* LEMapSearchStars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEMapSearchStars.m; sourceTree = "<group>"; };
 		F6DA0DBE121D47E200705240 /* LETableViewCellGlyph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellGlyph.h; sourceTree = "<group>"; };
 		F6DA0DBF121D47E200705240 /* LETableViewCellGlyph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellGlyph.m; sourceTree = "<group>"; };
 		F6DA0DEF121D4D0F00705240 /* Plan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plan.h; sourceTree = "<group>"; };
@@ -1486,6 +1489,8 @@
 				F6DA5A5B124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.m */,
 				F6DEDFC2124FBFAA00030329 /* LEMapGetStars.h */,
 				F6DEDFC3124FBFAA00030329 /* LEMapGetStars.m */,
+				F6D9EB0612535DF0005437D7 /* LEMapSearchStars.h */,
+				F6D9EB0712535DF0005437D7 /* LEMapSearchStars.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -2218,6 +2223,7 @@
 				F6DEE1D6125033FA00030329 /* LEUniverseBodyCell.m in Sources */,
 				F6DEE1D91250341800030329 /* BaseMapItem.m in Sources */,
 				F69D0F5B1252D02E00C12296 /* UniverseGotoController.m in Sources */,
+				F6D9EB0812535DF0005437D7 /* LEMapSearchStars.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,6 +16,7 @@
 #import "Star.h"
 #import "LEUniverseStarCell.h"
 #import "LEUniverseBodyCell.h"
+#import "UniverseGotoController.h"
 
 #define MAP_CELL_SIZE 50
 #define HALF_MAP_CELL_SIZE MAP_CELL_SIZE/2
@@ -229,6 +230,15 @@
 
 
 #pragma mark -
+#pragma mark UniverseGotoControllerDelegate Methods
+
+- (void)selectedGridX:(NSDecimalNumber *)gridX gridY:(NSDecimalNumber *) gridY {
+	[self.navigationController popViewControllerAnimated:YES];
+	[self gotoGridX:gridX gridY:gridY];
+}
+
+
+#pragma mark -
 #pragma mark Instance Methods
 
 - (IBAction)logout {
@@ -238,10 +248,9 @@
 
 
 - (IBAction)showGotoPage {
-	Session *session = [Session sharedInstance];
-	if (session.body) {
-		[self gotoGridX:session.body.x gridY:session.body.y];
-	}
+	UniverseGotoController *universeGotoController = [UniverseGotoController create];
+	universeGotoController.delegate = self;
+	[self.navigationController pushViewController:universeGotoController animated:YES];
 }
 
 
@@ -323,22 +332,16 @@
 
 - (void)gotoGridX:(NSDecimalNumber *)gridX gridY:(NSDecimalNumber *)gridY {
 	Session *session = [Session sharedInstance];
-	NSLog(@"Grid x,y: %@, %@", gridX, gridY);
 	NSDecimalNumber *cellX = [gridX decimalNumberBySubtracting:session.universeMinX];
 	NSDecimalNumber *cellY = [[gridY decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]] decimalNumberBySubtracting:session.universeMinY];
 	
-	NSLog(@"Cell x,y: %@,%@", cellX, cellY);
-	
 	NSDecimalNumber *tmpX = [cellX decimalNumberByMultiplyingBy:[Util decimalFromInt:MAP_CELL_SIZE]];
 	NSDecimalNumber *tmpY = [cellY decimalNumberByMultiplyingBy:[Util decimalFromInt:MAP_CELL_SIZE]];
-	
-	NSLog(@"Real x,y: %@, %@", tmpX, tmpY);
 	
 	CGFloat topLeftX = [tmpX floatValue] - (self.scrollView.frame.size.width/2) + HALF_MAP_CELL_SIZE;
 	CGFloat topLeftY = [tmpY floatValue] - (self.scrollView.frame.size.height/2) + HALF_MAP_CELL_SIZE;
 	
 	CGRect scrollToRect = CGRectMake(topLeftX, topLeftY, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
-	NSLog(@"Scroll to rect: %f, %f, %f, %f", scrollToRect.origin.x, scrollToRect.origin.y, scrollToRect.size.width, scrollToRect.size.height);
 	[self.scrollView scrollRectToVisible:scrollToRect animated:NO];
 }
 

@@ -8,13 +8,15 @@
 
 #import "UniverseGotoController.h"
 #import "LEMacros.h"
+#import "Util.h"
 #import "Session.h"
+#import "Star.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellButton.h"
 #import "LETableViewCellLabeledText.h"
 #import "LETableViewCellTextEntry.h"
-//#import "LEMapGetStar.h"
-//#import "LEMapSearchStars.h"
+#import "LEBodyStatus.h"
+#import "LEMapSearchStars.h"
 
 
 typedef enum {
@@ -128,9 +130,9 @@ typedef enum {
 		case SECTION_STARS:
 			if (self.stars) {
 				if ([self.stars count] > 0) {
-					NSDictionary *star = [self.stars objectAtIndex:indexPath.row];
+					Star *star = [self.stars objectAtIndex:indexPath.row];
 					LETableViewCellButton *empireButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-					empireButtonCell.textLabel.text = [star objectForKey:@"name"];
+					empireButtonCell.textLabel.text = star.name;
 					cell = empireButtonCell;
 				} else {
 					LETableViewCellLabeledText *noMatchesCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
@@ -161,9 +163,10 @@ typedef enum {
 		Session *session = [Session sharedInstance];
 		NSDictionary *planet = [session.empire.planets objectAtIndex:indexPath.row];
 		NSLog(@"Selected My World: %@", planet);
+		[[[LEBodyStatus alloc] initWithCallback:@selector(bodyLoaded:) target:self bodyId:[planet objectForKey:@"id"]] autorelease];
 	} else if (indexPath.section == SECTION_STARS) {
-		NSDictionary *star = [self.stars objectAtIndex:indexPath.row];
-		NSLog(@"Selected Star: %@", star);
+		Star *star = [self.stars objectAtIndex:indexPath.row];
+		[self.delegate selectedGridX:star.x gridY:star.y];
 	}
 	
 }
@@ -196,19 +199,33 @@ typedef enum {
 #pragma mark Action Methods
 
 - (void)searchForStar:(NSString *)starName {
-	//[[[LEStatsFindEmpireRank alloc] initWithCallback:@selector(empiresFound:) target:self sortBy:self.sortBy empireName:empireName] autorelease];
+	[[[LEMapSearchStars alloc] initWithCallback:@selector(starsFound:) target:self name:starName] autorelease];
 }
 
 
-/*
 #pragma mark -
 #pragma mark Callback Methods
 
-- (void)empiresFound:(LEStatsFindEmpireRank *)request {
-	self.empires = request.empires;
+- (id)bodyLoaded:(LEBodyStatus *)request {
+	[self.delegate selectedGridX:[Util asNumber:[request.body objectForKey:@"x"]] gridY:[Util asNumber:[request.body objectForKey:@"y"]]];
+	return nil;
+}
+
+
+- (void)starsFound:(LEMapSearchStars *)request {
+	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[request.stars count]];
+	for (NSMutableDictionary *starData in request.stars) {
+		Star *star = [[Star alloc] init];
+		[star parseData:starData];
+		[tmp addObject:star];
+		[star release];
+	}
+	self.stars = tmp;
 	[self.tableView reloadData];
 }
-*/
+
+
+
 
 #pragma mark -
 #pragma mark UITextFieldDelegate methods
