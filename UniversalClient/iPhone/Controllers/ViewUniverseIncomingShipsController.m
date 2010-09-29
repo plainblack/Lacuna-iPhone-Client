@@ -1,23 +1,32 @@
 //
-//  ViewUniverseMiningPlatformsController.m
+//  ViewUniverseIncomingShipsController.m
 //  UniversalClient
 //
 //  Created by Kevin Runde on 9/29/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
-#import "ViewUniverseMiningPlatformsController.h"
+#import "ViewUniverseIncomingShipsController.h"
 #import "Util.h"
 #import "Session.h"
+#import "Ship.h"
 #import "LEBuildingGetShipsFor.h"
 #import "LETableViewCellLabeledText.h"
+#import "LETableViewCellShip.h"
+#import "LETableViewCellTravellingShip.h"
 #import "ViewPublicEmpireProfileController.h"
 
 
-@implementation ViewUniverseMiningPlatformsController
+typedef enum {
+	ROW_SHIP_INFO,
+	ROW_TRAVELLING_INFO
+} ROW;
 
 
-@synthesize miningPlatforms;
+@implementation ViewUniverseIncomingShipsController
+
+
+@synthesize incomingShips;
 @synthesize mapItem;
 
 
@@ -28,7 +37,7 @@
     [super viewDidLoad];
 	
 	
-	self.navigationItem.title = @"Mining Platforms";
+	self.navigationItem.title = @"Incoming Ships";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
 	self.sectionHeaders = [NSArray array];
@@ -57,14 +66,22 @@
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 1;
+	if (self.incomingShips) {
+		if ([self.incomingShips count] > 0) {
+			return [self.incomingShips count];
+		} else {
+			return 1;
+		}
+	} else {
+		return 1;
+	}
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if (self.miningPlatforms) {
-		if ([self.miningPlatforms count] > 0) {
-			return [self.miningPlatforms count];
+	if (self.incomingShips) {
+		if ([self.incomingShips count] > 0) {
+			return 2;
 		} else {
 			return 1;
 		}
@@ -76,9 +93,19 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (self.miningPlatforms) {
-		if ([self.miningPlatforms count] > 0) {
-			return [LETableViewCellLabeledText getHeightForTableView:tableView];
+	if (self.incomingShips) {
+		if ([self.incomingShips count] > 0) {
+			switch (indexPath.row) {
+				case ROW_SHIP_INFO:
+					return [LETableViewCellShip getHeightForTableView:tableView];
+					break;
+				case ROW_TRAVELLING_INFO:
+					return [LETableViewCellTravellingShip getHeightForTableView:tableView];
+					break;
+				default:
+					return 0.0;
+					break;
+			}
 		} else {
 			return [LETableViewCellLabeledText getHeightForTableView:tableView];
 		}
@@ -94,23 +121,36 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell;
 	
-	if (self.miningPlatforms) {
-		if ([self.miningPlatforms count] > 0) {
-			NSMutableDictionary *miningPlatform = [self.miningPlatforms objectAtIndex:indexPath.row];
-			LETableViewCellLabeledText *miningPlatformCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:YES];
-			miningPlatformCell.label.text = @"Owning Empire";
-			miningPlatformCell.content.text = [miningPlatform objectForKey:@"empire_name"];
-			cell = miningPlatformCell;
+	if (self.incomingShips) {
+		if ([self.incomingShips count] > 0) {
+			Ship *currentShip = [self.incomingShips objectAtIndex:indexPath.section];
+			switch (indexPath.row) {
+				case ROW_SHIP_INFO:
+					; //DO NOT REMOVE
+					LETableViewCellShip *shipInfoCell = [LETableViewCellShip getCellForTableView:tableView isSelectable:NO];
+					[shipInfoCell setShip:currentShip];
+					cell = shipInfoCell;
+					break;
+				case ROW_TRAVELLING_INFO:
+					; //DO NOT REMOVE
+					LETableViewCellTravellingShip *travellingInfoCell = [LETableViewCellTravellingShip getCellForTableView:tableView];
+					[travellingInfoCell setShip:currentShip];
+					cell = travellingInfoCell;
+					break;
+				default:
+					cell = nil;
+					break;
+			}
 		} else {
 			LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-			loadingCell.label.text = @"Platforms";
+			loadingCell.label.text = @"Incoming Ships";
 			loadingCell.content.text = @"None";
 			cell = loadingCell;
 		}
 		
 	} else {
 		LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-		loadingCell.label.text = @"Platforms";
+		loadingCell.label.text = @"Incoming Ships";
 		loadingCell.content.text = @"Loading";
 		cell = loadingCell;
 	}
@@ -125,11 +165,11 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (self.miningPlatforms) {
-		if ([self.miningPlatforms count] > 0) {
-			NSMutableDictionary *miningPlatform = [self.miningPlatforms objectAtIndex:indexPath.row];
+	if (self.incomingShips) {
+		if ([self.incomingShips count] > 0) {
+			NSMutableDictionary *incomingShip = [self.incomingShips objectAtIndex:indexPath.row];
 			ViewPublicEmpireProfileController *viewPublicEmpireProfileController = [ViewPublicEmpireProfileController create];
-			viewPublicEmpireProfileController.empireId = [miningPlatform objectForKey:@"empire_id"];
+			viewPublicEmpireProfileController.empireId = [incomingShip objectForKey:@"empire_id"];
 			[self.navigationController pushViewController:viewPublicEmpireProfileController animated:YES];
 		}
 	}
@@ -147,13 +187,13 @@
 }
 
 - (void)viewDidUnload {
-	self.miningPlatforms = nil;
+	self.incomingShips = nil;
     [super viewDidUnload];
 }
 
 
 - (void)dealloc {
-	self.miningPlatforms = nil;
+	self.incomingShips = nil;
 	self.mapItem = nil;
     [super dealloc];
 }
@@ -163,7 +203,14 @@
 #pragma mark Callback Methods
 
 - (void)shipsLoaded:(LEBuildingGetShipsFor *)request {
-	self.miningPlatforms = request.miningPlatforms;
+	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[request.incoming count]];
+	for (NSMutableDictionary *shipData in request.incoming) {
+		Ship *ship = [[Ship alloc] init];
+		[ship parseData:shipData];
+		[tmp addObject:ship];
+		[ship release];
+	}
+	self.incomingShips = tmp;
 	[self.tableView reloadData];
 }
 
@@ -171,8 +218,8 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (ViewUniverseMiningPlatformsController *)create {
-	return [[[ViewUniverseMiningPlatformsController alloc] init] autorelease];
++ (ViewUniverseIncomingShipsController *)create {
+	return [[[ViewUniverseIncomingShipsController alloc] init] autorelease];
 }
 
 

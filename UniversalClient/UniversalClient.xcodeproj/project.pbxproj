@@ -268,6 +268,7 @@
 		F6DF43A01228B03100A526FD /* ViewAllianceMembersController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF439F1228B03100A526FD /* ViewAllianceMembersController.m */; };
 		F6DF43C21228B48500A526FD /* ExpelAllianceMemberController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF43C11228B48500A526FD /* ExpelAllianceMemberController.m */; };
 		F6DF43C51228B49400A526FD /* PromoteAllianceMemberController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF43C41228B49400A526FD /* PromoteAllianceMemberController.m */; };
+		F6E0B7451253A3A400D0C870 /* ViewUniverseIncomingShipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E0B7441253A3A400D0C870 /* ViewUniverseIncomingShipsController.m */; };
 		F6E349C91227D94E001E39B5 /* SelectEmpireController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E349C81227D94E001E39B5 /* SelectEmpireController.m */; };
 		F6E349D31227DE1F001E39B5 /* LEEmpireFind.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E349D21227DE1F001E39B5 /* LEEmpireFind.m */; };
 		F6E3E57F11BB0A3200A031CF /* EditEmpireProfileText.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3E57E11BB0A3200A031CF /* EditEmpireProfileText.m */; };
@@ -862,6 +863,8 @@
 		F6DF43C11228B48500A526FD /* ExpelAllianceMemberController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpelAllianceMemberController.m; sourceTree = "<group>"; };
 		F6DF43C31228B49400A526FD /* PromoteAllianceMemberController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromoteAllianceMemberController.h; sourceTree = "<group>"; };
 		F6DF43C41228B49400A526FD /* PromoteAllianceMemberController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromoteAllianceMemberController.m; sourceTree = "<group>"; };
+		F6E0B7431253A3A400D0C870 /* ViewUniverseIncomingShipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewUniverseIncomingShipsController.h; sourceTree = "<group>"; };
+		F6E0B7441253A3A400D0C870 /* ViewUniverseIncomingShipsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewUniverseIncomingShipsController.m; sourceTree = "<group>"; };
 		F6E349C71227D94E001E39B5 /* SelectEmpireController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectEmpireController.h; sourceTree = "<group>"; };
 		F6E349C81227D94E001E39B5 /* SelectEmpireController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectEmpireController.m; sourceTree = "<group>"; };
 		F6E349D11227DE1F001E39B5 /* LEEmpireFind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireFind.h; sourceTree = "<group>"; };
@@ -1815,6 +1818,8 @@
 				F6D9EB3E12536346005437D7 /* ViewUniverseItemController.m */,
 				F6D9EC4B125396BE005437D7 /* ViewUniverseMiningPlatformsController.h */,
 				F6D9EC4C125396BE005437D7 /* ViewUniverseMiningPlatformsController.m */,
+				F6E0B7431253A3A400D0C870 /* ViewUniverseIncomingShipsController.h */,
+				F6E0B7441253A3A400D0C870 /* ViewUniverseIncomingShipsController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2242,6 +2247,7 @@
 				F6D9EB3F12536346005437D7 /* ViewUniverseItemController.m in Sources */,
 				F6D9EC371253934A005437D7 /* LEBuildingGetShipsFor.m in Sources */,
 				F6D9EC4D125396BE005437D7 /* ViewUniverseMiningPlatformsController.m in Sources */,
+				F6E0B7451253A3A400D0C870 /* ViewUniverseIncomingShipsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

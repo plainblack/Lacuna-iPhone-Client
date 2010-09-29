@@ -1,5 +1,5 @@
 //
-//  ViewUniverseMiningPlatformsController.h
+//  ViewUniverseIncomingShipsController.h
 //  UniversalClient
 //
 //  Created by Kevin Runde on 9/29/10.
@@ -13,17 +13,17 @@
 @class BaseMapItem;
 
 
-@interface ViewUniverseMiningPlatformsController : LETableViewControllerGrouped {
-	NSMutableArray *miningPlatforms;
+@interface ViewUniverseIncomingShipsController : LETableViewControllerGrouped {
+	NSMutableArray *incomingShips;
 	BaseMapItem *mapItem;
 }
 
 
-@property (nonatomic, retain) NSMutableArray *miningPlatforms;
+@property (nonatomic, retain) NSMutableArray *incomingShips;
 @property (nonatomic, retain) BaseMapItem *mapItem;
 
 
-+ (ViewUniverseMiningPlatformsController *)create;
++ (ViewUniverseIncomingShipsController *)create;
 
 
 @end

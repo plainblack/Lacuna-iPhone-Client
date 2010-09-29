@@ -19,6 +19,7 @@
 #import "LETableViewCellStar.h"
 #import "RenameBodyController.h"
 #import "ViewUniverseMiningPlatformsController.h"
+#import "ViewUniverseIncomingShipsController.h"
 
 
 typedef enum {
@@ -255,7 +256,9 @@ typedef enum {
 				break;
 			case ROW_VIEW_INCOMING_SHIPS:
 				; //DO NOT REMOVE
-				NSLog(@"View incoming ships");
+				ViewUniverseIncomingShipsController *viewUniverseIncomingShipsController = [ViewUniverseIncomingShipsController create];
+				viewUniverseIncomingShipsController.mapItem = self.mapItem;
+				[self.navigationController pushViewController:viewUniverseIncomingShipsController animated:YES];
 				break;
 			case ROW_VIEW_MINING_PLATFORMS:
 				; //DO NOT REMOVE
