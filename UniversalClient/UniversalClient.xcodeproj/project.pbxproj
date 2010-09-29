@@ -271,6 +271,10 @@
 		F6E0B7451253A3A400D0C870 /* ViewUniverseIncomingShipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E0B7441253A3A400D0C870 /* ViewUniverseIncomingShipsController.m */; };
 		F6E0B77A1253AD2A00D0C870 /* SendShipController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E0B7791253AD2A00D0C870 /* SendShipController.m */; };
 		F6E0B7981253B02C00D0C870 /* LEBuildingSendShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E0B7971253B02C00D0C870 /* LEBuildingSendShip.m */; };
+		F6E0B8271253C73B00D0C870 /* LEBuildingPrepareSendSpies.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E0B8261253C73B00D0C870 /* LEBuildingPrepareSendSpies.m */; };
+		F6E0B82A1253C74A00D0C870 /* LEBuildingSendSpies.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E0B8291253C74A00D0C870 /* LEBuildingSendSpies.m */; };
+		F6E0B82D1253C75C00D0C870 /* LEBuildingPrepareFetchSpies.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E0B82C1253C75C00D0C870 /* LEBuildingPrepareFetchSpies.m */; };
+		F6E0B8301253C76A00D0C870 /* LEBuildingFetchSpies.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E0B82F1253C76A00D0C870 /* LEBuildingFetchSpies.m */; };
 		F6E349C91227D94E001E39B5 /* SelectEmpireController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E349C81227D94E001E39B5 /* SelectEmpireController.m */; };
 		F6E349D31227DE1F001E39B5 /* LEEmpireFind.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E349D21227DE1F001E39B5 /* LEEmpireFind.m */; };
 		F6E3E57F11BB0A3200A031CF /* EditEmpireProfileText.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3E57E11BB0A3200A031CF /* EditEmpireProfileText.m */; };
@@ -871,6 +875,14 @@
 		F6E0B7791253AD2A00D0C870 /* SendShipController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendShipController.m; sourceTree = "<group>"; };
 		F6E0B7961253B02C00D0C870 /* LEBuildingSendShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingSendShip.h; sourceTree = "<group>"; };
 		F6E0B7971253B02C00D0C870 /* LEBuildingSendShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingSendShip.m; sourceTree = "<group>"; };
+		F6E0B8251253C73B00D0C870 /* LEBuildingPrepareSendSpies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingPrepareSendSpies.h; sourceTree = "<group>"; };
+		F6E0B8261253C73B00D0C870 /* LEBuildingPrepareSendSpies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingPrepareSendSpies.m; sourceTree = "<group>"; };
+		F6E0B8281253C74A00D0C870 /* LEBuildingSendSpies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingSendSpies.h; sourceTree = "<group>"; };
+		F6E0B8291253C74A00D0C870 /* LEBuildingSendSpies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingSendSpies.m; sourceTree = "<group>"; };
+		F6E0B82B1253C75C00D0C870 /* LEBuildingPrepareFetchSpies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingPrepareFetchSpies.h; sourceTree = "<group>"; };
+		F6E0B82C1253C75C00D0C870 /* LEBuildingPrepareFetchSpies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingPrepareFetchSpies.m; sourceTree = "<group>"; };
+		F6E0B82E1253C76A00D0C870 /* LEBuildingFetchSpies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingFetchSpies.h; sourceTree = "<group>"; };
+		F6E0B82F1253C76A00D0C870 /* LEBuildingFetchSpies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingFetchSpies.m; sourceTree = "<group>"; };
 		F6E349C71227D94E001E39B5 /* SelectEmpireController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectEmpireController.h; sourceTree = "<group>"; };
 		F6E349C81227D94E001E39B5 /* SelectEmpireController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectEmpireController.m; sourceTree = "<group>"; };
 		F6E349D11227DE1F001E39B5 /* LEEmpireFind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireFind.h; sourceTree = "<group>"; };
@@ -1513,6 +1525,14 @@
 				F6D9EC361253934A005437D7 /* LEBuildingGetShipsFor.m */,
 				F6E0B7961253B02C00D0C870 /* LEBuildingSendShip.h */,
 				F6E0B7971253B02C00D0C870 /* LEBuildingSendShip.m */,
+				F6E0B8251253C73B00D0C870 /* LEBuildingPrepareSendSpies.h */,
+				F6E0B8261253C73B00D0C870 /* LEBuildingPrepareSendSpies.m */,
+				F6E0B8281253C74A00D0C870 /* LEBuildingSendSpies.h */,
+				F6E0B8291253C74A00D0C870 /* LEBuildingSendSpies.m */,
+				F6E0B82B1253C75C00D0C870 /* LEBuildingPrepareFetchSpies.h */,
+				F6E0B82C1253C75C00D0C870 /* LEBuildingPrepareFetchSpies.m */,
+				F6E0B82E1253C76A00D0C870 /* LEBuildingFetchSpies.h */,
+				F6E0B82F1253C76A00D0C870 /* LEBuildingFetchSpies.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -2260,6 +2280,10 @@
 				F6E0B7451253A3A400D0C870 /* ViewUniverseIncomingShipsController.m in Sources */,
 				F6E0B77A1253AD2A00D0C870 /* SendShipController.m in Sources */,
 				F6E0B7981253B02C00D0C870 /* LEBuildingSendShip.m in Sources */,
+				F6E0B8271253C73B00D0C870 /* LEBuildingPrepareSendSpies.m in Sources */,
+				F6E0B82A1253C74A00D0C870 /* LEBuildingSendSpies.m in Sources */,
+				F6E0B82D1253C75C00D0C870 /* LEBuildingPrepareFetchSpies.m in Sources */,
+				F6E0B8301253C76A00D0C870 /* LEBuildingFetchSpies.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
