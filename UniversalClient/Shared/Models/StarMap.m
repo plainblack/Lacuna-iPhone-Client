@@ -7,6 +7,7 @@
 //
 
 #import "StarMap.h"
+#import "LEMacros.h"
 #import "LEMapGetStars.h"
 #import "BaseMapItem.h"
 #import "Star.h"
@@ -19,6 +20,7 @@
 
 - (void)loadSectorX:(NSDecimalNumber *)sectorX sectorY:(NSDecimalNumber *)sectorY;
 - (NSDecimalNumber *)gridToSector:(NSDecimalNumber *)gridValue;
+- (void)addMapItem:(BaseMapItem *)mapItem gridX:(NSDecimalNumber *)gridX girdY:(NSDecimalNumber *)gridY;
 
 @end
 
@@ -55,13 +57,21 @@
 	NSDecimalNumber *sectorY = [self gridToSector:gridY];
 	NSString *sectorKey = [NSString stringWithFormat:@"%@x%@", sectorX, sectorY];
 	NSDictionary *sector = [self.sectors objectForKey:sectorKey];
+
 	if (sector) {
-		if ((id)sector == [NSNull null]) {
-			return nil;
-		} else {
+		NSDate *loadedAt = [sector objectForKey:@"loadedAt"];
+		if (loadedAt) {
 			NSString *gridKey = [NSString stringWithFormat:@"%@x%@", gridX, gridY];
 			BaseMapItem *cell = [sector objectForKey:gridKey];
 			return cell;
+		} else {
+			NSString *gridKey = [NSString stringWithFormat:@"%@x%@", gridX, gridY];
+			BaseMapItem *cell = [sector objectForKey:gridKey];
+			if (isNotNull(cell)) {
+				return cell;
+			} else {
+				return nil;
+			}
 		}
 	} else {
 		[self loadSectorX:sectorX sectorY:sectorY];
@@ -78,11 +88,12 @@
 	NSString *sectorKey = [NSString stringWithFormat:@"%@x%@", sectorX, sectorY];
 	NSLog(@"Loading %@", sectorKey);
 	NSDecimalNumber *topLeftX = [sectorX decimalNumberByMultiplyingBy:SECTOR_SIZE];
-	NSDecimalNumber *topLeftY = [sectorY decimalNumberByMultiplyingBy:SECTOR_SIZE];
+	NSDecimalNumber *topLeftY = [[sectorY decimalNumberByMultiplyingBy:SECTOR_SIZE] decimalNumberByAdding:SECTOR_SIZE];
 	NSDecimalNumber *bottomRightX = [[sectorX decimalNumberByMultiplyingBy:SECTOR_SIZE] decimalNumberByAdding:SECTOR_SIZE];
-	NSDecimalNumber *bottomRightY = [[sectorY decimalNumberByMultiplyingBy:SECTOR_SIZE] decimalNumberByAdding:SECTOR_SIZE];
+	NSDecimalNumber *bottomRightY = [sectorY decimalNumberByMultiplyingBy:SECTOR_SIZE];
+	
 	[[[LEMapGetStars alloc] initWithCallback:@selector(sectorLoaded:) target:self topLeftX:topLeftX topLeftY:topLeftY bottomRightX:bottomRightX bottomRightY:bottomRightY] autorelease];
-	[self.sectors setObject:[NSNull null] forKey:sectorKey];
+	[self.sectors setObject:[NSMutableDictionary dictionaryWithCapacity:10] forKey:sectorKey];
 }
 
 
@@ -93,26 +104,40 @@
 	return tmp;
 }
 
+- (void)addMapItem:(BaseMapItem *)mapItem {
+	NSDecimalNumber *sectorX = [self gridToSector:mapItem.x];
+	NSDecimalNumber *sectorY = [self gridToSector:mapItem.y];
+	NSString *sectorKey = [NSString stringWithFormat:@"%@x%@", sectorX, sectorY];
+	NSMutableDictionary *sector = [self.sectors objectForKey:sectorKey];
+	if (!sector) {
+		[self loadSectorX:sectorX sectorY:sectorY];
+		sector = [self.sectors objectForKey:sectorKey];
+	}
+	[sector setObject:mapItem forKey:[NSString stringWithFormat:@"%@x%@", mapItem.x, mapItem.y]];
+}
+
+
 
 #pragma mark -
 #pragma mark Callback Methods
 
 - (id)sectorLoaded:(LEMapGetStars *)request {
-	NSString *sectorKey = [NSString stringWithFormat:@"%@x%@", [self gridToSector:request.topLeftX], [self gridToSector:request.topLeftY]];
+	NSString *sectorKey = [NSString stringWithFormat:@"%@x%@", [self gridToSector:request.topLeftX], [self gridToSector:request.bottomRightY]];
 	NSLog(@"Sector Loaded Sector %@", sectorKey);
 	
-	NSMutableDictionary *tmp = [NSMutableDictionary dictionaryWithCapacity:5];
 	for (NSMutableDictionary *starData in request.stars) {
-		Star *star = [[[Star alloc] init] autorelease];
+		Star *star = [[Star alloc] init];
 		[star parseData:starData];
-		[tmp setObject:star forKey:[NSString stringWithFormat:@"%@x%@", star.x, star.y]];
+		[self addMapItem:star];
 		for (NSMutableDictionary *bodyData in [starData objectForKey:@"bodies"]) {
-			Body *body = [[[Body alloc] init] autorelease];
+			Body *body = [[Body alloc] init];
 			[body parseData:bodyData];
-			[tmp setObject:body forKey:[NSString stringWithFormat:@"%@x%@", body.x, body.y]];
+			[self addMapItem:body];
+			[body release];
 		}
+		[star release];
 	}
-	[self.sectors setObject:tmp forKey:sectorKey];
+	[[self.sectors objectForKey:sectorKey] setObject:[NSDate date] forKey:@"loadedAt"];
 	self.lastUpdate = [NSDate date];
 	return nil;
 }

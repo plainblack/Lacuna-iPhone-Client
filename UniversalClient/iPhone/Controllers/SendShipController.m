@@ -260,6 +260,7 @@ typedef enum {
 	} else {
 		[[[LEBuildingGetShipsFor alloc] initWithCallback:@selector(shipsLoaded:) target:self fromBodyId:self.sendFromBodyId targetBodyName:nil targetBodyId:self.mapItem.id targetStarName:nil targetStarId:nil targetX:nil targetY:nil] autorelease];
 	}
+	self.availableShips = nil;
 	[self.tableView reloadData];
 }
 
