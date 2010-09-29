@@ -47,7 +47,7 @@
 
 
 - (NSString *)methodName {
-	return @"prepare_fetch_spies";
+	return @"prepare_send_spies";
 }
 
 

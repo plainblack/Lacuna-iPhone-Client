@@ -13,12 +13,12 @@
 
 
 @interface StarMap : NSObject {
-	NSMutableDictionary *sectors;
+	NSCache *sectors;
 	NSDate *lastUpdate;
 }
 
 
-@property (retain) NSMutableDictionary *sectors;
+@property (retain) NSCache *sectors;
 @property (retain) NSDate *lastUpdate;
 
 

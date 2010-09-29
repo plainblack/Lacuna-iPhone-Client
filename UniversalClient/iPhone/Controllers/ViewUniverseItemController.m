@@ -21,6 +21,8 @@
 #import "ViewUniverseMiningPlatformsController.h"
 #import "ViewUniverseIncomingShipsController.h"
 #import "SendShipController.h"
+#import "SendSpiesController.h"
+#import "FetchSpiesController.h"
 
 
 typedef enum {
@@ -35,8 +37,8 @@ typedef enum {
 typedef enum {
 	ROW_LOADING,
 	ROW_INFO,
-	ROW_VIEW_SPIES,
-	ROW_SEND_SPY,
+	ROW_SEND_SPIES,
+	ROW_FETCH_SPIES,
 	ROW_VIEW_INCOMING_SHIPS,
 	ROW_VIEW_MINING_PLATFORMS,
 	ROW_SEND_SHIP,
@@ -116,8 +118,8 @@ typedef enum {
 					return [LETableViewCellBody getHeightForTableView:tableView];
 				}
 				break;
-			case ROW_VIEW_SPIES:
-			case ROW_SEND_SPY:
+			case ROW_SEND_SPIES:
+			case ROW_FETCH_SPIES:
 			case ROW_VIEW_INCOMING_SHIPS:
 			case ROW_VIEW_MINING_PLATFORMS:
 			case ROW_SEND_SHIP:
@@ -176,16 +178,16 @@ typedef enum {
 					cell = infoCell;
 				}
 				break;
-			case ROW_VIEW_SPIES:
+			case ROW_SEND_SPIES:
 				; //DO NOT REMOVE
 				LETableViewCellButton *viewSpiesButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-				viewSpiesButtonCell.textLabel.text = @"View My Spies Here";
+				viewSpiesButtonCell.textLabel.text = @"Send Spy Here";
 				cell = viewSpiesButtonCell;
 				break;
-			case ROW_SEND_SPY:
+			case ROW_FETCH_SPIES:
 				; //DO NOT REMOVE
 				LETableViewCellButton *sendSpyButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-				sendSpyButtonCell.textLabel.text = @"Send Spy Here";
+				sendSpyButtonCell.textLabel.text = @"Fetch Spy Here";
 				cell = sendSpyButtonCell;
 				break;
 			case ROW_VIEW_INCOMING_SHIPS:
@@ -245,15 +247,22 @@ typedef enum {
 	NSMutableDictionary *sectionData = [self.sections objectAtIndex:indexPath.section];
 	if (_intv([sectionData objectForKey:@"type"]) != SECTION_COMPOSITION) {
 		ROWS row = _intv([[sectionData objectForKey:@"rows"] objectAtIndex:indexPath.row]);
-		
+		Session *session = [Session sharedInstance];
+
 		switch (row) {
-			case ROW_VIEW_SPIES:
+			case ROW_SEND_SPIES:
 				; //DO NOT REMOVE
-				NSLog(@"View spies selected");
+				SendSpiesController *sendSpiesController = [SendSpiesController create];
+				sendSpiesController.mapItem = self.mapItem;
+				sendSpiesController.sendFromBodyId = session.body.id;
+				[self.navigationController pushViewController:sendSpiesController animated:YES];
 				break;
-			case ROW_SEND_SPY:
+			case ROW_FETCH_SPIES:
 				; //DO NOT REMOVE
-				NSLog(@"View send spy");
+				FetchSpiesController *fetchSpiesController = [FetchSpiesController create];
+				fetchSpiesController.mapItem = self.mapItem;
+				fetchSpiesController.fetchToBodyId = session.body.id;
+				[self.navigationController pushViewController:fetchSpiesController animated:YES];
 				break;
 			case ROW_VIEW_INCOMING_SHIPS:
 				; //DO NOT REMOVE
@@ -269,7 +278,6 @@ typedef enum {
 				break;
 			case ROW_SEND_SHIP:
 				; //DO NOT REMOVE
-				Session *session = [Session sharedInstance];
 				SendShipController *sendShipController = [SendShipController create];
 				sendShipController.mapItem = self.mapItem;
 				sendShipController.sendFromBodyId = session.body.id;
@@ -331,7 +339,7 @@ typedef enum {
 		
 
 		if ([self.mapItem.type isEqualToString:@"habitable planet"]) {
-			[self.sections addObject:_dict([NSDecimalNumber numberWithInt:SECTION_SPY_ACTIONS], @"type", @"Spies", @"name", _array([NSDecimalNumber numberWithInt:ROW_VIEW_SPIES], [NSDecimalNumber numberWithInt:ROW_SEND_SPY]), @"rows")];
+			[self.sections addObject:_dict([NSDecimalNumber numberWithInt:SECTION_SPY_ACTIONS], @"type", @"Spies", @"name", _array([NSDecimalNumber numberWithInt:ROW_SEND_SPIES], [NSDecimalNumber numberWithInt:ROW_FETCH_SPIES]), @"rows")];
 		}
 
 		NSMutableArray *shipActionRows = _array([NSDecimalNumber numberWithInt:ROW_VIEW_INCOMING_SHIPS]);

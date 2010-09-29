@@ -15,6 +15,7 @@
 @interface ViewUniverseController : UIViewController <UIScrollViewDelegate, UniverseGotoControllerDelegate> {
 	UIScrollView *scrollView;
 	UIView *map;
+	UIActivityIndicatorView *loadingView;
 	NSMutableDictionary *inUseStarCells;
 	NSMutableArray *reusableStarCells;
 	NSMutableDictionary *inUseBodyCells;
@@ -25,6 +26,7 @@
 
 @property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) IBOutlet UIView *map;
+@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *loadingView;
 @property (nonatomic, retain) NSMutableDictionary *inUseStarCells;
 @property (nonatomic, retain) NSMutableArray *reusableStarCells;
 @property (nonatomic, retain) NSMutableDictionary *inUseBodyCells;

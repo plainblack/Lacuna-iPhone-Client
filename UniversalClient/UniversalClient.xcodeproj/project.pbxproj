@@ -275,6 +275,10 @@
 		F6E0B82A1253C74A00D0C870 /* LEBuildingSendSpies.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E0B8291253C74A00D0C870 /* LEBuildingSendSpies.m */; };
 		F6E0B82D1253C75C00D0C870 /* LEBuildingPrepareFetchSpies.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E0B82C1253C75C00D0C870 /* LEBuildingPrepareFetchSpies.m */; };
 		F6E0B8301253C76A00D0C870 /* LEBuildingFetchSpies.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E0B82F1253C76A00D0C870 /* LEBuildingFetchSpies.m */; };
+		F6E0B8391253CA3300D0C870 /* SendSpiesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E0B8381253CA3300D0C870 /* SendSpiesController.m */; };
+		F6E0B8991253D6B200D0C870 /* SelectShipFromListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E0B8981253D6B200D0C870 /* SelectShipFromListController.m */; };
+		F6E0B89C1253D6BC00D0C870 /* SelectSpyFromListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E0B89B1253D6BC00D0C870 /* SelectSpyFromListController.m */; };
+		F6E0B9391253F50700D0C870 /* FetchSpiesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E0B9381253F50700D0C870 /* FetchSpiesController.m */; };
 		F6E349C91227D94E001E39B5 /* SelectEmpireController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E349C81227D94E001E39B5 /* SelectEmpireController.m */; };
 		F6E349D31227DE1F001E39B5 /* LEEmpireFind.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E349D21227DE1F001E39B5 /* LEEmpireFind.m */; };
 		F6E3E57F11BB0A3200A031CF /* EditEmpireProfileText.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3E57E11BB0A3200A031CF /* EditEmpireProfileText.m */; };
@@ -883,6 +887,14 @@
 		F6E0B82C1253C75C00D0C870 /* LEBuildingPrepareFetchSpies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingPrepareFetchSpies.m; sourceTree = "<group>"; };
 		F6E0B82E1253C76A00D0C870 /* LEBuildingFetchSpies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingFetchSpies.h; sourceTree = "<group>"; };
 		F6E0B82F1253C76A00D0C870 /* LEBuildingFetchSpies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingFetchSpies.m; sourceTree = "<group>"; };
+		F6E0B8371253CA3300D0C870 /* SendSpiesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendSpiesController.h; sourceTree = "<group>"; };
+		F6E0B8381253CA3300D0C870 /* SendSpiesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendSpiesController.m; sourceTree = "<group>"; };
+		F6E0B8971253D6B200D0C870 /* SelectShipFromListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectShipFromListController.h; sourceTree = "<group>"; };
+		F6E0B8981253D6B200D0C870 /* SelectShipFromListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectShipFromListController.m; sourceTree = "<group>"; };
+		F6E0B89A1253D6BC00D0C870 /* SelectSpyFromListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectSpyFromListController.h; sourceTree = "<group>"; };
+		F6E0B89B1253D6BC00D0C870 /* SelectSpyFromListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectSpyFromListController.m; sourceTree = "<group>"; };
+		F6E0B9371253F50700D0C870 /* FetchSpiesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchSpiesController.h; sourceTree = "<group>"; };
+		F6E0B9381253F50700D0C870 /* FetchSpiesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchSpiesController.m; sourceTree = "<group>"; };
 		F6E349C71227D94E001E39B5 /* SelectEmpireController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectEmpireController.h; sourceTree = "<group>"; };
 		F6E349C81227D94E001E39B5 /* SelectEmpireController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectEmpireController.m; sourceTree = "<group>"; };
 		F6E349D11227DE1F001E39B5 /* LEEmpireFind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireFind.h; sourceTree = "<group>"; };
@@ -1850,6 +1862,14 @@
 				F6E0B7441253A3A400D0C870 /* ViewUniverseIncomingShipsController.m */,
 				F6E0B7781253AD2A00D0C870 /* SendShipController.h */,
 				F6E0B7791253AD2A00D0C870 /* SendShipController.m */,
+				F6E0B8371253CA3300D0C870 /* SendSpiesController.h */,
+				F6E0B8381253CA3300D0C870 /* SendSpiesController.m */,
+				F6E0B8971253D6B200D0C870 /* SelectShipFromListController.h */,
+				F6E0B8981253D6B200D0C870 /* SelectShipFromListController.m */,
+				F6E0B89A1253D6BC00D0C870 /* SelectSpyFromListController.h */,
+				F6E0B89B1253D6BC00D0C870 /* SelectSpyFromListController.m */,
+				F6E0B9371253F50700D0C870 /* FetchSpiesController.h */,
+				F6E0B9381253F50700D0C870 /* FetchSpiesController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2284,6 +2304,10 @@
 				F6E0B82A1253C74A00D0C870 /* LEBuildingSendSpies.m in Sources */,
 				F6E0B82D1253C75C00D0C870 /* LEBuildingPrepareFetchSpies.m in Sources */,
 				F6E0B8301253C76A00D0C870 /* LEBuildingFetchSpies.m in Sources */,
+				F6E0B8391253CA3300D0C870 /* SendSpiesController.m in Sources */,
+				F6E0B8991253D6B200D0C870 /* SelectShipFromListController.m in Sources */,
+				F6E0B89C1253D6BC00D0C870 /* SelectSpyFromListController.m in Sources */,
+				F6E0B9391253F50700D0C870 /* FetchSpiesController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

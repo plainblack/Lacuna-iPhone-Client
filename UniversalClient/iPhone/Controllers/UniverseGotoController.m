@@ -162,7 +162,6 @@ typedef enum {
 	if (indexPath.section == SECTION_MY_WORLDS) {
 		Session *session = [Session sharedInstance];
 		NSDictionary *planet = [session.empire.planets objectAtIndex:indexPath.row];
-		NSLog(@"Selected My World: %@", planet);
 		[[[LEBodyStatus alloc] initWithCallback:@selector(bodyLoaded:) target:self bodyId:[planet objectForKey:@"id"]] autorelease];
 	} else if (indexPath.section == SECTION_STARS) {
 		Star *star = [self.stars objectAtIndex:indexPath.row];

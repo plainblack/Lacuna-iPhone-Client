@@ -40,6 +40,7 @@
 
 @synthesize scrollView;
 @synthesize map;
+@synthesize loadingView;
 @synthesize inUseStarCells;
 @synthesize reusableStarCells;
 @synthesize inUseBodyCells;
@@ -150,6 +151,7 @@
 - (void)viewDidUnload {
 	self.scrollView = nil;
 	self.map = nil;
+	self.loadingView = nil;
 	self.inUseStarCells = nil;
 	self.inUseBodyCells = nil;
     [super viewDidUnload];
@@ -159,6 +161,7 @@
 - (void)dealloc {
 	self.scrollView = nil;
 	self.map = nil;
+	self.loadingView = nil;
 	self.inUseStarCells = nil;
 	self.reusableStarCells = nil;
 	self.inUseBodyCells = nil;

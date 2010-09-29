@@ -37,7 +37,7 @@
 
 - (id)init {
     if (self = [super init]) {
-		self.sectors = [NSMutableDictionary dictionaryWithCapacity:5];
+		self.sectors = [[[NSCache alloc] init] autorelease];
 	}
 	return self;
 }
