@@ -27,12 +27,20 @@ typedef enum {
 } ROW;
 
 
+@interface SendShipController(PrivateMethods)
+
+- (void)sendShip;
+
+@end
+
+
 @implementation SendShipController
 
 
 @synthesize availableShips;
 @synthesize mapItem;
 @synthesize sendFromBodyId;
+@synthesize selectedShip;
 
 
 #pragma mark -
@@ -208,11 +216,15 @@ typedef enum {
 		default:
 			if (self.availableShips) {
 				if ([self.availableShips count] > 0) {
-					Ship *ship = [self.availableShips objectAtIndex:(indexPath.section-1)];
-					if ([self.mapItem.type isEqualToString:@"star"]) {
-						[[[LEBuildingSendShip alloc] initWithCallback:@selector(shipLaunched:) target:self shipId:ship.id targetBodyName:nil targetBodyId:nil targetStarName:nil targetStarId:self.mapItem.id targetX:nil targetY:nil] autorelease];
+					self.selectedShip = [self.availableShips objectAtIndex:(indexPath.section-1)];
+					Session *session = [Session sharedInstance];
+					if (session.empire.isIsolationist && [self.selectedShip.type isEqualToString:@"colony_ship"]) {
+						UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Send out a Colony Ship will take you out of Isolationist mode. This means spies can be sent to your Colonies. Are you sure you want to do this?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+						actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+						[actionSheet showFromTabBar:self.tabBarController.tabBar];
+						[actionSheet release];
 					} else {
-						[[[LEBuildingSendShip alloc] initWithCallback:@selector(shipLaunched:) target:self shipId:ship.id targetBodyName:nil targetBodyId:self.mapItem.id targetStarName:nil targetStarId:nil targetX:nil targetY:nil] autorelease];
+						[self sendShip];
 					}
 				}
 			}
@@ -243,6 +255,7 @@ typedef enum {
 	self.sendFromBodyId = nil;
 	[self->pickColonyController release];
 	self->pickColonyController = nil;
+	self.selectedShip = nil;
     [super dealloc];
 }
 
@@ -266,6 +279,16 @@ typedef enum {
 
 
 #pragma mark -
+#pragma mark UIActionSheetDelegate Methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
+		[self sendShip];
+	}
+}
+
+
+#pragma mark -
 #pragma mark Callback Methods
 
 - (void)shipsLoaded:(LEBuildingGetShipsFor *)request {
@@ -280,9 +303,20 @@ typedef enum {
 	[self.tableView reloadData];
 }
 
-
 - (void)shipLaunched:(LEBuildingSendShip *)request {
 	[self.navigationController popViewControllerAnimated:YES];
+}
+
+
+#pragma mark -
+#pragma mark PrivateMethods
+
+- (void)sendShip {
+	if ([self.mapItem.type isEqualToString:@"star"]) {
+		[[[LEBuildingSendShip alloc] initWithCallback:@selector(shipLaunched:) target:self shipId:self.selectedShip.id targetBodyName:nil targetBodyId:nil targetStarName:nil targetStarId:self.mapItem.id targetX:nil targetY:nil] autorelease];
+	} else {
+		[[[LEBuildingSendShip alloc] initWithCallback:@selector(shipLaunched:) target:self shipId:self.selectedShip.id targetBodyName:nil targetBodyId:self.mapItem.id targetStarName:nil targetStarId:nil targetX:nil targetY:nil] autorelease];
+	}
 }
 
 

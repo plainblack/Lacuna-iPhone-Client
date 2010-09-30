@@ -12,19 +12,22 @@
 
 
 @class BaseMapItem;
+@class Ship;
 
 
-@interface SendShipController : LETableViewControllerGrouped <PickColonyDelegate> {
+@interface SendShipController : LETableViewControllerGrouped <PickColonyDelegate, UIActionSheetDelegate> {
 	NSMutableArray *availableShips;
 	BaseMapItem *mapItem;
 	NSString *sendFromBodyId;
 	PickColonyController *pickColonyController;
+	Ship *selectedShip;
 }
 
 
 @property (nonatomic, retain) NSMutableArray *availableShips;
 @property (nonatomic, retain) BaseMapItem *mapItem;
 @property (nonatomic, retain) NSString *sendFromBodyId;
+@property (nonatomic, retain) Ship *selectedShip;
 
 
 + (SendShipController *)create;
