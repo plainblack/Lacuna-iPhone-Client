@@ -194,6 +194,10 @@
 		F6D1DF9B122B2191007A9A4B /* LEEmpireFetchCaptcha.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D1DF9A122B2191007A9A4B /* LEEmpireFetchCaptcha.m */; };
 		F6D1DFB8122B266F007A9A4B /* LETableViewCellServerSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D1DFB7122B266F007A9A4B /* LETableViewCellServerSelect.m */; };
 		F6D1E018122B33DE007A9A4B /* SelectSpeciesTemplateController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D1E017122B33DE007A9A4B /* SelectSpeciesTemplateController.m */; };
+		F6D360C21254AE1F003FDE5D /* TempleOfTheDrajilites.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D360C11254AE1F003FDE5D /* TempleOfTheDrajilites.m */; };
+		F6D360D31254B1C5003FDE5D /* LEBuildingListPlanets.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D360D21254B1C5003FDE5D /* LEBuildingListPlanets.m */; };
+		F6D360D61254B1D2003FDE5D /* LEBuildingViewPlanet.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D360D51254B1D2003FDE5D /* LEBuildingViewPlanet.m */; };
+		F6D360EA1254B59B003FDE5D /* SelectPlanetToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D360E91254B59B003FDE5D /* SelectPlanetToViewController.m */; };
 		F6D3F66D1221776A0090E31E /* NewTradeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3F66C1221776A0090E31E /* NewTradeController.m */; };
 		F6D3F6A812218AD10090E31E /* LEBuildingAddTrade.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3F6A712218AD10090E31E /* LEBuildingAddTrade.m */; };
 		F6D3F6BB122193C30090E31E /* SelectTradeablePrisonerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3F6BA122193C30090E31E /* SelectTradeablePrisonerController.m */; };
@@ -731,6 +735,14 @@
 		F6D1DFB7122B266F007A9A4B /* LETableViewCellServerSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellServerSelect.m; sourceTree = "<group>"; };
 		F6D1E016122B33DE007A9A4B /* SelectSpeciesTemplateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectSpeciesTemplateController.h; sourceTree = "<group>"; };
 		F6D1E017122B33DE007A9A4B /* SelectSpeciesTemplateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectSpeciesTemplateController.m; sourceTree = "<group>"; };
+		F6D360C01254AE1F003FDE5D /* TempleOfTheDrajilites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempleOfTheDrajilites.h; sourceTree = "<group>"; };
+		F6D360C11254AE1F003FDE5D /* TempleOfTheDrajilites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempleOfTheDrajilites.m; sourceTree = "<group>"; };
+		F6D360D11254B1C5003FDE5D /* LEBuildingListPlanets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingListPlanets.h; sourceTree = "<group>"; };
+		F6D360D21254B1C5003FDE5D /* LEBuildingListPlanets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingListPlanets.m; sourceTree = "<group>"; };
+		F6D360D41254B1D2003FDE5D /* LEBuildingViewPlanet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewPlanet.h; sourceTree = "<group>"; };
+		F6D360D51254B1D2003FDE5D /* LEBuildingViewPlanet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewPlanet.m; sourceTree = "<group>"; };
+		F6D360E81254B59B003FDE5D /* SelectPlanetToViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPlanetToViewController.h; sourceTree = "<group>"; };
+		F6D360E91254B59B003FDE5D /* SelectPlanetToViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPlanetToViewController.m; sourceTree = "<group>"; };
 		F6D3F66B1221776A0090E31E /* NewTradeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTradeController.h; sourceTree = "<group>"; };
 		F6D3F66C1221776A0090E31E /* NewTradeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTradeController.m; sourceTree = "<group>"; };
 		F6D3F6A612218AD10090E31E /* LEBuildingAddTrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingAddTrade.h; sourceTree = "<group>"; };
@@ -1384,6 +1396,8 @@
 				F6FB458111F5158C00E24EAC /* LEBuildingGlyphSearch.m */,
 				F6E8D56F1223E817001CD21D /* LEBuildingLeaveAlliance.h */,
 				F6E8D5701223E817001CD21D /* LEBuildingLeaveAlliance.m */,
+				F6D360D11254B1C5003FDE5D /* LEBuildingListPlanets.h */,
+				F6D360D21254B1C5003FDE5D /* LEBuildingListPlanets.m */,
 				F6D5A00C12012E5A009DDA28 /* LEBuildingNameShip.h */,
 				F6D5A00D12012E5A009DDA28 /* LEBuildingNameShip.m */,
 				F6A9C5B41184BB80001F0D9C /* LEBuildingNameSpy.h */,
@@ -1450,6 +1464,8 @@
 				F692B7C0121859F700E740C1 /* LEBuildingViewMyTrades.m */,
 				F6864F9C1183A3FB009826A7 /* LEBuildingViewNews.h */,
 				F6864F9D1183A3FB009826A7 /* LEBuildingViewNews.m */,
+				F6D360D41254B1D2003FDE5D /* LEBuildingViewPlanet.h */,
+				F6D360D51254B1D2003FDE5D /* LEBuildingViewPlanet.m */,
 				F6023A65123D922200268ADD /* LEBuildingViewPlans.h */,
 				F6023A66123D922200268ADD /* LEBuildingViewPlans.m */,
 				F6E5E5DC1205C08C00365AA2 /* LEBuildingViewPlatforms.h */,
@@ -1662,6 +1678,8 @@
 				F6DEDFD0124FC26100030329 /* StarMap.m */,
 				F6E768A811D6BD9300778C1D /* StoredResource.h */,
 				F6E768A911D6BD9300778C1D /* StoredResource.m */,
+				F6D360C01254AE1F003FDE5D /* TempleOfTheDrajilites.h */,
+				F6D360C11254AE1F003FDE5D /* TempleOfTheDrajilites.m */,
 				F6FD9E8511D7A6F3003785AD /* TimedActivity.h */,
 				F6FD9E8611D7A6F3003785AD /* TimedActivity.m */,
 				F692B7C8121861EC00E740C1 /* Trade.h */,
@@ -1885,6 +1903,8 @@
 				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
 				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
+				F6D360E81254B59B003FDE5D /* SelectPlanetToViewController.h */,
+				F6D360E91254B59B003FDE5D /* SelectPlanetToViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2326,6 +2346,10 @@
 				F6E0B8991253D6B200D0C870 /* SelectShipFromListController.m in Sources */,
 				F6E0B89C1253D6BC00D0C870 /* SelectSpyFromListController.m in Sources */,
 				F6E0B9391253F50700D0C870 /* FetchSpiesController.m in Sources */,
+				F6D360C21254AE1F003FDE5D /* TempleOfTheDrajilites.m in Sources */,
+				F6D360D31254B1C5003FDE5D /* LEBuildingListPlanets.m in Sources */,
+				F6D360D61254B1D2003FDE5D /* LEBuildingViewPlanet.m in Sources */,
+				F6D360EA1254B59B003FDE5D /* SelectPlanetToViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

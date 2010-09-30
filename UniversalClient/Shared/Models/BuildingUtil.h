@@ -24,6 +24,7 @@
 #define SECURITY_URL @"/security"
 #define SHIPYARD_URL @"/shipyard"
 #define SPACE_PORT_URL @"/spaceport"
+#define TEMPLE_OF_THE_DRAJILITEIS_URL @"/templeofthedrajilites"
 #define TRADE_URL @"/trade"
 #define TRANSPORTER_URL @"/transporter"
 #define WASTE_RECYCLING_URL @"/wasterecycling"
@@ -112,7 +113,8 @@ typedef enum {
 	BUILDING_ROW_VIEW_FOREIGN_SHIPS,
 	BUILDING_ROW_VIEW_PLANS,
 	BUILDING_ROW_DESCRIPTION,
-	BUILDING_ROW_WIKI_BUTTON
+	BUILDING_ROW_WIKI_BUTTON,
+	BUILDING_ROW_VIEW_PLANETS,
 } BUILDING_ROW;
 
 

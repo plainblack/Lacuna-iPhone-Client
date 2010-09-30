@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface ViewAttachedMapController : UIViewController {
+@interface ViewAttachedMapController : UIViewController <UIScrollViewDelegate> {
 	UIScrollView *scrollView;
 	UIView *backgroundView;
 	NSString *surface;

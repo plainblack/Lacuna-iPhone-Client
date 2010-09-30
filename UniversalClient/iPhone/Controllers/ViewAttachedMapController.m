@@ -25,6 +25,10 @@
 	self.scrollView.autoresizesSubviews = YES;
 	self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	self.scrollView.bounces = NO;
+	self.scrollView.bouncesZoom = NO;
+	self.scrollView.delegate = self;
+	self.scrollView.maximumZoomScale = 4.0;
+	self.scrollView.minimumZoomScale = 0.35;
 	self.view = self.scrollView;
 }
 
@@ -65,6 +69,11 @@
 }
 
 
+- (void)viewWillAppear:(BOOL)animated {
+	[self.navigationController setToolbarHidden:YES animated:YES];
+}
+
+
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return YES;
@@ -95,10 +104,22 @@
 
 
 #pragma mark -
+#pragma mark UIScrollViewDelegate Methods
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+	return self.backgroundView;
+}
+
+
+#pragma mark -
 #pragma mark Instance Methods
 
 -(void) setAttachedMap:(NSDictionary *)attachedMap {
+	NSLog(@"Attached Map Data: %@", attachedMap);
 	self.surface = [attachedMap objectForKey:@"surface"];
+	if (!self.surface) {
+		self.surface = [attachedMap objectForKey:@"surface_image"];
+	}
 	self.buildings = [attachedMap objectForKey:@"buildings"];
 }
 

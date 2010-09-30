@@ -27,6 +27,7 @@
 	self.scrollView.autoresizesSubviews = YES;
 	self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	self.scrollView.bounces = NO;
+	self.scrollView.bouncesZoom = NO;
 	self.scrollView.delegate = self;
 	self.scrollView.maximumZoomScale = 4.0;
 	self.scrollView.minimumZoomScale = 0.35;
