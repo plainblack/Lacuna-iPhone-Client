@@ -12,12 +12,12 @@
 
 @interface LEBodyStatus : LERequest {
 	NSString *bodyId;
-	NSDictionary *body;
+	NSMutableDictionary *body;
 }
 
 
 @property(nonatomic, retain) NSString *bodyId;
-@property(nonatomic, retain) NSDictionary *body;
+@property(nonatomic, retain) NSMutableDictionary *body;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target bodyId:(NSString *)bodyId;

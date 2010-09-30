@@ -34,7 +34,6 @@
 - (void)processSuccess {
 	NSDictionary *result = [self.response objectForKey:@"result"];
 	self.profile = [result objectForKey:@"profile"];
-	NSLog(@"returned profile is: %@", self.profile);
 }
 
 

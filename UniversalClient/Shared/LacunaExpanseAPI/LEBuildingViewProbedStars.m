@@ -44,7 +44,7 @@
 	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[starsData count]];
 	Star  *star;
 	
-	for (NSDictionary *starData in starsData) {
+	for (NSMutableDictionary *starData in starsData) {
 		star = [[[Star alloc] init] autorelease];
 		[star parseData:starData];
 		[tmp addObject:star];

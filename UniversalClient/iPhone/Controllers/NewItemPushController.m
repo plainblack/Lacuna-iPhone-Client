@@ -83,12 +83,11 @@ typedef enum {
 	if (!self.itemPush.targetId) {
 		Session *session = [Session sharedInstance];
 		if	([session.empire.planets count] == 2) {
-			[session.empire.planets enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-				if (![key isEqualToString:session.body.id]) {
-					self.itemPush.targetId = key;
-					*stop = YES;
-				}
-			}];
+			if ([[[session.empire.planets objectAtIndex:0] objectForKey:@"id"] isEqualToString:session.body.id]) {
+				self.itemPush.targetId = [[session.empire.planets objectAtIndex:1] objectForKey:@"id"];
+			} else {
+				self.itemPush.targetId = [[session.empire.planets objectAtIndex:0] objectForKey:@"id"];
+			}
 		} else {
 			[self showColonyPicker];
 		}
@@ -188,7 +187,14 @@ typedef enum {
 			LETableViewCellButton *selectColonyButton = [LETableViewCellButton getCellForTableView:tableView];
 			if (self.itemPush.targetId) {
 				Session *session = [Session sharedInstance];
-				selectColonyButton.textLabel.text = [session.empire.planets objectForKey:self.itemPush.targetId];
+				[session.empire.planets enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+					NSLog(@"TEST ID", [obj objectForKey:@"id"]);
+					NSLog(@"TARGET ID", self.itemPush.targetId);
+					if ([[obj objectForKey:@"id"] isEqualToString:self.itemPush.targetId]) {
+						selectColonyButton.textLabel.text = [obj objectForKey:@"name"];
+						*stop = YES;
+					}
+				}];
 			} else {
 				selectColonyButton.textLabel.text = @"Select Colony";
 			}
@@ -418,11 +424,17 @@ typedef enum {
 	self.baseTradeBuilding = nil;
 	self.itemPush = nil;
 	[self->pickColonyController release];
+	self->pickColonyController = nil;
 	[self->selectGlyphController release];
+	self->selectGlyphController = nil;
 	[self->selectPlanController release];
+	self->selectPlanController = nil;
 	[self->selectTradeablePrisonerController release];
+	self->selectTradeablePrisonerController = nil;
 	[self->selectStoredResourceController release];
+	self->selectStoredResourceController = nil;
 	[self->selectTradeableShipController release];
+	self->selectTradeableShipController = nil;
     [super dealloc];
 }
 
@@ -454,6 +466,7 @@ typedef enum {
 	self.itemPush.targetId = colonyId;
 	[self dismissModalViewControllerAnimated:YES];
 	[self->pickColonyController release];
+	self->pickColonyController = nil;
 	[self.tableView reloadData];
 }
 
@@ -531,13 +544,7 @@ typedef enum {
 	Session *session = [Session	 sharedInstance];
 	self->pickColonyController = [[PickColonyController create] retain];
 	self->pickColonyController.delegate = self;
-	NSMutableArray *colonies = [NSMutableArray arrayWithCapacity:[session.empire.planets count]];
-	[session.empire.planets enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
-		if (![session.body.id isEqualToString:key]) {
-			[colonies addObject:_dict(key, @"id", obj, @"name")];
-		}
-	}];
-	self->pickColonyController.colonies = colonies;
+	self->pickColonyController.colonies = session.empire.planets;
 	[self presentModalViewController:self->pickColonyController animated:YES];
 }
 

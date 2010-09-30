@@ -75,9 +75,15 @@
 	self.homePlanetId = [empireData objectForKey:@"home_planet_id"];
 	self.essentia = [Util asNumber:[empireData objectForKey:@"essentia"]];
 	self.numNewMessages = [Util asNumber:[empireData objectForKey:@"has_new_messages"]];
-	self.planets = [empireData objectForKey:@"planets"];
 	self.selfDestructActive = _boolv([empireData objectForKey:@"self_destruct_active"]);
 	self.selfDestructAt = [Util date:[empireData objectForKey:@"self_destruct_date"]];
+
+	NSDictionary *planetsData = [empireData objectForKey:@"planets"];
+	NSMutableArray *tmpPlanets = [NSMutableArray arrayWithCapacity:[planetsData count]];
+	[planetsData enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+		[tmpPlanets addObject:_dict([Util asString:key], @"id", obj, @"name")];
+	}];
+	self.planets = tmpPlanets;
 	
 	NSDictionary *newestMessage = [empireData objectForKey:@"most_recent_message"];
 	if (isNotNull(newestMessage)) {

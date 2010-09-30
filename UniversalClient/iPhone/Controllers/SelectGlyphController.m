@@ -184,7 +184,7 @@
 #pragma mark PrivateMethods
 
 - (void)setMyGlyphsTo:(NSMutableArray *)myGlyphs {
-	self.glyphs = [myGlyphs mutableCopy];
+	self.glyphs = [[myGlyphs mutableCopy] autorelease];
 	if (self.filterGlyphs) {
 		[self.glyphs removeObjectsInArray:self.filterGlyphs];
 	}

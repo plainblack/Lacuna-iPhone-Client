@@ -32,7 +32,10 @@ static Session *sharedSession = nil;
 @synthesize serverUri;
 @synthesize itemDescriptions;
 @synthesize lacunanMessageId;
-
+@synthesize universeMinX;
+@synthesize universeMaxX;
+@synthesize universeMinY;
+@synthesize universeMaxY;
 
 #pragma mark -
 #pragma mark Singleton methods
@@ -110,6 +113,10 @@ static Session *sharedSession = nil;
 	self.serverUri = nil;
 	self.itemDescriptions = nil;
 	self.lacunanMessageId = nil;
+	self.universeMinX = nil;
+	self.universeMaxX = nil;
+	self.universeMinY = nil;
+	self.universeMaxY = nil;
 	[super dealloc];
 }
 
@@ -194,6 +201,14 @@ static Session *sharedSession = nil;
 					[av show];
 				}
 			}
+			
+			NSMutableDictionary *starMapSize = [serverStatus objectForKey:@"star_map_size"];
+			if (starMapSize) {
+				self.universeMinX = [Util asNumber:[[starMapSize objectForKey:@"x"] objectAtIndex:0]];
+				self.universeMaxX = [Util asNumber:[[starMapSize objectForKey:@"x"] objectAtIndex:1]];
+				self.universeMinY = [Util asNumber:[[starMapSize objectForKey:@"y"] objectAtIndex:0]];
+				self.universeMaxY = [Util asNumber:[[starMapSize objectForKey:@"y"] objectAtIndex:1]];
+			}
 		}
 		
 		NSDictionary *empireStatus = [status objectForKey:@"empire"];
@@ -201,7 +216,7 @@ static Session *sharedSession = nil;
 			[self.empire parseData:empireStatus];
 		}
 
-		NSDictionary *bodyStatus = [status objectForKey:@"body"];
+		NSMutableDictionary *bodyStatus = [status objectForKey:@"body"];
 		if (bodyStatus) {
 			[self.body parseData:bodyStatus];
 		}

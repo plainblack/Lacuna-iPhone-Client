@@ -127,7 +127,7 @@ typedef enum {
 					return [LETableViewCellTravellingShip getHeightForTableView:tableView];
 					break;
 				default:
-					return tableView.rowHeight;
+					return 0.0;
 					break;
 			}
 		} else {
