@@ -35,25 +35,25 @@
 #pragma mark -
 #pragma mark Overriden Building Methods
 
-- (void)tick:(NSInteger)interval {
-	bool requestReload = NO;
+- (BOOL)tick:(NSInteger)interval {
+	BOOL reloadNeeded = [super tick:interval];
 	for (NSMutableDictionary *buildQueueItem in self.buildQueue) {
 		NSInteger secondsRemaining = _intv([buildQueueItem objectForKey:@"seconds_remaining"]);
 		secondsRemaining -= interval;
 		if (secondsRemaining <= 0) {
 			secondsRemaining = 0;
-			requestReload = YES;
+			reloadNeeded = YES;
 		}
 		[buildQueueItem setObject:[NSDecimalNumber numberWithInt:secondsRemaining] forKey:@"seconds_remaining"];
 	}
 	
-	if (requestReload) {
-		self.needsReload = YES;
-	} else {
+	[super tick:interval];
+
+	if (!reloadNeeded) {
 		self.needsRefresh = YES;
 	}
-
-	[super tick:interval];
+	
+	return reloadNeeded;
 }
 
 

@@ -45,11 +45,6 @@
 #pragma mark -
 #pragma mark Overriden Building Methods
 
-- (void)tick:(NSInteger)interval {
-	[super tick:interval];
-}
-
-
 - (void)generateSections {
 	
 	NSMutableDictionary *productionSection = [self generateProductionSection];

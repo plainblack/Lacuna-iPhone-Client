@@ -41,10 +41,10 @@
 
 - (void)parseData:(NSDictionary *)data {
 	if (data && (id)data != [NSNull null]) {
-		self.secondsRemaining = _intv([data objectForKey:@"seconds_remaining"]) + 20;
+		self.secondsRemaining = _intv([data objectForKey:@"seconds_remaining"]);
 		self.startDate = [Util date:[data objectForKey:@"start"]];
 		self.endDate = [Util date:[data objectForKey:@"end"]];
-		self.totalSeconds = [self.endDate timeIntervalSinceDate:self.startDate] + 20;
+		self.totalSeconds = [self.endDate timeIntervalSinceDate:self.startDate];
 	}
 }
 

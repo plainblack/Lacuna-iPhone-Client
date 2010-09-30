@@ -49,8 +49,7 @@
 #pragma mark -
 #pragma mark Overriden Building Methods
 
-- (void)tick:(NSInteger)interval {
-	[super tick:interval];
+- (BOOL)tick:(NSInteger)interval {
 	BOOL reloadPrisoners = NO;
 
 	for (Prisoner *prisoner in self.prisoners) {
@@ -64,6 +63,7 @@
 	}
 	
 	self.prisonersUpdated = [NSDate date];
+	return [super tick:interval];
 }
 
 

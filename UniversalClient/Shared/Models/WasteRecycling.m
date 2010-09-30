@@ -37,7 +37,7 @@
 #pragma mark -
 #pragma mark Overriden Building Methods
 
-- (void)tick:(NSInteger)interval {
+- (BOOL)tick:(NSInteger)interval {
 	if (self.secondsRemaining > 0) {
 		self.secondsRemaining -= interval;
 		if (self.secondsRemaining <= 0) {
@@ -47,7 +47,7 @@
 		}
 		self.needsRefresh = YES;
 	}
-	[super tick:interval];
+	return [super tick:interval];
 }
 
 

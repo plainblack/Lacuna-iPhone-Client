@@ -66,11 +66,6 @@
 #pragma mark -
 #pragma mark Overriden Building Methods
 
-- (void)tick:(NSInteger)interval {
-	[super tick:interval];
-}
-
-
 - (void)parseAdditionalData:(NSDictionary *)data {
 	NSDictionary *dockedShipData = [data objectForKey:@"docked_ships"];
 	self.dockedShips = [NSMutableDictionary dictionaryWithCapacity:[dockedShipData count]];

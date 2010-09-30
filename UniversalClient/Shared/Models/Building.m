@@ -226,11 +226,13 @@
 }
 
 
-- (void)tick:(NSInteger)interval {
+- (BOOL)tick:(NSInteger)interval {
+	BOOL reloadNeeded = NO;
 	[self.pendingBuild tick:interval];
 	if (self.pendingBuild && self.pendingBuild.secondsRemaining <= 0) {
-		self.needsReload = YES;
+		reloadNeeded = YES;
 	}
+	return reloadNeeded;
 }
 
 

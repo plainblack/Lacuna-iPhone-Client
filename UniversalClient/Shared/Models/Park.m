@@ -34,18 +34,18 @@
 #pragma mark -
 #pragma mark Overriden Building Methods
 
-- (void)tick:(NSInteger)interval {
-	NSLog(@"Tick");
+- (BOOL)tick:(NSInteger)interval {
+	BOOL reloadNeeded = [super tick:interval];
 	if (self.secondsRemaining > 0) {
 		self.secondsRemaining -= interval;
 		if (self.secondsRemaining <= 0) {
 			self.secondsRemaining = 0;
-			self.needsReload = YES;
+			reloadNeeded = YES;
 		} else {
 			self.needsRefresh = YES;
 		}
 	}
-	[super tick:interval];
+	return reloadNeeded;
 }
 
 

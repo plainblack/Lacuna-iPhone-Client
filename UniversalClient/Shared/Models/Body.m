@@ -179,9 +179,11 @@
 	[self.ore tick:interval];
 	NSDecimalNumber *extraWaste = [[[self.waste tick:interval] retain] autorelease];
 	[self.water tick:interval];
-	
+
 	if (self.currentBuilding) {
-		[self.currentBuilding tick:interval];
+		if ([self.currentBuilding tick:interval]) {
+			self.currentBuilding.needsReload = YES;
+		}
 	}
 	
 	if (extraWaste) {

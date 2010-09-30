@@ -79,7 +79,7 @@
 - (NSMutableDictionary *)generateHealthSection;
 - (NSMutableDictionary *)generateUpgradeSection;
 - (NSMutableDictionary *)generateGeneralInfoSection;
-- (void)tick:(NSInteger)interval;
+- (BOOL)tick:(NSInteger)interval;
 - (MapBuilding *)findMapBuilding;
 
 - (NSInteger)sectionCount;

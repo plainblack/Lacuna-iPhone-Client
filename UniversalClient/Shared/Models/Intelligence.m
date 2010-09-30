@@ -51,13 +51,14 @@
 #pragma mark -
 #pragma mark Overriden Building Methods
 
-- (void)tick:(NSInteger)interval {
-	[super tick:interval];
+- (BOOL)tick:(NSInteger)interval {
 	BOOL reloadSpies = NO;
-	
-	for (Spy *spy in self.spies) {
-		if ([spy tick:interval]) {
-			reloadSpies = YES;
+
+	if (self.spies) {
+		for (Spy *spy in self.spies) {
+			if ([spy tick:interval]) {
+				reloadSpies = YES;
+			}
 		}
 	}
 
@@ -66,6 +67,8 @@
 	}
 
 	self.spiesUpdated = [NSDate date];
+	
+	return [super tick:interval];
 }
 
 

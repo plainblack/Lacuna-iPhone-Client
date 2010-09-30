@@ -62,11 +62,6 @@
 #pragma mark -
 #pragma mark Overriden Building Methods
 
-- (void)tick:(NSInteger)interval {
-	[super tick:interval];
-}
-
-
 - (void)parseAdditionalData:(NSDictionary *)data {
 	if (!self.allianceStatus) {
 		self.allianceStatus = [[[AllianceStatus alloc] init] autorelease];

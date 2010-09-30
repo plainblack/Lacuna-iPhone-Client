@@ -23,11 +23,6 @@
 #pragma mark -
 #pragma mark Overriden Building Methods
 
-- (void)tick:(NSInteger)interval {
-	[super tick:interval];
-}
-
-
 - (void)parseAdditionalData:(NSDictionary *)data {
 	self.restrictingCoverage = [[data objectForKey:@"restrict_coverage"] boolValue];
 }
