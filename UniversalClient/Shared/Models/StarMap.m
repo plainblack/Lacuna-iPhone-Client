@@ -30,6 +30,7 @@
 
 @synthesize sectors;
 @synthesize lastUpdate;
+@synthesize numLoading;
 
 
 # pragma -
@@ -38,6 +39,7 @@
 - (id)init {
     if (self = [super init]) {
 		self.sectors = [[[NSCache alloc] init] autorelease];
+		self->numLoading = 0;
 	}
 	return self;
 }
@@ -86,7 +88,6 @@
 
 - (void)loadSectorX:(NSDecimalNumber *)sectorX sectorY:(NSDecimalNumber *)sectorY {
 	NSString *sectorKey = [NSString stringWithFormat:@"%@x%@", sectorX, sectorY];
-	NSLog(@"Loading %@", sectorKey);
 	NSDecimalNumber *topLeftX = [sectorX decimalNumberByMultiplyingBy:SECTOR_SIZE];
 	NSDecimalNumber *topLeftY = [[sectorY decimalNumberByMultiplyingBy:SECTOR_SIZE] decimalNumberByAdding:SECTOR_SIZE];
 	NSDecimalNumber *bottomRightX = [[sectorX decimalNumberByMultiplyingBy:SECTOR_SIZE] decimalNumberByAdding:SECTOR_SIZE];
@@ -94,6 +95,7 @@
 	
 	[[[LEMapGetStars alloc] initWithCallback:@selector(sectorLoaded:) target:self topLeftX:topLeftX topLeftY:topLeftY bottomRightX:bottomRightX bottomRightY:bottomRightY] autorelease];
 	[self.sectors setObject:[NSMutableDictionary dictionaryWithCapacity:10] forKey:sectorKey];
+	self.numLoading = self.numLoading + 1;
 }
 
 
@@ -121,9 +123,8 @@
 #pragma mark -
 #pragma mark Callback Methods
 
-- (id)sectorLoaded:(LEMapGetStars *)request {
+- (void)sectorLoaded:(LEMapGetStars *)request {
 	NSString *sectorKey = [NSString stringWithFormat:@"%@x%@", [self gridToSector:request.topLeftX], [self gridToSector:request.bottomRightY]];
-	NSLog(@"Sector Loaded Sector %@", sectorKey);
 	
 	for (NSMutableDictionary *starData in request.stars) {
 		Star *star = [[Star alloc] init];
@@ -131,6 +132,7 @@
 		[self addMapItem:star];
 		for (NSMutableDictionary *bodyData in [starData objectForKey:@"bodies"]) {
 			Body *body = [[Body alloc] init];
+			body.ignoreIncomingForeignShipData = YES;
 			[body parseData:bodyData];
 			[self addMapItem:body];
 			[body release];
@@ -139,7 +141,7 @@
 	}
 	[[self.sectors objectForKey:sectorKey] setObject:[NSDate date] forKey:@"loadedAt"];
 	self.lastUpdate = [NSDate date];
-	return nil;
+	self.numLoading = self.numLoading - 1;
 }
 
 

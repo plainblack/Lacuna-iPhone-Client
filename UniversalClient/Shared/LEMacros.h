@@ -38,6 +38,8 @@
 //Colors
 #define CELL_BACKGROUND_IMAGE [UIImage imageNamed:@"assets/iphone ui/cell-bkg.png"]
 #define CELL_BACKGROUND_COLOR [UIColor colorWithPatternImage:CELL_BACKGROUND_IMAGE]
+#define STAR_FIELD_BACKGROUND_MAGE [UIImage imageNamed:@"assets/star_system/field.png"]
+#define STAR_FIELD_BACKGROUND_COLOR [UIColor colorWithPatternImage:STAR_FIELD_BACKGROUND_MAGE]
 #define TOP_CELL_BACKGROUND_IMAGE [UIImage imageNamed:@"assets/iphone ui/cell-bkg-top.png"]
 #define TOP_CELL_BACKGROUND_COLOR [UIColor colorWithPatternImage:TOP_CELL_BACKGROUND_IMAGE]
 #define LE_BLUE [UIColor colorWithRed:82.0/255.0 green:172.0/255.0 blue:1.0 alpha:1.0]

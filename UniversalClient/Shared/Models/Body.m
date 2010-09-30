@@ -42,10 +42,19 @@
 @synthesize needsRefresh;
 @dynamic canBuild;
 @synthesize incomingForeignShips;
+@synthesize ignoreIncomingForeignShipData;
 
 
 #pragma mark -
 #pragma mark NSObject Methods
+
+- (id)init {
+    if (self = [super init]) {
+		self.ignoreIncomingForeignShipData = NO;
+	}
+	
+	return self;
+}
 
 - (NSString *)description {
 	return [NSString stringWithFormat:@"id:%@, name:%@, type:%@, surfaceImageName:%@, empireId:%@, empireName:%@, x:%@, y:%@, starId:%@, starName:%@, orbit:%@, buildingCount:%@, needsSurfaceRefresh:%i, incomingForeignShips:%@, planetWater: %@, ores:%@", 
@@ -131,27 +140,30 @@
 	}
 	[self.water parseFromData:bodyData withPrefix:@"water"];
 	
-	NSMutableArray *incomingForeignShipData = [bodyData objectForKey:@"incoming_foreign_ships"];
-	if (isNotNull(incomingForeignShipData)) {
-		NSLog(@"INCOMING FOREIGN SHIP DATE: %@", incomingForeignShipData);
-		NSMutableSet *newSet = [NSMutableSet setWithCapacity:[incomingForeignShipData count]];
-		for (NSMutableDictionary *tmp in incomingForeignShipData) {
-			[newSet addObject:[tmp objectForKey:@"date_arrives"]];
-		}
-		NSMutableSet *warnAboutSet;
-		warnAboutSet = [newSet mutableCopy];
-		if (self.incomingForeignShips) {
-			[warnAboutSet minusSet:self.incomingForeignShips];
-		}
-		if ([warnAboutSet count] > 0) {
-			UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"INCOMING SHIPS!" message:@"Incoming Foreign Ships detected. Go to your Spaceport for more information." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-			[av show];
-		}
-		[warnAboutSet release];
-		self.incomingForeignShips = newSet;
+	if (self.ignoreIncomingForeignShipData) {
+		self.incomingForeignShips = nil;
 	} else {
-		if (self.incomingForeignShips) {
-			self.incomingForeignShips = nil;
+		NSMutableArray *incomingForeignShipData = [bodyData objectForKey:@"incoming_foreign_ships"];
+		if (isNotNull(incomingForeignShipData)) {
+			NSMutableSet *newSet = [NSMutableSet setWithCapacity:[incomingForeignShipData count]];
+			for (NSMutableDictionary *tmp in incomingForeignShipData) {
+				[newSet addObject:[tmp objectForKey:@"date_arrives"]];
+			}
+			NSMutableSet *warnAboutSet;
+			warnAboutSet = [newSet mutableCopy];
+			if (self.incomingForeignShips) {
+				[warnAboutSet minusSet:self.incomingForeignShips];
+			}
+			if ([warnAboutSet count] > 0) {
+				UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"INCOMING SHIPS!" message:@"Incoming Foreign Ships detected. Go to your Spaceport for more information." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+				[av show];
+			}
+			[warnAboutSet release];
+			self.incomingForeignShips = newSet;
+		} else {
+			if (self.incomingForeignShips) {
+				self.incomingForeignShips = nil;
+			}
 		}
 	}
 

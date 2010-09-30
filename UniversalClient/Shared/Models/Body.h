@@ -37,6 +37,7 @@
 	Building *currentBuilding;
 	BOOL needsRefresh;
 	NSMutableSet *incomingForeignShips;
+	BOOL ignoreIncomingForeignShipData;
 }
 
 
@@ -64,6 +65,7 @@
 @property (nonatomic, assign) BOOL needsRefresh;
 @property (nonatomic, readonly) BOOL canBuild;
 @property (nonatomic, retain) NSMutableSet *incomingForeignShips;
+@property (nonatomic, assign) BOOL ignoreIncomingForeignShipData;
 
 
 - (void)parseData:(NSMutableDictionary *)bodyData;

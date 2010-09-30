@@ -105,9 +105,10 @@
 	self.scrollView.maximumZoomScale = 4.0;
 	
 	self.map = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.scrollView.contentSize.width, self.scrollView.contentSize.height)];
-	self.map.backgroundColor = [UIColor clearColor];
+	//self.map.backgroundColor = STAR_FIELD_BACKGROUND_COLOR;
 	self.map.autoresizesSubviews = YES;
 	self.map.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+
 	[self.scrollView addSubview:self.map];
 	
 	if (session.body) {
@@ -117,6 +118,8 @@
 		float midY = (self.scrollView.contentSize.height/2) - (self.scrollView.frame.size.height/2);
 		self.scrollView.contentOffset = CGPointMake(midX, midY);
 	}
+	[self.loadingView removeFromSuperview];
+	[self.view addSubview:self.loadingView];
 }
 
 
@@ -129,11 +132,14 @@
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	[self.starMap addObserver:self forKeyPath:@"lastUpdate" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+	[self.starMap addObserver:self forKeyPath:@"numLoading" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
 	[super viewDidDisappear:animated];
+	[self.loadingView stopAnimating];
 	[self.starMap removeObserver:self forKeyPath:@"lastUpdate"];
+	[self.starMap removeObserver:self forKeyPath:@"numLoading"];
 }
 
 
@@ -381,6 +387,12 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ([keyPath isEqual:@"lastUpdate"]) {
 		[self tileView];
+	} else if ([keyPath isEqual:@"numLoading"]) {
+		if (self.starMap.numLoading > 0 && ![self.loadingView isAnimating]) {
+			[self.loadingView startAnimating];
+		} else if (self.starMap.numLoading <= 0 && [self.loadingView isAnimating]) {
+			[self.loadingView stopAnimating];
+		}
 	}
 }
 
