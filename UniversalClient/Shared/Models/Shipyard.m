@@ -60,7 +60,7 @@
 	NSMutableArray *actionRows = [NSMutableArray arrayWithCapacity:1];
 	[actionRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_SHIP_BUILD_QUEUE]];
 	[actionRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_BUILD_SHIP]];
-	[actionRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_SUBSIDIZE]]; //KEVIN TODO only show if has builds pending
+	[actionRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_SUBSIDIZE]];
 	
 	self.sections = _array(productionSection, _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", actionRows, @"rows"), [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
 }

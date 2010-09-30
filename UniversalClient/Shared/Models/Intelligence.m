@@ -86,7 +86,7 @@
 	[spyRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_SPY_BUILD_COST]];
 	[spyRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_SPIES_BUTTON]];
 	
-	[spyRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_SUBSIDIZE]]; //KEVIN TODO ONLY SHOW IF HAS SPIES TRAINING
+	[spyRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_SUBSIDIZE]];
 	
 	if ([self.numSpies compare:self.maxSpies] == NSOrderedAscending) {
 		[spyRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_BUILD_SPY_BUTTON]];

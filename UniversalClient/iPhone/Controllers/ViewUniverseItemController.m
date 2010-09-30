@@ -212,7 +212,7 @@ typedef enum {
 				; //DO NOT REMOVE
 				LETableViewCellLabeledIconText *plotsCell = [LETableViewCellLabeledIconText getCellForTableView:tableView isSelectable:NO];
 				plotsCell.label.text = @"Plots";
-				plotsCell.icon.image = nil; //plotsCell.icon.image = PLOTS_ICON; //KEVIN TODO
+				plotsCell.icon.image = PLOTS_ICON;
 				plotsCell.content.text = [((Body *)self.mapItem).size stringValue];
 				cell = plotsCell;
 				break;
@@ -339,7 +339,10 @@ typedef enum {
 		
 
 		if ([self.mapItem.type isEqualToString:@"habitable planet"]) {
-			[self.sections addObject:_dict([NSDecimalNumber numberWithInt:SECTION_SPY_ACTIONS], @"type", @"Spies", @"name", _array([NSDecimalNumber numberWithInt:ROW_SEND_SPIES], [NSDecimalNumber numberWithInt:ROW_FETCH_SPIES]), @"rows")];
+			Body *body = (Body *)self.mapItem;
+			if (body.empireId) {
+				[self.sections addObject:_dict([NSDecimalNumber numberWithInt:SECTION_SPY_ACTIONS], @"type", @"Spies", @"name", _array([NSDecimalNumber numberWithInt:ROW_SEND_SPIES], [NSDecimalNumber numberWithInt:ROW_FETCH_SPIES]), @"rows")];
+			}
 		}
 
 		NSMutableArray *shipActionRows = _array([NSDecimalNumber numberWithInt:ROW_VIEW_INCOMING_SHIPS]);
