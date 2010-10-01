@@ -55,7 +55,7 @@ typedef enum {
 	self.servers = [[Servers alloc] init];
 	[self.servers release];
 
-	self.customerServerCell =  [LETableViewCellTextEntry getCellForTableView:self.tableView];
+	self.customerServerCell =  [LETableViewCellTextEntry getCellForTableView:self.tableView includeToolbar:NO];
 	self.customerServerCell.label.text = @"URL";
 	self.customerServerCell.keyboardType = UIKeyboardTypeURL;
 	self.customerServerCell.delegate = self;
@@ -160,7 +160,7 @@ typedef enum {
 				case CUSTOM_SERVER_ROW_BUTTON:
 					; //DO NOT REMOVE
 					LETableViewCellButton *customButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-					customButtonCell.textLabel.text = @"Use";
+					customButtonCell.textLabel.text = @"Use Custom";
 					cell = customButtonCell;
 					break;
 				default:

@@ -213,7 +213,12 @@ static NSString *CellIdentifier = @"TextEntryCell";
 }
 
 
+
 + (LETableViewCellTextEntry *)getCellForTableView:(UITableView *)tableView {
+	return [self getCellForTableView:tableView includeToolbar:YES];
+}
+
++ (LETableViewCellTextEntry *)getCellForTableView:(UITableView *)tableView includeToolbar:(BOOL)includeToolbar {
     static NSString *CellIdentifier = @"TextEntryCell";
 	
 	LETableViewCellTextEntry *cell = (LETableViewCellTextEntry *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -234,13 +239,15 @@ static NSString *CellIdentifier = @"TextEntryCell";
 		cell.textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
 		[cell.contentView addSubview:cell.textField];
 		
-		UIToolbar *toolbar = [[[UIToolbar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 44.0f)] autorelease];
-		toolbar.center = CGPointMake(160.0f, 200.0f);
-		UIBarButtonItem *clearItem = [[[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStyleBordered target:cell action:@selector(clearText)] autorelease];
-		UIBarButtonItem *spacer = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
-		UIBarButtonItem *dismissItem = [[[UIBarButtonItem alloc] initWithTitle:@"Dismiss" style:UIBarButtonItemStyleDone target:cell action:@selector(dismissKeyboard)] autorelease];
-		toolbar.items = _array(clearItem, spacer, dismissItem);
-		cell.textField.inputAccessoryView = toolbar;
+		if (includeToolbar) {
+			UIToolbar *toolbar = [[[UIToolbar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 44.0f)] autorelease];
+			toolbar.center = CGPointMake(160.0f, 200.0f);
+			UIBarButtonItem *clearItem = [[[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStyleBordered target:cell action:@selector(clearText)] autorelease];
+			UIBarButtonItem *spacer = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+			UIBarButtonItem *dismissItem = [[[UIBarButtonItem alloc] initWithTitle:@"Dismiss" style:UIBarButtonItemStyleDone target:cell action:@selector(dismissKeyboard)] autorelease];
+			toolbar.items = _array(clearItem, spacer, dismissItem);
+			cell.textField.inputAccessoryView = toolbar;
+		}
 
 		//Set Font stuff
 		cell.label.font = LABEL_FONT;

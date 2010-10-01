@@ -29,8 +29,9 @@
 - (void)clearText;
 
 
-+ (LETableViewCellTextEntry *)getCellWithNibForTableView:(UITableView *)tableView;
+//+ (LETableViewCellTextEntry *)getCellWithNibForTableView:(UITableView *)tableView;
 + (LETableViewCellTextEntry *)getCellForTableView:(UITableView *)tableView;
++ (LETableViewCellTextEntry *)getCellForTableView:(UITableView *)tableView includeToolbar:(BOOL)includeToolbar;
 + (CGFloat)getHeightForTableView:(UITableView *)tableView;
 
 
