@@ -212,6 +212,7 @@ static id<LERequestMonitor> delegate;
 		[self errorCallback:error];
 	} else {
 		NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]] autorelease];
+		[request setTimeoutInterval:600.0];
 		[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
 		[request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
 		[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
