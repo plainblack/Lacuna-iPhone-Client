@@ -72,7 +72,6 @@ typedef enum {
     [super viewWillAppear:animated];
 	
 	Session *session = [Session sharedInstance];
-	NSLog(@"Loading empire Id: %@", self.empireId);
 	[[[LEEmpireViewPublicProfile alloc] initWithCallback:@selector(profileLoaded:) target:self sessionId:session.sessionId empireId:self.empireId] autorelease];
 }
 

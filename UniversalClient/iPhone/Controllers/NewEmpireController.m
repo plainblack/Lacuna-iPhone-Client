@@ -466,8 +466,12 @@ typedef enum {
 				[request markErrorHandled];
 				UIAlertView *captchaAlertView = [[[UIAlertView alloc] initWithTitle:@"Captcha solution is incorrect." message:[request errorMessage] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 				[captchaAlertView show];
+				self.captchaUrl = [[request errorData] objectForKey:@"url"];
+				self.captchaGuid = [[request errorData] objectForKey:@"guid"];
+				[self.captchaImageCell setCapthchaImageURL:self.captchaUrl];
 				break;
 		}
+		[self.tableView reloadData];
 	} else {
 		self.empireId = request.empireId;
 		self.nameCell.enabled = NO;

@@ -281,9 +281,6 @@
 			self.navigationItem.title = @"Sent";
 			self.mailbox = [Mailbox loadSent];
 			break;
-		default:
-			NSLog(@"INVALID selectedSegmentIndex: %i", self.mailboxSegmentedControl.selectedSegmentIndex);
-			break;
 	}
 	
 	if (!self->observingMailbox) {

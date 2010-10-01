@@ -43,6 +43,7 @@
 - (void)markErrorHandled;
 - (NSString *)errorMessage;
 - (NSInteger)errorCode;
+- (NSMutableDictionary *)errorData;
 - (void)cancel;
 
 

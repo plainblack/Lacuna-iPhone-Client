@@ -168,7 +168,17 @@ typedef enum {
 		NSString *errorText = [request errorMessage];
 		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Could not accept trade." message:errorText delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 		[av show];
+
+		switch ([request errorCode]) {
+			case 1014:
+				; //DO NOT REMOVE
+				self.baseTradeBuilding.captchaUrl = [[request errorData] objectForKey:@"url"];
+				self.baseTradeBuilding.captchaGuid = [[request errorData] objectForKey:@"guid"];
+				break;
+		}
 		[request markErrorHandled];
+		[self.tableView reloadData];
+
 	} else {
 		[self.baseTradeBuilding.availableTrades removeObject:self.trade];
 		[self.navigationController popViewControllerAnimated:YES];

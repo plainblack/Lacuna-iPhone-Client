@@ -149,6 +149,10 @@ static id<LERequestMonitor> delegate;
 	return _intv([[self.response objectForKey:@"error"] objectForKey:@"code"]);
 }
 
+- (NSMutableDictionary *)errorData {
+	return [[self.response objectForKey:@"error"] objectForKey:@"data"];
+}
+
 - (void)requestFinished {
 	numRequests--;
 	if (numRequests < 1) {

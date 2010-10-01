@@ -9,6 +9,7 @@
 #import "SelectSpeciesTemplateController.h"
 #import "LEMacros.h"
 #import "Util.h"
+#import "LEViewSectionTab.h"
 #import "LETableViewCellButton.h"
 #import "LETableViewCellLabeledText.h"
 #import "LEEmpireGetSpeciesTemplates.h"
@@ -35,7 +36,7 @@
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)] autorelease];
 	
-	self.sectionHeaders = [NSArray array];
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Species Template"]);
 }
 
 
