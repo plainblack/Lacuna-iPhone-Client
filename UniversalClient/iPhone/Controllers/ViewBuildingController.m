@@ -64,7 +64,6 @@
 
 	Session *session = [Session sharedInstance];
 	if ([session.body.currentBuilding.id isEqualToString:self.buildingId]) {
-		NSLog(@"No need to reload");
 		[session.body.currentBuilding addObserver:self forKeyPath:@"needsRefresh" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 		[session.body.currentBuilding addObserver:self forKeyPath:@"demolished" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 		self.sectionHeaders = [session.body.currentBuilding sectionHeadersForTableView:self.tableView];

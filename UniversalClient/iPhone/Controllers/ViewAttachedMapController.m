@@ -115,7 +115,6 @@
 #pragma mark Instance Methods
 
 -(void) setAttachedMap:(NSDictionary *)attachedMap {
-	NSLog(@"Attached Map Data: %@", attachedMap);
 	self.surface = [attachedMap objectForKey:@"surface"];
 	if (!self.surface) {
 		self.surface = [attachedMap objectForKey:@"surface_image"];

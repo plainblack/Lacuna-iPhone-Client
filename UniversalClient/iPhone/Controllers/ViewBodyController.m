@@ -458,7 +458,6 @@ typedef enum {
 
 
 - (void)handleTimer:(NSTimer *)theTimer {
-	NSLog(@"handleTimer");
 	if (theTimer == self.reloadTimer) {
 		[self loadBody];
 	}

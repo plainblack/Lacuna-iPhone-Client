@@ -347,7 +347,6 @@
 #pragma mark Timer Callback
 
 - (void)handleTimer:(NSTimer *)theTimer {
-	NSLog(@"handleTimer");
 	if (theTimer == self.reloadTimer) {
 		[self.mailbox loadMessageHeaders];
 	}

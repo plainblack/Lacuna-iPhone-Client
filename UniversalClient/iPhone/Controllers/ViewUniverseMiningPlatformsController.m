@@ -163,7 +163,11 @@
 #pragma mark Callback Methods
 
 - (void)shipsLoaded:(LEBuildingGetShipsFor *)request {
-	self.miningPlatforms = request.miningPlatforms;
+	if (request.miningPlatforms) {
+		self.miningPlatforms = request.miningPlatforms;
+	} else {
+		self.miningPlatforms = [NSMutableArray array];
+	}
 	[self.tableView reloadData];
 }
 
