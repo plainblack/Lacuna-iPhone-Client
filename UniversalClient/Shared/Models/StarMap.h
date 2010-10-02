@@ -16,6 +16,8 @@
 	NSCache *sectors;
 	NSDate *lastUpdate;
 	NSInteger numLoading;
+	id target;
+	SEL callback;
 }
 
 
@@ -25,6 +27,8 @@
 
 
 - (BaseMapItem *)gridX:(NSDecimalNumber *)gridX gridY:(NSDecimalNumber *)gridY;
+- (void)updateStar:(NSString *)starId target:(id)target callback:(SEL)callback;
+- (void)clearMap;
 
 
 @end

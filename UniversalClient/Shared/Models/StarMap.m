@@ -8,13 +8,14 @@
 
 #import "StarMap.h"
 #import "LEMacros.h"
+#import "LEMapGetStar.h"
 #import "LEMapGetStars.h"
 #import "BaseMapItem.h"
 #import "Star.h"
 #import "Body.h"
 
 #define SECTOR_SIZE [NSDecimalNumber decimalNumberWithString:@"20"]
-
+NSTimeInterval INTERVALE_BEFORE_RELOAD = -1 * 60 * 5; //5 Minutes
 
 @interface StarMap (PrivateMethods)
 
@@ -63,6 +64,10 @@
 	if (sector) {
 		NSDate *loadedAt = [sector objectForKey:@"loadedAt"];
 		if (loadedAt) {
+			NSTimeInterval interval = [loadedAt timeIntervalSinceNow];
+			if (interval < INTERVALE_BEFORE_RELOAD) {
+				[self loadSectorX:sectorX sectorY:sectorY];
+			}
 			NSString *gridKey = [NSString stringWithFormat:@"%@x%@", gridX, gridY];
 			BaseMapItem *cell = [sector objectForKey:gridKey];
 			return cell;
@@ -80,6 +85,18 @@
 		return nil;
 	}
 
+}
+
+
+- (void)updateStar:(NSString *)starId target:(id)inTarget callback:(SEL)inCallback {
+	self->target = inTarget;
+	self->callback = inCallback;
+	[[[LEMapGetStar alloc] initWithCallback:@selector(starLoaded:) target:self starId:starId] autorelease];
+	self.numLoading = self.numLoading + 1;
+}
+
+- (void)clearMap {
+	[self.sectors removeAllObjects];
 }
 
 
@@ -142,6 +159,28 @@
 	[[self.sectors objectForKey:sectorKey] setObject:[NSDate date] forKey:@"loadedAt"];
 	self.lastUpdate = [NSDate date];
 	self.numLoading = self.numLoading - 1;
+}
+
+
+- (void)starLoaded:(LEMapGetStar *)request {
+	Star *star = [[Star alloc] init];
+	[star parseData:request.star];
+	[self addMapItem:star];
+	for (NSMutableDictionary *bodyData in [request.star objectForKey:@"bodies"]) {
+		Body *body = [[Body alloc] init];
+		body.ignoreIncomingForeignShipData = YES;
+		[body parseData:bodyData];
+		[self addMapItem:body];
+		[body release];
+	}
+	NSString *sectorKey = [NSString stringWithFormat:@"%@x%@", [self gridToSector:star.x], [self gridToSector:star.y]];
+	[[self.sectors objectForKey:sectorKey] setObject:[NSDate date] forKey:@"loadedAt"];
+	self.lastUpdate = [NSDate date];
+	self.numLoading = self.numLoading - 1;
+	[self->target performSelector:self->callback withObject:star];
+	self->target = nil;
+	self->callback = nil;
+	[star release];
 }
 
 

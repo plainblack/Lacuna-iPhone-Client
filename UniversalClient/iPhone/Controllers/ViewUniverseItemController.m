@@ -366,6 +366,8 @@ typedef enum {
 		[tmp addObject:[LEViewSectionTab tableView:self.tableView withText:[sectionData objectForKey:@"name"]]];
 	}
 	self.sectionHeaders = tmp;
+	
+	self.navigationItem.title = self.mapItem.name;
 	[self.tableView reloadData];
 }
 

@@ -62,6 +62,7 @@
 	
 	if (!self.starMap) {
 		self.starMap = [[[StarMap alloc] init] autorelease];
+		self->isUpdating = NO;
 	}
 	
 	if (!self.reusableStarCells) {
@@ -105,7 +106,6 @@
 	self.scrollView.maximumZoomScale = 4.0;
 	
 	self.map = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.scrollView.contentSize.width, self.scrollView.contentSize.height)];
-	//self.map.backgroundColor = STAR_FIELD_BACKGROUND_COLOR;
 	self.map.autoresizesSubviews = YES;
 	self.map.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 
@@ -267,6 +267,12 @@
 	[self.navigationController pushViewController:universeGotoController animated:YES];
 }
 
+- (void)clear {
+	[self.starMap clearMap];
+	[self.inUseBodyCells removeAllObjects];
+	[self.reusableBodyCells removeAllObjects];
+}
+
 
 #pragma mark -
 #pragma mark PrivateMethods
@@ -363,23 +369,36 @@
 #pragma mark -
 #pragma mark Callback Methods
 
-- (id)bodyPressed:(LEUniverseBodyCell *)cell {
-	ViewUniverseItemController *viewUniverseItemController = [ViewUniverseItemController create];
-	viewUniverseItemController.mapItem = cell.body;
-	[self.navigationController pushViewController:viewUniverseItemController animated:YES];
-
-	return nil;
+- (void)bodyPressed:(LEUniverseBodyCell *)cell {
+	if (!self->isUpdating) {
+		self->isUpdating = YES;
+		[self.starMap updateStar:cell.body.starId target:self callback:@selector(doneUpdatingStar:)];
+		ViewUniverseItemController *viewUniverseItemController = [ViewUniverseItemController create];
+		viewUniverseItemController.mapItem = cell.body;
+		[self.navigationController pushViewController:viewUniverseItemController animated:YES];
+	}
 }
 
 
-- (id)starPressed:(LEUniverseStarCell *)cell {
-	ViewUniverseItemController *viewUniverseItemController = [ViewUniverseItemController create];
-	viewUniverseItemController.mapItem = cell.star;
-	[self.navigationController pushViewController:viewUniverseItemController animated:YES];
-	
-	return nil;
+- (void)starPressed:(LEUniverseStarCell *)cell {
+	if (!self->isUpdating) {
+		self->isUpdating = YES;
+		[self.starMap updateStar:cell.star.id target:self callback:@selector(showStar:)];
+	}
 }
 
+
+- (void)showStar:(Star *)star {
+	self->isUpdating = NO;
+	ViewUniverseItemController *viewUniverseItemController = [ViewUniverseItemController create];
+	viewUniverseItemController.mapItem = star;
+	[self.navigationController pushViewController:viewUniverseItemController animated:YES];
+}
+
+
+- (void)doneUpdatingStar:(Star *)star {
+	self->isUpdating = NO;
+}
 
 #pragma mark -
 #pragma mark KVO Methods

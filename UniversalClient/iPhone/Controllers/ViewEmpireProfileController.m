@@ -30,7 +30,7 @@
 #import "ViewEmpireMailSettingController.h"
 
 
-#define ISOLATIONIST_MSG @"Isolationist mode enabled. If you build an Espinoge Ministry, Munitions Labratory, or Colonize a second world you will no longer be an Isolationist and others can send spies to your colonies."
+#define ISOLATIONIST_MSG @"Isolationist mode enabled. If you build an Espionage Ministry, Munitions Labratory, or Colonize a second world you will no longer be an Isolationist and others can send spies to your colonies."
 
 typedef enum {
 	SECTION_EMPIRE,

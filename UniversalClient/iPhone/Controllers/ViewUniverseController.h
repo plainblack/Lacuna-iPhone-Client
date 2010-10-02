@@ -21,6 +21,7 @@
 	NSMutableDictionary *inUseBodyCells;
 	NSMutableArray *reusableBodyCells;
 	StarMap *starMap;
+	BOOL isUpdating;
 }
 
 
@@ -36,6 +37,7 @@
 
 - (IBAction)logout;
 - (IBAction)showGotoPage;
+- (IBAction)clear;
 
 
 @end

@@ -14,6 +14,7 @@
 #import "LERequest.h"
 #import "LoginController.h"
 #import "Reachability.h"
+#import "ViewUniverseController.h"
 
 
 @interface AppDelegate_Phone(PrivateMethod)
@@ -36,6 +37,7 @@
 @synthesize mailboxController;
 @synthesize internetReachability;
 @synthesize notConnectedView;
+@synthesize viewUniverseController;
 
 
 #pragma mark -
@@ -195,6 +197,7 @@
 		} else {
 			[self.myWorldsNavigationController popToRootViewControllerAnimated:NO];
 			[self.myWorldController clear];
+			[self.viewUniverseController clear];
 			[self.mailNavigationController popToRootViewControllerAnimated:NO];
 			[self.mailboxController clear];
 			self.mailTabBarItem.badgeValue = nil;

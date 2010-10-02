@@ -14,6 +14,7 @@
 @class Reachability;
 @class ViewBodyController;
 @class ViewMailboxController;
+@class ViewUniverseController;
 
 
 @interface AppDelegate_Phone : AppDelegate_Shared <UITabBarDelegate, LERequestMonitor, UIAlertViewDelegate> {
@@ -26,6 +27,7 @@
 	UIBackgroundTaskIdentifier backgroundTask;
 	Reachability *internetReachability;
 	UIView *notConnectedView;
+	ViewUniverseController *viewUniverseController;
 }
 
 
@@ -37,6 +39,7 @@
 @property(nonatomic, retain) IBOutlet ViewMailboxController *mailboxController;
 @property(nonatomic, retain) Reachability *internetReachability;
 @property(nonatomic, retain) IBOutlet UIView *notConnectedView;
+@property(nonatomic, retain) IBOutlet ViewUniverseController *viewUniverseController;
 
 
 - (void)showMessage:(NSString *)messageId;

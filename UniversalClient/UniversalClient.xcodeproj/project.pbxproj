@@ -75,6 +75,7 @@
 		F643335012406826006170E8 /* ViewMailMessageWebController.m in Sources */ = {isa = PBXBuildFile; fileRef = F643334F12406826006170E8 /* ViewMailMessageWebController.m */; };
 		F64333591240697E006170E8 /* LETableViewCellWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = F64333581240697E006170E8 /* LETableViewCellWebView.m */; };
 		F645746C118DD62A000897C4 /* LETableViewCellAttachedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F645746B118DD62A000897C4 /* LETableViewCellAttachedImage.m */; };
+		F64744151256EB4800E28189 /* LEMapGetStar.m in Sources */ = {isa = PBXBuildFile; fileRef = F64744141256EB4800E28189 /* LEMapGetStar.m */; };
 		F64C43D911F3B50E002981EC /* FoodReserve.m in Sources */ = {isa = PBXBuildFile; fileRef = F64C43D811F3B50E002981EC /* FoodReserve.m */; };
 		F64C43DC11F3B527002981EC /* OreStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = F64C43DB11F3B527002981EC /* OreStorage.m */; };
 		F64C43F611F3C37A002981EC /* Archaeology.m in Sources */ = {isa = PBXBuildFile; fileRef = F64C43F511F3C37A002981EC /* Archaeology.m */; };
@@ -504,6 +505,8 @@
 		F64333581240697E006170E8 /* LETableViewCellWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellWebView.m; sourceTree = "<group>"; };
 		F645746A118DD62A000897C4 /* LETableViewCellAttachedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellAttachedImage.h; sourceTree = "<group>"; };
 		F645746B118DD62A000897C4 /* LETableViewCellAttachedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellAttachedImage.m; sourceTree = "<group>"; };
+		F64744131256EB4800E28189 /* LEMapGetStar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEMapGetStar.h; sourceTree = "<group>"; };
+		F64744141256EB4800E28189 /* LEMapGetStar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEMapGetStar.m; sourceTree = "<group>"; };
 		F64C43D711F3B50E002981EC /* FoodReserve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodReserve.h; sourceTree = "<group>"; };
 		F64C43D811F3B50E002981EC /* FoodReserve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodReserve.m; sourceTree = "<group>"; };
 		F64C43DA11F3B527002981EC /* OreStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OreStorage.h; sourceTree = "<group>"; };
@@ -1576,6 +1579,8 @@
 				F6DA5A58124E69E9005D11F6 /* LEStatsSpyRank.m */,
 				F6DA5A5A124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.h */,
 				F6DA5A5B124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.m */,
+				F64744131256EB4800E28189 /* LEMapGetStar.h */,
+				F64744141256EB4800E28189 /* LEMapGetStar.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -2350,6 +2355,7 @@
 				F6D360D31254B1C5003FDE5D /* LEBuildingListPlanets.m in Sources */,
 				F6D360D61254B1D2003FDE5D /* LEBuildingViewPlanet.m in Sources */,
 				F6D360EA1254B59B003FDE5D /* SelectPlanetToViewController.m in Sources */,
+				F64744151256EB4800E28189 /* LEMapGetStar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
