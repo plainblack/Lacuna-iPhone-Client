@@ -47,7 +47,7 @@
 
 - (void)loadProfile;
 - (void)parseData:(NSDictionary *)empireData;
-- (void)changeFromPassword:(NSString *)oldPassword toPassword:(NSString *)newPassword confirmPassword:(NSString *)newPasswordConfirm target:(id)target callback:(SEL)callback;
+- (void)changeToPassword:(NSString *)newPassword confirmPassword:(NSString *)newPasswordConfirm target:(id)target callback:(SEL)callback;
 - (void)setSelfDestruct:(BOOL)enabled;
 - (void)sendInviteTo:(NSString *)emailAddress;
 - (void)redeemEssentiaCode:(NSString *)code;

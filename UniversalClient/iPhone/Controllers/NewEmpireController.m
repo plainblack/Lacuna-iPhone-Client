@@ -31,7 +31,8 @@ typedef enum {
 	EMPIRE_ROW_NAME,
 	EMPIRE_ROW_PASSWORD,
 	EMPIRE_ROW_PASSWORD_CONFIRM,
-	EMPIRE_ROW_EMAIL
+	EMPIRE_ROW_EMAIL,
+	ROW_FRIEND_CODE
 } EMPIRE_ROW;
 
 
@@ -64,6 +65,7 @@ typedef enum {
 @synthesize passwordCell;
 @synthesize passwordConfirmationCell;
 @synthesize emailCell;
+@synthesize friendCodeCell;
 @synthesize termsAgreeCell;
 @synthesize termsLinkCell;
 @synthesize rulesAgreeCell;
@@ -107,6 +109,10 @@ typedef enum {
 	self.emailCell.keyboardType = UIKeyboardTypeEmailAddress;
 	self.emailCell.delegate = self;
 
+	self.friendCodeCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
+	self.friendCodeCell.label.text = @"Friend Code";
+	self.friendCodeCell.delegate = self;
+	
 	self.termsAgreeCell = [LETableViewCellLabeledSwitch getCellForTableView:self.tableView];
 	self.termsAgreeCell.label.text = @"I agree to Terms";
 	
@@ -162,7 +168,7 @@ typedef enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	switch (section) {
 		case SECTION_EMPIRE:
-			return  4;
+			return  5;
 			break;
 		case SECTION_TOS:
 			return  4;
@@ -185,6 +191,7 @@ typedef enum {
 				case EMPIRE_ROW_PASSWORD:
 				case EMPIRE_ROW_PASSWORD_CONFIRM:
 				case EMPIRE_ROW_EMAIL:
+				case ROW_FRIEND_CODE:
 					return [LETableViewCellTextEntry getHeightForTableView:tableView];
 					break;
 				default:
@@ -246,6 +253,9 @@ typedef enum {
 					break;
 				case EMPIRE_ROW_EMAIL:
 					return self.emailCell;
+					break;
+				case ROW_FRIEND_CODE:
+					return self.friendCodeCell;
 					break;
 				default:
 					return nil;
@@ -326,7 +336,7 @@ typedef enum {
 							if (self.empireId) {
 								[self showSpeciesSelect];
 							} else {
-								[[[LEEmpireCreate alloc] initWithCallback:@selector(empireCreated:) target:self name:self.nameCell.textField.text password:self.passwordCell.textField.text password1:self.passwordConfirmationCell.textField.text captchaGuid:self.captchaGuid captchaSolution:self.captchaSolutionCell.textField.text email:self.emailCell.textField.text] autorelease];
+								[[[LEEmpireCreate alloc] initWithCallback:@selector(empireCreated:) target:self name:self.nameCell.textField.text password:self.passwordCell.textField.text password1:self.passwordConfirmationCell.textField.text captchaGuid:self.captchaGuid captchaSolution:self.captchaSolutionCell.textField.text email:self.emailCell.textField.text inviteCode:self.friendCodeCell.textField.text] autorelease];
 								self.pendingRequest = YES;
 							}
 						} else {
@@ -358,6 +368,7 @@ typedef enum {
 	self.passwordCell = nil;
 	self.passwordConfirmationCell = nil;
 	self.emailCell = nil;
+	self.friendCodeCell = nil;
 	self.termsAgreeCell = nil;
 	self.termsLinkCell = nil;
 	self.rulesAgreeCell = nil;
@@ -374,6 +385,7 @@ typedef enum {
 	self.passwordCell = nil;
 	self.passwordConfirmationCell = nil;
 	self.emailCell = nil;
+	self.friendCodeCell = nil;
 	self.termsAgreeCell = nil;
 	self.termsLinkCell = nil;
 	self.rulesAgreeCell = nil;
@@ -404,7 +416,9 @@ typedef enum {
 		[self.emailCell becomeFirstResponder];
 	} else if (textField == emailCell.textField) {
 		[self.emailCell resignFirstResponder];
-		[self.captchaSolutionCell becomeFirstResponder];
+		[self.friendCodeCell becomeFirstResponder];
+	} else if (textField == self.friendCodeCell.textField) {
+		[self.friendCodeCell resignFirstResponder];
 	} else if (textField == captchaSolutionCell.textField) {
 		[self.captchaSolutionCell resignFirstResponder];
 	}

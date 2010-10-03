@@ -17,7 +17,6 @@
 
 
 typedef enum {
-	ROW_OLD_PASSWORD,
 	ROW_NEW_PASSWORD,
 	ROW_NEW_PASSWORD_CONFIRM,
 	ROW_SAVE
@@ -27,7 +26,6 @@ typedef enum {
 @implementation NewPasswordController
 
 
-@synthesize oldPasswordCell;
 @synthesize newPasswordCell;
 @synthesize newPasswordConfirmCell;
 
@@ -43,10 +41,6 @@ typedef enum {
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"New Password"]);
-	
-	self.oldPasswordCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
-	self.oldPasswordCell.label.text = @"Password";
-	self.oldPasswordCell.delegate = self;
 	
 	self.newPasswordCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
 	self.newPasswordCell.label.text = @"New Password";
@@ -78,13 +72,12 @@ typedef enum {
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return 4;
+	return 3;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	switch (indexPath.row) {
-		case ROW_OLD_PASSWORD:
 		case ROW_NEW_PASSWORD:
 		case ROW_NEW_PASSWORD_CONFIRM:
 			return [LETableViewCellTextEntry getHeightForTableView:tableView];
@@ -102,9 +95,6 @@ typedef enum {
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	switch (indexPath.row) {
-		case ROW_OLD_PASSWORD:
-			return self.oldPasswordCell;
-			break;
 		case ROW_NEW_PASSWORD:
 			return self.newPasswordCell;
 			break;
@@ -130,10 +120,7 @@ typedef enum {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	switch (indexPath.row) {
 		case ROW_SAVE:
-			if ([self.oldPasswordCell.textField.text length] == 0) {
-				UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must enter your current password." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-				[av show];
-			} else if ([self.newPasswordCell.textField.text length] == 0) {
+			if ([self.newPasswordCell.textField.text length] == 0) {
 				UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must enter the new password." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 				[av show];
 			} else if ([self.newPasswordConfirmCell.textField.text length] == 0) {
@@ -141,7 +128,7 @@ typedef enum {
 				[av show];
 			} else {
 				Session *session = [Session sharedInstance];
-				[session.empire changeFromPassword:self.oldPasswordCell.textField.text toPassword:self.newPasswordCell.textField.text confirmPassword:self.newPasswordConfirmCell.textField.text target:self callback:@selector(passwordChanged:)];
+				[session.empire changeToPassword:self.newPasswordCell.textField.text confirmPassword:self.newPasswordConfirmCell.textField.text target:self callback:@selector(passwordChanged:)];
 			}
 			break;
 	}
@@ -159,7 +146,6 @@ typedef enum {
 }
 
 - (void)viewDidUnload {
-	self.oldPasswordCell = nil;
 	self.newPasswordCell = nil;
 	self.newPasswordConfirmCell = nil;
     [super viewDidUnload];
@@ -167,7 +153,6 @@ typedef enum {
 
 
 - (void)dealloc {
-	self.oldPasswordCell = nil;
 	self.newPasswordCell = nil;
 	self.newPasswordConfirmCell = nil;
     [super dealloc];
@@ -178,10 +163,7 @@ typedef enum {
 #pragma mark UITextFieldDelegate Methods
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-	if (textField == self.oldPasswordCell.textField) {
-		[self.oldPasswordCell resignFirstResponder];
-		[self.newPasswordCell becomeFirstResponder];
-	} else if (textField == self.newPasswordCell.textField) {
+	if (textField == self.newPasswordCell.textField) {
 		[self.newPasswordCell resignFirstResponder];
 		[self.newPasswordConfirmCell becomeFirstResponder];
 	} else if (textField == self.newPasswordConfirmCell.textField) {

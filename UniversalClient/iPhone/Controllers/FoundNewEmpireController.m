@@ -17,7 +17,6 @@
 
 
 typedef enum {
-	ROW_FRIEND_CODE,
 	ROW_FOUND_BUTTON
 } ROW;
 
@@ -25,7 +24,6 @@ typedef enum {
 @implementation FoundNewEmpireController
 
 
-@synthesize friendCodeCell;
 @synthesize foundButtonCell;
 @synthesize empireId;
 @synthesize username;
@@ -43,10 +41,6 @@ typedef enum {
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)] autorelease];
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Found Empire"]);
-	
-	self.friendCodeCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
-	self.friendCodeCell.label.text = @"Friend Code";
-	self.friendCodeCell.delegate = self;
 	
 	self.foundButtonCell = [LETableViewCellButton getCellForTableView:self.tableView];
 	self.foundButtonCell.textLabel.text = @"Found Empire";
@@ -67,15 +61,12 @@ typedef enum {
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return 2;
+	return 1;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	switch (indexPath.row) {
-		case ROW_FRIEND_CODE:
-			return [LETableViewCellTextEntry getHeightForTableView:tableView];
-			break;
 		case ROW_FOUND_BUTTON:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
@@ -89,9 +80,6 @@ typedef enum {
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	switch (indexPath.row) {
-		case ROW_FRIEND_CODE:
-			return self.friendCodeCell;
-			break;
 		case ROW_FOUND_BUTTON:
 			return self.foundButtonCell;
 			break;
@@ -110,7 +98,7 @@ typedef enum {
 		switch (indexPath.row) {
 			case ROW_FOUND_BUTTON:
 				self.pendingRequest = YES;
-				[[[LEEmpireFound alloc] initWithCallback:@selector(empireFounded:) target:self empireId:self.empireId inviteCode:self.friendCodeCell.textField.text] autorelease];
+				[[[LEEmpireFound alloc] initWithCallback:@selector(empireFounded:) target:self empireId:self.empireId] autorelease];
 				break;
 		}
 	}
@@ -128,32 +116,17 @@ typedef enum {
 }
 
 - (void)viewDidUnload {
-	self.friendCodeCell = nil;
 	self.foundButtonCell = nil;
     [super viewDidUnload];
 }
 
 
 - (void)dealloc {
-	self.friendCodeCell = nil;
 	self.foundButtonCell = nil;
 	self.empireId = nil;
 	self.username = nil;
 	self.password = nil;
     [super dealloc];
-}
-
-
-#pragma mark -
-#pragma mark UITextFieldDelegate methods
-
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-	if (textField == self.friendCodeCell.textField) {
-		[self.friendCodeCell resignFirstResponder];
-	}
-	
-	return YES;
 }
 
 

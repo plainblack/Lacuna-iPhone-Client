@@ -95,10 +95,10 @@
 }
 
 
-- (void)changeFromPassword:(NSString *)oldPassword toPassword:(NSString *)newPassword confirmPassword:(NSString *)newPasswordConfirm target:(id)target callback:(SEL)callback{
+- (void)changeToPassword:(NSString *)newPassword confirmPassword:(NSString *)newPasswordConfirm target:(id)target callback:(SEL)callback{
 	self->changePasswordTarget = target;
 	self->changePasswordCallback = callback;
-	[[[LEEmpireChangePassword alloc] initWithCallback:@selector(passwordChanged:) target:self currentPassword:oldPassword newPassword:newPassword newPasswordConfirm:newPasswordConfirm] autorelease];
+	[[[LEEmpireChangePassword alloc] initWithCallback:@selector(passwordChanged:) target:self newPassword:newPassword newPasswordConfirm:newPasswordConfirm] autorelease];
 }
 
 

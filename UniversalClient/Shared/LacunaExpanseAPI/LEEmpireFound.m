@@ -15,27 +15,19 @@
 
 @synthesize empireId;
 @synthesize sessionId;
-@synthesize inviteCode;
 @synthesize empireData;
 @synthesize welcomeMessageId;
 
 
-- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget empireId:(NSString *)inEmpireId inviteCode:(NSString *)inInviteCode {
+- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget empireId:(NSString *)inEmpireId {
 	self.empireId = inEmpireId;
-	self.inviteCode = inInviteCode;
 	
 	return [super initWithCallback:inCallback target:inTarget];
 }
 
 
 - (id)params {
-	NSMutableArray *params = _array(self.empireId, API_KEY);
-	
-	if (self.inviteCode && [self.inviteCode length] > 0) {
-		[params addObject:self.inviteCode];
-	}
-	
-	return params;
+	return _array(self.empireId, API_KEY);
 }
 
 
@@ -62,7 +54,6 @@
 - (void)dealloc {
 	self.empireId = nil;
 	self.sessionId = nil;
-	self.inviteCode = nil;
 	self.empireData = nil;
 	self.welcomeMessageId = nil;
 	[super dealloc];

@@ -111,13 +111,8 @@
 
 	[self.scrollView addSubview:self.map];
 	
-	if (session.body) {
-		[self gotoGridX:session.body.x gridY:session.body.y];
-	} else {
-		float midX = (self.scrollView.contentSize.width/2) - (self.scrollView.frame.size.width/2);
-		float midY = (self.scrollView.contentSize.height/2) - (self.scrollView.frame.size.height/2);
-		self.scrollView.contentOffset = CGPointMake(midX, midY);
-	}
+	self->updateLocation = YES;
+
 	[self.loadingView removeFromSuperview];
 	[self.view addSubview:self.loadingView];
 }
@@ -125,6 +120,18 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+
+	if (self->updateLocation) {
+		Session *session = [Session sharedInstance];
+		if (session.body) {
+			[self gotoGridX:session.body.x gridY:session.body.y];
+		} else {
+			float midX = (self.scrollView.contentSize.width/2) - (self.scrollView.frame.size.width/2);
+			float midY = (self.scrollView.contentSize.height/2) - (self.scrollView.frame.size.height/2);
+			self.scrollView.contentOffset = CGPointMake(midX, midY);
+		}
+		self->updateLocation = NO;
+	}
 	[self tileView];
 }
 
@@ -269,8 +276,17 @@
 
 - (void)clear {
 	[self.starMap clearMap];
+	[self.inUseBodyCells enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+		[obj removeFromSuperview];
+	}];
 	[self.inUseBodyCells removeAllObjects];
 	[self.reusableBodyCells removeAllObjects];
+	[self.inUseStarCells enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+		[obj removeFromSuperview];
+	}];
+	[self.inUseStarCells removeAllObjects];
+	[self.reusableStarCells removeAllObjects];
+	self->updateLocation = YES;
 }
 
 

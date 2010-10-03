@@ -20,16 +20,19 @@
 @synthesize captchaGuid;
 @synthesize captchaSolution;
 @synthesize email;
+@synthesize inviteCode;
 @synthesize empireId;
 
 
-- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget name:(NSString *)inName password:(NSString *)inPassword password1:(NSString *)inPassword1 captchaGuid:(NSString *)inCaptchaGuid captchaSolution:(NSString *)inCaptchaSolution email:(NSString *)inEmail {
+- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget name:(NSString *)inName password:(NSString *)inPassword password1:(NSString *)inPassword1 captchaGuid:(NSString *)inCaptchaGuid captchaSolution:(NSString *)inCaptchaSolution email:(NSString *)inEmail inviteCode:(NSString *)inInviteCode {
 	self.name = inName;
 	self.password = inPassword;
 	self.password1 = inPassword1;
 	self.captchaGuid = inCaptchaGuid;
 	self.captchaSolution = inCaptchaSolution;
 	self.email = inEmail;
+	self.inviteCode = inInviteCode;
+
 	return [super initWithCallback:inCallback target:inTarget];
 }
 
@@ -37,6 +40,9 @@
 	NSMutableDictionary *params = _dict(self.name, @"name", self.password, @"password", self.password1, @"password1", self.captchaGuid, @"captcha_guid", self.captchaSolution, @"captcha_solution");
 	if (self.email && ([self.email length] > 0)) {
 		[params setObject:self.email forKey:@"email"];
+	}
+	if (self.inviteCode && [self.inviteCode length] > 0) {
+		[params setObject:self.inviteCode forKey:@"invite_code"];
 	}
 	return params;
 }
@@ -65,6 +71,7 @@
 	self.captchaGuid = nil;
 	self.captchaSolution = nil;
 	self.email = nil;
+	self.inviteCode = nil;
 	self.empireId = nil;
 	[super dealloc];
 }

@@ -10,12 +10,10 @@
 #import "LETableViewControllerGrouped.h"
 
 
-@class LETableViewCellTextEntry;
 @class LETableViewCellButton;
 
 
-@interface FoundNewEmpireController : LETableViewControllerGrouped <UITextFieldDelegate> {
-	LETableViewCellTextEntry *friendCodeCell;
+@interface FoundNewEmpireController : LETableViewControllerGrouped {
 	LETableViewCellButton *foundButtonCell;
 	NSString *empireId;
 	NSString *username;
@@ -23,7 +21,6 @@
 }
 
 
-@property (nonatomic, retain) LETableViewCellTextEntry *friendCodeCell;
 @property (nonatomic, retain) LETableViewCellButton *foundButtonCell;
 @property (nonatomic, retain) NSString *empireId;
 @property (nonatomic, retain) NSString *username;

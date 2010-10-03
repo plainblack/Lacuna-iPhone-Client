@@ -21,6 +21,7 @@
 	LETableViewCellTextEntry *passwordCell;
 	LETableViewCellTextEntry *passwordConfirmationCell;
 	LETableViewCellTextEntry *emailCell;
+	LETableViewCellTextEntry *friendCodeCell;
 	LETableViewCellLabeledSwitch *termsAgreeCell;
 	LETableViewCellButton *termsLinkCell;
 	LETableViewCellLabeledSwitch *rulesAgreeCell;
@@ -34,20 +35,21 @@
 }
 
 
-@property(nonatomic, retain) LETableViewCellTextEntry *nameCell;
-@property(nonatomic, retain) LETableViewCellTextEntry *passwordCell;
-@property(nonatomic, retain) LETableViewCellTextEntry *passwordConfirmationCell;
-@property(nonatomic, retain) LETableViewCellTextEntry *emailCell;
-@property(nonatomic, retain) LETableViewCellLabeledSwitch *termsAgreeCell;
-@property(nonatomic, retain) LETableViewCellButton *termsLinkCell;
-@property(nonatomic, retain) LETableViewCellLabeledSwitch *rulesAgreeCell;
-@property(nonatomic, retain) LETableViewCellButton *rulesLinkCell;
-@property(nonatomic, retain) LETableViewCellCaptchaImage *captchaImageCell;
-@property(nonatomic, retain) LETableViewCellTextEntry *captchaSolutionCell;
-@property(nonatomic, retain) LETableViewCellButton *nextButton;
-@property(nonatomic, retain) NSString *captchaGuid;
-@property(nonatomic, retain) NSString *captchaUrl;
-@property(nonatomic, retain) NSString *empireId;
+@property (nonatomic, retain) LETableViewCellTextEntry *nameCell;
+@property (nonatomic, retain) LETableViewCellTextEntry *passwordCell;
+@property (nonatomic, retain) LETableViewCellTextEntry *passwordConfirmationCell;
+@property (nonatomic, retain) LETableViewCellTextEntry *emailCell;
+@property (nonatomic, retain) LETableViewCellTextEntry *friendCodeCell;
+@property (nonatomic, retain) LETableViewCellLabeledSwitch *termsAgreeCell;
+@property (nonatomic, retain) LETableViewCellButton *termsLinkCell;
+@property (nonatomic, retain) LETableViewCellLabeledSwitch *rulesAgreeCell;
+@property (nonatomic, retain) LETableViewCellButton *rulesLinkCell;
+@property (nonatomic, retain) LETableViewCellCaptchaImage *captchaImageCell;
+@property (nonatomic, retain) LETableViewCellTextEntry *captchaSolutionCell;
+@property (nonatomic, retain) LETableViewCellButton *nextButton;
+@property (nonatomic, retain) NSString *captchaGuid;
+@property (nonatomic, retain) NSString *captchaUrl;
+@property (nonatomic, retain) NSString *empireId;
 
 
 - (IBAction)cancel;

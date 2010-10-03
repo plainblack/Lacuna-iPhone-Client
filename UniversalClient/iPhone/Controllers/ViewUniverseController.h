@@ -22,6 +22,7 @@
 	NSMutableArray *reusableBodyCells;
 	StarMap *starMap;
 	BOOL isUpdating;
+	BOOL updateLocation;
 }
 
 

@@ -202,7 +202,7 @@ static NSString *CellIdentifier = @"TextEntryCell";
 		cell.keyboardType = UIKeyboardTypeDefault;
 		cell.autocorrectionType = UITextAutocorrectionTypeNo;
 		cell.autocapitalizationType = UITextAutocapitalizationTypeNone;
-		cell.enablesReturnKeyAutomatically = YES;
+		cell.enablesReturnKeyAutomatically = NO;
 		cell.returnKeyType = UIReturnKeyNext;
 		
 		//Set Cell Defaults
@@ -259,7 +259,7 @@ static NSString *CellIdentifier = @"TextEntryCell";
 		cell.keyboardType = UIKeyboardTypeDefault;
 		cell.autocorrectionType = UITextAutocorrectionTypeNo;
 		cell.autocapitalizationType = UITextAutocapitalizationTypeNone;
-		cell.enablesReturnKeyAutomatically = YES;
+		cell.enablesReturnKeyAutomatically = NO;
 		cell.returnKeyType = UIReturnKeyNext;
 		
 		//Set Cell Defaults

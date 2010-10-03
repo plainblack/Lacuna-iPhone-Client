@@ -15,13 +15,11 @@
 @implementation LEEmpireChangePassword
 
 
-@synthesize currentPassword;
 @synthesize newPassword;
 @synthesize newPasswordConfirm;
 
 
-- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget currentPassword:(NSString *)inCurrentPassword newPassword:(NSString *)inNewPassword newPasswordConfirm:(NSString *)inNewPasswordConfirm {
-	self.currentPassword = inCurrentPassword;
+- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget newPassword:(NSString *)inNewPassword newPasswordConfirm:(NSString *)inNewPasswordConfirm {
 	self.newPassword = inNewPassword;
 	self.newPasswordConfirm = inNewPasswordConfirm;
 	return [super initWithCallback:inCallback target:inTarget];
@@ -30,7 +28,7 @@
 
 - (id)params {
 	Session *session = [Session sharedInstance];
-	return _array(session.sessionId, self.currentPassword, self.newPassword, self.newPasswordConfirm);
+	return _array(session.sessionId, self.newPassword, self.newPasswordConfirm);
 }
 
 
@@ -49,7 +47,6 @@
 
 
 - (void)dealloc {
-	self.currentPassword = nil;
 	self.newPassword = nil;
 	self.newPasswordConfirm = nil;
 	[super dealloc];

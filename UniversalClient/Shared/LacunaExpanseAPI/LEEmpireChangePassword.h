@@ -11,18 +11,16 @@
 
 
 @interface LEEmpireChangePassword : LERequest {
-	NSString *currentPassword;
 	NSString *newPassword;
 	NSString *newPasswordConfirm;
 }
 
 
-@property (nonatomic, retain) NSString *currentPassword;
 @property (nonatomic, retain) NSString *newPassword;
 @property (nonatomic, retain) NSString *newPasswordConfirm;
 
 
-- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target currentPassword:(NSString *)currentPassword newPassword:(NSString *)newPassword newPasswordConfirm:(NSString *)newPasswordConfirm;
+- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target newPassword:(NSString *)newPassword newPasswordConfirm:(NSString *)newPasswordConfirm;
 
 
 @end

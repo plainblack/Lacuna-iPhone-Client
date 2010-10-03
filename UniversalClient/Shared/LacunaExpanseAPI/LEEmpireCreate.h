@@ -17,6 +17,7 @@
 	NSString *captchaGuid;
 	NSString *captchaSolution;
 	NSString *email;
+	NSString *inviteCode;
 	NSString *empireId;
 }
 
@@ -27,10 +28,11 @@
 @property(nonatomic, retain) NSString *captchaGuid;
 @property(nonatomic, retain) NSString *captchaSolution;
 @property(nonatomic, retain) NSString *email;
+@property(nonatomic, retain) NSString *inviteCode;
 @property(nonatomic, retain) NSString *empireId;
 
 
-- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target name:(NSString *)name password:(NSString *)password password1:(NSString *)password1 captchaGuid:(NSString *)captchaGuid captchaSolution:(NSString *)captchaSolution email:(NSString *)email;
+- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target name:(NSString *)name password:(NSString *)password password1:(NSString *)password1 captchaGuid:(NSString *)captchaGuid captchaSolution:(NSString *)captchaSolution email:(NSString *)email inviteCode:(NSString *)inviteCode;
 
 
 @end
