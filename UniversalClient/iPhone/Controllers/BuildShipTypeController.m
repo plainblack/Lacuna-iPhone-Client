@@ -81,7 +81,7 @@ typedef enum {
 		case ROW_MINING:
 			; //DO NOT REMOVE
 			LETableViewCellButton *miningButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-			miningButtonCell.textLabel.text = @"Ships";
+			miningButtonCell.textLabel.text = @"Mining";
 			cell = miningButtonCell;
 			break;
 		case ROW_TRADE:
