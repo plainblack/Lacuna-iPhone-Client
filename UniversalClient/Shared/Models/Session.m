@@ -93,7 +93,7 @@ static Session *sharedSession = nil;
 		[self readItemDescriptions];
 		
 		self.lastTick = [NSDate date];
-		self->timer = [[NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES] retain];
+		self->timer = [[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES] retain];
 	}
 
 	return self;

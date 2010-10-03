@@ -392,7 +392,7 @@ typedef enum {
 					case EMPIRE_ACTION_ROW_VIEW_RACIAL_STATS:
 						; //DO NOT REMOVE
 						LETableViewCellButton *racialStatsButton = [LETableViewCellButton getCellForTableView:tableView];
-						racialStatsButton.textLabel.text = @"View Racial Stats";
+						racialStatsButton.textLabel.text = @"View Species Stats";
 						cell = racialStatsButton;
 						break;
 					default:
