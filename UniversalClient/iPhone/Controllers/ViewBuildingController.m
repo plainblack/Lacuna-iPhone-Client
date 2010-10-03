@@ -27,6 +27,7 @@
 #import "LEBuildingThrowParty.h"
 #import "LEBuildingSubsidizeBuildQueue.h"
 #import "Session.h"
+#import "WebPageController.h"
 
 
 @interface ViewBuildingController (PrivateMethods) 
@@ -163,7 +164,11 @@
 	Session *session = [Session sharedInstance];
 	UIViewController *subViewController = [session.body.currentBuilding tableView:self.selectedTableView didSelectRowAtIndexPath:self.selectedIndexPath];
 	if (subViewController) {
-		[self.navigationController pushViewController:subViewController animated:YES];
+		if ([subViewController isKindOfClass:[WebPageController class]] ) {
+			[self presentModalViewController:subViewController animated:YES];
+		} else {
+			[self.navigationController pushViewController:subViewController animated:YES];
+		}
 	}
 	self.selectedIndexPath = nil;
 	self.selectedTableView = nil;

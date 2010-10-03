@@ -218,9 +218,10 @@ typedef enum {
 					; //DO NOT REMOVE
 					Session *session = [Session sharedInstance];
 					NSString *url = [session wikiLinkForShip:currentShip.type];
+					NSLog(@"WIKI URL: %@", url);
 					WebPageController *webPageController = [WebPageController create];
 					webPageController.urlToLoad = url;
-					[self.navigationController pushViewController:webPageController animated:YES];
+					[self presentModalViewController:webPageController animated:YES];
 					break;
 				case ROW_BUILD_BUTTON:
 					if (currentShip.canBuild) {

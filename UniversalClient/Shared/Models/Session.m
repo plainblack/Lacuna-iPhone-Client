@@ -325,7 +325,7 @@ static Session *sharedSession = nil;
 	if (ships) {
 		NSDictionary *item = [ships objectForKey:shipType];
 		if (item) {
-			wikiUrl = [item objectForKey:@"description"];
+			wikiUrl = [item objectForKey:@"wiki"];
 		}
 	}
 	if (wikiUrl) {
