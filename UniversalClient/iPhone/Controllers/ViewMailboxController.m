@@ -104,7 +104,11 @@
 	}else {
 		self.lastMessageAt = session.empire.lastMessageAt;
 	}
-	[session.empire addObserver:self forKeyPath:@"lastMessageAt" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+	if (!self->observingLastMessageAt) {
+		[session.empire addObserver:self forKeyPath:@"lastMessageAt" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+		self->observingLastMessageAt = YES;
+	}
+	
 }
 
 
@@ -115,7 +119,10 @@
 	[self.mailbox removeObserver:self forKeyPath:@"messageHeaders"];
 	self->observingMailbox = NO;
 	Session *session = [Session sharedInstance];
-	[session.empire removeObserver:self forKeyPath:@"lastMessageAt"];
+	if (self->observingLastMessageAt) {
+		[session.empire removeObserver:self forKeyPath:@"lastMessageAt"];
+		self->observingLastMessageAt = NO;
+	}
 }
 
 

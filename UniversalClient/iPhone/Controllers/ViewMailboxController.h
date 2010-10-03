@@ -21,6 +21,7 @@
 	NSTimer *reloadTimer;
 	NSDate *lastMessageAt;
 	BOOL observingMailbox;
+	BOOL observingLastMessageAt;
 	NSString *showMessageId;
 }
 
