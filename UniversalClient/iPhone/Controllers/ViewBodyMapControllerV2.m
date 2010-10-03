@@ -38,7 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	Session *session = [Session sharedInstance];
-	
+
 	self.scrollView.contentSize = CGSizeMake(BODY_BUILDINGS_NUM_ROWS * BODY_BUILDINGS_CELL_WIDTH, BODY_BUILDINGS_NUM_COLS * BODY_BUILDINGS_CELL_HEIGHT);
 	self.scrollView.contentOffset = CGPointMake(BODY_BUILDINGS_NUM_ROWS * BODY_BUILDINGS_CELL_WIDTH/2 - self.scrollView.center.x, BODY_BUILDINGS_NUM_COLS * BODY_BUILDINGS_CELL_HEIGHT/2 - self.scrollView.center.y);
 	
@@ -101,8 +101,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	
-	
 	Session *session = [Session sharedInstance];
+
+	if (session.body.currentBuilding) {
+		[session.body clearBuilding];
+	}
+	
 	self.navigationItem.title = session.body.name;
 	[self.navigationController setToolbarHidden:NO animated:YES];
 	
