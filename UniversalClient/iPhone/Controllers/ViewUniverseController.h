@@ -39,6 +39,7 @@
 - (IBAction)logout;
 - (IBAction)showGotoPage;
 - (IBAction)clear;
+- (void)gotoGridX:(NSDecimalNumber *)gridX gridY:(NSDecimalNumber *)gridY;
 
 
 @end

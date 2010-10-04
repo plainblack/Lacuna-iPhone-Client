@@ -366,7 +366,7 @@
 				</object>
 			</object>
 			<object class="IBUIView" id="147104876">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -375,7 +375,6 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrameSize">{320, 480}</string>
 						<reference key="NSSuperview" ref="147104876"/>
-						<reference key="NSWindow"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -388,7 +387,6 @@
 						<int key="NSvFlags">301</int>
 						<string key="NSFrame">{{20, 164}, {280, 151}}</string>
 						<reference key="NSSuperview" ref="147104876"/>
-						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -414,7 +412,6 @@
 						<int key="NSvFlags">256</int>
 						<string key="NSFrame">{{131, 99}, {57, 57}}</string>
 						<reference key="NSSuperview" ref="147104876"/>
-						<reference key="NSWindow"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -424,8 +421,6 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 480}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -526,6 +521,14 @@
 						<reference key="destination" ref="172060060"/>
 					</object>
 					<int key="connectionID">73</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">viewUniverseNavigationController</string>
+						<reference key="source" ref="987256611"/>
+						<reference key="destination" ref="930604238"/>
+					</object>
+					<int key="connectionID">74</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -941,7 +944,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">73</int>
+			<int key="maxID">74</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -961,6 +964,7 @@
 							<string>notConnectedView</string>
 							<string>tabBarController</string>
 							<string>viewUniverseController</string>
+							<string>viewUniverseNavigationController</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -972,6 +976,7 @@
 							<string>UIView</string>
 							<string>UITabBarController</string>
 							<string>ViewUniverseController</string>
+							<string>UINavigationController</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -986,6 +991,7 @@
 							<string>notConnectedView</string>
 							<string>tabBarController</string>
 							<string>viewUniverseController</string>
+							<string>viewUniverseNavigationController</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1020,6 +1026,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">viewUniverseController</string>
 								<string key="candidateClassName">ViewUniverseController</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">viewUniverseNavigationController</string>
+								<string key="candidateClassName">UINavigationController</string>
 							</object>
 						</object>
 					</object>
@@ -1221,11 +1231,13 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>clear</string>
 							<string>logout</string>
 							<string>showGotoPage</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>
@@ -1234,11 +1246,16 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>clear</string>
 							<string>logout</string>
 							<string>showGotoPage</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">clear</string>
+								<string key="candidateClassName">id</string>
+							</object>
 							<object class="IBActionInfo">
 								<string key="name">logout</string>
 								<string key="candidateClassName">id</string>

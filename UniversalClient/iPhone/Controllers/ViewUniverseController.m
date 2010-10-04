@@ -30,7 +30,6 @@
 - (void)releaseBodyCell:(LEUniverseBodyCell *)cell;
 - (void)releaseStarCell:(LEUniverseStarCell *)cell;
 - (void)tileView;
-- (void)gotoGridX:(NSDecimalNumber *)gridX gridY:(NSDecimalNumber *)gridY;
 
 @end
 
@@ -47,9 +46,15 @@
 @synthesize reusableBodyCells;
 @synthesize starMap;
 
+- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle {
+    if ((self = [super initWithNibName:nibName bundle:nibBundle])) {
+		self->updateLocation = YES;
+	}
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	NSLog(@"Loading");
 	
 	Session *session = [Session sharedInstance];
 	
@@ -111,8 +116,6 @@
 
 	[self.scrollView addSubview:self.map];
 	
-	self->updateLocation = YES;
-
 	[self.loadingView removeFromSuperview];
 	[self.view addSubview:self.loadingView];
 }
@@ -290,6 +293,24 @@
 }
 
 
+- (void)gotoGridX:(NSDecimalNumber *)gridX gridY:(NSDecimalNumber *)gridY {
+	NSLog(@"gotoGridX:%@ gridY:%@", gridX, gridY);
+	Session *session = [Session sharedInstance];
+	NSDecimalNumber *cellX = [gridX decimalNumberBySubtracting:session.universeMinX];
+	NSDecimalNumber *cellY = [[gridY decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]] decimalNumberBySubtracting:session.universeMinY];
+	
+	NSDecimalNumber *tmpX = [cellX decimalNumberByMultiplyingBy:[Util decimalFromInt:MAP_CELL_SIZE]];
+	NSDecimalNumber *tmpY = [cellY decimalNumberByMultiplyingBy:[Util decimalFromInt:MAP_CELL_SIZE]];
+	
+	CGFloat topLeftX = [tmpX floatValue] - (self.scrollView.frame.size.width/2) + HALF_MAP_CELL_SIZE;
+	CGFloat topLeftY = [tmpY floatValue] - (self.scrollView.frame.size.height/2) + HALF_MAP_CELL_SIZE;
+	
+	CGRect scrollToRect = CGRectMake(topLeftX, topLeftY, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
+	[self.scrollView scrollRectToVisible:scrollToRect animated:NO];
+	self->updateLocation = NO;
+}
+
+
 #pragma mark -
 #pragma mark PrivateMethods
 
@@ -363,22 +384,6 @@
 			}
 		}
 	}
-}
-
-
-- (void)gotoGridX:(NSDecimalNumber *)gridX gridY:(NSDecimalNumber *)gridY {
-	Session *session = [Session sharedInstance];
-	NSDecimalNumber *cellX = [gridX decimalNumberBySubtracting:session.universeMinX];
-	NSDecimalNumber *cellY = [[gridY decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]] decimalNumberBySubtracting:session.universeMinY];
-	
-	NSDecimalNumber *tmpX = [cellX decimalNumberByMultiplyingBy:[Util decimalFromInt:MAP_CELL_SIZE]];
-	NSDecimalNumber *tmpY = [cellY decimalNumberByMultiplyingBy:[Util decimalFromInt:MAP_CELL_SIZE]];
-	
-	CGFloat topLeftX = [tmpX floatValue] - (self.scrollView.frame.size.width/2) + HALF_MAP_CELL_SIZE;
-	CGFloat topLeftY = [tmpY floatValue] - (self.scrollView.frame.size.height/2) + HALF_MAP_CELL_SIZE;
-	
-	CGRect scrollToRect = CGRectMake(topLeftX, topLeftY, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
-	[self.scrollView scrollRectToVisible:scrollToRect animated:NO];
 }
 
 

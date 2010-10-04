@@ -38,6 +38,7 @@
 @synthesize internetReachability;
 @synthesize notConnectedView;
 @synthesize viewUniverseController;
+@synthesize viewUniverseNavigationController;
 
 
 #pragma mark -
@@ -154,6 +155,19 @@
 	self.tabBarController.selectedViewController = self.mailNavigationController;
 	[self.mailboxController showMessageById:messageId];
 }
+
+
+- (void)showStarMapGridX:(NSDecimalNumber *)x gridY:(NSDecimalNumber *)y {
+	[self.viewUniverseController gotoGridX:x gridY:y];
+	self.tabBarController.selectedViewController = self.viewUniverseNavigationController;
+}
+
+
+- (void)showMyWorld:(NSString *)bodyId {
+	self.myWorldController.bodyId = bodyId;
+	self.tabBarController.selectedViewController = self.myWorldsNavigationController;
+}
+
 
 
 #pragma mark -

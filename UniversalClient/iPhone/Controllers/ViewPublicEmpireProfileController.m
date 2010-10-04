@@ -18,6 +18,7 @@
 #import "LETableViewCellBody.h"
 #import "LETableViewCellMedal.h"
 #import "WebPageController.h"
+#import "AppDelegate_Phone.h"
 
 
 typedef enum {
@@ -288,6 +289,8 @@ typedef enum {
 				colonyCell.systemLabel.text = @"Unknown";
 				colonyCell.orbitLabel.text = @"Unknown";
 				colonyCell.empireLabel.text = self.profile.name;
+				colonyCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+				colonyCell.selectionStyle = UITableViewCellSelectionStyleBlue;
 				cell = colonyCell;
 				break;
 			case SECTION_MEDALS:
@@ -316,6 +319,16 @@ typedef enum {
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (self.profile) {
+		switch (indexPath.section) {
+			case SECTION_COLONIES:
+				; //DO NOT REMOVE
+				NSDictionary *body = [self.profile.colonies objectAtIndex:indexPath.row];
+				AppDelegate_Phone *appDelegate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
+				[appDelegate showStarMapGridX:[Util asNumber:[body objectForKey:@"x"]] gridY:[Util asNumber:[body objectForKey:@"y"]]];
+				break;
+		}
+	}
 }
 
 

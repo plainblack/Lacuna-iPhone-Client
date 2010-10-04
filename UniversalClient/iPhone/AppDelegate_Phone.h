@@ -28,6 +28,7 @@
 	Reachability *internetReachability;
 	UIView *notConnectedView;
 	ViewUniverseController *viewUniverseController;
+	UINavigationController *viewUniverseNavigationController;
 }
 
 
@@ -40,9 +41,12 @@
 @property(nonatomic, retain) Reachability *internetReachability;
 @property(nonatomic, retain) IBOutlet UIView *notConnectedView;
 @property(nonatomic, retain) IBOutlet ViewUniverseController *viewUniverseController;
+@property(nonatomic, retain) IBOutlet UINavigationController *viewUniverseNavigationController;
 
 
 - (void)showMessage:(NSString *)messageId;
+- (void)showStarMapGridX:(NSDecimalNumber *)x gridY:(NSDecimalNumber *)y;
+- (void)showMyWorld:(NSString *)bodyId;
 
 
 @end
