@@ -29,7 +29,6 @@
 
 
 - (void)processSuccess {
-	NSLog(@"Response: %@", self.response);
 	self.templates = [self.response objectForKey:@"result"];
 }
 

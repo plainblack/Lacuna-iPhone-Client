@@ -12,8 +12,15 @@
 #import "LEViewSectionTab.h"
 #import "LETableViewCellButton.h"
 #import "LETableViewCellLabeledText.h"
+#import "LETableViewCellParagraph.h"
 #import "LEEmpireGetSpeciesTemplates.h"
 #import "NewSpeciesController.h"
+
+
+typedef enum {
+	ROW_SPECIES_DESCRIPTION,
+	ROW_SELECT_SPECIES
+} ROW;
 
 
 @implementation SelectSpeciesTemplateController
@@ -36,7 +43,7 @@
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)] autorelease];
 	
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Species Template"]);
+	self.sectionHeaders = [NSArray array];//_array([LEViewSectionTab tableView:self.tableView withText:@"Species Template"]);
 }
 
 
@@ -59,18 +66,30 @@
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 1;
+	return MAX([self.templates count], 1);
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return MAX([self.templates count], 1);
+	return 2;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if ([self.templates count] > 0) {
-		return [LETableViewCellButton getHeightForTableView:tableView];
+		NSDictionary *speciesTemplate = [self.templates objectAtIndex:indexPath.section];
+		NSLog(@"speciesTemplate: %@", speciesTemplate);
+		switch (indexPath.row) {
+			case ROW_SPECIES_DESCRIPTION:
+				return [LETableViewCellParagraph getHeightForTableView:tableView text:[speciesTemplate objectForKey:@"description"]];
+				break;
+			case ROW_SELECT_SPECIES:
+				return [LETableViewCellButton getHeightForTableView:tableView];
+				break;
+			default:
+				return 0.0;
+				break;
+		}
 	} else {
 		return [LETableViewCellLabeledText getHeightForTableView:tableView];
 	}
@@ -83,10 +102,24 @@
 	
 	if (self.templates) {
 		if ([self.templates count] > 0) {
-			NSMutableDictionary *template = [self.templates objectAtIndex:indexPath.row];
-			LETableViewCellButton *templateCell = [LETableViewCellButton getCellForTableView:tableView];
-			templateCell.textLabel.text = [template objectForKey:@"name"];
-			cell = templateCell;
+			NSDictionary *speciesTemplate = [self.templates objectAtIndex:indexPath.section];
+			NSLog(@"speciesTemplate: %@", speciesTemplate);
+			switch (indexPath.row) {
+				case ROW_SPECIES_DESCRIPTION:
+					; //DO NOT REMOVE
+					LETableViewCellParagraph *descritionCell = [LETableViewCellParagraph getCellForTableView:tableView];
+					descritionCell.content.text = [speciesTemplate objectForKey:@"description"];
+					cell = descritionCell;
+					break;
+				case ROW_SELECT_SPECIES:
+					; //DO NOT REMOVE
+					LETableViewCellButton *templateCell = [LETableViewCellButton getCellForTableView:tableView];
+					templateCell.textLabel.text = @"Select";
+					cell = templateCell;
+					break;
+				default:
+					break;
+			}
 		} else {
 			LETableViewCellLabeledText *emptyCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 			emptyCell.label.text = @"Templates";
@@ -110,13 +143,19 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (self.templates) {
 		if ([self.templates count] > 0) {
-			NSMutableDictionary *template = [self.templates objectAtIndex:indexPath.row];
-			NewSpeciesController *newSpeciesController = [NewSpeciesController create];
-			newSpeciesController.empireId = self.empireId;
-			newSpeciesController.username = self.username;
-			newSpeciesController.password = self.password;
-			newSpeciesController.speciesTemplate = template;
-			[self.navigationController pushViewController:newSpeciesController animated:YES];
+			NSMutableDictionary *speciesTemplate = [self.templates objectAtIndex:indexPath.section];
+			NSLog(@"speciesTemplate: %@", speciesTemplate);
+			switch (indexPath.row) {
+				case ROW_SELECT_SPECIES:
+					; //DO NOT REMOVE
+					NewSpeciesController *newSpeciesController = [NewSpeciesController create];
+					newSpeciesController.empireId = self.empireId;
+					newSpeciesController.username = self.username;
+					newSpeciesController.password = self.password;
+					newSpeciesController.speciesTemplate = speciesTemplate;
+					[self.navigationController pushViewController:newSpeciesController animated:YES];
+					break;
+			}
 		}
 	}
 }
@@ -160,6 +199,12 @@
 
 - (id)speciesTemplatesLoaded:(LEEmpireGetSpeciesTemplates *)request {
 	if (![request wasError]) {
+		NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[request.templates count]];
+		[request.templates enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+			[tmp addObject:[LEViewSectionTab tableView:self.tableView withText:[obj objectForKey:@"name"]]];
+		}];
+		self.sectionHeaders = tmp;
+		NSLog(@"sectionHeaders: %@", self.sectionHeaders);
 		self.templates = request.templates;
 		[self.tableView reloadData];
 	}

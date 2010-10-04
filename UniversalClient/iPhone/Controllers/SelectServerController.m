@@ -66,6 +66,11 @@ typedef enum {
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	[self.servers loadServers];
+
+#if TARGET_IPHONE_SIMULATOR
+	self.customerServerCell.textField.text = @"http://pt.lacunaexpanse.com";
+#endif
+	
 }
 
 

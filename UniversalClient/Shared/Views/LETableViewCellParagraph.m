@@ -59,8 +59,8 @@
 		cell.content.editable = NO;
 		cell.content.scrollEnabled = NO;
 		[cell.contentView addSubview:cell.content];
-		cell.content.font = TEXT_SMALL_FONT;
-		cell.content.textColor = TEXT_SMALL_COLOR;
+		cell.content.font = PARAGRAPH_FONT;
+		cell.content.textColor = PARAGRAPH_COLOR;
 	}
 	
 	return cell;
@@ -69,7 +69,7 @@
 
 + (CGFloat)getHeightForTableView:(UITableView *)tableView text:(NSString *)text {
 	CGRect frame = CGRectMake(0, 0, tableView.bounds.size.width-20, tableView.bounds.size.height);
-	CGFloat suggestedHeight = [Util heightForText:text inFrame:frame withFont:TEXT_SMALL_FONT] + 22;
+	CGFloat suggestedHeight = [Util heightForText:text inFrame:frame withFont:PARAGRAPH_FONT] + 22;
 	if (suggestedHeight < tableView.rowHeight) {
 		return tableView.rowHeight;
 	} else {
