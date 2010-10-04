@@ -23,6 +23,7 @@
 #import "SendShipController.h"
 #import "SendSpiesController.h"
 #import "FetchSpiesController.h"
+#import "AppDelegate_Phone.h"
 
 
 typedef enum {
@@ -44,7 +45,8 @@ typedef enum {
 	ROW_SEND_SHIP,
 	ROW_PLOTS,
 	ROW_WATER,
-	ROW_RENAME
+	ROW_RENAME,
+	ROW_VIEW_MY_WORLD
 } ROWS;
 
 
@@ -124,6 +126,7 @@ typedef enum {
 			case ROW_VIEW_MINING_PLATFORMS:
 			case ROW_SEND_SHIP:
 			case ROW_RENAME:
+			case ROW_VIEW_MY_WORLD:
 				return [LETableViewCellButton getHeightForTableView:tableView];
 				break;
 			case ROW_PLOTS:
@@ -230,6 +233,12 @@ typedef enum {
 				renameButtonCell.textLabel.text = @"Rename";
 				cell = renameButtonCell;
 				break;
+			case ROW_VIEW_MY_WORLD:
+				; //DO NOT REMOVE
+				LETableViewCellButton *showInMyWorldsButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+				showInMyWorldsButtonCell.textLabel.text = @"Show in my worlds";
+				cell = showInMyWorldsButtonCell;
+				break;
 			default:
 				cell = nil;
 				break;
@@ -289,6 +298,12 @@ typedef enum {
 				renameBodyController.body = (Body *)self.mapItem;
 				[self.navigationController pushViewController:renameBodyController animated:YES];
 				break;
+			case ROW_VIEW_MY_WORLD:
+				; //DO NOT REMOVE
+				AppDelegate_Phone *delgate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
+				[delgate showMyWorld:self.mapItem.id];
+				[self.navigationController popToRootViewControllerAnimated:NO];
+				break;
 		}
 	}
 }
@@ -328,7 +343,7 @@ typedef enum {
 			Session *session = [Session sharedInstance];
 			Body *body = ((Body *)self.mapItem);
 			if ([body.empireId isEqualToString:session.empire.id]) {
-				[self.sections addObject:_dict([NSDecimalNumber numberWithInt:SECTION_INFO], @"type", [self.mapItem.type capitalizedString], @"name", _array([NSDecimalNumber numberWithInt:ROW_INFO], [NSDecimalNumber numberWithInt:ROW_RENAME]), @"rows")];
+				[self.sections addObject:_dict([NSDecimalNumber numberWithInt:SECTION_INFO], @"type", [self.mapItem.type capitalizedString], @"name", _array([NSDecimalNumber numberWithInt:ROW_INFO], [NSDecimalNumber numberWithInt:ROW_RENAME], [NSDecimalNumber numberWithInt:ROW_VIEW_MY_WORLD]), @"rows")];
 			} else {
 				[self.sections addObject:_dict([NSDecimalNumber numberWithInt:SECTION_INFO], @"type", [self.mapItem.type capitalizedString], @"name", _array([NSDecimalNumber numberWithInt:ROW_INFO]), @"rows")];
 			}

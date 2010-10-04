@@ -46,15 +46,11 @@
 @synthesize reusableBodyCells;
 @synthesize starMap;
 
-- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)nibBundle {
-    if ((self = [super initWithNibName:nibName bundle:nibBundle])) {
-		self->updateLocation = YES;
-	}
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 	NSLog(@"Loading");
+	self->updateLocation = YES;
 	
 	Session *session = [Session sharedInstance];
 	
@@ -143,9 +139,14 @@
 	[super viewDidAppear:animated];
 	[self.starMap addObserver:self forKeyPath:@"lastUpdate" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 	[self.starMap addObserver:self forKeyPath:@"numLoading" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+	if (self.starMap.numLoading > 0) {
+		[self.loadingView startAnimating];
+	}
 }
 
+
 - (void)viewDidDisappear:(BOOL)animated {
+	NSLog(@"Star Map viewDidDisappear");
 	[super viewDidDisappear:animated];
 	[self.loadingView stopAnimating];
 	[self.starMap removeObserver:self forKeyPath:@"lastUpdate"];
