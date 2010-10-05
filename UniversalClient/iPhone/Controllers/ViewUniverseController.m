@@ -49,7 +49,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	NSLog(@"Loading");
 	self->updateLocation = YES;
 	
 	Session *session = [Session sharedInstance];
@@ -146,7 +145,6 @@
 
 
 - (void)viewDidDisappear:(BOOL)animated {
-	NSLog(@"Star Map viewDidDisappear");
 	[super viewDidDisappear:animated];
 	[self.loadingView stopAnimating];
 	[self.starMap removeObserver:self forKeyPath:@"lastUpdate"];
@@ -295,7 +293,6 @@
 
 
 - (void)gotoGridX:(NSDecimalNumber *)gridX gridY:(NSDecimalNumber *)gridY {
-	NSLog(@"gotoGridX:%@ gridY:%@", gridX, gridY);
 	Session *session = [Session sharedInstance];
 	NSDecimalNumber *cellX = [gridX decimalNumberBySubtracting:session.universeMinX];
 	NSDecimalNumber *cellY = [[gridY decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"-1"]] decimalNumberBySubtracting:session.universeMinY];
