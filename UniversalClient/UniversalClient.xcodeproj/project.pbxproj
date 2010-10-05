@@ -99,6 +99,12 @@
 		F678F71F11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = F678F71E11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.m */; };
 		F678F75511A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.m in Sources */ = {isa = PBXBuildFile; fileRef = F678F75411A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.m */; };
 		F67E11F1118A75BB00D964FD /* LETableViewCellSpyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F67E11F0118A75BB00D964FD /* LETableViewCellSpyInfo.m */; };
+		F67F5763125AA9B30041FA37 /* LEAllianceViewProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F67F5762125AA9B30041FA37 /* LEAllianceViewProfile.m */; };
+		F67F5766125AA9BF0041FA37 /* LEAllianceFind.m in Sources */ = {isa = PBXBuildFile; fileRef = F67F5765125AA9BF0041FA37 /* LEAllianceFind.m */; };
+		F67F5773125ABE710041FA37 /* SearchForAllianceController.m in Sources */ = {isa = PBXBuildFile; fileRef = F67F5771125ABE710041FA37 /* SearchForAllianceController.m */; };
+		F67F5774125ABE710041FA37 /* SearchForAllianceController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F67F5772125ABE710041FA37 /* SearchForAllianceController.xib */; };
+		F67F579D125AC1B80041FA37 /* ViewAllianceProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = F67F579C125AC1B80041FA37 /* ViewAllianceProfileController.m */; };
+		F67F57A0125AC24E0041FA37 /* AlliancePublicProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F67F579F125AC24E0041FA37 /* AlliancePublicProfile.m */; };
 		F683BC2511E40311009E64BF /* assets in Resources */ = {isa = PBXBuildFile; fileRef = F683B6A111E40310009E64BF /* assets */; };
 		F6863C16118E475A00861037 /* LETableViewCellAttachedLink.m in Sources */ = {isa = PBXBuildFile; fileRef = F6863C15118E475A00861037 /* LETableViewCellAttachedLink.m */; };
 		F6864F9B1183A131009826A7 /* ViewNetwork19NewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6864F9A1183A131009826A7 /* ViewNetwork19NewsController.m */; };
@@ -549,6 +555,17 @@
 		F678F75411A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingSubsidizeRecycling.m; sourceTree = "<group>"; };
 		F67E11EF118A75BB00D964FD /* LETableViewCellSpyInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellSpyInfo.h; sourceTree = "<group>"; };
 		F67E11F0118A75BB00D964FD /* LETableViewCellSpyInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellSpyInfo.m; sourceTree = "<group>"; };
+		F67F5761125AA9B30041FA37 /* LEAllianceViewProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEAllianceViewProfile.h; sourceTree = "<group>"; };
+		F67F5762125AA9B30041FA37 /* LEAllianceViewProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEAllianceViewProfile.m; sourceTree = "<group>"; };
+		F67F5764125AA9BF0041FA37 /* LEAllianceFind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEAllianceFind.h; sourceTree = "<group>"; };
+		F67F5765125AA9BF0041FA37 /* LEAllianceFind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEAllianceFind.m; sourceTree = "<group>"; };
+		F67F5770125ABE710041FA37 /* SearchForAllianceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchForAllianceController.h; sourceTree = "<group>"; };
+		F67F5771125ABE710041FA37 /* SearchForAllianceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchForAllianceController.m; sourceTree = "<group>"; };
+		F67F5772125ABE710041FA37 /* SearchForAllianceController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchForAllianceController.xib; sourceTree = "<group>"; };
+		F67F579B125AC1B80041FA37 /* ViewAllianceProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewAllianceProfileController.h; sourceTree = "<group>"; };
+		F67F579C125AC1B80041FA37 /* ViewAllianceProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewAllianceProfileController.m; sourceTree = "<group>"; };
+		F67F579E125AC24E0041FA37 /* AlliancePublicProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlliancePublicProfile.h; sourceTree = "<group>"; };
+		F67F579F125AC24E0041FA37 /* AlliancePublicProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlliancePublicProfile.m; sourceTree = "<group>"; };
 		F683B6A111E40310009E64BF /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		F6863C14118E475A00861037 /* LETableViewCellAttachedLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellAttachedLink.h; sourceTree = "<group>"; };
 		F6863C15118E475A00861037 /* LETableViewCellAttachedLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellAttachedLink.m; sourceTree = "<group>"; };
@@ -1327,6 +1344,10 @@
 		F6E4D6681168D4B200980B59 /* LacunaExpanseAPI */ = {
 			isa = PBXGroup;
 			children = (
+				F67F5764125AA9BF0041FA37 /* LEAllianceFind.h */,
+				F67F5765125AA9BF0041FA37 /* LEAllianceFind.m */,
+				F67F5761125AA9B30041FA37 /* LEAllianceViewProfile.h */,
+				F67F5762125AA9B30041FA37 /* LEAllianceViewProfile.m */,
 				F6B21665123324E000531EEE /* LEBodyAbandon.h */,
 				F6B21666123324E000531EEE /* LEBodyAbandon.m */,
 				F6AC4A00116C0F9B001B967A /* LEBodyGetBuildings.h */,
@@ -1559,6 +1580,8 @@
 				F6AC4A0D116C0F9B001B967A /* LEInboxViewArchived.m */,
 				F6AC4A0E116C0F9B001B967A /* LEInboxViewSent.h */,
 				F6AC4A0F116C0F9B001B967A /* LEInboxViewSent.m */,
+				F64744131256EB4800E28189 /* LEMapGetStar.h */,
+				F64744141256EB4800E28189 /* LEMapGetStar.m */,
 				F6DEDFC2124FBFAA00030329 /* LEMapGetStars.h */,
 				F6DEDFC3124FBFAA00030329 /* LEMapGetStars.m */,
 				F6D9EB0612535DF0005437D7 /* LEMapSearchStars.h */,
@@ -1579,8 +1602,6 @@
 				F6DA5A58124E69E9005D11F6 /* LEStatsSpyRank.m */,
 				F6DA5A5A124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.h */,
 				F6DA5A5B124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.m */,
-				F64744131256EB4800E28189 /* LEMapGetStar.h */,
-				F64744141256EB4800E28189 /* LEMapGetStar.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -1591,6 +1612,8 @@
 			children = (
 				F60AF5191224A48D005B2F0E /* AllianceMember.h */,
 				F60AF51A1224A48D005B2F0E /* AllianceMember.m */,
+				F67F579E125AC24E0041FA37 /* AlliancePublicProfile.h */,
+				F67F579F125AC24E0041FA37 /* AlliancePublicProfile.m */,
 				F60AF5151224A483005B2F0E /* AllianceStatus.h */,
 				F60AF5161224A483005B2F0E /* AllianceStatus.m */,
 				F64C43F411F3C37A002981EC /* Archaeology.h */,
@@ -1778,6 +1801,9 @@
 				F6D59FF312012AA9009DDA28 /* RenameShipController.m */,
 				F6A9C6331184DF55001F0D9C /* RenameSpyController.h */,
 				F6A9C6341184DF55001F0D9C /* RenameSpyController.m */,
+				F67F5770125ABE710041FA37 /* SearchForAllianceController.h */,
+				F67F5771125ABE710041FA37 /* SearchForAllianceController.m */,
+				F67F5772125ABE710041FA37 /* SearchForAllianceController.xib */,
 				F6DA5B4F124E9C6B005D11F6 /* SearchForEmpireInRankingsController.h */,
 				F6DA5B50124E9C6B005D11F6 /* SearchForEmpireInRankingsController.m */,
 				F6FB45A011F52C1F00E24EAC /* SearchForGlyphController.h */,
@@ -1789,6 +1815,8 @@
 				F64FA25C121CD36F00CBFC3E /* SelectGlyphController.m */,
 				F64FA281121CD67C00CBFC3E /* SelectPlanController.h */,
 				F64FA282121CD67C00CBFC3E /* SelectPlanController.m */,
+				F6D360E81254B59B003FDE5D /* SelectPlanetToViewController.h */,
+				F6D360E91254B59B003FDE5D /* SelectPlanetToViewController.m */,
 				F6F8550B1220B0500000CD09 /* SelectResourceTypeController.h */,
 				F6F8550C1220B0500000CD09 /* SelectResourceTypeController.m */,
 				F642C5601229E5EB00C596A7 /* SelectServerController.h */,
@@ -1813,6 +1841,8 @@
 				F69D0F5A1252D02E00C12296 /* UniverseGotoController.m */,
 				F6DF439E1228B03100A526FD /* ViewAllianceMembersController.h */,
 				F6DF439F1228B03100A526FD /* ViewAllianceMembersController.m */,
+				F67F579B125AC1B80041FA37 /* ViewAllianceProfileController.h */,
+				F67F579C125AC1B80041FA37 /* ViewAllianceProfileController.m */,
 				F688A34611939EEB0062DF8A /* ViewAttachedMapController.h */,
 				F688A34711939EEB0062DF8A /* ViewAttachedMapController.m */,
 				F69B7FFA118FB51A0049D4A1 /* ViewAttachedTableController.h */,
@@ -1908,8 +1938,6 @@
 				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
 				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
-				F6D360E81254B59B003FDE5D /* SelectPlanetToViewController.h */,
-				F6D360E91254B59B003FDE5D /* SelectPlanetToViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2010,6 +2038,7 @@
 				F6F41903123B046800F93457 /* AssembleGlyphsControllerV2.xib in Resources */,
 				F6023996123D7CD900268ADD /* LETableViewCellForeignIncomingShip.m in Resources */,
 				F6DA5A69124E770B005D11F6 /* ViewStatsControllerV2.xib in Resources */,
+				F67F5774125ABE710041FA37 /* SearchForAllianceController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2356,6 +2385,11 @@
 				F6D360D61254B1D2003FDE5D /* LEBuildingViewPlanet.m in Sources */,
 				F6D360EA1254B59B003FDE5D /* SelectPlanetToViewController.m in Sources */,
 				F64744151256EB4800E28189 /* LEMapGetStar.m in Sources */,
+				F67F5763125AA9B30041FA37 /* LEAllianceViewProfile.m in Sources */,
+				F67F5766125AA9BF0041FA37 /* LEAllianceFind.m in Sources */,
+				F67F5773125ABE710041FA37 /* SearchForAllianceController.m in Sources */,
+				F67F579D125AC1B80041FA37 /* ViewAllianceProfileController.m in Sources */,
+				F67F57A0125AC24E0041FA37 /* AlliancePublicProfile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

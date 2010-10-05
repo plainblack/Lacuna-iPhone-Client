@@ -37,7 +37,10 @@
 #pragma mark Instance Methods
 
 - (void)parseData:(NSDictionary *)data {
-	self.empireId = [data objectForKey:@"empire_id"];
+	self.empireId = [Util idFromDict:data named:@"empire_id"];
+	if (!self.empireId) {
+		self.empireId = [Util idFromDict:data named:@"id"];
+	}
 	self.name = [data objectForKey:@"name"];
 }
 
