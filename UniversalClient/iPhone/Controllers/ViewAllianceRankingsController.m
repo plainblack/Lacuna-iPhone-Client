@@ -17,10 +17,13 @@
 
 typedef enum {
 	ROW_ALLIANCE,
+	ROW_INFLUENCE,
+	ROW_NUM_MEMBERS,
 	ROW_NUM_COLONIES,
+	ROW_NUM_SPACE_STATIONS,
 	ROW_POPULATION,
-	ROW_AVERAGE_EMPIRE_SIZE,
 	ROW_BUILDING_COUNT,
+	ROW_AVERAGE_EMPIRE_SIZE,
 	ROW_AVERAGE_BUILDING_LEVEL,
 	ROW_OFFENSIVE_SUCCESS_RATE,
 	ROW_DEFFENSIVE_SUCCES_RATE,
@@ -128,7 +131,7 @@ typedef enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (self.alliances) {
 		if ([self.alliances count] > 0) {
-			return 9;
+			return 12;
 		} else {
 			return 1;
 		}
@@ -145,17 +148,26 @@ typedef enum {
 				case ROW_ALLIANCE:
 					return [LETableViewCellLabeledText getHeightForTableView:tableView];
 					break;
+				case ROW_INFLUENCE:
+					return [LETableViewCellLabeledText getHeightForTableView:tableView];
+					break;
+				case ROW_NUM_MEMBERS:
+					return [LETableViewCellLabeledText getHeightForTableView:tableView];
+					break;
 				case ROW_NUM_COLONIES:
+					return [LETableViewCellLabeledText getHeightForTableView:tableView];
+					break;
+				case ROW_NUM_SPACE_STATIONS:
 					return [LETableViewCellLabeledText getHeightForTableView:tableView];
 					break;
 				case ROW_POPULATION:
 					return [LETableViewCellLabeledText getHeightForTableView:tableView];
 					break;
-				case ROW_AVERAGE_EMPIRE_SIZE:
-					return [LETableViewCellLabeledText getHeightForTableView:tableView];
-					break;
 				case ROW_BUILDING_COUNT:
 					return [LETableViewCellLabeledText getHeightForTableView:tableView];
+					break;
+				case ROW_AVERAGE_EMPIRE_SIZE:
+					return [LETableViewCellLongLabeledText getHeightForTableView:tableView];
 					break;
 				case ROW_AVERAGE_BUILDING_LEVEL:
 					return [LETableViewCellLongLabeledText getHeightForTableView:tableView];
@@ -182,7 +194,6 @@ typedef enum {
 }
 
 
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell;
@@ -198,60 +209,81 @@ typedef enum {
 					allianceCell.content.text = [alliance objectForKey:@"alliance_name"];
 					cell = allianceCell;
 					break;
+				case ROW_INFLUENCE:
+					; //DO NOT REMOVE
+					LETableViewCellLabeledText *influenceCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+					influenceCell.label.text = @"Influence";
+					influenceCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[alliance objectForKey:@"influence"]]];
+					cell = influenceCell;
+					break;
+				case ROW_NUM_MEMBERS:
+					; //DO NOT REMOVE
+					LETableViewCellLabeledText *numMembersCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+					numMembersCell.label.text = @"Members";
+					numMembersCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[alliance objectForKey:@"member_count"]]];
+					cell = numMembersCell;
+					break;
 				case ROW_NUM_COLONIES:
 					; //DO NOT REMOVE
 					LETableViewCellLabeledText *numColoniesCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-					numColoniesCell.label.text = @"# Colonies";
-					numColoniesCell.content.text = [alliance objectForKey:@"colony_count"];
+					numColoniesCell.label.text = @"Colonies";
+					numColoniesCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[alliance objectForKey:@"colony_count"]]];
 					cell = numColoniesCell;
+					break;
+				case ROW_NUM_SPACE_STATIONS:
+					; //DO NOT REMOVE
+					LETableViewCellLabeledText *numSpaceStationsCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+					numSpaceStationsCell.label.text = @"Space Stations";
+					numSpaceStationsCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[alliance objectForKey:@"space_station_count"]]];
+					cell = numSpaceStationsCell;
 					break;
 				case ROW_POPULATION:
 					; //DO NOT REMOVE
 					LETableViewCellLabeledText *populationCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					populationCell.label.text = @"Population";
-					populationCell.content.text = [alliance objectForKey:@"population"];
+					populationCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[alliance objectForKey:@"population"]]];
 					cell = populationCell;
-					break;
-				case ROW_AVERAGE_EMPIRE_SIZE:
-					; //DO NOT REMOVE
-					LETableViewCellLabeledText *averageEmpireSizeCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-					averageEmpireSizeCell.label.text = @"Avg Empire Size";
-					averageEmpireSizeCell.content.text = [alliance objectForKey:@"average_empire_size"];
-					cell = averageEmpireSizeCell;
 					break;
 				case ROW_BUILDING_COUNT:
 					; //DO NOT REMOVE
 					LETableViewCellLabeledText *buildingCountCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-					buildingCountCell.label.text = @"# Buildings";
-					buildingCountCell.content.text = [alliance objectForKey:@"building_count"];
+					buildingCountCell.label.text = @"Buildings";
+					buildingCountCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[alliance objectForKey:@"building_count"]]];
 					cell = buildingCountCell;
+					break;
+				case ROW_AVERAGE_EMPIRE_SIZE:
+					; //DO NOT REMOVE
+					LETableViewCellLongLabeledText *averageEmpireSizeCell = [LETableViewCellLongLabeledText getCellForTableView:tableView isSelectable:NO];
+					averageEmpireSizeCell.label.text = @"Average Empire Size";
+					averageEmpireSizeCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[alliance objectForKey:@"average_empire_size"]]];
+					cell = averageEmpireSizeCell;
 					break;
 				case ROW_AVERAGE_BUILDING_LEVEL:
 					; //DO NOT REMOVE
 					LETableViewCellLongLabeledText *averageBuildingLevelCell = [LETableViewCellLongLabeledText getCellForTableView:tableView isSelectable:NO];
 					averageBuildingLevelCell.label.text = @"Average Building Level";
-					averageBuildingLevelCell.content.text = [alliance objectForKey:@"average_building_level"];
+					averageBuildingLevelCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[alliance objectForKey:@"average_building_level"]]];
 					cell = averageBuildingLevelCell;
 					break;
 				case ROW_OFFENSIVE_SUCCESS_RATE:
 					; //DO NOT REMOVE
 					LETableViewCellLongLabeledText *offensiveSuccessRateCell = [LETableViewCellLongLabeledText getCellForTableView:tableView isSelectable:NO];
 					offensiveSuccessRateCell.label.text = @"Offensive Success Rate";
-					offensiveSuccessRateCell.content.text = [alliance objectForKey:@"offense_success_rate"];
+					offensiveSuccessRateCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[alliance objectForKey:@"offense_success_rate"]]];
 					cell = offensiveSuccessRateCell;
 					break;
 				case ROW_DEFFENSIVE_SUCCES_RATE:
 					; //DO NOT REMOVE
 					LETableViewCellLongLabeledText *defensiveSuccessRateCell = [LETableViewCellLongLabeledText getCellForTableView:tableView isSelectable:NO];
 					defensiveSuccessRateCell.label.text = @"Defensive Success Rate";
-					defensiveSuccessRateCell.content.text = [alliance objectForKey:@"defense_success_rate"];
+					defensiveSuccessRateCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[alliance objectForKey:@"defense_success_rate"]]];
 					cell = defensiveSuccessRateCell;
 					break;
 				case ROW_DIRTIEST:
 					; //DO NOT REMOVE
 					LETableViewCellLabeledText *dirtiestCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					dirtiestCell.label.text = @"Dirtiest";
-					dirtiestCell.content.text = [alliance objectForKey:@"dirtiest"];
+					dirtiestCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[alliance objectForKey:@"dirtiest"]]];
 					cell = dirtiestCell;
 					break;
 				default:

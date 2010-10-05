@@ -202,56 +202,56 @@ typedef enum {
 					; //DO NOT REMOVE
 					LETableViewCellLabeledText *numColoniesCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					numColoniesCell.label.text = @"# Colonies";
-					numColoniesCell.content.text = [empire objectForKey:@"colony_count"];
+					numColoniesCell.content.text =  [Util prettyNSDecimalNumber:[Util asNumber:[empire objectForKey:@"colony_count"]]];
 					cell = numColoniesCell;
 					break;
 				case ROW_POPULATION:
 					; //DO NOT REMOVE
 					LETableViewCellLabeledText *populationCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					populationCell.label.text = @"Population";
-					populationCell.content.text = [empire objectForKey:@"population"];
+					populationCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[empire objectForKey:@"population"]]];
 					cell = populationCell;
 					break;
 				case ROW_EMPIRE_SIZE:
 					; //DO NOT REMOVE
 					LETableViewCellLabeledText *empireSizeCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					empireSizeCell.label.text = @"Empire Size";
-					empireSizeCell.content.text = [empire objectForKey:@"empire_size"];
+					empireSizeCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[empire objectForKey:@"empire_size"]]];
 					cell = empireSizeCell;
 					break;
 				case ROW_BUILDING_COUNT:
 					; //DO NOT REMOVE
 					LETableViewCellLabeledText *buildingCountCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					buildingCountCell.label.text = @"# Buildings";
-					buildingCountCell.content.text = [empire objectForKey:@"building_count"];
+					buildingCountCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[empire objectForKey:@"building_count"]]];
 					cell = buildingCountCell;
 					break;
 				case ROW_AVERAGE_BUILDING_LEVEL:
 					; //DO NOT REMOVE
 					LETableViewCellLongLabeledText *averageBuildingLevelCell = [LETableViewCellLongLabeledText getCellForTableView:tableView isSelectable:NO];
 					averageBuildingLevelCell.label.text = @"Average Building Level";
-					averageBuildingLevelCell.content.text = [empire objectForKey:@"average_building_level"];
+					averageBuildingLevelCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[empire objectForKey:@"average_building_level"]]];
 					cell = averageBuildingLevelCell;
 					break;
 				case ROW_OFFENSIVE_SUCCESS_RATE:
 					; //DO NOT REMOVE
 					LETableViewCellLongLabeledText *offensiveSuccessRateCell = [LETableViewCellLongLabeledText getCellForTableView:tableView isSelectable:NO];
 					offensiveSuccessRateCell.label.text = @"Offensive Success Rate";
-					offensiveSuccessRateCell.content.text = [empire objectForKey:@"offense_success_rate"];
+					offensiveSuccessRateCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[empire objectForKey:@"offense_success_rate"]]];
 					cell = offensiveSuccessRateCell;
 					break;
 				case ROW_DEFFENSIVE_SUCCES_RATE:
 					; //DO NOT REMOVE
 					LETableViewCellLongLabeledText *defensiveSuccessRateCell = [LETableViewCellLongLabeledText getCellForTableView:tableView isSelectable:NO];
 					defensiveSuccessRateCell.label.text = @"Defensive Success Rate";
-					defensiveSuccessRateCell.content.text = [empire objectForKey:@"defense_success_rate"];
+					defensiveSuccessRateCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[empire objectForKey:@"defense_success_rate"]]];
 					cell = defensiveSuccessRateCell;
 					break;
 				case ROW_DIRTIEST:
 					; //DO NOT REMOVE
 					LETableViewCellLabeledText *dirtiestCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					dirtiestCell.label.text = @"Dirtiest";
-					dirtiestCell.content.text = [empire objectForKey:@"dirtiest"];
+					dirtiestCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[empire objectForKey:@"dirtiest"]]];
 					cell = dirtiestCell;
 					break;
 				default:

@@ -165,21 +165,21 @@ typedef enum {
 					; //DO NOT REMOVE
 					LETableViewCellLabeledText *levelCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					levelCell.label.text = @"Level";
-					levelCell.content.text = [spy objectForKey:@"level"];
+					levelCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[spy objectForKey:@"level"]]];
 					cell = levelCell;
 					break;
 				case ROW_SUCCESS_RATE:
 					; //DO NOT REMOVE
 					LETableViewCellLabeledText *successRateCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					successRateCell.label.text = @"Success Rate";
-					successRateCell.content.text = [spy objectForKey:@"success_rate"];
+					successRateCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[spy objectForKey:@"success_rate"]]];
 					cell = successRateCell;
 					break;
 				case ROW_DIRTIEST:
 					; //DO NOT REMOVE
 					LETableViewCellLabeledText *dirtiestCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					dirtiestCell.label.text = @"Dirtiest";
-					dirtiestCell.content.text = [spy objectForKey:@"dirtiest"];
+					dirtiestCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[spy objectForKey:@"dirtiest"]]];
 					cell = dirtiestCell;
 					break;
 				default:

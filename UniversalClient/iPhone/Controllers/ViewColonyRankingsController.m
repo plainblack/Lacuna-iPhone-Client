@@ -155,28 +155,28 @@ typedef enum {
 					; // DO NOT REMVOE
 					LETableViewCellLabeledText *populationCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					populationCell.label.text = @"Population";
-					populationCell.content.text = [colony objectForKey:@"population"];
+					populationCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[colony objectForKey:@"population"]]];
 					cell = populationCell;
 					break;
 				case ROW_BUILDING_COUNT:
 					; // DO NOT REMVOE
 					LETableViewCellLabeledText *buildingCountCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-					buildingCountCell.label.text = @"# Buildings";
-					buildingCountCell.content.text = [colony objectForKey:@"building_count"];
+					buildingCountCell.label.text = @"Buildings";
+					buildingCountCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[colony objectForKey:@"building_count"]]];
 					cell = buildingCountCell;
 					break;
 				case ROW_AVERAGE_BUILDING_LEVEL:
 					; // DO NOT REMVOE
 					LETableViewCellLongLabeledText *averageBuildingLevelCell = [LETableViewCellLongLabeledText getCellForTableView:tableView isSelectable:NO];
 					averageBuildingLevelCell.label.text = @"Average Building Level";
-					averageBuildingLevelCell.content.text = [colony objectForKey:@"average_building_level"];
+					averageBuildingLevelCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[colony objectForKey:@"average_building_level"]]];
 					cell = averageBuildingLevelCell;
 					break;
 				case ROW_HIGHEST_BUILDING_LEVEL:
 					; // DO NOT REMVOE
 					LETableViewCellLongLabeledText *highestBuildingLevelCell = [LETableViewCellLongLabeledText getCellForTableView:tableView isSelectable:NO];
 					highestBuildingLevelCell.label.text = @"Highest Building Level";
-					highestBuildingLevelCell.content.text = [colony objectForKey:@"highest_building_level"];
+					highestBuildingLevelCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[colony objectForKey:@"highest_building_level"]]];
 					cell = highestBuildingLevelCell;
 					break;
 				default:
