@@ -15,13 +15,15 @@
 #import "ViewColonyRankingsController.h"
 #import	"ViewSpyRankingsController.h"
 #import "ViewWeeklyMedalWinnersController.h"
+#import "ViewAllianceRankingsController.h"
 
 
 typedef enum {
+	SECTION_WEEKLY_MEDAL_WINNERS,
+	SECTION_ALLIANCE_RANKINGS,
 	SECTION_EMPIRE_RANKINGS,
 	SECTION_COLONY_RANKINS,
 	SECTION_SPY_RANKINGS,
-	SECTION_WEEKLY_MEDAL_WINNERS,
 } SECTION;
 
 
@@ -45,6 +47,14 @@ typedef enum {
 } SPY_ROW;
 
 
+typedef enum {
+	ALLIANCE_ROW_AVERAGE_EMPIRE_SIZE,
+	ALLIANCE_ROW_OFFENSIVE_SUCCESS,
+	ALLIANCE_ROW_DEFENSIVE_SUCCESS,
+	ALLIANCE_ROW_DIRTIEST,
+} ALLIANCE_ROW;
+
+
 @implementation ViewStatsControllerV2
 
 
@@ -65,10 +75,11 @@ typedef enum {
 	}
 	self.navigationItem.title = @"Loading";
 	
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Empire Rankings"],
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Weekly Medals"],
+								 [LEViewSectionTab tableView:self.tableView withText:@"Alliance Rankings"],
+								 [LEViewSectionTab tableView:self.tableView withText:@"Empire Rankings"],
 								 [LEViewSectionTab tableView:self.tableView withText:@"Colony Rankings"],
-								 [LEViewSectionTab tableView:self.tableView withText:@"Spy Rankings"],
-								 [LEViewSectionTab tableView:self.tableView withText:@"Weekly Medals"]);
+								 [LEViewSectionTab tableView:self.tableView withText:@"Spy Rankings"]);
 }
 
 
@@ -86,7 +97,7 @@ typedef enum {
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 4;
+	return 5;
 }
 
 
@@ -103,6 +114,9 @@ typedef enum {
 			break;
 		case SECTION_WEEKLY_MEDAL_WINNERS:
 			return 1;
+			break;
+		case SECTION_ALLIANCE_RANKINGS:
+			return 4;
 			break;
 		default:
 			return 0;
@@ -150,6 +164,19 @@ typedef enum {
 			break;
 		case SECTION_WEEKLY_MEDAL_WINNERS:
 			return [LETableViewCellButton getHeightForTableView:tableView];
+			break;
+		case SECTION_ALLIANCE_RANKINGS:
+			switch (indexPath.row) {
+				case ALLIANCE_ROW_AVERAGE_EMPIRE_SIZE:
+				case ALLIANCE_ROW_OFFENSIVE_SUCCESS:
+				case ALLIANCE_ROW_DEFENSIVE_SUCCESS:
+				case ALLIANCE_ROW_DIRTIEST:
+					return [LETableViewCellButton getHeightForTableView:tableView];
+					break;
+				default:
+					return 0.0;
+					break;
+			}
 			break;
 		default:
 			return 0.0;
@@ -239,6 +266,37 @@ typedef enum {
 			weeklyMedalWinnersButton.textLabel.text = @"Weekly Medal Winners";
 			cell = weeklyMedalWinnersButton;
 			break;
+		case SECTION_ALLIANCE_RANKINGS:
+			switch (indexPath.row) {
+				case ALLIANCE_ROW_AVERAGE_EMPIRE_SIZE:
+					; //DO NOT REMOVE
+					LETableViewCellButton *empireSizeButton = [LETableViewCellButton getCellForTableView:tableView];
+					empireSizeButton.textLabel.text = @"Largest Average Empire Size";
+					cell = empireSizeButton;
+					break;
+				case ALLIANCE_ROW_OFFENSIVE_SUCCESS:
+					; //DO NOT REMOVE
+					LETableViewCellButton *offensiveSuccessEmpiresButton = [LETableViewCellButton getCellForTableView:tableView];
+					offensiveSuccessEmpiresButton.textLabel.text = @"Most Offensive Alliances";
+					cell = offensiveSuccessEmpiresButton;
+					break;
+				case ALLIANCE_ROW_DEFENSIVE_SUCCESS:
+					; //DO NOT REMOVE
+					LETableViewCellButton *defensiveSuccessEmpiresButton = [LETableViewCellButton getCellForTableView:tableView];
+					defensiveSuccessEmpiresButton.textLabel.text = @"Most Defensive Alliances";
+					cell = defensiveSuccessEmpiresButton;
+					break;
+				case ALLIANCE_ROW_DIRTIEST:
+					; //DO NOT REMOVE
+					LETableViewCellButton *diretiesEmpiresButton = [LETableViewCellButton getCellForTableView:tableView];
+					diretiesEmpiresButton.textLabel.text = @"Dirtiest Alliances";
+					cell = diretiesEmpiresButton;
+					break;
+				default:
+					cell = nil;
+					break;
+			}
+			break;
 		default:
 			cell = nil;
 			break;
@@ -302,6 +360,25 @@ typedef enum {
 			; //DO NOT REMOVE
 			ViewWeeklyMedalWinnersController *viewWeeklyMedalWinnersController = [ViewWeeklyMedalWinnersController create];
 			[self.navigationController pushViewController:viewWeeklyMedalWinnersController animated:YES];
+			break;
+		case SECTION_ALLIANCE_RANKINGS:
+			; //DO NOT REMOVE
+			ViewAllianceRankingsController *viewAllianceRankingsController = [ViewAllianceRankingsController create];
+			switch (indexPath.row) {
+				case ALLIANCE_ROW_AVERAGE_EMPIRE_SIZE:
+					viewAllianceRankingsController.sortBy = @"average_empire_size_rank";
+					break;
+				case ALLIANCE_ROW_OFFENSIVE_SUCCESS:
+					viewAllianceRankingsController.sortBy = @"offense_success_rate_rank";
+					break;
+				case ALLIANCE_ROW_DEFENSIVE_SUCCESS:
+					viewAllianceRankingsController.sortBy = @"defense_success_rate_rank";
+					break;
+				case ALLIANCE_ROW_DIRTIEST:
+					viewAllianceRankingsController.sortBy = @"dirtiest_rank";
+					break;
+			}
+			[self.navigationController pushViewController:viewAllianceRankingsController animated:YES];
 			break;
 	}
 }

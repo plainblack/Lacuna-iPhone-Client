@@ -1,25 +1,25 @@
 //
-//  ViewEmpireRankingsController.m
+//  ViewAllianceRankingsController.m
 //  UniversalClient
 //
-//  Created by Kevin Runde on 9/25/10.
+//  Created by Kevin Runde on 10/5/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
-#import "ViewEmpireRankingsController.h"
+#import "ViewAllianceRankingsController.h"
 #import "LEMacros.h"
 #import "Util.h"
-#import "LEStatsEmpireRank.h"
+#import "LEStatsAllianceRank.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellLabeledText.h"
 #import "LETableViewCellLongLabeledText.h"
 
 
 typedef enum {
-	ROW_EMPIRE,
+	ROW_ALLIANCE,
 	ROW_NUM_COLONIES,
 	ROW_POPULATION,
-	ROW_EMPIRE_SIZE,
+	ROW_AVERAGE_EMPIRE_SIZE,
 	ROW_BUILDING_COUNT,
 	ROW_AVERAGE_BUILDING_LEVEL,
 	ROW_OFFENSIVE_SUCCESS_RATE,
@@ -28,7 +28,7 @@ typedef enum {
 } ROW;
 
 
-@interface ViewEmpireRankingsController (PrivateMethods)
+@interface ViewAllianceRankingsController (PrivateMethods)
 
 - (void)togglePageButtons;
 - (BOOL)hasNextPage;
@@ -37,13 +37,13 @@ typedef enum {
 @end
 
 
-@implementation ViewEmpireRankingsController
+@implementation ViewAllianceRankingsController
 
 
 @synthesize pageSegmentedControl;
 @synthesize sortBy;
-@synthesize empires;
-@synthesize numEmpires;
+@synthesize alliances;
+@synthesize numAlliances;
 
 
 #pragma mark -
@@ -52,19 +52,19 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	if ([self.sortBy isEqualToString:@"empire_size_rank"]) {
-		self.navigationItem.title = @"Largest Empires";
+	if ([self.sortBy isEqualToString:@"average_empire_size_rank"]) {
+		self.navigationItem.title = @"Largest Average Empires";
 	} else if ([self.sortBy isEqualToString:@"offense_success_rate_rank"]) {
-		self.navigationItem.title = @"Offensive Empires";
+		self.navigationItem.title = @"Offensive Alliances";
 	} else if ([self.sortBy isEqualToString:@"defense_success_rate_rank"]) {
-		self.navigationItem.title = @"Defensive Empires";
+		self.navigationItem.title = @"Defensive Alliances";
 	} else if ([self.sortBy isEqualToString:@"dirtiest_rank"]) {
-		self.navigationItem.title = @"Dirtiest Empires";
+		self.navigationItem.title = @"Dirtiest Alliances";
 	} else {
-		self.navigationItem.title = @"Empires";
+		self.navigationItem.title = @"Alliances";
 	}
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
-
+	
 	self.pageSegmentedControl = [[[UISegmentedControl alloc] initWithItems:_array(UP_ARROW_ICON, DOWN_ARROW_ICON)] autorelease];
 	[self.pageSegmentedControl addTarget:self action:@selector(switchPage) forControlEvents:UIControlEventValueChanged]; 
 	self.pageSegmentedControl.momentary = YES;
@@ -77,10 +77,10 @@ typedef enum {
 	self.navigationController.toolbar.tintColor = TINT_COLOR;
 	
 	self.toolbarItems = _array(
-		[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease],
-		[[[UIBarButtonItem alloc] initWithTitle:@"Search for Empire" style:UIBarButtonItemStyleBordered target:self action:@selector(searchForEmpire)] autorelease],
-		[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]
-	);
+							   [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease],
+							   [[[UIBarButtonItem alloc] initWithTitle:@"Search for Alliance" style:UIBarButtonItemStyleBordered target:self action:@selector(searchForAlliance)] autorelease],
+							   [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]
+							   );
 	
 	self->pageNumber = 1;
 }
@@ -90,7 +90,7 @@ typedef enum {
     [super viewWillAppear:animated];
 	[self.navigationController setToolbarHidden:NO animated:NO];
 	[self togglePageButtons];
-	[[[LEStatsEmpireRank alloc] initWithCallback:@selector(empiresLoaded:) target:self sortBy:self.sortBy pageNumber:self->pageNumber] autorelease];
+	[[[LEStatsAllianceRank alloc] initWithCallback:@selector(alliancesLoaded:) target:self sortBy:self.sortBy pageNumber:self->pageNumber] autorelease];
 }
 
 
@@ -113,9 +113,9 @@ typedef enum {
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	if (self.empires) {
-		if ([self.empires count] > 0) {
-			return [self.empires count];
+	if (self.alliances) {
+		if ([self.alliances count] > 0) {
+			return [self.alliances count];
 		} else {
 			return 1;
 		}
@@ -126,8 +126,8 @@ typedef enum {
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if (self.empires) {
-		if ([self.empires count] > 0) {
+	if (self.alliances) {
+		if ([self.alliances count] > 0) {
 			return 9;
 		} else {
 			return 1;
@@ -139,10 +139,10 @@ typedef enum {
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (self.empires) {
-		if ([self.empires count] > 0) {
+	if (self.alliances) {
+		if ([self.alliances count] > 0) {
 			switch (indexPath.row) {
-				case ROW_EMPIRE:
+				case ROW_ALLIANCE:
 					return [LETableViewCellLabeledText getHeightForTableView:tableView];
 					break;
 				case ROW_NUM_COLONIES:
@@ -151,7 +151,7 @@ typedef enum {
 				case ROW_POPULATION:
 					return [LETableViewCellLabeledText getHeightForTableView:tableView];
 					break;
-				case ROW_EMPIRE_SIZE:
+				case ROW_AVERAGE_EMPIRE_SIZE:
 					return [LETableViewCellLabeledText getHeightForTableView:tableView];
 					break;
 				case ROW_BUILDING_COUNT:
@@ -187,71 +187,71 @@ typedef enum {
     
     UITableViewCell *cell;
 	
-	if (self.empires) {
-		if ([self.empires count] > 0) {
-			NSMutableDictionary *empire = [self.empires objectAtIndex:indexPath.section];
+	if (self.alliances) {
+		if ([self.alliances count] > 0) {
+			NSMutableDictionary *alliance = [self.alliances objectAtIndex:indexPath.section];
 			switch (indexPath.row) {
-				case ROW_EMPIRE:
+				case ROW_ALLIANCE:
 					; //DO NOT REMOVE
-					LETableViewCellLabeledText *empireCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-					empireCell.label.text = @"Empire";
-					empireCell.content.text = [empire objectForKey:@"empire_name"];
-					cell = empireCell;
+					LETableViewCellLabeledText *allianceCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+					allianceCell.label.text = @"Alliance";
+					allianceCell.content.text = [alliance objectForKey:@"alliance_name"];
+					cell = allianceCell;
 					break;
 				case ROW_NUM_COLONIES:
 					; //DO NOT REMOVE
 					LETableViewCellLabeledText *numColoniesCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					numColoniesCell.label.text = @"# Colonies";
-					numColoniesCell.content.text = [empire objectForKey:@"colony_count"];
+					numColoniesCell.content.text = [alliance objectForKey:@"colony_count"];
 					cell = numColoniesCell;
 					break;
 				case ROW_POPULATION:
 					; //DO NOT REMOVE
 					LETableViewCellLabeledText *populationCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					populationCell.label.text = @"Population";
-					populationCell.content.text = [empire objectForKey:@"population"];
+					populationCell.content.text = [alliance objectForKey:@"population"];
 					cell = populationCell;
 					break;
-				case ROW_EMPIRE_SIZE:
+				case ROW_AVERAGE_EMPIRE_SIZE:
 					; //DO NOT REMOVE
-					LETableViewCellLabeledText *empireSizeCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-					empireSizeCell.label.text = @"Empire Size";
-					empireSizeCell.content.text = [empire objectForKey:@"empire_size"];
-					cell = empireSizeCell;
+					LETableViewCellLabeledText *averageEmpireSizeCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+					averageEmpireSizeCell.label.text = @"Avg Empire Size";
+					averageEmpireSizeCell.content.text = [alliance objectForKey:@"average_empire_size"];
+					cell = averageEmpireSizeCell;
 					break;
 				case ROW_BUILDING_COUNT:
 					; //DO NOT REMOVE
 					LETableViewCellLabeledText *buildingCountCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					buildingCountCell.label.text = @"# Buildings";
-					buildingCountCell.content.text = [empire objectForKey:@"building_count"];
+					buildingCountCell.content.text = [alliance objectForKey:@"building_count"];
 					cell = buildingCountCell;
 					break;
 				case ROW_AVERAGE_BUILDING_LEVEL:
 					; //DO NOT REMOVE
 					LETableViewCellLongLabeledText *averageBuildingLevelCell = [LETableViewCellLongLabeledText getCellForTableView:tableView isSelectable:NO];
 					averageBuildingLevelCell.label.text = @"Average Building Level";
-					averageBuildingLevelCell.content.text = [empire objectForKey:@"average_building_level"];
+					averageBuildingLevelCell.content.text = [alliance objectForKey:@"average_building_level"];
 					cell = averageBuildingLevelCell;
 					break;
 				case ROW_OFFENSIVE_SUCCESS_RATE:
 					; //DO NOT REMOVE
 					LETableViewCellLongLabeledText *offensiveSuccessRateCell = [LETableViewCellLongLabeledText getCellForTableView:tableView isSelectable:NO];
 					offensiveSuccessRateCell.label.text = @"Offensive Success Rate";
-					offensiveSuccessRateCell.content.text = [empire objectForKey:@"offense_success_rate"];
+					offensiveSuccessRateCell.content.text = [alliance objectForKey:@"offense_success_rate"];
 					cell = offensiveSuccessRateCell;
 					break;
 				case ROW_DEFFENSIVE_SUCCES_RATE:
 					; //DO NOT REMOVE
 					LETableViewCellLongLabeledText *defensiveSuccessRateCell = [LETableViewCellLongLabeledText getCellForTableView:tableView isSelectable:NO];
 					defensiveSuccessRateCell.label.text = @"Defensive Success Rate";
-					defensiveSuccessRateCell.content.text = [empire objectForKey:@"defense_success_rate"];
+					defensiveSuccessRateCell.content.text = [alliance objectForKey:@"defense_success_rate"];
 					cell = defensiveSuccessRateCell;
 					break;
 				case ROW_DIRTIEST:
 					; //DO NOT REMOVE
 					LETableViewCellLabeledText *dirtiestCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					dirtiestCell.label.text = @"Dirtiest";
-					dirtiestCell.content.text = [empire objectForKey:@"dirtiest"];
+					dirtiestCell.content.text = [alliance objectForKey:@"dirtiest"];
 					cell = dirtiestCell;
 					break;
 				default:
@@ -260,13 +260,13 @@ typedef enum {
 			}
 		} else {
 			LETableViewCellLabeledText *emptyCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-			emptyCell.label.text = @"Empires";
+			emptyCell.label.text = @"Alliances";
 			emptyCell.content.text = @"None";
 			cell = emptyCell;
 		}
 	} else {
 		LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-		loadingCell.label.text = @"Empires";
+		loadingCell.label.text = @"Alliances";
 		loadingCell.content.text = @"Loading";
 		cell = loadingCell;
 	}
@@ -287,8 +287,8 @@ typedef enum {
 
 - (void)viewDidUnload {
 	self.pageSegmentedControl = nil;
-	self.empires = nil;
-	self.numEmpires = nil;
+	self.alliances = nil;
+	self.numAlliances = nil;
 	[super viewDidUnload];
 }
 
@@ -296,20 +296,20 @@ typedef enum {
 - (void)dealloc {
 	self.sortBy = nil;
 	self.pageSegmentedControl = nil;
-	self.empires = nil;
-	self.numEmpires = nil;
+	self.alliances = nil;
+	self.numAlliances = nil;
     [super dealloc];
 }
 
 
 #pragma mark -
-#pragma mark SearchForEmpireInRankingsControllerDelegate Methods
+#pragma mark SearchForAllianceInRankingsControllerDelegate Methods
 
-- (void)selectedEmpire:(NSDictionary *)empire {
+- (void)selectedAlliance:(NSDictionary *)alliance {
 	[self.navigationController popViewControllerAnimated:YES];
-	self->pageNumber = _intv([empire objectForKey:@"page_number"]);
+	self->pageNumber = _intv([alliance objectForKey:@"page_number"]);
 	[self togglePageButtons];
-	[[[LEStatsEmpireRank alloc] initWithCallback:@selector(empiresLoaded:) target:self sortBy:self.sortBy pageNumber:self->pageNumber] autorelease];
+	[[[LEStatsAllianceRank alloc] initWithCallback:@selector(alliancesLoaded:) target:self sortBy:self.sortBy pageNumber:self->pageNumber] autorelease];
 }
 
 
@@ -323,7 +323,7 @@ typedef enum {
 
 
 - (BOOL)hasNextPage {
-	return (self->pageNumber < [Util numPagesForCount:_intv(self.numEmpires)]);
+	return (self->pageNumber < [Util numPagesForCount:_intv(self.numAlliances)]);
 }
 
 
@@ -335,12 +335,12 @@ typedef enum {
 #pragma mark -
 #pragma mark Callback Methods
 
-- (id)empiresLoaded:(LEStatsEmpireRank *)request {
-	self.empires = request.empires;
-	self.numEmpires = request.numEmpires;
-	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[self.empires count]];
-	for (int i=0; i < [self.empires count]; i++) {
-		[tmp addObject:[LEViewSectionTab tableView:self.tableView withText:[NSString stringWithFormat:@"Empire %i", ((request.pageNumber-1)*25+i+1)]]];
+- (id)alliancesLoaded:(LEStatsAllianceRank *)request {
+	self.alliances = request.alliances;
+	self.numAlliances = request.numAlliances;
+	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[self.alliances count]];
+	for (int i=0; i < [self.alliances count]; i++) {
+		[tmp addObject:[LEViewSectionTab tableView:self.tableView withText:[NSString stringWithFormat:@"Alliance %i", ((request.pageNumber-1)*25+i+1)]]];
 	}
 	self.sectionHeaders = tmp;
 	[self togglePageButtons];
@@ -353,11 +353,11 @@ typedef enum {
 	switch (self.pageSegmentedControl.selectedSegmentIndex) {
 		case 0:
 			self->pageNumber--;
-			[[[LEStatsEmpireRank alloc] initWithCallback:@selector(empiresLoaded:) target:self sortBy:self.sortBy pageNumber:self->pageNumber] autorelease];
+			[[[LEStatsAllianceRank alloc] initWithCallback:@selector(alliancesLoaded:) target:self sortBy:self.sortBy pageNumber:self->pageNumber] autorelease];
 			break;
 		case 1:
 			self->pageNumber++;
-			[[[LEStatsEmpireRank alloc] initWithCallback:@selector(empiresLoaded:) target:self sortBy:self.sortBy pageNumber:self->pageNumber] autorelease];
+			[[[LEStatsAllianceRank alloc] initWithCallback:@selector(alliancesLoaded:) target:self sortBy:self.sortBy pageNumber:self->pageNumber] autorelease];
 			break;
 		default:
 			NSLog(@"Invalid switchPage");
@@ -367,20 +367,20 @@ typedef enum {
 }
 
 
-- (void) searchForEmpire {
+- (void) searchForAlliance {
 	NSLog(@"Search called");
-	SearchForEmpireInRankingsController *searchForEmpireInRankingsController = [SearchForEmpireInRankingsController create];
-	searchForEmpireInRankingsController.sortBy = self.sortBy;
-	searchForEmpireInRankingsController.delegate = self;
-	[self.navigationController pushViewController:searchForEmpireInRankingsController animated:YES];
+	SearchForAllianceInRankingsController *searchForAllianceInRankingsController = [SearchForAllianceInRankingsController create];
+	searchForAllianceInRankingsController.sortBy = self.sortBy;
+	searchForAllianceInRankingsController.delegate = self;
+	[self.navigationController pushViewController:searchForAllianceInRankingsController animated:YES];
 }
 
 
 #pragma mark -
 #pragma mark Class Methods
 
-+ (ViewEmpireRankingsController *)create {
-	return [[[ViewEmpireRankingsController alloc] init] autorelease];
++ (ViewAllianceRankingsController *)create {
+	return [[[ViewAllianceRankingsController alloc] init] autorelease];
 }
 
 
