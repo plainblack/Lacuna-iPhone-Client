@@ -172,7 +172,7 @@ typedef enum {
 					; //DO NOT REMOVE
 					LETableViewCellLabeledText *successRateCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					successRateCell.label.text = @"Success Rate";
-					successRateCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[spy objectForKey:@"success_rate"]]];
+					successRateCell.content.text = [NSString stringWithFormat:@"%@%%", [Util prettyNSDecimalNumber:[[Util asNumber:[spy objectForKey:@"success_rate"]] decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"100"]]]];
 					cell = successRateCell;
 					break;
 				case ROW_DIRTIEST:

@@ -269,14 +269,14 @@ typedef enum {
 					; //DO NOT REMOVE
 					LETableViewCellLongLabeledText *offensiveSuccessRateCell = [LETableViewCellLongLabeledText getCellForTableView:tableView isSelectable:NO];
 					offensiveSuccessRateCell.label.text = @"Offensive Success Rate";
-					offensiveSuccessRateCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[alliance objectForKey:@"offense_success_rate"]]];
+					offensiveSuccessRateCell.content.text = [NSString stringWithFormat:@"%@%%", [Util prettyNSDecimalNumber:[[Util asNumber:[alliance objectForKey:@"offense_success_rate"]] decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"100"]]]];
 					cell = offensiveSuccessRateCell;
 					break;
 				case ROW_DEFFENSIVE_SUCCES_RATE:
 					; //DO NOT REMOVE
 					LETableViewCellLongLabeledText *defensiveSuccessRateCell = [LETableViewCellLongLabeledText getCellForTableView:tableView isSelectable:NO];
 					defensiveSuccessRateCell.label.text = @"Defensive Success Rate";
-					defensiveSuccessRateCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[alliance objectForKey:@"defense_success_rate"]]];
+					defensiveSuccessRateCell.content.text = [NSString stringWithFormat:@"%@%%", [Util prettyNSDecimalNumber:[[Util asNumber:[alliance objectForKey:@"defense_success_rate"]] decimalNumberByMultiplyingBy:[NSDecimalNumber decimalNumberWithString:@"100"]]]];
 					cell = defensiveSuccessRateCell;
 					break;
 				case ROW_DIRTIEST:
