@@ -8,6 +8,7 @@
 
 #import "ViewMailMessageWebController.h"
 #import "LEMacros.h"
+#import "Util.h"
 #import "Mailbox.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellLabeledText.h"
@@ -21,6 +22,8 @@
 #import "NewMailMessageController.h"
 #import "WebPageController.h"
 #import "ViewPublicEmpireProfileController.h"
+#import "ViewAllianceProfileController.h"
+#import "AppDelegate_Phone.h"
 
 
 typedef enum {
@@ -465,6 +468,29 @@ typedef enum {
 	ViewPublicEmpireProfileController *viewPublicEmpireProfileController = [ViewPublicEmpireProfileController create];
 	viewPublicEmpireProfileController.empireId = inEmpireId;
 	[self.navigationController pushViewController:viewPublicEmpireProfileController animated:YES];
+}
+
+
+- (void)showAllianceProfile:(NSString *)allianceId {
+	ViewAllianceProfileController *viewAllianceProfileController = [ViewAllianceProfileController create];
+	viewAllianceProfileController.allianceId = allianceId;
+	[self.navigationController pushViewController:viewAllianceProfileController animated:YES];
+}
+
+
+- (void)showMyPlanet:(NSString *)myPlanetId {
+	AppDelegate_Phone *delgate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
+	[delgate showMyWorld:myPlanetId];
+}
+
+
+- (void)showStarmap:(NSString *)starmapLoc {
+	NSArray *parts = [starmapLoc componentsSeparatedByString:@"."];
+	NSDecimalNumber *gridX = [Util asNumber:[parts objectAtIndex:0]];
+	NSDecimalNumber *gridY = [Util asNumber:[parts objectAtIndex:1]];
+	AppDelegate_Phone *delgate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
+	[delgate showStarMapGridX:gridX gridY:gridY];
+	[self.navigationController popToRootViewControllerAnimated:NO];
 }
 
 

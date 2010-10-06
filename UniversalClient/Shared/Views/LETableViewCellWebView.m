@@ -66,6 +66,15 @@
 		NSRegularExpression *empireProfileRegex = [NSRegularExpression regularExpressionWithPattern:@"\\{Empire\\s(\\d+)\\s(.*?)\\}"
 																							options:NSRegularExpressionCaseInsensitive
 																							  error:nil];
+		NSRegularExpression *allianceProfileRegex = [NSRegularExpression regularExpressionWithPattern:@"\\{Alliance\\s(\\d+)\\s(.*?)\\}"
+																							  options:NSRegularExpressionCaseInsensitive
+																								error:nil];
+		NSRegularExpression *myPlanetRegex = [NSRegularExpression regularExpressionWithPattern:@"\\{Planet\\s(\\d+)\\s(.*?)\\}"
+																					   options:NSRegularExpressionCaseInsensitive
+																						 error:nil];
+		NSRegularExpression *starmapRegex = [NSRegularExpression regularExpressionWithPattern:@"\\{Starmap\\s(\\d+)\\s(\\d+)\\s(.*?)\\}"
+																					  options:NSRegularExpressionCaseInsensitive
+																						error:nil];
 		NSRegularExpression *newlineRegex = [NSRegularExpression regularExpressionWithPattern:@"\\n"
 																					  options:NSRegularExpressionCaseInsensitive
 																						error:nil];
@@ -76,6 +85,9 @@
 		[linkRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<a href=\"$1\">$1</a>"];
 		[boldRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<b>$1</b>"];
 		[empireProfileRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<a href=\"empire://$1\">$2</a>"];
+		[allianceProfileRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<a href=\"alliance://$1\">$2</a>"];
+		[myPlanetRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<a href=\"myplanet://$1\">$2</a>"];
+		[starmapRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<a href=\"starmap://$1.$2\">$3</a>"];
 		[newlineRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<br />"];
 		htmlString = [NSString stringWithFormat:@"<html><head><style>a:link {color:#FFC000;}</style></head><body style=\"background-color:transparent; color: #FFF; width: %f; font-family: sans-serif; font-size: 14px;\">%@</body></html>", self.webView.frame.size.width-20, mutableString];
 		[mutableString release];
@@ -97,6 +109,12 @@
 		NSURL *url = [request URL];
 		if ([url.scheme isEqualToString:@"empire"]) {
 			[self.delegate showEmpireProfile:url.host];
+		} else if ([url.scheme isEqualToString:@"alliance"]) {
+			[self.delegate showAllianceProfile:url.host];
+		} else if ([url.scheme isEqualToString:@"myplanet"]) {
+			[self.delegate showMyPlanet:url.host];
+		} else if ([url.scheme isEqualToString:@"starmap"]) {
+			[self.delegate showStarmap:url.host];
 		} else {
 			NSString *urlAsString = [[request URL] absoluteString];
 			if ([[urlAsString substringToIndex:4] isEqualToString:@"http"]) {

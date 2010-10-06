@@ -14,6 +14,9 @@
 
 - (void)showWebPage:(NSString*)url;
 - (void)showEmpireProfile:(NSString *)empireId;
+- (void)showAllianceProfile:(NSString *)allianceId;
+- (void)showMyPlanet:(NSString *)myPlanetId;
+- (void)showStarmap:(NSString *)starmapLoc;
 
 
 @end

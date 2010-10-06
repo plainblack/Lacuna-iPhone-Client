@@ -31,7 +31,6 @@
 
 
 - (void)processSuccess {
-	NSLog(@"Invite Friend: %@", self.response);
 }
 
 
