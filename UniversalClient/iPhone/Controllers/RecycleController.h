@@ -35,6 +35,10 @@
 @property(nonatomic, retain) LETableViewCellLabeledSwitch *subsidizedCell;
 
 
+- (NSDecimalNumber *)remainingStored;
+- (NSDecimalNumber *)remainingMax;
+
+
 + (RecycleController *) create;
 
 

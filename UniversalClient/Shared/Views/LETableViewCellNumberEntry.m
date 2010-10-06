@@ -55,10 +55,10 @@
 	if ([self.maxValue compare:value] == NSOrderedAscending) {
 		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Amount Invalid" message:[NSString stringWithFormat:@"You entered %@ which is above the maximum amount of %@.", value, self.maxValue] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 		[av show];
-	} else {
-		[self setNumericValue:value];
-		[self.numberButton setTitle:[value stringValue] forState:UIControlStateNormal];
+		value = self.maxValue;
 	}
+	[self setNumericValue:value];
+	[self.numberButton setTitle:[value stringValue] forState:UIControlStateNormal];
 }
 
 

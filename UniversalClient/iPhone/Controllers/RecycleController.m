@@ -139,7 +139,7 @@ typedef enum {
 			; //DO NOT REMOVE
 			LETableViewCellLabeledText *maxRecycleCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 			maxRecycleCell.label.text = @"Max Recycle";
-			maxRecycleCell.content.text = [Util prettyNSDecimalNumber:self.wasteRecycling.maxResources];
+			maxRecycleCell.content.text = [NSString stringWithFormat:@"%@ (%@ left)", [Util prettyNSDecimalNumber:self.wasteRecycling.maxResources], [Util prettyNSDecimalNumber:[self remainingMax]]];
 			cell = maxRecycleCell;
 			break;
 		case ROW_CURRENT:
@@ -147,7 +147,7 @@ typedef enum {
 			Session *session = [Session sharedInstance];
 			LETableViewCellLabeledText *currentWasteCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 			currentWasteCell.label.text = @"Current Waste";
-			currentWasteCell.content.text = [Util prettyNSDecimalNumber:session.body.waste.current];
+			currentWasteCell.content.text = [NSString stringWithFormat:@"%@ (%@ left)", [Util prettyNSDecimalNumber:session.body.waste.current], [Util prettyNSDecimalNumber:[self remainingStored]]];
 			cell = currentWasteCell;
 			break;
 		default:
@@ -195,6 +195,20 @@ typedef enum {
 
 
 #pragma mark -
+#pragma mark Instance Methods
+
+- (NSDecimalNumber *)remainingStored {
+	Session *session = [Session sharedInstance];
+	return [[[session.body.waste.current decimalNumberBySubtracting:self.energyCell.numericValue] decimalNumberBySubtracting:self.oreCell.numericValue] decimalNumberBySubtracting:self.waterCell.numericValue];
+}
+
+
+- (NSDecimalNumber *)remainingMax {
+	return [[[self.wasteRecycling.maxResources decimalNumberBySubtracting:self.energyCell.numericValue] decimalNumberBySubtracting:self.oreCell.numericValue] decimalNumberBySubtracting:self.waterCell.numericValue];
+}
+
+
+#pragma mark -
 #pragma mark Action Methods
 
 - (void)cancel {
@@ -220,7 +234,6 @@ typedef enum {
 		[self.oreCell newNumericValue:[Util decimalFromInt:0]];
 		[self.waterCell newNumericValue:[Util decimalFromInt:0]];
 
-		//KEVIN REWORK AS DATASOURCE THING WHERE LETableViewCell pulls it's data source for the max value.
 		Session *session = [Session sharedInstance];
 		NSDecimalNumber *maxValue = self.wasteRecycling.maxResources;
 		if ([session.body.waste.current compare:maxValue] == NSOrderedAscending) {
@@ -253,6 +266,20 @@ typedef enum {
 			totalAmount = [totalAmount decimalNumberByAdding:self.oreCell.numericValue];
 			totalAmount = [totalAmount decimalNumberByAdding:self.waterCell.numericValue];
 			self.seconds = _intv(totalAmount) * secondsPerResource;
+			
+			NSDecimalNumber *newMaxStored = [self remainingStored];
+			NSDecimalNumber *newMaxRecycle = [self remainingMax];
+			NSDecimalNumber *newMax;
+			if ([newMaxStored compare:newMaxRecycle] == NSOrderedAscending) {
+				newMax = newMaxStored;
+			} else {
+				newMax = newMaxRecycle;
+			}
+			
+			self.energyCell.maxValue = [self.energyCell.numericValue decimalNumberByAdding:newMax];
+			self.oreCell.maxValue = [self.oreCell.numericValue decimalNumberByAdding:newMax];
+			self.waterCell.maxValue = [self.waterCell.numericValue decimalNumberByAdding:newMax];
+			
 			[self.tableView reloadData];
 		}
 	} else if ( [keyPath isEqual:@"isSelected"] ) {
