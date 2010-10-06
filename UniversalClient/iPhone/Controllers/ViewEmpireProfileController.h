@@ -10,12 +10,13 @@
 #import "LETableViewControllerGrouped.h"
 #import "LETableViewCellLabeledSwitch.h"
 #import "EditTextFieldController.h"
+#import "EditTextViewController.h"
 
 @class LEEmpireViewProfile;
 @class EmpireProfile;
 
 
-@interface ViewEmpireProfileController : LETableViewControllerGrouped <LETableViewCellLabeledSwitchDelegate, EditTextFieldControllerDelegate> {
+@interface ViewEmpireProfileController : LETableViewControllerGrouped <LETableViewCellLabeledSwitchDelegate, EditTextFieldControllerDelegate, EditTextViewControllerDelegate> {
 	LEEmpireViewProfile *leEmpireViewProfile;
 	EmpireProfile *empireProfile;
 }

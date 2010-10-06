@@ -423,7 +423,7 @@ typedef enum {
 					case ACCOUNT_ACTION_ROW_SEND_INVITE:
 						; //DO NOT REMOVE
 						LETableViewCellButton *sendInviteButton = [LETableViewCellButton getCellForTableView:tableView];
-						sendInviteButton.textLabel.text = @"Send Friend Invite";
+						sendInviteButton.textLabel.text = @"Invite Friends";
 						cell = sendInviteButton;
 						break;
 					case ACCOUNT_ACTION_ROW_MAIL_SETTINGS:
@@ -566,7 +566,7 @@ typedef enum {
 						break;
 					case ACCOUNT_ACTION_ROW_SEND_INVITE:
 						; //DO NOT REMOVE
-						EditTextFieldController *sendInviteController = [EditTextFieldController createForTextName:@"Friend's Email" textValue:@""];
+						EditTextViewController *sendInviteController = [EditTextViewController createForTextName:@"Email Addresses" textValue:@""];
 						sendInviteController.delegate = self;
 						[self.navigationController pushViewController:sendInviteController animated:YES];
 						break;
@@ -625,16 +625,6 @@ typedef enum {
 		Session *session = [Session sharedInstance];
 		[session.empire redeemEssentiaCode:value];
 		return YES;
-	} else if ([textName isEqualToString:@"Friend's Email"]) {
-		if ([value rangeOfString:@"@"].location == NSNotFound) {
-			UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"That does not appear to be a valid email address" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-			[av show];
-			return NO;
-		} else {
-			Session *session = [Session sharedInstance];
-			[session.empire sendInviteTo:value];
-			return YES;
-		}
 	} else if ([textName isEqualToString:@"City"]) {
 		[[LEEmpireEditProfile alloc] initWithCallback:@selector(textUpdated:) target:self textKey:@"city" text:value];
 		return NO;
@@ -659,6 +649,26 @@ typedef enum {
 	}
 }
 
+
+#pragma mark -
+#pragma mark EditTextViewControllerDelegate Methods
+
+- (BOOL)newTextValue:(NSString *)value forTextName:(NSString *)textName {
+	if ([textName isEqualToString:@"Email Addresses"]) {
+		if ([value rangeOfString:@"@"].location == NSNotFound) {
+			UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"That does not appear to be a valid email address" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+			[av show];
+			return NO;
+		} else {
+			Session *session = [Session sharedInstance];
+			[session.empire sendInviteTo:value];
+			return YES;
+		}
+	} else {
+		NSLog(@"Unhandled text name: %@", textName);
+		return NO;
+	}
+}	
 
 #pragma mark -
 #pragma mark Instance Methods
