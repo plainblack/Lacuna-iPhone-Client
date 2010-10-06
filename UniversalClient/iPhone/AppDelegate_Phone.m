@@ -15,6 +15,7 @@
 #import "LoginController.h"
 #import "Reachability.h"
 #import "ViewUniverseController.h"
+#import "SelectSpeciesTemplateController.h"
 
 
 @interface AppDelegate_Phone(PrivateMethod)
@@ -168,6 +169,15 @@
 	self.tabBarController.selectedViewController = self.myWorldsNavigationController;
 }
 
+
+- (void)restartCreateEmpireId:(NSString *)empireId username:(NSString *)username password:(NSString *)password {
+	NSLog(@"Need to restart create for %@", empireId);
+	SelectSpeciesTemplateController *selectNewEmpireSpeciesController = [SelectSpeciesTemplateController create];
+	selectNewEmpireSpeciesController.empireId = empireId;
+	selectNewEmpireSpeciesController.username = username;
+	selectNewEmpireSpeciesController.password = password;
+	[((UINavigationController *)[self.tabBarController modalViewController]) pushViewController:selectNewEmpireSpeciesController animated:YES];
+}
 
 
 #pragma mark -

@@ -14,6 +14,7 @@
 #import "KeychainItemWrapper.h"
 #import "Util.h"
 #import "JSON.h"
+#import "AppDelegate_Phone.h"
 
 
 static Session *sharedSession = nil;
@@ -371,10 +372,15 @@ static Session *sharedSession = nil;
 - (id)loggedIn:(LEEmpireLogin *)request {
 	if ([request wasError]) {
 		[request markErrorHandled];
-
-		NSString *errorText = [request errorMessage];
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Could not login" message:errorText delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-		[av show];
+		
+		if ([request errorCode] == 1100) {
+			AppDelegate_Phone *appDelegate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
+			[appDelegate restartCreateEmpireId:[Util idFromDict:[request errorData] named:@"empire_id"] username:request.username password:request.password];
+		} else {
+			NSString *errorText = [request errorMessage];
+			UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Could not login" message:errorText delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+			[av show];
+		}
 
 		self.sessionId = nil;
 		self.empire = nil;

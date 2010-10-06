@@ -8,6 +8,7 @@
 
 #import "NewEmpireController.h"
 #import "LEMacros.h"
+#import "Util.h"
 #import "Session.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellTextEntry.h"
@@ -18,6 +19,7 @@
 #import "LEEmpireCreate.h"
 #import "SelectSpeciesTemplateController.h"
 #import "WebPageController.h"
+#import "AppDelegate_Phone.h"
 
 
 typedef enum {
@@ -483,6 +485,12 @@ typedef enum {
 				self.captchaUrl = [[request errorData] objectForKey:@"url"];
 				self.captchaGuid = [[request errorData] objectForKey:@"guid"];
 				[self.captchaImageCell setCapthchaImageURL:self.captchaUrl];
+				break;
+			case 1100:
+				; //DO NOT REMOVE
+				[request markErrorHandled];
+				AppDelegate_Phone *appDelegate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
+				[appDelegate restartCreateEmpireId:[Util idFromDict:[request errorData] named:@"empire_id"] username:request.name password:request.password];
 				break;
 		}
 		[self.tableView reloadData];

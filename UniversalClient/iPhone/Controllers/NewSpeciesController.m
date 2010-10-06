@@ -12,7 +12,7 @@
 #import "LEEmpireUpdateSpecies.h"
 #import "Session.h"
 #import "LETableViewCellButton.h"
-#import "FoundNewEmpireController.h"
+#import "LEEmpireFound.h"
 
 
 typedef enum {
@@ -483,11 +483,22 @@ typedef enum {
 				break;
 		}
 	} else {
-		FoundNewEmpireController *foundNewEmpireController = [FoundNewEmpireController create];
-		foundNewEmpireController.empireId = self.empireId;
-		foundNewEmpireController.username = self.username;
-		foundNewEmpireController.password = self.password;
-		[self.navigationController pushViewController:foundNewEmpireController animated:YES];
+		[[[LEEmpireFound alloc] initWithCallback:@selector(empireFounded:) target:self empireId:self.empireId] autorelease];
+	}
+	
+	return nil;
+}
+
+
+- (id)empireFounded:(LEEmpireFound *) request {
+	self.pendingRequest = NO;
+	if ([request wasError]) {
+		//WHAT TO DO?
+	} else {
+		[self.navigationController popToRootViewControllerAnimated:YES];
+		Session *session = [Session sharedInstance];
+		[session loggedInEmpireData:request.empireData sessionId:request.sessionId password:self.password];
+		session.lacunanMessageId = request.welcomeMessageId;
 	}
 	
 	return nil;
