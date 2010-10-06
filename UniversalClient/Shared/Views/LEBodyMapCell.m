@@ -12,8 +12,8 @@
 #import "Session.h"
 #import "MapBuilding.h"
 
-#define LEVEL_FONT [UIFont fontWithName:@"Verdana-Bold" size:20.0]
-#define TIME_FONT [UIFont fontWithName:@"Verdana-Bold" size:10.0]
+#define LEVEL_FONT [UIFont fontWithName:@"Verdana-Bold" size:28.0]
+#define TIME_FONT [UIFont fontWithName:@"Verdana-Bold" size:14.0]
 
 
 @implementation LEBodyMapCell
@@ -50,13 +50,13 @@
 
 			//Draw buildTime
 			if (self.mapBuilding.pendingBuild) {
-				[[Util prettyDuration:self.mapBuilding.pendingBuild.secondsRemaining] drawInRect:CGRectMake(5.0, 0.0, 90.0, 10.0) withFont:TIME_FONT lineBreakMode:UILineBreakModeTailTruncation alignment:UITextAlignmentRight];
+				[[Util prettyDuration:self.mapBuilding.pendingBuild.secondsRemaining] drawInRect:CGRectMake(5.0, 0.0, 90.0, 15.0) withFont:TIME_FONT lineBreakMode:UILineBreakModeTailTruncation alignment:UITextAlignmentRight];
 			}
 			
 			//Draw workTime
 			if (self.mapBuilding.work) {
 				[WARNING_COLOR setFill];
-				[[Util prettyDuration:self.mapBuilding.work.secondsRemaining] drawInRect:CGRectMake(5.0, 15.0, 90.0, 10.0) withFont:TIME_FONT lineBreakMode:UILineBreakModeTailTruncation alignment:UITextAlignmentRight];
+				[[Util prettyDuration:self.mapBuilding.work.secondsRemaining] drawInRect:CGRectMake(5.0, 20.0, 90.0, 15.0) withFont:TIME_FONT lineBreakMode:UILineBreakModeTailTruncation alignment:UITextAlignmentRight];
 				[[UIColor whiteColor] setFill];
 			}
 			
