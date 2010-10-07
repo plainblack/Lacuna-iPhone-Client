@@ -548,9 +548,10 @@ typedef enum {
 				switch (indexPath.row) {
 					case ACCOUNT_ACTION_ROW_PURCHASE_ESSENTIA:
 						; //DO NOT REMOVE
-						NSString *purchaseUrl = [NSString stringWithFormat:@"%@pay?session_id=%@", session.serverUri, session.sessionId];
+						NSURL *baseUrl = [NSURL URLWithString:[session.serverUri stringByReplacingOccurrencesOfString:@"http://" withString:@"https://"]];
+						NSURL *purchaseUrl = [NSURL URLWithString:[NSString stringWithFormat:@"/pay?session_id=%@", session.sessionId] relativeToURL:baseUrl];
 						WebPageController *webPageController = [WebPageController create];
-						[webPageController goToUrl:purchaseUrl];
+						[webPageController goToUrl:[purchaseUrl absoluteString]];
 						[self presentModalViewController:webPageController animated:YES];
 						break;
 					case ACCOUNT_ACTION_ROW_REDEEM_ESSENTIA_CODE:

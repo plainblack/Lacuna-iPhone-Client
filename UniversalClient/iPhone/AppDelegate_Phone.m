@@ -65,6 +65,9 @@
             NSUInteger tabBarIndex = [tabBarNumber unsignedIntegerValue];
             [newViewControllers addObject:[initialViewControllers objectAtIndex:tabBarIndex]];
         }
+		for (NSInteger idx = [tabBarOrder count]; idx < [initialViewControllers count]; idx++) {
+            [newViewControllers addObject:[initialViewControllers objectAtIndex:idx]];
+		}
         self.tabBarController.viewControllers = newViewControllers;
     }
 	

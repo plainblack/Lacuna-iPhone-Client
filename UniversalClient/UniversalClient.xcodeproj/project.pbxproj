@@ -262,6 +262,12 @@
 		F6DD1FDC116D33FC0013C58D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F6DD1FDB116D33FC0013C58D /* Default.png */; };
 		F6DD2026116D561F0013C58D /* LETableViewCellButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DD2025116D561F0013C58D /* LETableViewCellButton.m */; };
 		F6DD2064116D5B3C0013C58D /* LEViewSectionTab.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DD2063116D5B3C0013C58D /* LEViewSectionTab.m */; };
+		F6DEABFE125D5AF2001366C3 /* ChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DEABFC125D5AF2001366C3 /* ChatController.m */; };
+		F6DEABFF125D5AF2001366C3 /* ChatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6DEABFD125D5AF2001366C3 /* ChatController.xib */; };
+		F6DEAC2C125D65BA001366C3 /* TutorialController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DEAC2A125D65BA001366C3 /* TutorialController.m */; };
+		F6DEAC2D125D65BA001366C3 /* TutorialController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6DEAC2B125D65BA001366C3 /* TutorialController.xib */; };
+		F6DEAC31125D65C4001366C3 /* SupportController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DEAC2F125D65C4001366C3 /* SupportController.m */; };
+		F6DEAC32125D65C4001366C3 /* SupportController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6DEAC30125D65C4001366C3 /* SupportController.xib */; };
 		F6DEC052120247BF00716CE7 /* LETableViewCellShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DEC051120247BF00716CE7 /* LETableViewCellShip.m */; };
 		F6DEDFC4124FBFAA00030329 /* LEMapGetStars.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DEDFC3124FBFAA00030329 /* LEMapGetStars.m */; };
 		F6DEDFD1124FC26100030329 /* StarMap.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DEDFD0124FC26100030329 /* StarMap.m */; };
@@ -878,6 +884,15 @@
 		F6DD2025116D561F0013C58D /* LETableViewCellButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellButton.m; sourceTree = "<group>"; };
 		F6DD2062116D5B3C0013C58D /* LEViewSectionTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEViewSectionTab.h; sourceTree = "<group>"; };
 		F6DD2063116D5B3C0013C58D /* LEViewSectionTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEViewSectionTab.m; sourceTree = "<group>"; };
+		F6DEABFB125D5AF2001366C3 /* ChatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatController.h; sourceTree = "<group>"; };
+		F6DEABFC125D5AF2001366C3 /* ChatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatController.m; sourceTree = "<group>"; };
+		F6DEABFD125D5AF2001366C3 /* ChatController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatController.xib; sourceTree = "<group>"; };
+		F6DEAC29125D65BA001366C3 /* TutorialController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialController.h; sourceTree = "<group>"; };
+		F6DEAC2A125D65BA001366C3 /* TutorialController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialController.m; sourceTree = "<group>"; };
+		F6DEAC2B125D65BA001366C3 /* TutorialController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialController.xib; sourceTree = "<group>"; };
+		F6DEAC2E125D65C4001366C3 /* SupportController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupportController.h; sourceTree = "<group>"; };
+		F6DEAC2F125D65C4001366C3 /* SupportController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportController.m; sourceTree = "<group>"; };
+		F6DEAC30125D65C4001366C3 /* SupportController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SupportController.xib; sourceTree = "<group>"; };
 		F6DEC050120247BF00716CE7 /* LETableViewCellShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellShip.h; sourceTree = "<group>"; };
 		F6DEC051120247BF00716CE7 /* LETableViewCellShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellShip.m; sourceTree = "<group>"; };
 		F6DEDFC2124FBFAA00030329 /* LEMapGetStars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEMapGetStars.h; sourceTree = "<group>"; };
@@ -1958,6 +1973,15 @@
 				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
 				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
+				F6DEABFB125D5AF2001366C3 /* ChatController.h */,
+				F6DEABFC125D5AF2001366C3 /* ChatController.m */,
+				F6DEABFD125D5AF2001366C3 /* ChatController.xib */,
+				F6DEAC29125D65BA001366C3 /* TutorialController.h */,
+				F6DEAC2A125D65BA001366C3 /* TutorialController.m */,
+				F6DEAC2B125D65BA001366C3 /* TutorialController.xib */,
+				F6DEAC2E125D65C4001366C3 /* SupportController.h */,
+				F6DEAC2F125D65C4001366C3 /* SupportController.m */,
+				F6DEAC30125D65C4001366C3 /* SupportController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2059,6 +2083,9 @@
 				F6023996123D7CD900268ADD /* LETableViewCellForeignIncomingShip.m in Resources */,
 				F6DA5A69124E770B005D11F6 /* ViewStatsControllerV2.xib in Resources */,
 				F67F5774125ABE710041FA37 /* SearchForAllianceController.xib in Resources */,
+				F6DEABFF125D5AF2001366C3 /* ChatController.xib in Resources */,
+				F6DEAC2D125D65BA001366C3 /* TutorialController.xib in Resources */,
+				F6DEAC32125D65C4001366C3 /* SupportController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2414,6 +2441,9 @@
 				F6E5B822125B47820048F5F0 /* LEStatsAllianceRank.m in Sources */,
 				F6E5B826125B478F0048F5F0 /* LEStatsFindAllianceRank.m in Sources */,
 				F6E5B833125B48DF0048F5F0 /* SearchForAllianceInRankingsController.m in Sources */,
+				F6DEABFE125D5AF2001366C3 /* ChatController.m in Sources */,
+				F6DEAC2C125D65BA001366C3 /* TutorialController.m in Sources */,
+				F6DEAC31125D65C4001366C3 /* SupportController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
