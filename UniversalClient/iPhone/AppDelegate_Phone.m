@@ -55,6 +55,18 @@
 		}
 	}
 	self.tabBarController.moreNavigationController.navigationBar.tintColor = TINT_COLOR;
+
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSArray *initialViewControllers = [NSArray arrayWithArray:self.tabBarController.viewControllers];
+    NSArray *tabBarOrder = [userDefaults objectForKey:@"tabBarOrder"];
+    if (tabBarOrder) {
+        NSMutableArray *newViewControllers = [NSMutableArray arrayWithCapacity:initialViewControllers.count];
+        for (NSNumber *tabBarNumber in tabBarOrder) {
+            NSUInteger tabBarIndex = [tabBarNumber unsignedIntegerValue];
+            [newViewControllers addObject:[initialViewControllers objectAtIndex:tabBarIndex]];
+        }
+        self.tabBarController.viewControllers = newViewControllers;
+    }
 	
 	[window addSubview:self.tabBarController.view];
     [window makeKeyAndVisible];
@@ -194,6 +206,20 @@
 }
 
 
+- (void)tabBarController:(UITabBarController *)inTabBarController didEndCustomizingViewControllers:(NSArray *)viewControllers changed:(BOOL)changed {
+	NSUInteger count = inTabBarController.viewControllers.count;
+	NSMutableArray *tabOrderArray = [[NSMutableArray alloc] initWithCapacity:count];
+	for (UIViewController *viewController in viewControllers) {
+		NSInteger tag = viewController.tabBarItem.tag;
+		[tabOrderArray addObject:[NSNumber numberWithInteger:tag]];
+	}
+	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+	[userDefaults setObject:[NSArray arrayWithArray:tabOrderArray] forKey:@"tabBarOrder"];
+	[userDefaults synchronize];
+	[tabOrderArray release];
+}
+
+
 #pragma mark -
 #pragma mark KVO Methods
 
@@ -319,3 +345,49 @@
 
 @end
 
+/*
+- (void)applicationDidFinishLaunching:(UIApplication *)application {
+	
+    NSArray *initialViewControllers = [NSArray arrayWithArray:self.tabBarController.viewControllers];
+    NSArray *tabBarOrder = [[AppDelegate sharedSettingsService] tabBarOrder];
+    if (tabBarOrder) {
+        NSMutableArray *newViewControllers = [NSMutableArray arrayWithCapacity:initialViewControllers.count];
+        for (NSNumber *tabBarNumber in tabBarOrder) {
+            NSUInteger tabBarIndex = [tabBarNumber unsignedIntegerValue];
+            [newViewControllers addObject:[initialViewControllers objectAtIndex:tabBarIndex]];
+        }
+        self.tabBarController.viewControllers = newViewControllers;
+    }
+	
+    NSInteger tabBarSelectedIndex = [[AppDelegate sharedSettingsService] tabBarSelectedIndex];
+    if (NSIntegerMax == tabBarSelectedIndex) {
+        self.tabBarController.selectedViewController = self.tabBarController.moreNavigationController;
+    } else {
+        self.tabBarController.selectedIndex = tabBarSelectedIndex;
+    }
+	
+    /* Add the tab bar controller's current view as a subview of the window. * /
+    [self.window addSubview:self.tabBarController.view];
+}
+
+- (void)applicationWillTerminate:(UIApplication *)application {
+	
+    NSInteger tabBarSelectedIndex = self.tabBarController.selectedIndex;
+    [[AppDelegate sharedSettingsService] setTabBarSelectedIndex:tabBarSelectedIndex];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)tabBarController:(UITabBarController *)tabBarController didEndCustomizingViewControllers:(NSArray *)viewControllers changed:(BOOL)changed {
+	
+	NSUInteger count = tabBarController.viewControllers.count;
+	NSMutableArray *tabOrderArray = [[NSMutableArray alloc] initWithCapacity:count];
+	for (UIViewController *viewController in viewControllers) {
+		
+		NSInteger tag = viewController.tabBarItem.tag;
+		[tabOrderArray addObject:[NSNumber numberWithInteger:tag]];
+	}
+	
+	[[AppDelegate sharedSettingsService] setTabBarOrder:[NSArray arrayWithArray:tabOrderArray]];
+	[tabOrderArray release];
+}
+*/
