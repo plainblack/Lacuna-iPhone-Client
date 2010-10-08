@@ -68,7 +68,7 @@
 	
 	LETableViewCellBuildQueueItem *cell = (LETableViewCellBuildQueueItem *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-		cell = [[LETableViewCellBuildQueueItem alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+		cell = [[[LETableViewCellBuildQueueItem alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 		cell.backgroundColor = CELL_BACKGROUND_COLOR;
 		cell.autoresizesSubviews = YES;
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -112,23 +112,6 @@
 		cell.durationText.font = TEXT_SMALL_FONT;
 		cell.durationText.textColor = TEXT_COLOR;
 		[cell.contentView addSubview:cell.durationText];
-		/*
-		cell.durationLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 40, 60, 15)] autorelease];
-		cell.durationLabel.backgroundColor = [UIColor clearColor];
-		cell.durationLabel.textAlignment = UITextAlignmentRight;
-		cell.durationLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin;
-		cell.durationLabel.font = TEXT_SMALL_FONT;
-		cell.durationLabel.textColor = TEXT_COLOR;
-		cell.durationLabel.text = @"Duration:";
-		[cell.contentView addSubview:cell.durationLabel];
-		cell.durationText = [[[UILabel alloc] initWithFrame:CGRectMake(70, 40, 245, 15)] autorelease];
-		cell.durationText.backgroundColor = [UIColor clearColor];
-		cell.durationText.textAlignment = UITextAlignmentLeft;
-		cell.durationText.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
-		cell.durationText.font = TEXT_SMALL_FONT;
-		cell.durationText.textColor = TEXT_COLOR;
-		[cell.contentView addSubview:cell.durationText];
-		*/
 	}
 	
 	return cell;

@@ -150,7 +150,7 @@ static Session *sharedSession = nil;
 
 
 - (void)forgetEmpireNamed:(NSString *)empireName {
-	NSDictionary *foundEmpire;
+	NSDictionary *foundEmpire = nil;
 	for (NSDictionary *savedEmpire in self.savedEmpireList) {
 		if ([[savedEmpire objectForKey:@"username"] isEqualToString:empireName]){
 			foundEmpire = savedEmpire;

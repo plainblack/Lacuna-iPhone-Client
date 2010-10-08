@@ -90,7 +90,7 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell;
+    UITableViewCell *cell = nil;
 	
 	if (self.planetaryCommand && self.planetaryCommand.plans) {
 		if ([self.planetaryCommand.plans count] > 0) {

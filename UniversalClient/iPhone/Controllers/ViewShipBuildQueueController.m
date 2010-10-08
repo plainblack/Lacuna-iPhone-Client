@@ -117,7 +117,7 @@ typedef enum {
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	UITableViewCell *cell;
+	UITableViewCell *cell = nil;
 	
 	if (self.shipyard && self.shipyard.buildQueue) {
 		if ([self.shipyard.buildQueue count] > 0) {

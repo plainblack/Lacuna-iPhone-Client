@@ -97,7 +97,8 @@ typedef enum {
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell;
+    UITableViewCell *cell = nil;
+	
 	switch (indexPath.row) {
 		case ROW_CAPTCHA_IMAGE:
 			; //DO NOT REMOVE

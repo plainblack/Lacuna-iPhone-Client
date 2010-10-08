@@ -288,7 +288,7 @@
 
 - (id)spyBurnt:(LEBuildingBurnSpy *)request {
 	self.numSpies = [self.numSpies decimalNumberBySubtracting:[NSDecimalNumber one]];
-	Spy *spyToRemove;
+	Spy *spyToRemove = nil;
 	for (Spy *newSpy in self.spies) {
 		if ([newSpy.id isEqualToString:request.spyId]) {
 			spyToRemove = newSpy;
@@ -320,7 +320,7 @@
 
 
 - (id)spyAssigned:(LEBuildingAssignSpy *)request {
-	Spy *assignedSpy;
+	Spy *assignedSpy = nil;
 	for (Spy *spy in self.spies) {
 		if ([spy.id isEqualToString:request.spyId]) {
 			assignedSpy = spy;

@@ -98,7 +98,7 @@ typedef enum {
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	UITableViewCell *cell;
+	UITableViewCell *cell = nil;
 	
 	if (self.medals && [self.medals count] > 0) {
 		NSDictionary *medalData = [self.medals objectAtIndex:indexPath.section];
@@ -165,7 +165,7 @@ typedef enum {
 			[medalData setObject:@"0" forKey:@"public"];
 		}
 	}
-	[[LEEmpireEditProfile alloc] initWithCallback:@selector(medalsUpdated:) target:self medals:self.medals];
+	[[[LEEmpireEditProfile alloc] initWithCallback:@selector(medalsUpdated:) target:self medals:self.medals] autorelease];
 }
 
 

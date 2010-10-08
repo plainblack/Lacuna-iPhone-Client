@@ -143,7 +143,7 @@ typedef enum {
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell;
+    UITableViewCell *cell = nil;
 
 	if (self.baseTradeBuilding && self.baseTradeBuilding.availableTrades) {
 		if ([self.baseTradeBuilding.availableTrades count] > 0) {

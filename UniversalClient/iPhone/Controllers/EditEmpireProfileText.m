@@ -105,7 +105,7 @@
 
 
 - (void)save {
-	[[LEEmpireEditProfile alloc] initWithCallback:@selector(textUpdated:) target:self textKey:self.textKey text:self.textCell.textView.text];
+	[[[LEEmpireEditProfile alloc] initWithCallback:@selector(textUpdated:) target:self textKey:self.textKey text:self.textCell.textView.text] autorelease];
 }
 
 

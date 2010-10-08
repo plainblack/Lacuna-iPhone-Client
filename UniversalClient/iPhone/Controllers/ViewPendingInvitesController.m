@@ -114,7 +114,7 @@ typedef enum {
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	UITableViewCell *cell;
+	UITableViewCell *cell = nil;
 	
 	if (self.embassy.pendingInvites) {
 		if ([self.embassy.pendingInvites count] > 0) {

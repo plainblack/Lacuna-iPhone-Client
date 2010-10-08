@@ -121,7 +121,7 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell;
+    UITableViewCell *cell = nil;
 	
 	if (self.glyphs) {
 		if ([self.glyphs count] > 0) {

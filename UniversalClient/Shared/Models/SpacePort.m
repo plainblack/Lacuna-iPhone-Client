@@ -250,7 +250,7 @@
 
 
 - (id)shipScuttled:(LEBuildingScuttleShip *)request {
-	Ship *shipToRemove;
+	Ship *shipToRemove = nil;
 	for (Ship *newShip in self.ships) {
 		if ([newShip.id isEqualToString:request.shipId]) {
 			shipToRemove = newShip;

@@ -141,7 +141,7 @@ typedef enum {
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell;
+    UITableViewCell *cell = nil;
 	
 	if (self.securityBuilding && self.securityBuilding.foreignSpies) {
 		if ([self.securityBuilding.foreignSpies count] > 0) {

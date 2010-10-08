@@ -21,8 +21,8 @@
 
 
 - (NSString *)value;
-- (void)becomeFirstResponder;
-- (void)resignFirstResponder;
+- (BOOL)becomeFirstResponder;
+- (BOOL)resignFirstResponder;
 - (void)dismissKeyboard;
 - (void)clearText;
 

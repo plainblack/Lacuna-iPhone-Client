@@ -139,7 +139,7 @@ typedef enum {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	Spy *spy = [self.intelligenceBuilding.spies objectAtIndex:indexPath.section];
     
-    UITableViewCell *cell;
+    UITableViewCell *cell = nil;
 	
 	switch (indexPath.row) {
 		case ROW_SPY_INFO:

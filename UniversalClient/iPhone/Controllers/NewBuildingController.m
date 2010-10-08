@@ -119,7 +119,7 @@ typedef enum {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSDictionary *building = [self.buildables objectAtIndex:indexPath.section];
 	NSDictionary *build = [building objectForKey:@"build"];
-    UITableViewCell *cell;
+    UITableViewCell *cell = nil;
 	Session *session = [Session sharedInstance];
 
 	switch (indexPath.row) {

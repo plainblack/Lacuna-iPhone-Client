@@ -143,7 +143,7 @@ typedef enum {
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	UITableViewCell *cell;
+	UITableViewCell *cell = nil;
 	NSMutableDictionary *sectionData = [self.sections objectAtIndex:indexPath.section];
 	if (_intv([sectionData objectForKey:@"type"]) == SECTION_COMPOSITION && indexPath.row > 1) {
 		id oreTypeKey = [self.oreKeysSorted objectAtIndex:(indexPath.row-2)];

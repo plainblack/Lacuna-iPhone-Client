@@ -99,7 +99,7 @@ typedef enum {
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	UITableViewCell *cell;
+	UITableViewCell *cell = nil;
 	
 	switch (indexPath.row) {
 		case ROW_HAPPINESS:
@@ -152,7 +152,7 @@ typedef enum {
 
 - (void)cell:(LETableViewCellLabeledSwitch *)cell switchedTo:(BOOL)isOn {
 	NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-	NSString *filterName;
+	NSString *filterName = nil;
 
 	switch (indexPath.row) {
 		case ROW_HAPPINESS:
@@ -171,7 +171,14 @@ typedef enum {
 			break;
 	}
 
-	[[LEEmpireEditProfile alloc] initWithCallback:@selector(filtersUpdated:) target:self textKey:filterName text:(isOn ? @"1" : @"0")];
+	NSString *text = nil;
+	if (isOn) {
+		text = @"1";
+	} else {
+		text = @"0";
+	}
+
+	[[[LEEmpireEditProfile alloc] initWithCallback:@selector(filtersUpdated:) target:self textKey:filterName text:text] autorelease];
 }
 
 

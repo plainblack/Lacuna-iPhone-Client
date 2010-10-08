@@ -213,7 +213,6 @@
 
 - (void)resetKeychainItem
 {
-    OSStatus junk = noErr;
     if (!self.keychainItemData) 
     {
         self.keychainItemData = [[[NSMutableDictionary alloc] init] autorelease];
@@ -221,8 +220,7 @@
     else if (self.keychainItemData)
     {
         NSMutableDictionary *tempDictionary = [self dictionaryToSecItemFormat:self.keychainItemData];
-        junk = SecItemDelete((CFDictionaryRef)tempDictionary);
-        NSAssert( junk == noErr || junk == errSecItemNotFound, @"Problem deleting current dictionary." );
+        SecItemDelete((CFDictionaryRef)tempDictionary);
     }
     
     // Default attributes for keychain item.

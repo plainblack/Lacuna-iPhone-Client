@@ -39,7 +39,7 @@
 
 - (id)params {
 	Session *session = [Session sharedInstance];
-	NSMutableArray *params;
+	NSMutableArray *params = nil;
 	
 	if (self.targetBodyName) {
 		params = _array(session.sessionId, self.shipId, _dict(self.targetBodyName, @"body_name"));

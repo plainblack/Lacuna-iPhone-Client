@@ -42,8 +42,7 @@
 
 
 - (void)dealloc {
-	[self->body release];
-	self->body = nil;
+	self.body = nil;
 	[self->imageViewBody release];
 	self->imageViewBody = nil;
 	[self->imageViewAlignmentRing release];

@@ -65,7 +65,7 @@
 	
 	LETableViewCellMiningPlatform *cell = (LETableViewCellMiningPlatform *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-		cell = [[LETableViewCellMiningPlatform alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+		cell = [[[LETableViewCellMiningPlatform alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 		cell.backgroundColor = CELL_BACKGROUND_COLOR;
 		cell.autoresizesSubviews = YES;
 		CGFloat y = 10.0;
@@ -115,7 +115,6 @@
 		cell.shippingLabel.textColor = TEXT_SMALL_COLOR;
 		cell.shippingLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.shippingLabel];
-		y += 15;
 		
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	}

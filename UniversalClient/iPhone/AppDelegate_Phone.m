@@ -320,19 +320,6 @@
 
 - (void)testReachability:(Reachability *)reachability {
     NetworkStatus netStatus = [reachability currentReachabilityStatus];
-	NSString *statusString;
-	switch (netStatus) {
-        case NotReachable:
-            statusString = @"Access Not Available";
-            break;
-        case ReachableViaWWAN:
-            statusString = @"Reachable WWAN";
-            break;
-        case ReachableViaWiFi:
-			statusString = @"Reachable WiFi";
-            break;
-    }
-	
 	if (netStatus == NotReachable) {
 		if (!self.notConnectedView.superview) {
 			[window addSubview:self.notConnectedView];

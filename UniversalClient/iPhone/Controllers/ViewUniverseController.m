@@ -205,13 +205,14 @@
 #pragma mark PrivateMethods
 
 - (LEUniverseStarCell *)getStarCell {
-	LEUniverseStarCell *cell;
+	LEUniverseStarCell *cell = nil;
 	
 	if ([self.reusableStarCells count] > 0) {
 		cell = [self.reusableStarCells objectAtIndex:0];
+		[[cell retain] autorelease];
 		[self.reusableStarCells removeObject:cell];
 	} else {
-		cell = [[LEUniverseStarCell alloc] initWithFrame:CGRectMake(0.0, 0.0, 150.0, 150)];
+		cell = [[[LEUniverseStarCell alloc] initWithFrame:CGRectMake(0.0, 0.0, 150.0, 150)] autorelease];
 	}
 
 	[cell setTarget:self callback:@selector(starPressed:)];
@@ -233,10 +234,11 @@
 	
 	if ([self.reusableBodyCells count] > 0) {
 		cell = [self.reusableBodyCells objectAtIndex:0];
+		[[cell retain] autorelease];
 		[self.reusableBodyCells removeObject:cell];
 		cell.frame = CGRectMake(0.0, 0.0, computedSize, computedSize);
 	} else {
-		cell = [[LEUniverseBodyCell alloc] initWithFrame:CGRectMake(0.0, 0.0, computedSize, computedSize)];
+		cell = [[[LEUniverseBodyCell alloc] initWithFrame:CGRectMake(0.0, 0.0, computedSize, computedSize)] autorelease];
 	}
 	
 	[cell setTarget:self callback:@selector(bodyPressed:)];
@@ -328,7 +330,16 @@
 	[keysToRemove enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
 		[self.inUseStarCells removeObjectForKey:obj];
 	}];
-	
+
+	/*
+	for (id key in self.inUseBodyCells) {
+		LEUniverseBodyCell *cell = [self.inUseBodyCells objectForKey:key];
+		if (!CGRectIntersectsRect(cell.frame, visibleBounds)) {
+			[self releaseBodyCell:cell];
+			[keysToRemove addObject:key];
+		}
+	}
+	*/
 	[self.inUseBodyCells enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
 		LEUniverseBodyCell *cell = obj;
 		if (!CGRectIntersectsRect(cell.frame, visibleBounds)) {

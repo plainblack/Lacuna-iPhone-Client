@@ -84,7 +84,7 @@
 	
 	LETableViewCellSpyInfo *cell = (LETableViewCellSpyInfo *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-		cell = [[LETableViewCellSpyInfo alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+		cell = [[[LETableViewCellSpyInfo alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 		cell.backgroundColor = CELL_BACKGROUND_COLOR;
 		cell.autoresizesSubviews = YES;
 		
@@ -154,76 +154,6 @@
 		cell.levelContent.textColor = TEXT_SMALL_COLOR;
 		cell.levelContent.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.levelContent];
-		
-		/*
-		y += 20;
-		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, y, 85, 20)] autorelease];
-		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentRight;
-		tmpLabel.font = LABEL_SMALL_FONT;
-		tmpLabel.textColor = LABEL_SMALL_COLOR;
-		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpLabel.text = @"Politics Experience";
-		[cell.contentView addSubview:tmpLabel];
-		cell.politicsExpContent = [[[UILabel alloc] initWithFrame:CGRectMake(100, y, 220, 20)] autorelease];
-		cell.politicsExpContent.backgroundColor = [UIColor clearColor];
-		cell.politicsExpContent.textAlignment = UITextAlignmentLeft;
-		cell.politicsExpContent.font = TEXT_SMALL_FONT;
-		cell.politicsExpContent.textColor = TEXT_SMALL_COLOR;
-		cell.politicsExpContent.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
-		[cell.contentView addSubview:cell.politicsExpContent];
-		
-		y += 20;
-		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, y, 85, 20)] autorelease];
-		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentRight;
-		tmpLabel.font = LABEL_SMALL_FONT;
-		tmpLabel.textColor = LABEL_SMALL_COLOR;
-		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpLabel.text = @"Mayhem Experience";
-		[cell.contentView addSubview:tmpLabel];
-		cell.mayhemExpContent = [[[UILabel alloc] initWithFrame:CGRectMake(100, y, 220, 20)] autorelease];
-		cell.mayhemExpContent.backgroundColor = [UIColor clearColor];
-		cell.mayhemExpContent.textAlignment = UITextAlignmentLeft;
-		cell.mayhemExpContent.font = TEXT_SMALL_FONT;
-		cell.mayhemExpContent.textColor = TEXT_SMALL_COLOR;
-		cell.mayhemExpContent.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
-		[cell.contentView addSubview:cell.mayhemExpContent];
-		
-		y += 20;
-		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, y, 85, 20)] autorelease];
-		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentRight;
-		tmpLabel.font = LABEL_SMALL_FONT;
-		tmpLabel.textColor = LABEL_SMALL_COLOR;
-		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpLabel.text = @"Theft Experience";
-		[cell.contentView addSubview:tmpLabel];
-		cell.theftExpContent = [[[UILabel alloc] initWithFrame:CGRectMake(100, y, 220, 20)] autorelease];
-		cell.theftExpContent.backgroundColor = [UIColor clearColor];
-		cell.theftExpContent.textAlignment = UITextAlignmentLeft;
-		cell.theftExpContent.font = TEXT_SMALL_FONT;
-		cell.theftExpContent.textColor = TEXT_SMALL_COLOR;
-		cell.theftExpContent.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
-		[cell.contentView addSubview:cell.theftExpContent];
-		
-		y += 20;
-		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, y, 85, 20)] autorelease];
-		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentRight;
-		tmpLabel.font = LABEL_SMALL_FONT;
-		tmpLabel.textColor = LABEL_SMALL_COLOR;
-		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpLabel.text = @"Intel Experience";
-		[cell.contentView addSubview:tmpLabel];
-		cell.intelExpContent = [[[UILabel alloc] initWithFrame:CGRectMake(100, y, 220, 20)] autorelease];
-		cell.intelExpContent.backgroundColor = [UIColor clearColor];
-		cell.intelExpContent.textAlignment = UITextAlignmentLeft;
-		cell.intelExpContent.font = TEXT_SMALL_FONT;
-		cell.intelExpContent.textColor = TEXT_SMALL_COLOR;
-		cell.intelExpContent.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
-		[cell.contentView addSubview:cell.intelExpContent];
-		*/
 		
 		y += 15;
 		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, y, 85, 20)] autorelease];
@@ -303,42 +233,6 @@
 		cell.intelExpContent.textColor = TEXT_SMALL_COLOR;
 		cell.intelExpContent.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.intelExpContent];
-		
-		/*
-		y += 20;
-		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, y, 85, 20)] autorelease];
-		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentRight;
-		tmpLabel.font = LABEL_SMALL_FONT;
-		tmpLabel.textColor = LABEL_SMALL_COLOR;
-		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpLabel.text = @"Offense Rating";
-		[cell.contentView addSubview:tmpLabel];
-		cell.offenseRatingContent = [[[UILabel alloc] initWithFrame:CGRectMake(100, y, 220, 20)] autorelease];
-		cell.offenseRatingContent.backgroundColor = [UIColor clearColor];
-		cell.offenseRatingContent.textAlignment = UITextAlignmentLeft;
-		cell.offenseRatingContent.font = TEXT_SMALL_FONT;
-		cell.offenseRatingContent.textColor = TEXT_SMALL_COLOR;
-		cell.offenseRatingContent.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
-		[cell.contentView addSubview:cell.offenseRatingContent];
-		
-		y += 20;
-		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, y, 85, 20)] autorelease];
-		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentRight;
-		tmpLabel.font = LABEL_SMALL_FONT;
-		tmpLabel.textColor = LABEL_SMALL_COLOR;
-		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpLabel.text = @"Defense Rating";
-		[cell.contentView addSubview:tmpLabel];
-		cell.defenseRatingContent = [[[UILabel alloc] initWithFrame:CGRectMake(100, y, 220, 20)] autorelease];
-		cell.defenseRatingContent.backgroundColor = [UIColor clearColor];
-		cell.defenseRatingContent.textAlignment = UITextAlignmentLeft;
-		cell.defenseRatingContent.font = TEXT_SMALL_FONT;
-		cell.defenseRatingContent.textColor = TEXT_SMALL_COLOR;
-		cell.defenseRatingContent.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
-		[cell.contentView addSubview:cell.defenseRatingContent];
-		*/
 		
 		y += 15;
 		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, y, 85, 20)] autorelease];

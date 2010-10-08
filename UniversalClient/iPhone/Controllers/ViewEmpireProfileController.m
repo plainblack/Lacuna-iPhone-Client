@@ -238,7 +238,7 @@ typedef enum {
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell;
+    UITableViewCell *cell = nil;
 
 	Session *session = [Session sharedInstance];
 	if (self.empireProfile) {
@@ -627,22 +627,22 @@ typedef enum {
 		[session.empire redeemEssentiaCode:value];
 		return YES;
 	} else if ([textName isEqualToString:@"City"]) {
-		[[LEEmpireEditProfile alloc] initWithCallback:@selector(textUpdated:) target:self textKey:@"city" text:value];
+		[[[LEEmpireEditProfile alloc] initWithCallback:@selector(textUpdated:) target:self textKey:@"city" text:value] autorelease];
 		return NO;
 	} else if ([textName isEqualToString:@"Country"]) {
-		[[LEEmpireEditProfile alloc] initWithCallback:@selector(textUpdated:) target:self textKey:@"country" text:value];
+		[[[LEEmpireEditProfile alloc] initWithCallback:@selector(textUpdated:) target:self textKey:@"country" text:value] autorelease];
 		return NO;
 	} else if ([textName isEqualToString:@"Skype"]) {
-		[[LEEmpireEditProfile alloc] initWithCallback:@selector(textUpdated:) target:self textKey:@"skype" text:value];
+		[[[LEEmpireEditProfile alloc] initWithCallback:@selector(textUpdated:) target:self textKey:@"skype" text:value] autorelease];
 		return NO;
 	} else if ([textName isEqualToString:@"Player Name"]) {
-		[[LEEmpireEditProfile alloc] initWithCallback:@selector(textUpdated:) target:self textKey:@"player_name" text:value];
+		[[[LEEmpireEditProfile alloc] initWithCallback:@selector(textUpdated:) target:self textKey:@"player_name" text:value] autorelease];
 		return NO;
 	} else if ([textName isEqualToString:@"Email"]) {
-		[[LEEmpireEditProfile alloc] initWithCallback:@selector(textUpdated:) target:self textKey:@"email" text:value];
+		[[[LEEmpireEditProfile alloc] initWithCallback:@selector(textUpdated:) target:self textKey:@"email" text:value] autorelease];
 		return NO;
 	} else if ([textName isEqualToString:@"Sitter Password"]) {
-		[[LEEmpireEditProfile alloc] initWithCallback:@selector(textUpdated:) target:self textKey:@"sitter_password" text:value];
+		[[[LEEmpireEditProfile alloc] initWithCallback:@selector(textUpdated:) target:self textKey:@"sitter_password" text:value] autorelease];
 		return NO;
 	} else {
 		NSLog(@"Unhandled text name: %@", textName);

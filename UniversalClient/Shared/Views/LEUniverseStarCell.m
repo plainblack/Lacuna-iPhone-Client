@@ -46,8 +46,7 @@
 
 
 - (void)dealloc {
-	[self->star release];
-	self->star = nil;
+	self.star = nil;
 	[self->imageView release];
 	self->imageView = nil;
 	[self->dataLabel release];

@@ -75,7 +75,7 @@
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell;
+    UITableViewCell *cell = nil;
 	
 	if ([self.spies count] > 0) {
 		Spy *spy = [self.spies objectAtIndex:indexPath.section];

@@ -65,6 +65,7 @@
 		NSInteger viewY = (mapY - BODY_BUILDINGS_MIN_Y) * BODY_BUILDINGS_CELL_HEIGHT;
 		imageView.frame = CGRectMake(viewX, viewY, BODY_BUILDINGS_CELL_WIDTH, BODY_BUILDINGS_CELL_HEIGHT);
 		[self.backgroundView addSubview:imageView];
+		[imageView release];
 	}
 }
 

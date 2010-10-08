@@ -59,6 +59,7 @@
 										   cancelButtonTitle:@"Cancel"
 										   otherButtonTitles:@"OK", nil];
 		[av show];
+		[av release];
 	} else {
 		self.numericValue = value;
 		[self.numberButton setTitle:[self.numericValue stringValue] forState:UIControlStateNormal];
@@ -121,7 +122,7 @@
 	
 	LETableViewCellAffinitySelectorV2 *cell = (LETableViewCellAffinitySelectorV2 *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-		cell = [[LETableViewCellAffinitySelectorV2 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+		cell = [[[LETableViewCellAffinitySelectorV2 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 		cell.backgroundColor = CELL_BACKGROUND_COLOR;
 		cell.autoresizesSubviews = YES;
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;

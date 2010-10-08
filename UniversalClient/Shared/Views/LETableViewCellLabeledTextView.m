@@ -124,13 +124,13 @@
 }
 
 
-- (void)becomeFirstResponder {
-	[self.textView becomeFirstResponder];
+- (BOOL)becomeFirstResponder {
+	return [self.textView becomeFirstResponder];
 }
 
 
-- (void)resignFirstResponder {
-	[self.textView resignFirstResponder];
+- (BOOL)resignFirstResponder {
+	return [self.textView resignFirstResponder];
 }
 
 
@@ -186,7 +186,7 @@
 	
 	LETableViewCellLabeledTextView *cell = (LETableViewCellLabeledTextView *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-		cell = [[LETableViewCellLabeledTextView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+		cell = [[[LETableViewCellLabeledTextView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 		cell.backgroundColor = CELL_BACKGROUND_COLOR;
 		cell.autoresizesSubviews = YES;
 		

@@ -94,7 +94,7 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell;
+    UITableViewCell *cell = nil;
 	
 	if (self.baseTradeBuilding && self.baseTradeBuilding.prisoners) {
 		if ([self.baseTradeBuilding.prisoners count] > 0) {

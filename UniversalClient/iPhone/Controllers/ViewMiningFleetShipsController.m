@@ -113,7 +113,7 @@ typedef enum {
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	UITableViewCell *cell;
+	UITableViewCell *cell = nil;
 	
 	if (self.miningMinistry && self.miningMinistry.fleetShips) {
 		if ([self.miningMinistry.fleetShips count] > 0) {

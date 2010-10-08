@@ -123,13 +123,13 @@
 }
 
 
-- (void)becomeFirstResponder {
-	[self.textField becomeFirstResponder];
+- (BOOL)becomeFirstResponder {
+	return [self.textField becomeFirstResponder];
 }
 
 
-- (void)resignFirstResponder {
-	[self.textField resignFirstResponder];
+- (BOOL)resignFirstResponder {
+	return [self.textField resignFirstResponder];
 }
 
 
@@ -223,7 +223,7 @@ static NSString *CellIdentifier = @"TextEntryCell";
 	
 	LETableViewCellTextEntry *cell = (LETableViewCellTextEntry *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-		cell = [[LETableViewCellTextEntry alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+		cell = [[[LETableViewCellTextEntry alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 		cell.backgroundColor = CELL_BACKGROUND_COLOR;
 		cell.autoresizesSubviews = YES;
 		

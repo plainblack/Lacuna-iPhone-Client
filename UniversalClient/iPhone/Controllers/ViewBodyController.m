@@ -234,7 +234,7 @@ typedef enum {
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	Session *session = [Session sharedInstance];
-	UITableViewCell *cell;
+	UITableViewCell *cell = nil;
     
 	switch (indexPath.section) {
 		case SECTION_BODY_OVERVIEW:
