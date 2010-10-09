@@ -13,7 +13,7 @@
 #import "MapBuilding.h"
 
 #define LEVEL_FONT [UIFont fontWithName:@"Verdana-Bold" size:28.0]
-#define TIME_FONT [UIFont fontWithName:@"Verdana-Bold" size:14.0]
+#define TIME_FONT [UIFont fontWithName:@"Verdana-Bold" size:12.0]
 
 
 @implementation LEBodyMapCell
