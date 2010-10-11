@@ -10,6 +10,7 @@
 #import "JSON.h"
 #import "Session.h"
 #import "LEMacros.h"
+#import "AppDelegate_Phone.h"
 
 
 static int numRequests = 0;
@@ -181,6 +182,22 @@ static id<LERequestMonitor> delegate;
 			[av show];
 		}
 	}
+	
+	NSDictionary *result = [self.response objectForKey:@"result"];
+	if (result && [result respondsToSelector:@selector(objectForKey:)]) {
+		NSDictionary *status = [result objectForKey:@"status"];
+		if (status) {
+			NSDictionary *serverStatus = [status objectForKey:@"server"];
+			NSString *announcementValue = [serverStatus objectForKey:@"announcement"];
+			if (isNotNull(announcementValue)) {
+				if (_intv(announcementValue) > 0) {
+					NSLog(@"Has Announcement");
+					AppDelegate_Phone *appDelegate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
+					[appDelegate showAnnouncement];
+				}
+			}
+		}
+	}
 }
 
 - (void)sendRequest {
@@ -293,7 +310,6 @@ static id<LERequestMonitor> delegate;
 			[self successCallback:results];
 		}
 	}
-
 }
 
 

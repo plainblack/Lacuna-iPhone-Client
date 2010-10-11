@@ -48,6 +48,7 @@
 - (void)showStarMapGridX:(NSDecimalNumber *)x gridY:(NSDecimalNumber *)y;
 - (void)showMyWorld:(NSString *)bodyId;
 - (void)restartCreateEmpireId:(NSString *)empireId username:(NSString *)username password:(NSString *)password;
+- (void)showAnnouncement;
 
 
 @end

@@ -16,6 +16,7 @@
 #import "Reachability.h"
 #import "ViewUniverseController.h"
 #import "SelectSpeciesTemplateController.h"
+#import "WebPageController.h"
 
 
 @interface AppDelegate_Phone(PrivateMethod)
@@ -192,6 +193,16 @@
 	selectNewEmpireSpeciesController.username = username;
 	selectNewEmpireSpeciesController.password = password;
 	[((UINavigationController *)[self.tabBarController modalViewController]) pushViewController:selectNewEmpireSpeciesController animated:YES];
+}
+
+
+- (void)showAnnouncement {
+	Session *session = [Session sharedInstance];
+	NSURL *baseUrl = [NSURL URLWithString:session.serverUri];
+	NSURL *announcementUrl = [NSURL URLWithString:[NSString stringWithFormat:@"/announcement?session_id=%@", session.sessionId] relativeToURL:baseUrl];
+	WebPageController *webPageController = [WebPageController create];
+	[webPageController goToUrl:[announcementUrl absoluteString]];
+	[self.tabBarController presentModalViewController:webPageController animated:YES];
 }
 
 
