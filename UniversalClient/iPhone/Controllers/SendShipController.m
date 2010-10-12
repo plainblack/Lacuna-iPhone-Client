@@ -218,8 +218,8 @@ typedef enum {
 				if ([self.availableShips count] > 0) {
 					self.selectedShip = [self.availableShips objectAtIndex:(indexPath.section-1)];
 					Session *session = [Session sharedInstance];
-					if (session.empire.isIsolationist && [self.selectedShip.type isEqualToString:@"colony_ship"]) {
-						UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Send out a Colony Ship will take you out of Isolationist mode. This means spies can be sent to your Colonies. Are you sure you want to do this?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+					if (session.empire.isIsolationist && ([self.selectedShip.type isEqualToString:@"colony_ship"] || [self.selectedShip.type isEqualToString:@"short_range_colony_ship"])) {
+						UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Sending out a Colony Ship or Short Range Colongy Ship will take you out of Isolationist mode. This means spies can be sent to your Colonies. Are you sure you want to do this?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
 						actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
 						[actionSheet showFromTabBar:self.tabBarController.tabBar];
 						[actionSheet release];

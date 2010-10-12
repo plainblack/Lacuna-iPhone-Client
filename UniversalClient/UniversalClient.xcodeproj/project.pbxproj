@@ -256,6 +256,8 @@
 		F6DA5A8A124E83B3005D11F6 /* ViewEmpireRankingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5A89124E83B3005D11F6 /* ViewEmpireRankingsController.m */; };
 		F6DA5ABF124E9550005D11F6 /* LETableViewCellMedalWinnerMedal.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5ABE124E9550005D11F6 /* LETableViewCellMedalWinnerMedal.m */; };
 		F6DA5B51124E9C6B005D11F6 /* SearchForEmpireInRankingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5B50124E9C6B005D11F6 /* SearchForEmpireInRankingsController.m */; };
+		F6DAA4B212647C54001F0F78 /* ServerAnnouncementController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DAA4B012647C54001F0F78 /* ServerAnnouncementController.m */; };
+		F6DAA4B312647C54001F0F78 /* ServerAnnouncementController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6DAA4B112647C54001F0F78 /* ServerAnnouncementController.xib */; };
 		F6DB3C1A12268603002DA174 /* NewAllianceInvite.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DB3C1912268603002DA174 /* NewAllianceInvite.m */; };
 		F6DB8AE51211718D00F3AB4B /* LEEmpireBoostStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DB8AE41211718D00F3AB4B /* LEEmpireBoostStorage.m */; };
 		F6DB90E712039C33003293A7 /* LETableViewCellTravellingShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DB90E612039C33003293A7 /* LETableViewCellTravellingShip.m */; };
@@ -873,6 +875,9 @@
 		F6DA5ABE124E9550005D11F6 /* LETableViewCellMedalWinnerMedal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellMedalWinnerMedal.m; sourceTree = "<group>"; };
 		F6DA5B4F124E9C6B005D11F6 /* SearchForEmpireInRankingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchForEmpireInRankingsController.h; sourceTree = "<group>"; };
 		F6DA5B50124E9C6B005D11F6 /* SearchForEmpireInRankingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchForEmpireInRankingsController.m; sourceTree = "<group>"; };
+		F6DAA4AF12647C54001F0F78 /* ServerAnnouncementController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerAnnouncementController.h; sourceTree = "<group>"; };
+		F6DAA4B012647C54001F0F78 /* ServerAnnouncementController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerAnnouncementController.m; sourceTree = "<group>"; };
+		F6DAA4B112647C54001F0F78 /* ServerAnnouncementController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServerAnnouncementController.xib; sourceTree = "<group>"; };
 		F6DB3C1812268603002DA174 /* NewAllianceInvite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewAllianceInvite.h; sourceTree = "<group>"; };
 		F6DB3C1912268603002DA174 /* NewAllianceInvite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewAllianceInvite.m; sourceTree = "<group>"; };
 		F6DB8AE31211718D00F3AB4B /* LEEmpireBoostStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireBoostStorage.h; sourceTree = "<group>"; };
@@ -1982,6 +1987,9 @@
 				F6DEAC2E125D65C4001366C3 /* SupportController.h */,
 				F6DEAC2F125D65C4001366C3 /* SupportController.m */,
 				F6DEAC30125D65C4001366C3 /* SupportController.xib */,
+				F6DAA4AF12647C54001F0F78 /* ServerAnnouncementController.h */,
+				F6DAA4B012647C54001F0F78 /* ServerAnnouncementController.m */,
+				F6DAA4B112647C54001F0F78 /* ServerAnnouncementController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2086,6 +2094,7 @@
 				F6DEABFF125D5AF2001366C3 /* ChatController.xib in Resources */,
 				F6DEAC2D125D65BA001366C3 /* TutorialController.xib in Resources */,
 				F6DEAC32125D65C4001366C3 /* SupportController.xib in Resources */,
+				F6DAA4B312647C54001F0F78 /* ServerAnnouncementController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2444,6 +2453,7 @@
 				F6DEABFE125D5AF2001366C3 /* ChatController.m in Sources */,
 				F6DEAC2C125D65BA001366C3 /* TutorialController.m in Sources */,
 				F6DEAC31125D65C4001366C3 /* SupportController.m in Sources */,
+				F6DAA4B212647C54001F0F78 /* ServerAnnouncementController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
