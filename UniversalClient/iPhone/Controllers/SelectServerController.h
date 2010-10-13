@@ -30,7 +30,7 @@
 
 @property (nonatomic, retain) Servers *servers;
 @property (nonatomic, assign) id<SelectServerControllerDelegate> delegate;
-@property (nonatomic, assign) LETableViewCellTextEntry *customerServerCell;
+@property (nonatomic, retain) LETableViewCellTextEntry *customerServerCell;
 
 
 - (IBAction)cancel;

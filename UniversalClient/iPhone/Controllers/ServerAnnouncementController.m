@@ -27,6 +27,8 @@
 	
 	self.webView.hidden = YES;
 	
+	self.navigationItem.title = @"Announcements";
+	
 	Session *session = [Session sharedInstance];
 	NSURL *baseUrl = [NSURL URLWithString:session.serverUri];
 	NSURL *chatUrl = [NSURL URLWithString:[NSString stringWithFormat:@"/announcement?session_id=%@", session.sessionId] relativeToURL:baseUrl];

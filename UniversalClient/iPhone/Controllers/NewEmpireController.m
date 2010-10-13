@@ -106,12 +106,12 @@ typedef enum {
 	self.passwordConfirmationCell.delegate = self;
 	self.passwordConfirmationCell.secureTextEntry = YES;
 	
-	self.emailCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
+	self.emailCell = [LETableViewCellTextEntry getCellForTableView:self.tableView includeToolbar:YES isOptional:YES];
 	self.emailCell.label.text = @"Email";
 	self.emailCell.keyboardType = UIKeyboardTypeEmailAddress;
 	self.emailCell.delegate = self;
 
-	self.friendCodeCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
+	self.friendCodeCell = [LETableViewCellTextEntry getCellForTableView:self.tableView includeToolbar:YES isOptional:YES];
 	self.friendCodeCell.label.text = @"Friend Code";
 	self.friendCodeCell.delegate = self;
 	

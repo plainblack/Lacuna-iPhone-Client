@@ -73,7 +73,6 @@ typedef enum {
 	Session *session = [Session sharedInstance];
 	
 	if (!self.selectedServer) {
-		NSLog(@"KEVIN LOAD SAVED EMPIRE INFO BASED ON EMPIRE KEY HERE!");
 		KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithIdentifier:self.empireKey accessGroup:nil] autorelease];
 		self.empireNameCell.content.text = [keychainItemWrapper objectForKey:(id)kSecAttrAccount];
 		self.passwordCell.textField.text = [keychainItemWrapper objectForKey:(id)kSecValueData];

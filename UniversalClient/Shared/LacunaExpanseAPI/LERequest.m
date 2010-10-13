@@ -191,7 +191,6 @@ static id<LERequestMonitor> delegate;
 			NSString *announcementValue = [serverStatus objectForKey:@"announcement"];
 			if (isNotNull(announcementValue)) {
 				if (_intv(announcementValue) > 0) {
-					NSLog(@"Has Announcement");
 					AppDelegate_Phone *appDelegate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
 					[appDelegate showAnnouncement];
 				}

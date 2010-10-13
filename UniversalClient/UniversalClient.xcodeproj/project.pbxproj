@@ -1772,6 +1772,9 @@
 				F61F65D21204C90D0007427A /* BuildShipController.m */,
 				F6D7683A124B6EAE00BA85FB /* BuildShipTypeController.h */,
 				F6D7683B124B6EAE00BA85FB /* BuildShipTypeController.m */,
+				F6DEABFB125D5AF2001366C3 /* ChatController.h */,
+				F6DEABFC125D5AF2001366C3 /* ChatController.m */,
+				F6DEABFD125D5AF2001366C3 /* ChatController.xib */,
 				F6D55EFB1225EBAE00AA79BD /* DisolveAllianceController.h */,
 				F6D55EFC1225EBAE00AA79BD /* DisolveAllianceController.m */,
 				F6E3E57D11BB0A3200A031CF /* EditEmpireProfileText.h */,
@@ -1875,6 +1878,15 @@
 				F6E0B7791253AD2A00D0C870 /* SendShipController.m */,
 				F6E0B8371253CA3300D0C870 /* SendSpiesController.h */,
 				F6E0B8381253CA3300D0C870 /* SendSpiesController.m */,
+				F6DAA4AF12647C54001F0F78 /* ServerAnnouncementController.h */,
+				F6DAA4B012647C54001F0F78 /* ServerAnnouncementController.m */,
+				F6DAA4B112647C54001F0F78 /* ServerAnnouncementController.xib */,
+				F6DEAC2E125D65C4001366C3 /* SupportController.h */,
+				F6DEAC2F125D65C4001366C3 /* SupportController.m */,
+				F6DEAC30125D65C4001366C3 /* SupportController.xib */,
+				F6DEAC29125D65BA001366C3 /* TutorialController.h */,
+				F6DEAC2A125D65BA001366C3 /* TutorialController.m */,
+				F6DEAC2B125D65BA001366C3 /* TutorialController.xib */,
 				F69D0F591252D02E00C12296 /* UniverseGotoController.h */,
 				F69D0F5A1252D02E00C12296 /* UniverseGotoController.m */,
 				F6DF439E1228B03100A526FD /* ViewAllianceMembersController.h */,
@@ -1978,18 +1990,6 @@
 				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
 				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
-				F6DEABFB125D5AF2001366C3 /* ChatController.h */,
-				F6DEABFC125D5AF2001366C3 /* ChatController.m */,
-				F6DEABFD125D5AF2001366C3 /* ChatController.xib */,
-				F6DEAC29125D65BA001366C3 /* TutorialController.h */,
-				F6DEAC2A125D65BA001366C3 /* TutorialController.m */,
-				F6DEAC2B125D65BA001366C3 /* TutorialController.xib */,
-				F6DEAC2E125D65C4001366C3 /* SupportController.h */,
-				F6DEAC2F125D65C4001366C3 /* SupportController.m */,
-				F6DEAC30125D65C4001366C3 /* SupportController.xib */,
-				F6DAA4AF12647C54001F0F78 /* ServerAnnouncementController.h */,
-				F6DAA4B012647C54001F0F78 /* ServerAnnouncementController.m */,
-				F6DAA4B112647C54001F0F78 /* ServerAnnouncementController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2465,7 +2465,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kevin Runde (226QSGV9X2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2475,7 +2475,7 @@
 				INFOPLIST_FILE = "UniversalClient-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = UniversalClient;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F6C8AEA9-E0ED-49EB-B458-A071E166E913";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos4.1;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

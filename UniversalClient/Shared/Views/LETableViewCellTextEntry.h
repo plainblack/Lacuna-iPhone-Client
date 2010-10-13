@@ -32,6 +32,7 @@
 //+ (LETableViewCellTextEntry *)getCellWithNibForTableView:(UITableView *)tableView;
 + (LETableViewCellTextEntry *)getCellForTableView:(UITableView *)tableView;
 + (LETableViewCellTextEntry *)getCellForTableView:(UITableView *)tableView includeToolbar:(BOOL)includeToolbar;
++ (LETableViewCellTextEntry *)getCellForTableView:(UITableView *)tableView includeToolbar:(BOOL)includeToolbar isOptional:(BOOL)isOptional;
 + (CGFloat)getHeightForTableView:(UITableView *)tableView;
 
 

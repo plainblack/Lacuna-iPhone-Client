@@ -215,15 +215,29 @@ static NSString *CellIdentifier = @"TextEntryCell";
 
 
 + (LETableViewCellTextEntry *)getCellForTableView:(UITableView *)tableView {
-	return [self getCellForTableView:tableView includeToolbar:YES];
+	return [self getCellForTableView:tableView includeToolbar:YES isOptional:NO];
 }
 
+
 + (LETableViewCellTextEntry *)getCellForTableView:(UITableView *)tableView includeToolbar:(BOOL)includeToolbar {
-    static NSString *CellIdentifier = @"TextEntryCell";
+	return [self getCellForTableView:tableView includeToolbar:includeToolbar isOptional:NO];
+}
+
+
++ (LETableViewCellTextEntry *)getCellForTableView:(UITableView *)tableView includeToolbar:(BOOL)includeToolbar isOptional:(BOOL)isOptional {
+	static NSString *ToolbarCellIdentifier = @"TextEntryCellWithToolbar";
+    static NSString *NoToolbarCellIdentifier = @"TextEntryCellWithoutToolbar";
+
+	NSString *cellIdentifier= nil;
+	if (includeToolbar) {
+		cellIdentifier = ToolbarCellIdentifier;
+	} else {
+		cellIdentifier = NoToolbarCellIdentifier;
+	}
 	
-	LETableViewCellTextEntry *cell = (LETableViewCellTextEntry *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	LETableViewCellTextEntry *cell = (LETableViewCellTextEntry *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-		cell = [[[LETableViewCellTextEntry alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+		cell = [[[LETableViewCellTextEntry alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
 		cell.backgroundColor = CELL_BACKGROUND_COLOR;
 		cell.autoresizesSubviews = YES;
 		
@@ -267,6 +281,12 @@ static NSString *CellIdentifier = @"TextEntryCell";
 		
 		UITapGestureRecognizer *tapRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:cell action:@selector(callTapped:)] autorelease];
 		[cell.contentView addGestureRecognizer:tapRecognizer];
+	}
+	
+	if (isOptional) {
+		cell.textField.placeholder = @"Optional";
+	} else {
+		cell.textField.placeholder = nil;
 	}
 	
 	return cell;
