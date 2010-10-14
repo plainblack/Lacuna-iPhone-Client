@@ -229,8 +229,12 @@
 - (BOOL)tick:(NSInteger)interval {
 	BOOL reloadNeeded = NO;
 	[self.pendingBuild tick:interval];
-	if (self.pendingBuild && self.pendingBuild.secondsRemaining <= 0) {
-		reloadNeeded = YES;
+	if (self.pendingBuild) {
+		if (self.pendingBuild.secondsRemaining > 0) {
+			self.needsRefresh = YES;
+		} else {
+			reloadNeeded = YES;
+		}
 	}
 	return reloadNeeded;
 }
@@ -561,9 +565,13 @@
 
 
 - (id)buildingDowngraded:(LEBuildingDowngrade *)request {
-	[self parseData:request.result];
-	[[self findMapBuilding] parseData:[request.result objectForKey:@"building"]];
-	self.needsRefresh = YES;
+	if ([self.level isEqualToNumber:[NSDecimalNumber one]]) {
+		self.demolished = YES;
+	} else {
+		[self parseData:request.result];
+		[[self findMapBuilding] parseData:[request.result objectForKey:@"building"]];
+		self.needsRefresh = YES;
+	}
 	return nil;
 }
 

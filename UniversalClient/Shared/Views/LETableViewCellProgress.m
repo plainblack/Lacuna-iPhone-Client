@@ -21,7 +21,7 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
-        // Initialization code
+		// Does nothing for now
     }
     return self;
 }
@@ -54,7 +54,6 @@
 	} else {
 		self.progressView.progress = 1.0;
 	}
-	[self.timedActivity addObserver:self forKeyPath:@"secondsRemaining" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 }
 
 
@@ -94,23 +93,5 @@
 + (CGFloat)getHeightForTableView:(UITableView *)tableView {
 	return 50.0;
 }
-
-
-#pragma mark -
-#pragma mark KVO Methods
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-	if ([keyPath isEqual:@"secondsRemaining"]) {
-		TimedActivity *watchedTimedActivity = (TimedActivity *)object;
-		if (watchedTimedActivity.secondsRemaining > 0){
-			self.progressView.progress = [watchedTimedActivity progress];
-			self.secondsLabel.text = [Util prettyDuration:watchedTimedActivity.secondsRemaining];
-		} else {
-			self.progressView.progress = 1.0;
-			[watchedTimedActivity removeObserver:self forKeyPath:@"secondsRemaining"];
-		}
-	}
-}
-
 
 @end

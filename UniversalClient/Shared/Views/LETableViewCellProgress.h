@@ -14,6 +14,7 @@
 	UIProgressView *progressView;
 	UILabel *secondsLabel;
 	TimedActivity *timedActivity;
+	BOOL observing;
 }
 
 
