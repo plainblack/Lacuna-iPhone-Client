@@ -112,6 +112,8 @@
 		F6864FCE1183A912009826A7 /* LETableViewCellNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F6864FCD1183A912009826A7 /* LETableViewCellNewsItem.m */; };
 		F68650081183D2A4009826A7 /* LEBuildingRestrictCoverage.m in Sources */ = {isa = PBXBuildFile; fileRef = F68650071183D2A4009826A7 /* LEBuildingRestrictCoverage.m */; };
 		F68708F112669CFD00068237 /* LEBuildingGetLotteryVotingOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = F68708F012669CFD00068237 /* LEBuildingGetLotteryVotingOptions.m */; };
+		F68708F412669DFB00068237 /* Entertainment.m in Sources */ = {isa = PBXBuildFile; fileRef = F68708F312669DFB00068237 /* Entertainment.m */; };
+		F68709271266A54200068237 /* ViewVotingOptionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F68709261266A54200068237 /* ViewVotingOptionsController.m */; };
 		F6882CFE116EA08A009B624B /* ViewEmpireProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6882CFC116EA08A009B624B /* ViewEmpireProfileController.m */; };
 		F6882D03116EA658009B624B /* NewEmpireController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6882D01116EA658009B624B /* NewEmpireController.m */; };
 		F6882D41116EB44F009B624B /* LETableViewCellLabeledText.m in Sources */ = {isa = PBXBuildFile; fileRef = F6882D40116EB44F009B624B /* LETableViewCellLabeledText.m */; };
@@ -592,6 +594,10 @@
 		F68650071183D2A4009826A7 /* LEBuildingRestrictCoverage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingRestrictCoverage.m; sourceTree = "<group>"; };
 		F68708EF12669CFD00068237 /* LEBuildingGetLotteryVotingOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetLotteryVotingOptions.h; sourceTree = "<group>"; };
 		F68708F012669CFD00068237 /* LEBuildingGetLotteryVotingOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetLotteryVotingOptions.m; sourceTree = "<group>"; };
+		F68708F212669DFB00068237 /* Entertainment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entertainment.h; sourceTree = "<group>"; };
+		F68708F312669DFB00068237 /* Entertainment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entertainment.m; sourceTree = "<group>"; };
+		F68709251266A54200068237 /* ViewVotingOptionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewVotingOptionsController.h; sourceTree = "<group>"; };
+		F68709261266A54200068237 /* ViewVotingOptionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewVotingOptionsController.m; sourceTree = "<group>"; };
 		F6882CFB116EA08A009B624B /* ViewEmpireProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewEmpireProfileController.h; sourceTree = "<group>"; };
 		F6882CFC116EA08A009B624B /* ViewEmpireProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewEmpireProfileController.m; sourceTree = "<group>"; };
 		F6882D00116EA658009B624B /* NewEmpireController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewEmpireController.h; sourceTree = "<group>"; };
@@ -1755,6 +1761,8 @@
 				F692B7C9121861EC00E740C1 /* Trade.m */,
 				F61D0C2111E2355600B06382 /* WasteRecycling.h */,
 				F61D0C2211E2355600B06382 /* WasteRecycling.m */,
+				F68708F212669DFB00068237 /* Entertainment.h */,
+				F68708F312669DFB00068237 /* Entertainment.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -1995,6 +2003,8 @@
 				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
 				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
+				F68709251266A54200068237 /* ViewVotingOptionsController.h */,
+				F68709261266A54200068237 /* ViewVotingOptionsController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2460,6 +2470,8 @@
 				F6DEAC31125D65C4001366C3 /* SupportController.m in Sources */,
 				F6DAA4B212647C54001F0F78 /* ServerAnnouncementController.m in Sources */,
 				F68708F112669CFD00068237 /* LEBuildingGetLotteryVotingOptions.m in Sources */,
+				F68708F412669DFB00068237 /* Entertainment.m in Sources */,
+				F68709271266A54200068237 /* ViewVotingOptionsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

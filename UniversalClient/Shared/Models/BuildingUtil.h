@@ -11,6 +11,7 @@
 #define ARCHAEOLOGY_URL @"/archaeology"
 #define DEVELOPMENT_URL @"/development"
 #define EMBASSY_URL @"/embassy"
+#define ENTERTAINMENT_URL @"/entertainment"
 #define ESPIONAGE_URL @"/espionage"
 #define FOOD_RESERVE_URL @"/foodreserve"
 #define INTELLIGENCE_URL @"/intelligence"
@@ -115,6 +116,7 @@ typedef enum {
 	BUILDING_ROW_DESCRIPTION,
 	BUILDING_ROW_WIKI_BUTTON,
 	BUILDING_ROW_VIEW_PLANETS,
+	BUILDING_ROW_VIEW_VOTING_OPTIONS,
 } BUILDING_ROW;
 
 

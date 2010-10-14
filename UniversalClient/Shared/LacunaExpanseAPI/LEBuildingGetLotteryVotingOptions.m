@@ -46,7 +46,7 @@
 
 
 - (NSString *)methodName {
-	return @"get_lottery_view_options";
+	return @"get_lottery_voting_options";
 }
 
 

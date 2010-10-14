@@ -12,6 +12,7 @@
 
 @class PlanetaryCommand;
 
+
 @interface ViewPlansController : LETableViewControllerGrouped {
 	PlanetaryCommand *planetaryCommand;
 }
