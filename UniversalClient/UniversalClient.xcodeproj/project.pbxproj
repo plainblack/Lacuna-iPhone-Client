@@ -111,6 +111,7 @@
 		F6864F9E1183A3FB009826A7 /* LEBuildingViewNews.m in Sources */ = {isa = PBXBuildFile; fileRef = F6864F9D1183A3FB009826A7 /* LEBuildingViewNews.m */; };
 		F6864FCE1183A912009826A7 /* LETableViewCellNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F6864FCD1183A912009826A7 /* LETableViewCellNewsItem.m */; };
 		F68650081183D2A4009826A7 /* LEBuildingRestrictCoverage.m in Sources */ = {isa = PBXBuildFile; fileRef = F68650071183D2A4009826A7 /* LEBuildingRestrictCoverage.m */; };
+		F68708F112669CFD00068237 /* LEBuildingGetLotteryVotingOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = F68708F012669CFD00068237 /* LEBuildingGetLotteryVotingOptions.m */; };
 		F6882CFE116EA08A009B624B /* ViewEmpireProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6882CFC116EA08A009B624B /* ViewEmpireProfileController.m */; };
 		F6882D03116EA658009B624B /* NewEmpireController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6882D01116EA658009B624B /* NewEmpireController.m */; };
 		F6882D41116EB44F009B624B /* LETableViewCellLabeledText.m in Sources */ = {isa = PBXBuildFile; fileRef = F6882D40116EB44F009B624B /* LETableViewCellLabeledText.m */; };
@@ -589,6 +590,8 @@
 		F6864FCD1183A912009826A7 /* LETableViewCellNewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellNewsItem.m; sourceTree = "<group>"; };
 		F68650061183D2A4009826A7 /* LEBuildingRestrictCoverage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingRestrictCoverage.h; sourceTree = "<group>"; };
 		F68650071183D2A4009826A7 /* LEBuildingRestrictCoverage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingRestrictCoverage.m; sourceTree = "<group>"; };
+		F68708EF12669CFD00068237 /* LEBuildingGetLotteryVotingOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetLotteryVotingOptions.h; sourceTree = "<group>"; };
+		F68708F012669CFD00068237 /* LEBuildingGetLotteryVotingOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetLotteryVotingOptions.m; sourceTree = "<group>"; };
 		F6882CFB116EA08A009B624B /* ViewEmpireProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewEmpireProfileController.h; sourceTree = "<group>"; };
 		F6882CFC116EA08A009B624B /* ViewEmpireProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewEmpireProfileController.m; sourceTree = "<group>"; };
 		F6882D00116EA658009B624B /* NewEmpireController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewEmpireController.h; sourceTree = "<group>"; };
@@ -1638,6 +1641,8 @@
 				F6DA5A58124E69E9005D11F6 /* LEStatsSpyRank.m */,
 				F6DA5A5A124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.h */,
 				F6DA5A5B124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.m */,
+				F68708EF12669CFD00068237 /* LEBuildingGetLotteryVotingOptions.h */,
+				F68708F012669CFD00068237 /* LEBuildingGetLotteryVotingOptions.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -2454,6 +2459,7 @@
 				F6DEAC2C125D65BA001366C3 /* TutorialController.m in Sources */,
 				F6DEAC31125D65C4001366C3 /* SupportController.m in Sources */,
 				F6DAA4B212647C54001F0F78 /* ServerAnnouncementController.m in Sources */,
+				F68708F112669CFD00068237 /* LEBuildingGetLotteryVotingOptions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
