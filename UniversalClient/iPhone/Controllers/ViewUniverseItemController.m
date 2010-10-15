@@ -24,6 +24,7 @@
 #import "SendSpiesController.h"
 #import "FetchSpiesController.h"
 #import "AppDelegate_Phone.h"
+#import "ViewUniverseItemUnsendableShipsController.h"
 
 
 typedef enum {
@@ -43,6 +44,7 @@ typedef enum {
 	ROW_VIEW_INCOMING_SHIPS,
 	ROW_VIEW_MINING_PLATFORMS,
 	ROW_SEND_SHIP,
+	ROW_UNSENDABLE_SHIPS,
 	ROW_PLOTS,
 	ROW_WATER,
 	ROW_RENAME,
@@ -125,6 +127,7 @@ typedef enum {
 			case ROW_VIEW_INCOMING_SHIPS:
 			case ROW_VIEW_MINING_PLATFORMS:
 			case ROW_SEND_SHIP:
+			case ROW_UNSENDABLE_SHIPS:
 			case ROW_RENAME:
 			case ROW_VIEW_MY_WORLD:
 				return [LETableViewCellButton getHeightForTableView:tableView];
@@ -211,6 +214,12 @@ typedef enum {
 				sendShipButtonCell.textLabel.text = @"Send Ship Here";
 				cell = sendShipButtonCell;
 				break;
+			case ROW_UNSENDABLE_SHIPS:
+				; //DO NOT REMOVE
+				LETableViewCellButton *unsendableShipsButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+				unsendableShipsButtonCell.textLabel.text = @"View unsendable ships";
+				cell = unsendableShipsButtonCell;
+				break;
 			case ROW_PLOTS:
 				; //DO NOT REMOVE
 				LETableViewCellLabeledIconText *plotsCell = [LETableViewCellLabeledIconText getCellForTableView:tableView isSelectable:NO];
@@ -292,6 +301,13 @@ typedef enum {
 				sendShipController.sendFromBodyId = session.body.id;
 				[self.navigationController pushViewController:sendShipController animated:YES];
 				break;
+			case ROW_UNSENDABLE_SHIPS:
+				; //DO NOT REMOVE
+				ViewUniverseItemUnsendableShipsController *viewUniverseItemUnsendableShipsController = [ViewUniverseItemUnsendableShipsController create];
+				viewUniverseItemUnsendableShipsController.mapItem = self.mapItem;
+				viewUniverseItemUnsendableShipsController.sendFromBodyId = session.body.id;
+				[self.navigationController pushViewController:viewUniverseItemUnsendableShipsController animated:YES];
+				break;
 			case ROW_RENAME:
 				; //DO NOT REMOVE
 				RenameBodyController *renameBodyController = [RenameBodyController create];
@@ -365,6 +381,7 @@ typedef enum {
 			[shipActionRows addObject:[NSDecimalNumber numberWithInt:ROW_VIEW_MINING_PLATFORMS]];
 		}
 		[shipActionRows addObject:[NSDecimalNumber numberWithInt:ROW_SEND_SHIP]];
+		[shipActionRows addObject:[NSDecimalNumber numberWithInt:ROW_UNSENDABLE_SHIPS]];
 
 		[self.sections addObject:_dict([NSDecimalNumber numberWithInt:SECTION_SHIP_ACTIONS], @"type", @"Ships", @"name", shipActionRows, @"rows")];
 		

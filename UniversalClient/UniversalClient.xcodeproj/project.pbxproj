@@ -226,6 +226,7 @@
 		F6D59FF412012AA9009DDA28 /* RenameShipController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D59FF312012AA9009DDA28 /* RenameShipController.m */; };
 		F6D5A00B12012E43009DDA28 /* LEBuildingScuttleShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D5A00A12012E43009DDA28 /* LEBuildingScuttleShip.m */; };
 		F6D5A00E12012E5A009DDA28 /* LEBuildingNameShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D5A00D12012E5A009DDA28 /* LEBuildingNameShip.m */; };
+		F6D721641267D93B00B45966 /* ViewUniverseItemUnsendableShipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D721631267D93B00B45966 /* ViewUniverseItemUnsendableShipsController.m */; };
 		F6D74917124C2F4500DCD74D /* ViewEmpireMailSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D74916124C2F4500DCD74D /* ViewEmpireMailSettingController.m */; };
 		F6D7683C124B6EAE00BA85FB /* BuildShipTypeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D7683B124B6EAE00BA85FB /* BuildShipTypeController.m */; };
 		F6D7689B124B77FE00BA85FB /* LETableViewCellMiningPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D7689A124B77FE00BA85FB /* LETableViewCellMiningPlatform.m */; };
@@ -820,6 +821,8 @@
 		F6D5A00A12012E43009DDA28 /* LEBuildingScuttleShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingScuttleShip.m; sourceTree = "<group>"; };
 		F6D5A00C12012E5A009DDA28 /* LEBuildingNameShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingNameShip.h; sourceTree = "<group>"; };
 		F6D5A00D12012E5A009DDA28 /* LEBuildingNameShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingNameShip.m; sourceTree = "<group>"; };
+		F6D721621267D93B00B45966 /* ViewUniverseItemUnsendableShipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewUniverseItemUnsendableShipsController.h; sourceTree = "<group>"; };
+		F6D721631267D93B00B45966 /* ViewUniverseItemUnsendableShipsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewUniverseItemUnsendableShipsController.m; sourceTree = "<group>"; };
 		F6D74915124C2F4500DCD74D /* ViewEmpireMailSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewEmpireMailSettingController.h; sourceTree = "<group>"; };
 		F6D74916124C2F4500DCD74D /* ViewEmpireMailSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewEmpireMailSettingController.m; sourceTree = "<group>"; };
 		F6D7683A124B6EAE00BA85FB /* BuildShipTypeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildShipTypeController.h; sourceTree = "<group>"; };
@@ -1435,6 +1438,8 @@
 				F6E8D5551223E761001CD21D /* LEBuildingGetAllianceStatus.m */,
 				F61F657F1204B1240007427A /* LEBuildingGetBuildableShips.h */,
 				F61F65801204B1240007427A /* LEBuildingGetBuildableShips.m */,
+				F68708EF12669CFD00068237 /* LEBuildingGetLotteryVotingOptions.h */,
+				F68708F012669CFD00068237 /* LEBuildingGetLotteryVotingOptions.m */,
 				F6E8D5661223E7D9001CD21D /* LEBuildingGetMyInvites.h */,
 				F6E8D5671223E7D9001CD21D /* LEBuildingGetMyInvites.m */,
 				F621306A11F8F4C1006B80C5 /* LEBuildingGetOresAvailableForProcessing.h */,
@@ -1647,8 +1652,6 @@
 				F6DA5A58124E69E9005D11F6 /* LEStatsSpyRank.m */,
 				F6DA5A5A124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.h */,
 				F6DA5A5B124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.m */,
-				F68708EF12669CFD00068237 /* LEBuildingGetLotteryVotingOptions.h */,
-				F68708F012669CFD00068237 /* LEBuildingGetLotteryVotingOptions.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -1994,8 +1997,12 @@
 				F6E0B7441253A3A400D0C870 /* ViewUniverseIncomingShipsController.m */,
 				F6D9EB3D12536346005437D7 /* ViewUniverseItemController.h */,
 				F6D9EB3E12536346005437D7 /* ViewUniverseItemController.m */,
+				F6D721621267D93B00B45966 /* ViewUniverseItemUnsendableShipsController.h */,
+				F6D721631267D93B00B45966 /* ViewUniverseItemUnsendableShipsController.m */,
 				F6D9EC4B125396BE005437D7 /* ViewUniverseMiningPlatformsController.h */,
 				F6D9EC4C125396BE005437D7 /* ViewUniverseMiningPlatformsController.m */,
+				F68709251266A54200068237 /* ViewVotingOptionsController.h */,
+				F68709261266A54200068237 /* ViewVotingOptionsController.m */,
 				F6DA5A73124E7E61005D11F6 /* ViewWeeklyMedalWinnersController.h */,
 				F6DA5A74124E7E61005D11F6 /* ViewWeeklyMedalWinnersController.m */,
 				F6D85A38122DC06C00A44BD9 /* WebPageController.h */,
@@ -2003,8 +2010,6 @@
 				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
 				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
-				F68709251266A54200068237 /* ViewVotingOptionsController.h */,
-				F68709261266A54200068237 /* ViewVotingOptionsController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2472,6 +2477,7 @@
 				F68708F112669CFD00068237 /* LEBuildingGetLotteryVotingOptions.m in Sources */,
 				F68708F412669DFB00068237 /* Entertainment.m in Sources */,
 				F68709271266A54200068237 /* ViewVotingOptionsController.m in Sources */,
+				F6D721641267D93B00B45966 /* ViewUniverseItemUnsendableShipsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

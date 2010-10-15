@@ -64,7 +64,7 @@
 	NSDictionary *result = [self.response objectForKey:@"result"];
 	self.incoming = [result objectForKey:@"incoming"];
 	self.available = [result objectForKey:@"available"];
-	self.unavailabe = [result objectForKey:@"unavailabe"];
+	self.unavailabe = [result objectForKey:@"unavailable"];
 	self.miningPlatforms = [result objectForKey:@"mining_platforms"];
 }
 
