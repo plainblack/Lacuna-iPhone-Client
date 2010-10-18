@@ -69,7 +69,10 @@
 - (void)parseData:(NSDictionary *)empireData {
 	self.id = [Util idFromDict:empireData named:@"id"];
 	self.isIsolationist = _boolv([empireData objectForKey:@"is_isolationist"]);
-	self.name = [empireData objectForKey:@"name"];
+	NSString *tmpName = [empireData objectForKey:@"name"];
+	if (isNotNull(tmpName) && [tmpName length] > 0) {
+		self.name = tmpName;
+	}
 	self.statusMessage = [empireData objectForKey:@"status_message"];
 	self.homePlanetId = [empireData objectForKey:@"home_planet_id"];
 	self.essentia = [Util asNumber:[empireData objectForKey:@"essentia"]];

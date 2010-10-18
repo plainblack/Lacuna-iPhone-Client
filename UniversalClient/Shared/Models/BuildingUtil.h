@@ -16,6 +16,7 @@
 #define FOOD_RESERVE_URL @"/foodreserve"
 #define INTELLIGENCE_URL @"/intelligence"
 #define MINING_MINISTRY_URL @"/miningministry"
+#define MISSION_COMMAND_URL @"/missioncommand"
 #define MUNITIONS_LAB_URL @"/munitionslab"
 #define NETWORK_19_URL @"/network19"
 #define OBSERVATORY_URL @"/observatory"
@@ -117,6 +118,7 @@ typedef enum {
 	BUILDING_ROW_WIKI_BUTTON,
 	BUILDING_ROW_VIEW_PLANETS,
 	BUILDING_ROW_VIEW_VOTING_OPTIONS,
+	BUILDING_ROW_VIEW_MISSIONS,
 } BUILDING_ROW;
 
 

@@ -17,6 +17,7 @@
 #import "FoodReserve.h"
 #import "Intelligence.h"
 #import "MiningMinistry.h"
+#import "MissionCommand.h"
 #import "Network19.h"
 #import "Observatory.h"
 #import "OreStorage.h"
@@ -48,6 +49,8 @@
 		building = [[[Intelligence alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:MINING_MINISTRY_URL]) {
 		building = [[[MiningMinistry alloc] init] autorelease];
+	} else if ([request.buildingUrl isEqualToString:MISSION_COMMAND_URL]) {
+		building = [[[MissionCommand alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:NETWORK_19_URL]) {
 		building = [[[Network19 alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:OBSERVATORY_URL]) {

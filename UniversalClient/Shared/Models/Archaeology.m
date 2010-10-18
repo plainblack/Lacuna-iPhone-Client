@@ -120,7 +120,7 @@
 		case BUILDING_ROW_GLYPH_ASSEMBLE:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellButton *glyphAssmebleCell = [LETableViewCellButton getCellForTableView:tableView];
-			glyphAssmebleCell.textLabel.text = @"Assemble Glyhphs";
+			glyphAssmebleCell.textLabel.text = @"Assemble Glyphs";
 			cell = glyphAssmebleCell;
 			break;
 		case BUILDING_ROW_GLYPH_SEARCHING:

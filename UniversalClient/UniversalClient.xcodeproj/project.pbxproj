@@ -247,6 +247,7 @@
 		F6D9EC4D125396BE005437D7 /* ViewUniverseMiningPlatformsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9EC4C125396BE005437D7 /* ViewUniverseMiningPlatformsController.m */; };
 		F6DA0DC0121D47E200705240 /* LETableViewCellGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA0DBF121D47E200705240 /* LETableViewCellGlyph.m */; };
 		F6DA0DF1121D4D0F00705240 /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA0DF0121D4D0F00705240 /* Plan.m */; };
+		F6DA2FE1126C657500F93CD8 /* MissionCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA2FE0126C657500F93CD8 /* MissionCommand.m */; };
 		F6DA5A50124E69BF005D11F6 /* LEStatsEmpireRank.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5A4F124E69BF005D11F6 /* LEStatsEmpireRank.m */; };
 		F6DA5A53124E69CC005D11F6 /* LEStatsFindEmpireRank.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5A52124E69CC005D11F6 /* LEStatsFindEmpireRank.m */; };
 		F6DA5A56124E69DD005D11F6 /* LEStatsColonyRank.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5A55124E69DD005D11F6 /* LEStatsColonyRank.m */; };
@@ -862,6 +863,8 @@
 		F6DA0DBF121D47E200705240 /* LETableViewCellGlyph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellGlyph.m; sourceTree = "<group>"; };
 		F6DA0DEF121D4D0F00705240 /* Plan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plan.h; sourceTree = "<group>"; };
 		F6DA0DF0121D4D0F00705240 /* Plan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plan.m; sourceTree = "<group>"; };
+		F6DA2FDF126C657500F93CD8 /* MissionCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionCommand.h; sourceTree = "<group>"; };
+		F6DA2FE0126C657500F93CD8 /* MissionCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionCommand.m; sourceTree = "<group>"; };
 		F6DA5A4E124E69BF005D11F6 /* LEStatsEmpireRank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEStatsEmpireRank.h; sourceTree = "<group>"; };
 		F6DA5A4F124E69BF005D11F6 /* LEStatsEmpireRank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEStatsEmpireRank.m; sourceTree = "<group>"; };
 		F6DA5A51124E69CC005D11F6 /* LEStatsFindEmpireRank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEStatsFindEmpireRank.h; sourceTree = "<group>"; };
@@ -1766,6 +1769,8 @@
 				F61D0C2211E2355600B06382 /* WasteRecycling.m */,
 				F68708F212669DFB00068237 /* Entertainment.h */,
 				F68708F312669DFB00068237 /* Entertainment.m */,
+				F6DA2FDF126C657500F93CD8 /* MissionCommand.h */,
+				F6DA2FE0126C657500F93CD8 /* MissionCommand.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -2478,6 +2483,7 @@
 				F68708F412669DFB00068237 /* Entertainment.m in Sources */,
 				F68709271266A54200068237 /* ViewVotingOptionsController.m in Sources */,
 				F6D721641267D93B00B45966 /* ViewUniverseItemUnsendableShipsController.m in Sources */,
+				F6DA2FE1126C657500F93CD8 /* MissionCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
