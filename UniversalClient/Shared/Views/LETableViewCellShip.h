@@ -13,12 +13,6 @@
 
 
 @interface LETableViewCellShip : UITableViewCell {
-	UILabel *nameLabel;
-	UILabel *typeLabel;
-	UILabel *speedLabel;
-	UILabel *holdSizeLabel;
-	UILabel *stealthLabel;
-	UIImageView *shipImageView;
 }
 
 

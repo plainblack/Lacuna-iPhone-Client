@@ -21,12 +21,11 @@
 
 
 @interface SelectShipFromListController : LETableViewControllerGrouped {
-	NSMutableArray *ships;
-	id<SelectShipFromListControllerDelegate> delegate;
 }
 
 
 @property (nonatomic, copy) NSMutableArray *ships;
+@property (nonatomic, copy) NSMutableDictionary *shipTravelTimes;
 @property (nonatomic, assign) id<SelectShipFromListControllerDelegate> delegate;
 
 

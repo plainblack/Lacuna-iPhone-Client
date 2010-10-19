@@ -34,6 +34,7 @@ typedef enum {
 @synthesize mapItem;
 @synthesize fetchToBodyId;
 @synthesize spyShips;
+@synthesize shipTravelTimes;
 @synthesize selectedShip;
 @synthesize spies;
 @synthesize selectedSpies;
@@ -231,6 +232,7 @@ typedef enum {
 			; //DO NOT REMOVE
 			SelectShipFromListController *selectShipFromListController = [SelectShipFromListController create];
 			selectShipFromListController.ships = self.spyShips;
+			selectShipFromListController.shipTravelTimes = self.shipTravelTimes;
 			selectShipFromListController.delegate = self;
 			[self.navigationController pushViewController:selectShipFromListController animated:YES];
 			break;
@@ -362,13 +364,21 @@ typedef enum {
 
 - (void)prepareDataLoaded:(LEBuildingPrepareFetchSpies *)request {
 	NSMutableArray *tmpShips = [NSMutableArray arrayWithCapacity:[request.ships count]];
+	NSMutableDictionary *tmpTravelTimes = [NSMutableDictionary dictionaryWithCapacity:[request.ships count]];
 	for (NSMutableDictionary *shipData in request.ships) {
 		Ship *ship = [[Ship alloc] init];
 		[ship parseData:shipData];
 		[tmpShips addObject:ship];
+		NSDecimalNumber *estimatedTravelTime = [shipData objectForKey:@"estimated_travel_time"];
+		if (isNull(estimatedTravelTime)) {
+			estimatedTravelTime = [NSDecimalNumber zero];
+			NSLog(@"Could not find estimated_travel_time in: %@", shipData);
+		}
+		[tmpTravelTimes setObject:estimatedTravelTime forKey:ship.id];
 		[ship release];
 	}
 	self.spyShips = tmpShips;
+	self.shipTravelTimes = tmpTravelTimes;
 	
 	NSMutableArray *tmpSpies = [NSMutableArray arrayWithCapacity:[request.spies count]];
 	for (NSMutableDictionary *spyData in request.spies) {

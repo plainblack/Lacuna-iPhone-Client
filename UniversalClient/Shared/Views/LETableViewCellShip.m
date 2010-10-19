@@ -95,8 +95,8 @@
 		cell = [[[LETableViewCellShip alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
 		cell.backgroundColor = CELL_BACKGROUND_COLOR;
 		cell.autoresizesSubviews = YES;
+
 		CGFloat y = 10.0;
-		
 		cell.shipImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(10, y, 100, 100)] autorelease];
 		cell.shipImageView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.shipImageView];
@@ -108,8 +108,8 @@
 		cell.nameLabel.textColor = TEXT_COLOR;
 		cell.nameLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.nameLabel];
+
 		y += 20;
-		
 		cell.typeLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, y, 165, 20)] autorelease];
 		cell.typeLabel.backgroundColor = [UIColor clearColor];
 		cell.typeLabel.textAlignment = UITextAlignmentLeft;
@@ -117,8 +117,8 @@
 		cell.typeLabel.textColor = TEXT_SMALL_COLOR;
 		cell.typeLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.typeLabel];
-		y += 20;
-		
+
+		y += 15;
 		UILabel *tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, y, 60, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
 		tmpLabel.textAlignment = UITextAlignmentRight;
@@ -134,8 +134,8 @@
 		cell.speedLabel.textColor = TEXT_SMALL_COLOR;
 		cell.speedLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.speedLabel];
-		y += 20;
-		
+
+		y += 15;
 		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, y, 60, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
 		tmpLabel.textAlignment = UITextAlignmentRight;
@@ -151,8 +151,8 @@
 		cell.holdSizeLabel.textColor = TEXT_SMALL_COLOR;
 		cell.holdSizeLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.holdSizeLabel];
-		y += 20;
-		
+
+		y += 15;
 		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, y, 60, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
 		tmpLabel.textAlignment = UITextAlignmentRight;
@@ -168,7 +168,7 @@
 		cell.stealthLabel.textColor = TEXT_SMALL_COLOR;
 		cell.stealthLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.stealthLabel];
-
+		
 		//Set Cell Defaults
 		if (isSelectable) {
 			cell.selectionStyle = UITableViewCellSelectionStyleBlue;

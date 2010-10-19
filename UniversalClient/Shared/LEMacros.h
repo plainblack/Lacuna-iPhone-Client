@@ -12,6 +12,7 @@
 #define _dict(__args...) [NSMutableDictionary dictionaryWithObjectsAndKeys:__args, nil]
 #define _intv(__o) [__o intValue]
 #define NSRangeZero NSMakeRange(0,0)
+#define isNull(__o) (__o == nil || ((id)__o == [NSNull null]))
 #define isNotNull(__o) (__o && ((id)__o != [NSNull null]))
 
 //Supported Server Version

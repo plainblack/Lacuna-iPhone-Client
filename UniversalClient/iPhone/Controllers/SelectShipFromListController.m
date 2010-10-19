@@ -15,10 +15,17 @@
 #import "LETableViewCellLabeledText.h"
 
 
+typedef enum {
+	ROW_SHIP_INFO,
+	ROW_TRAVEL_TIME,
+} ROW;
+
+
 @implementation SelectShipFromListController
 
 
 @synthesize ships;
+@synthesize shipTravelTimes;
 @synthesize delegate;
 
 
@@ -59,13 +66,27 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return 1;
+	if (self.shipTravelTimes) {
+		return 2;
+	} else {
+		return 1;
+	}
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if ([self.ships count] > 0) {
-		return [LETableViewCellShip getHeightForTableView:tableView];
+		switch (indexPath.row) {
+			case ROW_SHIP_INFO:
+				return [LETableViewCellShip getHeightForTableView:tableView];
+				break;
+			case ROW_TRAVEL_TIME:
+				return [LETableViewCellLabeledText getHeightForTableView:tableView];
+				break;
+			default:
+				return 0.0;
+				break;
+		}
 	} else {
 		return [LETableViewCellLabeledText getHeightForTableView:tableView];
 	}
@@ -78,9 +99,24 @@
 	
 	if ([self.ships count] > 0) {
 		Ship *ship = [self.ships objectAtIndex:indexPath.section];
-		LETableViewCellShip *shipCell = [LETableViewCellShip getCellForTableView:self.tableView isSelectable:YES];
-		[shipCell setShip:ship];
-		cell = shipCell;
+		switch (indexPath.row) {
+			case ROW_SHIP_INFO:
+				; //DO NOT REMOVE
+				LETableViewCellShip *shipCell = [LETableViewCellShip getCellForTableView:self.tableView isSelectable:YES];
+				[shipCell setShip:ship];
+				cell = shipCell;
+				break;
+			case ROW_TRAVEL_TIME:
+				; //DO NOT REMOVE
+				LETableViewCellLabeledText *travelTimeCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+				travelTimeCell.label.text = @"Travel Time";
+				travelTimeCell.content.text = [Util prettyDuration:_intv([self.shipTravelTimes objectForKey:ship.id])];
+				cell = travelTimeCell;
+				break;
+			default:
+				cell = nil;
+				break;
+		}
 	} else {
 		LETableViewCellLabeledText *emptyCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 		emptyCell.label.text = @"Ships";
@@ -120,6 +156,7 @@
 
 - (void)dealloc {
 	self.ships = nil;
+	self.shipTravelTimes = nil;
     [super dealloc];
 }
 

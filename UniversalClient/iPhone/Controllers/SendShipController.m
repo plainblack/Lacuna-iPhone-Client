@@ -8,6 +8,7 @@
 
 #import "SendShipController.h"
 #import "Util.h"
+#import "LEMacros.h"
 #import "Session.h"
 #import "Ship.h"
 #import "LEBuildingGetShipsFor.h"
@@ -23,7 +24,8 @@ typedef enum {
 } SECTIONS;
 
 typedef enum {
-	ROW_SHIP_INFO
+	ROW_SHIP_INFO,
+	ROW_TRAVEL_TIME
 } ROW;
 
 
@@ -38,6 +40,7 @@ typedef enum {
 
 
 @synthesize availableShips;
+@synthesize shipTravelTimes;
 @synthesize mapItem;
 @synthesize sendFromBodyId;
 @synthesize selectedShip;
@@ -100,7 +103,7 @@ typedef enum {
 		default:
 			if (self.availableShips) {
 				if ([self.availableShips count] > 0) {
-					return 1;
+					return 2;
 				} else {
 					return 1;
 				}
@@ -124,6 +127,9 @@ typedef enum {
 					switch (indexPath.row) {
 						case ROW_SHIP_INFO:
 							return [LETableViewCellShip getHeightForTableView:tableView];
+							break;
+						case ROW_TRAVEL_TIME:
+							return [LETableViewCellLabeledText getHeightForTableView:tableView];
 							break;
 						default:
 							return 0.0;
@@ -173,6 +179,13 @@ typedef enum {
 							LETableViewCellShip *shipInfoCell = [LETableViewCellShip getCellForTableView:tableView isSelectable:YES];
 							[shipInfoCell setShip:currentShip];
 							cell = shipInfoCell;
+							break;
+						case ROW_TRAVEL_TIME:
+							; //DO NOT REMOVE
+							LETableViewCellLabeledText *travelTimeCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+							travelTimeCell.label.text = @"Travel Time";
+							travelTimeCell.content.text = [Util prettyDuration:_intv([self.shipTravelTimes objectForKey:currentShip.id])];
+							cell = travelTimeCell;
 							break;
 						default:
 							cell = nil;
@@ -245,12 +258,14 @@ typedef enum {
 
 - (void)viewDidUnload {
 	self.availableShips = nil;
+	self.shipTravelTimes = nil;
     [super viewDidUnload];
 }
 
 
 - (void)dealloc {
 	self.availableShips = nil;
+	self.shipTravelTimes = nil;
 	self.mapItem = nil;
 	self.sendFromBodyId = nil;
 	[self->pickColonyController release];
@@ -274,6 +289,7 @@ typedef enum {
 		[[[LEBuildingGetShipsFor alloc] initWithCallback:@selector(shipsLoaded:) target:self fromBodyId:self.sendFromBodyId targetBodyName:nil targetBodyId:self.mapItem.id targetStarName:nil targetStarId:nil targetX:nil targetY:nil] autorelease];
 	}
 	self.availableShips = nil;
+	self.shipTravelTimes = nil;
 	[self.tableView reloadData];
 }
 
@@ -293,13 +309,21 @@ typedef enum {
 
 - (void)shipsLoaded:(LEBuildingGetShipsFor *)request {
 	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[request.available count]];
+	NSMutableDictionary *tmpTravelTimes = [NSMutableDictionary dictionaryWithCapacity:[request.available count]];
 	for (NSMutableDictionary *shipData in request.available) {
 		Ship *ship = [[Ship alloc] init];
 		[ship parseData:shipData];
 		[tmp addObject:ship];
+		NSDecimalNumber *estimatedTravelTime = [shipData objectForKey:@"estimated_travel_time"];
+		if (isNull(estimatedTravelTime)) {
+			estimatedTravelTime = [NSDecimalNumber zero];
+			NSLog(@"Could not find estimated_travel_time in: %@", shipData);
+		}
+		[tmpTravelTimes setObject:estimatedTravelTime forKey:ship.id];
 		[ship release];
 	}
 	self.availableShips = tmp;
+	self.shipTravelTimes = tmpTravelTimes;
 	[self.tableView reloadData];
 }
 
