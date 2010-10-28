@@ -11,17 +11,6 @@
 
 
 @interface LEBuildingAddTrade : LERequest {
-	NSString *buildingId;
-	NSString *buildingUrl;
-	NSString *askType;
-	NSDecimalNumber *askQuantity;
-	NSString *offerType;
-	NSDecimalNumber *offerQuantity;
-	NSString *offerGlyphId;
-	NSString *offerPlanId;
-	NSString *offerPrisonerId;
-	NSString *offerShipId;
-	NSString *tradeId;
 }
 
 @property (nonatomic, retain) NSString *buildingId;
@@ -35,9 +24,10 @@
 @property (nonatomic, retain) NSString *offerPrisonerId;
 @property (nonatomic, retain) NSString *offerShipId;
 @property (nonatomic, retain) NSString *tradeId;
+@property (nonatomic, retain) NSString *tradeShipId;
 
 
-- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl askType:(NSString *)askType askQuantity:(NSDecimalNumber *)askQuantity offerType:(NSString *)offerType offerQuantity:(NSDecimalNumber *)offerQuantity offerGlyphId:(NSString *)offerGlyphId offerPlanId:(NSString *)offerPlanId offerPrisonerId:(NSString *)offerPrisonerId offerShipId:(NSString *)offerShipId;
+- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl askType:(NSString *)askType askQuantity:(NSDecimalNumber *)askQuantity offerType:(NSString *)offerType offerQuantity:(NSDecimalNumber *)offerQuantity offerGlyphId:(NSString *)offerGlyphId offerPlanId:(NSString *)offerPlanId offerPrisonerId:(NSString *)offerPrisonerId offerShipId:(NSString *)offerShipId tradeShipId:(NSString *)tradeShipId;
 
 
 @end

@@ -10,13 +10,13 @@
 
 
 @interface ItemPush : NSObject {
-	NSString *targetId;
-	NSMutableArray *items;
 }
 
 
 @property (nonatomic, retain) NSString *targetId;
 @property (nonatomic, retain) NSMutableArray *items;
+@property (nonatomic, retain) NSString *tradeShipId;
+@property (nonatomic, assign) BOOL stayAtTarget;
 
 
 - (void)addGlyph:(NSString *)glyphId;

@@ -18,6 +18,7 @@
 #import "Ship.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellLabeledText.h"
+#import "LETableViewCellLabeledSwitch.h"
 #import "LETableViewCellButton.h"
 #import "LETableViewCellGlyph.h"
 #import "LETableViewCellPlan.h"
@@ -31,9 +32,17 @@
 
 typedef enum {
 	SECTION_PUSH_TO,
+	SECTION_SELECT_SHIP,
 	SECTION_ITEMS,
 	SECTION_ADD
 } SECTIONS;
+
+
+typedef enum {
+	SHIP_ROW_SELECT,
+	SHIP_ROW_TRAVEL_TIME,
+	SHIP_ROW_STAY,
+} SHIP_ROWS;
 
 
 typedef enum {
@@ -59,6 +68,7 @@ typedef enum {
 
 @synthesize baseTradeBuilding;
 @synthesize itemPush;
+@synthesize sections;
 
 
 #pragma mark -
@@ -68,8 +78,15 @@ typedef enum {
     [super viewDidLoad];
 	
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleDone target:self action:@selector(send)] autorelease];
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Push To"], [LEViewSectionTab tableView:self.tableView withText:@"Items To Push"], [LEViewSectionTab tableView:self.tableView withText:@"Add"]);
 	
+	if (self.baseTradeBuilding.selectTradeShip) {
+		self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Push To"], [LEViewSectionTab tableView:self.tableView withText:@"Trade Ship"], [LEViewSectionTab tableView:self.tableView withText:@"Items To Push"], [LEViewSectionTab tableView:self.tableView withText:@"Add"]);
+		self.sections = _array([NSNumber numberWithInt:SECTION_PUSH_TO], [NSNumber numberWithInt:SECTION_SELECT_SHIP], [NSNumber numberWithInt:SECTION_ITEMS], [NSNumber numberWithInt:SECTION_ADD]);
+	} else {
+		self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Push To"], [LEViewSectionTab tableView:self.tableView withText:@"Items To Push"], [LEViewSectionTab tableView:self.tableView withText:@"Add"]);
+		self.sections = _array([NSNumber numberWithInt:SECTION_PUSH_TO], [NSNumber numberWithInt:SECTION_ITEMS], [NSNumber numberWithInt:SECTION_ADD]);
+	}
+
 	if (!self.itemPush) {
 		self.itemPush = [[[ItemPush alloc] init] autorelease];
 	}
@@ -109,14 +126,21 @@ typedef enum {
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 3;
+	return [self.sections count];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	switch (section) {
+	switch (_intv([self.sections objectAtIndex:section])) {
 		case SECTION_PUSH_TO:
 			return 1;
+			break;
+		case SECTION_SELECT_SHIP:
+			if (self.itemPush.tradeShipId) {
+				return 3;
+			} else {
+				return 1;
+			}
 			break;
 		case SECTION_ITEMS:
 			; //DO NOT REMOVE
@@ -137,9 +161,29 @@ typedef enum {
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	switch (indexPath.section) {
+	switch (_intv([self.sections objectAtIndex:indexPath.section])) {
 		case SECTION_PUSH_TO:
 			return [LETableViewCellButton getHeightForTableView:tableView];
+			break;
+		case SECTION_SELECT_SHIP:
+			if (self.itemPush.tradeShipId) {
+				switch (indexPath.row) {
+					case SHIP_ROW_SELECT:
+						return [LETableViewCellShip getHeightForTableView:tableView];
+						break;
+					case SHIP_ROW_TRAVEL_TIME:
+						return [LETableViewCellLabeledText getHeightForTableView:tableView];
+						break;
+					case SHIP_ROW_STAY:
+						return [LETableViewCellLabeledSwitch getHeightForTableView:tableView];
+						break;
+					default:
+						return 0.0;
+						break;
+				}
+			} else {
+				return [LETableViewCellButton getHeightForTableView:tableView];
+			}
 			break;
 		case SECTION_ITEMS:
 			; //DO NOT REMOVE
@@ -180,16 +224,14 @@ typedef enum {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = nil;
 
-	switch (indexPath.section) {
+	switch (_intv([self.sections objectAtIndex:indexPath.section])) {
 		case SECTION_PUSH_TO:
 			; //DO NOT REMOVE
 			LETableViewCellButton *selectColonyButton = [LETableViewCellButton getCellForTableView:tableView];
 			if (self.itemPush.targetId) {
 				Session *session = [Session sharedInstance];
 				[session.empire.planets enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
-					NSLog(@"TEST ID", [obj objectForKey:@"id"]);
-					NSLog(@"TARGET ID", self.itemPush.targetId);
-					if ([[obj objectForKey:@"id"] isEqualToString:self.itemPush.targetId]) {
+					if ([ [Util idFromDict:obj named:@"id"] isEqualToString:self.itemPush.targetId]) {
 						selectColonyButton.textLabel.text = [obj objectForKey:@"name"];
 						*stop = YES;
 					}
@@ -198,6 +240,41 @@ typedef enum {
 				selectColonyButton.textLabel.text = @"Select Colony";
 			}
 			cell = selectColonyButton;
+			break;
+		case SECTION_SELECT_SHIP:
+			if (self.itemPush.tradeShipId) {
+				switch (indexPath.row) {
+					case SHIP_ROW_SELECT:
+						; //DO NOT REMOVE
+						Ship *tradeShip = [self.baseTradeBuilding.tradeShipsById objectForKey:self.itemPush.tradeShipId];
+						LETableViewCellShip *tradeShipCell = [LETableViewCellShip getCellForTableView:tableView isSelectable:YES];
+						[tradeShipCell setShip:tradeShip];
+						cell = tradeShipCell;
+						break;
+					case SHIP_ROW_TRAVEL_TIME:
+						; //DO NOT REMOVE
+						LETableViewCellLabeledText *travelTimeCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+						travelTimeCell.label.text = @"Travel Time";
+						travelTimeCell.content.text = [Util prettyDuration:_intv([self.baseTradeBuilding.tradeShipsTravelTime objectForKey:self.itemPush.tradeShipId])];
+						cell = travelTimeCell;
+						break;
+					case SHIP_ROW_STAY:
+						; //DO NOT REMOVE
+						LETableViewCellLabeledSwitch *staySwithCell = [LETableViewCellLabeledSwitch getCellForTableView:tableView];
+						staySwithCell.label.text = @"Stay at target";
+						staySwithCell.isSelected = NO;
+						staySwithCell.delegate = self;
+						cell = staySwithCell;
+						break;
+					default:
+						cell = nil;
+						break;
+				}
+			} else {
+				LETableViewCellButton *selectTradeShipButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+				selectTradeShipButtonCell.textLabel.text = @"Any Ship With Cargo Space";
+				cell = selectTradeShipButtonCell;
+			}
 			break;
 		case SECTION_ITEMS:
 			; //DO NOT REMOVE
@@ -315,9 +392,19 @@ typedef enum {
 #pragma mark UITableViewDataSource Methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	switch (indexPath.section) {
+	switch (_intv([self.sections objectAtIndex:indexPath.section])) {
 		case SECTION_PUSH_TO:
 			[self showColonyPicker];
+			break;
+		case SECTION_SELECT_SHIP:
+			if (indexPath.row == 0) {
+				self->selectTradeShipController = [[SelectTradeShipController create] retain];
+				self->selectTradeShipController.delegate = self;
+				self->selectTradeShipController.baseTradeBuilding = self.baseTradeBuilding;
+				self->selectTradeShipController.targetBodyId = self.itemPush.targetId;
+				[self.navigationController pushViewController:self->selectTradeShipController animated:YES];
+				break;
+			}
 			break;
 		case SECTION_ADD:
 			switch (indexPath.row) {
@@ -362,8 +449,11 @@ typedef enum {
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-	switch (indexPath.section) {
+	switch (_intv([self.sections objectAtIndex:indexPath.section])) {
 		case SECTION_PUSH_TO:
+			return NO;
+			break;
+		case SECTION_SELECT_SHIP:
 			return NO;
 			break;
 		case SECTION_ITEMS:
@@ -385,7 +475,7 @@ typedef enum {
 
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-	if ( (indexPath.section == SECTION_ITEMS) && (editingStyle == UITableViewCellEditingStyleDelete) ) {
+	if ( (_intv([self.sections objectAtIndex:indexPath.section]) == SECTION_ITEMS) && (editingStyle == UITableViewCellEditingStyleDelete) ) {
 		NSMutableDictionary *item = [self.itemPush.items objectAtIndex:indexPath.row];
 		NSString *type = [item objectForKey:@"type"];
 		if ([type isEqualToString:@"glyph"]) {
@@ -415,6 +505,7 @@ typedef enum {
 }
 
 - (void)viewDidUnload {
+	self.sections = nil;
 	[super viewDidUnload];
 }
 
@@ -434,6 +525,8 @@ typedef enum {
 	self->selectStoredResourceController = nil;
 	[self->selectTradeableShipController release];
 	self->selectTradeableShipController = nil;
+	[self->selectTradeShipController release];
+	self->selectTradeShipController = nil;
     [super dealloc];
 }
 
@@ -533,6 +626,26 @@ typedef enum {
 	self->selectTradeableShipController = nil;
 	[self.baseTradeBuilding.ships removeObject:ship];
 	[self.tableView reloadData];
+}
+
+
+#pragma mark -
+#pragma mark SelectTradeShipController Methods
+
+- (void)tradeShipSelected:(Ship *)ship {
+	self.itemPush.tradeShipId = ship.id;
+	[self.navigationController popViewControllerAnimated:YES];
+	[self->selectTradeShipController release];
+	self->selectTradeShipController = nil;
+	[self.tableView reloadData];
+}
+
+
+#pragma mark -
+#pragma mark LETableViewCellLabeledSwitchDelegate Methods
+
+- (void)cell:(LETableViewCellLabeledSwitch *)cell switchedTo:(BOOL)isOn {
+	self.itemPush.stayAtTarget = isOn;
 }
 
 

@@ -241,6 +241,8 @@
 		F6D9AB43121BFA31003E8D4E /* LEBuildingGetTradeablePlans.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9AB42121BFA31003E8D4E /* LEBuildingGetTradeablePlans.m */; };
 		F6D9AB46121BFA3F003E8D4E /* LEBuildingGetTradeableGlyphs.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9AB45121BFA3F003E8D4E /* LEBuildingGetTradeableGlyphs.m */; };
 		F6D9AB49121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9AB48121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.m */; };
+		F6D9E7DB12705AAF001B1DF7 /* SelectTradeShipController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9E7DA12705AAF001B1DF7 /* SelectTradeShipController.m */; };
+		F6D9E7DE12705E71001B1DF7 /* LEBuildingGetTradeShips.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9E7DD12705E71001B1DF7 /* LEBuildingGetTradeShips.m */; };
 		F6D9EB0812535DF0005437D7 /* LEMapSearchStars.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9EB0712535DF0005437D7 /* LEMapSearchStars.m */; };
 		F6D9EB3F12536346005437D7 /* ViewUniverseItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9EB3E12536346005437D7 /* ViewUniverseItemController.m */; };
 		F6D9EC371253934A005437D7 /* LEBuildingGetShipsFor.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9EC361253934A005437D7 /* LEBuildingGetShipsFor.m */; };
@@ -851,6 +853,10 @@
 		F6D9AB45121BFA3F003E8D4E /* LEBuildingGetTradeableGlyphs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetTradeableGlyphs.m; sourceTree = "<group>"; };
 		F6D9AB47121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetTradeableStoredResources.h; sourceTree = "<group>"; };
 		F6D9AB48121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetTradeableStoredResources.m; sourceTree = "<group>"; };
+		F6D9E7D912705AAF001B1DF7 /* SelectTradeShipController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectTradeShipController.h; sourceTree = "<group>"; };
+		F6D9E7DA12705AAF001B1DF7 /* SelectTradeShipController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectTradeShipController.m; sourceTree = "<group>"; };
+		F6D9E7DC12705E71001B1DF7 /* LEBuildingGetTradeShips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetTradeShips.h; sourceTree = "<group>"; };
+		F6D9E7DD12705E71001B1DF7 /* LEBuildingGetTradeShips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetTradeShips.m; sourceTree = "<group>"; };
 		F6D9EB0612535DF0005437D7 /* LEMapSearchStars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEMapSearchStars.h; sourceTree = "<group>"; };
 		F6D9EB0712535DF0005437D7 /* LEMapSearchStars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEMapSearchStars.m; sourceTree = "<group>"; };
 		F6D9EB3D12536346005437D7 /* ViewUniverseItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewUniverseItemController.h; sourceTree = "<group>"; };
@@ -1655,6 +1661,8 @@
 				F6DA5A58124E69E9005D11F6 /* LEStatsSpyRank.m */,
 				F6DA5A5A124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.h */,
 				F6DA5A5B124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.m */,
+				F6D9E7DC12705E71001B1DF7 /* LEBuildingGetTradeShips.h */,
+				F6D9E7DD12705E71001B1DF7 /* LEBuildingGetTradeShips.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -2015,6 +2023,8 @@
 				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
 				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
+				F6D9E7D912705AAF001B1DF7 /* SelectTradeShipController.h */,
+				F6D9E7DA12705AAF001B1DF7 /* SelectTradeShipController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2484,6 +2494,8 @@
 				F68709271266A54200068237 /* ViewVotingOptionsController.m in Sources */,
 				F6D721641267D93B00B45966 /* ViewUniverseItemUnsendableShipsController.m in Sources */,
 				F6DA2FE1126C657500F93CD8 /* MissionCommand.m in Sources */,
+				F6D9E7DB12705AAF001B1DF7 /* SelectTradeShipController.m in Sources */,
+				F6D9E7DE12705E71001B1DF7 /* LEBuildingGetTradeShips.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

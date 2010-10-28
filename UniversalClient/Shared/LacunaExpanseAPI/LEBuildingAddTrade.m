@@ -25,10 +25,11 @@
 @synthesize offerPlanId;
 @synthesize offerPrisonerId;
 @synthesize offerShipId;
+@synthesize tradeShipId;
 @synthesize tradeId;
 
 
-- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl askType:(NSString *)inAskType askQuantity:(NSDecimalNumber *)inAskQuantity offerType:(NSString *)inOfferType offerQuantity:(NSDecimalNumber *)inOfferQuantity offerGlyphId:(NSString *)inOfferGlyphId offerPlanId:(NSString *)inOfferPlanId offerPrisonerId:(NSString *)inOfferPrisonerId offerShipId:(NSString *)inOfferShipId {
+- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl askType:(NSString *)inAskType askQuantity:(NSDecimalNumber *)inAskQuantity offerType:(NSString *)inOfferType offerQuantity:(NSDecimalNumber *)inOfferQuantity offerGlyphId:(NSString *)inOfferGlyphId offerPlanId:(NSString *)inOfferPlanId offerPrisonerId:(NSString *)inOfferPrisonerId offerShipId:(NSString *)inOfferShipId tradeShipId:(NSString *)inTradeShipId {
 	self.buildingId = inBuildingId;
 	self.buildingUrl = inBuildingUrl;
 	self.askType = inAskType;
@@ -39,6 +40,7 @@
 	self.offerPlanId = inOfferPlanId;
 	self.offerPrisonerId = inOfferPrisonerId;
 	self.offerShipId = inOfferShipId;
+	self.tradeShipId = inTradeShipId;
 	return [self initWithCallback:inCallback target:(NSObject *)inTarget];
 }
 
@@ -64,7 +66,12 @@
 	if (self.offerShipId) {
 		[offer setObject:self.offerShipId forKey:@"ship_id"];
 	}
-	NSArray *params = _array([Session sharedInstance].sessionId, self.buildingId, offer, ask);
+	NSMutableArray *params = _array([Session sharedInstance].sessionId, self.buildingId, offer, ask);
+
+	if (self.tradeShipId) {
+		[params addObject:_dict(self.tradeShipId, @"ship_id", [NSNumber numberWithInt:1], @"stay")];
+	}
+	
 	return params;
 }
 
@@ -94,6 +101,8 @@
 	self.offerGlyphId = nil;
 	self.offerPlanId = nil;
 	self.offerPrisonerId = nil;
+	self.tradeShipId = nil;
+	self.tradeId = nil;
 	[super dealloc];
 }
 

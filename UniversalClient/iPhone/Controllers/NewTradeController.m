@@ -32,7 +32,8 @@
 
 typedef enum {
 	SECTION_HAVE,
-	SECTION_WANT
+	SECTION_WANT,
+	SECTION_SELECT_SHIP
 } SECTIONS;
 
 
@@ -44,6 +45,11 @@ typedef enum {
 	HAVE_ROW_SELECT_RESOURCE,
 	HAVE_ROW_SELECT_SHIP
 } HAVE_ROWS;
+
+
+typedef enum {
+	SHIP_ROW_SELECT,
+} SHIP_ROWS;
 
 
 @interface NewTradeController (PrivateMethods)
@@ -59,6 +65,7 @@ typedef enum {
 
 @synthesize baseTradeBuilding;
 @synthesize trade;
+@synthesize sections;
 
 
 #pragma mark -
@@ -68,7 +75,15 @@ typedef enum {
     [super viewDidLoad];
 	
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStyleDone target:self action:@selector(post)] autorelease];
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Have"], [LEViewSectionTab tableView:self.tableView withText:@"Want"]);
+
+	if (self.baseTradeBuilding.selectTradeShip) {
+		self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Have"], [LEViewSectionTab tableView:self.tableView withText:@"Want"], [LEViewSectionTab tableView:self.tableView withText:@"Trade Ship"]);
+		self.sections = _array([NSNumber numberWithInt:SECTION_HAVE], [NSNumber numberWithInt:SECTION_WANT], [NSNumber numberWithInt:SECTION_SELECT_SHIP]);
+	} else {
+		self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Have"], [LEViewSectionTab tableView:self.tableView withText:@"Want"]);
+		self.sections = _array([NSNumber numberWithInt:SECTION_HAVE], [NSNumber numberWithInt:SECTION_WANT]);
+	}
+	
 	
 	if (!self.trade) {
 		self.trade = [[[Trade alloc] init] autorelease];
@@ -96,17 +111,28 @@ typedef enum {
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 2;
+	if (self.baseTradeBuilding.selectTradeShip) {
+		return 3;
+	} else {
+		return 2;
+	}
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	switch (section) {
+	switch (_intv([self.sections objectAtIndex:section])) {
 		case SECTION_HAVE:
 			return 6;
 			break;
 		case SECTION_WANT:
 			return 1;
+			break;
+		case SECTION_SELECT_SHIP:
+			if (self.trade.tradeShipId) {
+				return 1;
+			} else {
+				return 1;
+			}
 			break;
 		default:
 			return 0;
@@ -115,7 +141,7 @@ typedef enum {
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	switch (indexPath.section) {
+	switch (_intv([self.sections objectAtIndex:indexPath.section])) {
 		case SECTION_HAVE:
 			switch (indexPath.row) {
 				case HAVE_ROW_SELECTED_ITEM:
@@ -148,6 +174,20 @@ typedef enum {
 		case SECTION_WANT:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
+		case SECTION_SELECT_SHIP:
+			if (self.trade.tradeShipId) {
+				switch (indexPath.row) {
+					case SHIP_ROW_SELECT:
+						return [LETableViewCellShip getHeightForTableView:tableView];
+						break;
+					default:
+						return 0.0;
+						break;
+				}
+			} else {
+				return [LETableViewCellButton getHeightForTableView:tableView];
+			}
+			break;
 		default:
 			return 0;
 	}
@@ -158,7 +198,7 @@ typedef enum {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = nil;
 	
-	switch (indexPath.section) {
+	switch (_intv([self.sections objectAtIndex:indexPath.section])) {
 		case SECTION_HAVE:
 			switch (indexPath.row) {
 				case HAVE_ROW_SELECTED_ITEM:
@@ -237,6 +277,26 @@ typedef enum {
 			}
 			cell = wantButtonCell;
 			break;
+		case SECTION_SELECT_SHIP:
+			if (self.trade.tradeShipId) {
+				switch (indexPath.row) {
+					case SHIP_ROW_SELECT:
+						; //DO NOT REMOVE
+						Ship *tradeShip = [self.baseTradeBuilding.tradeShipsById objectForKey:self.trade.tradeShipId];
+						LETableViewCellShip *tradeShipCell = [LETableViewCellShip getCellForTableView:tableView isSelectable:YES];
+						[tradeShipCell setShip:tradeShip];
+						cell = tradeShipCell;
+						break;
+					default:
+						cell = nil;
+						break;
+				}
+			} else {
+				LETableViewCellButton *selectTradeShipButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+				selectTradeShipButtonCell.textLabel.text = @"Any Ship With Cargo Space";
+				cell = selectTradeShipButtonCell;
+			}
+			break;
 	}
 
     return cell;
@@ -247,7 +307,7 @@ typedef enum {
 #pragma mark UITableViewDataSource Methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	switch (indexPath.section) {
+	switch (_intv([self.sections objectAtIndex:indexPath.section])) {
 		case SECTION_HAVE:
 			switch (indexPath.row) {
 				case HAVE_ROW_SELECT_GLYPH:
@@ -295,8 +355,18 @@ typedef enum {
 			self->selectResourceTypeController.baseTradeBuilding = self.baseTradeBuilding;
 			[self.navigationController pushViewController:self->selectResourceTypeController animated:YES];
 			break;
+		case SECTION_SELECT_SHIP:
+			if (indexPath.row == 0) {
+				self->selectTradeShipController = [[SelectTradeShipController create] retain];
+				self->selectTradeShipController.delegate = self;
+				self->selectTradeShipController.baseTradeBuilding = self.baseTradeBuilding;
+				[self.navigationController pushViewController:self->selectTradeShipController animated:YES];
+				break;
+			}
+			break;
 	}
 }
+
 
 #pragma mark -
 #pragma mark Memory management
@@ -309,6 +379,7 @@ typedef enum {
 }
 
 - (void)viewDidUnload {
+	self.sections = nil;
     [super viewDidUnload];
 }
 
@@ -320,6 +391,8 @@ typedef enum {
 	[self->selectPlanController release];
 	[self->selectResourceTypeController release];
 	[self->selectStoredResourceController release];
+	[self->selectTradeShipController release];
+	self->selectTradeShipController = nil;
     [super dealloc];
 }
 
@@ -437,6 +510,18 @@ typedef enum {
 	[self.navigationController popViewControllerAnimated:YES];
 	[self->selectResourceTypeController release];
 	self->selectResourceTypeController = nil;
+	[self.tableView reloadData];
+}
+
+
+#pragma mark -
+#pragma mark SelectTradeShipController Methods
+
+- (void)tradeShipSelected:(Ship *)ship {
+	self.trade.tradeShipId = ship.id;
+	[self.navigationController popViewControllerAnimated:YES];
+	[self->selectTradeShipController release];
+	self->selectTradeShipController = nil;
 	[self.tableView reloadData];
 }
 

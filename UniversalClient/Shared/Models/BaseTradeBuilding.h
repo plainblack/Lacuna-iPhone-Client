@@ -16,31 +16,6 @@
 
 
 @interface BaseTradeBuilding : Building {
-	NSInteger availableTradePageNumber;
-	NSDecimalNumber *availableTradeCount;
-	NSDate *availableTradesUpdated;
-	NSMutableArray *availableTrades;
-	NSString *captchaGuid;
-	NSString *captchaUrl;
-	NSInteger myTradePageNumber;
-	NSDecimalNumber *myTradeCount;
-	NSDate *myTradesUpdated;
-	NSMutableArray *myTrades;
-	NSMutableArray *glyphs;
-	NSMutableDictionary *glyphsById;
-	NSDecimalNumber *cargoUserPerGlyph;
-	NSMutableArray *plans;
-	NSMutableDictionary *plansById;
-	NSDecimalNumber *cargoUserPerPlan;
-	NSMutableArray *prisoners;
-	NSMutableDictionary *prisonersById;
-	NSDecimalNumber *cargoUserPerPrisoner;
-	NSMutableArray *resourceTypes;
-	NSMutableArray *ships;
-	NSMutableDictionary *shipsById;
-	NSDecimalNumber *cargoUserPerShip;
-	NSMutableArray *storedResources;
-	NSDecimalNumber *cargoUserPerStoredResource;
 	id itemPushTarget;
 	SEL itemPushCallback;
 	id oneForOneTradeTarget;
@@ -49,8 +24,6 @@
 	SEL postTradeCallback;
 	id acceptTradeTarget;
 	SEL acceptTradeCallback;
-	BOOL usesEssentia;
-	NSDecimalNumber *maxCargoSize;
 }
 
 
@@ -80,8 +53,11 @@
 @property (nonatomic, retain) NSMutableArray *storedResources;
 @property (nonatomic, retain) NSDecimalNumber *cargoUserPerStoredResource;
 @property (nonatomic, readonly) BOOL usesEssentia;
+@property (nonatomic, readonly) BOOL selectTradeShip;
 @property (nonatomic, retain) NSDecimalNumber *maxCargoSize;
-
+@property (nonatomic, retain) NSMutableArray *tradeShips;
+@property (nonatomic, retain) NSMutableDictionary *tradeShipsById;
+@property (nonatomic, retain) NSMutableDictionary *tradeShipsTravelTime;
 
 
 - (void)clearLoadables;
@@ -91,6 +67,7 @@
 - (void)loadTradeableResourceTypes;
 - (void)loadTradeableShips;
 - (void)loadTradeableStoredResources;
+- (void)loadTradeShipsToBody:(NSString *)targetBodyId;
 - (void)removeTradeableStoredResource:(NSDictionary *)storedResource;
 - (void)addTradeableStoredResource:(NSDictionary *)storedResource;
 - (NSDecimalNumber *)calculateStorageForGlyphs:(NSInteger)numGlyphs plans:(NSInteger)numPlans prisoners:(NSInteger)numPrisoners storedResources:(NSDecimalNumber *)numStoredResources ships:(NSInteger)numShips;

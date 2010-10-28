@@ -39,7 +39,6 @@
 
 - (void)processSuccess {
 	//NSDictionary *result = [self.response objectForKey:@"result"];
-	NSLog(@"Push Items response: %@", self.response);
 }
 
 

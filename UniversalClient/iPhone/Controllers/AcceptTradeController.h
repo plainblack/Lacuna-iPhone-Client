@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LETableViewControllerGrouped.h"
+#import "SelectTradeShipController.h"
 
 
 @class BaseTradeBuilding;
@@ -15,16 +16,15 @@
 @class LETableViewCellTextEntry;
 
 
-@interface AcceptTradeController : LETableViewControllerGrouped <UITextFieldDelegate> {
-	BaseTradeBuilding *baseTradeBuilding;
-	Trade *trade;
-	LETableViewCellTextEntry *answerCell;
+@interface AcceptTradeController : LETableViewControllerGrouped <UITextFieldDelegate, SelectTradeShipControllerDelegate> {
+	SelectTradeShipController *selectTradeShipController;
 }
 
 
 @property (nonatomic, retain) BaseTradeBuilding *baseTradeBuilding;
 @property (nonatomic, assign) Trade *trade;
 @property (nonatomic, retain) LETableViewCellTextEntry *answerCell;
+@property (nonatomic, retain) NSMutableArray *sections;
 
 
 - (IBAction)acceptTrade;

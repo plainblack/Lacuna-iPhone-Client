@@ -14,6 +14,8 @@
 
 @synthesize targetId;
 @synthesize items;
+@synthesize tradeShipId;
+@synthesize stayAtTarget;
 
 
 #pragma mark -
@@ -22,6 +24,7 @@
 - (id) init {
     if (self = [super init]) {
 		self.items = [NSMutableArray arrayWithCapacity:1];
+		self.stayAtTarget = NO;
 	}
 	
 	return self;
@@ -30,6 +33,7 @@
 - (void)dealloc {
 	self.targetId = nil;
 	self.items = nil;
+	self.tradeShipId = nil;
 	[super dealloc];
 }
 

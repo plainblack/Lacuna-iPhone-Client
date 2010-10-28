@@ -19,25 +19,38 @@
 @synthesize buildingUrl;
 @synthesize targetId;
 @synthesize items;
+@synthesize tradeShipId;
+@synthesize stayAtTarget;
 
 
-- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl targetId:(NSString *)inTargetId items:(NSMutableArray *)inItems {
+- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl targetId:(NSString *)inTargetId items:(NSMutableArray *)inItems tradeShipId:(NSString *)inTradeShipId stayAtTarget:(BOOL)inStayAtTarget {
 	self.buildingId = inBuildingId;
 	self.buildingUrl = inBuildingUrl;
 	self.targetId = inTargetId;
 	self.items = inItems;
+	self.tradeShipId = inTradeShipId;
+	self.stayAtTarget = inStayAtTarget;
 	return [self initWithCallback:inCallback target:(NSObject *)inTarget];
 }
 
 
 - (id)params {
-	return _array([Session sharedInstance].sessionId, self.buildingId, self.targetId, self.items);
+	NSMutableArray *params = _array([Session sharedInstance].sessionId, self.buildingId, self.targetId, self.items);
+	
+	if (self.tradeShipId) {
+		if (self.stayAtTarget) {
+			[params addObject:_dict(self.tradeShipId, @"ship_id", [NSNumber numberWithInt:1], @"stay")];
+		} else {
+			[params addObject:_dict(self.tradeShipId, @"ship_id")];
+		}
+	}
+	NSLog(@"Item Push Params: %@", params);
+	return params;
 }
 
 
 - (void)processSuccess {
 	//NSDictionary *result = [self.response objectForKey:@"result"];
-	NSLog(@"Push Items response: %@", self.response);
 }
 
 
@@ -56,6 +69,7 @@
 	self.buildingUrl = nil;
 	self.targetId = nil;
 	self.items = nil;
+	self.tradeShipId = nil;
 	[super dealloc];
 }
 

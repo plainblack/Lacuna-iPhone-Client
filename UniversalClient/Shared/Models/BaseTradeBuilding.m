@@ -29,6 +29,7 @@
 #import "LEBuildingGetTradeablePrisoners.h"
 #import "LEBuildingGetTradeableShips.h"
 #import "LEBuildingGetTradeableStoredResources.h"
+#import "LEBuildingGetTradeShips.h"
 #import "LETableViewCellButton.h";
 #import "LETableViewCellLabeledText.h"
 #import "ViewAvailableTradesController.h"
@@ -67,7 +68,11 @@
 @synthesize storedResources;
 @synthesize cargoUserPerStoredResource;
 @synthesize usesEssentia;
+@synthesize selectTradeShip;
 @synthesize maxCargoSize;
+@synthesize tradeShips;
+@synthesize tradeShipsById;
+@synthesize tradeShipsTravelTime;
 
 
 #pragma mark -
@@ -98,6 +103,9 @@
 	self.storedResources = nil;
 	self.cargoUserPerStoredResource = nil;
 	self.maxCargoSize = nil;
+	self.tradeShips = nil;
+	self.tradeShipsById = nil;
+	self.tradeShipsTravelTime = nil;
 	[super dealloc];
 }
 
@@ -128,8 +136,10 @@
 	if ([self.buildingUrl isEqualToString:TRANSPORTER_URL]) {
 		[rows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_1_FOR_1_TRADE]];
 		self->usesEssentia = YES;
+		self->selectTradeShip = NO;
 	} else {
 		self->usesEssentia = NO;
+		self->selectTradeShip = YES;
 	}
 	
 	self.sections = _array(productionSection, _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", rows, @"rows"), [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
@@ -262,6 +272,9 @@
 	self.cargoUserPerShip = nil;
 	self.storedResources = nil;
 	self.cargoUserPerStoredResource = nil;
+	self.tradeShips = nil;
+	self.tradeShipsById = nil;
+	self.tradeShipsTravelTime = nil;
 }
 
 
@@ -291,6 +304,11 @@
 
 - (void)loadTradeableStoredResources {
 	[[[LEBuildingGetTradeableStoredResources alloc] initWithCallback:@selector(loadedTradeableStoredResources:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+}
+
+
+- (void)loadTradeShipsToBody:(NSString *)targetBodyId {
+	[[[LEBuildingGetTradeShips alloc] initWithCallback:@selector(loadedTradeShips:) target:self buildingId:self.id buildingUrl:self.buildingUrl targetBodyId:targetBodyId] autorelease];
 }
 
 
@@ -392,7 +410,7 @@
 - (void)pushItems:(ItemPush *)itemPush target:(id)target callback:(SEL)callback {
 	self->itemPushTarget = target;
 	self->itemPushCallback = callback;
-	[[[LEBuildingPushItems alloc] initWithCallback:@selector(pushedItems:) target:self buildingId:self.id buildingUrl:self.buildingUrl targetId:itemPush.targetId items:itemPush.items] autorelease];
+	[[[LEBuildingPushItems alloc] initWithCallback:@selector(pushedItems:) target:self buildingId:self.id buildingUrl:self.buildingUrl targetId:itemPush.targetId items:itemPush.items tradeShipId:itemPush.tradeShipId stayAtTarget:itemPush.stayAtTarget] autorelease];
 }
 
 
@@ -406,14 +424,14 @@
 - (void)postTrade:(Trade *)trade target:(id)target callback:(SEL)callback {
 	self->postTradeTarget = target;
 	self->postTradeCallback = callback;
-	[[[LEBuildingAddTrade alloc] initWithCallback:@selector(addedTrade:) target:self buildingId:self.id buildingUrl:self.buildingUrl askType:trade.askType askQuantity:trade.askQuantity offerType:trade.offerType offerQuantity:trade.offerQuantity offerGlyphId:trade.offerGlyphId offerPlanId:trade.offerPlanId offerPrisonerId:trade.offerPrisonerId offerShipId:trade.offerShipId] autorelease];
+	[[[LEBuildingAddTrade alloc] initWithCallback:@selector(addedTrade:) target:self buildingId:self.id buildingUrl:self.buildingUrl askType:trade.askType askQuantity:trade.askQuantity offerType:trade.offerType offerQuantity:trade.offerQuantity offerGlyphId:trade.offerGlyphId offerPlanId:trade.offerPlanId offerPrisonerId:trade.offerPrisonerId offerShipId:trade.offerShipId tradeShipId:trade.tradeShipId] autorelease];
 }
 
 
 - (void)acceptTrade:(Trade *)trade solution:(NSString *)solution target:(id)target callback:(SEL)callback {
 	self->acceptTradeTarget = target;
 	self->acceptTradeCallback = callback;
-	[[[LEBuildingAcceptTrade alloc] initWithCallback:@selector(acceptedTrade:) target:self buildingId:self.id buildingUrl:self.buildingUrl tradeId:trade.id captchaGuid:self.captchaGuid captchaSolution:solution] autorelease];
+	[[[LEBuildingAcceptTrade alloc] initWithCallback:@selector(acceptedTrade:) target:self buildingId:self.id buildingUrl:self.buildingUrl tradeId:trade.id tradeShipId:trade.tradeShipId captchaGuid:self.captchaGuid captchaSolution:solution] autorelease];
 }
 
 
@@ -500,6 +518,30 @@
 	}];
 	[tmpArray sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES] autorelease])];
 	self.storedResources = tmpArray;
+	return nil;
+}
+
+
+- (id)loadedTradeShips:(LEBuildingGetTradeShips *)request {
+	NSMutableArray *tmpArray = [NSMutableArray arrayWithCapacity:[request.ships count]];
+	NSMutableDictionary *tmpDict = [NSMutableDictionary dictionaryWithCapacity:[request.ships count]];
+	NSMutableDictionary *tmpTravelTimes = [NSMutableDictionary dictionaryWithCapacity:[request.ships count]];
+	[request.ships enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+		Ship *ship = [[[Ship alloc] init] autorelease];
+		[ship parseData:obj];
+		ship.task = @"Docked";
+		[tmpArray addObject:ship];
+		[tmpDict setObject:ship forKey:ship.id];
+		NSDecimalNumber *estimatedTravelTime = [obj objectForKey:@"estimated_travel_time"];
+		if (isNull(estimatedTravelTime)) {
+			estimatedTravelTime = [NSDecimalNumber zero];
+			NSLog(@"Could not find estimated_travel_time in: %@", obj);
+		}
+		[tmpTravelTimes setObject:estimatedTravelTime forKey:ship.id];
+	}];
+	self.tradeShips = tmpArray;
+	self.tradeShipsById = tmpDict;
+	self.tradeShipsTravelTime = tmpTravelTimes;
 	return nil;
 }
 

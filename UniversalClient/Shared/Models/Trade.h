@@ -10,18 +10,6 @@
 
 
 @interface Trade : NSObject {
-	NSString *id;
-	NSDate *dateOffered;
-	NSString *askType;
-	NSDecimalNumber *askQuantity;
-	NSString *askDescription;
-	NSString *offerType;
-	NSDecimalNumber *offerQuantity;
-	NSString *offerGlyphId;
-	NSString *offerPlanId;
-	NSString *offerPrisonerId;
-	NSString *offerShipId;
-	NSString *offerDescription;
 }
 
 
@@ -37,6 +25,10 @@
 @property (nonatomic, retain) NSString *offerPrisonerId;
 @property (nonatomic, retain) NSString *offerShipId;
 @property (nonatomic, retain) NSString *offerDescription;
+@property (nonatomic, retain) NSString *tradeShipId;
+@property (nonatomic, retain) NSString *bodyId;
+@property (nonatomic, retain) NSString *empireId;
+@property (nonatomic, retain) NSString *empireName;
 
 
 - (void)parseData:(NSDictionary *)data;
