@@ -66,7 +66,6 @@
 #pragma mark Instance Methods
 
 - (void)parseData:(NSDictionary *)data {
-	NSLog(@"Trade.parseData: %@", data);
 	self.id = [Util idFromDict:data named:@"id"];
 	self.dateOffered = [Util date:[data objectForKey:@"date_offered"]];
 	self.askType = [data objectForKey:@"ask_type"];

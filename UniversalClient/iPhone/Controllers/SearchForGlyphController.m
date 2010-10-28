@@ -61,7 +61,7 @@
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
 	if (self.archaeology.availableOreTypes) {
-		return [self.archaeology.availableOreTypes count];
+		return MAX([self.archaeology.availableOreTypes count], 1);
 	} else {
 		return 1;
 	}
@@ -74,8 +74,13 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
 	if (self.archaeology.availableOreTypes) {
-		NSDictionary *oreTypeData = [self.archaeology.availableOreTypes objectAtIndex:row];
-		return [NSString stringWithFormat:@"%@ (%@)", [oreTypeData objectForKey:@"type"], [oreTypeData objectForKey:@"amount"] ];
+		if ([self.archaeology.availableOreTypes count] > 0) {
+			NSDictionary *oreTypeData = [self.archaeology.availableOreTypes objectAtIndex:row];
+			return [NSString stringWithFormat:@"%@ (%@)", [oreTypeData objectForKey:@"type"], [oreTypeData objectForKey:@"amount"] ];
+		} else {
+			return @"No Ore Types Available";
+		}
+
 	} else {
 		return @"Loading";
 	}
@@ -107,9 +112,13 @@
 #pragma mark Instance Methods
 
 - (IBAction)search {
-	NSString *selectedOreType = [[self.archaeology.availableOreTypes objectAtIndex:[self.orePicker selectedRowInComponent:0]] objectForKey:@"type"];
-	[self.archaeology searchForGlyph:selectedOreType];
-	[self.navigationController popViewControllerAnimated:YES];
+	if (self.archaeology.availableOreTypes) {
+		if ([self.archaeology.availableOreTypes count] > 0) {
+			NSString *selectedOreType = [[self.archaeology.availableOreTypes objectAtIndex:[self.orePicker selectedRowInComponent:0]] objectForKey:@"type"];
+			[self.archaeology searchForGlyph:selectedOreType];
+			[self.navigationController popViewControllerAnimated:YES];
+		}
+	}
 }
 
 

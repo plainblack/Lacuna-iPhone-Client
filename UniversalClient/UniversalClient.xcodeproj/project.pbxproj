@@ -1467,6 +1467,8 @@
 				F6D9AB3C121BFA13003E8D4E /* LEBuildingGetTradeableShips.m */,
 				F6D9AB47121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.h */,
 				F6D9AB48121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.m */,
+				F6D9E7DC12705E71001B1DF7 /* LEBuildingGetTradeShips.h */,
+				F6D9E7DD12705E71001B1DF7 /* LEBuildingGetTradeShips.m */,
 				F6FB458611F515A700E24EAC /* LEBuildingGlyphAssemble.h */,
 				F6FB458711F515A700E24EAC /* LEBuildingGlyphAssemble.m */,
 				F6FB458311F5159800E24EAC /* LEBuildingGlyphs.h */,
@@ -1661,8 +1663,6 @@
 				F6DA5A58124E69E9005D11F6 /* LEStatsSpyRank.m */,
 				F6DA5A5A124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.h */,
 				F6DA5A5B124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.m */,
-				F6D9E7DC12705E71001B1DF7 /* LEBuildingGetTradeShips.h */,
-				F6D9E7DD12705E71001B1DF7 /* LEBuildingGetTradeShips.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -1699,6 +1699,8 @@
 				F6E7671011D68C6400778C1D /* Empire.m */,
 				F68DC4F911CD1B0D00144A49 /* EmpireProfile.h */,
 				F68DC4FA11CD1B0D00144A49 /* EmpireProfile.m */,
+				F68708F212669DFB00068237 /* Entertainment.h */,
+				F68708F312669DFB00068237 /* Entertainment.m */,
 				F64C43D711F3B50E002981EC /* FoodReserve.h */,
 				F64C43D811F3B50E002981EC /* FoodReserve.m */,
 				F6FB458911F517FE00E24EAC /* Glyph.h */,
@@ -1715,6 +1717,8 @@
 				F6E5E5AA1205A9A000365AA2 /* MiningMinistry.m */,
 				F6E5E5D91205BE1C00365AA2 /* MiningPlatform.h */,
 				F6E5E5DA1205BE1C00365AA2 /* MiningPlatform.m */,
+				F6DA2FDF126C657500F93CD8 /* MissionCommand.h */,
+				F6DA2FE0126C657500F93CD8 /* MissionCommand.m */,
 				F60AF51F1224A4AE005B2F0E /* MyAllianceInvite.h */,
 				F60AF5201224A4AE005B2F0E /* MyAllianceInvite.m */,
 				F61D0D3C11E24B8100B06382 /* Network19.h */,
@@ -1775,10 +1779,6 @@
 				F692B7C9121861EC00E740C1 /* Trade.m */,
 				F61D0C2111E2355600B06382 /* WasteRecycling.h */,
 				F61D0C2211E2355600B06382 /* WasteRecycling.m */,
-				F68708F212669DFB00068237 /* Entertainment.h */,
-				F68708F312669DFB00068237 /* Entertainment.m */,
-				F6DA2FDF126C657500F93CD8 /* MissionCommand.h */,
-				F6DA2FE0126C657500F93CD8 /* MissionCommand.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -1903,6 +1903,8 @@
 				F6D3F6BA122193C30090E31E /* SelectTradeablePrisonerController.m */,
 				F6D3F6BC122193D70090E31E /* SelectTradeableShipController.h */,
 				F6D3F6BD122193D70090E31E /* SelectTradeableShipController.m */,
+				F6D9E7D912705AAF001B1DF7 /* SelectTradeShipController.h */,
+				F6D9E7DA12705AAF001B1DF7 /* SelectTradeShipController.m */,
 				F6E0B7781253AD2A00D0C870 /* SendShipController.h */,
 				F6E0B7791253AD2A00D0C870 /* SendShipController.m */,
 				F6E0B8371253CA3300D0C870 /* SendSpiesController.h */,
@@ -2023,8 +2025,6 @@
 				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
 				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
-				F6D9E7D912705AAF001B1DF7 /* SelectTradeShipController.h */,
-				F6D9E7DA12705AAF001B1DF7 /* SelectTradeShipController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
