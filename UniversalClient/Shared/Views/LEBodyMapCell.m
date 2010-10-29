@@ -10,6 +10,7 @@
 #import "LEMacros.h"
 #import "Util.h"
 #import "Session.h"
+#import "Body.h"
 #import "MapBuilding.h"
 
 #define LEVEL_FONT [UIFont fontWithName:@"Verdana-Bold" size:28.0]

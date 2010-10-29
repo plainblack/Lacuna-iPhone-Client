@@ -10,13 +10,10 @@
 
 
 @class MapBuilding;
+@class Body;
 
 
 @interface LEBodyMapCell : UIView {
-	BOOL showOverlay;
-	MapBuilding *mapBuilding;
-	NSDecimalNumber *buildingX;
-	NSDecimalNumber *buildingY;
 	id target;
 	SEL callback;
 }

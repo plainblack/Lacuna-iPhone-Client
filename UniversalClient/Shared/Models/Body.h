@@ -14,30 +14,6 @@
 
 
 @interface Body : BaseMapItem {
-	NSString *starId;
-	NSString *starName;
-	NSDecimalNumber *orbit;
-	NSString *imageName;
-	NSDecimalNumber *size;
-	NSDecimalNumber *planetWater;
-	NSMutableDictionary *ores;
-	NSString *empireId;
-	NSString *empireName;
-	NSString *alignment;
-	BOOL needsSurfaceRefresh;
-	NSDecimalNumber *buildingCount;
-	NoLimitResource *happiness;
-	StoredResource *energy;
-	StoredResource *food;
-	StoredResource *ore;
-	StoredResource *waste;
-	StoredResource *water;
-	NSMutableDictionary *buildingMap;
-	NSString *surfaceImageName;
-	Building *currentBuilding;
-	BOOL needsRefresh;
-	NSMutableSet *incomingForeignShips;
-	BOOL ignoreIncomingForeignShipData;
 }
 
 
