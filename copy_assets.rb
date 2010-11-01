@@ -18,7 +18,7 @@ def syncDirs(sourceDirName, targetDirName)
         end
       end
     else
-      if x != "400" && x != "300" && !( (sourceDirName =~ /planet_side$/) && (x =~ /[0-9].png$/) ) && x != "ui RyanKnope" && x != "ui" && x != "web ui" && x != ".git"
+      if x != "400" && x != "300" && x != "50" && !( (sourceDirName =~ /planet_side$/) && (x =~ /[0-9].png$/) ) && x != "ui RyanKnope" && x != "ui" && x != "web ui" && x != ".git"
         if File.directory?(sourcePathName) 
           puts "#{sourcePathName} is missing, making"
           Dir.mkdir(targetPathName)
