@@ -349,6 +349,7 @@ typedef enum {
 				mapCell.mapBuilding = [[[MapBuilding alloc] init] autorelease];
 				Session *session = [Session sharedInstance];
 				[session.body.buildingMap setObject:mapCell.mapBuilding forKey:loc];
+				session.body.buildingCount = [session.body.buildingCount decimalNumberByAdding:[NSDecimalNumber one]];
 			}
 			[mapCell.mapBuilding parseData:building];
 		}

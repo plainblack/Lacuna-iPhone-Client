@@ -127,7 +127,7 @@
 
 - (void)repaired {
 	self.efficiency = [NSDecimalNumber decimalNumberWithString:@"100"];
-	self.needsRefresh;
+	self.needsRefresh = YES;
 }
 
 

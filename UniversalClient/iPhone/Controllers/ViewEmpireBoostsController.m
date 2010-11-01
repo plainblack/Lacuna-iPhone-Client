@@ -232,22 +232,22 @@ typedef enum {
 	NSString *msg = nil;
 	switch (indexPath.section) {
 		case EMPIRE_BOOST_SECTION_ENERGY:
-			msg = [NSString stringWithFormat:@"Are you sure you want to spend 2 essentia to boost your Energy Production by 25%%?"];
+			msg = [NSString stringWithFormat:@"Are you sure you want to spend 5 essentia to boost your Energy Production by 25%%?"];
 			break;
 		case EMPIRE_BOOST_SECTION_FOOD:
-			msg = [NSString stringWithFormat:@"Are you sure you want to spend 2 essentia to boost your Food Production by 25%%?"];
+			msg = [NSString stringWithFormat:@"Are you sure you want to spend 5 essentia to boost your Food Production by 25%%?"];
 			break;
 		case EMPIRE_BOOST_SECTION_HAPPINESS:
-			msg = [NSString stringWithFormat:@"Are you sure you want to spend 2 essentia to boost your Happiness Production by 25%%?"];
+			msg = [NSString stringWithFormat:@"Are you sure you want to spend 5 essentia to boost your Happiness Production by 25%%?"];
 			break;
 		case EMPIRE_BOOST_SECTION_ORE:
-			msg = [NSString stringWithFormat:@"Are you sure you want to spend 2 essentia to boost your Ore Production by 25%%?"];
+			msg = [NSString stringWithFormat:@"Are you sure you want to spend 5 essentia to boost your Ore Production by 25%%?"];
 			break;
 		case EMPIRE_BOOST_SECTION_WATER:
-			msg = [NSString stringWithFormat:@"Are you sure you want to spend 2 essentia to boost your Water Production by 25%%?"];
+			msg = [NSString stringWithFormat:@"Are you sure you want to spend 5 essentia to boost your Water Production by 25%%?"];
 			break;
 		case EMPIRE_BOOST_SECTION_STORAGE:
-			msg = [NSString stringWithFormat:@"Are you sure you want to spend 2 essentia to boost your Storage Capacity by 25%%?"];
+			msg = [NSString stringWithFormat:@"Are you sure you want to spend 5 essentia to boost your Storage Capacity by 25%%?"];
 			break;
 	}
 	if (msg) {

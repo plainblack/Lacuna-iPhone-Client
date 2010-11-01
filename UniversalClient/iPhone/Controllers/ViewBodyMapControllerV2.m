@@ -122,6 +122,10 @@
 		[session.body loadBuildingMap];
 		self.plotsLabel.text = @"Loading";
 	}
+	[self->buttonsByLoc enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+		[obj setNeedsDisplay];
+	}];
+
 }
 
 
