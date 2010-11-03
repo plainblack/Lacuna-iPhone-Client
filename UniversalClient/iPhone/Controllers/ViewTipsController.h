@@ -15,12 +15,15 @@
 
 
 @property (nonatomic, retain) IBOutlet UIToolbar *toolbar;
+@property (nonatomic, retain) IBOutlet UILabel *tipLabel;
 @property (nonatomic, retain) IBOutlet UITextView *tipTextView;
+@property (nonatomic, retain) IBOutlet UISwitch *tipAlertSwitch;
 @property (nonatomic, retain) NSMutableArray *tips;
 
 
 - (IBAction)previousTip;
 - (IBAction)nextTip;
+- (IBAction)toggleTipAlert;
 
 
 @end

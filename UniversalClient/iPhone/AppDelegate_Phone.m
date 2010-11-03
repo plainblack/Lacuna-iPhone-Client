@@ -272,9 +272,12 @@
 				UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Welcome" message:@"Welcome to Lacuna Expanse. The Lacunan's have a message for you. Shall I taked you to your Inbox to view it?" delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil] autorelease];
 				[av show];
 			} else {
-				//KEVIN ADD USER PREF CHECK HERE
-				UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"View tips?" message:@"Welcome back! Would you like to view tips and hints?" delegate:self cancelButtonTitle:@"No and don't ask again" otherButtonTitles:@"Yes", @"No", nil] autorelease];
-				[av show];
+				NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+				BOOL hideTipsAlert = [userDefaults boolForKey:@"HideTipsAlert"];
+				if (!hideTipsAlert) {
+					UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"View tips?" message:@"Welcome back! Would you like to view tips and hints?" delegate:self cancelButtonTitle:@"No and don't ask again" otherButtonTitles:@"Yes", @"No", nil] autorelease];
+					[av show];
+				}
 			}
 
 		} else {
@@ -305,7 +308,8 @@
 		}
 	} else {
 		if (index == [alertView cancelButtonIndex]) {
-			//KEVIN SET USER PREF HERE
+			NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+			[userDefaults setBool:YES forKey:@"HideTipsAlert"];
 		} else {
 			NSLog(@"Index: %i", index);
 			if (index == 1) {
