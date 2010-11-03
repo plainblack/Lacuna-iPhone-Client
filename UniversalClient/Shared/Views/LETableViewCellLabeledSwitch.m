@@ -84,7 +84,7 @@
 		cell.autoresizesSubviews = YES;
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		
-		cell.label = [[[UILabel alloc] initWithFrame:CGRectMake(20, 12, 178, 21)] autorelease];
+		cell.label = [[[UILabel alloc] initWithFrame:CGRectMake(10, 12, 188, 21)] autorelease];
 		cell.label.backgroundColor = [UIColor clearColor];
 		cell.label.textAlignment = UITextAlignmentRight;
 		cell.label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;

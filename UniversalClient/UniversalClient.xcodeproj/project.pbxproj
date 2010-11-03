@@ -2008,6 +2008,9 @@
 				F6DA5A65124E770B005D11F6 /* ViewStatsControllerV2.h */,
 				F6DA5A66124E770B005D11F6 /* ViewStatsControllerV2.m */,
 				F6DA5A67124E770B005D11F6 /* ViewStatsControllerV2.xib */,
+				F6DE5275127F8B2C00986EC5 /* ViewTipsController.h */,
+				F6DE5276127F8B2C00986EC5 /* ViewTipsController.m */,
+				F6DE5277127F8B2C00986EC5 /* ViewTipsController.xib */,
 				F6EB02641202FB01001BFD68 /* ViewTravellingShipsController.h */,
 				F6EB02651202FB01001BFD68 /* ViewTravellingShipsController.m */,
 				F642C664122A154B00C596A7 /* ViewUniverseController.h */,
@@ -2030,9 +2033,6 @@
 				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
 				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
-				F6DE5275127F8B2C00986EC5 /* ViewTipsController.h */,
-				F6DE5276127F8B2C00986EC5 /* ViewTipsController.m */,
-				F6DE5277127F8B2C00986EC5 /* ViewTipsController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

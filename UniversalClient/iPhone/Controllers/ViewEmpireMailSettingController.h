@@ -15,11 +15,6 @@
 
 
 @interface ViewEmpireMailSettingController : LETableViewControllerGrouped <LETableViewCellLabeledSwitchDelegate> {
-	LETableViewCellLabeledSwitch *skipHappinessWarningsCell;
-	LETableViewCellLabeledSwitch *skipResourceWarningsCell;
-	LETableViewCellLabeledSwitch *skipPollutionWarningsCell;
-	LETableViewCellLabeledSwitch *skipMedalMessagesCell;
-	EmpireProfile *empireProfile;
 }
 
 

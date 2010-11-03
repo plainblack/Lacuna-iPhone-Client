@@ -256,7 +256,6 @@ static Session *sharedSession = nil;
 
 - (void)readItemDescriptions {
 	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"assets/resources" ofType:@"json"];
-	NSLog(@"Reading servers from: %@", filePath);
 	if (filePath) {
 		NSString *myText = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
 		if (myText) {
