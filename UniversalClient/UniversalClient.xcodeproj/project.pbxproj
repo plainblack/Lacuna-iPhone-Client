@@ -271,6 +271,8 @@
 		F6DD1FDC116D33FC0013C58D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F6DD1FDB116D33FC0013C58D /* Default.png */; };
 		F6DD2026116D561F0013C58D /* LETableViewCellButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DD2025116D561F0013C58D /* LETableViewCellButton.m */; };
 		F6DD2064116D5B3C0013C58D /* LEViewSectionTab.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DD2063116D5B3C0013C58D /* LEViewSectionTab.m */; };
+		F6DE5278127F8B2C00986EC5 /* ViewTipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DE5276127F8B2C00986EC5 /* ViewTipsController.m */; };
+		F6DE5279127F8B2C00986EC5 /* ViewTipsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6DE5277127F8B2C00986EC5 /* ViewTipsController.xib */; };
 		F6DEABFE125D5AF2001366C3 /* ChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DEABFC125D5AF2001366C3 /* ChatController.m */; };
 		F6DEABFF125D5AF2001366C3 /* ChatController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6DEABFD125D5AF2001366C3 /* ChatController.xib */; };
 		F6DEAC2C125D65BA001366C3 /* TutorialController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DEAC2A125D65BA001366C3 /* TutorialController.m */; };
@@ -910,6 +912,9 @@
 		F6DD2025116D561F0013C58D /* LETableViewCellButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellButton.m; sourceTree = "<group>"; };
 		F6DD2062116D5B3C0013C58D /* LEViewSectionTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEViewSectionTab.h; sourceTree = "<group>"; };
 		F6DD2063116D5B3C0013C58D /* LEViewSectionTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEViewSectionTab.m; sourceTree = "<group>"; };
+		F6DE5275127F8B2C00986EC5 /* ViewTipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewTipsController.h; sourceTree = "<group>"; };
+		F6DE5276127F8B2C00986EC5 /* ViewTipsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewTipsController.m; sourceTree = "<group>"; };
+		F6DE5277127F8B2C00986EC5 /* ViewTipsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewTipsController.xib; sourceTree = "<group>"; };
 		F6DEABFB125D5AF2001366C3 /* ChatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatController.h; sourceTree = "<group>"; };
 		F6DEABFC125D5AF2001366C3 /* ChatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatController.m; sourceTree = "<group>"; };
 		F6DEABFD125D5AF2001366C3 /* ChatController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatController.xib; sourceTree = "<group>"; };
@@ -2025,6 +2030,9 @@
 				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
 				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
+				F6DE5275127F8B2C00986EC5 /* ViewTipsController.h */,
+				F6DE5276127F8B2C00986EC5 /* ViewTipsController.m */,
+				F6DE5277127F8B2C00986EC5 /* ViewTipsController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2130,6 +2138,7 @@
 				F6DEAC2D125D65BA001366C3 /* TutorialController.xib in Resources */,
 				F6DEAC32125D65C4001366C3 /* SupportController.xib in Resources */,
 				F6DAA4B312647C54001F0F78 /* ServerAnnouncementController.xib in Resources */,
+				F6DE5279127F8B2C00986EC5 /* ViewTipsController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2496,6 +2505,7 @@
 				F6DA2FE1126C657500F93CD8 /* MissionCommand.m in Sources */,
 				F6D9E7DB12705AAF001B1DF7 /* SelectTradeShipController.m in Sources */,
 				F6D9E7DE12705E71001B1DF7 /* LEBuildingGetTradeShips.m in Sources */,
+				F6DE5278127F8B2C00986EC5 /* ViewTipsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

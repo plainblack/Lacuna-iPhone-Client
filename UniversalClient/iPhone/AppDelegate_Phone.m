@@ -17,6 +17,7 @@
 #import "ViewUniverseController.h"
 #import "SelectSpeciesTemplateController.h"
 #import "WebPageController.h"
+#import "ViewTipsController.h"
 
 
 @interface AppDelegate_Phone(PrivateMethod)
@@ -41,6 +42,7 @@
 @synthesize notConnectedView;
 @synthesize viewUniverseController;
 @synthesize viewUniverseNavigationController;
+@synthesize viewTipsController;
 
 
 #pragma mark -
@@ -72,8 +74,8 @@
         self.tabBarController.viewControllers = newViewControllers;
     }
 	
-	[window addSubview:self.tabBarController.view];
-    [window makeKeyAndVisible];
+	[self.window addSubview:self.tabBarController.view];
+    [self.window makeKeyAndVisible];
 
 	[application setStatusBarStyle:UIStatusBarStyleBlackOpaque];
 	[application setStatusBarHidden:NO withAnimation:YES];
@@ -86,7 +88,6 @@
 
 	Session *session = [Session sharedInstance];
 	[session addObserver:self forKeyPath:@"isLoggedIn" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-	[session addObserver:self forKeyPath:@"lacunanMessageId" options:(NSKeyValueObservingOptionNew) context:NULL];
 	
 	return YES;
 }
@@ -161,6 +162,10 @@
 	self.mailboxController = nil;
 	self.internetReachability = nil;
 	self.notConnectedView = nil;
+	self.viewUniverseController = nil;
+	self.viewUniverseNavigationController = nil;
+	self.viewTipsController = nil;
+	
 	[super dealloc];
 }
 
@@ -174,15 +179,20 @@
 }
 
 
+- (void)showMyWorld:(NSString *)bodyId {
+	self.myWorldController.bodyId = bodyId;
+	self.tabBarController.selectedViewController = self.myWorldsNavigationController;
+}
+
+
 - (void)showStarMapGridX:(NSDecimalNumber *)x gridY:(NSDecimalNumber *)y {
 	[self.viewUniverseController gotoGridX:x gridY:y];
 	self.tabBarController.selectedViewController = self.viewUniverseNavigationController;
 }
 
 
-- (void)showMyWorld:(NSString *)bodyId {
-	self.myWorldController.bodyId = bodyId;
-	self.tabBarController.selectedViewController = self.myWorldsNavigationController;
+- (void)showTips {
+	self.tabBarController.selectedViewController = self.viewTipsController;
 }
 
 
@@ -258,6 +268,15 @@
 			}
 			[session.empire addObserver:self forKeyPath:@"numNewMessages" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 			[self hideLogin];
+			if (session.lacunanMessageId) {
+				UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Welcome" message:@"Welcome to Lacuna Expanse. The Lacunan's have a message for you. Shall I taked you to your Inbox to view it?" delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil] autorelease];
+				[av show];
+			} else {
+				//KEVIN ADD USER PREF CHECK HERE
+				UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"View tips?" message:@"Welcome back! Would you like to view tips and hints?" delegate:self cancelButtonTitle:@"No and don't ask again" otherButtonTitles:@"Yes", @"No", nil] autorelease];
+				[av show];
+			}
+
 		} else {
 			[self.myWorldsNavigationController popToRootViewControllerAnimated:NO];
 			[self.myWorldController clear];
@@ -267,11 +286,6 @@
 			self.mailTabBarItem.badgeValue = nil;
 			[session.empire removeObserver:self forKeyPath:@"numNewMessages"];
 			[self displayLoginAnimated:YES];
-		}
-	} else if ([keyPath isEqualToString:@"lacunanMessageId"]) {
-		if (session.lacunanMessageId) {
-			UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Welcome" message:@"Welcome to Lacuna Expanse. The Lacunan's have a message for you. Shall I taked you to your Inbox to view it?" delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil] autorelease];
-			[av show];
 		}
 	}
 
@@ -283,11 +297,23 @@
 
 - (void) alertView:(UIAlertView *) alertView clickedButtonAtIndex:(int)index {
 	Session *session = [Session sharedInstance];
-	if (index != [alertView cancelButtonIndex]) {
-		if (session.lacunanMessageId) {
-			[self showMessage:session.lacunanMessageId];
+	if ([alertView.title isEqualToString:@"Welcome"]) {
+		if (index != [alertView cancelButtonIndex]) {
+			if (session.lacunanMessageId) {
+				[self showMessage:session.lacunanMessageId];
+			}
+		}
+	} else {
+		if (index == [alertView cancelButtonIndex]) {
+			//KEVIN SET USER PREF HERE
+		} else {
+			NSLog(@"Index: %i", index);
+			if (index == 1) {
+				[self showTips];
+			}
 		}
 	}
+
 }
 
 
@@ -333,7 +359,7 @@
     NetworkStatus netStatus = [reachability currentReachabilityStatus];
 	if (netStatus == NotReachable) {
 		if (!self.notConnectedView.superview) {
-			[window addSubview:self.notConnectedView];
+			[self.window addSubview:self.notConnectedView];
 		}
 
 	} else {
@@ -346,49 +372,3 @@
 
 @end
 
-/*
-- (void)applicationDidFinishLaunching:(UIApplication *)application {
-	
-    NSArray *initialViewControllers = [NSArray arrayWithArray:self.tabBarController.viewControllers];
-    NSArray *tabBarOrder = [[AppDelegate sharedSettingsService] tabBarOrder];
-    if (tabBarOrder) {
-        NSMutableArray *newViewControllers = [NSMutableArray arrayWithCapacity:initialViewControllers.count];
-        for (NSNumber *tabBarNumber in tabBarOrder) {
-            NSUInteger tabBarIndex = [tabBarNumber unsignedIntegerValue];
-            [newViewControllers addObject:[initialViewControllers objectAtIndex:tabBarIndex]];
-        }
-        self.tabBarController.viewControllers = newViewControllers;
-    }
-	
-    NSInteger tabBarSelectedIndex = [[AppDelegate sharedSettingsService] tabBarSelectedIndex];
-    if (NSIntegerMax == tabBarSelectedIndex) {
-        self.tabBarController.selectedViewController = self.tabBarController.moreNavigationController;
-    } else {
-        self.tabBarController.selectedIndex = tabBarSelectedIndex;
-    }
-	
-    /* Add the tab bar controller's current view as a subview of the window. * /
-    [self.window addSubview:self.tabBarController.view];
-}
-
-- (void)applicationWillTerminate:(UIApplication *)application {
-	
-    NSInteger tabBarSelectedIndex = self.tabBarController.selectedIndex;
-    [[AppDelegate sharedSettingsService] setTabBarSelectedIndex:tabBarSelectedIndex];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (void)tabBarController:(UITabBarController *)tabBarController didEndCustomizingViewControllers:(NSArray *)viewControllers changed:(BOOL)changed {
-	
-	NSUInteger count = tabBarController.viewControllers.count;
-	NSMutableArray *tabOrderArray = [[NSMutableArray alloc] initWithCapacity:count];
-	for (UIViewController *viewController in viewControllers) {
-		
-		NSInteger tag = viewController.tabBarItem.tag;
-		[tabOrderArray addObject:[NSNumber numberWithInteger:tag]];
-	}
-	
-	[[AppDelegate sharedSettingsService] setTabBarOrder:[NSArray arrayWithArray:tabOrderArray]];
-	[tabOrderArray release];
-}
-*/

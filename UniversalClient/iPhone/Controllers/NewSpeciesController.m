@@ -497,8 +497,8 @@ typedef enum {
 	} else {
 		[self.navigationController popToRootViewControllerAnimated:YES];
 		Session *session = [Session sharedInstance];
-		[session loggedInEmpireData:request.empireData sessionId:request.sessionId password:self.password];
 		session.lacunanMessageId = request.welcomeMessageId;
+		[session loggedInEmpireData:request.empireData sessionId:request.sessionId password:self.password];
 	}
 	
 	return nil;

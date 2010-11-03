@@ -15,20 +15,11 @@
 @class ViewBodyController;
 @class ViewMailboxController;
 @class ViewUniverseController;
+@class ViewTipsController;
 
 
 @interface AppDelegate_Phone : AppDelegate_Shared <UITabBarDelegate, LERequestMonitor, UIAlertViewDelegate> {
-	UITabBarController *tabBarController;
-	UITabBarItem *mailTabBarItem;
-	UINavigationController *myWorldsNavigationController;
-	ViewBodyController *myWorldController;
-	UINavigationController *mailNavigationController;
-	ViewMailboxController *mailboxController;
 	UIBackgroundTaskIdentifier backgroundTask;
-	Reachability *internetReachability;
-	UIView *notConnectedView;
-	ViewUniverseController *viewUniverseController;
-	UINavigationController *viewUniverseNavigationController;
 }
 
 
@@ -42,11 +33,13 @@
 @property(nonatomic, retain) IBOutlet UIView *notConnectedView;
 @property(nonatomic, retain) IBOutlet ViewUniverseController *viewUniverseController;
 @property(nonatomic, retain) IBOutlet UINavigationController *viewUniverseNavigationController;
+@property(nonatomic, retain) IBOutlet ViewTipsController *viewTipsController;
 
 
 - (void)showMessage:(NSString *)messageId;
-- (void)showStarMapGridX:(NSDecimalNumber *)x gridY:(NSDecimalNumber *)y;
 - (void)showMyWorld:(NSString *)bodyId;
+- (void)showStarMapGridX:(NSDecimalNumber *)x gridY:(NSDecimalNumber *)y;
+- (void)showTips;
 - (void)restartCreateEmpireId:(NSString *)empireId username:(NSString *)username password:(NSString *)password;
 - (void)showAnnouncement;
 
