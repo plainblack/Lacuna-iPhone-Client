@@ -77,6 +77,7 @@
 	
 	NSMutableDictionary *bodyData = [data objectForKey:@"body"];
 	if (!bodyData) {
+		NSLog(@"Trade Body Data Returned as body_id again!");
 		bodyData = [data objectForKey:@"body_id"];
 	}
 	if (bodyData) {

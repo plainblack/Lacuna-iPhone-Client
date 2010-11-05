@@ -221,7 +221,6 @@ typedef enum {
 	switch (_intv([self.sections objectAtIndex:indexPath.section])) {
 		case SECTION_SELECT_SHIP:
 			if (indexPath.row == 0) {
-				NSLog(@"Trade: %@", self.trade);
 				self->selectTradeShipController = [[SelectTradeShipController create] retain];
 				self->selectTradeShipController.delegate = self;
 				self->selectTradeShipController.baseTradeBuilding = self.baseTradeBuilding;
