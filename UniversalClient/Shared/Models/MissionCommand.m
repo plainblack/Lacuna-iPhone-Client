@@ -11,6 +11,9 @@
 #import	"Util.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellButton.h"
+#import "Mission.h"
+#import "LEBuildingGetMissions.h"
+#import "LEBuildingCompleteMission.h"
 
 
 @implementation MissionCommand
@@ -59,7 +62,7 @@
 		case BUILDING_ROW_VIEW_MISSIONS:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellButton *viewMissionsButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-			viewMissionsButtonCell.textLabel.text = @"Comming Soon";
+			viewMissionsButtonCell.textLabel.text = @"View Missions";
 			cell = viewMissionsButtonCell;
 			break;
 		default:
@@ -92,27 +95,46 @@
 #pragma mark -
 #pragma mark Instance Methods
 
+- (void)completeMission:(Mission *)mission {
+	[[[LEBuildingCompleteMission alloc] initWithCallback:@selector(missionCompleted:) target:self buildingId:self.id buildingUrl:self.buildingUrl missionId:mission.id] autorelease];
+}
+
+
 - (void)loadMissions {
-	NSLog(@"Kevin Load Missions here");
+	[[[LEBuildingGetMissions alloc] initWithCallback:@selector(missionsLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
 }
 
 
 #pragma mark -
 #pragma mark Callback Methods
-/*
-- (id)missionsLoaded:(LEBuildingViewPrisoners *)request {
-	NSMutableArray *tmpPrisoners = [NSMutableArray arrayWithCapacity:[request.prisoners count]];
-	for (NSDictionary *prisonerData in request.prisoners) {
-		Prisoner *tmpPrisoner = [[[Prisoner alloc] init] autorelease];
-		[tmpPrisoner parseData:prisonerData];
-		[tmpPrisoners addObject:tmpPrisoner];
+
+- (void)missionCompleted:(LEBuildingCompleteMission *)request {
+	__block Mission *completedMission = nil;
+	[self.missions enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+		Mission *mission = (Mission *)obj;
+		if ([mission.id isEqualToString:request.missionId]) {
+			completedMission = mission;
+			*stop = YES;
+		}
+	}];
+	
+	if (completedMission) {
+		[self.missions removeObject:completedMission];
+		self.needsRefresh = YES;
+	}
+}
+
+
+- (void)missionsLoaded:(LEBuildingGetMissions *)request {
+	NSMutableArray *tmpMissions = [NSMutableArray arrayWithCapacity:[request.missions count]];
+	for (NSDictionary *missionData in request.missions) {
+		Mission *tmpMission = [[[Mission alloc] init] autorelease];
+		[tmpMission parseData:missionData];
+		[tmpMissions addObject:tmpMission];
 	}
 	
-	self.prisoners = tmpPrisoners;
-	self.numPrisoners = request.numberPrisoners;
-	self.prisonersUpdated = [NSDate date];
-	return nil;
+	self.missions = tmpMissions;
 }
-*/
+
 
 @end

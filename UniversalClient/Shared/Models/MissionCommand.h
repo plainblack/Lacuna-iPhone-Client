@@ -10,6 +10,9 @@
 #import "Building.h"
 
 
+@class Mission;
+
+
 @interface MissionCommand : Building {
 }
 
@@ -17,6 +20,7 @@
 @property (nonatomic, retain) NSMutableArray *missions;
 
 
+- (void)completeMission:(Mission *)mission;
 - (void)loadMissions;
 
 
