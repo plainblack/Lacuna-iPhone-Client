@@ -11,11 +11,6 @@
 
 
 @interface LEBuildingViewSpies : LERequest {
-	NSString *buildingId;
-	NSString *buildingUrl;
-	NSInteger pageNumber;
-	NSMutableArray *spies;
-	NSMutableArray *possibleAssignments;
 }
 
 

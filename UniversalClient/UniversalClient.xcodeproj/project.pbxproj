@@ -250,6 +250,8 @@
 		F6DA0DC0121D47E200705240 /* LETableViewCellGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA0DBF121D47E200705240 /* LETableViewCellGlyph.m */; };
 		F6DA0DF1121D4D0F00705240 /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA0DF0121D4D0F00705240 /* Plan.m */; };
 		F6DA2FE1126C657500F93CD8 /* MissionCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA2FE0126C657500F93CD8 /* MissionCommand.m */; };
+		F6DA3DEB12842244001E4D3C /* LEBuildingGetMissions.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA3DEA12842244001E4D3C /* LEBuildingGetMissions.m */; };
+		F6DA3DEE12842255001E4D3C /* LEBuildingCompleteMission.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA3DED12842255001E4D3C /* LEBuildingCompleteMission.m */; };
 		F6DA5A50124E69BF005D11F6 /* LEStatsEmpireRank.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5A4F124E69BF005D11F6 /* LEStatsEmpireRank.m */; };
 		F6DA5A53124E69CC005D11F6 /* LEStatsFindEmpireRank.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5A52124E69CC005D11F6 /* LEStatsFindEmpireRank.m */; };
 		F6DA5A56124E69DD005D11F6 /* LEStatsColonyRank.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DA5A55124E69DD005D11F6 /* LEStatsColonyRank.m */; };
@@ -873,6 +875,10 @@
 		F6DA0DF0121D4D0F00705240 /* Plan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plan.m; sourceTree = "<group>"; };
 		F6DA2FDF126C657500F93CD8 /* MissionCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionCommand.h; sourceTree = "<group>"; };
 		F6DA2FE0126C657500F93CD8 /* MissionCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionCommand.m; sourceTree = "<group>"; };
+		F6DA3DE912842244001E4D3C /* LEBuildingGetMissions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetMissions.h; sourceTree = "<group>"; };
+		F6DA3DEA12842244001E4D3C /* LEBuildingGetMissions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetMissions.m; sourceTree = "<group>"; };
+		F6DA3DEC12842255001E4D3C /* LEBuildingCompleteMission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingCompleteMission.h; sourceTree = "<group>"; };
+		F6DA3DED12842255001E4D3C /* LEBuildingCompleteMission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingCompleteMission.m; sourceTree = "<group>"; };
 		F6DA5A4E124E69BF005D11F6 /* LEStatsEmpireRank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEStatsEmpireRank.h; sourceTree = "<group>"; };
 		F6DA5A4F124E69BF005D11F6 /* LEStatsEmpireRank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEStatsEmpireRank.m; sourceTree = "<group>"; };
 		F6DA5A51124E69CC005D11F6 /* LEStatsFindEmpireRank.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEStatsFindEmpireRank.h; sourceTree = "<group>"; };
@@ -1668,6 +1674,10 @@
 				F6DA5A58124E69E9005D11F6 /* LEStatsSpyRank.m */,
 				F6DA5A5A124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.h */,
 				F6DA5A5B124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.m */,
+				F6DA3DE912842244001E4D3C /* LEBuildingGetMissions.h */,
+				F6DA3DEA12842244001E4D3C /* LEBuildingGetMissions.m */,
+				F6DA3DEC12842255001E4D3C /* LEBuildingCompleteMission.h */,
+				F6DA3DED12842255001E4D3C /* LEBuildingCompleteMission.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -2506,6 +2516,8 @@
 				F6D9E7DB12705AAF001B1DF7 /* SelectTradeShipController.m in Sources */,
 				F6D9E7DE12705E71001B1DF7 /* LEBuildingGetTradeShips.m in Sources */,
 				F6DE5278127F8B2C00986EC5 /* ViewTipsController.m in Sources */,
+				F6DA3DEB12842244001E4D3C /* LEBuildingGetMissions.m in Sources */,
+				F6DA3DEE12842255001E4D3C /* LEBuildingCompleteMission.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
