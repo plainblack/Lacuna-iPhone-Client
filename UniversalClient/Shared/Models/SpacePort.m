@@ -88,7 +88,7 @@
 	
 	self.sections = _array([self generateProductionSection],
 						   _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_LOCAL_SHIPS], @"type", @"Local Ships", @"name", localShipRows, @"rows"), 
-						   _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_FOREIGN_SHIPS], @"type", @"Foreign Ships", @"name", foreignShipRows, @"rows"), 
+						   _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_FOREIGN_SHIPS], @"type", @"Incoming Ships", @"name", foreignShipRows, @"rows"), 
 						   [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
 }
 
@@ -132,7 +132,7 @@
 		case BUILDING_ROW_VIEW_FOREIGN_SHIPS:
 			; //DO NOT REMOVE THIS!!
 			LETableViewCellButton *viewForeignShipsCell = [LETableViewCellButton getCellForTableView:tableView];
-			viewForeignShipsCell.textLabel.text = @"Incoming Ships";
+			viewForeignShipsCell.textLabel.text = @"View Incoming Ships";
 			cell = viewForeignShipsCell;
 			break;
 		default:

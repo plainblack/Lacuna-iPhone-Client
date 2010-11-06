@@ -330,6 +330,7 @@
 		F6E3F02D11B46C0600E7BC86 /* LEEmpireBoostWater.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F02C11B46C0600E7BC86 /* LEEmpireBoostWater.m */; };
 		F6E4C975121E0ED70028FFE8 /* LETableViewCellPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E4C974121E0ED70028FFE8 /* LETableViewCellPlan.m */; };
 		F6E4FD43122A916B00E78CBB /* ViewEmpireProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6E4FD42122A916B00E78CBB /* ViewEmpireProfileController.xib */; };
+		F6E555E512858A37009D5F82 /* ViewMissionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E555E412858A37009D5F82 /* ViewMissionsController.m */; };
 		F6E57AC5120A40270030330F /* LEBuildingRepair.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E57AC4120A40270030330F /* LEBuildingRepair.m */; };
 		F6E5B81F125B45620048F5F0 /* ViewAllianceRankingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5B81E125B45620048F5F0 /* ViewAllianceRankingsController.m */; };
 		F6E5B822125B47820048F5F0 /* LEStatsAllianceRank.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5B821125B47820048F5F0 /* LEStatsAllianceRank.m */; };
@@ -1028,6 +1029,8 @@
 		F6E4C973121E0ED70028FFE8 /* LETableViewCellPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellPlan.h; sourceTree = "<group>"; };
 		F6E4C974121E0ED70028FFE8 /* LETableViewCellPlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellPlan.m; sourceTree = "<group>"; };
 		F6E4FD42122A916B00E78CBB /* ViewEmpireProfileController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewEmpireProfileController.xib; sourceTree = "<group>"; };
+		F6E555E312858A37009D5F82 /* ViewMissionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMissionsController.h; sourceTree = "<group>"; };
+		F6E555E412858A37009D5F82 /* ViewMissionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMissionsController.m; sourceTree = "<group>"; };
 		F6E57AC3120A40270030330F /* LEBuildingRepair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingRepair.h; sourceTree = "<group>"; };
 		F6E57AC4120A40270030330F /* LEBuildingRepair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingRepair.m; sourceTree = "<group>"; };
 		F6E5B81D125B45620048F5F0 /* ViewAllianceRankingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewAllianceRankingsController.h; sourceTree = "<group>"; };
@@ -2048,6 +2051,8 @@
 				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
 				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
+				F6E555E312858A37009D5F82 /* ViewMissionsController.h */,
+				F6E555E412858A37009D5F82 /* ViewMissionsController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2524,6 +2529,7 @@
 				F6DA3DEB12842244001E4D3C /* LEBuildingGetMissions.m in Sources */,
 				F6DA3DEE12842255001E4D3C /* LEBuildingCompleteMission.m in Sources */,
 				F6DA3DF3128424D5001E4D3C /* Mission.m in Sources */,
+				F6E555E512858A37009D5F82 /* ViewMissionsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -43,25 +43,25 @@ typedef enum {
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Mail Filters"]);
 	
 	self.skipHappinessWarningsCell = [LETableViewCellLabeledSwitch getCellForTableView:self.tableView];
-	self.skipHappinessWarningsCell.label.text = @"Show Happiness Warnings";
+	self.skipHappinessWarningsCell.label.text = @"Happiness Warnings";
 	self.skipHappinessWarningsCell.label.font = LABEL_FONT;
 	self.skipHappinessWarningsCell.isSelected = !self.empireProfile.skipHappinessWarnings;
 	self.skipHappinessWarningsCell.delegate = self;
 	
 	self.skipResourceWarningsCell = [LETableViewCellLabeledSwitch getCellForTableView:self.tableView];
-	self.skipResourceWarningsCell.label.text = @"Show Resource Warnings";
+	self.skipResourceWarningsCell.label.text = @"Resource Warnings";
 	self.skipResourceWarningsCell.label.font = LABEL_FONT;
 	self.skipResourceWarningsCell.isSelected = !self.empireProfile.skipResourceWarnings;
 	self.skipResourceWarningsCell.delegate = self;
 	
 	self.skipPollutionWarningsCell = [LETableViewCellLabeledSwitch getCellForTableView:self.tableView];
-	self.skipPollutionWarningsCell.label.text = @"Show Pollution Warnings";
+	self.skipPollutionWarningsCell.label.text = @"Pollution Warnings";
 	self.skipPollutionWarningsCell.label.font = LABEL_FONT;
 	self.skipPollutionWarningsCell.isSelected = !self.empireProfile.skipPollutionWarnings;
 	self.skipPollutionWarningsCell.delegate = self;
 	
 	self.skipMedalMessagesCell = [LETableViewCellLabeledSwitch getCellForTableView:self.tableView];
-	self.skipMedalMessagesCell.label.text = @"Show Medal Messages";
+	self.skipMedalMessagesCell.label.text = @"Medal Messages";
 	self.skipMedalMessagesCell.label.font = LABEL_FONT;
 	self.skipMedalMessagesCell.isSelected = !self.empireProfile.skipMedalMessages;
 	self.skipMedalMessagesCell.delegate = self;

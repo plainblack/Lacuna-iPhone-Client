@@ -14,6 +14,7 @@
 #import "Mission.h"
 #import "LEBuildingGetMissions.h"
 #import "LEBuildingCompleteMission.h"
+#import "ViewMissionsController.h"
 
 
 @implementation MissionCommand
@@ -78,12 +79,9 @@
 	switch (buildingRow) {
 		case BUILDING_ROW_VIEW_MISSIONS:
 			; //DO NOT REMOVE
-			/*
-			ViewPrisonersController *viewPrisonersController = [ViewPrisonersController create];
-			viewPrisonersController.securityBuilding = self;
-			return viewPrisonersController;
-			 */
-			return nil;
+			ViewMissionsController *viewMissionsController = [ViewMissionsController create];
+			viewMissionsController.missionCommand = self;
+			return viewMissionsController;
 			break;
 		default:
 			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];
@@ -95,7 +93,9 @@
 #pragma mark -
 #pragma mark Instance Methods
 
-- (void)completeMission:(Mission *)mission {
+- (void)completeMission:(Mission *)mission target:(id)target callback:(SEL)callback {
+	self->completeTarget = target;
+	self->completeCallback = callback;
 	[[[LEBuildingCompleteMission alloc] initWithCallback:@selector(missionCompleted:) target:self buildingId:self.id buildingUrl:self.buildingUrl missionId:mission.id] autorelease];
 }
 
@@ -109,23 +109,30 @@
 #pragma mark Callback Methods
 
 - (void)missionCompleted:(LEBuildingCompleteMission *)request {
-	__block Mission *completedMission = nil;
-	[self.missions enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
-		Mission *mission = (Mission *)obj;
-		if ([mission.id isEqualToString:request.missionId]) {
-			completedMission = mission;
-			*stop = YES;
+	if (![request wasError]) {
+		__block Mission *completedMission = nil;
+		[self.missions enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+			Mission *mission = (Mission *)obj;
+			if ([mission.id isEqualToString:request.missionId]) {
+				completedMission = mission;
+				*stop = YES;
+			}
+		}];
+		
+		if (completedMission) {
+			[self.missions removeObject:completedMission];
+			self.needsRefresh = YES;
 		}
-	}];
+	}
 	
-	if (completedMission) {
-		[self.missions removeObject:completedMission];
-		self.needsRefresh = YES;
+	if (self->completeTarget && self->completeCallback) {
+		[self->completeTarget performSelector:self->completeCallback withObject:request];
 	}
 }
 
 
 - (void)missionsLoaded:(LEBuildingGetMissions *)request {
+	NSLog(@"Missions Loaded");
 	NSMutableArray *tmpMissions = [NSMutableArray arrayWithCapacity:[request.missions count]];
 	for (NSDictionary *missionData in request.missions) {
 		Mission *tmpMission = [[[Mission alloc] init] autorelease];

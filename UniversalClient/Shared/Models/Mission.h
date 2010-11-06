@@ -17,9 +17,11 @@
 @property (nonatomic, retain) NSDecimalNumber *maxUniversityLevel;
 @property (nonatomic, retain) NSDate *datePosted;
 @property (nonatomic, retain) NSString *name;
-@property (nonatomic, retain) NSString *description;
+@property (nonatomic, retain) NSString *missionDescription;
 @property (nonatomic, retain) NSMutableArray *objectives;
+@property (nonatomic, readonly) NSString *objectivesAsText;
 @property (nonatomic, retain) NSMutableArray *rewards;
+@property (nonatomic, readonly) NSString *rewardsAsText;
 
 
 - (void)parseData:(NSDictionary *)data;

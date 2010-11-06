@@ -18,9 +18,11 @@
 @synthesize	maxUniversityLevel;
 @synthesize	datePosted;
 @synthesize	name;
-@synthesize	description;
+@synthesize	missionDescription;
 @synthesize	objectives;
 @synthesize	rewards;
+@dynamic objectivesAsText;
+@dynamic rewardsAsText;
 
 
 #pragma mark -
@@ -31,7 +33,7 @@
 	self.maxUniversityLevel = nil;
 	self.datePosted = nil;
 	self.name = nil;
-	self.description = nil;
+	self.missionDescription = nil;
 	self.objectives = nil;
 	self.rewards = nil;
 	[super dealloc];
@@ -39,8 +41,8 @@
 
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"id:%@, maxUniversityLevel:%@, datePosted:%@, name:%@, description:%@, objectives:%@, rewards:%@",
-			self.id, self.maxUniversityLevel, self.datePosted, self.name, self.description, self.objectives, self.rewards];
+	return [NSString stringWithFormat:@"id:%@, maxUniversityLevel:%@, datePosted:%@, name:%@, missionDescription:%@, objectives:%@, rewards:%@",
+			self.id, self.maxUniversityLevel, self.datePosted, self.name, self.missionDescription, self.objectives, self.rewards];
 }
 
 
@@ -52,9 +54,23 @@
 	self.maxUniversityLevel = [Util asNumber:[data objectForKey:@"max_university_level"]];
 	self.datePosted = [Util date:[data objectForKey:@"date_posted"]];
 	self.name = [data objectForKey:@"name"];
-	self.description = [data objectForKey:@"description"];
+	self.missionDescription = [data objectForKey:@"description"];
 	self.objectives = [data objectForKey:@"objectives"];
 	self.rewards = [data objectForKey:@"rewards"];
+}
+
+
+- (NSString *)objectivesAsText {
+	NSString *tmp = [self.objectives componentsJoinedByString:@"; "];
+	tmp = [tmp stringByReplacingOccurrencesOfString:@".;" withString:@";"];
+	return tmp;
+}
+
+
+- (NSString *)rewardsAsText {
+	NSString *tmp = [self.rewards componentsJoinedByString:@"; "];
+	tmp = [tmp stringByReplacingOccurrencesOfString:@".;" withString:@";"];
+	return tmp;
 }
 
 

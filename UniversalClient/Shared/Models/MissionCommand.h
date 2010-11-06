@@ -14,13 +14,15 @@
 
 
 @interface MissionCommand : Building {
+	id completeTarget;
+	SEL completeCallback;
 }
 
 
 @property (nonatomic, retain) NSMutableArray *missions;
 
 
-- (void)completeMission:(Mission *)mission;
+- (void)completeMission:(Mission *)mission target:(id)target callback:(SEL)callback;
 - (void)loadMissions;
 
 
