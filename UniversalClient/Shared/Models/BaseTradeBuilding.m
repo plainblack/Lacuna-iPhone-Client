@@ -382,12 +382,14 @@
 
 
 - (bool)hasPreviousAvailableTradePage {
+	NSLog(@"hasPreviousAvailableTradePage, self.availableTradePageNumber: %i", self.availableTradePageNumber);
 	return (self.availableTradePageNumber > 1);
 }
 
 
 - (bool)hasNextAvailableTradePage {
-	return (self.availableTradePageNumber < [Util numPagesForCount:self.availableTradePageNumber]);
+	NSLog(@"hasPreviousAvailableTradePage, self.availableTradePageNumber: %i", self.availableTradePageNumber);
+	return (self.availableTradePageNumber < [Util numPagesForCount:_intv(self.availableTradeCount)]);
 }
 
 
@@ -403,7 +405,7 @@
 
 
 - (bool)hasNextMyTradePage {
-	return (self.myTradePageNumber < [Util numPagesForCount:self.myTradePageNumber]);
+	return (self.myTradePageNumber < [Util numPagesForCount:_intv(self.myTradeCount)]);
 }
 
 

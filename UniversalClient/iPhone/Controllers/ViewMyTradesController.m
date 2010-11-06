@@ -235,6 +235,24 @@ typedef enum {
 
 
 #pragma mark -
+#pragma mark Callback Methods
+
+- (void) switchPage {
+	switch (self.pageSegmentedControl.selectedSegmentIndex) {
+		case 0:
+			[self.baseTradeBuilding loadMyTradesForPage:(self.baseTradeBuilding.myTradePageNumber-1)];
+			break;
+		case 1:
+			[self.baseTradeBuilding loadMyTradesForPage:(self.baseTradeBuilding.myTradePageNumber+1)];
+			break;
+		default:
+			NSLog(@"Invalid switchPage");
+			break;
+	}
+}
+
+
+#pragma mark -
 #pragma mark Class Methods
 
 + (ViewMyTradesController *)create {
