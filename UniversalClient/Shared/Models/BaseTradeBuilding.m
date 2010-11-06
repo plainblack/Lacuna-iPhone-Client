@@ -382,13 +382,11 @@
 
 
 - (bool)hasPreviousAvailableTradePage {
-	NSLog(@"hasPreviousAvailableTradePage, self.availableTradePageNumber: %i", self.availableTradePageNumber);
 	return (self.availableTradePageNumber > 1);
 }
 
 
 - (bool)hasNextAvailableTradePage {
-	NSLog(@"hasPreviousAvailableTradePage, self.availableTradePageNumber: %i", self.availableTradePageNumber);
 	return (self.availableTradePageNumber < [Util numPagesForCount:_intv(self.availableTradeCount)]);
 }
 
