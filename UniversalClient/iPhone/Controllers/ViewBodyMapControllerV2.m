@@ -54,7 +54,7 @@
 	self.plotsLabel.font = TEXT_FONT;
 	self.plotsLabel.textColor = TEXT_COLOR;
 	self.plotsLabel.backgroundColor = [UIColor clearColor];
-	self.plotsLabel.text = [NSString stringWithFormat:@"%@/%@", session.body.buildingCount, session.body.size];
+	self.plotsLabel.text = [NSString stringWithFormat:@"%@ Available", session.body.plotsAvailable];
 	UIBarButtonItem *numOfPlotsBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.plotsLabel] autorelease];
 	UIImageView *plotIconView = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 22.0, 22.0)] autorelease];
 	plotIconView.image = PLOTS_ICON;
@@ -203,14 +203,11 @@
 		viewBuildingController.urlPart = bodyMapCell.mapBuilding.buildingUrl;
 		[self.navigationController pushViewController:viewBuildingController animated:YES];
 	} else {
-		Session *session = [Session sharedInstance];
-		if (session.body.canBuild) {
-			NewBuildingTypeController *newBuildingTypeController = [NewBuildingTypeController create];
-			newBuildingTypeController.buttonsByLoc = self->buttonsByLoc;
-			newBuildingTypeController.x = bodyMapCell.buildingX;
-			newBuildingTypeController.y	= bodyMapCell.buildingY;
-			[self.navigationController pushViewController:newBuildingTypeController animated:YES];
-		}
+		NewBuildingTypeController *newBuildingTypeController = [NewBuildingTypeController create];
+		newBuildingTypeController.buttonsByLoc = self->buttonsByLoc;
+		newBuildingTypeController.x = bodyMapCell.buildingX;
+		newBuildingTypeController.y	= bodyMapCell.buildingY;
+		[self.navigationController pushViewController:newBuildingTypeController animated:YES];
 	}
 	
 }
@@ -254,7 +251,7 @@
 				}
 			}
 		}
-		self.plotsLabel.text = [NSString stringWithFormat:@"%@/%@", session.body.buildingCount, session.body.size];
+		self.plotsLabel.text = [NSString stringWithFormat:@"%@ Available", session.body.plotsAvailable];
 	}
 }
 

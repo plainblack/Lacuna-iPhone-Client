@@ -90,10 +90,7 @@
 			}
 		}
 	} else {
-		Session *session = [Session sharedInstance];
-		if (session.body.canBuild) {
-			[[UIImage imageNamed:@"/assets/planet_side/build.png"] drawInRect:self.bounds];
-		}
+		[[UIImage imageNamed:@"/assets/planet_side/build.png"] drawInRect:self.bounds];
 	}
 
 }

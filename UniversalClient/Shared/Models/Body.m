@@ -23,6 +23,7 @@
 @synthesize orbit;
 @synthesize imageName;
 @synthesize size;
+@synthesize plotsAvailable;
 @synthesize planetWater;
 @synthesize ores;
 @synthesize empireId;
@@ -40,7 +41,6 @@
 @synthesize surfaceImageName;
 @synthesize currentBuilding;
 @synthesize needsRefresh;
-@dynamic canBuild;
 @synthesize incomingForeignShips;
 @synthesize ignoreIncomingForeignShipData;
 
@@ -68,6 +68,7 @@
 	self.orbit = nil;
 	self.imageName = nil;
 	self.size = nil;
+	self.plotsAvailable = nil;
 	self.planetWater = nil;
 	self.ores = nil;
 	self.empireId = nil;
@@ -90,14 +91,6 @@
 
 
 #pragma mark -
-#pragma mark Getters/Setters
-
-- (BOOL)canBuild {
-	return [self.buildingCount compare:self.size] == NSOrderedAscending;
-}
-
-
-#pragma mark -
 #pragma mark Instance Methods
 
 - (void)parseData:(NSMutableDictionary *)bodyData {
@@ -107,6 +100,7 @@
 	self.orbit = [Util asNumber:[bodyData objectForKey:@"orbit"]];
 	self.imageName = [bodyData objectForKey:@"image"];
 	self.size = [Util asNumber:[bodyData objectForKey:@"size"]];
+	self.plotsAvailable = [Util asNumber:[bodyData objectForKey:@"plots_available"]];
 	self.planetWater = [Util asNumber:[bodyData objectForKey:@"water"]];
 	self.ores = [bodyData objectForKey:@"ore"];
 	NSDictionary *empireData = [bodyData objectForKey:@"empire"];

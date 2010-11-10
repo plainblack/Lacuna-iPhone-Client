@@ -44,6 +44,7 @@ typedef enum {
 
 typedef enum {
 	COMPOSITION_ROW_SIZE,
+	COMPOSITION_ROW_PLOTS,
 	COMPOSITION_ROW_WATER
 } COMPOSITION_ROW;
 
@@ -194,7 +195,7 @@ typedef enum {
 				return 3;
 				break;
 			case SECTION_COMPOSITION:
-				return 2 + [self.oreKeysSorted count];
+				return 3 + [self.oreKeysSorted count];
 				break;
 			default:
 				return 0;
@@ -286,10 +287,18 @@ typedef enum {
 				case COMPOSITION_ROW_SIZE:
 					; //DO NOT REMOVE
 					LETableViewCellLabeledIconText *sizeCell = [LETableViewCellLabeledIconText getCellForTableView:tableView isSelectable:NO];
-					sizeCell.label.text = @"Plots";
+					sizeCell.label.text = @"Size";
 					sizeCell.icon.image = PLOTS_ICON;
-					sizeCell.content.text = [NSString stringWithFormat:@"%@ (%@ used)", session.body.size, session.body.buildingCount];
+					sizeCell.content.text = [NSString stringWithFormat:@"%@", session.body.size];
 					cell = sizeCell;
+					break;
+				case COMPOSITION_ROW_PLOTS:
+					; //DO NOT REMOVE
+					LETableViewCellLabeledIconText *plotsCell = [LETableViewCellLabeledIconText getCellForTableView:tableView isSelectable:NO];
+					plotsCell.label.text = @"Plots Available";
+					plotsCell.icon.image = PLOTS_ICON;
+					plotsCell.content.text = [NSString stringWithFormat:@"%@", session.body.plotsAvailable];
+					cell = plotsCell;
 					break;
 				case COMPOSITION_ROW_WATER:
 					; //DO NOT REMOVE
@@ -301,7 +310,7 @@ typedef enum {
 					break;
 				default:
 					; //DO NOT REMOVE
-					id oreTypeKey = [self.oreKeysSorted objectAtIndex:(indexPath.row-2)];
+					id oreTypeKey = [self.oreKeysSorted objectAtIndex:(indexPath.row-3)];
 					id oreTypeValue = [self.watchedBody.ores objectForKey:oreTypeKey];
 					LETableViewCellLabeledIconText *oreTypeCell = [LETableViewCellLabeledIconText getCellForTableView:tableView isSelectable:NO];
 					oreTypeCell.label.text = [Util prettyCodeValue:[NSString stringWithFormat:@"%@", oreTypeKey]];

@@ -22,6 +22,7 @@
 @property (nonatomic, retain) NSDecimalNumber *orbit;
 @property (nonatomic, retain) NSString *imageName;
 @property (nonatomic, retain) NSDecimalNumber *size;
+@property (nonatomic, retain) NSDecimalNumber *plotsAvailable;
 @property (nonatomic, retain) NSDecimalNumber *planetWater;
 @property (nonatomic, retain) NSMutableDictionary *ores;
 @property (nonatomic, retain) NSString *empireId;
@@ -39,7 +40,6 @@
 @property (nonatomic, retain) NSString *surfaceImageName;
 @property (nonatomic, retain) Building *currentBuilding;
 @property (nonatomic, assign) BOOL needsRefresh;
-@property (nonatomic, readonly) BOOL canBuild;
 @property (nonatomic, retain) NSMutableSet *incomingForeignShips;
 @property (nonatomic, assign) BOOL ignoreIncomingForeignShipData;
 

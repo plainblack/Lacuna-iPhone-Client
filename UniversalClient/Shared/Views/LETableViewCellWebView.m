@@ -89,10 +89,10 @@
 		[myPlanetRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<a href=\"myplanet://$1\">$2</a>"];
 		[starmapRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<a href=\"starmap://$1.$2\">$3</a>"];
 		[newlineRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<br />"];
-		htmlString = [NSString stringWithFormat:@"<html><head><style>a:link {color:#FFC000;}</style></head><body style=\"background-color:transparent; color: #FFF; width: %f; font-family: sans-serif; font-size: 14px;\">%@</body></html>", self.webView.frame.size.width-20, mutableString];
+		htmlString = [NSString stringWithFormat:@"<html><head><style>a:link {color:#FFC000;}</style></head><body style=\"background-color:transparent; color: #FFF; width: %f; font-family: sans-serif; font-size: 14px;\"><div style=\"margin: 5px;\">%@</div></body></html>", self.webView.frame.size.width-20, mutableString];
 		[mutableString release];
 	} else {
-		htmlString = [NSString stringWithFormat:@"<html><head><style>a:link {color:#FFC000;}</style></head><body style=\"background-color:transparent; color: #FFF; width: %f;\"></body></html>", self.webView.frame.size.width-20];
+		htmlString = [NSString stringWithFormat:@"<html><head><style>a:link {color:#FFC000;}</style></head><body style=\"background-color:transparent; color: #FFF; width: %f; font-family: sans-serif; font-size: 14px;\"></body></html>", self.webView.frame.size.width-20];
 	}
 
 	NSString *path = [[NSBundle mainBundle] bundlePath];
@@ -158,7 +158,7 @@
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		cell.height = MIN_HEIGHT;
 		
-		cell.webView = [[[UIWebView alloc] initWithFrame:CGRectMake(5, 0, 290, 34)] autorelease];
+		cell.webView = [[[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 320, 34)] autorelease];
 		cell.webView.backgroundColor = [UIColor clearColor];
 		cell.webView.autoresizesSubviews = YES;
 		cell.webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
