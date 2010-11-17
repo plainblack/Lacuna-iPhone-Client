@@ -1,50 +1,36 @@
 //
-//  Capitol.m
+//  EnergyReserve.m
 //  UniversalClient
 //
 //  Created by Kevin Runde on 11/16/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
-#import "Capitol.h"
+#import "EnergyReserve.h"
 #import "LEMacros.h"
 #import "Util.h"
-#import "LEBuildingRenameEmpire.h"
+#import "LEBuildingDump.h"
 #import "LETableViewCellButton.h"
-#import "RenameEmpireController.h"
+#import "DumpEnergyController.h"
 
 
-@implementation Capitol
-
-
-@synthesize renameEmpireCost;
+@implementation EnergyReserve
 
 
 #pragma mark -
 #pragma mark Object Methods
 
 - (void)dealloc {
-	self.renameEmpireCost = nil;
 	[super dealloc];
-}
-
-
-- (NSString *)description {
-	return [NSString stringWithFormat:@"renameEmpireCost:%@", self.renameEmpireCost];
 }
 
 
 #pragma mark -
 #pragma mark Overriden Building Methods
 
-- (void)parseAdditionalData:(NSDictionary *)data {
-	self.renameEmpireCost = [Util asNumber:[data objectForKey:@"rename_empire_cost"]];
-}
-
-
 - (void)generateSections {
 	
-	NSMutableDictionary *actionSection = _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_RENAME_EMPIRE]), @"rows");
+	NSMutableDictionary *actionSection = _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_DUMP_RESOURCE]), @"rows");
 	
 	self.sections = _array([self generateProductionSection], actionSection, [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
 }
@@ -52,7 +38,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForBuildingRow:(BUILDING_ROW)buildingRow {
 	switch (buildingRow) {
-		case BUILDING_ROW_RENAME_EMPIRE:
+		case BUILDING_ROW_DUMP_RESOURCE:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		default:
@@ -65,11 +51,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex {
 	UITableViewCell *cell = nil;
 	switch (buildingRow) {
-		case BUILDING_ROW_RENAME_EMPIRE:
+		case BUILDING_ROW_DUMP_RESOURCE:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
-			LETableViewCellButton *renameEmpireCell = [LETableViewCellButton getCellForTableView:tableView];
-			renameEmpireCell.textLabel.text = @"Rename Empire";
-			cell = renameEmpireCell;
+			LETableViewCellButton *dumpEnergyCell = [LETableViewCellButton getCellForTableView:tableView];
+			dumpEnergyCell.textLabel.text = @"Dump Energy";
+			cell = dumpEnergyCell;
 			break;
 		default:
 			cell = [super tableView:tableView cellForBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex];
@@ -82,11 +68,11 @@
 
 - (UIViewController *)tableView:(UITableView *)tableView didSelectBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex {
 	switch (buildingRow) {
-		case BUILDING_ROW_RENAME_EMPIRE:
+		case BUILDING_ROW_DUMP_RESOURCE:
 			; //DO NOT REMOVE
-			RenameEmpireController *renameEmpireController = [RenameEmpireController create];
-			renameEmpireController.capitol = self;
-			return renameEmpireController;
+			DumpEnergyController *dumpEnergyController = [DumpEnergyController create];
+			dumpEnergyController.energyReserve = self;
+			return dumpEnergyController;
 			break;
 		default:
 			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];
@@ -98,18 +84,18 @@
 #pragma mark -
 #pragma mark Instance Methods
 
-- (void)renameEmpire:(NSString *)newEmpireName target:(id)inRenameEmpireTarget callback:(SEL)inRenameEmpireCallback {
-	self->renameEmpireTarget = inRenameEmpireTarget;
-	self->renameEmpireCallback = inRenameEmpireCallback;
-	[[[LEBuildingRenameEmpire alloc] initWithCallback:@selector(empireRenamed:) target:self buildingId:self.id buildingUrl:self.buildingUrl newEmpireName:newEmpireName] autorelease];
+- (void)dumpEnergy:(NSDecimalNumber *)amount target:(id)inDumpEnergyTarget callback:(SEL)inDumpEnergyCallback {
+	self->dumpEnergyTarget = inDumpEnergyTarget;
+	self->dumpEnergyCallback = inDumpEnergyCallback;
+	[[[LEBuildingDump alloc] initWithCallback:@selector(energyDumped:) target:self buildingId:self.id buildingUrl:self.buildingUrl amount:amount] autorelease];
 }
 
 
 #pragma mark -
 #pragma mark Callback Methods
 
-- (id)empireRenamed:(LEBuildingRenameEmpire *)request {
-	[self->renameEmpireTarget performSelector:self->renameEmpireCallback withObject:request];
+- (id)energyDumped:(LEBuildingDump *)request {
+	[self->dumpEnergyTarget performSelector:self->dumpEnergyCallback withObject:request];
 	return nil;
 }
 

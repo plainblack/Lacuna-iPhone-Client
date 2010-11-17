@@ -369,6 +369,11 @@
 		F6E9F16512935C6900544362 /* Capitol.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E9F16412935C6900544362 /* Capitol.m */; };
 		F6E9F168129361BE00544362 /* LEBuildingRenameEmpire.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E9F167129361BE00544362 /* LEBuildingRenameEmpire.m */; };
 		F6E9F19B129368D100544362 /* RenameEmpireController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E9F19A129368D100544362 /* RenameEmpireController.m */; };
+		F6E9F1D7129377CE00544362 /* LEBuildingDump.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E9F1D6129377CE00544362 /* LEBuildingDump.m */; };
+		F6E9F1DC1293797300544362 /* EnergyReserve.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E9F1DB1293797300544362 /* EnergyReserve.m */; };
+		F6E9F1F612937C0800544362 /* DumpEnergyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E9F1F512937C0800544362 /* DumpEnergyController.m */; };
+		F6E9F2221293819300544362 /* WaterStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E9F2211293819300544362 /* WaterStorage.m */; };
+		F6E9F227129383A400544362 /* DumpWaterController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E9F226129383A400544362 /* DumpWaterController.m */; };
 		F6EB025D1202F500001BFD68 /* LEBuildingViewShipsTravelling.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB025C1202F500001BFD68 /* LEBuildingViewShipsTravelling.m */; };
 		F6EB02661202FB01001BFD68 /* ViewTravellingShipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB02651202FB01001BFD68 /* ViewTravellingShipsController.m */; };
 		F6ECEE6F123E477500CACFED /* ViewDictionaryController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6ECEE6E123E477500CACFED /* ViewDictionaryController.m */; };
@@ -1110,6 +1115,16 @@
 		F6E9F167129361BE00544362 /* LEBuildingRenameEmpire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingRenameEmpire.m; sourceTree = "<group>"; };
 		F6E9F199129368D100544362 /* RenameEmpireController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenameEmpireController.h; sourceTree = "<group>"; };
 		F6E9F19A129368D100544362 /* RenameEmpireController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenameEmpireController.m; sourceTree = "<group>"; };
+		F6E9F1D5129377CE00544362 /* LEBuildingDump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingDump.h; sourceTree = "<group>"; };
+		F6E9F1D6129377CE00544362 /* LEBuildingDump.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingDump.m; sourceTree = "<group>"; };
+		F6E9F1DA1293797300544362 /* EnergyReserve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyReserve.h; sourceTree = "<group>"; };
+		F6E9F1DB1293797300544362 /* EnergyReserve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnergyReserve.m; sourceTree = "<group>"; };
+		F6E9F1F412937C0800544362 /* DumpEnergyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DumpEnergyController.h; sourceTree = "<group>"; };
+		F6E9F1F512937C0800544362 /* DumpEnergyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DumpEnergyController.m; sourceTree = "<group>"; };
+		F6E9F2201293819300544362 /* WaterStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterStorage.h; sourceTree = "<group>"; };
+		F6E9F2211293819300544362 /* WaterStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterStorage.m; sourceTree = "<group>"; };
+		F6E9F225129383A400544362 /* DumpWaterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DumpWaterController.h; sourceTree = "<group>"; };
+		F6E9F226129383A400544362 /* DumpWaterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DumpWaterController.m; sourceTree = "<group>"; };
 		F6EB025B1202F500001BFD68 /* LEBuildingViewShipsTravelling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewShipsTravelling.h; sourceTree = "<group>"; };
 		F6EB025C1202F500001BFD68 /* LEBuildingViewShipsTravelling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewShipsTravelling.m; sourceTree = "<group>"; };
 		F6EB02641202FB01001BFD68 /* ViewTravellingShipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewTravellingShipsController.h; sourceTree = "<group>"; };
@@ -1695,6 +1710,8 @@
 				F6DA3DED12842255001E4D3C /* LEBuildingCompleteMission.m */,
 				F6E9F166129361BE00544362 /* LEBuildingRenameEmpire.h */,
 				F6E9F167129361BE00544362 /* LEBuildingRenameEmpire.m */,
+				F6E9F1D5129377CE00544362 /* LEBuildingDump.h */,
+				F6E9F1D6129377CE00544362 /* LEBuildingDump.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -1815,6 +1832,10 @@
 				F6DA3DF2128424D5001E4D3C /* Mission.m */,
 				F6E9F16312935C6900544362 /* Capitol.h */,
 				F6E9F16412935C6900544362 /* Capitol.m */,
+				F6E9F1DA1293797300544362 /* EnergyReserve.h */,
+				F6E9F1DB1293797300544362 /* EnergyReserve.m */,
+				F6E9F2201293819300544362 /* WaterStorage.h */,
+				F6E9F2211293819300544362 /* WaterStorage.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -2068,6 +2089,10 @@
 				F6E555E412858A37009D5F82 /* ViewMissionsController.m */,
 				F6E9F199129368D100544362 /* RenameEmpireController.h */,
 				F6E9F19A129368D100544362 /* RenameEmpireController.m */,
+				F6E9F1F412937C0800544362 /* DumpEnergyController.h */,
+				F6E9F1F512937C0800544362 /* DumpEnergyController.m */,
+				F6E9F225129383A400544362 /* DumpWaterController.h */,
+				F6E9F226129383A400544362 /* DumpWaterController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2548,6 +2573,11 @@
 				F6E9F16512935C6900544362 /* Capitol.m in Sources */,
 				F6E9F168129361BE00544362 /* LEBuildingRenameEmpire.m in Sources */,
 				F6E9F19B129368D100544362 /* RenameEmpireController.m in Sources */,
+				F6E9F1D7129377CE00544362 /* LEBuildingDump.m in Sources */,
+				F6E9F1DC1293797300544362 /* EnergyReserve.m in Sources */,
+				F6E9F1F612937C0800544362 /* DumpEnergyController.m in Sources */,
+				F6E9F2221293819300544362 /* WaterStorage.m in Sources */,
+				F6E9F227129383A400544362 /* DumpWaterController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

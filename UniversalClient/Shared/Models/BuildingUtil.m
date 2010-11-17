@@ -14,6 +14,7 @@
 #import "Capitol.h"
 #import "Development.h"
 #import "Embassy.h"
+#import "EnergyReserve.h"
 #import "Entertainment.h"
 #import "FoodReserve.h"
 #import "Intelligence.h"
@@ -29,6 +30,7 @@
 #import "SpacePort.h"
 #import "TempleOfTheDrajilites.h"
 #import "WasteRecycling.h"
+#import "WaterStorage.h"
 
 
 @implementation BuildingUtil
@@ -44,6 +46,8 @@
 		building = [[[Development alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:EMBASSY_URL]) {
 		building = [[[Embassy alloc] init] autorelease];
+	} else if ([request.buildingUrl isEqualToString:ENERGY_RESERVE_URL]) {
+		building = [[[EnergyReserve alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:ENTERTAINMENT_URL]) {
 		building = [[[Entertainment alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:FOOD_RESERVE_URL]) {
@@ -78,6 +82,8 @@
 		building = [[[BaseTradeBuilding alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:WASTE_RECYCLING_URL]) {
 		building = [[[WasteRecycling alloc] init] autorelease];
+	} else if ([request.buildingUrl isEqualToString:WATER_STORAGE_URL]) {
+		building = [[[WaterStorage alloc] init] autorelease];
 	} else {
 		building = [[[Building alloc] init] autorelease];
 	}

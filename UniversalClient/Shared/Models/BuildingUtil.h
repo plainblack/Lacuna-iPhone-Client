@@ -12,6 +12,7 @@
 #define CAPITOL_URL @"/capitol"
 #define DEVELOPMENT_URL @"/development"
 #define EMBASSY_URL @"/embassy"
+#define ENERGY_RESERVE_URL @"/energyreserve"
 #define ENTERTAINMENT_URL @"/entertainment"
 #define ESPIONAGE_URL @"/espionage"
 #define FOOD_RESERVE_URL @"/foodreserve"
@@ -31,6 +32,7 @@
 #define TRADE_URL @"/trade"
 #define TRANSPORTER_URL @"/transporter"
 #define WASTE_RECYCLING_URL @"/wasterecycling"
+#define WATER_STORAGE_URL @"/waterstorage"
 
 typedef enum {
 	BUILDING_SECTION_BUILDING,
@@ -121,6 +123,7 @@ typedef enum {
 	BUILDING_ROW_VIEW_VOTING_OPTIONS,
 	BUILDING_ROW_VIEW_MISSIONS,
 	BUILDING_ROW_RENAME_EMPIRE,
+	BUILDING_ROW_DUMP_RESOURCE,
 } BUILDING_ROW;
 
 
