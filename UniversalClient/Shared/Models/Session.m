@@ -354,6 +354,22 @@ static Session *sharedSession = nil;
 }
 
 
+- (void)renameSavedEmpireNameFrom:(NSString *)oldEmpireName to:(NSString *)newEmpireName {
+	BOOL found = NO;
+	for (NSMutableDictionary *savedEmpire in self.savedEmpireList) {
+		if ([[savedEmpire objectForKey:@"username"] isEqualToString:oldEmpireName]){
+			found = YES;
+			[savedEmpire setObject:newEmpireName forKey:@"username"];
+		}
+	}
+	NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentFolderPath = [searchPaths objectAtIndex:0];
+	NSString *empireListFileName = [documentFolderPath stringByAppendingPathComponent:@"empireList.dat"];
+	[self.savedEmpireList writeToFile:empireListFileName atomically:YES];
+}
+
+
+
 #pragma mark -
 #pragma mark Callback methods
 

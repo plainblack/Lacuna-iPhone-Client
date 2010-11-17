@@ -11,6 +11,7 @@
 #import "BaseTradeBuilding.h"
 #import "Building.h"
 #import "Archaeology.h"
+#import "Capitol.h"
 #import "Development.h"
 #import "Embassy.h"
 #import "Entertainment.h"
@@ -37,6 +38,8 @@
 	Building *building = nil;
 	if ([request.buildingUrl isEqualToString:ARCHAEOLOGY_URL]) {
 		building = [[[Archaeology alloc] init] autorelease];
+	} else if ([request.buildingUrl isEqualToString:CAPITOL_URL]) {
+		building = [[[Capitol alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:DEVELOPMENT_URL]) {
 		building = [[[Development alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:EMBASSY_URL]) {

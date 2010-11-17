@@ -16,9 +16,6 @@
 
 
 @interface RenameShipController : LETableViewControllerGrouped <UITextFieldDelegate> {
-	SpacePort *spacePort;
-	Ship *ship;
-	LETableViewCellTextEntry *nameCell;
 }
 
 

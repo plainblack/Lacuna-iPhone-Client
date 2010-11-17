@@ -62,6 +62,7 @@
 - (NSString *)descriptionForShip:(NSString *)shipType;
 - (NSString *)wikiLinkForShip:(NSString *)shipType;
 - (void)updatedSavedEmpire:(NSString *)empireName uri:(NSString *)uri;
+- (void)renameSavedEmpireNameFrom:(NSString *)oldEmpireName to:(NSString *)newEmpireName;
 
 + (Session *)sharedInstance;
 

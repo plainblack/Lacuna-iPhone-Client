@@ -20,10 +20,6 @@
 
 
 @interface Archaeology : Building {
-	NSMutableArray *glyphs;
-	NSMutableArray *availableOreTypes;
-	NSInteger secondsRemaining;
-	id<ArchaeologyDelegate> delegate;
 }
 
 

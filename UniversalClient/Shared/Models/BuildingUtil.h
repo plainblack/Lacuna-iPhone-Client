@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define ARCHAEOLOGY_URL @"/archaeology"
+#define CAPITOL_URL @"/capitol"
 #define DEVELOPMENT_URL @"/development"
 #define EMBASSY_URL @"/embassy"
 #define ENTERTAINMENT_URL @"/entertainment"
@@ -119,6 +120,7 @@ typedef enum {
 	BUILDING_ROW_VIEW_PLANETS,
 	BUILDING_ROW_VIEW_VOTING_OPTIONS,
 	BUILDING_ROW_VIEW_MISSIONS,
+	BUILDING_ROW_RENAME_EMPIRE,
 } BUILDING_ROW;
 
 

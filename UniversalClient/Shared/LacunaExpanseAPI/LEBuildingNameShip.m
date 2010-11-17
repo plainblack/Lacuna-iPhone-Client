@@ -12,6 +12,8 @@
 
 
 @implementation LEBuildingNameShip
+
+
 @synthesize buildingId;
 @synthesize buildingUrl;
 @synthesize shipId;

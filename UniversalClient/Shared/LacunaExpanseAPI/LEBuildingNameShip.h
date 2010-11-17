@@ -11,10 +11,6 @@
 
 
 @interface LEBuildingNameShip : LERequest {
-	NSString *buildingId;
-	NSString *buildingUrl;
-	NSString *shipId;
-	NSString *name;
 }
 
 
