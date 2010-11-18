@@ -11,11 +11,15 @@
 
 
 @interface FoodReserve : Building {
-	NSMutableDictionary *storedFood;
+	id dumpFoodTarget;
+	SEL dumpFoodCallback;
 }
 
 
 @property (nonatomic, retain) NSMutableDictionary *storedFood;
+
+
+- (void)dumpFood:(NSDecimalNumber *)amount type:(NSString *)type target:(id)dumpFoodTarget callback:(SEL)dumpFoodCallback;
 
 
 @end

@@ -8,8 +8,11 @@
 
 #import "OreStorage.h"
 #import "LEMacros.h"
+#import "Util.h"
+#import "LEBuildingDump.h"
 #import "LETableViewCellButton.h"
 #import "ViewDictionaryController.h"
+#import "DumpOreController.h"
 
 
 @implementation OreStorage
@@ -32,21 +35,22 @@
 
 - (void)parseAdditionalData:(NSDictionary *)data {
 	self.storedOre = [data objectForKey:@"ore_stored"];
-	
-	
 }
 
 
 - (void)generateSections {
-	NSMutableDictionary *productionSection = [self generateProductionSection];
-	[[productionSection objectForKey:@"rows"] addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_STORED_ORE]];
-	self.sections = _array(productionSection, [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
+	NSMutableDictionary *actionSection = _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_STORED_ORE], [NSDecimalNumber numberWithInt:BUILDING_ROW_DUMP_RESOURCE]), @"rows");
+	
+	self.sections = _array([self generateProductionSection], actionSection, [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForBuildingRow:(BUILDING_ROW)buildingRow {
 	switch (buildingRow) {
 		case BUILDING_ROW_STORED_ORE:
+			return [LETableViewCellButton getHeightForTableView:tableView];
+			break;
+		case BUILDING_ROW_DUMP_RESOURCE:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		default:
@@ -65,6 +69,12 @@
 			storedOreCell.textLabel.text = @"View Ore By Type";
 			cell = storedOreCell;
 			break;
+		case BUILDING_ROW_DUMP_RESOURCE:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *dumpOreCell = [LETableViewCellButton getCellForTableView:tableView];
+			dumpOreCell.textLabel.text = @"Dump Ore";
+			cell = dumpOreCell;
+			break;
 		default:
 			cell = [super tableView:tableView cellForBuildingRow:buildingRow rowIndex:rowIndex];
 			break;
@@ -82,12 +92,39 @@
 			viewDictionaryController.data = self.storedOre;
 			return viewDictionaryController;
 			break;
+		case BUILDING_ROW_DUMP_RESOURCE:
+			; //DO NOT REMOVE
+			DumpOreController *dumpOreController = [DumpOreController create];
+			dumpOreController.oreStorage = self;
+			return dumpOreController;
+			break;
 		default:
 			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];
 			break;
 	}
 }
 
+
+#pragma mark -
+#pragma mark Instance Methods
+
+- (void)dumpOre:(NSDecimalNumber *)amount type:(NSString *)type target:(id)inDumpOreTarget callback:(SEL)inDumpOreCallback {
+	self->dumpOreTarget = inDumpOreTarget;
+	self->dumpOreCallback = inDumpOreCallback;
+	[[[LEBuildingDump alloc] initWithCallback:@selector(oreDumped:) target:self buildingId:self.id buildingUrl:self.buildingUrl type:type amount:amount] autorelease];
+}
+
+
+#pragma mark -
+#pragma mark Callback Methods
+
+- (id)oreDumped:(LEBuildingDump *)request {
+	NSDecimalNumber *originalAmount = [Util asNumber:[[self.storedOre objectForKey:request.type] stringValue]];
+	NSDecimalNumber *newAmount = [originalAmount decimalNumberBySubtracting:request.amount];
+	[self.storedOre setObject:newAmount forKey:request.type];
+	[self->dumpOreTarget performSelector:self->dumpOreCallback withObject:request];
+	return nil;
+}
 
 
 @end

@@ -35,6 +35,7 @@
 		F61D0D6D11E24E9E00B06382 /* Intelligence.m in Sources */ = {isa = PBXBuildFile; fileRef = F61D0D6C11E24E9E00B06382 /* Intelligence.m */; };
 		F61D0DE711E2602400B06382 /* Park.m in Sources */ = {isa = PBXBuildFile; fileRef = F61D0DE611E2602400B06382 /* Park.m */; };
 		F61D0E2F11E2656B00B06382 /* Development.m in Sources */ = {isa = PBXBuildFile; fileRef = F61D0E2E11E2656B00B06382 /* Development.m */; };
+		F61D4EA112949C9900778062 /* SelectResourceTypeFromListController.m in Sources */ = {isa = PBXBuildFile; fileRef = F61D4EA012949C9900778062 /* SelectResourceTypeFromListController.m */; };
 		F61F657E1204A7190007427A /* Shipyard.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F657D1204A7190007427A /* Shipyard.m */; };
 		F61F65811204B1240007427A /* LEBuildingGetBuildableShips.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F65801204B1240007427A /* LEBuildingGetBuildableShips.m */; };
 		F61F65841204B1320007427A /* LEBuildingViewShipBuildQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F61F65831204B1320007427A /* LEBuildingViewShipBuildQueue.m */; };
@@ -374,6 +375,8 @@
 		F6E9F1F612937C0800544362 /* DumpEnergyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E9F1F512937C0800544362 /* DumpEnergyController.m */; };
 		F6E9F2221293819300544362 /* WaterStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E9F2211293819300544362 /* WaterStorage.m */; };
 		F6E9F227129383A400544362 /* DumpWaterController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E9F226129383A400544362 /* DumpWaterController.m */; };
+		F6E9F238129384BC00544362 /* DumpOreController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E9F237129384BC00544362 /* DumpOreController.m */; };
+		F6E9FD2B129555C10099E1B3 /* DumpFoodController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E9FD2A129555C10099E1B3 /* DumpFoodController.m */; };
 		F6EB025D1202F500001BFD68 /* LEBuildingViewShipsTravelling.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB025C1202F500001BFD68 /* LEBuildingViewShipsTravelling.m */; };
 		F6EB02661202FB01001BFD68 /* ViewTravellingShipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB02651202FB01001BFD68 /* ViewTravellingShipsController.m */; };
 		F6ECEE6F123E477500CACFED /* ViewDictionaryController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6ECEE6E123E477500CACFED /* ViewDictionaryController.m */; };
@@ -469,6 +472,8 @@
 		F61D0DE611E2602400B06382 /* Park.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Park.m; sourceTree = "<group>"; };
 		F61D0E2D11E2656B00B06382 /* Development.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Development.h; sourceTree = "<group>"; };
 		F61D0E2E11E2656B00B06382 /* Development.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Development.m; sourceTree = "<group>"; };
+		F61D4E9F12949C9900778062 /* SelectResourceTypeFromListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectResourceTypeFromListController.h; sourceTree = "<group>"; };
+		F61D4EA012949C9900778062 /* SelectResourceTypeFromListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectResourceTypeFromListController.m; sourceTree = "<group>"; };
 		F61F657C1204A7190007427A /* Shipyard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shipyard.h; sourceTree = "<group>"; };
 		F61F657D1204A7190007427A /* Shipyard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shipyard.m; sourceTree = "<group>"; };
 		F61F657F1204B1240007427A /* LEBuildingGetBuildableShips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetBuildableShips.h; sourceTree = "<group>"; };
@@ -1125,6 +1130,10 @@
 		F6E9F2211293819300544362 /* WaterStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterStorage.m; sourceTree = "<group>"; };
 		F6E9F225129383A400544362 /* DumpWaterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DumpWaterController.h; sourceTree = "<group>"; };
 		F6E9F226129383A400544362 /* DumpWaterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DumpWaterController.m; sourceTree = "<group>"; };
+		F6E9F236129384BC00544362 /* DumpOreController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DumpOreController.h; sourceTree = "<group>"; };
+		F6E9F237129384BC00544362 /* DumpOreController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DumpOreController.m; sourceTree = "<group>"; };
+		F6E9FD29129555C10099E1B3 /* DumpFoodController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DumpFoodController.h; sourceTree = "<group>"; };
+		F6E9FD2A129555C10099E1B3 /* DumpFoodController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DumpFoodController.m; sourceTree = "<group>"; };
 		F6EB025B1202F500001BFD68 /* LEBuildingViewShipsTravelling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewShipsTravelling.h; sourceTree = "<group>"; };
 		F6EB025C1202F500001BFD68 /* LEBuildingViewShipsTravelling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewShipsTravelling.m; sourceTree = "<group>"; };
 		F6EB02641202FB01001BFD68 /* ViewTravellingShipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewTravellingShipsController.h; sourceTree = "<group>"; };
@@ -1470,6 +1479,8 @@
 				F61F65861204B1440007427A /* LEBuildingBuildShip.m */,
 				F6A9C5B11184BB6D001F0D9C /* LEBuildingBurnSpy.h */,
 				F6A9C5B21184BB6D001F0D9C /* LEBuildingBurnSpy.m */,
+				F6DA3DEC12842255001E4D3C /* LEBuildingCompleteMission.h */,
+				F6DA3DED12842255001E4D3C /* LEBuildingCompleteMission.m */,
 				F6E8D54E1223E73B001CD21D /* LEBuildingCreateAlliance.h */,
 				F6E8D54F1223E73B001CD21D /* LEBuildingCreateAlliance.m */,
 				F6E3EFC811B4440200E7BC86 /* LEBuildingDemolish.h */,
@@ -1478,6 +1489,8 @@
 				F6E8D5521223E750001CD21D /* LEBuildingDissolveAlliance.m */,
 				F6DF239D122960BE0023FE65 /* LEBuildingDowngrade.h */,
 				F6DF239E122960BE0023FE65 /* LEBuildingDowngrade.m */,
+				F6E9F1D5129377CE00544362 /* LEBuildingDump.h */,
+				F6E9F1D6129377CE00544362 /* LEBuildingDump.m */,
 				F6D48579120CD82100D77FC3 /* LEBuildingExecutePrisoner.h */,
 				F6D4857A120CD82100D77FC3 /* LEBuildingExecutePrisoner.m */,
 				F6E8D5721223E82C001CD21D /* LEBuildingExpelMember.h */,
@@ -1490,6 +1503,8 @@
 				F61F65801204B1240007427A /* LEBuildingGetBuildableShips.m */,
 				F68708EF12669CFD00068237 /* LEBuildingGetLotteryVotingOptions.h */,
 				F68708F012669CFD00068237 /* LEBuildingGetLotteryVotingOptions.m */,
+				F6DA3DE912842244001E4D3C /* LEBuildingGetMissions.h */,
+				F6DA3DEA12842244001E4D3C /* LEBuildingGetMissions.m */,
 				F6E8D5661223E7D9001CD21D /* LEBuildingGetMyInvites.h */,
 				F6E8D5671223E7D9001CD21D /* LEBuildingGetMyInvites.m */,
 				F621306A11F8F4C1006B80C5 /* LEBuildingGetOresAvailableForProcessing.h */,
@@ -1538,6 +1553,8 @@
 				F6D4857D120CD83600D77FC3 /* LEBuildingReleasePrisoner.m */,
 				F6E5E6301205CDC200365AA2 /* LEBuildingRemoveShipFromFleet.h */,
 				F6E5E6311205CDC200365AA2 /* LEBuildingRemoveShipFromFleet.m */,
+				F6E9F166129361BE00544362 /* LEBuildingRenameEmpire.h */,
+				F6E9F167129361BE00544362 /* LEBuildingRenameEmpire.m */,
 				F6E57AC3120A40270030330F /* LEBuildingRepair.h */,
 				F6E57AC4120A40270030330F /* LEBuildingRepair.m */,
 				F68650061183D2A4009826A7 /* LEBuildingRestrictCoverage.h */,
@@ -1704,14 +1721,6 @@
 				F6DA5A58124E69E9005D11F6 /* LEStatsSpyRank.m */,
 				F6DA5A5A124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.h */,
 				F6DA5A5B124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.m */,
-				F6DA3DE912842244001E4D3C /* LEBuildingGetMissions.h */,
-				F6DA3DEA12842244001E4D3C /* LEBuildingGetMissions.m */,
-				F6DA3DEC12842255001E4D3C /* LEBuildingCompleteMission.h */,
-				F6DA3DED12842255001E4D3C /* LEBuildingCompleteMission.m */,
-				F6E9F166129361BE00544362 /* LEBuildingRenameEmpire.h */,
-				F6E9F167129361BE00544362 /* LEBuildingRenameEmpire.m */,
-				F6E9F1D5129377CE00544362 /* LEBuildingDump.h */,
-				F6E9F1D6129377CE00544362 /* LEBuildingDump.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -1863,6 +1872,14 @@
 				F6DEABFD125D5AF2001366C3 /* ChatController.xib */,
 				F6D55EFB1225EBAE00AA79BD /* DisolveAllianceController.h */,
 				F6D55EFC1225EBAE00AA79BD /* DisolveAllianceController.m */,
+				F6E9F1F412937C0800544362 /* DumpEnergyController.h */,
+				F6E9F1F512937C0800544362 /* DumpEnergyController.m */,
+				F6E9FD29129555C10099E1B3 /* DumpFoodController.h */,
+				F6E9FD2A129555C10099E1B3 /* DumpFoodController.m */,
+				F6E9F236129384BC00544362 /* DumpOreController.h */,
+				F6E9F237129384BC00544362 /* DumpOreController.m */,
+				F6E9F225129383A400544362 /* DumpWaterController.h */,
+				F6E9F226129383A400544362 /* DumpWaterController.m */,
 				F6E3E57D11BB0A3200A031CF /* EditEmpireProfileText.h */,
 				F6E3E57E11BB0A3200A031CF /* EditEmpireProfileText.m */,
 				F6D97D50124CC3A800B2C676 /* EditSavedEmpireV2.h */,
@@ -1922,6 +1939,8 @@
 				F6DF43401228A55F00A526FD /* RejectAllianceInviteController.m */,
 				F6A9C6361184DF61001F0D9C /* RenameBodyController.h */,
 				F6A9C6371184DF61001F0D9C /* RenameBodyController.m */,
+				F6E9F199129368D100544362 /* RenameEmpireController.h */,
+				F6E9F19A129368D100544362 /* RenameEmpireController.m */,
 				F6D59FF212012AA9009DDA28 /* RenameShipController.h */,
 				F6D59FF312012AA9009DDA28 /* RenameShipController.m */,
 				F6A9C6331184DF55001F0D9C /* RenameSpyController.h */,
@@ -1946,6 +1965,8 @@
 				F6D360E91254B59B003FDE5D /* SelectPlanetToViewController.m */,
 				F6F8550B1220B0500000CD09 /* SelectResourceTypeController.h */,
 				F6F8550C1220B0500000CD09 /* SelectResourceTypeController.m */,
+				F61D4E9F12949C9900778062 /* SelectResourceTypeFromListController.h */,
+				F61D4EA012949C9900778062 /* SelectResourceTypeFromListController.m */,
 				F642C5601229E5EB00C596A7 /* SelectServerController.h */,
 				F642C5611229E5EB00C596A7 /* SelectServerController.m */,
 				F6E0B8971253D6B200D0C870 /* SelectShipFromListController.h */,
@@ -2028,6 +2049,8 @@
 				F6E5E63F1205CF4000365AA2 /* ViewMiningFleetShipsController.m */,
 				F6E5E5E71205C40600365AA2 /* ViewMiningPlatformsController.h */,
 				F6E5E5E81205C40600365AA2 /* ViewMiningPlatformsController.m */,
+				F6E555E312858A37009D5F82 /* ViewMissionsController.h */,
+				F6E555E412858A37009D5F82 /* ViewMissionsController.m */,
 				F6DF42BE1228990700A526FD /* ViewMyInvitesController.h */,
 				F6DF42BF1228990700A526FD /* ViewMyInvitesController.m */,
 				F692B7C5121861D600E740C1 /* ViewMyTradesController.h */,
@@ -2085,14 +2108,6 @@
 				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
 				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
-				F6E555E312858A37009D5F82 /* ViewMissionsController.h */,
-				F6E555E412858A37009D5F82 /* ViewMissionsController.m */,
-				F6E9F199129368D100544362 /* RenameEmpireController.h */,
-				F6E9F19A129368D100544362 /* RenameEmpireController.m */,
-				F6E9F1F412937C0800544362 /* DumpEnergyController.h */,
-				F6E9F1F512937C0800544362 /* DumpEnergyController.m */,
-				F6E9F225129383A400544362 /* DumpWaterController.h */,
-				F6E9F226129383A400544362 /* DumpWaterController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2578,6 +2593,9 @@
 				F6E9F1F612937C0800544362 /* DumpEnergyController.m in Sources */,
 				F6E9F2221293819300544362 /* WaterStorage.m in Sources */,
 				F6E9F227129383A400544362 /* DumpWaterController.m in Sources */,
+				F6E9F238129384BC00544362 /* DumpOreController.m in Sources */,
+				F61D4EA112949C9900778062 /* SelectResourceTypeFromListController.m in Sources */,
+				F6E9FD2B129555C10099E1B3 /* DumpFoodController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

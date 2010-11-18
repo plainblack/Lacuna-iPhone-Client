@@ -23,9 +23,6 @@ NSMutableDictionary *selectedStoredResource;
 
 
 @interface SelectStoredResourceController : LETableViewControllerGrouped <PickNumericValueControllerDelegate> {
-	BaseTradeBuilding *baseTradeBuilding;
-	NSMutableDictionary *selectedStoredResource;
-	id<SelectStoredResourceControllerDelegate> delegate;
 	PickNumericValueController *pickNumericValueController;
 }
 

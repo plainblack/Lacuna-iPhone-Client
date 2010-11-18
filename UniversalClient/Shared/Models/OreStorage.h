@@ -11,11 +11,15 @@
 
 
 @interface OreStorage : Building {
-	NSMutableDictionary *storedOre;
+	id dumpOreTarget;
+	SEL dumpOreCallback;
 }
 
 
 @property (nonatomic, retain) NSMutableDictionary *storedOre;
+
+
+- (void)dumpOre:(NSDecimalNumber *)amount type:(NSString *)type target:(id)dumpOreTarget callback:(SEL)dumpOreCallback;
 
 
 @end
