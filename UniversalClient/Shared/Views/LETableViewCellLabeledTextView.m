@@ -201,6 +201,7 @@
 		cell.textView = [[[UITextView alloc] initWithFrame:CGRectMake(5, 20, 310, 140)] autorelease];
 		cell.textView.textAlignment = UITextAlignmentLeft;
 		cell.textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
+		cell.textView.autocorrectionType = UITextAutocorrectionTypeYes;
 		cell.textView.font = TEXT_ENTRY_FONT;
 		cell.textView.textColor = TEXT_ENTRY_COLOR;
 		cell.textView.backgroundColor = [UIColor whiteColor];
@@ -219,8 +220,8 @@
 		
 		//Set text defaults
 		cell.keyboardType = UIKeyboardTypeDefault;
-		cell.autocorrectionType = UITextAutocorrectionTypeNo;
-		cell.autocapitalizationType = UITextAutocapitalizationTypeNone;
+		cell.autocorrectionType = UITextAutocorrectionTypeYes;
+		cell.autocapitalizationType = UITextAutocapitalizationTypeSentences;
 		cell.enablesReturnKeyAutomatically = YES;
 		cell.returnKeyType = UIReturnKeyNext;
 		

@@ -200,8 +200,8 @@ static NSString *CellIdentifier = @"TextEntryCell";
 		
 		//Set text defaults
 		cell.keyboardType = UIKeyboardTypeDefault;
-		cell.autocorrectionType = UITextAutocorrectionTypeNo;
-		cell.autocapitalizationType = UITextAutocapitalizationTypeNone;
+		cell.autocorrectionType = UITextAutocorrectionTypeYes;
+		cell.autocapitalizationType = UITextAutocapitalizationTypeSentences;
 		cell.enablesReturnKeyAutomatically = NO;
 		cell.returnKeyType = UIReturnKeyNext;
 		
@@ -271,8 +271,8 @@ static NSString *CellIdentifier = @"TextEntryCell";
 		
 		//Set text defaults
 		cell.keyboardType = UIKeyboardTypeDefault;
-		cell.autocorrectionType = UITextAutocorrectionTypeNo;
-		cell.autocapitalizationType = UITextAutocapitalizationTypeNone;
+		cell.autocorrectionType = UITextAutocorrectionTypeYes;
+		cell.autocapitalizationType = UITextAutocapitalizationTypeSentences;
 		cell.enablesReturnKeyAutomatically = NO;
 		cell.returnKeyType = UIReturnKeyNext;
 		
