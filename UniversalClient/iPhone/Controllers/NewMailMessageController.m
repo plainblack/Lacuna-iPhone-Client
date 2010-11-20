@@ -73,7 +73,12 @@ typedef enum {
 	if (self.replyToMessage) {
 		self.navigationItem.title = @"Reply";
 		self.toCell.textField.text = [replyToMessage objectForKey:@"from"];
-		self.subjectCell.textField.text = [NSString stringWithFormat:@"RE: %@", [self.replyToMessage objectForKey:@"subject"]];
+		NSString *subject = [self.replyToMessage objectForKey:@"subject"];
+		if ([[subject lowercaseString] hasPrefix:@"re: "]) {
+			self.subjectCell.textField.text = subject;
+		} else {
+			self.subjectCell.textField.text = [NSString stringWithFormat:@"RE: %@", subject];
+		}
 		self.messageCell.textView.text = [NSString stringWithFormat:@"\nIn reply to:\n%@", [self.replyToMessage objectForKey:@"body"]];
 	} else if (self.forwardMessage) {
 		self.navigationItem.title = @"Forward";
