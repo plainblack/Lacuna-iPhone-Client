@@ -385,6 +385,8 @@
 		F6EF714F11FE7D1C00A93226 /* LEBuildingViewAllShips.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF714E11FE7D1C00A93226 /* LEBuildingViewAllShips.m */; };
 		F6EF716A11FE810900A93226 /* Ship.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF716911FE810900A93226 /* Ship.m */; };
 		F6F1C21D12326FB100D69BB6 /* ViewMedalsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F1C21C12326FB100D69BB6 /* ViewMedalsController.m */; };
+		F6F3F5941297930B005D6A79 /* LEBuildingQuackDuck.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F3F5931297930B005D6A79 /* LEBuildingQuackDuck.m */; };
+		F6F3F59D129795AB005D6A79 /* ViewDuckQuackController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F3F59C129795AB005D6A79 /* ViewDuckQuackController.m */; };
 		F6F41902123B046800F93457 /* AssembleGlyphsControllerV2.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F41900123B046800F93457 /* AssembleGlyphsControllerV2.m */; };
 		F6F41903123B046800F93457 /* AssembleGlyphsControllerV2.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6F41901123B046800F93457 /* AssembleGlyphsControllerV2.xib */; };
 		F6F4AD9712444A4700B0509A /* ViewBodyMapControllerV2.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F4AD9612444A4700B0509A /* ViewBodyMapControllerV2.m */; };
@@ -1150,6 +1152,10 @@
 		F6EF716911FE810900A93226 /* Ship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ship.m; sourceTree = "<group>"; };
 		F6F1C21B12326FB100D69BB6 /* ViewMedalsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMedalsController.h; sourceTree = "<group>"; };
 		F6F1C21C12326FB100D69BB6 /* ViewMedalsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMedalsController.m; sourceTree = "<group>"; };
+		F6F3F5921297930B005D6A79 /* LEBuildingQuackDuck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingQuackDuck.h; sourceTree = "<group>"; };
+		F6F3F5931297930B005D6A79 /* LEBuildingQuackDuck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingQuackDuck.m; sourceTree = "<group>"; };
+		F6F3F59B129795AB005D6A79 /* ViewDuckQuackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewDuckQuackController.h; sourceTree = "<group>"; };
+		F6F3F59C129795AB005D6A79 /* ViewDuckQuackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewDuckQuackController.m; sourceTree = "<group>"; };
 		F6F418FF123B046800F93457 /* AssembleGlyphsControllerV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssembleGlyphsControllerV2.h; sourceTree = "<group>"; };
 		F6F41900123B046800F93457 /* AssembleGlyphsControllerV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssembleGlyphsControllerV2.m; sourceTree = "<group>"; };
 		F6F41901123B046800F93457 /* AssembleGlyphsControllerV2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssembleGlyphsControllerV2.xib; sourceTree = "<group>"; };
@@ -1721,6 +1727,8 @@
 				F6DA5A58124E69E9005D11F6 /* LEStatsSpyRank.m */,
 				F6DA5A5A124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.h */,
 				F6DA5A5B124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.m */,
+				F6F3F5921297930B005D6A79 /* LEBuildingQuackDuck.h */,
+				F6F3F5931297930B005D6A79 /* LEBuildingQuackDuck.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -2108,6 +2116,8 @@
 				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
 				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
+				F6F3F59B129795AB005D6A79 /* ViewDuckQuackController.h */,
+				F6F3F59C129795AB005D6A79 /* ViewDuckQuackController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2596,6 +2606,8 @@
 				F6E9F238129384BC00544362 /* DumpOreController.m in Sources */,
 				F61D4EA112949C9900778062 /* SelectResourceTypeFromListController.m in Sources */,
 				F6E9FD2B129555C10099E1B3 /* DumpFoodController.m in Sources */,
+				F6F3F5941297930B005D6A79 /* LEBuildingQuackDuck.m in Sources */,
+				F6F3F59D129795AB005D6A79 /* ViewDuckQuackController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

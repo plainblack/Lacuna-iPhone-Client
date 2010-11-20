@@ -11,14 +11,18 @@
 
 
 @interface Entertainment : Building {
+	id duckQuackTarget;
+	SEL duckQuackCallback;
 }
 
 
 @property (nonatomic, retain) NSMutableArray *votingOptions;
+@property (nonatomic, retain) NSDecimalNumber *ducksQuacked;
 
 
 - (void)loadVotingOptions;
 - (void)removeVotingOptionNamed:(NSString *)votingOptionName;
+- (void)quackDuck:(id)target callback:(SEL)callback;
 
 
 @end
