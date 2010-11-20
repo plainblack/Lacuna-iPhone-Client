@@ -60,7 +60,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	LETableViewCellParagraph *quackCell = [LETableViewCellParagraph getCellForTableView:tableView];
+	quackCell.content.font = [UIFont fontWithName:@"Courier-Bold" size:14.0];
 	quackCell.content.text = self.quackMessage;
+	
     return quackCell;
 }
 
