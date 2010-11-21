@@ -56,8 +56,14 @@ def cleanDirs(toCleanDirName, masterDirName)
   end
 end
 
+def getNewResources()
+  exec "curl http://pt.lacunaexpanse.com/resources.json > UniversalClient/assets/resources.json"
+end
+
 syncDirs("/users/rundeks/Dropbox/space game/iphone ui", "/users/rundeks/dev/iPhone/Lacuna-iPhone-Client/UniversalClient/assets/iphone ui")
 syncDirs("../Lacuna-Assets", "/users/rundeks/dev/iPhone/Lacuna-iPhone-Client/UniversalClient/assets")
 
 cleanDirs("/users/rundeks/dev/iPhone/Lacuna-iPhone-Client/UniversalClient/assets/iphone ui", "/users/rundeks/Dropbox/space game/iphone ui")
 cleanDirs("/users/rundeks/dev/iPhone/Lacuna-iPhone-Client/UniversalClient/assets", "../Lacuna-Assets")
+
+getNewResources()
