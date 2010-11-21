@@ -6,12 +6,12 @@
 //  Copyright 2010 n/a. All rights reserved.
 //
 
-#import "LEBuildingTransmitCompleteBuildQueue.h"
+#import "LEBuildingCompleteBuildQueue.h"
 #import "LEMacros.h"
 #import "Session.h"
 
 
-@implementation LEBuildingTransmitCompleteBuildQueue
+@implementation LEBuildingCompleteBuildQueue
 
 
 @synthesize buildingId;

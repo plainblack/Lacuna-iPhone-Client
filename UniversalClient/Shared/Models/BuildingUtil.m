@@ -28,6 +28,7 @@
 #import "Security.h"
 #import "Shipyard.h"
 #import "SpacePort.h"
+#import "SubspaceSupplyDepot.h"
 #import "TempleOfTheDrajilites.h"
 #import "WasteRecycling.h"
 #import "WaterStorage.h"
@@ -74,6 +75,8 @@
 		building = [[[SpacePort alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:SHIPYARD_URL]) {
 		building = [[[Shipyard alloc] init] autorelease];
+	} else if ([request.buildingUrl isEqualToString:SUBSPACE_SUPPLY_DEPOT_URL]) {
+		building = [[[SubspaceSupplyDepot alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:TEMPLE_OF_THE_DRAJILITEIS_URL]) {	
 		building = [[[TempleOfTheDrajilites alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:TRADE_URL]) {

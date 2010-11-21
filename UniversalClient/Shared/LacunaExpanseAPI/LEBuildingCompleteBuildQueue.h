@@ -10,7 +10,7 @@
 #import "LERequest.h"
 
 
-@interface LEBuildingTransmitCompleteBuildQueue : LERequest {
+@interface LEBuildingCompleteBuildQueue : LERequest {
 }
 
 

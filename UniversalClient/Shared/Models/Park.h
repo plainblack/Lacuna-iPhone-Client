@@ -11,9 +11,6 @@
 
 
 @interface Park : Building {
-	BOOL canThrowParty;
-	NSInteger secondsRemaining;
-	NSDecimalNumber *happinessFromParty;
 }
 
 
