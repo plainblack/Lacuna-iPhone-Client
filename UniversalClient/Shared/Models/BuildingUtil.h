@@ -17,6 +17,7 @@
 #define ESPIONAGE_URL @"/espionage"
 #define FOOD_RESERVE_URL @"/foodreserve"
 #define INTELLIGENCE_URL @"/intelligence"
+#define LIBRARY_OF_JITH_URL @"/libraryofjith"
 #define MINING_MINISTRY_URL @"/miningministry"
 #define MISSION_COMMAND_URL @"/missioncommand"
 #define MUNITIONS_LAB_URL @"/munitionslab"
@@ -133,6 +134,7 @@ typedef enum {
 	BUILDING_ROW_TRANSMIT_FOOD,
 	BUILDING_ROW_TRANSMIT_ORE,
 	BUILDING_ROW_TRANSMIT_WATER,
+	BUILDING_ROW_RESEARCH_SEPECIES,
 } BUILDING_ROW;
 
 

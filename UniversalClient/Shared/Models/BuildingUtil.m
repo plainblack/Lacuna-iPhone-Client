@@ -18,6 +18,7 @@
 #import "Entertainment.h"
 #import "FoodReserve.h"
 #import "Intelligence.h"
+#import "LibraryOfJith.h"
 #import "MiningMinistry.h"
 #import "MissionCommand.h"
 #import "Network19.h"
@@ -55,6 +56,8 @@
 		building = [[[FoodReserve alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:INTELLIGENCE_URL]) {
 		building = [[[Intelligence alloc] init] autorelease];
+	} else if ([request.buildingUrl isEqualToString:LIBRARY_OF_JITH_URL]) {
+		building = [[[LibraryOfJith alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:MINING_MINISTRY_URL]) {
 		building = [[[MiningMinistry alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:MISSION_COMMAND_URL]) {

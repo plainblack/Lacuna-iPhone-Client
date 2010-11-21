@@ -15,11 +15,11 @@
 
 @property (nonatomic, retain) NSString *buildingId;
 @property (nonatomic, retain) NSString *buildingUrl;
-@property (nonatomic, retain) NSSeting empireId;
+@property (nonatomic, retain) NSString *empireId;
 @property (nonatomic, retain) NSMutableDictionary *speciesData;
 
 
-- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl;
+- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl empireId:(NSString *)empireId;
 
 
 @end

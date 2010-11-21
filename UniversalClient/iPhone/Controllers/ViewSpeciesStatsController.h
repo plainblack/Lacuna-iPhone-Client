@@ -11,7 +11,6 @@
 
 
 @interface ViewSpeciesStatsController : LETableViewControllerGrouped {
-	NSDictionary *racialStats;
 }
 
 

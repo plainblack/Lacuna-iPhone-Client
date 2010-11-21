@@ -1,31 +1,40 @@
 //
-//  ViewRacialStatsController.m
+//  ViewResearchSpeciesStatsController.m
 //  UniversalClient
 //
-//  Created by Kevin Runde on 9/4/10.
+//  Created by Kevin Runde on 11/21/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
-#import "ViewSpeciesStatsController.h"
+#import "ViewResearchSpeciesStatsController.h"
 #import "LEMacros.h"
 #import "Util.h"
+#import "LibraryOfJith.h"
 #import "LEViewSectionTab.h"
+#import "LETableViewCellButton.h"
 #import "LETableViewCellLabeledText.h"
 #import "LETableViewCellLongLabeledText.h"
 #import "LETableViewCellLabeledParagraph.h"
-#import "LEEmpireViewSpeciesStats.h"
+#import "LEBuildingResearchSpecies.h"
+#import "SelectEmpireController.h"
 
 
 typedef enum {
+	SECTION_PICK_EMPIRE,
 	SECTION_INFO,
 	SECTION_HABITABLE_ORBITS,
-	SECTION_AFFINITY
+	SECTION_AFFINITY,
 } SECTION;
 
 
 typedef enum {
+	PICK_EMPIRE_ROW_EMPIRE,
+} PICK_EMPIRE_ROW;
+
+
+typedef enum {
 	INFO_ROW_NAME,
-	INFO_ROW_DESCRIPTION
+	INFO_ROW_DESCRIPTION,
 } INFO_ROW;
 
 
@@ -46,13 +55,15 @@ typedef enum {
 	AFFINITY_ROW_POLITICAL,
 	AFFINITY_ROW_RESEARCH,
 	AFFINITY_ROW_SCIENCE,
-	AFFINITY_ROW_TRADE
+	AFFINITY_ROW_TRADE,
 } AFFINITY_ROW;
 
 
-@implementation ViewSpeciesStatsController
+@implementation ViewResearchSpeciesStatsController
 
 
+@synthesize libraryOfJith;
+@synthesize empireToResearch;
 @synthesize racialStats;
 
 
@@ -66,7 +77,8 @@ typedef enum {
 	self.navigationItem.title = @"Species Stats";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Info"],
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Empire to research"],
+								 [LEViewSectionTab tableView:self.tableView withText:@"Info"],
 								 [LEViewSectionTab tableView:self.tableView withText:@"Habitable Orbits"],
 								 [LEViewSectionTab tableView:self.tableView withText:@"Affinities"]);
 }
@@ -74,8 +86,8 @@ typedef enum {
 
 
 - (void)viewWillAppear:(BOOL)animated {
-	[[[LEEmpireViewSpeciesStats alloc] initWithCallback:@selector(viewRacialStatsController:) target:self] autorelease];
     [super viewWillAppear:animated];
+	[self.tableView reloadData];
 }
 
 
@@ -88,17 +100,25 @@ typedef enum {
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	if (self.racialStats) {
-		return 3;
+	if (self.empireToResearch) {
+		if (self.racialStats) {
+			return 4;
+		} else {
+			return 2;
+		}
 	} else {
 		return 1;
 	}
+
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (self.racialStats) {
 		switch (section) {
+			case SECTION_PICK_EMPIRE:
+				return 1;
+				break;
 			case SECTION_INFO:
 				return 2;
 				break;
@@ -121,6 +141,9 @@ typedef enum {
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (self.racialStats) {
 		switch (indexPath.section) {
+			case SECTION_PICK_EMPIRE:
+				return [LETableViewCellButton getHeightForTableView:tableView];
+				break;
 			case SECTION_INFO:
 				switch (indexPath.row) {
 					case INFO_ROW_NAME:
@@ -178,6 +201,16 @@ typedef enum {
 	
 	if (self.racialStats) {
 		switch (indexPath.section) {
+			case SECTION_PICK_EMPIRE:
+				; //DO NOT REMOVE
+				LETableViewCellButton *pickEmpireCell = [LETableViewCellButton getCellForTableView:tableView];
+				if (self.empireToResearch) {
+					pickEmpireCell.textLabel.text = [self.empireToResearch objectForKey:@"name"];
+				}else {
+					pickEmpireCell.textLabel.text = @"Pick Empire To Research";
+				}
+				cell = pickEmpireCell;
+				break;
 			case SECTION_INFO:
 				switch (indexPath.row) {
 					case INFO_ROW_NAME:
@@ -306,13 +339,43 @@ typedef enum {
 				break;
 		}
 	} else {
-		LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-		loadingCell.label.text = @"Racial Stats";
-		loadingCell.content.text = @"Loading";
-		cell = loadingCell;
+		switch (indexPath.section) {
+			case SECTION_PICK_EMPIRE:
+				; //DO NOT REMOVE
+				LETableViewCellButton *pickEmpireCell = [LETableViewCellButton getCellForTableView:tableView];
+				if (self.empireToResearch) {
+					pickEmpireCell.textLabel.text = [self.empireToResearch objectForKey:@"name"];
+				}else {
+					pickEmpireCell.textLabel.text = @"Pick Empire To Research";
+				}
+				cell = pickEmpireCell;
+				break;
+			default:
+				; //DO NOT REMOVE
+				LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+				loadingCell.label.text = @"Stats";
+				loadingCell.content.text = @"Loading";
+				cell = loadingCell;
+				break;
+		}
 	}
     
     return cell;
+}
+
+
+#pragma mark -
+#pragma mark UITableViewDataSource Methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	switch (indexPath.section) {
+		case SECTION_PICK_EMPIRE:
+			; //DO NOT REMOVE
+			SelectEmpireController *selectEmpireController = [SelectEmpireController create];
+			selectEmpireController.delegate = self;
+			[self.navigationController pushViewController:selectEmpireController animated:YES];
+			break;
+	}
 }
 
 
@@ -333,26 +396,39 @@ typedef enum {
 
 
 - (void)dealloc {
+	self.libraryOfJith = nil;
+	self.empireToResearch = nil;
 	self.racialStats = nil;
     [super dealloc];
 }
 
 
 #pragma mark -
+#pragma mark SelectEmpireControllerDelegate Methods
+
+- (void)selectedEmpire:(NSDictionary *)empire {
+	self.empireToResearch = empire;
+	[self.navigationController popViewControllerAnimated:YES];
+	self.racialStats = nil;
+	[self.libraryOfJith researchSpecies:[self.empireToResearch objectForKey:@"id"] target:self callback:@selector(researchedSpecies:)];
+	[self.tableView reloadData];
+}
+
+
+#pragma mark -
 #pragma mark Callback Methods
 
-- (id)viewRacialStatsController:(LEEmpireViewSpeciesStats *)request {
-	self.racialStats = request.stats;
+- (void)researchedSpecies:(LEBuildingResearchSpecies *)request {
+	self.racialStats = request.speciesData;
 	[self.tableView reloadData];
-	return nil;
 }
 
 
 #pragma mark -
 #pragma mark Class Methods
 
-+ (ViewSpeciesStatsController *)create {
-	return [[[ViewSpeciesStatsController alloc] init] autorelease];
++ (ViewResearchSpeciesStatsController *)create {
+	return [[[ViewResearchSpeciesStatsController alloc] init] autorelease];
 }
 
 
