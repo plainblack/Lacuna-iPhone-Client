@@ -1,40 +1,39 @@
 //
-//  LEBuildingTransmitEnergy.m
+//  LEBuildingSkipMission.m
 //  UniversalClient
 //
 //  Created by Kevin Runde on 11/21/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
-#import "LEBuildingTransmitEnergy.h"
+#import "LEBuildingSkipMission.h"
 #import "LEMacros.h"
 #import "Session.h"
 
 
-@implementation LEBuildingTransmitEnergy
+@implementation LEBuildingSkipMission
 
 
 @synthesize buildingId;
 @synthesize buildingUrl;
-@synthesize result;
-@synthesize buildingData;
+@synthesize missionId;
 
 
-- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl {
+- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl missionId:(NSString *)inMissionId {
 	self.buildingId = inBuildingId;
 	self.buildingUrl = inBuildingUrl;
+	self.missionId = inMissionId;
 	return [self initWithCallback:inCallback target:(NSObject *)inTarget];
 }
 
 
 - (id)params {
-	return _array([Session sharedInstance].sessionId, self.buildingId);
+	return _array([Session sharedInstance].sessionId, self.buildingId, self.missionId);
 }
 
 
 - (void)processSuccess {
-	self.result = [self.response objectForKey:@"result"];
-	self.buildingData = [result objectForKey:@"building"];
+	NSDictionary *result = [self.response objectForKey:@"result"];
 }
 
 
@@ -44,15 +43,14 @@
 
 
 - (NSString *)methodName {
-	return @"transmit_energy";
+	return @"skip_mission";
 }
 
 
 - (void)dealloc {
 	self.buildingId = nil;
 	self.buildingUrl = nil;
-	self.result = nil;
-	self.buildingData = nil;
+	self.missionId = nil;
 	[super dealloc];
 }
 

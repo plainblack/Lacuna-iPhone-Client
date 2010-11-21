@@ -179,7 +179,7 @@ static id<LERequestMonitor> delegate;
 		if (wasError && !handledError) {
 			NSString *errorText = [self errorMessage];
 			if ([errorText isEqualToString:@"Internal error."]) {
-				errorText = @"Your request could be not be completed do to a server error.";
+				errorText = @"Your request could be not be completed due to a server error.";
 			}
 			UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:errorText delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 			[av show];

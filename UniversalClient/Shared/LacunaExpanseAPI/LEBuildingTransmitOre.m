@@ -16,6 +16,8 @@
 
 @synthesize buildingId;
 @synthesize buildingUrl;
+@synthesize result;
+@synthesize buildingData;
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl {
@@ -31,8 +33,8 @@
 
 
 - (void)processSuccess {
-	//NSDictionary *result = [self.response objectForKey:@"result"];
-	NSLog(@"transmit_ore Queue response: %@", self.response);
+	self.result = [self.response objectForKey:@"result"];
+	self.buildingData = [result objectForKey:@"building"];
 }
 
 
@@ -49,6 +51,8 @@
 - (void)dealloc {
 	self.buildingId = nil;
 	self.buildingUrl = nil;
+	self.result = nil;
+	self.buildingData = nil;
 	[super dealloc];
 }
 

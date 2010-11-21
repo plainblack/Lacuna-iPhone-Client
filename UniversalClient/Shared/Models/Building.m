@@ -32,6 +32,7 @@
 #import "LEBuildingRepair.h"
 #import "WebPageController.h"
 
+
 @implementation Building
 
 
@@ -119,11 +120,8 @@
 	} else {
 		self.pendingBuild = nil;
 	}
-
-	if(!self.work) {
-		self.work = [[[TimedActivity alloc] init] autorelease];
-	}
-	[self.work parseData:[buildingData objectForKey:@"work"]];
+	
+	[self parseWorkData:[buildingData objectForKey:@"work"]];
 
 	NSDictionary *upgradeData = [buildingData objectForKey:@"upgrade"];
 	if (upgradeData) {
@@ -166,6 +164,15 @@
 
 - (void)parseAdditionalData:(NSDictionary *)data {
 	//Does nothing. You should override this for building specific functions
+}
+
+
+- (void)parseWorkData:(NSDictionary *)workData {
+	NSLog(@"Work Data: %@", workData);
+	if(!self.work) {
+		self.work = [[[TimedActivity alloc] init] autorelease];
+	}
+	[self.work parseData:workData];
 }
 
 

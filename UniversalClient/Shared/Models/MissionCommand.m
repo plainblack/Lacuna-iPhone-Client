@@ -14,6 +14,7 @@
 #import "Mission.h"
 #import "LEBuildingGetMissions.h"
 #import "LEBuildingCompleteMission.h"
+#import "LEBuildingSkipMission.h"
 #import "ViewMissionsController.h"
 
 
@@ -105,6 +106,13 @@
 }
 
 
+- (void)skipMission:(Mission *)mission target:(id)target callback:(SEL)callback {
+	self->skipTarget = target;
+	self->skipCallback = callback;
+	[[[LEBuildingSkipMission alloc] initWithCallback:@selector(missionSkipped:) target:self buildingId:self.id buildingUrl:self.buildingUrl missionId:mission.id] autorelease];
+}
+
+
 #pragma mark -
 #pragma mark Callback Methods
 
@@ -141,6 +149,29 @@
 	}
 	
 	self.missions = tmpMissions;
+}
+
+
+- (void)missionSkipped:(LEBuildingSkipMission *)request {
+	if (![request wasError]) {
+		__block Mission *skippedMission = nil;
+		[self.missions enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+			Mission *mission = (Mission *)obj;
+			if ([mission.id isEqualToString:request.missionId]) {
+				skippedMission = mission;
+				*stop = YES;
+			}
+		}];
+		
+		if (skippedMission) {
+			[self.missions removeObject:skippedMission];
+			self.needsRefresh = YES;
+		}
+	}
+	
+	if (self->skipTarget && self->skipCallback) {
+		[self->skipTarget performSelector:self->skipCallback withObject:request];
+	}
 }
 
 

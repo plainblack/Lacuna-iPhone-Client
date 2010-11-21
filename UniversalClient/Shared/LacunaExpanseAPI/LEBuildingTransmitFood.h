@@ -16,6 +16,8 @@
 
 @property (nonatomic, retain) NSString *buildingId;
 @property (nonatomic, retain) NSString *buildingUrl;
+@property (nonatomic, retain) NSMutableDictionary *result;
+@property (nonatomic, retain) NSMutableDictionary *buildingData;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl;

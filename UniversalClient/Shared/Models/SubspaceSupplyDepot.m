@@ -9,6 +9,7 @@
 #import "SubspaceSupplyDepot.h"
 #import "LEMacros.h"
 #import "Util.h"
+#import "MapBuilding.h"
 #import "LETableViewCellButton.h"
 #import "LEBuildingCompleteBuildQueue.h"
 #import "LEBuildingTransmitEnergy.h"
@@ -30,16 +31,6 @@
 
 #pragma mark -
 #pragma mark Overriden Building Methods
-
-- (BOOL)tick:(NSInteger)interval {
-	BOOL reloadNeeded = [super tick:interval];
-	return reloadNeeded;
-}
-
-
-- (void)parseAdditionalData:(NSDictionary *)data {
-	NSLog(@"SubspaceSuppleDepot data: %@", data);
-}
 
 
 - (void)generateSections {
@@ -174,28 +165,43 @@
 #pragma mark -
 #pragma mark Callback Methods
 
-- (id)buildQueueCompleted:(LEBuildingCompleteBuildQueue*)request {
-	return nil;
+- (void)buildQueueCompleted:(LEBuildingCompleteBuildQueue*)request {
+	NSMutableDictionary *workData = [request.buildingData objectForKey:@"work"];
+	[self parseWorkData:workData];
+	[[self findMapBuilding] updateWork:workData];
+	self.needsRefresh = YES;
 }
 
 
-- (id)energyTransmitted:(LEBuildingTransmitEnergy *)request {
-	return nil;
+- (void)energyTransmitted:(LEBuildingTransmitEnergy *)request {
+	NSMutableDictionary *workData = [request.buildingData objectForKey:@"work"];
+	[self parseWorkData:workData];
+	[[self findMapBuilding] updateWork:workData];
+	self.needsRefresh = YES;
 }
 
 
-- (id)foodTransmitted:(LEBuildingTransmitFood *)request {
-	return nil;
+- (void)foodTransmitted:(LEBuildingTransmitFood *)request {
+	NSMutableDictionary *workData = [request.buildingData objectForKey:@"work"];
+	[self parseWorkData:workData];
+	[[self findMapBuilding] updateWork:workData];
+	self.needsRefresh = YES;
 }
 
 
-- (id)oreTransmitted:(LEBuildingTransmitOre *)request {
-	return nil;
+- (void)oreTransmitted:(LEBuildingTransmitOre *)request {
+	NSMutableDictionary *workData = [request.buildingData objectForKey:@"work"];
+	[self parseWorkData:workData];
+	[[self findMapBuilding] updateWork:workData];
+	self.needsRefresh = YES;
 }
 
 
-- (id)waterTransmitted:(LEBuildingTransmitWater *)request {
-	return nil;
+- (void)waterTransmitted:(LEBuildingTransmitWater *)request {
+	NSMutableDictionary *workData = [request.buildingData objectForKey:@"work"];
+	[self parseWorkData:workData];
+	[[self findMapBuilding] updateWork:workData];
+	self.needsRefresh = YES;
 }
 
 

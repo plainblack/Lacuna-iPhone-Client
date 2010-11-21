@@ -73,6 +73,7 @@
 
 - (void)parseData:(NSDictionary *)data;
 - (void)parseAdditionalData:(NSDictionary *)data;
+- (void)parseWorkData:(NSDictionary *)workData;
 - (void)generateDestroyedSections;
 - (void)generateSections;
 - (NSMutableDictionary *)generateProductionSection;

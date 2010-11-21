@@ -11,13 +11,15 @@
 
 
 @class MissionCommand;
+@class Mission;
 
 
-@interface ViewMissionsController : LETableViewControllerGrouped {
+@interface ViewMissionsController : LETableViewControllerGrouped <UIActionSheetDelegate> {
 }
 
 
 @property (nonatomic, retain) MissionCommand *missionCommand;
+@property (nonatomic, retain) Mission *skipMission;
 
 
 + (ViewMissionsController *)create;

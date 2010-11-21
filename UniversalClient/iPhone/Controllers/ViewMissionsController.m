@@ -17,6 +17,7 @@
 #import "LETableViewCellLabeledParagraph.h"
 #import "LETableViewCellParagraph.h"
 #import "LEBuildingCompleteMission.h"
+#import "LEBuildingSkipMission.h"
 
 
 typedef enum {
@@ -27,6 +28,7 @@ typedef enum {
 	ROW_OBJECTIVES,
 	ROW_REWARDS,
 	ROW_ACCEPT_BUTTON,
+	ROW_SKIP_BUTTON,
 } ROW;
 
 
@@ -34,6 +36,7 @@ typedef enum {
 
 
 @synthesize missionCommand;
+@synthesize skipMission;
 
 
 #pragma mark -
@@ -83,7 +86,7 @@ typedef enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (self.missionCommand && self.missionCommand.missions) {
 		if ([self.missionCommand.missions count] > 0) {
-			return 7;
+			return 8;
 		} else {
 			return 1;
 		}
@@ -115,6 +118,7 @@ typedef enum {
 					return [LETableViewCellLabeledParagraph getHeightForTableView:tableView text:mission.rewardsAsText];
 					break;
 				case ROW_ACCEPT_BUTTON:
+				case ROW_SKIP_BUTTON:
 					return [LETableViewCellButton getHeightForTableView:tableView];
 					break;
 				default:
@@ -187,6 +191,12 @@ typedef enum {
 					acceptButtonCell.textLabel.text = @"Accept Mission";
 					cell = acceptButtonCell;
 					break;
+				case ROW_SKIP_BUTTON:
+					; // DO NOT REMOVE
+					LETableViewCellButton *skipButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+					skipButtonCell.textLabel.text = @"Skip Mission";
+					cell = skipButtonCell;
+					break;
 				default:
 					cell = nil;
 					break;
@@ -217,7 +227,14 @@ typedef enum {
 			Mission *mission = [self.missionCommand.missions objectAtIndex:indexPath.section];
 			switch (indexPath.row) {
 				case ROW_ACCEPT_BUTTON:
-					[self.missionCommand completeMission:mission target:self callback:@selector(missonCompleted:)];
+					[self.missionCommand completeMission:mission target:self callback:@selector(missionCompleted:)];
+					break;
+				case ROW_SKIP_BUTTON:
+					self.skipMission = mission;
+					UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Are you really sure you want to skip this mission?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+					actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+					[actionSheet showFromTabBar:self.tabBarController.tabBar];
+					[actionSheet release];
 					break;
 			}
 		}
@@ -242,14 +259,32 @@ typedef enum {
 
 - (void)dealloc {
 	self.missionCommand = nil;
+	self.skipMission = nil;
     [super dealloc];
+}
+
+
+#pragma mark -
+#pragma mark UIActionSheetDelegate Methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
+		[self.missionCommand skipMission:self.skipMission target:self callback:@selector(missionSkipped:)];
+	}
 }
 
 
 #pragma mark -
 #pragma mark Callback Methods
 
-- (void)missonCompleted:(LEBuildingCompleteMission *)request {
+- (void)missionCompleted:(LEBuildingCompleteMission *)request {
+	if (![request wasError]) {
+		[self.tableView reloadData];
+	}
+}
+
+
+- (void)missionSkipped:(LEBuildingSkipMission *)request {
 	if (![request wasError]) {
 		[self.tableView reloadData];
 	}

@@ -16,6 +16,8 @@
 @interface MissionCommand : Building {
 	id completeTarget;
 	SEL completeCallback;
+	id skipTarget;
+	SEL skipCallback;
 }
 
 
@@ -24,6 +26,7 @@
 
 - (void)completeMission:(Mission *)mission target:(id)target callback:(SEL)callback;
 - (void)loadMissions;
+- (void)skipMission:(Mission *)mission target:(id)target callback:(SEL)callback;
 
 
 @end
