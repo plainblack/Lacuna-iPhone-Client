@@ -33,6 +33,7 @@
 		F61151E2129998BB00108348 /* LEBuildingTransmitWater.m in Sources */ = {isa = PBXBuildFile; fileRef = F61151E1129998BB00108348 /* LEBuildingTransmitWater.m */; };
 		F61151E5129998CC00108348 /* LEBuildingCompleteBuildQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F61151E4129998CC00108348 /* LEBuildingCompleteBuildQueue.m */; };
 		F61151EA12999C3E00108348 /* SubspaceSupplyDepot.m in Sources */ = {isa = PBXBuildFile; fileRef = F61151E912999C3E00108348 /* SubspaceSupplyDepot.m */; };
+		F61151F51299A88B00108348 /* LEBuildingResearchSpecies.m in Sources */ = {isa = PBXBuildFile; fileRef = F61151F41299A88B00108348 /* LEBuildingResearchSpecies.m */; };
 		F6132E5B119E3A78000F99A9 /* LETableViewCellNumberEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = F6132E5A119E3A78000F99A9 /* LETableViewCellNumberEntry.m */; };
 		F614450B11E961D40052D010 /* Spy.m in Sources */ = {isa = PBXBuildFile; fileRef = F614450A11E961D40052D010 /* Spy.m */; };
 		F61D0C2311E2355600B06382 /* WasteRecycling.m in Sources */ = {isa = PBXBuildFile; fileRef = F61D0C2211E2355600B06382 /* WasteRecycling.m */; };
@@ -476,6 +477,8 @@
 		F61151E4129998CC00108348 /* LEBuildingCompleteBuildQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingCompleteBuildQueue.m; sourceTree = "<group>"; };
 		F61151E812999C3E00108348 /* SubspaceSupplyDepot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubspaceSupplyDepot.h; sourceTree = "<group>"; };
 		F61151E912999C3E00108348 /* SubspaceSupplyDepot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubspaceSupplyDepot.m; sourceTree = "<group>"; };
+		F61151F31299A88B00108348 /* LEBuildingResearchSpecies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingResearchSpecies.h; sourceTree = "<group>"; };
+		F61151F41299A88B00108348 /* LEBuildingResearchSpecies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingResearchSpecies.m; sourceTree = "<group>"; };
 		F6132E59119E3A78000F99A9 /* LETableViewCellNumberEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellNumberEntry.h; sourceTree = "<group>"; };
 		F6132E5A119E3A78000F99A9 /* LETableViewCellNumberEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellNumberEntry.m; sourceTree = "<group>"; };
 		F614450911E961D40052D010 /* Spy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spy.h; sourceTree = "<group>"; };
@@ -1757,6 +1760,8 @@
 				F61151E1129998BB00108348 /* LEBuildingTransmitWater.m */,
 				F61151E3129998CC00108348 /* LEBuildingCompleteBuildQueue.h */,
 				F61151E4129998CC00108348 /* LEBuildingCompleteBuildQueue.m */,
+				F61151F31299A88B00108348 /* LEBuildingResearchSpecies.h */,
+				F61151F41299A88B00108348 /* LEBuildingResearchSpecies.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -2644,6 +2649,7 @@
 				F61151E2129998BB00108348 /* LEBuildingTransmitWater.m in Sources */,
 				F61151E5129998CC00108348 /* LEBuildingCompleteBuildQueue.m in Sources */,
 				F61151EA12999C3E00108348 /* SubspaceSupplyDepot.m in Sources */,
+				F61151F51299A88B00108348 /* LEBuildingResearchSpecies.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
