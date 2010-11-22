@@ -140,7 +140,6 @@
 
 
 - (void)missionsLoaded:(LEBuildingGetMissions *)request {
-	NSLog(@"Missions Loaded");
 	NSMutableArray *tmpMissions = [NSMutableArray arrayWithCapacity:[request.missions count]];
 	for (NSDictionary *missionData in request.missions) {
 		Mission *tmpMission = [[[Mission alloc] init] autorelease];

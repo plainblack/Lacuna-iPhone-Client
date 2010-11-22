@@ -168,7 +168,6 @@
 
 
 - (void)parseWorkData:(NSDictionary *)workData {
-	NSLog(@"Work Data: %@", workData);
 	if(!self.work) {
 		self.work = [[[TimedActivity alloc] init] autorelease];
 	}

@@ -222,7 +222,6 @@
 
 
 - (void)scrollViewDidEndZooming:(UIScrollView *)inScrollView withView:(UIView *)view atScale:(float)scale {
-	NSLog(@"scrollViewDidEndZooming: %f", scale);
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];  
 	[userDefaults setFloat:scale forKey:@"bodyMapZoom"];
 	[userDefaults synchronize];
