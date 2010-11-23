@@ -33,7 +33,7 @@
 
 
 - (void)processSuccess {
-	NSDictionary *result = [self.response objectForKey:@"result"];
+	//NSMutableDictionary *result = [self.response objectForKey:@"result"];
 }
 
 

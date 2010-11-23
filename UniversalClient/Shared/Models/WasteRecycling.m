@@ -53,6 +53,7 @@
 
 - (void)parseAdditionalData:(NSDictionary *)data {
 	NSDictionary *recycleData = [data objectForKey:@"recycle"];
+	NSLog(@"Recycle Data: %@", recycleData);
 	self.canRecycle = [[recycleData objectForKey:@"can"] boolValue];
 	self.secondsPerResource = [Util asNumber:[recycleData objectForKey:@"seconds_per_resource"]];
 	self.maxResources = [Util asNumber:[recycleData objectForKey:@"max_recycle"]];
@@ -138,7 +139,7 @@
 			; //DO NOT REMOVE
 			RecycleController *recycleController = [RecycleController create];
 			recycleController.wasteRecycling = self;
-			recycleController.secondsPerResource = _intv(self.secondsPerResource);
+			recycleController.secondsPerResource = self.secondsPerResource;
 			return recycleController;
 			break;
 		case BUILDING_ROW_SUBSIDIZE:

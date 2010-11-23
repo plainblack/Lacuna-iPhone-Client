@@ -132,7 +132,10 @@ typedef enum {
 			; //DO NOT REMOVE
 			LETableViewCellLabeledText *timeCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 			timeCell.label.text = @"Time needed";
-			timeCell.content.text = [Util prettyDuration:self.seconds];
+			timeCell.content.text = [Util prettyDuration:_intv(self.seconds)];
+			NSLog(@"Seconds: %@", self.seconds);
+			NSLog(@"Seconds as int: %i", _intv(self.seconds));
+			NSLog(@"Duration: %@", [Util prettyDuration:_intv(self.seconds)]);
 			cell = timeCell;
 			break;
 		case ROW_MAX:
@@ -261,11 +264,17 @@ typedef enum {
 			self.seconds = 0;
 			[self.tableView reloadData];
 		} else {
+			NSLog(@"self.secondsPerResource: %@", self.secondsPerResource);
 			NSDecimalNumber *totalAmount = [NSDecimalNumber zero];
+			NSLog(@"totalAmount: %@", totalAmount);
 			totalAmount = [totalAmount decimalNumberByAdding:self.energyCell.numericValue];
+			NSLog(@"totalAmount: %@", totalAmount);
 			totalAmount = [totalAmount decimalNumberByAdding:self.oreCell.numericValue];
+			NSLog(@"totalAmount: %@", totalAmount);
 			totalAmount = [totalAmount decimalNumberByAdding:self.waterCell.numericValue];
-			self.seconds = _intv(totalAmount) * secondsPerResource;
+			NSLog(@"totalAmount: %@", totalAmount);
+			self.seconds = [totalAmount decimalNumberByMultiplyingBy:self.secondsPerResource];
+			NSLog(@"totalAmount: %@", totalAmount);
 			
 			NSDecimalNumber *newMaxStored = [self remainingStored];
 			NSDecimalNumber *newMaxRecycle = [self remainingMax];
@@ -284,14 +293,14 @@ typedef enum {
 		}
 	} else if ( [keyPath isEqual:@"isSelected"] ) {
 		if (self.subsidizedCell.isSelected) {
-			self.seconds = 0;
+			self.seconds = [NSDecimalNumber zero];
 			[self.tableView reloadData];
 		} else {
 			NSDecimalNumber *totalAmount = [NSDecimalNumber zero];
 			totalAmount = [totalAmount decimalNumberByAdding:self.energyCell.numericValue];
 			totalAmount = [totalAmount decimalNumberByAdding:self.oreCell.numericValue];
 			totalAmount = [totalAmount decimalNumberByAdding:self.waterCell.numericValue];
-			self.seconds = _intv(totalAmount) * secondsPerResource;
+			self.seconds = [totalAmount decimalNumberByMultiplyingBy:self.secondsPerResource];
 			[self.tableView reloadData];
 		}
 	}
