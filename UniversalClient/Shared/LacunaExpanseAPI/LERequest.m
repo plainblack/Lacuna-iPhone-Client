@@ -173,33 +173,35 @@ static id<LERequestMonitor> delegate;
 
 
 - (void)requestComplete {
-	if (!self->canceled) {
-		[self->target performSelector:callback withObject:self];
-
-		if (wasError && !handledError) {
-			NSString *errorText = [self errorMessage];
-			if ([errorText isEqualToString:@"Internal error."]) {
-				errorText = @"Your request could be not be completed due to a server error.";
+	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+		if (!self->canceled) {
+			[self->target performSelector:self->callback withObject:self];
+			
+			if (wasError && !handledError) {
+				NSString *errorText = [self errorMessage];
+				if ([errorText isEqualToString:@"Internal error."]) {
+					errorText = @"Your request could be not be completed due to a server error.";
+				}
+				UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:errorText delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+				[av show];
 			}
-			UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:errorText delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-			[av show];
 		}
-	}
-	
-	NSDictionary *result = [self.response objectForKey:@"result"];
-	if (result && [result respondsToSelector:@selector(objectForKey:)]) {
-		NSDictionary *status = [result objectForKey:@"status"];
-		if (status) {
-			NSDictionary *serverStatus = [status objectForKey:@"server"];
-			NSString *announcementValue = [serverStatus objectForKey:@"announcement"];
-			if (isNotNull(announcementValue)) {
-				if (_intv(announcementValue) > 0) {
-					AppDelegate_Phone *appDelegate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
-					[appDelegate showAnnouncement];
+		
+		NSDictionary *result = [self.response objectForKey:@"result"];
+		if (result && [result respondsToSelector:@selector(objectForKey:)]) {
+			NSDictionary *status = [result objectForKey:@"status"];
+			if (status) {
+				NSDictionary *serverStatus = [status objectForKey:@"server"];
+				NSString *announcementValue = [serverStatus objectForKey:@"announcement"];
+				if (isNotNull(announcementValue)) {
+					if (_intv(announcementValue) > 0) {
+						AppDelegate_Phone *appDelegate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
+						[appDelegate showAnnouncement];
+					}
 				}
 			}
 		}
-	}
+	}];
 }
 
 - (void)sendRequest {
