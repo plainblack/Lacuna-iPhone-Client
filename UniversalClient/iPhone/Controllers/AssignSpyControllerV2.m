@@ -129,7 +129,7 @@
 	
 	UIAlertView *av;
 	
-	if (messageId) {
+	if (isNotNull(messageId)) {
 		av = [[[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Message", nil] autorelease];
 	} else {
 		av = [[[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
@@ -146,11 +146,10 @@
 	[[self navigationController] popViewControllerAnimated:YES];
 	if (buttonIndex != alertView.cancelButtonIndex) {
 		NSString *messageId = [self.assignedMission objectForKey:@"message_id"];
-		if (!messageId) {
-			messageId = @"19840";
+		if (messageId) {
+			AppDelegate_Phone *appDelegate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
+			[appDelegate showMessage:messageId];
 		}
-		AppDelegate_Phone *appDelegate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
-		[appDelegate showMessage:messageId];
 	}
 	self.assignedMission = nil;
 }
