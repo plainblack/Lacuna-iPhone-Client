@@ -49,7 +49,6 @@
 
 
 - (BOOL)tick:(NSInteger)interval {
-	NSLog(@"Prisoner Ticked!");
 	return [self.sentenceExpiresOn compare:[NSDate date]] != NSOrderedAscending;
 }
 
