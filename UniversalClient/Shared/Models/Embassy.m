@@ -38,6 +38,9 @@
 #import "ViewAllianceMembersController.h"
 #import "EditTextViewController.h"
 #import "EditTextFieldController.h"
+#import "LEBuildingViewStash.h"
+#import	"LEBuildingDonateToStash.h"
+#import "LEBuildingExchangeWithStash.h"
 
 
 @implementation Embassy
@@ -440,6 +443,27 @@
 }
 
 
+- (void)getStashTarget:(id)target callback:(SEL)callback {
+	self->getStashTarget = target;
+	self->getStashCallback = callback;
+	[[[LEBuildingViewStash alloc] initWithCallback:@selector(stashLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+}
+
+
+- (void)donateToStash:(NSMutableDictionary *)donation target:(id)target callback:(SEL)callback {
+	self->donateToStashTarget = target;
+	self->donateToStashCallback = callback;
+	[[[LEBuildingDonateToStash alloc] initWithCallback:@selector(donatedToStash:) target:self buildingId:self.id buildingUrl:self.buildingUrl donation:donation] autorelease];
+}
+
+
+- (void)stashExchangeDonation:(NSMutableDictionary *)donation request:(NSMutableDictionary *)request target:(id)target callback:(SEL)callback {
+	self->exchangeWithStashTarget = target;
+	self->exchangeWithStashCallback = callback;
+	[[[LEBuildingExchangeWithStash alloc] initWithCallback:@selector(exchangedWithStash:) target:self buildingId:self.id buildingUrl:self.buildingUrl donation:donation request:request] autorelease];
+}
+
+
 #pragma mark -
 #pragma mark Callback Methods
 
@@ -519,6 +543,22 @@
 
 - (void)inviteWithdrawn:(LEBuildingWithdrawInvite *)request {
 	//Do we need to do anything?
+}
+
+
+
+- (void)stashLoaded:(LEBuildingViewStash *) request {
+	[self->getStashTarget performSelector:self->getStashCallback withObject:request];
+}
+
+
+- (void)donatedToStash:(LEBuildingDonateToStash *) request {
+	[self->donateToStashTarget performSelector:self->donateToStashCallback withObject:request];
+}
+
+
+- (void)exchangedWithStash:(LEBuildingExchangeWithStash *) request {
+	[self->exchangeWithStashTarget performSelector:self->exchangeWithStashCallback withObject:request];
 }
 
 

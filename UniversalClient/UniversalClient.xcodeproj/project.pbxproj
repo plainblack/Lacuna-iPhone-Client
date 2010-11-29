@@ -419,6 +419,7 @@
 		F6F5244E122C7EFF004E428A /* ViewCreditsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6F5244D122C7EFF004E428A /* ViewCreditsController.xib */; };
 		F6F52509122C9854004E428A /* LETableViewCellLabeledTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F52508122C9854004E428A /* LETableViewCellLabeledTextView.m */; };
 		F6F5427D11A9D7D4006F347B /* LEBodyStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */; };
+		F6F5C7A812A3D411005109D3 /* HallsOfVrbansk.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F5C7A712A3D411005109D3 /* HallsOfVrbansk.m */; };
 		F6F854C412203FBF0000CD09 /* NewOneForOneTradeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F854C312203FBF0000CD09 /* NewOneForOneTradeController.m */; };
 		F6F854C712203FF20000CD09 /* LEBuildingTradeOneForOne.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F854C612203FF20000CD09 /* LEBuildingTradeOneForOne.m */; };
 		F6F854CA122040070000CD09 /* OneForOneTrade.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F854C9122040070000CD09 /* OneForOneTrade.m */; };
@@ -1227,6 +1228,8 @@
 		F6F52508122C9854004E428A /* LETableViewCellLabeledTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellLabeledTextView.m; sourceTree = "<group>"; };
 		F6F5427B11A9D7D4006F347B /* LEBodyStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBodyStatus.h; sourceTree = "<group>"; };
 		F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBodyStatus.m; sourceTree = "<group>"; };
+		F6F5C7A612A3D411005109D3 /* HallsOfVrbansk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HallsOfVrbansk.h; sourceTree = "<group>"; };
+		F6F5C7A712A3D411005109D3 /* HallsOfVrbansk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HallsOfVrbansk.m; sourceTree = "<group>"; };
 		F6F854C212203FBF0000CD09 /* NewOneForOneTradeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewOneForOneTradeController.h; sourceTree = "<group>"; };
 		F6F854C312203FBF0000CD09 /* NewOneForOneTradeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewOneForOneTradeController.m; sourceTree = "<group>"; };
 		F6F854C512203FF20000CD09 /* LEBuildingTradeOneForOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingTradeOneForOne.h; sourceTree = "<group>"; };
@@ -1926,6 +1929,8 @@
 				F61151E912999C3E00108348 /* SubspaceSupplyDepot.m */,
 				F611520B1299A9E500108348 /* LibraryOfJith.h */,
 				F611520C1299A9E500108348 /* LibraryOfJith.m */,
+				F6F5C7A612A3D411005109D3 /* HallsOfVrbansk.h */,
+				F6F5C7A712A3D411005109D3 /* HallsOfVrbansk.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -2698,6 +2703,7 @@
 				F655E3D112A32C6A00CAFDF3 /* LEBuildingViewStash.m in Sources */,
 				F655E3D412A32C8500CAFDF3 /* LEBuildingDonateToStash.m in Sources */,
 				F655E3D712A32CB100CAFDF3 /* LEBuildingExchangeWithStash.m in Sources */,
+				F6F5C7A812A3D411005109D3 /* HallsOfVrbansk.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2739,7 +2745,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = UniversalClient;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A1CCBBEC-E810-4736-AFD9-10A03CCDF834";
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2807,7 +2813,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = UniversalClient;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B59771EA-D525-4E2E-A034-5654074B6B52";
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2845,7 +2851,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = UniversalClient;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B59771EA-D525-4E2E-A034-5654074B6B52";
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};

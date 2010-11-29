@@ -16,11 +16,14 @@
 
 
 @interface Embassy : Building <EditTextViewControllerDelegate, EditTextFieldControllerDelegate> {
-	AllianceStatus *allianceStatus;
-	NSMutableArray *myInvites;
-	NSMutableArray *pendingInvites;
 	id createAllianceTarget;
 	SEL createAllianceCallback;
+	id getStashTarget;
+	SEL getStashCallback;
+	id donateToStashTarget;
+	SEL donateToStashCallback;
+	id exchangeWithStashTarget;
+	SEL exchangeWithStashCallback;
 }
 
 
@@ -42,6 +45,9 @@
 - (void)sendInviteTo:(NSString *)inviteeId withMessage:(NSString *)message;
 - (void)updateAllianceWithForumUri:(NSString *)forumUri description:(NSString *)description announcements:(NSString *)announcements;
 - (void)withdrawInvite:(NSString *)inviteId withMessage:(NSString *)message;
+- (void)getStashTarget:(id)target callback:(SEL)callback;
+- (void)donateToStash:(NSMutableDictionary *)donation target:(id)target callback:(SEL)callback;
+- (void)stashExchangeDonation:(NSMutableDictionary *)donation request:(NSMutableDictionary *)request target:(id)target callback:(SEL)callback;
 
 
 @end
