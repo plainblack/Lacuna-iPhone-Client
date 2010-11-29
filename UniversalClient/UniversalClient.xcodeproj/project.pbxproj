@@ -98,6 +98,11 @@
 		F64FA283121CD67C00CBFC3E /* SelectPlanController.m in Sources */ = {isa = PBXBuildFile; fileRef = F64FA282121CD67C00CBFC3E /* SelectPlanController.m */; };
 		F64FA286121CD68A00CBFC3E /* SelectStoredResourceController.m in Sources */ = {isa = PBXBuildFile; fileRef = F64FA285121CD68A00CBFC3E /* SelectStoredResourceController.m */; };
 		F6531A0E123EFB7F00210C32 /* LETableViewCellLongLabeledText.m in Sources */ = {isa = PBXBuildFile; fileRef = F6531A0D123EFB7F00210C32 /* LETableViewCellLongLabeledText.m */; };
+		F655E3CB12A322C600CAFDF3 /* LEBuildingGetUpgradeableBuildings.m in Sources */ = {isa = PBXBuildFile; fileRef = F655E3CA12A322C600CAFDF3 /* LEBuildingGetUpgradeableBuildings.m */; };
+		F655E3CE12A322E300CAFDF3 /* LEBuildingSacrificeToUpgrade.m in Sources */ = {isa = PBXBuildFile; fileRef = F655E3CD12A322E300CAFDF3 /* LEBuildingSacrificeToUpgrade.m */; };
+		F655E3D112A32C6A00CAFDF3 /* LEBuildingViewStash.m in Sources */ = {isa = PBXBuildFile; fileRef = F655E3D012A32C6A00CAFDF3 /* LEBuildingViewStash.m */; };
+		F655E3D412A32C8500CAFDF3 /* LEBuildingDonateToStash.m in Sources */ = {isa = PBXBuildFile; fileRef = F655E3D312A32C8500CAFDF3 /* LEBuildingDonateToStash.m */; };
+		F655E3D712A32CB100CAFDF3 /* LEBuildingExchangeWithStash.m in Sources */ = {isa = PBXBuildFile; fileRef = F655E3D612A32CB100CAFDF3 /* LEBuildingExchangeWithStash.m */; };
 		F65D35B91195E00400454C2B /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F65D35B81195E00400454C2B /* iTunesArtwork */; };
 		F65D36681195F05B00454C2B /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = F65D36671195F05B00454C2B /* Entitlements.plist */; };
 		F65DC32611EE09AE00A0A782 /* PlanetaryCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = F65DC32511EE09AE00A0A782 /* PlanetaryCommand.m */; };
@@ -604,6 +609,16 @@
 		F64FA285121CD68A00CBFC3E /* SelectStoredResourceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectStoredResourceController.m; sourceTree = "<group>"; };
 		F6531A0C123EFB7F00210C32 /* LETableViewCellLongLabeledText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellLongLabeledText.h; sourceTree = "<group>"; };
 		F6531A0D123EFB7F00210C32 /* LETableViewCellLongLabeledText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellLongLabeledText.m; sourceTree = "<group>"; };
+		F655E3C912A322C600CAFDF3 /* LEBuildingGetUpgradeableBuildings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetUpgradeableBuildings.h; sourceTree = "<group>"; };
+		F655E3CA12A322C600CAFDF3 /* LEBuildingGetUpgradeableBuildings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetUpgradeableBuildings.m; sourceTree = "<group>"; };
+		F655E3CC12A322E300CAFDF3 /* LEBuildingSacrificeToUpgrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingSacrificeToUpgrade.h; sourceTree = "<group>"; };
+		F655E3CD12A322E300CAFDF3 /* LEBuildingSacrificeToUpgrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingSacrificeToUpgrade.m; sourceTree = "<group>"; };
+		F655E3CF12A32C6A00CAFDF3 /* LEBuildingViewStash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewStash.h; sourceTree = "<group>"; };
+		F655E3D012A32C6A00CAFDF3 /* LEBuildingViewStash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewStash.m; sourceTree = "<group>"; };
+		F655E3D212A32C8500CAFDF3 /* LEBuildingDonateToStash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingDonateToStash.h; sourceTree = "<group>"; };
+		F655E3D312A32C8500CAFDF3 /* LEBuildingDonateToStash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingDonateToStash.m; sourceTree = "<group>"; };
+		F655E3D512A32CB100CAFDF3 /* LEBuildingExchangeWithStash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingExchangeWithStash.h; sourceTree = "<group>"; };
+		F655E3D612A32CB100CAFDF3 /* LEBuildingExchangeWithStash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingExchangeWithStash.m; sourceTree = "<group>"; };
 		F65D35B81195E00400454C2B /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		F65D36671195F05B00454C2B /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		F65DC32411EE09AE00A0A782 /* PlanetaryCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanetaryCommand.h; sourceTree = "<group>"; };
@@ -1773,6 +1788,16 @@
 				F61151F41299A88B00108348 /* LEBuildingResearchSpecies.m */,
 				F61152E11299CE7800108348 /* LEBuildingSkipMission.h */,
 				F61152E21299CE7800108348 /* LEBuildingSkipMission.m */,
+				F655E3C912A322C600CAFDF3 /* LEBuildingGetUpgradeableBuildings.h */,
+				F655E3CA12A322C600CAFDF3 /* LEBuildingGetUpgradeableBuildings.m */,
+				F655E3CC12A322E300CAFDF3 /* LEBuildingSacrificeToUpgrade.h */,
+				F655E3CD12A322E300CAFDF3 /* LEBuildingSacrificeToUpgrade.m */,
+				F655E3CF12A32C6A00CAFDF3 /* LEBuildingViewStash.h */,
+				F655E3D012A32C6A00CAFDF3 /* LEBuildingViewStash.m */,
+				F655E3D212A32C8500CAFDF3 /* LEBuildingDonateToStash.h */,
+				F655E3D312A32C8500CAFDF3 /* LEBuildingDonateToStash.m */,
+				F655E3D512A32CB100CAFDF3 /* LEBuildingExchangeWithStash.h */,
+				F655E3D612A32CB100CAFDF3 /* LEBuildingExchangeWithStash.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -2668,6 +2693,11 @@
 				F611520D1299A9E500108348 /* LibraryOfJith.m in Sources */,
 				F61152181299B16B00108348 /* ViewResearchSpeciesStatsController.m in Sources */,
 				F61152E31299CE7800108348 /* LEBuildingSkipMission.m in Sources */,
+				F655E3CB12A322C600CAFDF3 /* LEBuildingGetUpgradeableBuildings.m in Sources */,
+				F655E3CE12A322E300CAFDF3 /* LEBuildingSacrificeToUpgrade.m in Sources */,
+				F655E3D112A32C6A00CAFDF3 /* LEBuildingViewStash.m in Sources */,
+				F655E3D412A32C8500CAFDF3 /* LEBuildingDonateToStash.m in Sources */,
+				F655E3D712A32CB100CAFDF3 /* LEBuildingExchangeWithStash.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

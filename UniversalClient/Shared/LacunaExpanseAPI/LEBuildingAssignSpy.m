@@ -38,8 +38,12 @@
 
 - (void)processSuccess {
 	NSDictionary *result = [self.response objectForKey:@"result"];
+
 	self.mission = [result objectForKey:@"mission"];
 	self.spyData = [result objectForKey:@"spy"];
+
+	NSLog(@"Mission Results: %@", self.mission);
+	
 }
 
 
