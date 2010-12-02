@@ -98,7 +98,7 @@
 		F64FA283121CD67C00CBFC3E /* SelectPlanController.m in Sources */ = {isa = PBXBuildFile; fileRef = F64FA282121CD67C00CBFC3E /* SelectPlanController.m */; };
 		F64FA286121CD68A00CBFC3E /* SelectStoredResourceController.m in Sources */ = {isa = PBXBuildFile; fileRef = F64FA285121CD68A00CBFC3E /* SelectStoredResourceController.m */; };
 		F6531A0E123EFB7F00210C32 /* LETableViewCellLongLabeledText.m in Sources */ = {isa = PBXBuildFile; fileRef = F6531A0D123EFB7F00210C32 /* LETableViewCellLongLabeledText.m */; };
-		F655E3CB12A322C600CAFDF3 /* LEBuildingGetUpgradeableBuildings.m in Sources */ = {isa = PBXBuildFile; fileRef = F655E3CA12A322C600CAFDF3 /* LEBuildingGetUpgradeableBuildings.m */; };
+		F655E3CB12A322C600CAFDF3 /* LEBuildingGetUpgradableBuildings.m in Sources */ = {isa = PBXBuildFile; fileRef = F655E3CA12A322C600CAFDF3 /* LEBuildingGetUpgradableBuildings.m */; };
 		F655E3CE12A322E300CAFDF3 /* LEBuildingSacrificeToUpgrade.m in Sources */ = {isa = PBXBuildFile; fileRef = F655E3CD12A322E300CAFDF3 /* LEBuildingSacrificeToUpgrade.m */; };
 		F655E3D112A32C6A00CAFDF3 /* LEBuildingViewStash.m in Sources */ = {isa = PBXBuildFile; fileRef = F655E3D012A32C6A00CAFDF3 /* LEBuildingViewStash.m */; };
 		F655E3D412A32C8500CAFDF3 /* LEBuildingDonateToStash.m in Sources */ = {isa = PBXBuildFile; fileRef = F655E3D312A32C8500CAFDF3 /* LEBuildingDonateToStash.m */; };
@@ -400,6 +400,7 @@
 		F6EF714F11FE7D1C00A93226 /* LEBuildingViewAllShips.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF714E11FE7D1C00A93226 /* LEBuildingViewAllShips.m */; };
 		F6EF716A11FE810900A93226 /* Ship.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF716911FE810900A93226 /* Ship.m */; };
 		F6F1C21D12326FB100D69BB6 /* ViewMedalsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F1C21C12326FB100D69BB6 /* ViewMedalsController.m */; };
+		F6F2EAB612A524DB002474CD /* ViewUpgradableBuildingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F2EAB512A524DB002474CD /* ViewUpgradableBuildingsController.m */; };
 		F6F3F5941297930B005D6A79 /* LEBuildingQuackDuck.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F3F5931297930B005D6A79 /* LEBuildingQuackDuck.m */; };
 		F6F3F59D129795AB005D6A79 /* ViewDuckQuackController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F3F59C129795AB005D6A79 /* ViewDuckQuackController.m */; };
 		F6F41902123B046800F93457 /* AssembleGlyphsControllerV2.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F41900123B046800F93457 /* AssembleGlyphsControllerV2.m */; };
@@ -610,8 +611,8 @@
 		F64FA285121CD68A00CBFC3E /* SelectStoredResourceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectStoredResourceController.m; sourceTree = "<group>"; };
 		F6531A0C123EFB7F00210C32 /* LETableViewCellLongLabeledText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellLongLabeledText.h; sourceTree = "<group>"; };
 		F6531A0D123EFB7F00210C32 /* LETableViewCellLongLabeledText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellLongLabeledText.m; sourceTree = "<group>"; };
-		F655E3C912A322C600CAFDF3 /* LEBuildingGetUpgradeableBuildings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetUpgradeableBuildings.h; sourceTree = "<group>"; };
-		F655E3CA12A322C600CAFDF3 /* LEBuildingGetUpgradeableBuildings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetUpgradeableBuildings.m; sourceTree = "<group>"; };
+		F655E3C912A322C600CAFDF3 /* LEBuildingGetUpgradableBuildings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetUpgradableBuildings.h; sourceTree = "<group>"; };
+		F655E3CA12A322C600CAFDF3 /* LEBuildingGetUpgradableBuildings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetUpgradableBuildings.m; sourceTree = "<group>"; };
 		F655E3CC12A322E300CAFDF3 /* LEBuildingSacrificeToUpgrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingSacrificeToUpgrade.h; sourceTree = "<group>"; };
 		F655E3CD12A322E300CAFDF3 /* LEBuildingSacrificeToUpgrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingSacrificeToUpgrade.m; sourceTree = "<group>"; };
 		F655E3CF12A32C6A00CAFDF3 /* LEBuildingViewStash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewStash.h; sourceTree = "<group>"; };
@@ -1198,6 +1199,8 @@
 		F6EF716911FE810900A93226 /* Ship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ship.m; sourceTree = "<group>"; };
 		F6F1C21B12326FB100D69BB6 /* ViewMedalsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMedalsController.h; sourceTree = "<group>"; };
 		F6F1C21C12326FB100D69BB6 /* ViewMedalsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMedalsController.m; sourceTree = "<group>"; };
+		F6F2EAB412A524DB002474CD /* ViewUpgradableBuildingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewUpgradableBuildingsController.h; path = ../../Shared/LacunaExpanseAPI/ViewUpgradableBuildingsController.h; sourceTree = "<group>"; };
+		F6F2EAB512A524DB002474CD /* ViewUpgradableBuildingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewUpgradableBuildingsController.m; path = ../../Shared/LacunaExpanseAPI/ViewUpgradableBuildingsController.m; sourceTree = "<group>"; };
 		F6F3F5921297930B005D6A79 /* LEBuildingQuackDuck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingQuackDuck.h; sourceTree = "<group>"; };
 		F6F3F5931297930B005D6A79 /* LEBuildingQuackDuck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingQuackDuck.m; sourceTree = "<group>"; };
 		F6F3F59B129795AB005D6A79 /* ViewDuckQuackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewDuckQuackController.h; sourceTree = "<group>"; };
@@ -1791,8 +1794,8 @@
 				F61151F41299A88B00108348 /* LEBuildingResearchSpecies.m */,
 				F61152E11299CE7800108348 /* LEBuildingSkipMission.h */,
 				F61152E21299CE7800108348 /* LEBuildingSkipMission.m */,
-				F655E3C912A322C600CAFDF3 /* LEBuildingGetUpgradeableBuildings.h */,
-				F655E3CA12A322C600CAFDF3 /* LEBuildingGetUpgradeableBuildings.m */,
+				F655E3C912A322C600CAFDF3 /* LEBuildingGetUpgradableBuildings.h */,
+				F655E3CA12A322C600CAFDF3 /* LEBuildingGetUpgradableBuildings.m */,
 				F655E3CC12A322E300CAFDF3 /* LEBuildingSacrificeToUpgrade.h */,
 				F655E3CD12A322E300CAFDF3 /* LEBuildingSacrificeToUpgrade.m */,
 				F655E3CF12A32C6A00CAFDF3 /* LEBuildingViewStash.h */,
@@ -2198,6 +2201,8 @@
 				F6F3F59C129795AB005D6A79 /* ViewDuckQuackController.m */,
 				F61152161299B16B00108348 /* ViewResearchSpeciesStatsController.h */,
 				F61152171299B16B00108348 /* ViewResearchSpeciesStatsController.m */,
+				F6F2EAB412A524DB002474CD /* ViewUpgradableBuildingsController.h */,
+				F6F2EAB512A524DB002474CD /* ViewUpgradableBuildingsController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2698,12 +2703,13 @@
 				F611520D1299A9E500108348 /* LibraryOfJith.m in Sources */,
 				F61152181299B16B00108348 /* ViewResearchSpeciesStatsController.m in Sources */,
 				F61152E31299CE7800108348 /* LEBuildingSkipMission.m in Sources */,
-				F655E3CB12A322C600CAFDF3 /* LEBuildingGetUpgradeableBuildings.m in Sources */,
+				F655E3CB12A322C600CAFDF3 /* LEBuildingGetUpgradableBuildings.m in Sources */,
 				F655E3CE12A322E300CAFDF3 /* LEBuildingSacrificeToUpgrade.m in Sources */,
 				F655E3D112A32C6A00CAFDF3 /* LEBuildingViewStash.m in Sources */,
 				F655E3D412A32C8500CAFDF3 /* LEBuildingDonateToStash.m in Sources */,
 				F655E3D712A32CB100CAFDF3 /* LEBuildingExchangeWithStash.m in Sources */,
 				F6F5C7A812A3D411005109D3 /* HallsOfVrbansk.m in Sources */,
+				F6F2EAB612A524DB002474CD /* ViewUpgradableBuildingsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,14 +11,14 @@
 
 
 @interface HallsOfVrbansk : Building {
-	SEL getUpgradeableBuildingsCallback;
-	id getUpgradeableBuildingsTarget;
+	SEL getUpgradableBuildingsCallback;
+	id getUpgradableBuildingsTarget;
 	SEL upgradeBuildingCallback;
 	id upgradeBuildingTarget;
 }
 
 
-- (void)getUpgradeableBuildingsTarget:(id)target callback:(SEL)callback;
+- (void)getUpgradableBuildingsTarget:(id)target callback:(SEL)callback;
 - (void)upgradeBuilding:(NSString *)upgradeBuildingId target:(id)target callback:(SEL)callback;
 
 
