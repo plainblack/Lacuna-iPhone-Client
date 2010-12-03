@@ -80,7 +80,11 @@ typedef enum {
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 3;
+	if (self.stash) {
+		return 3;
+	} else {
+		return 1;
+	}
 }
 
 
