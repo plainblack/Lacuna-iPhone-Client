@@ -41,6 +41,7 @@
 #import "LEBuildingViewStash.h"
 #import	"LEBuildingDonateToStash.h"
 #import "LEBuildingExchangeWithStash.h"
+#import "ViewAllianceStashController.h"
 
 
 @implementation Embassy
@@ -332,7 +333,9 @@
 			break;
 		case BUILDING_ROW_VIEW_STASH:
 			; //DO NOT REMOVE
-			return nil;
+			ViewAllianceStashController *viewAllianceStashController = [ViewAllianceStashController create];
+			viewAllianceStashController.embassy = self;
+			return viewAllianceStashController;
 			break;
 		default:
 			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];

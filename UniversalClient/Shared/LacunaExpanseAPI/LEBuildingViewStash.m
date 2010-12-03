@@ -36,7 +36,14 @@
 
 - (void)processSuccess {
 	NSMutableDictionary *result = [self.response objectForKey:@"result"];
-	self.stash = [result objectForKey:@"stash"];
+	NSLog(@"View Stash Response: %@", result);
+	id tmp = [result objectForKey:@"stash"];
+	if (isNotNull(tmp)) {
+		self.stash = tmp;
+	} else {
+		self.stash = [NSMutableDictionary dictionary];
+	}
+
 	self.stored = [result objectForKey:@"stored"];
 	self.maxExchangeSize = [result objectForKey:@"max_exchange_size"];
 	self.exchangesRemainingToday = [result objectForKey:@"exchanges_remaining_today"];
