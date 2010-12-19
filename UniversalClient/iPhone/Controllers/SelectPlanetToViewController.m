@@ -8,17 +8,28 @@
 
 #import "SelectPlanetToViewController.h"
 #import "LEMacros.h"
+#import "Util.h"
+#import "Session.h"
 #import "TempleOfTheDrajilites.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellButton.h"
 #import "LETableViewCellLabeledText.h"
+#import "SelectStarController.h"
 #import "ViewAttachedMapController.h"
+
+
+typedef enum {
+	SECTION_PICK_STAR,
+	SECTION_PLANETS
+} SECTION;
 
 
 @implementation SelectPlanetToViewController
 
 
 @synthesize templeOfTheDrajilites;
+@synthesize starName;
+@synthesize starId;
 @synthesize planets;
 
 
@@ -31,15 +42,23 @@
 	self.navigationItem.title = @"Select Planet";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
-	self.sectionHeaders = [NSArray array];
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Star to view"],
+								 [LEViewSectionTab tableView:self.tableView withText:@"Planets"]);
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+
+	if (!self.starId) {
+		Session *session = [Session sharedInstance];
+		self.starId = session.body.starId;
+		self.starName = session.body.starName;
+	}
+
 	[self.templeOfTheDrajilites addObserver:self forKeyPath:@"viewablePlanets" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
 	[self.templeOfTheDrajilites addObserver:self forKeyPath:@"planetMap" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
-	[self.templeOfTheDrajilites loadViewablePlanets];
+	[self.templeOfTheDrajilites loadViewablePlanetsForStar:self.starId];
 }
 
 
@@ -54,47 +73,80 @@
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 1;
+	return 2;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return MAX([self.planets count], 1);
+	switch (section) {
+		case SECTION_PICK_STAR:
+			return 1;
+			break;
+		case SECTION_PLANETS:
+			return MAX([self.planets count], 1);
+			break;
+		default:
+			return 0;
+			break;
+	}
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (self.planets) {
-		if ([self.planets count] > 0) {
+	switch (indexPath.section) {
+		case SECTION_PICK_STAR:
 			return [LETableViewCellButton getHeightForTableView:tableView];
-		} else {
-			return [LETableViewCellLabeledText getHeightForTableView:tableView];
-		}
-	} else {
-		return [LETableViewCellLabeledText getHeightForTableView:tableView];
+			break;
+		case SECTION_PLANETS:
+			if (self.planets) {
+				if ([self.planets count] > 0) {
+					return [LETableViewCellButton getHeightForTableView:tableView];
+				} else {
+					return [LETableViewCellLabeledText getHeightForTableView:tableView];
+				}
+			} else {
+				return [LETableViewCellLabeledText getHeightForTableView:tableView];
+			}
+			break;
+		default:
+			return 0;
+			break;
 	}
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (self.planets) {
-		if ([self.planets count] > 0) {
-			NSDictionary *planet = [self.planets objectAtIndex:indexPath.row];
-			LETableViewCellButton *planetCell = [LETableViewCellButton getCellForTableView:tableView];
-			planetCell.textLabel.text = [planet objectForKey:@"name"];
-			return planetCell;
-		} else {
-			LETableViewCellLabeledText *emptyCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-			emptyCell.label.text = @"Planets";
-			emptyCell.content.text = @"None";
-			return emptyCell;
-		}
-	} else {
-		LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-		loadingCell.label.text = @"Planets";
-		loadingCell.content.text = @"Loading";
-		return loadingCell;
+	switch (indexPath.section) {
+		case SECTION_PICK_STAR:
+			; // DO NOT REMOVE
+			LETableViewCellButton *starCell = [LETableViewCellButton getCellForTableView:tableView];
+			starCell.textLabel.text = self.starName;
+			return starCell;
+			break;
+		case SECTION_PLANETS:
+			if (self.planets) {
+				if ([self.planets count] > 0) {
+					NSDictionary *planet = [self.planets objectAtIndex:indexPath.row];
+					LETableViewCellButton *planetCell = [LETableViewCellButton getCellForTableView:tableView];
+					planetCell.textLabel.text = [planet objectForKey:@"name"];
+					return planetCell;
+				} else {
+					LETableViewCellLabeledText *emptyCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+					emptyCell.label.text = @"Planets";
+					emptyCell.content.text = @"None";
+					return emptyCell;
+				}
+			} else {
+				LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+				loadingCell.label.text = @"Planets";
+				loadingCell.content.text = @"Loading";
+				return loadingCell;
+			}
+			break;
+		default:
+			return nil;
+			break;
 	}
 }
 
@@ -103,11 +155,21 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (self.planets) {
-		if ([self.planets count] > 0) {
-			NSDictionary *planet = [self.planets objectAtIndex:indexPath.row];
-			[self.templeOfTheDrajilites loadPlanetMap:[planet objectForKey:@"id"]];
-		}
+	switch (indexPath.section) {
+		case SECTION_PICK_STAR:
+			;// DO NOT REMOVE
+			SelectStarController *selectStarController = [SelectStarController create];
+			selectStarController.delegate = self;
+			[self.navigationController pushViewController:selectStarController animated:YES];
+			break;
+		case SECTION_PLANETS:
+			if (self.planets) {
+				if ([self.planets count] > 0) {
+					NSDictionary *planet = [self.planets objectAtIndex:indexPath.row];
+					[self.templeOfTheDrajilites loadPlanetMap:[planet objectForKey:@"id"]];
+				}
+			}
+			break;
 	}
 }
 
@@ -129,8 +191,21 @@
 
 - (void)dealloc {
 	self.templeOfTheDrajilites = nil;
+	self.starName = nil;
+	self.starId = nil;
 	self.planets = nil;
     [super dealloc];
+}
+
+
+#pragma mark -
+#pragma mark SelectStarController
+
+- (void)selectedStar:(NSDictionary *)star {
+	self.starId = [star objectForKey:@"id"];
+	self.starName = [star objectForKey:@"name"];
+	self.planets = nil;
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 

@@ -20,7 +20,7 @@
 @property (nonatomic, retain) NSMutableDictionary *planetMap;
 
 
-- (void)loadViewablePlanets;
+- (void)loadViewablePlanetsForStar:(NSString *)starId;
 - (void)loadPlanetMap:(NSString *)planetId;
 
 

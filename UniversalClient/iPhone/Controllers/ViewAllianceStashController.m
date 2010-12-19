@@ -18,6 +18,7 @@
 #import "LEBuildingViewStash.h"
 #import "LEBuildingDonateToStash.h"
 #import "LEBuildingExchangeWithStash.h"
+#import "BuildStashDonationController.h"
 
 
 typedef enum {
@@ -45,6 +46,7 @@ typedef enum {
 @synthesize embassy;
 @synthesize stash;
 @synthesize stashKeys;
+@synthesize storedResources;
 @synthesize maxExchangeSize;
 @synthesize exchangesRemainingToday;
 
@@ -107,7 +109,6 @@ typedef enum {
 	} else {
 		return 1;
 	}
-
 }
 
 
@@ -121,7 +122,7 @@ typedef enum {
 				return [LETableViewCellButton getHeightForTableView:tableView];
 				break;
 			case SECTION_STASH:
-				return [LETableViewCellLabeledText getHeightForTableView:tableView];
+				return [LETableViewCellLongLabeledText getHeightForTableView:tableView];
 				break;
 			default:
 				return 0.0;
@@ -182,8 +183,8 @@ typedef enum {
 			case SECTION_STASH:
 				if ([self.stash count] > 0) {
 					NSString *key = [self.stashKeys objectAtIndex:indexPath.row];
-					LETableViewCellLabeledText *itemCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-					itemCell.label.text = key;
+					LETableViewCellLongLabeledText *itemCell = [LETableViewCellLongLabeledText getCellForTableView:tableView isSelectable:NO];
+					itemCell.label.text = [Util prettyCodeValue:key];
 					itemCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[self.stash objectForKey:key]]];
 					cell = itemCell;
 				} else {
@@ -216,7 +217,11 @@ typedef enum {
 		case SECTION_ACTIONS:
 			switch (indexPath.row) {
 				case ACTION_ROW_DONATE:
-					NSLog(@"Donate");
+					; //DO NOT REMOVE
+					BuildStashDonationController *buildStashDonationController = [BuildStashDonationController create];
+					buildStashDonationController.embassy = self.embassy;
+					buildStashDonationController.storedResources = self.storedResources;
+					[self.navigationController pushViewController:buildStashDonationController animated:YES];
 					break;
 				case ACTION_ROW_EXCHANGE:
 					NSLog(@"Exchange");
@@ -247,6 +252,7 @@ typedef enum {
 	self.embassy = nil;
 	self.stash = nil;
 	self.stashKeys = nil;
+	self.storedResources = nil;
 	self.maxExchangeSize = nil;
 	self.exchangesRemainingToday = nil;
     [super dealloc];
@@ -259,6 +265,10 @@ typedef enum {
 - (void)loadedStash:(LEBuildingViewStash *)request {
 	self.stash = request.stash;
 	self.stashKeys = [self.stash keysSortedByValueUsingSelector:@selector(compare:)];
+	self.storedResources = [NSMutableDictionary dictionaryWithCapacity:[request.stored count]];
+	[request.stored enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+		[self.storedResources setObject:[Util asNumber:obj] forKey:key];
+	}];
 	self.maxExchangeSize = request.maxExchangeSize;
 	self.exchangesRemainingToday = request.exchangesRemainingToday;
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Exchange Details"], [LEViewSectionTab tableView:self.tableView withText:@"Actions"], [LEViewSectionTab tableView:self.tableView withText:@"Resources"]);

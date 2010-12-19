@@ -220,8 +220,8 @@
 			[rowArray addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_CANNOT]];
 		}
 		[rowArray addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_DOWNGRADE_BUTTON]];
-		[rowArray addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_DEMOLISH_BUTTON]];
 	}
+	[rowArray addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_DEMOLISH_BUTTON]];
 	
 	return _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_UPGRADE], @"type", @"Upgrade", @"name", rowArray, @"rows");
 }

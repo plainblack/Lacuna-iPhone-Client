@@ -253,6 +253,7 @@
 		F6D85AA2122DEA1200A44BD9 /* FoundNewEmpireController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D85AA1122DEA1200A44BD9 /* FoundNewEmpireController.m */; };
 		F6D97B841238FF7C009EFC9E /* LETableViewCellLabeledIconText.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D97B831238FF7C009EFC9E /* LETableViewCellLabeledIconText.m */; };
 		F6D97D52124CC3A800B2C676 /* EditSavedEmpireV2.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D97D51124CC3A800B2C676 /* EditSavedEmpireV2.m */; };
+		F6D9A24712BA3C290047CE37 /* LETableViewCellUpgradableGlyphBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9A24612BA3C290047CE37 /* LETableViewCellUpgradableGlyphBuilding.m */; };
 		F6D9AB3D121BFA13003E8D4E /* LEBuildingGetTradeableShips.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9AB3C121BFA13003E8D4E /* LEBuildingGetTradeableShips.m */; };
 		F6D9AB40121BFA25003E8D4E /* LEBuildingGetTradeablePrisoners.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9AB3F121BFA25003E8D4E /* LEBuildingGetTradeablePrisoners.m */; };
 		F6D9AB43121BFA31003E8D4E /* LEBuildingGetTradeablePlans.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D9AB42121BFA31003E8D4E /* LEBuildingGetTradeablePlans.m */; };
@@ -426,6 +427,8 @@
 		F6F854C712203FF20000CD09 /* LEBuildingTradeOneForOne.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F854C612203FF20000CD09 /* LEBuildingTradeOneForOne.m */; };
 		F6F854CA122040070000CD09 /* OneForOneTrade.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F854C9122040070000CD09 /* OneForOneTrade.m */; };
 		F6F8550D1220B0500000CD09 /* SelectResourceTypeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F8550C1220B0500000CD09 /* SelectResourceTypeController.m */; };
+		F6F8829F12BC58530081A95F /* SelectStarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F8829E12BC58530081A95F /* SelectStarController.m */; };
+		F6F882FF12BC63DD0081A95F /* BuildStashDonationController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F882FE12BC63DD0081A95F /* BuildStashDonationController.m */; };
 		F6FB458211F5158C00E24EAC /* LEBuildingGlyphSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB458111F5158C00E24EAC /* LEBuildingGlyphSearch.m */; };
 		F6FB458511F5159800E24EAC /* LEBuildingGlyphs.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB458411F5159800E24EAC /* LEBuildingGlyphs.m */; };
 		F6FB458811F515A700E24EAC /* LEBuildingGlyphAssemble.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB458711F515A700E24EAC /* LEBuildingGlyphAssemble.m */; };
@@ -914,6 +917,8 @@
 		F6D97B831238FF7C009EFC9E /* LETableViewCellLabeledIconText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellLabeledIconText.m; sourceTree = "<group>"; };
 		F6D97D50124CC3A800B2C676 /* EditSavedEmpireV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditSavedEmpireV2.h; sourceTree = "<group>"; };
 		F6D97D51124CC3A800B2C676 /* EditSavedEmpireV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditSavedEmpireV2.m; sourceTree = "<group>"; };
+		F6D9A24512BA3C290047CE37 /* LETableViewCellUpgradableGlyphBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellUpgradableGlyphBuilding.h; sourceTree = "<group>"; };
+		F6D9A24612BA3C290047CE37 /* LETableViewCellUpgradableGlyphBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellUpgradableGlyphBuilding.m; sourceTree = "<group>"; };
 		F6D9AB3B121BFA13003E8D4E /* LEBuildingGetTradeableShips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetTradeableShips.h; sourceTree = "<group>"; };
 		F6D9AB3C121BFA13003E8D4E /* LEBuildingGetTradeableShips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetTradeableShips.m; sourceTree = "<group>"; };
 		F6D9AB3E121BFA25003E8D4E /* LEBuildingGetTradeablePrisoners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetTradeablePrisoners.h; sourceTree = "<group>"; };
@@ -1244,6 +1249,10 @@
 		F6F854C9122040070000CD09 /* OneForOneTrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneForOneTrade.m; sourceTree = "<group>"; };
 		F6F8550B1220B0500000CD09 /* SelectResourceTypeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectResourceTypeController.h; sourceTree = "<group>"; };
 		F6F8550C1220B0500000CD09 /* SelectResourceTypeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectResourceTypeController.m; sourceTree = "<group>"; };
+		F6F8829D12BC58530081A95F /* SelectStarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectStarController.h; sourceTree = "<group>"; };
+		F6F8829E12BC58530081A95F /* SelectStarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectStarController.m; sourceTree = "<group>"; };
+		F6F882FD12BC63DD0081A95F /* BuildStashDonationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildStashDonationController.h; sourceTree = "<group>"; };
+		F6F882FE12BC63DD0081A95F /* BuildStashDonationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildStashDonationController.m; sourceTree = "<group>"; };
 		F6FB458011F5158C00E24EAC /* LEBuildingGlyphSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGlyphSearch.h; sourceTree = "<group>"; };
 		F6FB458111F5158C00E24EAC /* LEBuildingGlyphSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGlyphSearch.m; sourceTree = "<group>"; };
 		F6FB458311F5159800E24EAC /* LEBuildingGlyphs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGlyphs.h; sourceTree = "<group>"; };
@@ -1473,6 +1482,8 @@
 				F6DB90E612039C33003293A7 /* LETableViewCellTravellingShip.m */,
 				F69809C3117A156E00BD2096 /* LETableViewCellUnbuildable.h */,
 				F69809C4117A156E00BD2096 /* LETableViewCellUnbuildable.m */,
+				F6D9A24512BA3C290047CE37 /* LETableViewCellUpgradableGlyphBuilding.h */,
+				F6D9A24612BA3C290047CE37 /* LETableViewCellUpgradableGlyphBuilding.m */,
 				F64333571240697E006170E8 /* LETableViewCellWebView.h */,
 				F64333581240697E006170E8 /* LETableViewCellWebView.m */,
 				F6DEE1D4125033FA00030329 /* LEUniverseBodyCell.h */,
@@ -1539,6 +1550,8 @@
 				F61F65861204B1440007427A /* LEBuildingBuildShip.m */,
 				F6A9C5B11184BB6D001F0D9C /* LEBuildingBurnSpy.h */,
 				F6A9C5B21184BB6D001F0D9C /* LEBuildingBurnSpy.m */,
+				F61151E3129998CC00108348 /* LEBuildingCompleteBuildQueue.h */,
+				F61151E4129998CC00108348 /* LEBuildingCompleteBuildQueue.m */,
 				F6DA3DEC12842255001E4D3C /* LEBuildingCompleteMission.h */,
 				F6DA3DED12842255001E4D3C /* LEBuildingCompleteMission.m */,
 				F6E8D54E1223E73B001CD21D /* LEBuildingCreateAlliance.h */,
@@ -1547,10 +1560,14 @@
 				F6E3EFC911B4440200E7BC86 /* LEBuildingDemolish.m */,
 				F6E8D5511223E750001CD21D /* LEBuildingDissolveAlliance.h */,
 				F6E8D5521223E750001CD21D /* LEBuildingDissolveAlliance.m */,
+				F655E3D212A32C8500CAFDF3 /* LEBuildingDonateToStash.h */,
+				F655E3D312A32C8500CAFDF3 /* LEBuildingDonateToStash.m */,
 				F6DF239D122960BE0023FE65 /* LEBuildingDowngrade.h */,
 				F6DF239E122960BE0023FE65 /* LEBuildingDowngrade.m */,
 				F6E9F1D5129377CE00544362 /* LEBuildingDump.h */,
 				F6E9F1D6129377CE00544362 /* LEBuildingDump.m */,
+				F655E3D512A32CB100CAFDF3 /* LEBuildingExchangeWithStash.h */,
+				F655E3D612A32CB100CAFDF3 /* LEBuildingExchangeWithStash.m */,
 				F6D48579120CD82100D77FC3 /* LEBuildingExecutePrisoner.h */,
 				F6D4857A120CD82100D77FC3 /* LEBuildingExecutePrisoner.m */,
 				F6E8D5721223E82C001CD21D /* LEBuildingExpelMember.h */,
@@ -1585,6 +1602,8 @@
 				F6D9AB48121BFA4F003E8D4E /* LEBuildingGetTradeableStoredResources.m */,
 				F6D9E7DC12705E71001B1DF7 /* LEBuildingGetTradeShips.h */,
 				F6D9E7DD12705E71001B1DF7 /* LEBuildingGetTradeShips.m */,
+				F655E3C912A322C600CAFDF3 /* LEBuildingGetUpgradableBuildings.h */,
+				F655E3CA12A322C600CAFDF3 /* LEBuildingGetUpgradableBuildings.m */,
 				F6FB458611F515A700E24EAC /* LEBuildingGlyphAssemble.h */,
 				F6FB458711F515A700E24EAC /* LEBuildingGlyphAssemble.m */,
 				F6FB458311F5159800E24EAC /* LEBuildingGlyphs.h */,
@@ -1605,6 +1624,8 @@
 				F6E0B8261253C73B00D0C870 /* LEBuildingPrepareSendSpies.m */,
 				F692B8511218765F00E740C1 /* LEBuildingPushItems.h */,
 				F692B8521218765F00E740C1 /* LEBuildingPushItems.m */,
+				F6F3F5921297930B005D6A79 /* LEBuildingQuackDuck.h */,
+				F6F3F5931297930B005D6A79 /* LEBuildingQuackDuck.m */,
 				F697BA0A119CE6BD004B2119 /* LEBuildingRecycle.h */,
 				F697BA0B119CE6BD004B2119 /* LEBuildingRecycle.m */,
 				F6E8D5601223E7A9001CD21D /* LEBuildingRejectInvite.h */,
@@ -1617,8 +1638,12 @@
 				F6E9F167129361BE00544362 /* LEBuildingRenameEmpire.m */,
 				F6E57AC3120A40270030330F /* LEBuildingRepair.h */,
 				F6E57AC4120A40270030330F /* LEBuildingRepair.m */,
+				F61151F31299A88B00108348 /* LEBuildingResearchSpecies.h */,
+				F61151F41299A88B00108348 /* LEBuildingResearchSpecies.m */,
 				F68650061183D2A4009826A7 /* LEBuildingRestrictCoverage.h */,
 				F68650071183D2A4009826A7 /* LEBuildingRestrictCoverage.m */,
+				F655E3CC12A322E300CAFDF3 /* LEBuildingSacrificeToUpgrade.h */,
+				F655E3CD12A322E300CAFDF3 /* LEBuildingSacrificeToUpgrade.m */,
 				F6D5A00912012E43009DDA28 /* LEBuildingScuttleShip.h */,
 				F6D5A00A12012E43009DDA28 /* LEBuildingScuttleShip.m */,
 				F6E8D5571223E778001CD21D /* LEBuildingSendInvite.h */,
@@ -1627,6 +1652,8 @@
 				F6E0B7971253B02C00D0C870 /* LEBuildingSendShip.m */,
 				F6E0B8281253C74A00D0C870 /* LEBuildingSendSpies.h */,
 				F6E0B8291253C74A00D0C870 /* LEBuildingSendSpies.m */,
+				F61152E11299CE7800108348 /* LEBuildingSkipMission.h */,
+				F61152E21299CE7800108348 /* LEBuildingSkipMission.m */,
 				F6E766BC11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.h */,
 				F6E766BD11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.m */,
 				F6B249251250B4BE001AFEC9 /* LEBuildingSubsidizeParty.h */,
@@ -1643,6 +1670,14 @@
 				F6F854C612203FF20000CD09 /* LEBuildingTradeOneForOne.m */,
 				F6A9C5931184A3B6001F0D9C /* LEBuildingTrainSpy.h */,
 				F6A9C5941184A3B6001F0D9C /* LEBuildingTrainSpy.m */,
+				F61151DA129998A200108348 /* LEBuildingTransmitEnergy.h */,
+				F61151DB129998A200108348 /* LEBuildingTransmitEnergy.m */,
+				F61151D71299988E00108348 /* LEBuildingTransmitFood.h */,
+				F61151D81299988E00108348 /* LEBuildingTransmitFood.m */,
+				F61151DD129998AE00108348 /* LEBuildingTransmitOre.h */,
+				F61151DE129998AE00108348 /* LEBuildingTransmitOre.m */,
+				F61151E0129998BB00108348 /* LEBuildingTransmitWater.h */,
+				F61151E1129998BB00108348 /* LEBuildingTransmitWater.m */,
 				F6E8D56C1223E7F7001CD21D /* LEBuildingUpdateAlliance.h */,
 				F6E8D56D1223E7F7001CD21D /* LEBuildingUpdateAlliance.m */,
 				F6AC4A18116C0F9B001B967A /* LEBuildingUpgrade.h */,
@@ -1679,6 +1714,8 @@
 				F6EB025C1202F500001BFD68 /* LEBuildingViewShipsTravelling.m */,
 				F6A9C5AE1184BB3C001F0D9C /* LEBuildingViewSpies.h */,
 				F6A9C5AF1184BB3C001F0D9C /* LEBuildingViewSpies.m */,
+				F655E3CF12A32C6A00CAFDF3 /* LEBuildingViewStash.h */,
+				F655E3D012A32C6A00CAFDF3 /* LEBuildingViewStash.m */,
 				F6E8D55A1223E788001CD21D /* LEBuildingWithdrawInvite.h */,
 				F6E8D55B1223E788001CD21D /* LEBuildingWithdrawInvite.m */,
 				F6D3F6FB1221B2A90090E31E /* LEBuildingWithdrawTrade.h */,
@@ -1781,32 +1818,6 @@
 				F6DA5A58124E69E9005D11F6 /* LEStatsSpyRank.m */,
 				F6DA5A5A124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.h */,
 				F6DA5A5B124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.m */,
-				F6F3F5921297930B005D6A79 /* LEBuildingQuackDuck.h */,
-				F6F3F5931297930B005D6A79 /* LEBuildingQuackDuck.m */,
-				F61151D71299988E00108348 /* LEBuildingTransmitFood.h */,
-				F61151D81299988E00108348 /* LEBuildingTransmitFood.m */,
-				F61151DA129998A200108348 /* LEBuildingTransmitEnergy.h */,
-				F61151DB129998A200108348 /* LEBuildingTransmitEnergy.m */,
-				F61151DD129998AE00108348 /* LEBuildingTransmitOre.h */,
-				F61151DE129998AE00108348 /* LEBuildingTransmitOre.m */,
-				F61151E0129998BB00108348 /* LEBuildingTransmitWater.h */,
-				F61151E1129998BB00108348 /* LEBuildingTransmitWater.m */,
-				F61151E3129998CC00108348 /* LEBuildingCompleteBuildQueue.h */,
-				F61151E4129998CC00108348 /* LEBuildingCompleteBuildQueue.m */,
-				F61151F31299A88B00108348 /* LEBuildingResearchSpecies.h */,
-				F61151F41299A88B00108348 /* LEBuildingResearchSpecies.m */,
-				F61152E11299CE7800108348 /* LEBuildingSkipMission.h */,
-				F61152E21299CE7800108348 /* LEBuildingSkipMission.m */,
-				F655E3C912A322C600CAFDF3 /* LEBuildingGetUpgradableBuildings.h */,
-				F655E3CA12A322C600CAFDF3 /* LEBuildingGetUpgradableBuildings.m */,
-				F655E3CC12A322E300CAFDF3 /* LEBuildingSacrificeToUpgrade.h */,
-				F655E3CD12A322E300CAFDF3 /* LEBuildingSacrificeToUpgrade.m */,
-				F655E3CF12A32C6A00CAFDF3 /* LEBuildingViewStash.h */,
-				F655E3D012A32C6A00CAFDF3 /* LEBuildingViewStash.m */,
-				F655E3D212A32C8500CAFDF3 /* LEBuildingDonateToStash.h */,
-				F655E3D312A32C8500CAFDF3 /* LEBuildingDonateToStash.m */,
-				F655E3D512A32CB100CAFDF3 /* LEBuildingExchangeWithStash.h */,
-				F655E3D612A32CB100CAFDF3 /* LEBuildingExchangeWithStash.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -1835,6 +1846,8 @@
 				F6FD9E6A11D79FA0003785AD /* Building.m */,
 				F61D0C2411E235C100B06382 /* BuildingUtil.h */,
 				F61D0C2511E235C100B06382 /* BuildingUtil.m */,
+				F6E9F16312935C6900544362 /* Capitol.h */,
+				F6E9F16412935C6900544362 /* Capitol.m */,
 				F61D0E2D11E2656B00B06382 /* Development.h */,
 				F61D0E2E11E2656B00B06382 /* Development.m */,
 				F623AFF912236D20007794D5 /* Embassy.h */,
@@ -1843,16 +1856,22 @@
 				F6E7671011D68C6400778C1D /* Empire.m */,
 				F68DC4F911CD1B0D00144A49 /* EmpireProfile.h */,
 				F68DC4FA11CD1B0D00144A49 /* EmpireProfile.m */,
+				F6E9F1DA1293797300544362 /* EnergyReserve.h */,
+				F6E9F1DB1293797300544362 /* EnergyReserve.m */,
 				F68708F212669DFB00068237 /* Entertainment.h */,
 				F68708F312669DFB00068237 /* Entertainment.m */,
 				F64C43D711F3B50E002981EC /* FoodReserve.h */,
 				F64C43D811F3B50E002981EC /* FoodReserve.m */,
 				F6FB458911F517FE00E24EAC /* Glyph.h */,
 				F6FB458A11F517FE00E24EAC /* Glyph.m */,
+				F6F5C7A612A3D411005109D3 /* HallsOfVrbansk.h */,
+				F6F5C7A712A3D411005109D3 /* HallsOfVrbansk.m */,
 				F61D0D6B11E24E9E00B06382 /* Intelligence.h */,
 				F61D0D6C11E24E9E00B06382 /* Intelligence.m */,
 				F692B8541218779D00E740C1 /* ItemPush.h */,
 				F692B8551218779D00E740C1 /* ItemPush.m */,
+				F611520B1299A9E500108348 /* LibraryOfJith.h */,
+				F611520C1299A9E500108348 /* LibraryOfJith.m */,
 				F6AC4A32116C0FAE001B967A /* Mailbox.h */,
 				F6AC4A33116C0FAE001B967A /* Mailbox.m */,
 				F6F4ADC11244590600B0509A /* MapBuilding.h */,
@@ -1861,6 +1880,8 @@
 				F6E5E5AA1205A9A000365AA2 /* MiningMinistry.m */,
 				F6E5E5D91205BE1C00365AA2 /* MiningPlatform.h */,
 				F6E5E5DA1205BE1C00365AA2 /* MiningPlatform.m */,
+				F6DA3DF1128424D5001E4D3C /* Mission.h */,
+				F6DA3DF2128424D5001E4D3C /* Mission.m */,
 				F6DA2FDF126C657500F93CD8 /* MissionCommand.h */,
 				F6DA2FE0126C657500F93CD8 /* MissionCommand.m */,
 				F60AF51F1224A4AE005B2F0E /* MyAllianceInvite.h */,
@@ -1915,6 +1936,8 @@
 				F6DEDFD0124FC26100030329 /* StarMap.m */,
 				F6E768A811D6BD9300778C1D /* StoredResource.h */,
 				F6E768A911D6BD9300778C1D /* StoredResource.m */,
+				F61151E812999C3E00108348 /* SubspaceSupplyDepot.h */,
+				F61151E912999C3E00108348 /* SubspaceSupplyDepot.m */,
 				F6D360C01254AE1F003FDE5D /* TempleOfTheDrajilites.h */,
 				F6D360C11254AE1F003FDE5D /* TempleOfTheDrajilites.m */,
 				F6FD9E8511D7A6F3003785AD /* TimedActivity.h */,
@@ -1923,20 +1946,8 @@
 				F692B7C9121861EC00E740C1 /* Trade.m */,
 				F61D0C2111E2355600B06382 /* WasteRecycling.h */,
 				F61D0C2211E2355600B06382 /* WasteRecycling.m */,
-				F6DA3DF1128424D5001E4D3C /* Mission.h */,
-				F6DA3DF2128424D5001E4D3C /* Mission.m */,
-				F6E9F16312935C6900544362 /* Capitol.h */,
-				F6E9F16412935C6900544362 /* Capitol.m */,
-				F6E9F1DA1293797300544362 /* EnergyReserve.h */,
-				F6E9F1DB1293797300544362 /* EnergyReserve.m */,
 				F6E9F2201293819300544362 /* WaterStorage.h */,
 				F6E9F2211293819300544362 /* WaterStorage.m */,
-				F61151E812999C3E00108348 /* SubspaceSupplyDepot.h */,
-				F61151E912999C3E00108348 /* SubspaceSupplyDepot.m */,
-				F611520B1299A9E500108348 /* LibraryOfJith.h */,
-				F611520C1299A9E500108348 /* LibraryOfJith.m */,
-				F6F5C7A612A3D411005109D3 /* HallsOfVrbansk.h */,
-				F6F5C7A712A3D411005109D3 /* HallsOfVrbansk.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -2067,6 +2078,8 @@
 				F6D1E017122B33DE007A9A4B /* SelectSpeciesTemplateController.m */,
 				F6E0B89A1253D6BC00D0C870 /* SelectSpyFromListController.h */,
 				F6E0B89B1253D6BC00D0C870 /* SelectSpyFromListController.m */,
+				F6F8829D12BC58530081A95F /* SelectStarController.h */,
+				F6F8829E12BC58530081A95F /* SelectStarController.m */,
 				F64FA284121CD68A00CBFC3E /* SelectStoredResourceController.h */,
 				F64FA285121CD68A00CBFC3E /* SelectStoredResourceController.m */,
 				F6D3F6B9122193C30090E31E /* SelectTradeablePrisonerController.h */,
@@ -2096,6 +2109,8 @@
 				F67F579C125AC1B80041FA37 /* ViewAllianceProfileController.m */,
 				F6E5B81D125B45620048F5F0 /* ViewAllianceRankingsController.h */,
 				F6E5B81E125B45620048F5F0 /* ViewAllianceRankingsController.m */,
+				F62470B612A87AF4002C1454 /* ViewAllianceStashController.h */,
+				F62470B712A87AF4002C1454 /* ViewAllianceStashController.m */,
 				F688A34611939EEB0062DF8A /* ViewAttachedMapController.h */,
 				F688A34711939EEB0062DF8A /* ViewAttachedMapController.m */,
 				F69B7FFA118FB51A0049D4A1 /* ViewAttachedTableController.h */,
@@ -2117,6 +2132,8 @@
 				F6F5244D122C7EFF004E428A /* ViewCreditsController.xib */,
 				F6ECEE6D123E477500CACFED /* ViewDictionaryController.h */,
 				F6ECEE6E123E477500CACFED /* ViewDictionaryController.m */,
+				F6F3F59B129795AB005D6A79 /* ViewDuckQuackController.h */,
+				F6F3F59C129795AB005D6A79 /* ViewDuckQuackController.m */,
 				F6E3EFEE11B45BA000E7BC86 /* ViewEmpireBoostsController.h */,
 				F6E3EFEF11B45BA000E7BC86 /* ViewEmpireBoostsController.m */,
 				F6D74915124C2F4500DCD74D /* ViewEmpireMailSettingController.h */,
@@ -2159,6 +2176,8 @@
 				F61F675A120515410007427A /* ViewProbedStarsController.m */,
 				F6E98BDB1241A59A00F8640D /* ViewPublicEmpireProfileController.h */,
 				F6E98BDC1241A59A00F8640D /* ViewPublicEmpireProfileController.m */,
+				F61152161299B16B00108348 /* ViewResearchSpeciesStatsController.h */,
+				F61152171299B16B00108348 /* ViewResearchSpeciesStatsController.m */,
 				F61F65CE1204C6030007427A /* ViewShipBuildQueueController.h */,
 				F61F65CF1204C6030007427A /* ViewShipBuildQueueController.m */,
 				F6D59F9B120120EE009DDA28 /* ViewShipsController.h */,
@@ -2191,6 +2210,8 @@
 				F6D721631267D93B00B45966 /* ViewUniverseItemUnsendableShipsController.m */,
 				F6D9EC4B125396BE005437D7 /* ViewUniverseMiningPlatformsController.h */,
 				F6D9EC4C125396BE005437D7 /* ViewUniverseMiningPlatformsController.m */,
+				F6F2EAB412A524DB002474CD /* ViewUpgradableBuildingsController.h */,
+				F6F2EAB512A524DB002474CD /* ViewUpgradableBuildingsController.m */,
 				F68709251266A54200068237 /* ViewVotingOptionsController.h */,
 				F68709261266A54200068237 /* ViewVotingOptionsController.m */,
 				F6DA5A73124E7E61005D11F6 /* ViewWeeklyMedalWinnersController.h */,
@@ -2200,14 +2221,8 @@
 				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
 				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
-				F6F3F59B129795AB005D6A79 /* ViewDuckQuackController.h */,
-				F6F3F59C129795AB005D6A79 /* ViewDuckQuackController.m */,
-				F61152161299B16B00108348 /* ViewResearchSpeciesStatsController.h */,
-				F61152171299B16B00108348 /* ViewResearchSpeciesStatsController.m */,
-				F6F2EAB412A524DB002474CD /* ViewUpgradableBuildingsController.h */,
-				F6F2EAB512A524DB002474CD /* ViewUpgradableBuildingsController.m */,
-				F62470B612A87AF4002C1454 /* ViewAllianceStashController.h */,
-				F62470B712A87AF4002C1454 /* ViewAllianceStashController.m */,
+				F6F882FD12BC63DD0081A95F /* BuildStashDonationController.h */,
+				F6F882FE12BC63DD0081A95F /* BuildStashDonationController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2716,6 +2731,9 @@
 				F6F5C7A812A3D411005109D3 /* HallsOfVrbansk.m in Sources */,
 				F6F2EAB612A524DB002474CD /* ViewUpgradableBuildingsController.m in Sources */,
 				F62470B812A87AF4002C1454 /* ViewAllianceStashController.m in Sources */,
+				F6D9A24712BA3C290047CE37 /* LETableViewCellUpgradableGlyphBuilding.m in Sources */,
+				F6F8829F12BC58530081A95F /* SelectStarController.m in Sources */,
+				F6F882FF12BC63DD0081A95F /* BuildStashDonationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,8 +10,6 @@
 
 
 @interface ViewAttachedTableController : UITableViewController {
-	NSArray *headers;
-	NSArray *sections;
 }
 
 

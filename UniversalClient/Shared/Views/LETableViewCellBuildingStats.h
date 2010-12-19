@@ -11,15 +11,6 @@
 
 
 @interface LETableViewCellBuildingStats : UITableViewCell {
-	UILabel *energyPerHourLabel;
-	UILabel *foodPerHourLabel;
-	UILabel *happinessPerHourLabel;
-	UILabel *orePerHourLabel;
-	UILabel *wastePerHourLabel;
-	UILabel *waterPerHourLabel;
-	UIImageView *buildingImageView;
-	UIImageView *buildingBackgroundImageView;
-	UILabel *buildingLevelLabel;
 }
 
 

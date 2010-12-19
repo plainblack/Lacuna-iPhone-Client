@@ -14,14 +14,16 @@
 #import "HallsOfVrbansk.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellButton.h"
-#import "LETableViewCellBuildingStats.h"
+#import "LETableViewCellUpgradableGlyphBuilding.h"
 #import "LETableViewCellLabeledText.h"
+#import "LETableViewCellParagraph.h"
 #import "LEBuildingGetUpgradableBuildings.h"
 #import "LEBuildingSacrificeToUpgrade.h"
 
 
 typedef enum {
 	ROW_BUILDING_INFO,
+	ROW_BUILDING_DESCRIPTION,
 	ROW_SACRIFICE_BUTTON,
 } ROW;
 
@@ -64,14 +66,14 @@ typedef enum {
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return MIN([self.upgradableBuildings count], 1);
+	return MAX([self.upgradableBuildings count], 1);
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (self.upgradableBuildings) {
 		if ([self.upgradableBuildings count] > 0) {
-			return 2;
+			return 3;
 		} else {
 			return 1;
 		}
@@ -86,7 +88,13 @@ typedef enum {
 		if ([self.upgradableBuildings count] > 0) {
 			switch (indexPath.row) {
 				case ROW_BUILDING_INFO:
-					return [LETableViewCellBuildingStats getHeightForTableView:tableView];
+					return [LETableViewCellUpgradableGlyphBuilding getHeightForTableView:tableView];
+					break;
+				case ROW_BUILDING_DESCRIPTION:
+					; //DO NOT REMOVE
+					Session *session = [Session sharedInstance];
+					NSMutableDictionary *upgradableBuilding = [self.upgradableBuildings objectAtIndex:indexPath.section];
+					return [LETableViewCellParagraph getHeightForTableView:tableView text:[session descriptionForBuilding:[upgradableBuilding objectForKey:@"url"]]];
 					break;
 				case ROW_SACRIFICE_BUTTON:
 					return [LETableViewCellButton getHeightForTableView:tableView];
@@ -110,18 +118,22 @@ typedef enum {
 	
 	if (self.upgradableBuildings) {
 		if ([self.upgradableBuildings count] > 0) {
-			Building *upgradableBuilding = [self.upgradableBuildings objectAtIndex:indexPath.section];
+			NSMutableDictionary *upgradableBuilding = [self.upgradableBuildings objectAtIndex:indexPath.section];
 			
 			switch (indexPath.row) {
 				case ROW_BUILDING_INFO:
 					; //DO NOT REMOVE
-					Session *session = [Session sharedInstance];
-					LETableViewCellBuildingStats *buildingStatsCell = [LETableViewCellBuildingStats getCellForTableView:tableView];
-					[buildingStatsCell setBuildingImage:[UIImage imageNamed:[NSString stringWithFormat:@"/assets/planet_side/100/%@.png", upgradableBuilding.imageName]]];
-					[buildingStatsCell setBuildingBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"assets/planet_side/%@.jpg", session.body.surfaceImageName]]];
-					[buildingStatsCell setBuildingLevel:upgradableBuilding.level];
-					[buildingStatsCell setResourceGeneration:upgradableBuilding.resourcesPerHour];
+					LETableViewCellUpgradableGlyphBuilding *buildingStatsCell = [LETableViewCellUpgradableGlyphBuilding getCellForTableView:tableView];
+					[buildingStatsCell parseData:upgradableBuilding];
 					cell = buildingStatsCell;
+					break;
+				case ROW_BUILDING_DESCRIPTION:
+					; //DO NOT REMOVE
+					Session *session = [Session sharedInstance];
+					NSString *description = [session descriptionForBuilding:[upgradableBuilding objectForKey:@"url"]];
+					LETableViewCellParagraph *descriptionCell = [LETableViewCellParagraph getCellForTableView:tableView];
+					descriptionCell.content.text = description;
+					cell = descriptionCell;
 					break;
 				case ROW_SACRIFICE_BUTTON:
 					; //DO NOT REMOVE
@@ -156,13 +168,11 @@ typedef enum {
 #pragma mark UITableViewDataSource Methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	switch (indexPath.section) {
+	switch (indexPath.row) {
 		case ROW_SACRIFICE_BUTTON:
 			; //DO NOT REMOVE
-//			SelectEmpireController *selectEmpireController = [SelectEmpireController create];
-//			selectEmpireController.delegate = self;
-//			[self.navigationController pushViewController:selectEmpireController animated:YES];
-//			break;
+			NSMutableDictionary *upgradableBuilding = [self.upgradableBuildings objectAtIndex:indexPath.section];
+			[self.hallsOfVrbansk upgradeBuilding:[upgradableBuilding objectForKey:@"id"] target:self callback:@selector(sacrificed:)];
 	}
 }
 
@@ -195,7 +205,17 @@ typedef enum {
 
 - (void)loadedUpgradableBuildings:(LEBuildingGetUpgradableBuildings *)request {
 	self.upgradableBuildings = request.buildings;
+	NSLog(@"buildings: %@", self.upgradableBuildings);
+	NSMutableArray *newHeaders = [NSMutableArray arrayWithCapacity:[self.upgradableBuildings count]];
+	[self.upgradableBuildings enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+		[newHeaders addObject:[LEViewSectionTab tableView:self.tableView withText:[obj objectForKey:@"name"]]];
+	}];
+	self.sectionHeaders = newHeaders;
 	[self.tableView reloadData];
+}
+
+- (void) sacrificed:(LEBuildingSacrificeToUpgrade *)request {
+	[self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:([self.navigationController.viewControllers count]-3)] animated:YES];
 }
 
 

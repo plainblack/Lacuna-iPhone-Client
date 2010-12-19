@@ -14,18 +14,6 @@
 
 
 @interface Empire : NSObject {
-	NSString *id;
-	BOOL isIsolationist;
-	NSString *name;
-	NSString *statusMessage;
-	NSString *homePlanetId;
-	NSDate *lastMessageAt;
-	NSDecimalNumber *numNewMessages;
-	NSDecimalNumber *essentia;
-	NSMutableArray *planets;
-	BOOL selfDestructActive;
-	NSDate *selfDestructAt;
-	EmpireProfile *profile;
 	id changePasswordTarget;
 	SEL changePasswordCallback;
 }

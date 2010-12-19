@@ -88,8 +88,8 @@
 #pragma mark -
 #pragma mark Instance Methods
 
-- (void)loadViewablePlanets {
-	[[[LEBuildingListPlanets alloc] initWithCallback:@selector(loadedViewablePlanets:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+- (void)loadViewablePlanetsForStar:(NSString *)starId {
+	[[[LEBuildingListPlanets alloc] initWithCallback:@selector(loadedViewablePlanets:) target:self buildingId:self.id buildingUrl:self.buildingUrl starId:starId] autorelease];
 }
 
 

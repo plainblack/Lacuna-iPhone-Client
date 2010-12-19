@@ -10,8 +10,6 @@
 
 
 @interface LETableViewCellLabeledText : UITableViewCell {
-	UILabel *label;
-	UILabel *content;
 }
 
 

@@ -36,7 +36,6 @@
 
 - (void)processSuccess {
 	NSMutableDictionary *result = [self.response objectForKey:@"result"];
-	NSLog(@"View Stash Response: %@", result);
 	id tmp = [result objectForKey:@"stash"];
 	if (isNotNull(tmp)) {
 		self.stash = tmp;

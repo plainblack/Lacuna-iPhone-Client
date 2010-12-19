@@ -74,7 +74,9 @@
 
 	LETableViewCellLabeledText *cell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 	cell.label.text = [self.headers objectAtIndex:indexPath.row];
-	cell.content.text = [section objectAtIndex:indexPath.row];
+	NSString *tmp = [NSString stringWithFormat:@"%@", [section objectAtIndex:indexPath.row]];
+	cell.content.text = tmp;
+	cell.content.textColor = [UIColor blackColor];
 
     return cell;
 }
@@ -105,7 +107,7 @@
 #pragma mark -
 #pragma mark Memory management
 
-- (void)setAttachedTable:(NSArray *)attachedTable{
+- (void)setAttachedTable:(NSArray *)attachedTable {
 	self.headers = [attachedTable objectAtIndex:0];
 	self.sections = [attachedTable subarrayWithRange:NSMakeRange(1, ([attachedTable count]-1))];
 }

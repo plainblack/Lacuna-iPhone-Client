@@ -8,18 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import "LETableViewControllerGrouped.h"
+#import "SelectStarController.h"
 
 
 @class TempleOfTheDrajilites;
 
 
-@interface SelectPlanetToViewController : LETableViewControllerGrouped {
-	TempleOfTheDrajilites *templeOfTheDrajilites;
-	NSMutableArray *planets;
+@interface SelectPlanetToViewController : LETableViewControllerGrouped <SelectStarControllerDelegate> {
 }
 
 
 @property (nonatomic, retain) TempleOfTheDrajilites *templeOfTheDrajilites;
+@property (nonatomic, retain) NSString *starName;
+@property (nonatomic, retain) NSString *starId;
 @property (nonatomic, retain) NSMutableArray *planets;
 
 

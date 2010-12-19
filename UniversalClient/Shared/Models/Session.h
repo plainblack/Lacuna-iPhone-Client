@@ -12,23 +12,9 @@
 
 
 @interface Session : NSObject {
-	NSString *sessionId;
-	Empire *empire;
-	Body *body;
-	BOOL isLoggedIn;
-	NSMutableArray *savedEmpireList;
-	NSString *serverVersion;
 	NSTimer *timer;
-	NSDate *lastTick;
 	id reloginTarget;
 	SEL reloginSelector;
-	NSString *serverUri;
-	NSDictionary *itemDescriptions;
-	NSString *lacunanMessageId;
-	NSDecimalNumber *universeMinX;
-	NSDecimalNumber *universeMaxX;
-	NSDecimalNumber *universeMinY;
-	NSDecimalNumber *universeMaxY;
 }
 
 
