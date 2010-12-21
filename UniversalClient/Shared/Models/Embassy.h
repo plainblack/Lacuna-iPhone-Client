@@ -30,6 +30,10 @@
 @property (nonatomic, retain) AllianceStatus *allianceStatus;
 @property (nonatomic, retain) NSMutableArray *myInvites;
 @property (nonatomic, retain) NSMutableArray *pendingInvites;
+@property (nonatomic, retain) NSMutableDictionary *stash;
+@property (nonatomic, retain) NSMutableDictionary *storedResources;
+@property (nonatomic, retain) NSDecimalNumber *maxExchangeSize;
+@property (nonatomic, retain) NSDecimalNumber *exchangesRemainingToday;
 
 
 - (void)acceptInvite:(NSString *)inviteId withMessage:(NSString *)message;

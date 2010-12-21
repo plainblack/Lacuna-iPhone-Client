@@ -29,7 +29,7 @@
 @property (nonatomic, assign) id<SelectStarControllerDelegate> delegate;
 
 
-- (void)searchForStar:(NSString *)starName;
+- (void)searchForStars:(NSString *)starName;
 
 
 + (SelectStarController *)create;

@@ -50,6 +50,10 @@
 @synthesize allianceStatus;
 @synthesize pendingInvites;
 @synthesize myInvites;
+@synthesize stash;
+@synthesize storedResources;
+@synthesize maxExchangeSize;
+@synthesize exchangesRemainingToday;
 
 
 #pragma mark -
@@ -59,6 +63,10 @@
 	self.allianceStatus = nil;
 	self.pendingInvites = nil;
 	self.myInvites = nil;
+	self.stash = nil;
+	self.storedResources = nil;
+	self.maxExchangeSize = nil;
+	self.exchangesRemainingToday = nil;
 	[super dealloc];
 }
 
@@ -563,16 +571,60 @@
 
 
 - (void)stashLoaded:(LEBuildingViewStash *) request {
-	[self->getStashTarget performSelector:self->getStashCallback withObject:request];
+	self.stash = [NSMutableDictionary dictionaryWithCapacity:[request.stash count]];
+	[request.stash enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+		NSDecimalNumber *amount = [Util asNumber:obj];
+		if (![amount isEqual:[NSDecimalNumber zero]]) {
+			[self.stash setObject:amount forKey:key];
+		}
+	}];
+	NSLog(@"Request Stash: %@", request.stash);
+	NSLog(@"Parsed Stash: %@", self.stash);
+	self.storedResources = [NSMutableDictionary dictionaryWithCapacity:[request.stored count]];
+	[request.stored enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+		NSDecimalNumber *amount = [Util asNumber:obj];
+		[self.storedResources setObject:amount forKey:key];
+	}];
+	self.maxExchangeSize = request.maxExchangeSize;
+	self.exchangesRemainingToday = request.exchangesRemainingToday;
+	[self->getStashTarget performSelector:self->getStashCallback];
 }
 
 
 - (void)donatedToStash:(LEBuildingDonateToStash *) request {
+	self.stash = [NSMutableDictionary dictionaryWithCapacity:[request.stash count]];
+	[request.stash enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+		NSDecimalNumber *amount = [Util asNumber:obj];
+		if (![amount isEqual:[NSDecimalNumber zero]]) {
+			[self.stash setObject:amount forKey:key];
+		}
+	}];
+	self.storedResources = [NSMutableDictionary dictionaryWithCapacity:[request.stored count]];
+	[request.stored enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+		NSDecimalNumber *amount = [Util asNumber:obj];
+		[self.storedResources setObject:amount forKey:key];
+	}];
+	self.maxExchangeSize = request.maxExchangeSize;
+	self.exchangesRemainingToday = request.exchangesRemainingToday;
 	[self->donateToStashTarget performSelector:self->donateToStashCallback withObject:request];
 }
 
 
 - (void)exchangedWithStash:(LEBuildingExchangeWithStash *) request {
+	self.stash = [NSMutableDictionary dictionaryWithCapacity:[request.stash count]];
+	[request.stash enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+		NSDecimalNumber *amount = [Util asNumber:obj];
+		if (![amount isEqual:[NSDecimalNumber zero]]) {
+			[self.stash setObject:amount forKey:key];
+		}
+	}];
+	self.storedResources = [NSMutableDictionary dictionaryWithCapacity:[request.stored count]];
+	[request.stored enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+		NSDecimalNumber *amount = [Util asNumber:obj];
+		[self.storedResources setObject:amount forKey:key];
+	}];
+	self.maxExchangeSize = request.maxExchangeSize;
+	self.exchangesRemainingToday = request.exchangesRemainingToday;
 	[self->exchangeWithStashTarget performSelector:self->exchangeWithStashCallback withObject:request];
 }
 

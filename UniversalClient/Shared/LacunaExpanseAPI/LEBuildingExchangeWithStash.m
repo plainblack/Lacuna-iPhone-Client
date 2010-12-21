@@ -18,6 +18,10 @@
 @synthesize buildingUrl;
 @synthesize donation;
 @synthesize request;
+@synthesize stash;
+@synthesize stored;
+@synthesize maxExchangeSize;
+@synthesize exchangesRemainingToday;
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl donation:(NSMutableDictionary *)inDonation request:(NSMutableDictionary *)inRequest {
@@ -36,7 +40,16 @@
 
 - (void)processSuccess {
 	NSMutableDictionary *result = [self.response objectForKey:@"result"];
-	NSLog(@"Exchange with statush result: %@", result);
+	id tmp = [result objectForKey:@"stash"];
+	if (isNotNull(tmp)) {
+		self.stash = tmp;
+	} else {
+		self.stash = [NSMutableDictionary dictionary];
+	}
+	
+	self.stored = [result objectForKey:@"stored"];
+	self.maxExchangeSize = [result objectForKey:@"max_exchange_size"];
+	self.exchangesRemainingToday = [result objectForKey:@"exchanges_remaining_today"];
 }
 
 
@@ -55,6 +68,10 @@
 	self.buildingUrl = nil;
 	self.donation = nil;
 	self.request = nil;
+	self.stash = nil;
+	self.stored = nil;
+	self.maxExchangeSize = nil;
+	self.exchangesRemainingToday = nil;
 	[super dealloc];
 }
 

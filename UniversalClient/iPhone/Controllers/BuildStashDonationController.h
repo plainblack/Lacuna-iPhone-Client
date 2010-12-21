@@ -19,7 +19,6 @@
 
 
 @property (nonatomic, retain) Embassy *embassy;
-@property (nonatomic, retain) NSMutableDictionary *storedResources;
 @property (nonatomic, retain) NSMutableDictionary *donatedResources;
 @property (nonatomic, retain) NSArray *donatedResourceKeys;
 

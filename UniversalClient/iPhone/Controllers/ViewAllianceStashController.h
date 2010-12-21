@@ -18,11 +18,7 @@
 
 
 @property (nonatomic, retain) Embassy *embassy;
-@property (nonatomic, retain) NSMutableDictionary *stash;
 @property (nonatomic, retain) NSArray *stashKeys;
-@property (nonatomic, retain) NSMutableDictionary *storedResources;
-@property (nonatomic, retain) NSDecimalNumber *maxExchangeSize;
-@property (nonatomic, retain) NSDecimalNumber *exchangesRemainingToday;
 
 
 + (ViewAllianceStashController *)create;

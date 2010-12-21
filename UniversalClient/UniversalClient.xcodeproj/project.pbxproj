@@ -368,6 +368,7 @@
 		F6E767C611D6A4D400778C1D /* Body.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E767C511D6A4D400778C1D /* Body.m */; };
 		F6E768AA11D6BD9300778C1D /* StoredResource.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E768A911D6BD9300778C1D /* StoredResource.m */; };
 		F6E768B411D6C6E500778C1D /* NoLimitResource.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E768B311D6C6E500778C1D /* NoLimitResource.m */; };
+		F6E8003712BF81B20047A39A /* BuildStashExchangeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E8003612BF81B20047A39A /* BuildStashExchangeController.m */; };
 		F6E8D5501223E73B001CD21D /* LEBuildingCreateAlliance.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E8D54F1223E73B001CD21D /* LEBuildingCreateAlliance.m */; };
 		F6E8D5531223E750001CD21D /* LEBuildingDissolveAlliance.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E8D5521223E750001CD21D /* LEBuildingDissolveAlliance.m */; };
 		F6E8D5561223E761001CD21D /* LEBuildingGetAllianceStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E8D5551223E761001CD21D /* LEBuildingGetAllianceStatus.m */; };
@@ -1139,6 +1140,8 @@
 		F6E768A911D6BD9300778C1D /* StoredResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoredResource.m; sourceTree = "<group>"; };
 		F6E768B211D6C6E500778C1D /* NoLimitResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoLimitResource.h; sourceTree = "<group>"; };
 		F6E768B311D6C6E500778C1D /* NoLimitResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoLimitResource.m; sourceTree = "<group>"; };
+		F6E8003512BF81B20047A39A /* BuildStashExchangeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildStashExchangeController.h; sourceTree = "<group>"; };
+		F6E8003612BF81B20047A39A /* BuildStashExchangeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildStashExchangeController.m; sourceTree = "<group>"; };
 		F6E8D54E1223E73B001CD21D /* LEBuildingCreateAlliance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingCreateAlliance.h; sourceTree = "<group>"; };
 		F6E8D54F1223E73B001CD21D /* LEBuildingCreateAlliance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingCreateAlliance.m; sourceTree = "<group>"; };
 		F6E8D5511223E750001CD21D /* LEBuildingDissolveAlliance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingDissolveAlliance.h; sourceTree = "<group>"; };
@@ -2223,6 +2226,8 @@
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
 				F6F882FD12BC63DD0081A95F /* BuildStashDonationController.h */,
 				F6F882FE12BC63DD0081A95F /* BuildStashDonationController.m */,
+				F6E8003512BF81B20047A39A /* BuildStashExchangeController.h */,
+				F6E8003612BF81B20047A39A /* BuildStashExchangeController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2734,6 +2739,7 @@
 				F6D9A24712BA3C290047CE37 /* LETableViewCellUpgradableGlyphBuilding.m in Sources */,
 				F6F8829F12BC58530081A95F /* SelectStarController.m in Sources */,
 				F6F882FF12BC63DD0081A95F /* BuildStashDonationController.m in Sources */,
+				F6E8003712BF81B20047A39A /* BuildStashExchangeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,7 +22,6 @@
 
 
 @synthesize embassy;
-@synthesize storedResources;
 @synthesize donatedResources;
 @synthesize donatedResourceKeys;
 
@@ -103,7 +102,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.row >= [self.donatedResources count]) {
 		SelectResourceTypeFromListController *selectResourceTypeFromListController = [SelectResourceTypeFromListController create];
-		selectResourceTypeFromListController.storedResourceTypes = self.storedResources;
+		selectResourceTypeFromListController.storedResourceTypes = self.embassy.storedResources;
 		selectResourceTypeFromListController.delegate = self;
 		[self.navigationController pushViewController:selectResourceTypeFromListController animated:YES];
 	}
@@ -121,10 +120,11 @@
 	if ( (indexPath.row < [self.donatedResources count]) && (editingStyle == UITableViewCellEditingStyleDelete) ) {
 		NSString *type = [self.donatedResourceKeys objectAtIndex:indexPath.row];
 		NSDecimalNumber *amount = [self.donatedResources objectForKey:type];
-		NSDecimalNumber *oldValue = [self.storedResources objectForKey:type];
+		NSDecimalNumber *oldValue = [self.embassy.storedResources objectForKey:type];
 		NSDecimalNumber	*newValue = [oldValue decimalNumberByAdding:amount];
-		[self.storedResources setObject:newValue forKey:type];
+		[self.embassy.storedResources setObject:newValue forKey:type];
 		[self.donatedResources removeObjectForKey:type];
+		self.donatedResourceKeys = [self.donatedResources keysSortedByValueUsingSelector:@selector(compare:)];
 		[tableView reloadData];
 	}
 }
@@ -147,7 +147,6 @@
 
 - (void)dealloc {
 	self.embassy = nil;
-	self.storedResources = nil;
 	self.donatedResources = nil;
 	self.donatedResourceKeys = nil;
     [super dealloc];
@@ -179,9 +178,9 @@
 		self.donatedResourceKeys = [self.donatedResources keysSortedByValueUsingSelector:@selector(compare:)];
 	}
 	
-	NSDecimalNumber *oldValue = [self.storedResources objectForKey:type];
+	NSDecimalNumber *oldValue = [self.embassy.storedResources objectForKey:type];
 	NSDecimalNumber *newValue = [oldValue decimalNumberBySubtracting:amount];
-	[self.storedResources setObject:newValue forKey:type];
+	[self.embassy.storedResources setObject:newValue forKey:type];
 	
 	[self.navigationController popToViewController:self animated:YES];
 	[self.tableView reloadData];
@@ -194,8 +193,6 @@
 - (void)donated:(LEBuildingDonateToStash *)request {
 	NSLog(@"Donated: %@", request.response);
 	if (![request wasError]) {
-		[self.storedResources removeAllObjects];
-		[self.storedResources addEntriesFromDictionary:request.stored];
 		[[self navigationController] popViewControllerAnimated:YES];
 	}
 }

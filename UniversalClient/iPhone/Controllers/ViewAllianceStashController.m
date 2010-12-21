@@ -19,6 +19,7 @@
 #import "LEBuildingDonateToStash.h"
 #import "LEBuildingExchangeWithStash.h"
 #import "BuildStashDonationController.h"
+#import "BuildStashExchangeController.h"
 
 
 typedef enum {
@@ -44,11 +45,7 @@ typedef enum {
 
 
 @synthesize embassy;
-@synthesize stash;
 @synthesize stashKeys;
-@synthesize storedResources;
-@synthesize maxExchangeSize;
-@synthesize exchangesRemainingToday;
 
 
 #pragma mark -
@@ -62,14 +59,15 @@ typedef enum {
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Loading"]);
+	[self.embassy getStashTarget:self callback:@selector(loadedStash)];
 }
 
 
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	self.stashKeys = [self.embassy.stash keysSortedByValueUsingSelector:@selector(compare:)];
 	[self.tableView reloadData];
-	[self.embassy getStashTarget:self callback:@selector(loadedStash:)];
 }
 
 
@@ -82,7 +80,7 @@ typedef enum {
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	if (self.stash) {
+	if (self.embassy.stash) {
 		return 3;
 	} else {
 		return 1;
@@ -91,7 +89,7 @@ typedef enum {
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if (self.stash) {
+	if (self.embassy.stash) {
 		switch (section) {
 			case SECTION_INFO:
 				return 2;
@@ -100,7 +98,7 @@ typedef enum {
 				return 2;
 				break;
 			case SECTION_STASH:
-				return MAX(1, [self.stash count]);
+				return MAX(1, [self.embassy.stash count]);
 				break;
 			default:
 				return 0;
@@ -113,7 +111,7 @@ typedef enum {
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (self.stash) {
+	if (self.embassy.stash) {
 		switch (indexPath.section) {
 			case SECTION_INFO:
 				return [LETableViewCellLongLabeledText getHeightForTableView:tableView];
@@ -138,7 +136,7 @@ typedef enum {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = nil;
 	
-	if (self.stash) {
+	if (self.embassy.stash) {
 		switch (indexPath.section) {
 			case SECTION_INFO:
 				switch (indexPath.row) {
@@ -146,14 +144,14 @@ typedef enum {
 						; //DO NOT REMOVE
 						LETableViewCellLongLabeledText *exchangeSizeCell = [LETableViewCellLongLabeledText getCellForTableView:tableView isSelectable:NO];
 						exchangeSizeCell.label.text = @"Max Exchange Size";
-						exchangeSizeCell.content.text = [Util prettyNSDecimalNumber:self.maxExchangeSize];
+						exchangeSizeCell.content.text = [Util prettyNSDecimalNumber:self.embassy.maxExchangeSize];
 						cell = exchangeSizeCell;
 						break;
 					case INFO_ROW_EXCHANGES_REMAINING:
 						; //DO NOT REMOVE
 						LETableViewCellLongLabeledText *exchangesRemainingCell = [LETableViewCellLongLabeledText getCellForTableView:tableView isSelectable:NO];
 						exchangesRemainingCell.label.text = @"Daily Exchanges Remaining";
-						exchangesRemainingCell.content.text = [Util prettyNSDecimalNumber:self.exchangesRemainingToday];
+						exchangesRemainingCell.content.text = [Util prettyNSDecimalNumber:self.embassy.exchangesRemainingToday];
 						cell = exchangesRemainingCell;
 						break;
 					default:
@@ -181,11 +179,11 @@ typedef enum {
 				}
 				break;
 			case SECTION_STASH:
-				if ([self.stash count] > 0) {
+				if ([self.embassy.stash count] > 0) {
 					NSString *key = [self.stashKeys objectAtIndex:indexPath.row];
 					LETableViewCellLongLabeledText *itemCell = [LETableViewCellLongLabeledText getCellForTableView:tableView isSelectable:NO];
 					itemCell.label.text = [Util prettyCodeValue:key];
-					itemCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[self.stash objectForKey:key]]];
+					itemCell.content.text = [Util prettyNSDecimalNumber:[Util asNumber:[self.embassy.stash objectForKey:key]]];
 					cell = itemCell;
 				} else {
 					LETableViewCellLabeledText *noneCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
@@ -220,11 +218,13 @@ typedef enum {
 					; //DO NOT REMOVE
 					BuildStashDonationController *buildStashDonationController = [BuildStashDonationController create];
 					buildStashDonationController.embassy = self.embassy;
-					buildStashDonationController.storedResources = self.storedResources;
 					[self.navigationController pushViewController:buildStashDonationController animated:YES];
 					break;
 				case ACTION_ROW_EXCHANGE:
-					NSLog(@"Exchange");
+					; //DO NOT REMOVE
+					BuildStashExchangeController *buildStashExchangeController = [BuildStashExchangeController create];
+					buildStashExchangeController.embassy = self.embassy;
+					[self.navigationController pushViewController:buildStashExchangeController animated:YES];
 					break;
 			}
 			break;
@@ -250,11 +250,7 @@ typedef enum {
 
 - (void)dealloc {
 	self.embassy = nil;
-	self.stash = nil;
 	self.stashKeys = nil;
-	self.storedResources = nil;
-	self.maxExchangeSize = nil;
-	self.exchangesRemainingToday = nil;
     [super dealloc];
 }
 
@@ -262,15 +258,8 @@ typedef enum {
 #pragma mark -
 #pragma mark Callback Methods
 
-- (void)loadedStash:(LEBuildingViewStash *)request {
-	self.stash = request.stash;
-	self.stashKeys = [self.stash keysSortedByValueUsingSelector:@selector(compare:)];
-	self.storedResources = [NSMutableDictionary dictionaryWithCapacity:[request.stored count]];
-	[request.stored enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
-		[self.storedResources setObject:[Util asNumber:obj] forKey:key];
-	}];
-	self.maxExchangeSize = request.maxExchangeSize;
-	self.exchangesRemainingToday = request.exchangesRemainingToday;
+- (void)loadedStash {
+	self.stashKeys = [self.embassy.stash keysSortedByValueUsingSelector:@selector(compare:)];
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Exchange Details"], [LEViewSectionTab tableView:self.tableView withText:@"Actions"], [LEViewSectionTab tableView:self.tableView withText:@"Resources"]);
 	[self.tableView reloadData];
 }
