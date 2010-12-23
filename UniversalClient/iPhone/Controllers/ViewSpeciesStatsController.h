@@ -14,7 +14,7 @@
 }
 
 
-@property (nonatomic, retain) NSDictionary *racialStats;
+@property (nonatomic, retain) NSMutableDictionary *racialStats;
 
 
 + (ViewSpeciesStatsController *)create;

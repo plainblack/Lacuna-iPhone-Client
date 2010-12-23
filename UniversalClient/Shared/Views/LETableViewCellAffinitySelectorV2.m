@@ -20,6 +20,7 @@
 @synthesize viewController;
 @synthesize numericValue;
 @synthesize pointsDelegate;
+@synthesize minValue;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -44,6 +45,7 @@
 	self.viewController = nil;
 	self.numericValue = nil;
 	self.pointsDelegate = nil;
+	self.minValue = nil;
     [super dealloc];
 }
 

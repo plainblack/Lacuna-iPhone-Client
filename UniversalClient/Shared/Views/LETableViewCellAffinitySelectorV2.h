@@ -12,19 +12,15 @@
 
 
 @interface LETableViewCellAffinitySelectorV2 : UITableViewCell <UIAlertViewDelegate, PickNumericValueControllerDelegate> {
-	IBOutlet UILabel *nameLabel;
-	UIButton *numberButton;
-	UIViewController *viewController;
-	NSDecimalNumber *numericValue;
-	id<LESpeciesPointsUpdateDelegate> pointsDelegate;
 }
 
 
-@property (nonatomic, retain) UILabel *nameLabel;
+@property(nonatomic, retain) UILabel *nameLabel;
 @property(nonatomic, retain) IBOutlet UIButton *numberButton;
 @property(nonatomic, retain) UIViewController *viewController;
 @property(nonatomic, retain) NSDecimalNumber *numericValue;
-@property (nonatomic, assign) id<LESpeciesPointsUpdateDelegate> pointsDelegate;
+@property(nonatomic, assign) id<LESpeciesPointsUpdateDelegate> pointsDelegate;
+@property(nonatomic, retain) NSDecimalNumber *minValue;
 
 
 - (IBAction)editNumericValue;

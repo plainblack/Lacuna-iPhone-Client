@@ -1,20 +1,19 @@
 //
-//  LESpeciesCreate.h
-//  DKTest
+//  LEEmpireRedefineSpecies.h
+//  UniversalClient
 //
-//  Created by Kevin Runde on 3/19/10.
+//  Created by Kevin Runde on 12/20/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "LERequest.h"
 
 
-@interface LEEmpireUpdateSpecies : LERequest {
+@interface LEEmpireRedefineSpecies : LERequest {
 }
 
 
-@property(nonatomic, retain) NSString *empireId;
 @property(nonatomic, retain) NSString *name;
 @property(nonatomic, retain) NSString *description;
 @property(nonatomic, retain) NSDecimalNumber *minOrbit;
@@ -32,8 +31,10 @@
 @property(nonatomic, retain) NSDecimalNumber *growthAffinity;
 
 
-- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target empireId:(NSString *)empireId
-						   name:(NSString*) name description:(NSString *) description
+- (LERequest *)initWithCallback:(SEL)callback
+						 target:(NSObject *)target
+						   name:(NSString*) name
+					description:(NSString *) description
 					   minOrbit:(NSDecimalNumber *) minOrbit
 					   maxOrbit:(NSDecimalNumber *) maxOrbit
 		  manufacturingAffinity:(NSDecimalNumber *) manufacturingAffinity

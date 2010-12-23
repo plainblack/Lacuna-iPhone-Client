@@ -14,6 +14,7 @@
 #import "LETableViewCellLongLabeledText.h"
 #import "LETableViewCellLabeledParagraph.h"
 #import "LEEmpireViewSpeciesStats.h"
+#import "EditSpeciesController.h"
 
 
 typedef enum {
@@ -65,6 +66,7 @@ typedef enum {
 	
 	self.navigationItem.title = @"Species Stats";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(showEdit)] autorelease];
 	
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Info"],
 								 [LEViewSectionTab tableView:self.tableView withText:@"Habitable Orbits"],
@@ -335,6 +337,16 @@ typedef enum {
 - (void)dealloc {
 	self.racialStats = nil;
     [super dealloc];
+}
+
+
+#pragma mark -
+#pragma mark Action Methods
+
+- (IBAction)showEdit {
+	EditSpeciesController *editSpeciesController = [EditSpeciesController create];
+	editSpeciesController.racialStats = self.racialStats;
+	[self.navigationController pushViewController:editSpeciesController animated:YES];
 }
 
 

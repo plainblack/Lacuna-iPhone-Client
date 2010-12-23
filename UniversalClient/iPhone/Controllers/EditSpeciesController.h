@@ -1,8 +1,8 @@
 //
-//  NewSpeciesController.h
+//  EditSpeciesController.h
 //  UniversalClient
 //
-//  Created by Kevin Runde on 4/11/10.
+//  Created by Kevin Runde on 12/20/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
@@ -15,14 +15,17 @@
 #import "LETableViewCellLabeledTextView.h"
 
 
-@interface NewSpeciesController : LETableViewControllerGrouped <UITextFieldDelegate, LESpeciesPointsUpdateDelegate> {
+@interface EditSpeciesController : LETableViewControllerGrouped <UITextFieldDelegate, LESpeciesPointsUpdateDelegate> {
 	NSInteger points;
 }
 
-
-@property(nonatomic, retain) NSString *empireId;
-@property(nonatomic, retain) NSString *username;
-@property(nonatomic, retain) NSString *password;
+@property(nonatomic, assign) BOOL canRedefine;
+@property(nonatomic, retain) NSDecimalNumber *redefineCost;
+@property(nonatomic, retain) NSDecimalNumber *orbitMin;
+@property(nonatomic, retain) NSDecimalNumber *orbitMax;
+@property(nonatomic, retain) NSDecimalNumber *growthMin;
+@property(nonatomic, retain) NSString *redefineReason;
+@property(nonatomic, retain) NSMutableDictionary *racialStats;
 @property(nonatomic, retain) LETableViewCellTextEntry *speciesNameCell;
 @property(nonatomic, retain) LETableViewCellLabeledTextView *speciesDescriptionCell;
 @property(nonatomic, retain) LETableViewCellOrbitSelectorV2 *minOrbitCell;
@@ -38,14 +41,12 @@
 @property(nonatomic, retain) LETableViewCellAffinitySelectorV2 *politicalCell;
 @property(nonatomic, retain) LETableViewCellAffinitySelectorV2 *tradeCell;
 @property(nonatomic, retain) LETableViewCellAffinitySelectorV2 *growthCell;
-@property(nonatomic, retain) NSMutableDictionary *speciesTemplate;
 
 
-- (IBAction)cancel;
-- (IBAction)createSpecies;
+- (IBAction)redefineSpecies;
 
 
-+ (NewSpeciesController *) create;
++ (EditSpeciesController *) create;
 
 
 @end

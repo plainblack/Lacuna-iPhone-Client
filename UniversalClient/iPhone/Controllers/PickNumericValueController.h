@@ -18,14 +18,8 @@
 
 
 @interface PickNumericValueController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate> {
-	UILabel *titleLabel;
-	UIButton *maxButton;
-	UIPickerView *numberPicker;
-	id<PickNumericValueControllerDelegate> delegate;
-	NSDecimalNumber *maxValue;
 	NSInteger numDigits;
 	NSInteger leftMostDigit;
-	BOOL hideZero;
 }
 
 

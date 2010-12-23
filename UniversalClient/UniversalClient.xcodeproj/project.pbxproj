@@ -346,6 +346,9 @@
 		F6E3F02711B46BEE00E7BC86 /* LEEmpireBoostHappiness.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F02611B46BEE00E7BC86 /* LEEmpireBoostHappiness.m */; };
 		F6E3F02A11B46BF800E7BC86 /* LEEmpireBoostOre.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F02911B46BF800E7BC86 /* LEEmpireBoostOre.m */; };
 		F6E3F02D11B46C0600E7BC86 /* LEEmpireBoostWater.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E3F02C11B46C0600E7BC86 /* LEEmpireBoostWater.m */; };
+		F6E442AE12C05C5D00DA67E1 /* EditSpeciesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E442AD12C05C5D00DA67E1 /* EditSpeciesController.m */; };
+		F6E442B912C05FAE00DA67E1 /* LEEmpireRedefineSpecies.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E442B812C05FAE00DA67E1 /* LEEmpireRedefineSpecies.m */; };
+		F6E442BC12C05FC800DA67E1 /* LEEmpireRedefineSpeciesLimits.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E442BB12C05FC800DA67E1 /* LEEmpireRedefineSpeciesLimits.m */; };
 		F6E4C975121E0ED70028FFE8 /* LETableViewCellPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E4C974121E0ED70028FFE8 /* LETableViewCellPlan.m */; };
 		F6E4FD43122A916B00E78CBB /* ViewEmpireProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6E4FD42122A916B00E78CBB /* ViewEmpireProfileController.xib */; };
 		F6E555E512858A37009D5F82 /* ViewMissionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E555E412858A37009D5F82 /* ViewMissionsController.m */; };
@@ -1097,6 +1100,12 @@
 		F6E3F02911B46BF800E7BC86 /* LEEmpireBoostOre.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireBoostOre.m; sourceTree = "<group>"; };
 		F6E3F02B11B46C0600E7BC86 /* LEEmpireBoostWater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireBoostWater.h; sourceTree = "<group>"; };
 		F6E3F02C11B46C0600E7BC86 /* LEEmpireBoostWater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireBoostWater.m; sourceTree = "<group>"; };
+		F6E442AC12C05C5D00DA67E1 /* EditSpeciesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditSpeciesController.h; sourceTree = "<group>"; };
+		F6E442AD12C05C5D00DA67E1 /* EditSpeciesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditSpeciesController.m; sourceTree = "<group>"; };
+		F6E442B712C05FAE00DA67E1 /* LEEmpireRedefineSpecies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireRedefineSpecies.h; sourceTree = "<group>"; };
+		F6E442B812C05FAE00DA67E1 /* LEEmpireRedefineSpecies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireRedefineSpecies.m; sourceTree = "<group>"; };
+		F6E442BA12C05FC800DA67E1 /* LEEmpireRedefineSpeciesLimits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireRedefineSpeciesLimits.h; sourceTree = "<group>"; };
+		F6E442BB12C05FC800DA67E1 /* LEEmpireRedefineSpeciesLimits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireRedefineSpeciesLimits.m; sourceTree = "<group>"; };
 		F6E4C973121E0ED70028FFE8 /* LETableViewCellPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellPlan.h; sourceTree = "<group>"; };
 		F6E4C974121E0ED70028FFE8 /* LETableViewCellPlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellPlan.m; sourceTree = "<group>"; };
 		F6E4FD42122A916B00E78CBB /* ViewEmpireProfileController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewEmpireProfileController.xib; sourceTree = "<group>"; };
@@ -1821,6 +1830,10 @@
 				F6DA5A58124E69E9005D11F6 /* LEStatsSpyRank.m */,
 				F6DA5A5A124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.h */,
 				F6DA5A5B124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.m */,
+				F6E442B712C05FAE00DA67E1 /* LEEmpireRedefineSpecies.h */,
+				F6E442B812C05FAE00DA67E1 /* LEEmpireRedefineSpecies.m */,
+				F6E442BA12C05FC800DA67E1 /* LEEmpireRedefineSpeciesLimits.h */,
+				F6E442BB12C05FC800DA67E1 /* LEEmpireRedefineSpeciesLimits.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -1973,6 +1986,10 @@
 				F61F65D21204C90D0007427A /* BuildShipController.m */,
 				F6D7683A124B6EAE00BA85FB /* BuildShipTypeController.h */,
 				F6D7683B124B6EAE00BA85FB /* BuildShipTypeController.m */,
+				F6F882FD12BC63DD0081A95F /* BuildStashDonationController.h */,
+				F6F882FE12BC63DD0081A95F /* BuildStashDonationController.m */,
+				F6E8003512BF81B20047A39A /* BuildStashExchangeController.h */,
+				F6E8003612BF81B20047A39A /* BuildStashExchangeController.m */,
 				F6DEABFB125D5AF2001366C3 /* ChatController.h */,
 				F6DEABFC125D5AF2001366C3 /* ChatController.m */,
 				F6DEABFD125D5AF2001366C3 /* ChatController.xib */,
@@ -2224,10 +2241,8 @@
 				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
 				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
-				F6F882FD12BC63DD0081A95F /* BuildStashDonationController.h */,
-				F6F882FE12BC63DD0081A95F /* BuildStashDonationController.m */,
-				F6E8003512BF81B20047A39A /* BuildStashExchangeController.h */,
-				F6E8003612BF81B20047A39A /* BuildStashExchangeController.m */,
+				F6E442AC12C05C5D00DA67E1 /* EditSpeciesController.h */,
+				F6E442AD12C05C5D00DA67E1 /* EditSpeciesController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2740,6 +2755,9 @@
 				F6F8829F12BC58530081A95F /* SelectStarController.m in Sources */,
 				F6F882FF12BC63DD0081A95F /* BuildStashDonationController.m in Sources */,
 				F6E8003712BF81B20047A39A /* BuildStashExchangeController.m in Sources */,
+				F6E442AE12C05C5D00DA67E1 /* EditSpeciesController.m in Sources */,
+				F6E442B912C05FAE00DA67E1 /* LEEmpireRedefineSpecies.m in Sources */,
+				F6E442BC12C05FC800DA67E1 /* LEEmpireRedefineSpeciesLimits.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
