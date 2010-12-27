@@ -19,30 +19,6 @@
 
 
 @interface Building : NSObject {
-	NSString *id;
-	NSString *buildingUrl;
-	NSString *name;
-	NSString *imageName;
-	NSDecimalNumber *level;
-	NSDecimalNumber *x;
-	NSDecimalNumber *y;
-	ResourceGeneration *resourcesPerHour;
-	ResourceStorage *resourceCapacity;
-	TimedActivity *pendingBuild;
-	TimedActivity *work;
-	BOOL canUpgrade;
-	NSArray *cannotUpgradeReason;
-	ResourceCost *upgradeCost;
-	ResourceGeneration *upgradedResourcePerHour;
-	ResourceStorage *upgradedResourceStorage;
-	NSString *upgradedImageName;
-	NSDecimalNumber *efficiency;
-	ResourceCost *repairCost;
-	NSMutableArray *sections;
-	//NSDecimalNumber *subsidyBuildQueueCost;
-	BOOL demolished;
-	BOOL needsReload;
-	BOOL needsRefresh;
 }
 
 

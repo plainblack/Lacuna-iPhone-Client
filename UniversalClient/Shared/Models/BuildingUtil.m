@@ -33,6 +33,7 @@
 #import "SpacePort.h"
 #import "SubspaceSupplyDepot.h"
 #import "TempleOfTheDrajilites.h"
+#import "ThemePark.h"
 #import "WasteRecycling.h"
 #import "WaterStorage.h"
 
@@ -88,6 +89,8 @@
 		building = [[[SubspaceSupplyDepot alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:TEMPLE_OF_THE_DRAJILITEIS_URL]) {	
 		building = [[[TempleOfTheDrajilites alloc] init] autorelease];
+	} else if ([request.buildingUrl isEqualToString:THEME_PARK_URL]) {	
+		building = [[[ThemePark alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:TRADE_URL]) {
 		building = [[[BaseTradeBuilding alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:TRANSPORTER_URL]) {

@@ -1,8 +1,8 @@
 //
-//  LEBuildingThrowParty.h
+//  LEBuildingOperate.h
 //  UniversalClient
 //
-//  Created by Kevin Runde on 5/31/10.
+//  Created by Kevin Runde on 12/27/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 #import "LERequest.h"
 
 
-@interface LEBuildingThrowParty : LERequest {
+@interface LEBuildingOperate : LERequest {
 }
 
 

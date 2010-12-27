@@ -33,6 +33,7 @@
 #define SPACE_PORT_URL @"/spaceport"
 #define SUBSPACE_SUPPLY_DEPOT_URL @"/subspacesupplydepot"
 #define TEMPLE_OF_THE_DRAJILITEIS_URL @"/templeofthedrajilites"
+#define THEME_PARK_URL @"/themepark"
 #define TRADE_URL @"/trade"
 #define TRANSPORTER_URL @"/transporter"
 #define WASTE_RECYCLING_URL @"/wasterecycling"
@@ -140,6 +141,9 @@ typedef enum {
 	BUILDING_ROW_VIEW_UPGRADABLE_BUILDINGS,
 	BUILDING_ROW_VIEW_STASH,
 	BUILDING_ROW_VIEW_STAR,
+	BUILDING_ROW_OPERATE,
+	BUILDING_ROW_FOOD_TYPE_COUNT,
+	BUILDING_ROW_CANNOT_OPERATE_REASON,
 } BUILDING_ROW;
 
 

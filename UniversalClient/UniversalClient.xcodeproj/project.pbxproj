@@ -357,6 +357,8 @@
 		F6E5B822125B47820048F5F0 /* LEStatsAllianceRank.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5B821125B47820048F5F0 /* LEStatsAllianceRank.m */; };
 		F6E5B826125B478F0048F5F0 /* LEStatsFindAllianceRank.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5B825125B478F0048F5F0 /* LEStatsFindAllianceRank.m */; };
 		F6E5B833125B48DF0048F5F0 /* SearchForAllianceInRankingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5B832125B48DF0048F5F0 /* SearchForAllianceInRankingsController.m */; };
+		F6E5D39912C8D11C008F05FE /* ThemePark.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5D39812C8D11C008F05FE /* ThemePark.m */; };
+		F6E5D3D612C8D589008F05FE /* LEBuildingOperate.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5D3D512C8D589008F05FE /* LEBuildingOperate.m */; };
 		F6E5E5AB1205A9A000365AA2 /* MiningMinistry.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5E5AA1205A9A000365AA2 /* MiningMinistry.m */; };
 		F6E5E5DB1205BE1C00365AA2 /* MiningPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5E5DA1205BE1C00365AA2 /* MiningPlatform.m */; };
 		F6E5E5DE1205C08C00365AA2 /* LEBuildingViewPlatforms.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5E5DD1205C08C00365AA2 /* LEBuildingViewPlatforms.m */; };
@@ -1124,6 +1126,10 @@
 		F6E5B825125B478F0048F5F0 /* LEStatsFindAllianceRank.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEStatsFindAllianceRank.m; sourceTree = "<group>"; };
 		F6E5B831125B48DF0048F5F0 /* SearchForAllianceInRankingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchForAllianceInRankingsController.h; sourceTree = "<group>"; };
 		F6E5B832125B48DF0048F5F0 /* SearchForAllianceInRankingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchForAllianceInRankingsController.m; sourceTree = "<group>"; };
+		F6E5D39712C8D11C008F05FE /* ThemePark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemePark.h; sourceTree = "<group>"; };
+		F6E5D39812C8D11C008F05FE /* ThemePark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemePark.m; sourceTree = "<group>"; };
+		F6E5D3D412C8D589008F05FE /* LEBuildingOperate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingOperate.h; sourceTree = "<group>"; };
+		F6E5D3D512C8D589008F05FE /* LEBuildingOperate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingOperate.m; sourceTree = "<group>"; };
 		F6E5E5A91205A9A000365AA2 /* MiningMinistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiningMinistry.h; sourceTree = "<group>"; };
 		F6E5E5AA1205A9A000365AA2 /* MiningMinistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MiningMinistry.m; sourceTree = "<group>"; };
 		F6E5E5D91205BE1C00365AA2 /* MiningPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiningPlatform.h; sourceTree = "<group>"; };
@@ -1845,6 +1851,8 @@
 				F6DA5A5B124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.m */,
 				F6E6562D12C3A4A00031EAFB /* LEBuildingGetStar.h */,
 				F6E6562E12C3A4A00031EAFB /* LEBuildingGetStar.m */,
+				F6E5D3D412C8D589008F05FE /* LEBuildingOperate.h */,
+				F6E5D3D512C8D589008F05FE /* LEBuildingOperate.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -1977,6 +1985,8 @@
 				F6E9F2211293819300544362 /* WaterStorage.m */,
 				F6E6562A12C39FE30031EAFB /* OracleOfAnid.h */,
 				F6E6562B12C39FE30031EAFB /* OracleOfAnid.m */,
+				F6E5D39712C8D11C008F05FE /* ThemePark.h */,
+				F6E5D39812C8D11C008F05FE /* ThemePark.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -2776,6 +2786,8 @@
 				F6E6562C12C39FE30031EAFB /* OracleOfAnid.m in Sources */,
 				F6E6562F12C3A4A00031EAFB /* LEBuildingGetStar.m in Sources */,
 				F6E6564D12C3A8B20031EAFB /* SelectStarToViewController.m in Sources */,
+				F6E5D39912C8D11C008F05FE /* ThemePark.m in Sources */,
+				F6E5D3D612C8D589008F05FE /* LEBuildingOperate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
