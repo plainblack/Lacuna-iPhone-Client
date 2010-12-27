@@ -16,7 +16,7 @@
 
 @property(nonatomic, retain) NSString *buildingId;
 @property(nonatomic, retain) NSString *buildingUrl;
-@property(nonatomic, retain) NSMutableDictionary *grafts;
+@property(nonatomic, retain) NSMutableArray *grafts;
 @property(nonatomic, retain) NSDecimalNumber *survivalOdds;
 @property(nonatomic, retain) NSDecimalNumber *graftOdds;
 @property(nonatomic, retain) NSDecimalNumber *essentiaCost;

@@ -149,7 +149,7 @@
 				[warnAboutSet minusSet:self.incomingForeignShips];
 			}
 			if ([warnAboutSet count] > 0) {
-				UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"INCOMING SHIPS!" message:@"Incoming Foreign Ships detected. Go to your Spaceport for more information." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+				UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"INCOMING SHIPS!" message:@"Incoming Ships detected. Go to your Spaceport for more information." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 				[av show];
 			}
 			[warnAboutSet release];

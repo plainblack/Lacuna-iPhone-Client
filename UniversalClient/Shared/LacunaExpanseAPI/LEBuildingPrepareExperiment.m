@@ -38,9 +38,9 @@
 - (void)processSuccess {
 	NSMutableDictionary *result = [self.response objectForKey:@"result"];
 	self.grafts = [result objectForKey:@"grafts"];
-	self.survivalOdds = [Util asNumber:[result objectForKey:@"grafts"]];
-	self.graftOdds = [Util asNumber:[result objectForKey:@"grafts"]];
-	self.essentiaCost = [Util asNumber:[result objectForKey:@"grafts"]];
+	self.survivalOdds = [Util asNumber:[result objectForKey:@"survival_odds"]];
+	self.graftOdds = [Util asNumber:[result objectForKey:@"graft_odds"]];
+	self.essentiaCost = [Util asNumber:[result objectForKey:@"essentia_cost"]];
 }
 
 

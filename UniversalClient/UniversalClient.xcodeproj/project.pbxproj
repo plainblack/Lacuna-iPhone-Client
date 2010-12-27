@@ -361,6 +361,9 @@
 		F6E5D3D612C8D589008F05FE /* LEBuildingOperate.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5D3D512C8D589008F05FE /* LEBuildingOperate.m */; };
 		F6E5D42012C8E84B008F05FE /* LEBuildingPrepareExperiment.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5D41F12C8E84B008F05FE /* LEBuildingPrepareExperiment.m */; };
 		F6E5D42312C8E85B008F05FE /* LEBuildingRunExperiment.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5D42212C8E85B008F05FE /* LEBuildingRunExperiment.m */; };
+		F6E5D42A12C8EB74008F05FE /* GeneticsLab.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5D42912C8EB74008F05FE /* GeneticsLab.m */; };
+		F6E5D45912C8EEBA008F05FE /* NewExperimentController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5D45812C8EEBA008F05FE /* NewExperimentController.m */; };
+		F6E5D45C12C8EF71008F05FE /* PrepareExperimentController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5D45B12C8EF71008F05FE /* PrepareExperimentController.m */; };
 		F6E5E5AB1205A9A000365AA2 /* MiningMinistry.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5E5AA1205A9A000365AA2 /* MiningMinistry.m */; };
 		F6E5E5DB1205BE1C00365AA2 /* MiningPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5E5DA1205BE1C00365AA2 /* MiningPlatform.m */; };
 		F6E5E5DE1205C08C00365AA2 /* LEBuildingViewPlatforms.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5E5DD1205C08C00365AA2 /* LEBuildingViewPlatforms.m */; };
@@ -1136,6 +1139,12 @@
 		F6E5D41F12C8E84B008F05FE /* LEBuildingPrepareExperiment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingPrepareExperiment.m; sourceTree = "<group>"; };
 		F6E5D42112C8E85B008F05FE /* LEBuildingRunExperiment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingRunExperiment.h; sourceTree = "<group>"; };
 		F6E5D42212C8E85B008F05FE /* LEBuildingRunExperiment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingRunExperiment.m; sourceTree = "<group>"; };
+		F6E5D42812C8EB74008F05FE /* GeneticsLab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneticsLab.h; sourceTree = "<group>"; };
+		F6E5D42912C8EB74008F05FE /* GeneticsLab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneticsLab.m; sourceTree = "<group>"; };
+		F6E5D45712C8EEBA008F05FE /* NewExperimentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewExperimentController.h; sourceTree = "<group>"; };
+		F6E5D45812C8EEBA008F05FE /* NewExperimentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewExperimentController.m; sourceTree = "<group>"; };
+		F6E5D45A12C8EF71008F05FE /* PrepareExperimentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrepareExperimentController.h; sourceTree = "<group>"; };
+		F6E5D45B12C8EF71008F05FE /* PrepareExperimentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrepareExperimentController.m; sourceTree = "<group>"; };
 		F6E5E5A91205A9A000365AA2 /* MiningMinistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiningMinistry.h; sourceTree = "<group>"; };
 		F6E5E5AA1205A9A000365AA2 /* MiningMinistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MiningMinistry.m; sourceTree = "<group>"; };
 		F6E5E5D91205BE1C00365AA2 /* MiningPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiningPlatform.h; sourceTree = "<group>"; };
@@ -1997,6 +2006,8 @@
 				F6E6562B12C39FE30031EAFB /* OracleOfAnid.m */,
 				F6E5D39712C8D11C008F05FE /* ThemePark.h */,
 				F6E5D39812C8D11C008F05FE /* ThemePark.m */,
+				F6E5D42812C8EB74008F05FE /* GeneticsLab.h */,
+				F6E5D42912C8EB74008F05FE /* GeneticsLab.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -2278,6 +2289,10 @@
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
 				F6E6564B12C3A8B20031EAFB /* SelectStarToViewController.h */,
 				F6E6564C12C3A8B20031EAFB /* SelectStarToViewController.m */,
+				F6E5D45712C8EEBA008F05FE /* NewExperimentController.h */,
+				F6E5D45812C8EEBA008F05FE /* NewExperimentController.m */,
+				F6E5D45A12C8EF71008F05FE /* PrepareExperimentController.h */,
+				F6E5D45B12C8EF71008F05FE /* PrepareExperimentController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2800,6 +2815,9 @@
 				F6E5D3D612C8D589008F05FE /* LEBuildingOperate.m in Sources */,
 				F6E5D42012C8E84B008F05FE /* LEBuildingPrepareExperiment.m in Sources */,
 				F6E5D42312C8E85B008F05FE /* LEBuildingRunExperiment.m in Sources */,
+				F6E5D42A12C8EB74008F05FE /* GeneticsLab.m in Sources */,
+				F6E5D45912C8EEBA008F05FE /* NewExperimentController.m in Sources */,
+				F6E5D45C12C8EF71008F05FE /* PrepareExperimentController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

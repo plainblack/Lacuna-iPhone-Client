@@ -16,6 +16,7 @@
 #define ENTERTAINMENT_URL @"/entertainment"
 #define ESPIONAGE_URL @"/espionage"
 #define FOOD_RESERVE_URL @"/foodreserve"
+#define GENETICS_LAB_URL @"/geneticslab"
 #define HALLS_OF_VRBANSK @"/hallsofvrbansk"
 #define INTELLIGENCE_URL @"/intelligence"
 #define LIBRARY_OF_JITH_URL @"/libraryofjith"
@@ -144,6 +145,7 @@ typedef enum {
 	BUILDING_ROW_OPERATE,
 	BUILDING_ROW_FOOD_TYPE_COUNT,
 	BUILDING_ROW_CANNOT_OPERATE_REASON,
+	BUILDING_ROW_EXPERIMENT,
 } BUILDING_ROW;
 
 

@@ -17,6 +17,7 @@
 #import "EnergyReserve.h"
 #import "Entertainment.h"
 #import "FoodReserve.h"
+#import "GeneticsLab.h"
 #import "HallsOfVrbansk.h"
 #import "Intelligence.h"
 #import "LibraryOfJith.h"
@@ -57,6 +58,8 @@
 		building = [[[Entertainment alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:FOOD_RESERVE_URL]) {
 		building = [[[FoodReserve alloc] init] autorelease];
+	} else if ([request.buildingUrl isEqualToString:GENETICS_LAB_URL]) {
+		building = [[[GeneticsLab alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:HALLS_OF_VRBANSK]) {
 		building = [[[HallsOfVrbansk alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:INTELLIGENCE_URL]) {
