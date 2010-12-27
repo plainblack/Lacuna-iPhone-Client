@@ -52,6 +52,8 @@
 
 
 - (void)dealloc {
+	self.buildingId = nil;
+	self.buildingUrl = nil;
 	self.starId = nil;
 	self.star = nil;
 	[super dealloc];

@@ -359,6 +359,8 @@
 		F6E5B833125B48DF0048F5F0 /* SearchForAllianceInRankingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5B832125B48DF0048F5F0 /* SearchForAllianceInRankingsController.m */; };
 		F6E5D39912C8D11C008F05FE /* ThemePark.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5D39812C8D11C008F05FE /* ThemePark.m */; };
 		F6E5D3D612C8D589008F05FE /* LEBuildingOperate.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5D3D512C8D589008F05FE /* LEBuildingOperate.m */; };
+		F6E5D42012C8E84B008F05FE /* LEBuildingPrepareExperiment.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5D41F12C8E84B008F05FE /* LEBuildingPrepareExperiment.m */; };
+		F6E5D42312C8E85B008F05FE /* LEBuildingRunExperiment.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5D42212C8E85B008F05FE /* LEBuildingRunExperiment.m */; };
 		F6E5E5AB1205A9A000365AA2 /* MiningMinistry.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5E5AA1205A9A000365AA2 /* MiningMinistry.m */; };
 		F6E5E5DB1205BE1C00365AA2 /* MiningPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5E5DA1205BE1C00365AA2 /* MiningPlatform.m */; };
 		F6E5E5DE1205C08C00365AA2 /* LEBuildingViewPlatforms.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E5E5DD1205C08C00365AA2 /* LEBuildingViewPlatforms.m */; };
@@ -1130,6 +1132,10 @@
 		F6E5D39812C8D11C008F05FE /* ThemePark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemePark.m; sourceTree = "<group>"; };
 		F6E5D3D412C8D589008F05FE /* LEBuildingOperate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingOperate.h; sourceTree = "<group>"; };
 		F6E5D3D512C8D589008F05FE /* LEBuildingOperate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingOperate.m; sourceTree = "<group>"; };
+		F6E5D41E12C8E84B008F05FE /* LEBuildingPrepareExperiment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingPrepareExperiment.h; sourceTree = "<group>"; };
+		F6E5D41F12C8E84B008F05FE /* LEBuildingPrepareExperiment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingPrepareExperiment.m; sourceTree = "<group>"; };
+		F6E5D42112C8E85B008F05FE /* LEBuildingRunExperiment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingRunExperiment.h; sourceTree = "<group>"; };
+		F6E5D42212C8E85B008F05FE /* LEBuildingRunExperiment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingRunExperiment.m; sourceTree = "<group>"; };
 		F6E5E5A91205A9A000365AA2 /* MiningMinistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiningMinistry.h; sourceTree = "<group>"; };
 		F6E5E5AA1205A9A000365AA2 /* MiningMinistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MiningMinistry.m; sourceTree = "<group>"; };
 		F6E5E5D91205BE1C00365AA2 /* MiningPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiningPlatform.h; sourceTree = "<group>"; };
@@ -1853,6 +1859,10 @@
 				F6E6562E12C3A4A00031EAFB /* LEBuildingGetStar.m */,
 				F6E5D3D412C8D589008F05FE /* LEBuildingOperate.h */,
 				F6E5D3D512C8D589008F05FE /* LEBuildingOperate.m */,
+				F6E5D41E12C8E84B008F05FE /* LEBuildingPrepareExperiment.h */,
+				F6E5D41F12C8E84B008F05FE /* LEBuildingPrepareExperiment.m */,
+				F6E5D42112C8E85B008F05FE /* LEBuildingRunExperiment.h */,
+				F6E5D42212C8E85B008F05FE /* LEBuildingRunExperiment.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -2788,6 +2798,8 @@
 				F6E6564D12C3A8B20031EAFB /* SelectStarToViewController.m in Sources */,
 				F6E5D39912C8D11C008F05FE /* ThemePark.m in Sources */,
 				F6E5D3D612C8D589008F05FE /* LEBuildingOperate.m in Sources */,
+				F6E5D42012C8E84B008F05FE /* LEBuildingPrepareExperiment.m in Sources */,
+				F6E5D42312C8E85B008F05FE /* LEBuildingRunExperiment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

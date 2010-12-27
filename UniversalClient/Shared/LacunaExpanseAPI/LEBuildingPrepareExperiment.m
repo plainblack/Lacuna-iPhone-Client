@@ -1,22 +1,26 @@
 //
-//  LEBuildingThrowParty.m
+//  LEBuildingPrepareExperiment.m
 //  UniversalClient
 //
-//  Created by Kevin Runde on 5/31/10.
+//  Created by Kevin Runde on 12/27/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
-#import "LEBuildingThrowParty.h"
+#import "LEBuildingPrepareExperiment.h"
 #import "LEMacros.h"
+#import "Util.h"
 #import "Session.h"
 
 
-@implementation LEBuildingThrowParty
+@implementation LEBuildingPrepareExperiment
 
 
 @synthesize buildingId;
 @synthesize buildingUrl;
-@synthesize result;
+@synthesize grafts;
+@synthesize survivalOdds;
+@synthesize graftOdds;
+@synthesize essentiaCost;
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl {
@@ -32,7 +36,11 @@
 
 
 - (void)processSuccess {
-	self.result = [self.response objectForKey:@"result"];
+	NSMutableDictionary *result = [self.response objectForKey:@"result"];
+	self.grafts = [result objectForKey:@"grafts"];
+	self.survivalOdds = [Util asNumber:[result objectForKey:@"grafts"]];
+	self.graftOdds = [Util asNumber:[result objectForKey:@"grafts"]];
+	self.essentiaCost = [Util asNumber:[result objectForKey:@"grafts"]];
 }
 
 
@@ -42,16 +50,20 @@
 
 
 - (NSString *)methodName {
-	return @"throw_a_party";
+	return @"prepare_experiment";
 }
 
 
 - (void)dealloc {
 	self.buildingId = nil;
 	self.buildingUrl = nil;
-	self.result = nil;
+	self.grafts = nil;
+	self.survivalOdds = nil;
+	self.graftOdds = nil;
+	self.essentiaCost = nil;
 	[super dealloc];
 }
+
 
 
 @end
