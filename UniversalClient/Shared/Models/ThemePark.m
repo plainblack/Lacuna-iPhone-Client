@@ -37,7 +37,6 @@
 
 - (void)parseAdditionalData:(NSDictionary *)data {
 	NSDictionary *themeParkData = [data objectForKey:@"themepark"];
-	NSLog(@"Theme Park Data: %@", themeParkData);
 	self.canOperate = [[themeParkData objectForKey:@"can_operate"] boolValue];
 	self.foodTypeCount = [Util asNumber:[themeParkData objectForKey:@"food_type_count"]];
 	self.reason = [themeParkData objectForKey:@"reason"];

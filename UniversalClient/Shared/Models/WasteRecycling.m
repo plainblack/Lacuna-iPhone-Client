@@ -53,7 +53,6 @@
 
 - (void)parseAdditionalData:(NSDictionary *)data {
 	NSDictionary *recycleData = [data objectForKey:@"recycle"];
-	NSLog(@"Recycle Data: %@", recycleData);
 	self.canRecycle = [[recycleData objectForKey:@"can"] boolValue];
 	self.secondsPerResource = [Util asNumber:[recycleData objectForKey:@"seconds_per_resource"]];
 	self.maxResources = [Util asNumber:[recycleData objectForKey:@"max_recycle"]];

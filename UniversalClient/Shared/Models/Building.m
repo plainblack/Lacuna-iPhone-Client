@@ -221,6 +221,7 @@
 		}
 		[rowArray addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_DOWNGRADE_BUTTON]];
 	}
+
 	[rowArray addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_DEMOLISH_BUTTON]];
 	
 	return _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_UPGRADE], @"type", @"Upgrade", @"name", rowArray, @"rows");
@@ -531,7 +532,7 @@
 	if (isNotNull(pendingBuildDict)) {
 		for (NSMutableDictionary *section in self.sections) {
 			if ([[section objectForKey:@"type"] isEqual:[NSDecimalNumber numberWithInt:BUILDING_SECTION_UPGRADE]]) {
-				[section setObject:_array([NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_STATS], [NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_PROGRESS]) forKey:@"rows"];
+				[section setObject:_array([NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_BUILDING_STATS], [NSDecimalNumber numberWithInt:BUILDING_ROW_UPGRADE_PROGRESS], [NSDecimalNumber numberWithInt:BUILDING_ROW_DEMOLISH_BUTTON]) forKey:@"rows"];
 			}
 		}
 		if(!self.pendingBuild) {

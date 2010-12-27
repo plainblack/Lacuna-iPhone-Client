@@ -133,9 +133,6 @@ typedef enum {
 			LETableViewCellLabeledText *timeCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 			timeCell.label.text = @"Time needed";
 			timeCell.content.text = [Util prettyDuration:_intv(self.seconds)];
-			NSLog(@"Seconds: %@", self.seconds);
-			NSLog(@"Seconds as int: %i", _intv(self.seconds));
-			NSLog(@"Duration: %@", [Util prettyDuration:_intv(self.seconds)]);
 			cell = timeCell;
 			break;
 		case ROW_MAX:
