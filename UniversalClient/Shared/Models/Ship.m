@@ -22,6 +22,7 @@
 @synthesize speed;
 @synthesize holdSize;
 @synthesize stealth;
+@synthesize payload;
 @synthesize dateStarted;
 @synthesize dateAvailable;
 @synthesize dateArrives;
@@ -39,8 +40,8 @@
 #pragma mark NSObject Methods
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"id:%@, name:%@, type:%@, typeHumanized:%@, task:%@, speed:%@, holdSize:%@, stealth:%@, dateStarted:%@, dateAvailable:%@, dateArrives:%@, fromId:%@, fromType:%@, fromName:%@, fromEmpireId:%@ fromEmpireName:%@, toId:%@, toType:%@, toName:%@", 
-			self.id, self.name, self.type, self.typeHumanized, self.task, self.speed, self.holdSize, self.stealth, self.dateStarted, self.dateAvailable, self.dateArrives, self.fromId, self.fromType, self.fromName, self.fromEmpireId, self.fromEmpireName, self.toId, self.toType, self.toName];
+	return [NSString stringWithFormat:@"id:%@, name:%@, type:%@, typeHumanized:%@, task:%@, speed:%@, holdSize:%@, stealth:%@, dateStarted:%@, dateAvailable:%@, dateArrives:%@, fromId:%@, fromType:%@, fromName:%@, fromEmpireId:%@ fromEmpireName:%@, toId:%@, toType:%@, toName:%@, payload:%@", 
+			self.id, self.name, self.type, self.typeHumanized, self.task, self.speed, self.holdSize, self.stealth, self.dateStarted, self.dateAvailable, self.dateArrives, self.fromId, self.fromType, self.fromName, self.fromEmpireId, self.fromEmpireName, self.toId, self.toType, self.toName, self.payload];
 }
 
 
@@ -53,6 +54,7 @@
 	self.speed = nil;
 	self.holdSize = nil;
 	self.stealth = nil;
+	self.payload = nil;
 	self.dateStarted = nil;
 	self.dateAvailable = nil;
 	self.dateArrives = nil;
@@ -80,6 +82,8 @@
 	self.speed = [Util asNumber:[shipData objectForKey:@"speed"]];
 	self.holdSize = [Util asNumber:[shipData objectForKey:@"hold_size"]];
 	self.stealth = [Util asNumber:[shipData objectForKey:@"stealth"]];
+	self.payload = [shipData objectForKey:@"payload"];
+	NSLog(@"Payload: %@", [self prettyPayload]);
 	self.dateStarted = [Util date:[shipData objectForKey:@"date_started"]];
 	self.dateAvailable = [Util date:[shipData objectForKey:@"date_available"]];
 	self.dateArrives = [Util date:[shipData objectForKey:@"date_arrives"]];
@@ -95,6 +99,20 @@
 	self.toType = [toData objectForKey:@"type"];
 	self.toName = [toData objectForKey:@"name"];
 }
+
+
+- (NSString *)prettyPayload {
+	if (isNotNull(self.payload)) {
+		if ([self.payload count]>0) {
+			return [self.payload componentsJoinedByString:@"; "];
+		} else {
+			return @"Empty";
+		}
+	} else {
+		return @"Unknown";
+	}	
+}
+
 
 
 @end

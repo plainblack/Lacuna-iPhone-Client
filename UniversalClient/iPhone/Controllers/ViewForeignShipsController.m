@@ -44,7 +44,7 @@ typedef enum {
     [super viewDidLoad];
 	
 	
-	self.navigationItem.title = @"Foreign Ships Incoming";
+	self.navigationItem.title = @"Incoming Ships";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
 	self.pageSegmentedControl = [[[UISegmentedControl alloc] initWithItems:_array(UP_ARROW_ICON, DOWN_ARROW_ICON)] autorelease];

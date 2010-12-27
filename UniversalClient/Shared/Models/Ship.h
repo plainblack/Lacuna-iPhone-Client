@@ -10,25 +10,6 @@
 
 
 @interface Ship : NSObject {
-	NSString *id;
-	NSString *name;
-	NSString *type;
-	NSString *typeHumanized;
-	NSString *task;
-	NSDecimalNumber *speed;
-	NSDecimalNumber *holdSize;
-	NSDecimalNumber *stealth;
-	NSDate *dateStarted;
-	NSDate *dateAvailable;
-	NSDate *dateArrives;
-	NSString *fromId;
-	NSString *fromType;
-	NSString *fromName;
-	NSString *fromEmpireId;
-	NSString *fromEmpireName;
-	NSString *toId;
-	NSString *toType;
-	NSString *toName;
 }
 
 @property (nonatomic, retain) NSString *id;
@@ -39,6 +20,7 @@
 @property (nonatomic, retain) NSDecimalNumber *speed;
 @property (nonatomic, retain) NSDecimalNumber *holdSize;
 @property (nonatomic, retain) NSDecimalNumber *stealth;
+@property (nonatomic, retain) NSMutableArray *payload;
 @property (nonatomic, retain) NSDate *dateStarted;
 @property (nonatomic, retain) NSDate *dateAvailable;
 @property (nonatomic, retain) NSDate *dateArrives;
@@ -53,6 +35,7 @@
 
 
 - (void)parseData:(NSDictionary *)shipData;
+- (NSString *)prettyPayload;
 
 
 @end

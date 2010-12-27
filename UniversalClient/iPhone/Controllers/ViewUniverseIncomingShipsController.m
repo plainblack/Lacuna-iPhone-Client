@@ -15,11 +15,13 @@
 #import "LETableViewCellShip.h"
 #import "LETableViewCellTravellingShip.h"
 #import "ViewPublicEmpireProfileController.h"
+#import "LETableViewCellParagraph.h"
 
 
 typedef enum {
 	ROW_SHIP_INFO,
-	ROW_TRAVELLING_INFO
+	ROW_TRAVELLING_INFO,
+	ROW_PAYLOAD
 } ROW;
 
 
@@ -81,7 +83,7 @@ typedef enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (self.incomingShips) {
 		if ([self.incomingShips count] > 0) {
-			return 2;
+			return 3;
 		} else {
 			return 1;
 		}
@@ -95,12 +97,16 @@ typedef enum {
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (self.incomingShips) {
 		if ([self.incomingShips count] > 0) {
+			Ship *currentShip = [self.incomingShips objectAtIndex:indexPath.section];
 			switch (indexPath.row) {
 				case ROW_SHIP_INFO:
 					return [LETableViewCellShip getHeightForTableView:tableView];
 					break;
 				case ROW_TRAVELLING_INFO:
 					return [LETableViewCellTravellingShip getHeightForTableView:tableView];
+					break;
+				case ROW_PAYLOAD:
+					return [LETableViewCellParagraph getHeightForTableView:tableView text:[NSString stringWithFormat:@"Payload: %@", [currentShip prettyPayload]]];
 					break;
 				default:
 					return 0.0;
@@ -136,6 +142,12 @@ typedef enum {
 					LETableViewCellTravellingShip *travellingInfoCell = [LETableViewCellTravellingShip getCellForTableView:tableView];
 					[travellingInfoCell setShip:currentShip];
 					cell = travellingInfoCell;
+					break;
+				case ROW_PAYLOAD:
+					; //DO NOT REMOVE
+					LETableViewCellParagraph *payloadCell = [LETableViewCellParagraph getCellForTableView:tableView];
+					payloadCell.content.text = [NSString stringWithFormat:@"Payload: %@", [currentShip prettyPayload]];
+					cell = payloadCell;
 					break;
 				default:
 					cell = nil;
