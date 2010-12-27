@@ -17,6 +17,7 @@
 #import "Prisoner.h"
 #import "Ship.h"
 #import "LEViewSectionTab.h"
+#import "LETableViewCellParagraph.h"
 #import "LETableViewCellLabeledText.h"
 #import "LETableViewCellButton.h"
 #import "LETableViewCellGlyph.h"
@@ -29,6 +30,8 @@
 #import "SelectStoredResourceController.h"
 #import "LEBuildingAddTrade.h"
 
+
+#define NOTHING_SELECTED_MESSAGE @"Select something below"
 
 typedef enum {
 	SECTION_HAVE,
@@ -156,7 +159,7 @@ typedef enum {
 					} else if ([self.trade.offerType isEqualToString:@"ship"]) {
 						return [LETableViewCellShip getHeightForTableView:tableView];
 					} else {
-						return [LETableViewCellLabeledText getHeightForTableView:tableView];
+						return [LETableViewCellParagraph getHeightForTableView:tableView text:NOTHING_SELECTED_MESSAGE];
 					}
 					break;
 				case HAVE_ROW_SELECT_GLYPH:
@@ -203,10 +206,9 @@ typedef enum {
 			switch (indexPath.row) {
 				case HAVE_ROW_SELECTED_ITEM:
 					if (!self.trade.offerType) {
-						LETableViewCellLabeledText *itemCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-						itemCell.label.text = @"None";
-						itemCell.content.text = @"Select something below";
-						cell = itemCell;
+						LETableViewCellParagraph *nothingSelectedCell = [LETableViewCellParagraph getCellForTableView:tableView];
+						nothingSelectedCell.content.text = NOTHING_SELECTED_MESSAGE;
+						cell = nothingSelectedCell;
 					} else if ([self.trade.offerType isEqualToString:@"glyph"]) {
 						Glyph *glyph = [self.baseTradeBuilding.glyphsById objectForKey:self.trade.offerGlyphId];
 						LETableViewCellGlyph *glyphCell = [LETableViewCellGlyph getCellForTableView:tableView isSelectable:NO];

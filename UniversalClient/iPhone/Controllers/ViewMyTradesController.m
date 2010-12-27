@@ -10,6 +10,7 @@
 #import "LEMacros.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellLabeledText.h"
+#import "LETableViewCellLabeledParagraph.h"
 #import "LETableViewCellButton.h"
 #import "Util.h"
 #import "BaseTradeBuilding.h"
@@ -119,10 +120,13 @@ typedef enum {
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (self.baseTradeBuilding && self.baseTradeBuilding.myTrades) {
 		if ([self.baseTradeBuilding.myTrades count] > 0) {
+			Trade *trade = [self.baseTradeBuilding.myTrades objectAtIndex:indexPath.section];
 			switch (indexPath.row) {
 				case ROW_TRADE_OFFER:
+					return [LETableViewCellLabeledParagraph getHeightForTableView:tableView text:trade.offerDescription];
+					break;
 				case ROW_TRADE_ASK:
-					return [LETableViewCellLabeledText getHeightForTableView:tableView];
+					return [LETableViewCellLabeledParagraph getHeightForTableView:tableView text:trade.askDescription];
 					break;
 				case ROW_WITHDRAW:
 					return [LETableViewCellButton getHeightForTableView:tableView];
@@ -151,14 +155,14 @@ typedef enum {
 			switch (indexPath.row) {
 				case ROW_TRADE_OFFER:
 					; //DO NOT REMOVE
-					LETableViewCellLabeledText *offerCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+					LETableViewCellLabeledParagraph *offerCell = [LETableViewCellLabeledParagraph getCellForTableView:tableView];
 					offerCell.label.text = @"Offer";
 					offerCell.content.text = trade.offerDescription;
 					cell = offerCell;
 					break;
 				case ROW_TRADE_ASK:
 					; //DO NOT REMOVE
-					LETableViewCellLabeledText *askCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+					LETableViewCellLabeledParagraph *askCell = [LETableViewCellLabeledParagraph getCellForTableView:tableView];
 					askCell.label.text = @"Ask";
 					askCell.content.text = trade.askDescription;
 					cell = askCell;
