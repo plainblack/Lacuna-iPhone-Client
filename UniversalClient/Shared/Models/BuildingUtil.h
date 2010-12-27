@@ -24,6 +24,7 @@
 #define MUNITIONS_LAB_URL @"/munitionslab"
 #define NETWORK_19_URL @"/network19"
 #define OBSERVATORY_URL @"/observatory"
+#define ORACLE_OF_ANID_URL @"/oracleofanid"
 #define ORE_STORAGE_URL @"/orestorage"
 #define PARK_URL @"/park"
 #define PLANETARY_COMMAND_URL @"/planetarycommand"
@@ -138,6 +139,7 @@ typedef enum {
 	BUILDING_ROW_RESEARCH_SEPECIES,
 	BUILDING_ROW_VIEW_UPGRADABLE_BUILDINGS,
 	BUILDING_ROW_VIEW_STASH,
+	BUILDING_ROW_VIEW_STAR,
 } BUILDING_ROW;
 
 

@@ -26,7 +26,7 @@
 
 - (void)setStar:(Star *)star;
 
-+ (LETableViewCellStar *)getCellForTableView:(UITableView *)tableView;
++ (LETableViewCellStar *)getCellForTableView:(UITableView *)tableView isSelectable:(BOOL)isSelectable;
 + (CGFloat)getHeightForTableView:(UITableView *)tableView;
 
 

@@ -140,7 +140,7 @@ typedef enum {
 			switch (indexPath.row) {
 				case ROW_PROBED_STAR:
 					; //DO NOT REMOVE
-					LETableViewCellStar *starCell = [LETableViewCellStar getCellForTableView:tableView];
+					LETableViewCellStar *starCell = [LETableViewCellStar getCellForTableView:tableView isSelectable:NO];
 					[starCell setStar:star];
 					cell = starCell;
 					break;

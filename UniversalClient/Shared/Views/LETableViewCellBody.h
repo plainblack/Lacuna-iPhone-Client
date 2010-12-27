@@ -25,7 +25,7 @@
 @property(nonatomic, retain) IBOutlet UILabel *empireLabel;
 
 
-+ (LETableViewCellBody *)getCellForTableView:(UITableView *)tableView;
++ (LETableViewCellBody *)getCellForTableView:(UITableView *)tableView isSelectable:(BOOL)isSelectable;
 + (CGFloat)getHeightForTableView:(UITableView *)tableView;
 
 

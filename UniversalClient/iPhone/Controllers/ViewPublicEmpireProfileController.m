@@ -283,7 +283,7 @@ typedef enum {
 			case SECTION_COLONIES:
 				; //DO NOT REMOVE
 				NSDictionary *body = [self.profile.colonies objectAtIndex:indexPath.row];
-				LETableViewCellBody *colonyCell = [LETableViewCellBody getCellForTableView:tableView];
+				LETableViewCellBody *colonyCell = [LETableViewCellBody getCellForTableView:tableView isSelectable:NO];
 				colonyCell.planetImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"/assets/star_system/%@.png", [body objectForKey:@"image"]]];
 				colonyCell.planetLabel.text = [body objectForKey:@"name"];
 				colonyCell.systemLabel.text = @"Unknown";

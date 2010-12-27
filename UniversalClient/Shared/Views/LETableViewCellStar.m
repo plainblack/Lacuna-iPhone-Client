@@ -58,7 +58,7 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (LETableViewCellStar *)getCellForTableView:(UITableView *)tableView {
++ (LETableViewCellStar *)getCellForTableView:(UITableView *)tableView isSelectable:(BOOL)isSelectable {
     static NSString *CellIdentifier = @"StarCell";
 	
 	LETableViewCellStar *cell = (LETableViewCellStar *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -96,7 +96,12 @@
 		[cell.contentView addSubview:cell.locationLabel];
 		
 		//Set Cell Defaults
-		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		if (isSelectable) {
+			cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		} else {
+			cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		}
 	}
 	
 	return cell;

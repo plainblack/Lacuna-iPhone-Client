@@ -11,8 +11,6 @@
 
 
 @interface TempleOfTheDrajilites : Building {
-	NSMutableArray *viewablePlanets;
-	NSMutableDictionary *planetMap;
 }
 
 

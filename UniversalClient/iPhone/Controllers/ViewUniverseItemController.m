@@ -170,12 +170,12 @@ typedef enum {
 			case ROW_INFO:
 				; //DO NOT REMOVE
 				if ([self.mapItem.type isEqualToString:@"star"]) {
-					LETableViewCellStar *infoCell = [LETableViewCellStar getCellForTableView:tableView];
+					LETableViewCellStar *infoCell = [LETableViewCellStar getCellForTableView:tableView isSelectable:NO];
 					[infoCell setStar:((Star *)self.mapItem)];
 					cell = infoCell;
 				} else {
 					Body *body = (Body *)self.mapItem;
-					LETableViewCellBody *infoCell = [LETableViewCellBody getCellForTableView:tableView];
+					LETableViewCellBody *infoCell = [LETableViewCellBody getCellForTableView:tableView isSelectable:NO];
 					infoCell.planetImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"/assets/star_system/%@.png", body.imageName]];
 					infoCell.planetLabel.text = body.name;
 					infoCell.systemLabel.text = body.starName;

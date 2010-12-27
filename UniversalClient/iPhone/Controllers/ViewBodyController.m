@@ -242,7 +242,7 @@ typedef enum {
 			switch (indexPath.row) {
 				case BODY_OVERVIEW_ROW_NAME:
 					; //DO NOT REMOVE
-					LETableViewCellBody *bodyCell = [LETableViewCellBody getCellForTableView:tableView];
+					LETableViewCellBody *bodyCell = [LETableViewCellBody getCellForTableView:tableView isSelectable:NO];
 					bodyCell.planetImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"/assets/star_system/%@.png", session.body.imageName]];
 					bodyCell.planetLabel.text = session.body.name;
 					bodyCell.systemLabel.text = session.body.starName;

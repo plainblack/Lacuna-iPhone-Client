@@ -24,6 +24,7 @@
 #import "MissionCommand.h"
 #import "Network19.h"
 #import "Observatory.h"
+#import "OracleOfAnid.h"
 #import "OreStorage.h"
 #import "Park.h"
 #import "PlanetaryCommand.h"
@@ -69,6 +70,8 @@
 		building = [[[Network19 alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:OBSERVATORY_URL]) {
 		building = [[[Observatory alloc] init] autorelease];
+	} else if ([request.buildingUrl isEqualToString:ORACLE_OF_ANID_URL]) {
+		building = [[[OracleOfAnid alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:ORE_STORAGE_URL]) {
 		building = [[[OreStorage alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:PARK_URL]) {

@@ -50,7 +50,7 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (LETableViewCellBody *)getCellForTableView:(UITableView *)tableView {
++ (LETableViewCellBody *)getCellForTableView:(UITableView *)tableView isSelectable:(BOOL)isSelectable {
     static NSString *CellIdentifier = @"BodyCell";
 	
 	LETableViewCellBody *cell = (LETableViewCellBody *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -120,7 +120,12 @@
 		[cell.contentView addSubview:cell.empireLabel];
 		
 		//Set Cell Defaults
-		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		if (isSelectable) {
+			cell.selectionStyle = UITableViewCellSelectionStyleBlue;
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		} else {
+			cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		}
 	}
 	
 	return cell;

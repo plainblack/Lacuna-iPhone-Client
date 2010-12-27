@@ -43,7 +43,7 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (LETableViewCellLabeledText *)getCellForTableView:(UITableView *)tableView isSelectable:(BOOL)isSelectable{
++ (LETableViewCellLabeledText *)getCellForTableView:(UITableView *)tableView isSelectable:(BOOL)isSelectable {
 	static NSString *SelectableCellIdentifier = @"LabeledTextCellSelectable";
 	static NSString *NormalCellIdentifier = @"LabeledTextCell";
 	NSString *cellIdentifier;
