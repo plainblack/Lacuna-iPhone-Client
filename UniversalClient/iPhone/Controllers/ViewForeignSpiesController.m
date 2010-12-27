@@ -165,7 +165,7 @@ typedef enum {
 					; //DO NOT REMOVE
 					LETableViewCellLabeledText *nextMissionCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					nextMissionCell.label.text = @"Next Mission";
-					nextMissionCell.content.text = [Util formatDate:[foreignSpy objectForKey:@"next_mission"]];
+					nextMissionCell.content.text = [Util prettyDate:[foreignSpy objectForKey:@"next_mission"]];
 					cell = nextMissionCell;
 					break;
 				default:
@@ -256,6 +256,7 @@ typedef enum {
 		[self togglePageButtons];
 		[self.tableView reloadData];
 		self.foreignSpiesLastUpdated = self.securityBuilding.foreignSpiesUpdated;
+		NSLog(@"Foreign Spies: %@", self.securityBuilding.foreignSpies);
 	}
 }
 

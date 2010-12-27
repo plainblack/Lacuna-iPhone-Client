@@ -20,6 +20,8 @@
 @synthesize speedLabel;
 @synthesize holdSizeLabel;
 @synthesize stealthLabel;
+@synthesize combatLabel;
+@synthesize maxOccupantLabel;
 @synthesize shipImageView;
 
 
@@ -45,6 +47,8 @@
 	self.speedLabel = nil;
 	self.holdSizeLabel = nil;
 	self.stealthLabel = nil;
+	self.combatLabel = nil;
+	self.maxOccupantLabel = nil;
 	self.shipImageView = nil;
     [super dealloc];
 }
@@ -70,6 +74,16 @@
 		self.stealthLabel.text = [Util prettyNSDecimalNumber:ship.stealth];
 	} else {
 		self.stealthLabel.text = @"Unknown";
+	}
+	if (isNotNull(ship.combat)) {
+		self.combatLabel.text = [Util prettyNSDecimalNumber:ship.combat];
+	} else {
+		self.combatLabel.text = @"Unknown";
+	}
+	if (isNotNull(ship.maxOccupants)) {
+		self.maxOccupantLabel.text = [Util prettyNSDecimalNumber:ship.maxOccupants];
+	} else {
+		self.maxOccupantLabel.text = @"Unknown";
 	}
 	NSString *shipImageName = [NSString stringWithFormat:@"assets/ships/%@.png", ship.type];
 	self.shipImageView.image = [UIImage imageNamed:shipImageName];
@@ -119,7 +133,7 @@
 		[cell.contentView addSubview:cell.typeLabel];
 
 		y += 15;
-		UILabel *tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, y, 60, 20)] autorelease];
+		UILabel *tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, y, 100, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
 		tmpLabel.textAlignment = UITextAlignmentRight;
 		tmpLabel.font = LABEL_FONT;
@@ -127,7 +141,7 @@
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		tmpLabel.text = @"Speed";
 		[cell.contentView addSubview:tmpLabel];
-		cell.speedLabel = [[[UILabel alloc] initWithFrame:CGRectMake(185, y, 100, 20)] autorelease];
+		cell.speedLabel = [[[UILabel alloc] initWithFrame:CGRectMake(225, y, 100, 20)] autorelease];
 		cell.speedLabel.backgroundColor = [UIColor clearColor];
 		cell.speedLabel.textAlignment = UITextAlignmentLeft;
 		cell.speedLabel.font = TEXT_SMALL_FONT;
@@ -136,7 +150,7 @@
 		[cell.contentView addSubview:cell.speedLabel];
 
 		y += 15;
-		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, y, 60, 20)] autorelease];
+		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, y, 100, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
 		tmpLabel.textAlignment = UITextAlignmentRight;
 		tmpLabel.font = LABEL_FONT;
@@ -144,7 +158,7 @@
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		tmpLabel.text = @"Hold Size";
 		[cell.contentView addSubview:tmpLabel];
-		cell.holdSizeLabel = [[[UILabel alloc] initWithFrame:CGRectMake(185, y, 100, 20)] autorelease];
+		cell.holdSizeLabel = [[[UILabel alloc] initWithFrame:CGRectMake(225, y, 100, 20)] autorelease];
 		cell.holdSizeLabel.backgroundColor = [UIColor clearColor];
 		cell.holdSizeLabel.textAlignment = UITextAlignmentLeft;
 		cell.holdSizeLabel.font = TEXT_SMALL_FONT;
@@ -153,7 +167,7 @@
 		[cell.contentView addSubview:cell.holdSizeLabel];
 
 		y += 15;
-		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, y, 60, 20)] autorelease];
+		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, y, 100, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
 		tmpLabel.textAlignment = UITextAlignmentRight;
 		tmpLabel.font = LABEL_FONT;
@@ -161,13 +175,47 @@
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		tmpLabel.text = @"Stealth";
 		[cell.contentView addSubview:tmpLabel];
-		cell.stealthLabel = [[[UILabel alloc] initWithFrame:CGRectMake(185, y, 100, 20)] autorelease];
+		cell.stealthLabel = [[[UILabel alloc] initWithFrame:CGRectMake(225, y, 100, 20)] autorelease];
 		cell.stealthLabel.backgroundColor = [UIColor clearColor];
 		cell.stealthLabel.textAlignment = UITextAlignmentLeft;
 		cell.stealthLabel.font = TEXT_SMALL_FONT;
 		cell.stealthLabel.textColor = TEXT_SMALL_COLOR;
 		cell.stealthLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.stealthLabel];
+		
+		y += 15;
+		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, y, 100, 20)] autorelease];
+		tmpLabel.backgroundColor = [UIColor clearColor];
+		tmpLabel.textAlignment = UITextAlignmentRight;
+		tmpLabel.font = LABEL_FONT;
+		tmpLabel.textColor = LABEL_COLOR;
+		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+		tmpLabel.text = @"Combat";
+		[cell.contentView addSubview:tmpLabel];
+		cell.combatLabel = [[[UILabel alloc] initWithFrame:CGRectMake(225, y, 100, 20)] autorelease];
+		cell.combatLabel.backgroundColor = [UIColor clearColor];
+		cell.combatLabel.textAlignment = UITextAlignmentLeft;
+		cell.combatLabel.font = TEXT_SMALL_FONT;
+		cell.combatLabel.textColor = TEXT_SMALL_COLOR;
+		cell.combatLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+		[cell.contentView addSubview:cell.combatLabel];
+		
+		y += 15;
+		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, y, 100, 20)] autorelease];
+		tmpLabel.backgroundColor = [UIColor clearColor];
+		tmpLabel.textAlignment = UITextAlignmentRight;
+		tmpLabel.font = LABEL_FONT;
+		tmpLabel.textColor = LABEL_COLOR;
+		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+		tmpLabel.text = @"Max Occupants";
+		[cell.contentView addSubview:tmpLabel];
+		cell.maxOccupantLabel = [[[UILabel alloc] initWithFrame:CGRectMake(225, y, 100, 20)] autorelease];
+		cell.maxOccupantLabel.backgroundColor = [UIColor clearColor];
+		cell.maxOccupantLabel.textAlignment = UITextAlignmentLeft;
+		cell.maxOccupantLabel.font = TEXT_SMALL_FONT;
+		cell.maxOccupantLabel.textColor = TEXT_SMALL_COLOR;
+		cell.maxOccupantLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+		[cell.contentView addSubview:cell.maxOccupantLabel];
 		
 		//Set Cell Defaults
 		if (isSelectable) {
@@ -183,7 +231,7 @@
 
 
 + (CGFloat)getHeightForTableView:(UITableView *)tableView {
-	return 120.0;
+	return 130.0;
 }
 
 

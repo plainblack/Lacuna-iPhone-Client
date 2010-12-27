@@ -21,6 +21,8 @@
 @property(nonatomic, retain) IBOutlet UILabel *speedLabel;
 @property(nonatomic, retain) IBOutlet UILabel *holdSizeLabel;
 @property(nonatomic, retain) IBOutlet UILabel *stealthLabel;
+@property(nonatomic, retain) IBOutlet UILabel *combatLabel;
+@property(nonatomic, retain) IBOutlet UILabel *maxOccupantLabel;
 @property(nonatomic, retain) IBOutlet UIImageView *shipImageView;
 
 

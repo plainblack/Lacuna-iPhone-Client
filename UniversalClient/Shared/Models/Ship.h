@@ -20,6 +20,8 @@
 @property (nonatomic, retain) NSDecimalNumber *speed;
 @property (nonatomic, retain) NSDecimalNumber *holdSize;
 @property (nonatomic, retain) NSDecimalNumber *stealth;
+@property (nonatomic, retain) NSDecimalNumber *combat;
+@property (nonatomic, retain) NSDecimalNumber *maxOccupants;
 @property (nonatomic, retain) NSMutableArray *payload;
 @property (nonatomic, retain) NSDate *dateStarted;
 @property (nonatomic, retain) NSDate *dateAvailable;

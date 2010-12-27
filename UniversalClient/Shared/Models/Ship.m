@@ -22,6 +22,8 @@
 @synthesize speed;
 @synthesize holdSize;
 @synthesize stealth;
+@synthesize combat;
+@synthesize	maxOccupants;
 @synthesize payload;
 @synthesize dateStarted;
 @synthesize dateAvailable;
@@ -40,8 +42,8 @@
 #pragma mark NSObject Methods
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"id:%@, name:%@, type:%@, typeHumanized:%@, task:%@, speed:%@, holdSize:%@, stealth:%@, dateStarted:%@, dateAvailable:%@, dateArrives:%@, fromId:%@, fromType:%@, fromName:%@, fromEmpireId:%@ fromEmpireName:%@, toId:%@, toType:%@, toName:%@, payload:%@", 
-			self.id, self.name, self.type, self.typeHumanized, self.task, self.speed, self.holdSize, self.stealth, self.dateStarted, self.dateAvailable, self.dateArrives, self.fromId, self.fromType, self.fromName, self.fromEmpireId, self.fromEmpireName, self.toId, self.toType, self.toName, self.payload];
+	return [NSString stringWithFormat:@"id:%@, name:%@, type:%@, typeHumanized:%@, task:%@, speed:%@, holdSize:%@, stealth:%@, combat: %@, maxOccupants:%@, dateStarted:%@, dateAvailable:%@, dateArrives:%@, fromId:%@, fromType:%@, fromName:%@, fromEmpireId:%@ fromEmpireName:%@, toId:%@, toType:%@, toName:%@, payload:%@", 
+			self.id, self.name, self.type, self.typeHumanized, self.task, self.speed, self.holdSize, self.stealth, self.combat, self.maxOccupants, self.dateStarted, self.dateAvailable, self.dateArrives, self.fromId, self.fromType, self.fromName, self.fromEmpireId, self.fromEmpireName, self.toId, self.toType, self.toName, self.payload];
 }
 
 
@@ -54,6 +56,8 @@
 	self.speed = nil;
 	self.holdSize = nil;
 	self.stealth = nil;
+	self.combat = nil;
+	self.maxOccupants = nil;
 	self.payload = nil;
 	self.dateStarted = nil;
 	self.dateAvailable = nil;
@@ -82,8 +86,10 @@
 	self.speed = [Util asNumber:[shipData objectForKey:@"speed"]];
 	self.holdSize = [Util asNumber:[shipData objectForKey:@"hold_size"]];
 	self.stealth = [Util asNumber:[shipData objectForKey:@"stealth"]];
+	self.combat = [Util asNumber:[shipData objectForKey:@"combat"]];
+	self.maxOccupants = [Util asNumber:[shipData objectForKey:@"max_occupants"]];
+	self.stealth = [Util asNumber:[shipData objectForKey:@"stealth"]];
 	self.payload = [shipData objectForKey:@"payload"];
-	NSLog(@"Payload: %@", [self prettyPayload]);
 	self.dateStarted = [Util date:[shipData objectForKey:@"date_started"]];
 	self.dateAvailable = [Util date:[shipData objectForKey:@"date_available"]];
 	self.dateArrives = [Util date:[shipData objectForKey:@"date_arrives"]];
