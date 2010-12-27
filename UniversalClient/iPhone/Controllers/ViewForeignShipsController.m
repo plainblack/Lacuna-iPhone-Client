@@ -14,11 +14,13 @@
 #import "LETableViewCellLabeledText.h"
 #import "LETableViewCellShip.h"
 #import "LETableViewCellForeignIncomingShip.h"
+#import "LETableViewCellParagraph.h"
 
 
 typedef enum {
 	ROW_SHIP_INFO,
 	ROW_FOREIGN_INFO,
+	ROW_PAYLOAD,
 } ROW;
 
 
@@ -105,7 +107,7 @@ typedef enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (self.spacePort && self.spacePort.foreignShips) {
 		if ([self.spacePort.foreignShips count] > 0) {
-			return 2;
+			return 3;
 		} else {
 			return 1;
 		}
@@ -119,12 +121,16 @@ typedef enum {
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (self.spacePort && self.spacePort.foreignShips) {
 		if ([self.spacePort.foreignShips count] > 0) {
+			Ship *currentShip = [self.spacePort.foreignShips objectAtIndex:indexPath.section];
 			switch (indexPath.row) {
 				case ROW_SHIP_INFO:
 					return [LETableViewCellShip getHeightForTableView:tableView];
 					break;
 				case ROW_FOREIGN_INFO:
 					return [LETableViewCellForeignIncomingShip getHeightForTableView:tableView];
+					break;
+				case ROW_PAYLOAD:
+					return [LETableViewCellParagraph getHeightForTableView:tableView text:[NSString stringWithFormat:@"Payload: %@", [currentShip prettyPayload]]];
 					break;
 				default:
 					return tableView.rowHeight;
@@ -160,6 +166,12 @@ typedef enum {
 					LETableViewCellForeignIncomingShip *foreignInfoCell = [LETableViewCellForeignIncomingShip getCellForTableView:tableView];
 					[foreignInfoCell setShip:currentShip];
 					cell = foreignInfoCell;
+					break;
+				case ROW_PAYLOAD:
+					; //DO NOT REMOVE
+					LETableViewCellParagraph *payloadCell = [LETableViewCellParagraph getCellForTableView:tableView];
+					payloadCell.content.text = [NSString stringWithFormat:@"Payload: %@", [currentShip prettyPayload]];
+					cell = payloadCell;
 					break;
 				default:
 					cell = nil;
