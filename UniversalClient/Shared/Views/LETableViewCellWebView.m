@@ -63,16 +63,16 @@
 		NSRegularExpression *boldRegex = [NSRegularExpression regularExpressionWithPattern:@"\\*(.*)\\*"
 																				   options:NSRegularExpressionCaseInsensitive
 																					 error:nil];
-		NSRegularExpression *empireProfileRegex = [NSRegularExpression regularExpressionWithPattern:@"\\{Empire\\s(\\d+)\\s(.*?)\\}"
+		NSRegularExpression *empireProfileRegex = [NSRegularExpression regularExpressionWithPattern:@"\\{Empire\\s(-?\\d+)\\s(.*?)\\}"
 																							options:NSRegularExpressionCaseInsensitive
 																							  error:nil];
-		NSRegularExpression *allianceProfileRegex = [NSRegularExpression regularExpressionWithPattern:@"\\{Alliance\\s(\\d+)\\s(.*?)\\}"
+		NSRegularExpression *allianceProfileRegex = [NSRegularExpression regularExpressionWithPattern:@"\\{Alliance\\s(-?\\d+)\\s(.*?)\\}"
 																							  options:NSRegularExpressionCaseInsensitive
 																								error:nil];
-		NSRegularExpression *myPlanetRegex = [NSRegularExpression regularExpressionWithPattern:@"\\{Planet\\s(\\d+)\\s(.*?)\\}"
+		NSRegularExpression *myPlanetRegex = [NSRegularExpression regularExpressionWithPattern:@"\\{Planet\\s(-?\\d+)\\s(.*?)\\}"
 																					   options:NSRegularExpressionCaseInsensitive
 																						 error:nil];
-		NSRegularExpression *starmapRegex = [NSRegularExpression regularExpressionWithPattern:@"\\{Starmap\\s(\\d+)\\s(\\d+)\\s(.*?)\\}"
+		NSRegularExpression *starmapRegex = [NSRegularExpression regularExpressionWithPattern:@"\\{Starmap\\s(-?\\d+)\\s(-?\\d+)\\s(.*?)\\}"
 																					  options:NSRegularExpressionCaseInsensitive
 																						error:nil];
 		NSRegularExpression *newlineRegex = [NSRegularExpression regularExpressionWithPattern:@"\\n"

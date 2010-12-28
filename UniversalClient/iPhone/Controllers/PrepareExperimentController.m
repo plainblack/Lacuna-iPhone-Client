@@ -20,8 +20,8 @@
 
 
 typedef enum {
-	SECTION_PRISONERS,
 	SECTION_DETAILS,
+	SECTION_PRISONERS,
 } SECTIONS;
 
 
@@ -47,7 +47,11 @@ typedef enum {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Prisoners"]);
+
+	self.navigationItem.title = @"Pick Subject";
+	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Details"], [LEViewSectionTab tableView:self.tableView withText:@"Prisoners"]);
 }
 
 

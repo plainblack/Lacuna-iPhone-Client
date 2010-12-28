@@ -55,7 +55,7 @@
 
 
 - (NSString *)methodName {
-	return @"get_star";
+	return @"run_experiment";
 }
 
 
