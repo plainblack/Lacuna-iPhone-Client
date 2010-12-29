@@ -261,17 +261,11 @@ typedef enum {
 			self.seconds = 0;
 			[self.tableView reloadData];
 		} else {
-			NSLog(@"self.secondsPerResource: %@", self.secondsPerResource);
 			NSDecimalNumber *totalAmount = [NSDecimalNumber zero];
-			NSLog(@"totalAmount: %@", totalAmount);
 			totalAmount = [totalAmount decimalNumberByAdding:self.energyCell.numericValue];
-			NSLog(@"totalAmount: %@", totalAmount);
 			totalAmount = [totalAmount decimalNumberByAdding:self.oreCell.numericValue];
-			NSLog(@"totalAmount: %@", totalAmount);
 			totalAmount = [totalAmount decimalNumberByAdding:self.waterCell.numericValue];
-			NSLog(@"totalAmount: %@", totalAmount);
 			self.seconds = [totalAmount decimalNumberByMultiplyingBy:self.secondsPerResource];
-			NSLog(@"totalAmount: %@", totalAmount);
 			
 			NSDecimalNumber *newMaxStored = [self remainingStored];
 			NSDecimalNumber *newMaxRecycle = [self remainingMax];

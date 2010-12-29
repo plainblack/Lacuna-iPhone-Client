@@ -50,6 +50,7 @@ typedef enum {
 
 
 @synthesize geneticsLab;
+@synthesize grafts;
 @synthesize graft;
 @synthesize survivalOdds;
 @synthesize graftOdds;
@@ -109,8 +110,6 @@ typedef enum {
 			return 15;
 			break;
 		case SECTION_EXPERIMENTS:
-			NSLog(@"Data: %@", [self.graft objectForKey:@"graftable_affinities"]);
-			NSLog(@"Count: %i", [[self.graft objectForKey:@"graftable_affinities"] count]);
 			return MAX(1, [[self.graft objectForKey:@"graftable_affinities"] count]);
 			break;
 		default:
@@ -310,7 +309,7 @@ typedef enum {
 	switch (indexPath.section) {
 		case SECTION_EXPERIMENTS:
 			self.selectedAffinity = [[self.graft objectForKey:@"graftable_affinities"] objectAtIndex:indexPath.row];
-			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"Experiment on Prisoner? This will cost %@ essentia, may kill the prisone, and may increase your %@ affinity.", self.essentiaCost, self.selectedAffinity] delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"Experiment on Prisoner? This will cost %@ essentia, may kill the prisone, and may increase your %@.", self.essentiaCost, [Util prettyCodeValue:self.selectedAffinity]] delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
 			actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
 			[actionSheet showFromTabBar:self.tabBarController.tabBar];
 			[actionSheet release];
@@ -337,6 +336,7 @@ typedef enum {
 
 - (void)dealloc {
 	self.geneticsLab = nil;
+	self.grafts = nil;
 	self.graft = nil;
 	self.survivalOdds = nil;
 	self.graftOdds = nil;
@@ -351,10 +351,17 @@ typedef enum {
 #pragma mark Callbacks
 
 - (void)experimentComplete:(LEBuildingRunExperiment *)request {
+	NSLog(@"Run Experiment Result: %@", request.response);
 	if (![request wasError]) {
 		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Experiment Complete" message:request.message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 		[av show];
-		[self.navigationController popViewControllerAnimated:YES];
+		if (!request.spySurvived) {
+			[self.grafts removeObject:self.graft];
+			[self.navigationController popViewControllerAnimated:YES];
+		} else {
+			[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+		}
+
 	}
 }
 

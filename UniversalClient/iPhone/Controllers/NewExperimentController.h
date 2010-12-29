@@ -19,6 +19,7 @@
 
 
 @property(nonatomic, retain) GeneticsLab *geneticsLab;
+@property(nonatomic, retain) NSMutableArray *grafts;
 @property(nonatomic, retain) NSMutableDictionary *graft;
 @property(nonatomic, retain) NSDecimalNumber *survivalOdds;
 @property(nonatomic, retain) NSDecimalNumber *graftOdds;

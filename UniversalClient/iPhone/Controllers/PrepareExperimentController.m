@@ -60,7 +60,10 @@ typedef enum {
 	
 	if (!self.grafts) {
 		[self.geneticsLab prepareExperiments:self callback:@selector(experimentsPrepared:)];
+	} else {
+		[self.tableView reloadData];
 	}
+
 }
 
 
@@ -213,6 +216,7 @@ typedef enum {
 		NSMutableDictionary *graft = [self.grafts objectAtIndex:indexPath.row];
 		NewExperimentController *newExperimentController = [NewExperimentController create];
 		newExperimentController.geneticsLab = self.geneticsLab;
+		newExperimentController.grafts = self.grafts;
 		newExperimentController.graft = graft;
 		newExperimentController.survivalOdds = self.survivalOdds;
 		newExperimentController.graftOdds = self.graftOdds;
