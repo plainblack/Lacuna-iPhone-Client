@@ -11,6 +11,7 @@
 #import "Util.h"
 #import "Session.h"
 #import "GeneticsLab.h"
+#import "PrepareExperiment.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellLabeledText.h"
 #import "LETableViewCellLabeledIconText.h"
@@ -36,10 +37,7 @@ typedef enum {
 
 
 @synthesize geneticsLab;
-@synthesize grafts;
-@synthesize survivalOdds;
-@synthesize graftOdds;
-@synthesize essentiaCost;
+@synthesize prepareExperiment;
 
 
 #pragma mark -
@@ -58,7 +56,7 @@ typedef enum {
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	
-	if (!self.grafts) {
+	if (!self.prepareExperiment) {
 		[self.geneticsLab prepareExperiments:self callback:@selector(experimentsPrepared:)];
 	} else {
 		[self.tableView reloadData];
@@ -88,7 +86,7 @@ typedef enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	switch (section) {
 		case SECTION_PRISONERS:
-			return MAX(1, [self.grafts count]);
+			return MAX(1, [self.prepareExperiment.grafts count]);
 			break;
 		case SECTION_DETAILS:
 			return 3;
@@ -103,7 +101,7 @@ typedef enum {
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	switch (indexPath.section) {
 		case SECTION_PRISONERS:
-			if (self.grafts) {
+			if (self.prepareExperiment.grafts) {
 				return [LETableViewCellButton getHeightForTableView:tableView];
 			} else {
 				return [LETableViewCellLabeledText getHeightForTableView:tableView];
@@ -137,9 +135,9 @@ typedef enum {
 	
 	switch (indexPath.section) {
 		case SECTION_PRISONERS:
-			if (self.grafts) {
-				if ([self.grafts count] > 0) {
-					NSMutableDictionary *graft = [self.grafts objectAtIndex:indexPath.row];
+			if (self.prepareExperiment.grafts) {
+				if ([self.prepareExperiment.grafts count] > 0) {
+					NSMutableDictionary *graft = [self.prepareExperiment.grafts objectAtIndex:indexPath.row];
 					LETableViewCellButton *selectGraftCell = [LETableViewCellButton getCellForTableView:tableView];
 					selectGraftCell.textLabel.text = [[graft objectForKey:@"spy"] objectForKey:@"name"];
 					cell = selectGraftCell;
@@ -163,8 +161,8 @@ typedef enum {
 					; //DO NOT REMOVE
 					LETableViewCellLabeledText *survivalOddsCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					survivalOddsCell.label.text = @"Survival";
-					if (self.survivalOdds) {
-						survivalOddsCell.content.text = [NSString stringWithFormat:@"%@%%", self.survivalOdds];
+					if (self.prepareExperiment.survivalOdds) {
+						survivalOddsCell.content.text = [NSString stringWithFormat:@"%@%%", self.prepareExperiment.survivalOdds];
 					} else {
 						survivalOddsCell.content.text = @"Loading";
 					}
@@ -174,8 +172,8 @@ typedef enum {
 					; //DO NOT REMOVE
 					LETableViewCellLabeledText *graftOddsCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					graftOddsCell.label.text = @"Graft";
-					if (self.graftOdds) {
-						graftOddsCell.content.text = [NSString stringWithFormat:@"%@%%", self.graftOdds];
+					if (self.prepareExperiment.graftOdds) {
+						graftOddsCell.content.text = [NSString stringWithFormat:@"%@%%", self.prepareExperiment.graftOdds];
 					} else {
 						graftOddsCell.content.text = @"Loading";
 					}
@@ -186,8 +184,8 @@ typedef enum {
 					LETableViewCellLabeledIconText *essentiaCostCell = [LETableViewCellLabeledIconText getCellForTableView:tableView isSelectable:NO];
 					essentiaCostCell.label.text = @"Cost";
 					essentiaCostCell.icon.image = ESSENTIA_ICON;
-					if (self.survivalOdds) {
-						essentiaCostCell.content.text = [Util prettyNSDecimalNumber:self.essentiaCost];
+					if (self.prepareExperiment.survivalOdds) {
+						essentiaCostCell.content.text = [Util prettyNSDecimalNumber:self.prepareExperiment.essentiaCost];
 					} else {
 						essentiaCostCell.content.text = @"Loading";
 					}
@@ -212,15 +210,12 @@ typedef enum {
 #pragma mark UITableViewDataSource Methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (self.grafts) {
-		NSMutableDictionary *graft = [self.grafts objectAtIndex:indexPath.row];
+	if (self.prepareExperiment.grafts) {
+		NSMutableDictionary *graft = [self.prepareExperiment.grafts objectAtIndex:indexPath.row];
 		NewExperimentController *newExperimentController = [NewExperimentController create];
 		newExperimentController.geneticsLab = self.geneticsLab;
-		newExperimentController.grafts = self.grafts;
+		newExperimentController.prepareExperiment = self.prepareExperiment;
 		newExperimentController.graft = graft;
-		newExperimentController.survivalOdds = self.survivalOdds;
-		newExperimentController.graftOdds = self.graftOdds;
-		newExperimentController.essentiaCost = self.essentiaCost;
 		[self.navigationController pushViewController:newExperimentController animated:YES];
 	}
 }
@@ -243,10 +238,7 @@ typedef enum {
 
 - (void)dealloc {
 	self.geneticsLab = nil;
-	self.grafts = nil;
-	self.survivalOdds = nil;
-	self.graftOdds = nil;
-	self.essentiaCost = nil;
+	self.prepareExperiment = nil;
     [super dealloc];
 }
 
@@ -256,10 +248,12 @@ typedef enum {
 
 - (void)experimentsPrepared:(LEBuildingPrepareExperiment *)request {
 	if (![request wasError]) {
-		self.grafts = request.grafts;
-		self.survivalOdds = request.survivalOdds;
-		self.graftOdds = request.graftOdds;
-		self.essentiaCost = request.essentiaCost;
+		if (!self.prepareExperiment) {
+			PrepareExperiment *tmp = [[PrepareExperiment alloc] init];
+			self.prepareExperiment = tmp;
+			[tmp release];
+		}
+		[self.prepareExperiment parseData:request.result];
 		[self.tableView reloadData];
 	}
 }

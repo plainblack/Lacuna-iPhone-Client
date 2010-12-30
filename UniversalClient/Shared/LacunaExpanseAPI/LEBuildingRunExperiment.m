@@ -22,6 +22,7 @@
 @synthesize graftSucceeded;
 @synthesize spySurvived;
 @synthesize message;
+@synthesize result;
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl spyId:(NSString *)inSpyId affinity:(NSString *)inAffinity {
@@ -40,8 +41,8 @@
 
 
 - (void)processSuccess {
-	NSDictionary *result = [self.response objectForKey:@"result"];
-	NSDictionary *experiment = [result objectForKey:@"experiment"];
+	self.result = [self.response objectForKey:@"result"];
+	NSDictionary *experiment = [self.result objectForKey:@"experiment"];
 	NSLog(@"Experiment Data: %@", experiment);
 	self.graftSucceeded = [[experiment objectForKey:@"graft"] boolValue];
 	self.spySurvived = [[experiment objectForKey:@"survive"] boolValue];
@@ -65,6 +66,8 @@
 	self.spyId = nil;
 	self.affinity = nil;
 	self.spyId = nil;
+	self.message = nil;
+	self.result = nil;
 	[super dealloc];
 }
 

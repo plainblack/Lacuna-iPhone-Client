@@ -11,6 +11,7 @@
 
 
 @class GeneticsLab;
+@class PrepareExperiment;
 
 
 @interface PrepareExperimentController : LETableViewControllerGrouped {
@@ -18,10 +19,7 @@
 
 
 @property(nonatomic, retain) GeneticsLab *geneticsLab;
-@property(nonatomic, retain) NSMutableArray *grafts;
-@property(nonatomic, retain) NSDecimalNumber *survivalOdds;
-@property(nonatomic, retain) NSDecimalNumber *graftOdds;
-@property(nonatomic, retain) NSDecimalNumber *essentiaCost;
+@property(nonatomic, retain) PrepareExperiment *prepareExperiment;
 
 
 + (PrepareExperimentController *) create;

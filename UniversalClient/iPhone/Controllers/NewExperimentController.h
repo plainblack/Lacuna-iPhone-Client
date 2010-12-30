@@ -12,6 +12,8 @@
 
 @class GeneticsLab;
 @class Spy;
+@class PrepareExperiment;
+;
 
 
 @interface NewExperimentController : LETableViewControllerGrouped <UIActionSheetDelegate> {
@@ -19,11 +21,8 @@
 
 
 @property(nonatomic, retain) GeneticsLab *geneticsLab;
-@property(nonatomic, retain) NSMutableArray *grafts;
+@property(nonatomic, retain) PrepareExperiment *prepareExperiment;
 @property(nonatomic, retain) NSMutableDictionary *graft;
-@property(nonatomic, retain) NSDecimalNumber *survivalOdds;
-@property(nonatomic, retain) NSDecimalNumber *graftOdds;
-@property(nonatomic, retain) NSDecimalNumber *essentiaCost;
 @property(nonatomic, retain) NSString *selectedAffinity;
 @property(nonatomic, retain) Spy *spy;
 

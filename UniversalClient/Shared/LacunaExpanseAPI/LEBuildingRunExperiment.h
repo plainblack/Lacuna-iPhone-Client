@@ -21,6 +21,7 @@
 @property (nonatomic, assign) BOOL graftSucceeded;
 @property (nonatomic, assign) BOOL spySurvived;
 @property (nonatomic, retain) NSString *message;
+@property(nonatomic, retain) NSMutableDictionary *result;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl spyId:(NSString *)spyId affinity:(NSString *)affinity;

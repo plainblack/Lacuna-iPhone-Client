@@ -416,6 +416,7 @@
 		F6EF714F11FE7D1C00A93226 /* LEBuildingViewAllShips.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF714E11FE7D1C00A93226 /* LEBuildingViewAllShips.m */; };
 		F6EF716A11FE810900A93226 /* Ship.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF716911FE810900A93226 /* Ship.m */; };
 		F6F1C21D12326FB100D69BB6 /* ViewMedalsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F1C21C12326FB100D69BB6 /* ViewMedalsController.m */; };
+		F6F2E65212CCD3EC0048AC95 /* PrepareExperiment.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F2E65112CCD3EC0048AC95 /* PrepareExperiment.m */; };
 		F6F2EAB612A524DB002474CD /* ViewUpgradableBuildingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F2EAB512A524DB002474CD /* ViewUpgradableBuildingsController.m */; };
 		F6F3F5941297930B005D6A79 /* LEBuildingQuackDuck.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F3F5931297930B005D6A79 /* LEBuildingQuackDuck.m */; };
 		F6F3F59D129795AB005D6A79 /* ViewDuckQuackController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F3F59C129795AB005D6A79 /* ViewDuckQuackController.m */; };
@@ -1249,6 +1250,8 @@
 		F6EF716911FE810900A93226 /* Ship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ship.m; sourceTree = "<group>"; };
 		F6F1C21B12326FB100D69BB6 /* ViewMedalsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMedalsController.h; sourceTree = "<group>"; };
 		F6F1C21C12326FB100D69BB6 /* ViewMedalsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMedalsController.m; sourceTree = "<group>"; };
+		F6F2E65012CCD3EC0048AC95 /* PrepareExperiment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrepareExperiment.h; sourceTree = "<group>"; };
+		F6F2E65112CCD3EC0048AC95 /* PrepareExperiment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrepareExperiment.m; sourceTree = "<group>"; };
 		F6F2EAB412A524DB002474CD /* ViewUpgradableBuildingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewUpgradableBuildingsController.h; path = ../../Shared/LacunaExpanseAPI/ViewUpgradableBuildingsController.h; sourceTree = "<group>"; };
 		F6F2EAB512A524DB002474CD /* ViewUpgradableBuildingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewUpgradableBuildingsController.m; path = ../../Shared/LacunaExpanseAPI/ViewUpgradableBuildingsController.m; sourceTree = "<group>"; };
 		F6F3F5921297930B005D6A79 /* LEBuildingQuackDuck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingQuackDuck.h; sourceTree = "<group>"; };
@@ -2008,6 +2011,8 @@
 				F6E5D39812C8D11C008F05FE /* ThemePark.m */,
 				F6E5D42812C8EB74008F05FE /* GeneticsLab.h */,
 				F6E5D42912C8EB74008F05FE /* GeneticsLab.m */,
+				F6F2E65012CCD3EC0048AC95 /* PrepareExperiment.h */,
+				F6F2E65112CCD3EC0048AC95 /* PrepareExperiment.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -2818,6 +2823,7 @@
 				F6E5D42A12C8EB74008F05FE /* GeneticsLab.m in Sources */,
 				F6E5D45912C8EEBA008F05FE /* NewExperimentController.m in Sources */,
 				F6E5D45C12C8EF71008F05FE /* PrepareExperimentController.m in Sources */,
+				F6F2E65212CCD3EC0048AC95 /* PrepareExperiment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

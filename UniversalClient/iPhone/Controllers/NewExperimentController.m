@@ -11,6 +11,7 @@
 #import "Util.h"
 #import "Session.h"
 #import "GeneticsLab.h"
+#import "PrepareExperiment.h"
 #import "Spy.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellLabeledText.h"
@@ -50,11 +51,8 @@ typedef enum {
 
 
 @synthesize geneticsLab;
-@synthesize grafts;
+@synthesize prepareExperiment;
 @synthesize graft;
-@synthesize survivalOdds;
-@synthesize graftOdds;
-@synthesize essentiaCost;
 @synthesize selectedAffinity;
 @synthesize spy;
 
@@ -309,7 +307,7 @@ typedef enum {
 	switch (indexPath.section) {
 		case SECTION_EXPERIMENTS:
 			self.selectedAffinity = [[self.graft objectForKey:@"graftable_affinities"] objectAtIndex:indexPath.row];
-			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"Experiment on Prisoner? This will cost %@ essentia, may kill the prisone, and may increase your %@.", self.essentiaCost, [Util prettyCodeValue:self.selectedAffinity]] delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"Experiment on Prisoner? This will cost %@ essentia, may kill the prisone, and may increase your %@.", self.prepareExperiment.essentiaCost, [Util prettyCodeValue:self.selectedAffinity]] delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
 			actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
 			[actionSheet showFromTabBar:self.tabBarController.tabBar];
 			[actionSheet release];
@@ -336,11 +334,8 @@ typedef enum {
 
 - (void)dealloc {
 	self.geneticsLab = nil;
-	self.grafts = nil;
+	self.prepareExperiment = nil;
 	self.graft = nil;
-	self.survivalOdds = nil;
-	self.graftOdds = nil;
-	self.essentiaCost = nil;
 	self.selectedAffinity = nil;
 	self.spy = nil;
     [super dealloc];
@@ -353,13 +348,21 @@ typedef enum {
 - (void)experimentComplete:(LEBuildingRunExperiment *)request {
 	NSLog(@"Run Experiment Result: %@", request.response);
 	if (![request wasError]) {
+		[self.prepareExperiment parseData:request.result];
 		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Experiment Complete" message:request.message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 		[av show];
-		if (!request.spySurvived) {
-			[self.grafts removeObject:self.graft];
-			[self.navigationController popViewControllerAnimated:YES];
+		if (request.spySurvived) {
+			//[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+			[self.prepareExperiment.grafts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+				NSString *tmpId = [Util idFromDict:[obj objectForKey:@"spy"] named:@"id"];
+				if ([tmpId isEqualToString:spy.id]) {
+					self.graft = obj;
+					*stop = YES;
+				}
+			}];
+			[self.tableView reloadData];
 		} else {
-			[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+			[self.navigationController popViewControllerAnimated:YES];
 		}
 
 	}

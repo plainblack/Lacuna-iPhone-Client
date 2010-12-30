@@ -17,10 +17,7 @@
 
 @synthesize buildingId;
 @synthesize buildingUrl;
-@synthesize grafts;
-@synthesize survivalOdds;
-@synthesize graftOdds;
-@synthesize essentiaCost;
+@synthesize result;
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl {
@@ -36,11 +33,7 @@
 
 
 - (void)processSuccess {
-	NSMutableDictionary *result = [self.response objectForKey:@"result"];
-	self.grafts = [result objectForKey:@"grafts"];
-	self.survivalOdds = [Util asNumber:[result objectForKey:@"survival_odds"]];
-	self.graftOdds = [Util asNumber:[result objectForKey:@"graft_odds"]];
-	self.essentiaCost = [Util asNumber:[result objectForKey:@"essentia_cost"]];
+	self.result = [self.response objectForKey:@"result"];
 }
 
 
@@ -57,10 +50,7 @@
 - (void)dealloc {
 	self.buildingId = nil;
 	self.buildingUrl = nil;
-	self.grafts = nil;
-	self.survivalOdds = nil;
-	self.graftOdds = nil;
-	self.essentiaCost = nil;
+	self.result = nil;
 	[super dealloc];
 }
 
