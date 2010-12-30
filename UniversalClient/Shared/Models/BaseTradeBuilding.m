@@ -30,6 +30,11 @@
 #import "LEBuildingGetTradeableShips.h"
 #import "LEBuildingGetTradeableStoredResources.h"
 #import "LEBuildingGetTradeShips.h"
+#import "LEBuildingAcceptFromMarket.h"
+#import "LEBuildingAddToMarket.h"
+#import "LEBuildingViewMarket.h"
+#import "LEBuildingViewMyMarket.h"
+#import "LEBuildingWithdrawFromMarket.h"
 #import "LETableViewCellButton.h";
 #import "LETableViewCellLabeledText.h"
 #import "ViewAvailableTradesController.h"

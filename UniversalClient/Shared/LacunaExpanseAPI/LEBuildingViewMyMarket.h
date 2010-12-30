@@ -1,8 +1,8 @@
 //
-//  LEBuildingViewMyTrades.h
+//  LEBuildingViewMyMarket.h
 //  UniversalClient
 //
-//  Created by Kevin Runde on 8/15/10.
+//  Created by Kevin Runde on 12/30/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 #import "LERequest.h"
 
 
-@interface LEBuildingViewMyTrades : LERequest {
+@interface LEBuildingViewMyMarket : LERequest {
 }
 
 

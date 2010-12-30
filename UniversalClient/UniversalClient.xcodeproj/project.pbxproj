@@ -417,6 +417,11 @@
 		F6EF716A11FE810900A93226 /* Ship.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF716911FE810900A93226 /* Ship.m */; };
 		F6F1C21D12326FB100D69BB6 /* ViewMedalsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F1C21C12326FB100D69BB6 /* ViewMedalsController.m */; };
 		F6F2E65212CCD3EC0048AC95 /* PrepareExperiment.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F2E65112CCD3EC0048AC95 /* PrepareExperiment.m */; };
+		F6F2E67B12CCE88B0048AC95 /* LEBuildingViewMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F2E67A12CCE88B0048AC95 /* LEBuildingViewMarket.m */; };
+		F6F2E67E12CCE8960048AC95 /* LEBuildingViewMyMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F2E67D12CCE8960048AC95 /* LEBuildingViewMyMarket.m */; };
+		F6F2E68112CCE8A50048AC95 /* LEBuildingAddToMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F2E68012CCE8A50048AC95 /* LEBuildingAddToMarket.m */; };
+		F6F2E68412CCE8B50048AC95 /* LEBuildingAcceptFromMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F2E68312CCE8B50048AC95 /* LEBuildingAcceptFromMarket.m */; };
+		F6F2E68712CCE8C10048AC95 /* LEBuildingWithdrawFromMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F2E68612CCE8C10048AC95 /* LEBuildingWithdrawFromMarket.m */; };
 		F6F2EAB612A524DB002474CD /* ViewUpgradableBuildingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F2EAB512A524DB002474CD /* ViewUpgradableBuildingsController.m */; };
 		F6F3F5941297930B005D6A79 /* LEBuildingQuackDuck.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F3F5931297930B005D6A79 /* LEBuildingQuackDuck.m */; };
 		F6F3F59D129795AB005D6A79 /* ViewDuckQuackController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F3F59C129795AB005D6A79 /* ViewDuckQuackController.m */; };
@@ -1252,6 +1257,16 @@
 		F6F1C21C12326FB100D69BB6 /* ViewMedalsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMedalsController.m; sourceTree = "<group>"; };
 		F6F2E65012CCD3EC0048AC95 /* PrepareExperiment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrepareExperiment.h; sourceTree = "<group>"; };
 		F6F2E65112CCD3EC0048AC95 /* PrepareExperiment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrepareExperiment.m; sourceTree = "<group>"; };
+		F6F2E67912CCE88B0048AC95 /* LEBuildingViewMarket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewMarket.h; sourceTree = "<group>"; };
+		F6F2E67A12CCE88B0048AC95 /* LEBuildingViewMarket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewMarket.m; sourceTree = "<group>"; };
+		F6F2E67C12CCE8960048AC95 /* LEBuildingViewMyMarket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewMyMarket.h; sourceTree = "<group>"; };
+		F6F2E67D12CCE8960048AC95 /* LEBuildingViewMyMarket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewMyMarket.m; sourceTree = "<group>"; };
+		F6F2E67F12CCE8A50048AC95 /* LEBuildingAddToMarket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingAddToMarket.h; sourceTree = "<group>"; };
+		F6F2E68012CCE8A50048AC95 /* LEBuildingAddToMarket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingAddToMarket.m; sourceTree = "<group>"; };
+		F6F2E68212CCE8B50048AC95 /* LEBuildingAcceptFromMarket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingAcceptFromMarket.h; sourceTree = "<group>"; };
+		F6F2E68312CCE8B50048AC95 /* LEBuildingAcceptFromMarket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingAcceptFromMarket.m; sourceTree = "<group>"; };
+		F6F2E68512CCE8C10048AC95 /* LEBuildingWithdrawFromMarket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingWithdrawFromMarket.h; sourceTree = "<group>"; };
+		F6F2E68612CCE8C10048AC95 /* LEBuildingWithdrawFromMarket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingWithdrawFromMarket.m; sourceTree = "<group>"; };
 		F6F2EAB412A524DB002474CD /* ViewUpgradableBuildingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewUpgradableBuildingsController.h; path = ../../Shared/LacunaExpanseAPI/ViewUpgradableBuildingsController.h; sourceTree = "<group>"; };
 		F6F2EAB512A524DB002474CD /* ViewUpgradableBuildingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewUpgradableBuildingsController.m; path = ../../Shared/LacunaExpanseAPI/ViewUpgradableBuildingsController.m; sourceTree = "<group>"; };
 		F6F3F5921297930B005D6A79 /* LEBuildingQuackDuck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingQuackDuck.h; sourceTree = "<group>"; };
@@ -1875,6 +1890,16 @@
 				F6E5D41F12C8E84B008F05FE /* LEBuildingPrepareExperiment.m */,
 				F6E5D42112C8E85B008F05FE /* LEBuildingRunExperiment.h */,
 				F6E5D42212C8E85B008F05FE /* LEBuildingRunExperiment.m */,
+				F6F2E67912CCE88B0048AC95 /* LEBuildingViewMarket.h */,
+				F6F2E67A12CCE88B0048AC95 /* LEBuildingViewMarket.m */,
+				F6F2E67C12CCE8960048AC95 /* LEBuildingViewMyMarket.h */,
+				F6F2E67D12CCE8960048AC95 /* LEBuildingViewMyMarket.m */,
+				F6F2E67F12CCE8A50048AC95 /* LEBuildingAddToMarket.h */,
+				F6F2E68012CCE8A50048AC95 /* LEBuildingAddToMarket.m */,
+				F6F2E68212CCE8B50048AC95 /* LEBuildingAcceptFromMarket.h */,
+				F6F2E68312CCE8B50048AC95 /* LEBuildingAcceptFromMarket.m */,
+				F6F2E68512CCE8C10048AC95 /* LEBuildingWithdrawFromMarket.h */,
+				F6F2E68612CCE8C10048AC95 /* LEBuildingWithdrawFromMarket.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -2824,6 +2849,11 @@
 				F6E5D45912C8EEBA008F05FE /* NewExperimentController.m in Sources */,
 				F6E5D45C12C8EF71008F05FE /* PrepareExperimentController.m in Sources */,
 				F6F2E65212CCD3EC0048AC95 /* PrepareExperiment.m in Sources */,
+				F6F2E67B12CCE88B0048AC95 /* LEBuildingViewMarket.m in Sources */,
+				F6F2E67E12CCE8960048AC95 /* LEBuildingViewMyMarket.m in Sources */,
+				F6F2E68112CCE8A50048AC95 /* LEBuildingAddToMarket.m in Sources */,
+				F6F2E68412CCE8B50048AC95 /* LEBuildingAcceptFromMarket.m in Sources */,
+				F6F2E68712CCE8C10048AC95 /* LEBuildingWithdrawFromMarket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
