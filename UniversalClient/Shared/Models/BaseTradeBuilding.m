@@ -180,12 +180,12 @@
 	
 	if (self.hasMarket) {
 		NSMutableArray *rows = _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MARKET], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MY_MARKET], [NSDecimalNumber numberWithInt:BUILDING_ROW_CREATE_TRADE_FOR_MARKET]);
-		[self.sections addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_MARKET], @"type", @"Market", @"name", rows, @"rows")];
+		[self.sections addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_MARKET], @"type", @"Market (New)", @"name", rows, @"rows")];
 	}
 	
 	if (self.hasTrade) {
-		NSMutableArray *rows = _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_AVAILABLE_TRADES], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MY_TRADES], [NSDecimalNumber numberWithInt:BUILDING_ROW_CREATE_TRADE]);
-		[self.sections addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_TRADE], @"type", @"Trade", @"name", rows, @"rows")];
+		NSMutableArray *rows = _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_AVAILABLE_TRADES], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MY_TRADES]);
+		[self.sections addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_TRADE], @"type", @"Trade (Old)", @"name", rows, @"rows")];
 	}
 	
 	[self.sections addObject:[self generateHealthSection]];
