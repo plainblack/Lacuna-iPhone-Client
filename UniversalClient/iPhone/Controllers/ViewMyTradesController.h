@@ -14,9 +14,6 @@
 
 
 @interface ViewMyTradesController : LETableViewControllerGrouped {
-	UISegmentedControl *pageSegmentedControl;
-	BaseTradeBuilding *baseTradeBuilding;
-	NSDate *tradesLastUpdated;
 }
 
 

@@ -1,8 +1,8 @@
 //
-//  ViewAvailableTradesController.h
+//  ViewMarketController.h
 //  UniversalClient
 //
-//  Created by Kevin Runde on 8/15/10.
+//  Created by Kevin Runde on 12/30/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
 
@@ -13,16 +13,16 @@
 @class BaseTradeBuilding;
 
 
-@interface ViewAvailableTradesController : LETableViewControllerGrouped {
+@interface ViewMarketController : LETableViewControllerGrouped {
 }
 
 
 @property (nonatomic, retain) UISegmentedControl *pageSegmentedControl;
 @property (nonatomic, retain) BaseTradeBuilding *baseTradeBuilding;
-@property (nonatomic, retain) NSDate *tradesLastUpdated;
+@property (nonatomic, retain) NSDate *marketLastUpdated;
 
 
-+ (ViewAvailableTradesController *) create;
++ (ViewMarketController *) create;
 
 
 @end

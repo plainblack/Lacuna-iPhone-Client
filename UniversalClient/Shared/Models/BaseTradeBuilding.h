@@ -13,6 +13,7 @@
 @class ItemPush;
 @class OneForOneTrade;
 @class Trade;
+@class MarketTrade;
 
 
 @interface BaseTradeBuilding : Building {
@@ -24,6 +25,10 @@
 	SEL postTradeCallback;
 	id acceptTradeTarget;
 	SEL acceptTradeCallback;
+	id postToMarketTarget;
+	SEL postToMarketCallback;
+	id acceptFromMarketTarget;
+	SEL acceptFromMarketCallback;
 }
 
 
@@ -37,6 +42,17 @@
 @property (nonatomic, retain) NSDecimalNumber *myTradeCount;
 @property (nonatomic, retain) NSDate *myTradesUpdated;
 @property (nonatomic, retain) NSMutableArray *myTrades;
+
+@property (nonatomic, assign) NSInteger marketPageNumber;
+@property (nonatomic, assign) NSString *marketFilter;
+@property (nonatomic, retain) NSDecimalNumber *marketTradeCount;
+@property (nonatomic, retain) NSDate *marketUpdated;
+@property (nonatomic, retain) NSMutableArray *marketTrades;
+@property (nonatomic, assign) NSInteger myMarketPageNumber;
+@property (nonatomic, retain) NSDecimalNumber *myMarketTradeCount;
+@property (nonatomic, retain) NSDate *myMarketUpdated;
+@property (nonatomic, retain) NSMutableArray *myMarketTrades;
+
 @property (nonatomic, retain) NSMutableArray *glyphs;
 @property (nonatomic, retain) NSMutableDictionary *glyphsById;
 @property (nonatomic, retain) NSDecimalNumber *cargoUserPerGlyph;
@@ -54,6 +70,8 @@
 @property (nonatomic, retain) NSDecimalNumber *cargoUserPerStoredResource;
 @property (nonatomic, readonly) BOOL usesEssentia;
 @property (nonatomic, readonly) BOOL selectTradeShip;
+@property (nonatomic, readonly) BOOL hasMarket;
+@property (nonatomic, readonly) BOOL hasTrade;
 @property (nonatomic, retain) NSDecimalNumber *maxCargoSize;
 @property (nonatomic, retain) NSMutableArray *tradeShips;
 @property (nonatomic, retain) NSMutableDictionary *tradeShipsById;
@@ -82,6 +100,16 @@
 - (void)postTrade:(Trade *)trade target:(id)target callback:(SEL)callback;
 - (void)acceptTrade:(Trade *)trade solution:(NSString *)solution target:(id)target callback:(SEL)callback;
 - (void)withdrawTrade:(Trade *)trade;
+
+- (void)loadMarketPage:(NSInteger)pageNumber filter:(NSString *)filter;
+- (bool)hasPreviousMarketPage;
+- (bool)hasNextMarketPage;
+- (void)loadMyMarketPage:(NSInteger)pageNumber;
+- (bool)hasPreviousMyMarketPage;
+- (bool)hasNextMyMarketPage;
+- (void)postMarketTrade:(MarketTrade *)trade target:(id)target callback:(SEL)callback;
+- (void)acceptMarketTrade:(MarketTrade *)trade solution:(NSString *)solution target:(id)target callback:(SEL)callback;
+- (void)withdrawMarketTrade:(MarketTrade *)trade;
 
 
 

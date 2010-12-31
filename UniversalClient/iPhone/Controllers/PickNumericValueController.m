@@ -94,7 +94,7 @@
 #pragma mark UIPickerViewDelegate Methods
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-	if (self.hideZero) {
+	if (component == 0 && self.hideZero) {
 		return [NSString stringWithFormat:@"%i", row+1];
 	} else {
 		return [NSString stringWithFormat:@"%i", row];

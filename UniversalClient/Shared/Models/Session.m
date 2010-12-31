@@ -355,10 +355,8 @@ static Session *sharedSession = nil;
 
 
 - (void)renameSavedEmpireNameFrom:(NSString *)oldEmpireName to:(NSString *)newEmpireName {
-	BOOL found = NO;
 	for (NSMutableDictionary *savedEmpire in self.savedEmpireList) {
 		if ([[savedEmpire objectForKey:@"username"] isEqualToString:oldEmpireName]){
-			found = YES;
 			[savedEmpire setObject:newEmpireName forKey:@"username"];
 		}
 	}

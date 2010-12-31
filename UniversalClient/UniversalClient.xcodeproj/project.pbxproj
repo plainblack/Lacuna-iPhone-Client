@@ -422,6 +422,9 @@
 		F6F2E68112CCE8A50048AC95 /* LEBuildingAddToMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F2E68012CCE8A50048AC95 /* LEBuildingAddToMarket.m */; };
 		F6F2E68412CCE8B50048AC95 /* LEBuildingAcceptFromMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F2E68312CCE8B50048AC95 /* LEBuildingAcceptFromMarket.m */; };
 		F6F2E68712CCE8C10048AC95 /* LEBuildingWithdrawFromMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F2E68612CCE8C10048AC95 /* LEBuildingWithdrawFromMarket.m */; };
+		F6F2E6C012CD03ED0048AC95 /* ViewMarketController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F2E6BF12CD03ED0048AC95 /* ViewMarketController.m */; };
+		F6F2E6C312CD03F70048AC95 /* ViewMyMarketController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F2E6C212CD03F70048AC95 /* ViewMyMarketController.m */; };
+		F6F2E6C612CD04050048AC95 /* NewTradeForMarketController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F2E6C512CD04050048AC95 /* NewTradeForMarketController.m */; };
 		F6F2EAB612A524DB002474CD /* ViewUpgradableBuildingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F2EAB512A524DB002474CD /* ViewUpgradableBuildingsController.m */; };
 		F6F3F5941297930B005D6A79 /* LEBuildingQuackDuck.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F3F5931297930B005D6A79 /* LEBuildingQuackDuck.m */; };
 		F6F3F59D129795AB005D6A79 /* ViewDuckQuackController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F3F59C129795AB005D6A79 /* ViewDuckQuackController.m */; };
@@ -443,6 +446,8 @@
 		F6F52509122C9854004E428A /* LETableViewCellLabeledTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F52508122C9854004E428A /* LETableViewCellLabeledTextView.m */; };
 		F6F5427D11A9D7D4006F347B /* LEBodyStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */; };
 		F6F5C7A812A3D411005109D3 /* HallsOfVrbansk.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F5C7A712A3D411005109D3 /* HallsOfVrbansk.m */; };
+		F6F830BF12CE25BC003A38D2 /* MarketTrade.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F830BE12CE25BC003A38D2 /* MarketTrade.m */; };
+		F6F8311412CE2D0A003A38D2 /* AcceptMarketTradeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F8311312CE2D0A003A38D2 /* AcceptMarketTradeController.m */; };
 		F6F854C412203FBF0000CD09 /* NewOneForOneTradeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F854C312203FBF0000CD09 /* NewOneForOneTradeController.m */; };
 		F6F854C712203FF20000CD09 /* LEBuildingTradeOneForOne.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F854C612203FF20000CD09 /* LEBuildingTradeOneForOne.m */; };
 		F6F854CA122040070000CD09 /* OneForOneTrade.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F854C9122040070000CD09 /* OneForOneTrade.m */; };
@@ -1267,6 +1272,12 @@
 		F6F2E68312CCE8B50048AC95 /* LEBuildingAcceptFromMarket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingAcceptFromMarket.m; sourceTree = "<group>"; };
 		F6F2E68512CCE8C10048AC95 /* LEBuildingWithdrawFromMarket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingWithdrawFromMarket.h; sourceTree = "<group>"; };
 		F6F2E68612CCE8C10048AC95 /* LEBuildingWithdrawFromMarket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingWithdrawFromMarket.m; sourceTree = "<group>"; };
+		F6F2E6BE12CD03ED0048AC95 /* ViewMarketController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMarketController.h; sourceTree = "<group>"; };
+		F6F2E6BF12CD03ED0048AC95 /* ViewMarketController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMarketController.m; sourceTree = "<group>"; };
+		F6F2E6C112CD03F70048AC95 /* ViewMyMarketController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMyMarketController.h; sourceTree = "<group>"; };
+		F6F2E6C212CD03F70048AC95 /* ViewMyMarketController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMyMarketController.m; sourceTree = "<group>"; };
+		F6F2E6C412CD04050048AC95 /* NewTradeForMarketController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTradeForMarketController.h; sourceTree = "<group>"; };
+		F6F2E6C512CD04050048AC95 /* NewTradeForMarketController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTradeForMarketController.m; sourceTree = "<group>"; };
 		F6F2EAB412A524DB002474CD /* ViewUpgradableBuildingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewUpgradableBuildingsController.h; path = ../../Shared/LacunaExpanseAPI/ViewUpgradableBuildingsController.h; sourceTree = "<group>"; };
 		F6F2EAB512A524DB002474CD /* ViewUpgradableBuildingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewUpgradableBuildingsController.m; path = ../../Shared/LacunaExpanseAPI/ViewUpgradableBuildingsController.m; sourceTree = "<group>"; };
 		F6F3F5921297930B005D6A79 /* LEBuildingQuackDuck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingQuackDuck.h; sourceTree = "<group>"; };
@@ -1301,6 +1312,10 @@
 		F6F5427C11A9D7D4006F347B /* LEBodyStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBodyStatus.m; sourceTree = "<group>"; };
 		F6F5C7A612A3D411005109D3 /* HallsOfVrbansk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HallsOfVrbansk.h; sourceTree = "<group>"; };
 		F6F5C7A712A3D411005109D3 /* HallsOfVrbansk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HallsOfVrbansk.m; sourceTree = "<group>"; };
+		F6F830BD12CE25BC003A38D2 /* MarketTrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketTrade.h; sourceTree = "<group>"; };
+		F6F830BE12CE25BC003A38D2 /* MarketTrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketTrade.m; sourceTree = "<group>"; };
+		F6F8311212CE2D0A003A38D2 /* AcceptMarketTradeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptMarketTradeController.h; sourceTree = "<group>"; };
+		F6F8311312CE2D0A003A38D2 /* AcceptMarketTradeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptMarketTradeController.m; sourceTree = "<group>"; };
 		F6F854C212203FBF0000CD09 /* NewOneForOneTradeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewOneForOneTradeController.h; sourceTree = "<group>"; };
 		F6F854C312203FBF0000CD09 /* NewOneForOneTradeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewOneForOneTradeController.m; sourceTree = "<group>"; };
 		F6F854C512203FF20000CD09 /* LEBuildingTradeOneForOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingTradeOneForOne.h; sourceTree = "<group>"; };
@@ -2038,6 +2053,8 @@
 				F6E5D42912C8EB74008F05FE /* GeneticsLab.m */,
 				F6F2E65012CCD3EC0048AC95 /* PrepareExperiment.h */,
 				F6F2E65112CCD3EC0048AC95 /* PrepareExperiment.m */,
+				F6F830BD12CE25BC003A38D2 /* MarketTrade.h */,
+				F6F830BE12CE25BC003A38D2 /* MarketTrade.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -2323,6 +2340,14 @@
 				F6E5D45812C8EEBA008F05FE /* NewExperimentController.m */,
 				F6E5D45A12C8EF71008F05FE /* PrepareExperimentController.h */,
 				F6E5D45B12C8EF71008F05FE /* PrepareExperimentController.m */,
+				F6F2E6BE12CD03ED0048AC95 /* ViewMarketController.h */,
+				F6F2E6BF12CD03ED0048AC95 /* ViewMarketController.m */,
+				F6F2E6C112CD03F70048AC95 /* ViewMyMarketController.h */,
+				F6F2E6C212CD03F70048AC95 /* ViewMyMarketController.m */,
+				F6F2E6C412CD04050048AC95 /* NewTradeForMarketController.h */,
+				F6F2E6C512CD04050048AC95 /* NewTradeForMarketController.m */,
+				F6F8311212CE2D0A003A38D2 /* AcceptMarketTradeController.h */,
+				F6F8311312CE2D0A003A38D2 /* AcceptMarketTradeController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2854,6 +2879,11 @@
 				F6F2E68112CCE8A50048AC95 /* LEBuildingAddToMarket.m in Sources */,
 				F6F2E68412CCE8B50048AC95 /* LEBuildingAcceptFromMarket.m in Sources */,
 				F6F2E68712CCE8C10048AC95 /* LEBuildingWithdrawFromMarket.m in Sources */,
+				F6F2E6C012CD03ED0048AC95 /* ViewMarketController.m in Sources */,
+				F6F2E6C312CD03F70048AC95 /* ViewMyMarketController.m in Sources */,
+				F6F2E6C612CD04050048AC95 /* NewTradeForMarketController.m in Sources */,
+				F6F830BF12CE25BC003A38D2 /* MarketTrade.m in Sources */,
+				F6F8311412CE2D0A003A38D2 /* AcceptMarketTradeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

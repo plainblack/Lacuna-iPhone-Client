@@ -13,20 +13,15 @@
 @interface LEBuildingAddToMarket : LERequest {
 }
 
-@property (nonatomic, retain) NSString *buildingId;
-@property (nonatomic, retain) NSString *buildingUrl;
-@property (nonatomic, retain) NSDecimalNumber *askEssentia;
-@property (nonatomic, retain) NSString *offerType;
-@property (nonatomic, retain) NSDecimalNumber *offerQuantity;
-@property (nonatomic, retain) NSString *offerGlyphId;
-@property (nonatomic, retain) NSString *offerPlanId;
-@property (nonatomic, retain) NSString *offerPrisonerId;
-@property (nonatomic, retain) NSString *offerShipId;
-@property (nonatomic, retain) NSString *tradeId;
-@property (nonatomic, retain) NSString *tradeShipId;
+@property(nonatomic, retain) NSString *buildingId;
+@property(nonatomic, retain) NSString *buildingUrl;
+@property(nonatomic, retain) NSDecimalNumber *askEssentia;
+@property(nonatomic, retain) NSMutableArray *offer;
+@property(nonatomic, retain) NSString *tradeShipId;
+@property(nonatomic, retain) NSString *tradeId;
 
 
-- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl askEssentia:(NSDecimalNumber *)askEssentia offerType:(NSString *)offerType offerQuantity:(NSDecimalNumber *)offerQuantity offerGlyphId:(NSString *)offerGlyphId offerPlanId:(NSString *)offerPlanId offerPrisonerId:(NSString *)offerPrisonerId offerShipId:(NSString *)offerShipId tradeShipId:(NSString *)tradeShipId;
+- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl askEssentia:(NSDecimalNumber *)askEssentia offer:(NSMutableArray *)offer tradeShipId:(NSString *)tradeShipId;
 
 
 @end

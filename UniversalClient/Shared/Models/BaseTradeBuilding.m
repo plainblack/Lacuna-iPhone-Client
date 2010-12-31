@@ -11,6 +11,7 @@
 #import "Util.h"
 #import "Session.h"
 #import "Trade.h"
+#import "MarketTrade.h"
 #import "ItemPush.h"
 #import "OneForOneTrade.h"
 #import "Glyph.h"
@@ -42,6 +43,9 @@
 #import "NewItemPushController.h"
 #import "NewOneForOneTradeController.h"
 #import "NewTradeController.h"
+#import "NewTradeForMarketController.h"
+#import "ViewMarketController.h"
+#import "ViewMyMarketController.h"
 
 
 @implementation BaseTradeBuilding
@@ -57,6 +61,17 @@
 @synthesize myTradeCount;
 @synthesize myTradesUpdated;
 @synthesize myTrades;
+
+@synthesize marketPageNumber;
+@synthesize marketFilter;
+@synthesize marketTradeCount;
+@synthesize marketUpdated;
+@synthesize marketTrades;
+@synthesize myMarketPageNumber;
+@synthesize myMarketTradeCount;
+@synthesize myMarketUpdated;
+@synthesize myMarketTrades;
+
 @synthesize glyphs;
 @synthesize glyphsById;
 @synthesize cargoUserPerGlyph;
@@ -74,6 +89,8 @@
 @synthesize cargoUserPerStoredResource;
 @synthesize usesEssentia;
 @synthesize selectTradeShip;
+@synthesize hasMarket;
+@synthesize hasTrade;
 @synthesize maxCargoSize;
 @synthesize tradeShips;
 @synthesize tradeShipsById;
@@ -92,6 +109,15 @@
 	self.myTradeCount = nil;
 	self.myTradesUpdated = nil;
 	self.myTrades = nil;
+	
+	self.marketFilter = nil;
+	self.marketTradeCount = nil;
+	self.marketUpdated = nil;
+	self.marketTrades = nil;
+	self.myMarketTradeCount = nil;
+	self.myMarketUpdated = nil;
+	self.myMarketTrades = nil;
+	
 	self.glyphs = nil;
 	self.glyphsById = nil;
 	self.cargoUserPerGlyph = nil;
@@ -132,22 +158,39 @@
 		[[productionSection objectForKey:@"rows"] addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_MAX_CARGO_SIZE]];
 	}
 	
-	NSMutableArray *rows = _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_AVAILABLE_TRADES], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MY_TRADES], [NSDecimalNumber numberWithInt:BUILDING_ROW_CREATE_TRADE]);
+	self.sections = _array(productionSection);
 	
 	Session *session = [Session sharedInstance];
-	if ([session.empire.planets count] > 1) {
-		[rows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_PUSH_ITEMS]];
-	}
 	if ([self.buildingUrl isEqualToString:TRANSPORTER_URL]) {
-		[rows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_1_FOR_1_TRADE]];
+		NSMutableArray *rows = _array([NSDecimalNumber numberWithInt:BUILDING_ROW_1_FOR_1_TRADE]);
+		if ([session.empire.planets count] > 1) {
+			[rows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_PUSH_ITEMS]];
+		}
+		[self.sections addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", rows, @"rows")];
 		self->usesEssentia = YES;
 		self->selectTradeShip = NO;
+		self->hasMarket = YES;
+		self->hasTrade = YES;
 	} else {
 		self->usesEssentia = NO;
 		self->selectTradeShip = YES;
+		self->hasMarket = YES;
+		self->hasTrade = YES;
 	}
 	
-	self.sections = _array(productionSection, _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", rows, @"rows"), [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
+	if (self.hasMarket) {
+		NSMutableArray *rows = _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MARKET], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MY_MARKET], [NSDecimalNumber numberWithInt:BUILDING_ROW_CREATE_TRADE_FOR_MARKET]);
+		[self.sections addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_MARKET], @"type", @"Market", @"name", rows, @"rows")];
+	}
+	
+	if (self.hasTrade) {
+		NSMutableArray *rows = _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_AVAILABLE_TRADES], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MY_TRADES], [NSDecimalNumber numberWithInt:BUILDING_ROW_CREATE_TRADE]);
+		[self.sections addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_TRADE], @"type", @"Trade", @"name", rows, @"rows")];
+	}
+	
+	[self.sections addObject:[self generateHealthSection]];
+	[self.sections addObject:[self generateUpgradeSection]];
+	[self.sections addObject:[self generateGeneralInfoSection]];
 }
 
 
@@ -158,6 +201,9 @@
 		case BUILDING_ROW_PUSH_ITEMS:
 		case BUILDING_ROW_CREATE_TRADE:
 		case BUILDING_ROW_1_FOR_1_TRADE:
+		case BUILDING_ROW_VIEW_MARKET:
+		case BUILDING_ROW_VIEW_MY_MARKET:
+		case BUILDING_ROW_CREATE_TRADE_FOR_MARKET:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		case BUILDING_ROW_MAX_CARGO_SIZE:
@@ -210,6 +256,24 @@
 			maxCargoSizeCell.content.text = [Util prettyNSDecimalNumber:self.maxCargoSize];
 			cell = maxCargoSizeCell;
 			break;
+		case BUILDING_ROW_VIEW_MARKET:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *viewMarketButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			viewMarketButtonCell.textLabel.text = @"View Market";
+			cell = viewMarketButtonCell;
+			break;
+		case BUILDING_ROW_VIEW_MY_MARKET:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *viewMyMarketButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			viewMyMarketButtonCell.textLabel.text = @"View My Market";
+			cell = viewMyMarketButtonCell;
+			break;
+		case BUILDING_ROW_CREATE_TRADE_FOR_MARKET:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *createTradeForMarketButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			createTradeForMarketButtonCell.textLabel.text = @"Create Trade";
+			cell = createTradeForMarketButtonCell;
+			break;
 		default:
 			cell = [super tableView:tableView cellForBuildingRow:buildingRow rowIndex:rowIndex];
 			break;
@@ -250,6 +314,24 @@
 			NewOneForOneTradeController *newOneForOneTradeController = [NewOneForOneTradeController create];
 			newOneForOneTradeController.baseTradeBuilding = self;
 			return newOneForOneTradeController;
+			break;
+		case BUILDING_ROW_VIEW_MARKET:
+			; //DO NOT REMOVE
+			ViewMarketController *viewMarketController = [ViewMarketController create];
+			viewMarketController.baseTradeBuilding = self;
+			return viewMarketController;
+			break;
+		case BUILDING_ROW_VIEW_MY_MARKET:
+			; //DO NOT REMOVE
+			ViewMyMarketController *viewMyMarketController = [ViewMyMarketController create];
+			viewMyMarketController.baseTradeBuilding = self;
+			return viewMyMarketController;
+			break;
+		case BUILDING_ROW_CREATE_TRADE_FOR_MARKET:
+			; //DO NOT REMOVE
+			NewTradeForMarketController *newTradeForMarketController = [NewTradeForMarketController create];
+			newTradeForMarketController.baseTradeBuilding = self;
+			return newTradeForMarketController;
 			break;
 		default:
 			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];
@@ -380,6 +462,23 @@
 	return total;
 }
 
+- (void)pushItems:(ItemPush *)itemPush target:(id)target callback:(SEL)callback {
+	self->itemPushTarget = target;
+	self->itemPushCallback = callback;
+	[[[LEBuildingPushItems alloc] initWithCallback:@selector(pushedItems:) target:self buildingId:self.id buildingUrl:self.buildingUrl targetId:itemPush.targetId items:itemPush.items tradeShipId:itemPush.tradeShipId stayAtTarget:itemPush.stayAtTarget] autorelease];
+}
+
+
+- (void)tradeOneForOne:(OneForOneTrade *)oneForOneTrade target:(id)target callback:(SEL)callback {
+	self->oneForOneTradeTarget = target;
+	self->oneForOneTradeCallback = callback;
+	[[[LEBuildingTradeOneForOne alloc] initWithCallback:@selector(tradedOneForOne:) target:self buildingId:self.id buildingUrl:self.buildingUrl haveResourceType:oneForOneTrade.haveResourceType wantResourceType:oneForOneTrade.wantResourceType quantity:oneForOneTrade.quantity] autorelease];
+}
+
+
+#pragma mark -
+#pragma mark Trade Instance Methods
+
 - (void)loadAvailableTradesForPage:(NSInteger)pageNumber {
 	self.availableTradePageNumber = pageNumber;
 	[[[LEBuildingViewAvailableTrades alloc] initWithCallback:@selector(availableTradesLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl pageNumber:pageNumber] autorelease];
@@ -397,7 +496,7 @@
 
 
 - (void)loadMyTradesForPage:(NSInteger)pageNumber {
-	self.availableTradePageNumber = pageNumber;
+	self.myTradePageNumber = pageNumber;
 	[[[LEBuildingViewMyTrades alloc] initWithCallback:@selector(myTradesLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl pageNumber:pageNumber] autorelease];
 }
 
@@ -409,20 +508,6 @@
 
 - (bool)hasNextMyTradePage {
 	return (self.myTradePageNumber < [Util numPagesForCount:_intv(self.myTradeCount)]);
-}
-
-
-- (void)pushItems:(ItemPush *)itemPush target:(id)target callback:(SEL)callback {
-	self->itemPushTarget = target;
-	self->itemPushCallback = callback;
-	[[[LEBuildingPushItems alloc] initWithCallback:@selector(pushedItems:) target:self buildingId:self.id buildingUrl:self.buildingUrl targetId:itemPush.targetId items:itemPush.items tradeShipId:itemPush.tradeShipId stayAtTarget:itemPush.stayAtTarget] autorelease];
-}
-
-
-- (void)tradeOneForOne:(OneForOneTrade *)oneForOneTrade target:(id)target callback:(SEL)callback {
-	self->oneForOneTradeTarget = target;
-	self->oneForOneTradeCallback = callback;
-	[[[LEBuildingTradeOneForOne alloc] initWithCallback:@selector(tradedOneForOne:) target:self buildingId:self.id buildingUrl:self.buildingUrl haveResourceType:oneForOneTrade.haveResourceType wantResourceType:oneForOneTrade.wantResourceType quantity:oneForOneTrade.quantity] autorelease];
 }
 
 
@@ -442,6 +527,60 @@
 
 - (void)withdrawTrade:(Trade *)trade {
 	[[[LEBuildingWithdrawTrade alloc] initWithCallback:@selector(withdrewTrade:) target:self buildingId:self.id buildingUrl:self.buildingUrl tradeId:trade.id] autorelease];
+}
+
+
+#pragma mark -
+#pragma mark Market Instance Methods
+
+- (void)loadMarketPage:(NSInteger)pageNumber filter:(NSString *)filter {
+	self.marketPageNumber = pageNumber;
+	self.marketFilter = filter;
+	[[[LEBuildingViewMarket alloc] initWithCallback:@selector(marketLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl pageNumber:pageNumber filter:filter] autorelease];
+}
+
+
+- (bool)hasPreviousMarketPage {
+	return (self.marketPageNumber > 1);
+}
+
+
+- (bool)hasNextMarketPage {
+	return (self.marketPageNumber < [Util numPagesForCount:_intv(self.marketTradeCount)]);
+}
+
+
+- (void)loadMyMarketPage:(NSInteger)pageNumber {
+	self.myMarketPageNumber = pageNumber;
+	[[[LEBuildingViewMyMarket alloc] initWithCallback:@selector(myMarketLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl pageNumber:pageNumber] autorelease];
+}
+
+
+- (bool)hasPreviousMyMarketPage {
+	return (self.myMarketPageNumber > 1);
+}
+
+
+- (bool)hasNextMyMarketPage {
+	return (self.myMarketPageNumber < [Util numPagesForCount:_intv(self.myMarketTradeCount)]);
+}
+
+
+- (void)postMarketTrade:(MarketTrade *)trade target:(id)target callback:(SEL)callback {
+	self->postToMarketTarget = target;
+	self->postToMarketCallback = callback;
+	[[[LEBuildingAddToMarket alloc] initWithCallback:@selector(addedToMarket:) target:self buildingId:self.id buildingUrl:self.buildingUrl askEssentia:trade.askEssentia offer:trade.offer tradeShipId:trade.tradeShipId] autorelease];
+}
+
+
+- (void)acceptMarketTrade:(MarketTrade *)trade solution:(NSString *)solution target:(id)target callback:(SEL)callback {
+	self->acceptFromMarketTarget = target;
+	self->acceptFromMarketCallback = callback;
+	[[[LEBuildingAcceptFromMarket alloc] initWithCallback:@selector(acceptedFromMarket:) target:self buildingId:self.id buildingUrl:self.buildingUrl tradeId:trade.id captchaGuid:self.captchaGuid captchaSolution:solution] autorelease];
+}
+
+- (void)withdrawMarketTrade:(MarketTrade *)trade {
+	[[[LEBuildingWithdrawFromMarket alloc] initWithCallback:@selector(withdrewFromMarket:) target:self buildingId:self.id buildingUrl:self.buildingUrl tradeId:trade.id] autorelease];
 }
 
 
@@ -551,6 +690,21 @@
 }
 
 
+- (id)pushedItems:(LEBuildingPushItems *)request {
+	[self->itemPushTarget performSelector:self->itemPushCallback withObject:request];
+	return nil;
+}
+
+
+- (id)tradedOneForOne:(LEBuildingTradeOneForOne *)request {
+	[self->oneForOneTradeTarget performSelector:self->oneForOneTradeCallback withObject:request];
+	return nil;
+}
+
+
+#pragma mark -
+#pragma mark Trade Callback Methods
+
 - (id)availableTradesLoaded:(LEBuildingViewAvailableTrades *)request {
 	NSMutableArray *tmpTrades = [NSMutableArray arrayWithCapacity:[request.availableTrades count]];
 	for (NSDictionary *tradeData in request.availableTrades) {
@@ -583,25 +737,17 @@
 }
 
 
-- (id)pushedItems:(LEBuildingPushItems *)request {
-	[self->itemPushTarget performSelector:self->itemPushCallback withObject:request];
-	return nil;
-}
-
-
-- (id)tradedOneForOne:(LEBuildingTradeOneForOne *)request {
-	[self->oneForOneTradeTarget performSelector:self->oneForOneTradeCallback withObject:request];
-	return nil;
-}
-
-
 - (id)addedTrade:(LEBuildingAddTrade *)request {
 	[self->postTradeTarget performSelector:self->postTradeCallback withObject:request];
+	if (![request wasError]) {
+		self.myTrades = nil;
+		self.myTradesUpdated = nil;
+	}
 	return nil;
 }
 
 
-- (id)withdrewTrade:(LEBuildingAddTrade *)request {
+- (id)withdrewTrade:(LEBuildingWithdrawTrade *)request {
 	if (![request wasError]) {
 		__block Trade *foundTrade;
 		[self.myTrades enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -636,6 +782,90 @@
 		}
 	}
 	[self->acceptTradeTarget performSelector:self->acceptTradeCallback withObject:request];
+	return nil;
+}
+
+
+#pragma mark -
+#pragma mark Market Callback Methods
+
+- (id)marketLoaded:(LEBuildingViewMarket *)request {
+	NSMutableArray *tmpTrades = [NSMutableArray arrayWithCapacity:[request.availableTrades count]];
+	for (NSDictionary *tradeData in request.availableTrades) {
+		MarketTrade *tmpTrade = [[[MarketTrade alloc] init] autorelease];
+		[tmpTrade parseData:tradeData];
+		[tmpTrades addObject:tmpTrade];
+	}
+	self.marketTrades = tmpTrades;
+	
+	self.marketTradeCount = request.tradeCount;
+	self.captchaGuid = request.captchaGuid;
+	self.captchaUrl = request.captchaUrl;
+	self.marketUpdated = [NSDate date];
+	return nil;
+}
+
+
+- (id)myMarketLoaded:(LEBuildingViewMyMarket *)request {
+	NSMutableArray *tmpTrades = [NSMutableArray arrayWithCapacity:[request.myTrades count]];
+	for (NSDictionary *tradeData in request.myTrades) {
+		MarketTrade *tmpTrade = [[[MarketTrade alloc] init] autorelease];
+		[tmpTrade parseData:tradeData];
+		[tmpTrades addObject:tmpTrade];
+	}
+	self.myMarketTrades = tmpTrades;
+	
+	self.myMarketTradeCount = request.tradeCount;
+	self.myMarketUpdated = [NSDate date];
+	return nil;
+}
+
+
+- (id)addedToMarket:(LEBuildingAddToMarket *)request {
+	if (![request wasError]) {
+		self.myMarketTrades = nil;
+		self.myMarketUpdated = nil;
+	}
+	[self->postToMarketTarget performSelector:self->postToMarketCallback withObject:request];
+	return nil;
+}
+
+
+- (id)withdrewFromMarket:(LEBuildingWithdrawFromMarket *)request {
+	if (![request wasError]) {
+		__block MarketTrade *foundTrade;
+		[self.myMarketTrades enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+			MarketTrade *trade = obj;
+			if ([trade.id isEqualToString:request.tradeId]) {
+				foundTrade = obj;
+				*stop = YES;
+			}
+		}];
+		if (foundTrade) {
+			[self.myMarketTrades removeObject:foundTrade];
+			self.myMarketUpdated = [NSDate date];
+		}
+	}
+	return nil;
+}
+
+
+- (id)acceptedFromMarket:(LEBuildingAcceptFromMarket *)request {
+	if (![request wasError]) {
+		__block MarketTrade *foundTrade;
+		[self.marketTrades enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+			MarketTrade *trade = obj;
+			if ([trade.id isEqualToString:request.tradeId]) {
+				foundTrade = obj;
+				*stop = YES;
+			}
+		}];
+		if (foundTrade) {
+			[self.marketTrades removeObject:foundTrade];
+			self.marketUpdated = [NSDate date];
+		}
+	}
+	[self->acceptFromMarketTarget performSelector:self->acceptFromMarketCallback withObject:request];
 	return nil;
 }
 
