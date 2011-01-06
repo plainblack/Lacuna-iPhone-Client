@@ -8,6 +8,7 @@
 
 #import "LETableViewCellSpyInfo.h"
 #import "LEMacros.h"
+#import "Util.h"
 #import "Spy.h"
 
 
@@ -65,13 +66,13 @@
 	self.nameContent.text = spy.name;
 	self.locationContent.text = spy.bodyName;
 	self.assignmentContent.text = spy.assignment;
-	self.levelContent.text = [NSString stringWithFormat:@"%i", spy.level];
-	self.politicsExpContent.text = [NSString stringWithFormat:@"%i", spy.politicsExp];
-	self.mayhemExpContent.text = [NSString stringWithFormat:@"%i", spy.mayhemExp];
-	self.theftExpContent.text = [NSString stringWithFormat:@"%i", spy.theftExp];
-	self.intelExpContent.text = [NSString stringWithFormat:@"%i", spy.intelExp];
-	self.offenseRatingContent.text = [NSString stringWithFormat:@"%i", spy.offenseRating];
-	self.defenseRatingContent.text = [NSString stringWithFormat:@"%i", spy.defenseRating];
+	self.levelContent.text = [Util prettyNSDecimalNumber:spy.level];
+	self.politicsExpContent.text = [Util prettyNSDecimalNumber:spy.politicsExp];
+	self.mayhemExpContent.text = [Util prettyNSDecimalNumber:spy.mayhemExp];
+	self.theftExpContent.text = [Util prettyNSDecimalNumber:spy.theftExp];
+	self.intelExpContent.text = [Util prettyNSDecimalNumber:spy.intelExp];
+	self.offenseRatingContent.text = [Util prettyNSDecimalNumber:spy.offenseRating];
+	self.defenseRatingContent.text = [Util prettyNSDecimalNumber:spy.defenseRating];
 }
 
 

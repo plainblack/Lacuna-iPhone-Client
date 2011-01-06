@@ -212,8 +212,6 @@
 		F6C3906311F1E36C004FB38F /* LETableViewCellMailSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */; };
 		F6C390C311F1ED14004FB38F /* LETableViewCellMailHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C390C211F1ED14004FB38F /* LETableViewCellMailHeaders.m */; };
 		F6C390EE11F23D54004FB38F /* LETableViewCellBuildQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C390ED11F23D54004FB38F /* LETableViewCellBuildQueueItem.m */; };
-		F6CF29E21210E1F400D4A9AC /* AssignSpyControllerV2.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CF29E01210E1F400D4A9AC /* AssignSpyControllerV2.m */; };
-		F6CF29E31210E1F400D4A9AC /* AssignViewControllerV2.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6CF29E11210E1F400D4A9AC /* AssignViewControllerV2.xib */; };
 		F6D02A191230698B000D8811 /* LEEmpireSendPasswordResetMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D02A181230698B000D8811 /* LEEmpireSendPasswordResetMessage.m */; };
 		F6D02A1C1230699F000D8811 /* LEEmpireResetPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D02A1B1230699F000D8811 /* LEEmpireResetPassword.m */; };
 		F6D162B7124E1D8700820AAE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D162B6124E1D8700820AAE /* Reachability.m */; };
@@ -415,6 +413,7 @@
 		F6EF714211FE76EA00A93226 /* SpacePort.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF714111FE76EA00A93226 /* SpacePort.m */; };
 		F6EF714F11FE7D1C00A93226 /* LEBuildingViewAllShips.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF714E11FE7D1C00A93226 /* LEBuildingViewAllShips.m */; };
 		F6EF716A11FE810900A93226 /* Ship.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF716911FE810900A93226 /* Ship.m */; };
+		F6F0E7E112D4A0380089C721 /* AssignSpyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F0E7E012D4A0380089C721 /* AssignSpyController.m */; };
 		F6F1C21D12326FB100D69BB6 /* ViewMedalsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F1C21C12326FB100D69BB6 /* ViewMedalsController.m */; };
 		F6F2E65212CCD3EC0048AC95 /* PrepareExperiment.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F2E65112CCD3EC0048AC95 /* PrepareExperiment.m */; };
 		F6F2E67B12CCE88B0048AC95 /* LEBuildingViewMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F2E67A12CCE88B0048AC95 /* LEBuildingViewMarket.m */; };
@@ -863,9 +862,6 @@
 		F6C390C211F1ED14004FB38F /* LETableViewCellMailHeaders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellMailHeaders.m; sourceTree = "<group>"; };
 		F6C390EC11F23D54004FB38F /* LETableViewCellBuildQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellBuildQueueItem.h; sourceTree = "<group>"; };
 		F6C390ED11F23D54004FB38F /* LETableViewCellBuildQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellBuildQueueItem.m; sourceTree = "<group>"; };
-		F6CF29DF1210E1F400D4A9AC /* AssignSpyControllerV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssignSpyControllerV2.h; sourceTree = "<group>"; };
-		F6CF29E01210E1F400D4A9AC /* AssignSpyControllerV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssignSpyControllerV2.m; sourceTree = "<group>"; };
-		F6CF29E11210E1F400D4A9AC /* AssignViewControllerV2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssignViewControllerV2.xib; sourceTree = "<group>"; };
 		F6D02A171230698B000D8811 /* LEEmpireSendPasswordResetMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireSendPasswordResetMessage.h; sourceTree = "<group>"; };
 		F6D02A181230698B000D8811 /* LEEmpireSendPasswordResetMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireSendPasswordResetMessage.m; sourceTree = "<group>"; };
 		F6D02A1A1230699F000D8811 /* LEEmpireResetPassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireResetPassword.h; sourceTree = "<group>"; };
@@ -1258,6 +1254,8 @@
 		F6EF714E11FE7D1C00A93226 /* LEBuildingViewAllShips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewAllShips.m; sourceTree = "<group>"; };
 		F6EF716811FE810900A93226 /* Ship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ship.h; sourceTree = "<group>"; };
 		F6EF716911FE810900A93226 /* Ship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ship.m; sourceTree = "<group>"; };
+		F6F0E7DF12D4A0380089C721 /* AssignSpyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssignSpyController.h; sourceTree = "<group>"; };
+		F6F0E7E012D4A0380089C721 /* AssignSpyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssignSpyController.m; sourceTree = "<group>"; };
 		F6F1C21B12326FB100D69BB6 /* ViewMedalsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMedalsController.h; sourceTree = "<group>"; };
 		F6F1C21C12326FB100D69BB6 /* ViewMedalsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMedalsController.m; sourceTree = "<group>"; };
 		F6F2E65012CCD3EC0048AC95 /* PrepareExperiment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrepareExperiment.h; sourceTree = "<group>"; };
@@ -2072,9 +2070,8 @@
 				F6F418FF123B046800F93457 /* AssembleGlyphsControllerV2.h */,
 				F6F41900123B046800F93457 /* AssembleGlyphsControllerV2.m */,
 				F6F41901123B046800F93457 /* AssembleGlyphsControllerV2.xib */,
-				F6CF29DF1210E1F400D4A9AC /* AssignSpyControllerV2.h */,
-				F6CF29E01210E1F400D4A9AC /* AssignSpyControllerV2.m */,
-				F6CF29E11210E1F400D4A9AC /* AssignViewControllerV2.xib */,
+				F6F0E7DF12D4A0380089C721 /* AssignSpyController.h */,
+				F6F0E7E012D4A0380089C721 /* AssignSpyController.m */,
 				F61F65D11204C90D0007427A /* BuildShipController.h */,
 				F61F65D21204C90D0007427A /* BuildShipController.m */,
 				F6D7683A124B6EAE00BA85FB /* BuildShipTypeController.h */,
@@ -2438,7 +2435,6 @@
 				F6724F56119F74F200D57E0D /* PickNumericValueController.xib in Resources */,
 				F683BC2511E40311009E64BF /* assets in Resources */,
 				F6FB45A411F52C1F00E24EAC /* SearchForGlyphController.xib in Resources */,
-				F6CF29E31210E1F400D4A9AC /* AssignViewControllerV2.xib in Resources */,
 				F64FA1F1121CB43300CBFC3E /* PickColonyController.xib in Resources */,
 				F642C668122A154B00C596A7 /* ViewUniverseController.xib in Resources */,
 				F642C66D122A155C00C596A7 /* ViewStatsController.xib in Resources */,
@@ -2633,7 +2629,6 @@
 				F6D4857B120CD82100D77FC3 /* LEBuildingExecutePrisoner.m in Sources */,
 				F6D4857E120CD83600D77FC3 /* LEBuildingReleasePrisoner.m in Sources */,
 				F6D485B8120CDEA000D77FC3 /* ViewForeignSpiesController.m in Sources */,
-				F6CF29E21210E1F400D4A9AC /* AssignSpyControllerV2.m in Sources */,
 				F6DB8AE51211718D00F3AB4B /* LEEmpireBoostStorage.m in Sources */,
 				F692B7BE121859E700E740C1 /* LEBuildingViewAvailableTrades.m in Sources */,
 				F692B7C1121859F700E740C1 /* LEBuildingViewMyTrades.m in Sources */,
@@ -2884,6 +2879,7 @@
 				F6F2E6C612CD04050048AC95 /* NewTradeForMarketController.m in Sources */,
 				F6F830BF12CE25BC003A38D2 /* MarketTrade.m in Sources */,
 				F6F8311412CE2D0A003A38D2 /* AcceptMarketTradeController.m in Sources */,
+				F6F0E7E112D4A0380089C721 /* AssignSpyController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

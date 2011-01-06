@@ -172,6 +172,9 @@
 		self->hasMarket = YES;
 		self->hasTrade = YES;
 	} else {
+		if ([session.empire.planets count] > 1) {
+			[self.sections addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_PUSH_ITEMS]), @"rows")];
+		}
 		self->usesEssentia = NO;
 		self->selectTradeShip = YES;
 		self->hasMarket = YES;

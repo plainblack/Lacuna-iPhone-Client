@@ -30,6 +30,7 @@
 @synthesize secondsRemaining;
 @synthesize assignmentStarted;
 @synthesize assignmentEnds;
+@synthesize possibleAssignments;
 
 
 
@@ -37,8 +38,8 @@
 #pragma mark NSObject Methods
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"id:%@, name:%@, bodyId:%@, bodyName:%@, assignemtn:%@, level:%i, politicsExp:%i, mayhemExp:%i, theftExp:%i, intelExp:%i, offenseRating:%i, defenseRating:%i, isAvailable:%i, secondsRemaining:%i, assignmentStarted:%@, assignmentEnds:%@", 
-			self.id, self.name, self.bodyId, self.bodyName, self.assignment, self.level, self.politicsExp, self.mayhemExp, self.theftExp, self.intelExp, self.offenseRating, self.defenseRating, self.isAvailable, self.secondsRemaining, self.assignmentStarted, self.assignmentEnds];
+	return [NSString stringWithFormat:@"id:%@, name:%@, bodyId:%@, bodyName:%@, assignemtn:%@, level:%@, politicsExp:%@, mayhemExp:%@, theftExp:%@, intelExp:%@, offenseRating:%@, defenseRating:%@, isAvailable:%i, secondsRemaining:%i, assignmentStarted:%@, assignmentEnds:%@, possibleAssignments:%@", 
+			self.id, self.name, self.bodyId, self.bodyName, self.assignment, self.level, self.politicsExp, self.mayhemExp, self.theftExp, self.intelExp, self.offenseRating, self.defenseRating, self.isAvailable, self.secondsRemaining, self.assignmentStarted, self.assignmentEnds, self.possibleAssignments];
 }
 
 
@@ -48,8 +49,16 @@
 	self.bodyId = nil;
 	self.bodyName = nil;
 	self.assignment = nil;
+	self.level = nil;
+	self.politicsExp = nil;
+	self.mayhemExp = nil;
+	self.theftExp = nil;
+	self.intelExp = nil;
+	self.defenseRating = nil;
+	self.offenseRating = nil;
 	self.assignmentStarted = nil;
 	self.assignmentEnds = nil;
+	self.possibleAssignments = nil;
 	[super dealloc];
 }
 
@@ -64,18 +73,20 @@
 	self.bodyName = [[spyData objectForKey:@"assigned_to"] objectForKey:@"name"];
 	self.assignment = [spyData objectForKey:@"assignment"];
 	
-	self.level = _intv([spyData objectForKey:@"level"]);
-	self.politicsExp = _intv([spyData objectForKey:@"politics"]);
-	self.mayhemExp = _intv([spyData objectForKey:@"mayhem"]);
-	self.theftExp = _intv([spyData objectForKey:@"theft"]);
-	self.intelExp = _intv([spyData objectForKey:@"intel"]);
-	self.offenseRating = _intv([spyData objectForKey:@"offense_rating"]);
-	self.defenseRating = _intv([spyData objectForKey:@"defense_rating"]);
+	self.level = [Util asNumber:[spyData objectForKey:@"level"] ];
+	self.politicsExp = [Util asNumber:[spyData objectForKey:@"politics"]];
+	self.mayhemExp = [Util asNumber:[spyData objectForKey:@"mayhem"] ];
+	self.theftExp = [Util asNumber:[spyData objectForKey:@"theft"] ];
+	self.intelExp = [Util asNumber:[spyData objectForKey:@"intel"] ];
+	self.offenseRating = [Util asNumber:[spyData objectForKey:@"offense_rating"] ];
+	self.defenseRating = [Util asNumber:[spyData objectForKey:@"defense_rating"] ];
 	
 	self.isAvailable = [[spyData objectForKey:@"is_available"] boolValue];
 	self.secondsRemaining = _intv([spyData objectForKey:@"seconds_remaining"]);
 	self.assignmentStarted = [Util date:[spyData objectForKey:@"started_assignment"]];
 	self.assignmentEnds = [Util date:[spyData objectForKey:@"available_on"] ];
+	
+	self.possibleAssignments = [spyData objectForKey:@"possible_assignments"];
 }
 
 
