@@ -170,7 +170,7 @@
 		self->usesEssentia = YES;
 		self->selectTradeShip = NO;
 		self->hasMarket = YES;
-		self->hasTrade = YES;
+		self->hasTrade = NO;
 	} else {
 		if ([session.empire.planets count] > 1) {
 			[self.sections addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_PUSH_ITEMS]), @"rows")];
@@ -178,17 +178,17 @@
 		self->usesEssentia = NO;
 		self->selectTradeShip = YES;
 		self->hasMarket = YES;
-		self->hasTrade = YES;
+		self->hasTrade = NO;
 	}
 	
 	if (self.hasMarket) {
 		NSMutableArray *rows = _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MARKET], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MY_MARKET], [NSDecimalNumber numberWithInt:BUILDING_ROW_CREATE_TRADE_FOR_MARKET]);
-		[self.sections addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_MARKET], @"type", @"Market (New)", @"name", rows, @"rows")];
+		[self.sections addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_MARKET], @"type", @"Market", @"name", rows, @"rows")];
 	}
 	
 	if (self.hasTrade) {
 		NSMutableArray *rows = _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_AVAILABLE_TRADES], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MY_TRADES]);
-		[self.sections addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_TRADE], @"type", @"Trade (Old)", @"name", rows, @"rows")];
+		[self.sections addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_TRADE], @"type", @"Trade", @"name", rows, @"rows")];
 	}
 	
 	[self.sections addObject:[self generateHealthSection]];
