@@ -74,19 +74,19 @@
 
 @synthesize glyphs;
 @synthesize glyphsById;
-@synthesize cargoUserPerGlyph;
+@synthesize cargoUsedPerGlyph;
 @synthesize plans;
 @synthesize plansById;
-@synthesize cargoUserPerPlan;
+@synthesize cargoUsedPerPlan;
 @synthesize prisoners;
 @synthesize prisonersById;
-@synthesize cargoUserPerPrisoner;
+@synthesize cargoUsedPerPrisoner;
 @synthesize resourceTypes;
 @synthesize ships;
 @synthesize shipsById;
-@synthesize cargoUserPerShip;
+@synthesize cargoUsedPerShip;
 @synthesize storedResources;
-@synthesize cargoUserPerStoredResource;
+@synthesize cargoUsedPerStoredResource;
 @synthesize usesEssentia;
 @synthesize selectTradeShip;
 @synthesize hasMarket;
@@ -120,19 +120,19 @@
 	
 	self.glyphs = nil;
 	self.glyphsById = nil;
-	self.cargoUserPerGlyph = nil;
+	self.cargoUsedPerGlyph = nil;
 	self.plans = nil;
 	self.plansById = nil;
-	self.cargoUserPerPlan = nil;
+	self.cargoUsedPerPlan = nil;
 	self.prisoners = nil;
 	self.prisonersById = nil;
-	self.cargoUserPerPrisoner = nil;
+	self.cargoUsedPerPrisoner = nil;
 	self.resourceTypes = nil;
 	self.ships = nil;
 	self.shipsById = nil;
-	self.cargoUserPerShip = nil;
+	self.cargoUsedPerShip = nil;
 	self.storedResources = nil;
-	self.cargoUserPerStoredResource = nil;
+	self.cargoUsedPerStoredResource = nil;
 	self.maxCargoSize = nil;
 	self.tradeShips = nil;
 	self.tradeShipsById = nil;
@@ -349,19 +349,19 @@
 - (void)clearLoadables {
 	self.glyphs = nil;
 	self.glyphsById = nil;
-	self.cargoUserPerGlyph = nil;
+	self.cargoUsedPerGlyph = nil;
 	self.plans = nil;
 	self.plansById = nil;
-	self.cargoUserPerPlan = nil;
+	self.cargoUsedPerPlan = nil;
 	self.prisoners = nil;
 	self.prisonersById = nil;
-	self.cargoUserPerPrisoner = nil;
+	self.cargoUsedPerPrisoner = nil;
 	self.resourceTypes = nil;
 	self.ships = nil;
 	self.shipsById = nil;
-	self.cargoUserPerShip = nil;
+	self.cargoUsedPerShip = nil;
 	self.storedResources = nil;
-	self.cargoUserPerStoredResource = nil;
+	self.cargoUsedPerStoredResource = nil;
 	self.tradeShips = nil;
 	self.tradeShipsById = nil;
 	self.tradeShipsTravelTime = nil;
@@ -446,20 +446,20 @@
 - (NSDecimalNumber *)calculateStorageForGlyphs:(NSInteger)numGlyphs plans:(NSInteger)numPlans prisoners:(NSInteger)numPrisoners storedResources:(NSDecimalNumber *)numStoredResources ships:(NSInteger)numShips {
 	NSDecimalNumber *total = [NSDecimalNumber zero];
 	if (numGlyphs > 0) {
-		total = [total decimalNumberByAdding:[self.cargoUserPerGlyph decimalNumberByMultiplyingBy:[Util decimalFromInt:numGlyphs]]];
+		total = [total decimalNumberByAdding:[self.cargoUsedPerGlyph decimalNumberByMultiplyingBy:[Util decimalFromInt:numGlyphs]]];
 	}
 	if (numPlans > 0) {
-		total = [total decimalNumberByAdding:[self.cargoUserPerPlan decimalNumberByMultiplyingBy:[Util decimalFromInt:numPlans]]];
+		total = [total decimalNumberByAdding:[self.cargoUsedPerPlan decimalNumberByMultiplyingBy:[Util decimalFromInt:numPlans]]];
 	}
 	if (numPrisoners > 0) {
-		total = [total decimalNumberByAdding:[self.cargoUserPerPrisoner decimalNumberByMultiplyingBy:[Util decimalFromInt:numPrisoners]]];
+		total = [total decimalNumberByAdding:[self.cargoUsedPerPrisoner decimalNumberByMultiplyingBy:[Util decimalFromInt:numPrisoners]]];
 	}
 	if (_intv(numStoredResources) > 0) {
-		NSDecimalNumber *tmp = [self.cargoUserPerStoredResource decimalNumberByMultiplyingBy:numStoredResources];
+		NSDecimalNumber *tmp = [self.cargoUsedPerStoredResource decimalNumberByMultiplyingBy:numStoredResources];
 		total = [total decimalNumberByAdding:tmp];
 	}
 	if (numShips > 0) {
-		total = [total decimalNumberByAdding:[self.cargoUserPerShip decimalNumberByMultiplyingBy:[Util decimalFromInt:numShips]]];
+		total = [total decimalNumberByAdding:[self.cargoUsedPerShip decimalNumberByMultiplyingBy:[Util decimalFromInt:numShips]]];
 	}
 	
 	return total;
@@ -591,7 +591,7 @@
 #pragma mark Callback Methods
 
 - (id)loadedTradeableGlyphs:(LEBuildingGetTradeableGlyphs *)request {
-	self.cargoUserPerGlyph = request.cargoSpaceUsedPer;
+	self.cargoUsedPerGlyph = request.cargoSpaceUsedPer;
 	NSMutableArray *tmpArray = [NSMutableArray arrayWithCapacity:[request.glyphs count]];
 	NSMutableDictionary *tmpDict = [NSMutableDictionary dictionaryWithCapacity:[request.glyphs count]];
 	[request.glyphs enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
@@ -607,7 +607,7 @@
 
 
 - (id)loadedTradeablePlans:(LEBuildingGetTradeablePlans *)request {
-	self.cargoUserPerPlan = request.cargoSpaceUsedPer;
+	self.cargoUsedPerPlan = request.cargoSpaceUsedPer;
 	NSMutableArray *tmpArray = [NSMutableArray arrayWithCapacity:[request.plans count]];
 	NSMutableDictionary *tmpDict = [NSMutableDictionary dictionaryWithCapacity:[request.plans count]];
 	[request.plans enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
@@ -623,7 +623,7 @@
 
 
 - (id)loadedTradeablePrisoners:(LEBuildingGetTradeablePrisoners *)request {
-	self.cargoUserPerPrisoner = request.cargoSpaceUsedPer;
+	self.cargoUsedPerPrisoner = request.cargoSpaceUsedPer;
 	NSMutableArray *tmpArray = [NSMutableArray arrayWithCapacity:[request.prisoners count]];
 	NSMutableDictionary *tmpDict = [NSMutableDictionary dictionaryWithCapacity:[request.prisoners count]];
 	[request.prisoners enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
@@ -634,14 +634,12 @@
 	}];
 	self.prisoners = tmpArray;
 	self.prisonersById = tmpDict;
-	NSLog(@"Prisoner Data: %@", request.prisoners);
-	NSLog(@"Prisoners: %@", self.prisoners);
 	return nil;
 }
 
 
 - (id)loadedTradeableShips:(LEBuildingGetTradeableShips *)request {
-	self.cargoUserPerShip = request.cargoSpaceUsedPer;
+	self.cargoUsedPerShip = request.cargoSpaceUsedPer;
 	NSMutableArray *tmpArray = [NSMutableArray arrayWithCapacity:[request.ships count]];
 	NSMutableDictionary *tmpDict = [NSMutableDictionary dictionaryWithCapacity:[request.ships count]];
 	[request.ships enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
@@ -658,7 +656,7 @@
 
 
 - (id)loadedTradeableStoredResources:(LEBuildingGetTradeableStoredResources *)request {
-	self.cargoUserPerStoredResource = request.cargoSpaceUsedPer;
+	self.cargoUsedPerStoredResource = request.cargoSpaceUsedPer;
 	NSMutableArray *tmpArray = [NSMutableArray arrayWithCapacity:[request.storedResources count]];
 	[request.storedResources enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
 		[tmpArray addObject:_dict(key, @"type", obj, @"quantity")];

@@ -44,7 +44,13 @@
 	self.id = [Util idFromDict:prisonerData named:@"id"];
 	self.name = [prisonerData objectForKey:@"name"];
 	self.level = [Util asNumber:[prisonerData objectForKey:@"level"] ];
-	self.sentenceExpiresOn = [Util date:[prisonerData objectForKey:@"sentence_expires"]];
+	NSString *sentenceExpiresString = [prisonerData objectForKey:@"sentence_expires"];
+	if (sentenceExpiresString) {
+		self.sentenceExpiresOn = [Util date:sentenceExpiresString];
+	} else {
+		self.sentenceExpiresOn = nil;
+	}
+
 }
 
 

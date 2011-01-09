@@ -55,19 +55,19 @@
 
 @property (nonatomic, retain) NSMutableArray *glyphs;
 @property (nonatomic, retain) NSMutableDictionary *glyphsById;
-@property (nonatomic, retain) NSDecimalNumber *cargoUserPerGlyph;
+@property (nonatomic, retain) NSDecimalNumber *cargoUsedPerGlyph;
 @property (nonatomic, retain) NSMutableArray *plans;
 @property (nonatomic, retain) NSMutableDictionary *plansById;
-@property (nonatomic, retain) NSDecimalNumber *cargoUserPerPlan;
+@property (nonatomic, retain) NSDecimalNumber *cargoUsedPerPlan;
 @property (nonatomic, retain) NSMutableArray *prisoners;
 @property (nonatomic, retain) NSMutableDictionary *prisonersById;
-@property (nonatomic, retain) NSDecimalNumber *cargoUserPerPrisoner;
+@property (nonatomic, retain) NSDecimalNumber *cargoUsedPerPrisoner;
 @property (nonatomic, retain) NSMutableArray *ships;
 @property (nonatomic, retain) NSMutableDictionary *shipsById;
-@property (nonatomic, retain) NSDecimalNumber *cargoUserPerShip;
+@property (nonatomic, retain) NSDecimalNumber *cargoUsedPerShip;
 @property (nonatomic, retain) NSMutableArray *resourceTypes;
 @property (nonatomic, retain) NSMutableArray *storedResources;
-@property (nonatomic, retain) NSDecimalNumber *cargoUserPerStoredResource;
+@property (nonatomic, retain) NSDecimalNumber *cargoUsedPerStoredResource;
 @property (nonatomic, readonly) BOOL usesEssentia;
 @property (nonatomic, readonly) BOOL selectTradeShip;
 @property (nonatomic, readonly) BOOL hasMarket;

@@ -41,9 +41,6 @@
 
 	self.mission = [result objectForKey:@"mission"];
 	self.spyData = [result objectForKey:@"spy"];
-
-	NSLog(@"Mission Results: %@", self.mission);
-	
 }
 
 
