@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SynthesizeSingleton.h"
 #import "Empire.h"
 #import "Body.h"
 
@@ -16,6 +17,7 @@
 	id reloginTarget;
 	SEL reloginSelector;
 }
+SYNTHESIZE_SINGLETON_FOR_CLASS_HEADER(Session);
 
 
 @property (nonatomic, retain) NSString *sessionId;
@@ -49,8 +51,6 @@
 - (NSString *)wikiLinkForShip:(NSString *)shipType;
 - (void)updatedSavedEmpire:(NSString *)empireName uri:(NSString *)uri;
 - (void)renameSavedEmpireNameFrom:(NSString *)oldEmpireName to:(NSString *)newEmpireName;
-
-+ (Session *)sharedInstance;
 
 
 @end

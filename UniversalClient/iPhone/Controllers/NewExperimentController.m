@@ -34,17 +34,17 @@ typedef enum {
 	SPECIES_ROW_DESCRIPTION,
 	SPECIES_ROW_MIN_ORBIT,
 	SPECIES_ROW_MAX_ORBIT,
-	SPECIES_ROW_MANUFACTURING,
 	SPECIES_ROW_DECEPTION,
-	SPECIES_ROW_RESEARCH,
-	SPECIES_ROW_MANAGEMENT,
-	SPECIES_ROW_FARMING,
-	SPECIES_ROW_MINING,
-	SPECIES_ROW_SCIENCE,
 	SPECIES_ROW_ENVIRONMENTAL,
-	SPECIES_ROW_POLITICAL,
-	SPECIES_ROW_TRADE,
+	SPECIES_ROW_FARMING,
 	SPECIES_ROW_GROWTH,
+	SPECIES_ROW_MANAGEMENT,
+	SPECIES_ROW_MANUFACTURING,
+	SPECIES_ROW_MINING,
+	SPECIES_ROW_POLITICAL,
+	SPECIES_ROW_RESEARCH,
+	SPECIES_ROW_SCIENCE,
+	SPECIES_ROW_TRADE,
 } SPECIES_ROW;
 
 @implementation NewExperimentController
@@ -151,7 +151,12 @@ typedef enum {
 			}
 			break;
 		case SECTION_EXPERIMENTS:
-			return [LETableViewCellButton getHeightForTableView:tableView];
+			if ([[self.graft objectForKey:@"graftable_affinities"] count] > 0) {
+				return [LETableViewCellButton getHeightForTableView:tableView];
+			} else {
+				return [LETableViewCellLabeledText getHeightForTableView:tableView];
+			}
+
 			break;
 		default:
 			return 0;
@@ -285,10 +290,18 @@ typedef enum {
 			break;
 		case SECTION_EXPERIMENTS:
 			; //DO NOT REMOVE
-			NSString *affinity = [[self.graft objectForKey:@"graftable_affinities"] objectAtIndex:indexPath.row];
-			LETableViewCellButton *selectGraftCell = [LETableViewCellButton getCellForTableView:tableView];
-			selectGraftCell.textLabel.text = [Util prettyCodeValue:affinity];
-			cell = selectGraftCell;
+			if ([[self.graft objectForKey:@"graftable_affinities"] count] > 0) {
+				NSString *affinity = [[self.graft objectForKey:@"graftable_affinities"] objectAtIndex:indexPath.row];
+				LETableViewCellButton *selectGraftCell = [LETableViewCellButton getCellForTableView:tableView];
+				selectGraftCell.textLabel.text = [Util prettyCodeValue:affinity];
+				cell = selectGraftCell;
+			} else {
+				LETableViewCellLabeledText *noGraftsCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+				noGraftsCell.label.text = @"Grafts";
+				noGraftsCell.content.text = @"None Available";
+				cell = noGraftsCell;
+			}
+
 			break;
 		default:
 			return nil;

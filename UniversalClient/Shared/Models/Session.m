@@ -17,7 +17,7 @@
 #import "AppDelegate_Phone.h"
 
 
-static Session *sharedSession = nil;
+//static Session *sharedSession = nil;
 
 
 @implementation Session
@@ -38,45 +38,48 @@ static Session *sharedSession = nil;
 @synthesize universeMinY;
 @synthesize universeMaxY;
 
-#pragma mark -
-#pragma mark Singleton methods
 
-+ (Session *)sharedInstance {
-    if (sharedSession == nil) {
-        sharedSession = [[super allocWithZone:NULL] init];
-    }
-    return sharedSession;
-}
+SYNTHESIZE_SINGLETON_FOR_CLASS(Session);
+//#pragma mark -
+//#pragma mark Singleton methods
+//
+//+ (Session *)sharedInstance {
+//    if (sharedSession == nil) {
+//        sharedSession = [[super allocWithZone:NULL] init];
+//    }
+//    return sharedSession;
+//}
+//
+//
+//+ (id)allocWithZone:(NSZone *)zone {
+//    return [self sharedInstance];
+//}
+//
+//
+//- (id)copyWithZone:(NSZone *)zone {
+//    return self;
+//}
+//
+//
+//- (id)retain {
+//    return self;
+//}
+//
+//
+//- (NSUInteger)retainCount {
+//    return NSUIntegerMax;  //denotes an object that cannot be released
+//}
+//
+//
+//- (void)release {
+//    //do nothing
+//}
+//
+//
+//- (id)autorelease {
+//    return self;
+//}
 
-
-+ (id)allocWithZone:(NSZone *)zone {
-    return [self sharedInstance];
-}
-
-
-- (id)copyWithZone:(NSZone *)zone {
-    return self;
-}
-
-
-- (id)retain {
-    return self;
-}
-
-
-- (NSUInteger)retainCount {
-    return NSUIntegerMax;  //denotes an object that cannot be released
-}
-
-
-- (void)release {
-    //do nothing
-}
-
-
-- (id)autorelease {
-    return self;
-}
 
 #pragma mark -
 #pragma mark Live Cycle methods
@@ -121,6 +124,7 @@ static Session *sharedSession = nil;
 	[super dealloc];
 }
 
+
 #pragma mark -
 #pragma mark Instance methods
 
@@ -134,9 +138,19 @@ static Session *sharedSession = nil;
 	self->reloginTarget = [target retain];
 	self->reloginSelector = selector;
 	NSString *username = self.empire.name;
-	KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithIdentifier:username accessGroup:nil] autorelease];				
-	NSString *password = [keychainItemWrapper objectForKey:(id)kSecValueData];
-	[[[LEEmpireLogin alloc] initWithCallback:@selector(reloggedIn:) target:self username:username password:password] autorelease];
+	if (self.empire) {
+		if (self.empire.name) {
+			KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithIdentifier:username accessGroup:nil] autorelease];				
+			NSString *password = [keychainItemWrapper objectForKey:(id)kSecValueData];
+			[[[LEEmpireLogin alloc] initWithCallback:@selector(reloggedIn:) target:self username:username password:password] autorelease];
+		} else {
+			NSLog(@"Empire's username is null. HOW?");
+			[self logout];
+		}
+	} else {
+		NSLog(@"Empire is null. HOW?");
+		[self logout];
+	}
 }
 
 - (void)logout {

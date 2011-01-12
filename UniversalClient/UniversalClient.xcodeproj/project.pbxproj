@@ -480,6 +480,7 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Shared/main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* UniversalClient_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UniversalClient_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* UniversalClient-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "UniversalClient-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		C63F7BE412DDEA27003D5FAA /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SynthesizeSingleton.h; path = Shared/SynthesizeSingleton.h; sourceTree = "<group>"; };
 		F60238B4123D596800268ADD /* LEBuildingViewForeignShips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewForeignShips.h; sourceTree = "<group>"; };
 		F60238B5123D596800268ADD /* LEBuildingViewForeignShips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewForeignShips.m; sourceTree = "<group>"; };
 		F60238D1123D63B200268ADD /* ViewForeignShipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewForeignShipsController.h; sourceTree = "<group>"; };
@@ -1402,6 +1403,7 @@
 				F6AC49E6116C0F7E001B967A /* LEMacros.h */,
 				F6D162B5124E1D8700820AAE /* Reachability.h */,
 				F6D162B6124E1D8700820AAE /* Reachability.m */,
+				C63F7BE412DDEA27003D5FAA /* SynthesizeSingleton.h */,
 				8D1107310486CEB800E47090 /* UniversalClient-Info.plist */,
 				2819307C112F81BE00ECF9B4 /* UniversalClient.xcdatamodeld */,
 				F6AC49E7116C0F7E001B967A /* Util.h */,
