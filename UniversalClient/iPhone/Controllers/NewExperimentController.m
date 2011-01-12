@@ -307,11 +307,10 @@ typedef enum {
 	switch (indexPath.section) {
 		case SECTION_EXPERIMENTS:
 			self.selectedAffinity = [[self.graft objectForKey:@"graftable_affinities"] objectAtIndex:indexPath.row];
-			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"Experiment on Prisoner? This will cost %@ essentia, may kill the prisone, and may increase your %@.", self.prepareExperiment.essentiaCost, [Util prettyCodeValue:self.selectedAffinity]] delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"Experiment on Prisoner? This will cost %@ essentia, may kill the prisoner, and may increase your %@.", self.prepareExperiment.essentiaCost, [Util prettyCodeValue:self.selectedAffinity]] delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
 			actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
 			[actionSheet showFromTabBar:self.tabBarController.tabBar];
 			[actionSheet release];
-			
 			break;
 	}
 }

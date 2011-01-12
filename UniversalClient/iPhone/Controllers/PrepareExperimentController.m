@@ -210,13 +210,15 @@ typedef enum {
 #pragma mark UITableViewDataSource Methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (self.prepareExperiment.grafts) {
-		NSMutableDictionary *graft = [self.prepareExperiment.grafts objectAtIndex:indexPath.row];
-		NewExperimentController *newExperimentController = [NewExperimentController create];
-		newExperimentController.geneticsLab = self.geneticsLab;
-		newExperimentController.prepareExperiment = self.prepareExperiment;
-		newExperimentController.graft = graft;
-		[self.navigationController pushViewController:newExperimentController animated:YES];
+	if (indexPath.section == SECTION_PRISONERS) {
+		if ([self.prepareExperiment.grafts count] > 0) {
+			NSMutableDictionary *graft = [self.prepareExperiment.grafts objectAtIndex:indexPath.row];
+			NewExperimentController *newExperimentController = [NewExperimentController create];
+			newExperimentController.geneticsLab = self.geneticsLab;
+			newExperimentController.prepareExperiment = self.prepareExperiment;
+			newExperimentController.graft = graft;
+			[self.navigationController pushViewController:newExperimentController animated:YES];
+		}
 	}
 }
 

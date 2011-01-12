@@ -358,37 +358,37 @@ typedef enum {
 			case SECTION_AFFINITIES:
 				switch (indexPath.row) {
 					case 0:
-						cell = manufacturingCell;
-						break;
-					case 1:
 						cell = deceptionCell;
 						break;
-					case 2:
-						cell = researchCell;
-						break;
-					case 3:
-						cell = managementCell;
-						break;
-					case 4:
-						cell = farmingCell;
-						break;
-					case 5:
-						cell = miningCell;
-						break;
-					case 6:
-						cell = scienceCell;
-						break;
-					case 7:
+					case 1:
 						cell = environmentalCell;
 						break;
-					case 8:
+					case 2:
+						cell = farmingCell;
+						break;
+					case 3:
+						cell = growthCell;
+						break;
+					case 4:
+						cell = managementCell;
+						break;
+					case 5:
+						cell = manufacturingCell;
+						break;
+					case 6:
+						cell = miningCell;
+						break;
+					case 7:
 						cell = politicalCell;
 						break;
+					case 8:
+						cell = researchCell;
+						break;
 					case 9:
-						cell = tradeCell;
+						cell = scienceCell;
 						break;
 					case 10:
-						cell = growthCell;
+						cell = tradeCell;
 						break;
 					default:
 						break;
