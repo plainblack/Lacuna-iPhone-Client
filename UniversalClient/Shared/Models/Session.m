@@ -106,6 +106,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Session);
 
 - (void)dealloc {
 	self.sessionId = nil;
+	NSLog(@"dealloc unset empire");
 	self.empire = nil;
 	self.body = nil;
 	self.savedEmpireList = nil;
@@ -156,6 +157,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Session);
 - (void)logout {
 	[[[LEEmpireLogout alloc] initWithCallback:@selector(loggedOut:) target:self sessionId:self.sessionId] autorelease];
 	self.sessionId = nil;
+	NSLog(@"logout unset empire");
 	self.empire = nil;
 	self.body = nil;
 	self.isLoggedIn = NO;
@@ -254,6 +256,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Session);
 	[self updatedSavedEmpire:username uri:self.serverUri];
 	
 	self.sessionId = inSessionId;
+	NSLog(@"loggedInEmpireData set empire");
 	self.empire = [[Empire alloc] init];
 	[self.empire parseData:inEmpireData];
 	self.isLoggedIn = TRUE;
@@ -410,6 +413,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Session);
 		}
 
 		self.sessionId = nil;
+		NSLog(@"logged in error unset empire");
 		self.empire = nil;
 	} else {
 		[self loggedInEmpireData:request.empireData sessionId:request.sessionId password:request.password];
@@ -428,10 +432,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Session);
 		[av show];
 		
 		self.sessionId = nil;
+		NSLog(@"relogged in error unset empire");
 		self.empire = nil;
 		self.isLoggedIn = NO;
 	} else {
 		self.sessionId = request.sessionId;
+		NSLog(@"relogin set empire");
 		self.empire = [[Empire alloc] init];
 		[self.empire parseData:request.empireData];
 		//Don't change self.isLoggedIn becuase well it should stay logged in

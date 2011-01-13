@@ -51,7 +51,7 @@
 	if (isNotNull(self.foodTypeCount)) {
 		[partyRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_FOOD_TYPE_COUNT]];
 	}
-	if (isNotNull(self.reason) && ([self.reason length] > 0)) {
+	if (!self.canOperate) {
 		[partyRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_CANNOT_OPERATE_REASON]];
 	}
 	self.sections = _array([self generateProductionSection], _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Operate", @"name", partyRows, @"rows"), [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
@@ -67,7 +67,7 @@
 			return [LETableViewCellLongLabeledText getHeightForTableView:tableView];
 			break;
 		case BUILDING_ROW_CANNOT_OPERATE_REASON:
-			return [LETableViewCellParagraph getHeightForTableView:tableView text:self.reason];
+			return [LETableViewCellParagraph getHeightForTableView:tableView text:[self.reason objectAtIndex:1]];
 			break;
 		default:
 			return [super tableView:tableView heightForBuildingRow:buildingRow];
@@ -99,7 +99,7 @@
 		case BUILDING_ROW_CANNOT_OPERATE_REASON:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellParagraph *reasonCell = [LETableViewCellParagraph getCellForTableView:tableView];
-			reasonCell.content.text = self.reason;
+			reasonCell.content.text = [self.reason objectAtIndex:1];
 			cell = reasonCell;
 			break;
 		default:

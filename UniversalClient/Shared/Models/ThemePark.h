@@ -16,7 +16,7 @@
 
 @property (nonatomic, assign) BOOL canOperate;
 @property (nonatomic, retain) NSDecimalNumber *foodTypeCount;
-@property (nonatomic, retain) NSString *reason;
+@property (nonatomic, retain) NSMutableArray *reason;
 
 
 @end
