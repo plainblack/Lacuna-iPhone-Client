@@ -154,13 +154,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Session);
 }
 
 - (void)logout {
+	[[[LEEmpireLogout alloc] initWithCallback:@selector(loggedOut:) target:self sessionId:self.sessionId] autorelease];
 	self.sessionId = nil;
 	NSLog(@"logout unset empire");
 	self.empire = nil;
 	self.body = nil;
 	self.isLoggedIn = NO;
 	self.serverUri = nil;
-	[[[LEEmpireLogout alloc] initWithCallback:@selector(loggedOut:) target:self sessionId:self.sessionId] autorelease];
 }
 
 
