@@ -136,10 +136,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Session);
 
 - (void)reloginTarget:(id)target selector:(SEL)selector {
 	NSLog(@"Attempting to relogin");
-	self->reloginTarget = [target retain];
-	self->reloginSelector = selector;
-	NSString *username = self.empire.name;
 	if (self.empire) {
+		self->reloginTarget = [target retain];
+		self->reloginSelector = selector;
+		NSString *username = self.empire.name;
 		if (self.empire.name) {
 			KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithIdentifier:username accessGroup:nil] autorelease];				
 			NSString *password = [keychainItemWrapper objectForKey:(id)kSecValueData];
@@ -149,19 +149,18 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Session);
 			[self logout];
 		}
 	} else {
-		NSLog(@"Empire is null. HOW?");
-		[self logout];
+		[target performSelector:@selector(cancel)];
 	}
 }
 
 - (void)logout {
-	[[[LEEmpireLogout alloc] initWithCallback:@selector(loggedOut:) target:self sessionId:self.sessionId] autorelease];
 	self.sessionId = nil;
 	NSLog(@"logout unset empire");
 	self.empire = nil;
 	self.body = nil;
 	self.isLoggedIn = NO;
 	self.serverUri = nil;
+	[[[LEEmpireLogout alloc] initWithCallback:@selector(loggedOut:) target:self sessionId:self.sessionId] autorelease];
 }
 
 
