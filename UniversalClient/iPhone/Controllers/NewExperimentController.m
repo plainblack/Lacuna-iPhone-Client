@@ -319,11 +319,13 @@ typedef enum {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	switch (indexPath.section) {
 		case SECTION_EXPERIMENTS:
-			self.selectedAffinity = [[self.graft objectForKey:@"graftable_affinities"] objectAtIndex:indexPath.row];
-			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"Experiment on Prisoner? This will cost %@ essentia, may kill the prisoner, and may increase your %@.", self.prepareExperiment.essentiaCost, [Util prettyCodeValue:self.selectedAffinity]] delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
-			actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-			[actionSheet showFromTabBar:self.tabBarController.tabBar];
-			[actionSheet release];
+			if ([[self.graft objectForKey:@"graftable_affinities"] count] > 0) {
+				self.selectedAffinity = [[self.graft objectForKey:@"graftable_affinities"] objectAtIndex:indexPath.row];
+				UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"Experiment on Prisoner? This will cost %@ essentia, may kill the prisoner, and may increase your %@.", self.prepareExperiment.essentiaCost, [Util prettyCodeValue:self.selectedAffinity]] delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+				actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+				[actionSheet showFromTabBar:self.tabBarController.tabBar];
+				[actionSheet release];
+			}
 			break;
 	}
 }
@@ -358,7 +360,6 @@ typedef enum {
 #pragma mark Callbacks
 
 - (void)experimentComplete:(LEBuildingRunExperiment *)request {
-	NSLog(@"Run Experiment Result: %@", request.response);
 	if (![request wasError]) {
 		[self.prepareExperiment parseData:request.result];
 		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Experiment Complete" message:request.message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
