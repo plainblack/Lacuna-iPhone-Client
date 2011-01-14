@@ -147,7 +147,9 @@ static NSDecimalNumber *ONE_HUNDRED_BILLION;
 			maxNumberRange--;
 		}
 		
-		if (numDigits == 1) {
+		if ( ([number compare:[NSDecimalNumber zero]]==NSOrderedDescending) && ([number compare:[NSDecimalNumber one]]==NSOrderedAscending) ) {
+			result = numberAsString;
+		} else if (numDigits == 1) {
 			result = [numberAsString substringToIndex:1];
 		} else if (numDigits == 2) {
 			result = [numberAsString substringToIndex:2];
