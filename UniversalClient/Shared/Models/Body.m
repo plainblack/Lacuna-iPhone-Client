@@ -139,19 +139,41 @@
 	} else {
 		NSMutableArray *incomingForeignShipData = [bodyData objectForKey:@"incoming_foreign_ships"];
 		if (isNotNull(incomingForeignShipData)) {
+			NSMutableDictionary *dateStringToData = [NSMutableDictionary dictionaryWithCapacity:[incomingForeignShipData count]];
 			NSMutableSet *newSet = [NSMutableSet setWithCapacity:[incomingForeignShipData count]];
 			for (NSMutableDictionary *tmp in incomingForeignShipData) {
-				[newSet addObject:[tmp objectForKey:@"date_arrives"]];
+				NSString *dateString = [tmp objectForKey:@"date_arrives"];
+				[newSet addObject:dateString];
+				[dateStringToData setObject:tmp forKey:dateString];
 			}
 			NSMutableSet *warnAboutSet;
 			warnAboutSet = [newSet mutableCopy];
 			if (self.incomingForeignShips) {
 				[warnAboutSet minusSet:self.incomingForeignShips];
 			}
-			if ([warnAboutSet count] > 0) {
-				UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"INCOMING SHIPS!" message:@"Incoming Ships detected. Go to your Spaceport for more information." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+			__block NSUInteger numOwnShips = 0;
+			__block NSUInteger numAllyShips = 0;
+			__block NSUInteger numOtherShips = 0;
+			[warnAboutSet enumerateObjectsUsingBlock:^(id obj, BOOL *stop){
+				NSMutableDictionary *tmp = [dateStringToData objectForKey:obj];
+				BOOL isOwn = [[tmp objectForKey:@"is_own"] boolValue];
+				BOOL isAlly = [[tmp objectForKey:@"is_ally"] boolValue];
+				if (isOwn) {
+					numOwnShips++;
+				} else if (isAlly) {
+					numAllyShips++;
+				} else {
+					numOtherShips++;
+				}
+			}];
+			if (numOtherShips > 0) {
+				UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"INCOMING SHIPS!" message:@"Incoming ships detected. Go to your Spaceport for more information." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+				[av show];
+			} else if (numAllyShips) {
+				UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Ally ships incoming" message:@"Incoming ally ships detected. Go to your Spaceport for more information." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 				[av show];
 			}
+
 			[warnAboutSet release];
 			self.incomingForeignShips = newSet;
 		} else {
