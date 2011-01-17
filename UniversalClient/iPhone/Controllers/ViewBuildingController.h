@@ -29,6 +29,9 @@
 @property(nonatomic, retain) Building *watchedBuilding;
 
 
+- (IBAction)refresh;
+
+
 + (ViewBuildingController *)create;
 
 

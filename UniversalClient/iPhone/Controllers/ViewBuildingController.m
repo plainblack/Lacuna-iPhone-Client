@@ -55,7 +55,8 @@
     [super viewDidLoad];
 
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
-	
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)] autorelease];
+
 	self.sectionHeaders = [NSArray array];
 }
 
@@ -198,6 +199,15 @@
 	self.buildingId = nil;
 	self.urlPart = nil;
     [super dealloc];
+}
+
+
+#pragma mark -
+#pragma mark Instance Methods
+
+- (IBAction)refresh {
+	Session *session = [Session sharedInstance];
+	session.body.currentBuilding.needsReload = YES;
 }
 
 
