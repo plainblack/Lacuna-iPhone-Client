@@ -16,8 +16,12 @@
 #import "LETableViewCellLabeledText.h"
 #import "LETableViewCellLabeledIconText.h"
 #import "LETableViewCellButton.h"
+#import "LETableViewCellParagraph.h"
 #import "LEBuildingPrepareExperiment.h"
 #import "NewExperimentController.h"
+
+
+#define CANNOT_EXPERIMENT_TEXT @"You must level up your Genetics Lab to be able to increase your stats again."
 
 
 typedef enum {
@@ -86,7 +90,11 @@ typedef enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	switch (section) {
 		case SECTION_PRISONERS:
-			return MAX(1, [self.prepareExperiment.grafts count]);
+			if (self.prepareExperiment && !self.prepareExperiment.canExperiment) {
+				return 1;
+			} else {
+				return MAX(1, [self.prepareExperiment.grafts count]);
+			}
 			break;
 		case SECTION_DETAILS:
 			return 3;
@@ -101,8 +109,16 @@ typedef enum {
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	switch (indexPath.section) {
 		case SECTION_PRISONERS:
-			if (self.prepareExperiment.grafts) {
-				return [LETableViewCellButton getHeightForTableView:tableView];
+			if (self.prepareExperiment) {
+				if (self.prepareExperiment.canExperiment) {
+					if (self.prepareExperiment.grafts) {
+						return [LETableViewCellButton getHeightForTableView:tableView];
+					} else {
+						return [LETableViewCellLabeledText getHeightForTableView:tableView];
+					}
+				} else {
+					return [LETableViewCellParagraph getHeightForTableView:tableView text:CANNOT_EXPERIMENT_TEXT];
+				}
 			} else {
 				return [LETableViewCellLabeledText getHeightForTableView:tableView];
 			}
@@ -135,19 +151,24 @@ typedef enum {
 	
 	switch (indexPath.section) {
 		case SECTION_PRISONERS:
-			if (self.prepareExperiment.grafts) {
-				if ([self.prepareExperiment.grafts count] > 0) {
-					NSMutableDictionary *graft = [self.prepareExperiment.grafts objectAtIndex:indexPath.row];
-					LETableViewCellButton *selectGraftCell = [LETableViewCellButton getCellForTableView:tableView];
-					selectGraftCell.textLabel.text = [[graft objectForKey:@"spy"] objectForKey:@"name"];
-					cell = selectGraftCell;
+			if (self.prepareExperiment) {
+				if (self.prepareExperiment.canExperiment) {
+					if ([self.prepareExperiment.grafts count] > 0) {
+						NSMutableDictionary *graft = [self.prepareExperiment.grafts objectAtIndex:indexPath.row];
+						LETableViewCellButton *selectGraftCell = [LETableViewCellButton getCellForTableView:tableView];
+						selectGraftCell.textLabel.text = [[graft objectForKey:@"spy"] objectForKey:@"name"];
+						cell = selectGraftCell;
+					} else {
+						LETableViewCellLabeledText *noneCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+						noneCell.label.text = @"Prisoners";
+						noneCell.content.text = @"None";
+						cell = noneCell;
+					}
 				} else {
-					LETableViewCellLabeledText *noneCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-					noneCell.label.text = @"Prisoners";
-					noneCell.content.text = @"None";
-					cell = noneCell;
+					LETableViewCellParagraph *cannotExperimentCell = [LETableViewCellParagraph getCellForTableView:tableView];
+					cannotExperimentCell.content.text = CANNOT_EXPERIMENT_TEXT;
+					cell = cannotExperimentCell;
 				}
-				
 			} else {
 				LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 				loadingCell.label.text = @"Prisoners";
@@ -211,7 +232,7 @@ typedef enum {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section == SECTION_PRISONERS) {
-		if ([self.prepareExperiment.grafts count] > 0) {
+		if (self.prepareExperiment.canExperiment && ([self.prepareExperiment.grafts count] > 0)) {
 			NSMutableDictionary *graft = [self.prepareExperiment.grafts objectAtIndex:indexPath.row];
 			NewExperimentController *newExperimentController = [NewExperimentController create];
 			newExperimentController.geneticsLab = self.geneticsLab;

@@ -18,6 +18,7 @@
 @synthesize survivalOdds;
 @synthesize graftOdds;
 @synthesize essentiaCost;
+@synthesize canExperiment;
 
 
 #pragma mark -
@@ -46,6 +47,17 @@
 	self.survivalOdds = [Util asNumber:[data objectForKey:@"survival_odds"]];
 	self.graftOdds = [Util asNumber:[data objectForKey:@"graft_odds"]];
 	self.essentiaCost = [Util asNumber:[data objectForKey:@"essentia_cost"]];
+	NSObject *tmp = [data objectForKey:@"can_experiment"];
+	if (isNotNull(tmp)) {
+		self.canExperiment = [[data objectForKey:@"can_experiment"] boolValue];
+		if (!self.canExperiment) {
+			NSLog(@"NO LONGER NEED MANUAL FOX FOR SERVER can_experiment BUG");
+		}
+	} else {
+		NSLog(@"HAD TO DO MANUAL FIX FOR SERVER can_experiment BUG");
+		self.canExperiment = NO;
+	}
+
 }
 	
 

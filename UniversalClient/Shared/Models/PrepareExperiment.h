@@ -17,6 +17,7 @@
 @property(nonatomic, retain) NSDecimalNumber *survivalOdds;
 @property(nonatomic, retain) NSDecimalNumber *graftOdds;
 @property(nonatomic, retain) NSDecimalNumber *essentiaCost;
+@property(nonatomic, assign) BOOL canExperiment;
 
 
 - (void)parseData:(NSMutableDictionary *)data;
