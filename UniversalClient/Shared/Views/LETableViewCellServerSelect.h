@@ -10,15 +10,13 @@
 
 
 @interface LETableViewCellServerSelect : UITableViewCell {
-	UILabel *nameLabel;
-	UILabel *locationLabel;
-	UILabel *statusLabel;
 }
 
 
 @property(nonatomic, retain) UILabel *nameLabel;
 @property(nonatomic, retain) UILabel *locationLabel;
 @property(nonatomic, retain) UILabel *statusLabel;
+@property(nonatomic, retain) UILabel *typeLabel;
 
 
 - (void)setServer:(NSDictionary *)serverData;

@@ -26,6 +26,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS_HEADER(Session);
 @property (nonatomic, assign) BOOL isLoggedIn;
 @property (nonatomic, retain) NSMutableArray *savedEmpireList;
 @property (nonatomic, retain) NSString *serverVersion;
+@property (nonatomic, retain) NSDecimalNumber *rpcLimit;
 @property (nonatomic, retain) NSDate *lastTick;
 @property (nonatomic, retain) NSString *serverUri;
 @property (nonatomic, retain) NSDictionary *itemDescriptions;

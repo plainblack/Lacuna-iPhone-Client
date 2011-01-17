@@ -32,6 +32,7 @@
 @synthesize selfDestructActive;
 @synthesize selfDestructAt;
 @synthesize profile;
+@synthesize rpcCount;
 
 
 #pragma mark -
@@ -54,6 +55,7 @@
 	self.planets = nil;
 	self.selfDestructAt = nil;
 	self.profile = nil;
+	self.rpcCount = nil;
 	[super dealloc];
 }
 
@@ -95,6 +97,7 @@
 		}
 	}
 	
+	self.rpcCount = [Util asNumber:[empireData objectForKey:@"rpc_count"]];
 }
 
 

@@ -17,7 +17,8 @@
 
 
 typedef	enum {
-	SECTION_VERSION
+	SECTION_VERSION,
+	SECTION_RPC_INFO,
 } SECTION;
 
 
@@ -25,6 +26,12 @@ typedef enum {
 	VERSION_ROW_IPHONE_CLIENT,
 	VERSION_ROW_SERVER
 } VERSION_ROW;
+
+
+typedef enum {
+	RPC_INFO_ROW_COUNT,
+	RPC_INFO_ROW_LIMIT
+} RPC_INFO_ROW;
 
 
 @implementation ViewCreditsController
@@ -48,6 +55,7 @@ typedef enum {
 	}
 	
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Version"],
+								 [LEViewSectionTab tableView:self.tableView withText:@"RPC Call Info"],
 								 [LEViewSectionTab tableView:self.tableView withText:@"Credits"]);
 }
 
@@ -69,9 +77,9 @@ typedef enum {
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	if (self.leStatsCredits.creditGroups) {
-		return 1 + [self.leStatsCredits.creditGroups count];
+		return 2 + [self.leStatsCredits.creditGroups count];
 	} else {
-		return 2;
+		return 3;
 	}
 
 }
@@ -82,9 +90,12 @@ typedef enum {
 		case SECTION_VERSION:
 			return 2;
 			break;
+		case SECTION_RPC_INFO:
+			return 2;
+			break;
 		default:
 			if (self.leStatsCredits.creditGroups) {
-				NSInteger sectionIndex = section - 1;
+				NSInteger sectionIndex = section - 2;
 				NSDictionary *creditGroup = [self.leStatsCredits.creditGroups objectAtIndex:sectionIndex];
 				return [[creditGroup objectForKey:@"names"] count];
 			} else {
@@ -98,6 +109,7 @@ typedef enum {
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	switch (indexPath.section) {
 		case SECTION_VERSION:
+		case SECTION_RPC_INFO:
 			return [LETableViewCellLabeledText getHeightForTableView:tableView];
 			break;
 		default:
@@ -142,10 +154,33 @@ typedef enum {
 					break;
 			}
 			break;
+		case SECTION_RPC_INFO:
+			; //DO NOT REMOVE
+			Session *session = [Session sharedInstance];
+			switch (indexPath.row) {
+				case RPC_INFO_ROW_COUNT:
+					; //DO NOT REMOVE
+					LETableViewCellLabeledText *rpcCountCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+					rpcCountCell.label.text = @"Count";
+					rpcCountCell.content.text = [Util prettyNSDecimalNumber:session.empire.rpcCount];
+					cell = rpcCountCell;
+					break;
+				case RPC_INFO_ROW_LIMIT:
+					; //DO NOT REMOVE
+					LETableViewCellLabeledText *rpcLimitCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+					rpcLimitCell.label.text = @"Limit";
+					rpcLimitCell.content.text = [Util prettyNSDecimalNumber:session.rpcLimit];
+					cell = rpcLimitCell;
+					break;
+				default:
+					cell = nil;
+					break;
+			}
+			break;
 		default:
 			if (self.leStatsCredits.creditGroups) {
 				; //DO NOT REMOVE
-				NSInteger sectionIndex = indexPath.section - 1;
+				NSInteger sectionIndex = indexPath.section - 2;
 				NSDictionary *creditGroup = [self.leStatsCredits.creditGroups objectAtIndex:sectionIndex];
 				LETableViewCellText *creditCell = [LETableViewCellText getCellForTableView:tableView];
 				creditCell.content.text = [[creditGroup objectForKey:@"names"] objectAtIndex:indexPath.row];
@@ -199,7 +234,7 @@ typedef enum {
 #pragma mark Callback Methods
 
 - (id)creditsLoaded:(LEStatsCredits *)request {
-	NSMutableArray *tmp = _array([LEViewSectionTab tableView:self.tableView withText:@"Version"]);
+	NSMutableArray *tmp = _array([LEViewSectionTab tableView:self.tableView withText:@"Version"], [LEViewSectionTab tableView:self.tableView withText:@"RPC Call Info"]);
 	for (NSDictionary *creditGroup in request.creditGroups) {
 		[tmp addObject:[LEViewSectionTab tableView:self.tableView withText:[creditGroup objectForKey:@"title"]]];
 	}

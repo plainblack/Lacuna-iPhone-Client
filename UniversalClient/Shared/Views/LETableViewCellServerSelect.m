@@ -17,6 +17,7 @@
 @synthesize nameLabel;
 @synthesize locationLabel;
 @synthesize statusLabel;
+@synthesize typeLabel;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -39,6 +40,7 @@
 	self.nameLabel = nil;
 	self.locationLabel = nil;
 	self.statusLabel = nil;
+	self.typeLabel = nil;
     [super dealloc];
 }
 
@@ -47,9 +49,11 @@
 #pragma mark Instance Methods
 
 - (void)setServer:(NSDictionary *)serverData {
+	NSLog(@"Server Data: %@", serverData);
 	self.nameLabel.text = [serverData objectForKey:@"name"];
 	self.locationLabel.text = [serverData objectForKey:@"location"];
 	self.statusLabel.text = [serverData objectForKey:@"status"];
+	self.typeLabel.text = [serverData objectForKey:@"type"];
 }
 
 
@@ -89,6 +93,14 @@
 		cell.statusLabel.textColor = BUTTON_TEXT_COLOR;
 		[cell.contentView addSubview:cell.statusLabel];
 		
+		cell.typeLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 55, 310, 15)] autorelease];
+		cell.typeLabel.backgroundColor = [UIColor clearColor];
+		cell.typeLabel.textAlignment = UITextAlignmentCenter;
+		cell.typeLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
+		cell.typeLabel.font = LABEL_FONT;
+		cell.typeLabel.textColor = BUTTON_TEXT_COLOR;
+		[cell.contentView addSubview:cell.typeLabel];
+		
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		cell.selectionStyle = UITableViewCellSelectionStyleBlue;
 	}
@@ -98,7 +110,7 @@
 
 
 + (CGFloat)getHeightForTableView:(UITableView *)tableView {
-	return 60.0;
+	return 75.0;
 }
 
 

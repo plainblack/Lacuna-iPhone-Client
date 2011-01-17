@@ -27,6 +27,7 @@
 @synthesize isLoggedIn;
 @synthesize savedEmpireList;
 @synthesize serverVersion;
+@synthesize rpcLimit;
 @synthesize empire;
 @synthesize body;
 @synthesize lastTick;
@@ -40,45 +41,6 @@
 
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(Session);
-//#pragma mark -
-//#pragma mark Singleton methods
-//
-//+ (Session *)sharedInstance {
-//    if (sharedSession == nil) {
-//        sharedSession = [[super allocWithZone:NULL] init];
-//    }
-//    return sharedSession;
-//}
-//
-//
-//+ (id)allocWithZone:(NSZone *)zone {
-//    return [self sharedInstance];
-//}
-//
-//
-//- (id)copyWithZone:(NSZone *)zone {
-//    return self;
-//}
-//
-//
-//- (id)retain {
-//    return self;
-//}
-//
-//
-//- (NSUInteger)retainCount {
-//    return NSUIntegerMax;  //denotes an object that cannot be released
-//}
-//
-//
-//- (void)release {
-//    //do nothing
-//}
-//
-//
-//- (id)autorelease {
-//    return self;
-//}
 
 
 #pragma mark -
@@ -111,6 +73,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Session);
 	self.body = nil;
 	self.savedEmpireList = nil;
 	self.serverVersion = nil;
+	self.rpcLimit = nil;
 	self.lastTick = nil;
 	[self->timer invalidate];
 	[self->timer release];
@@ -217,6 +180,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Session);
 					[av show];
 				}
 			}
+			self.rpcLimit = [Util asNumber:[serverStatus objectForKey:@"rpc_limit"]];
 			
 			NSMutableDictionary *starMapSize = [serverStatus objectForKey:@"star_map_size"];
 			if (starMapSize) {

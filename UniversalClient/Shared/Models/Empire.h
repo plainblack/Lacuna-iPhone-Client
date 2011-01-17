@@ -31,6 +31,7 @@
 @property (nonatomic, assign) BOOL selfDestructActive;
 @property (nonatomic, retain) NSDate *selfDestructAt;
 @property (nonatomic, retain) EmpireProfile *profile;
+@property (nonatomic, retain) NSDecimalNumber *rpcCount;
 
 
 - (void)loadProfile;

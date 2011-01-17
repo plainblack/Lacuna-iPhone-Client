@@ -22,9 +22,6 @@
 
 
 @interface SelectServerController : LETableViewControllerGrouped <UITextFieldDelegate> {
-	Servers *servers;
-	id<SelectServerControllerDelegate> delegate;
-	LETableViewCellTextEntry *customerServerCell;
 }
 
 
