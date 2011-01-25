@@ -355,7 +355,7 @@ typedef enum {
 			break;
 		case SECTION_WANT:
 			; //DO NOT REMOVE
-			self->pickNumericValueController = [[PickNumericValueController createWithDelegate:self maxValue:[NSDecimalNumber decimalNumberWithString:@"99"] hidesZero:NO] retain];
+			self->pickNumericValueController = [[PickNumericValueController createWithDelegate:self maxValue:[NSDecimalNumber decimalNumberWithString:@"99"] hidesZero:NO showTenths:YES] retain];
 			[self.navigationController pushViewController:self->pickNumericValueController animated:YES];
 			break;
 		case SECTION_SELECT_SHIP:

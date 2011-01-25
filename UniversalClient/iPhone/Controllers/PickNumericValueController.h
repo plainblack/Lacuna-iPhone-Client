@@ -29,6 +29,7 @@
 @property (nonatomic, assign) id<PickNumericValueControllerDelegate> delegate;
 @property (nonatomic, retain) NSDecimalNumber *maxValue;
 @property (nonatomic, assign) BOOL hideZero;
+@property (nonatomic, assign) BOOL showTenths;
 
 
 -(IBAction) save;
@@ -37,7 +38,7 @@
 -(void) setValue:(NSDecimalNumber *)value;
 
 
-+(PickNumericValueController *) createWithDelegate:(id<PickNumericValueControllerDelegate>)delegate maxValue:(NSDecimalNumber *)maxValue hidesZero:(BOOL)hidesZero;
++(PickNumericValueController *) createWithDelegate:(id<PickNumericValueControllerDelegate>)delegate maxValue:(NSDecimalNumber *)maxValue hidesZero:(BOOL)hidesZero showTenths:(BOOL)showTenths;
 
 
 @end

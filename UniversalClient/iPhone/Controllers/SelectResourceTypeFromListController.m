@@ -113,7 +113,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	self.selectedStoredResourceTypeKey = [self.storedResourceTypeKeys objectAtIndex:indexPath.row];
 	NSDecimalNumber *storedResourceTypeQuantity = [Util asNumber:[[self.storedResourceTypes objectForKey:self.selectedStoredResourceTypeKey] stringValue]];
-	self->pickNumericValueController = [[PickNumericValueController createWithDelegate:self maxValue:storedResourceTypeQuantity hidesZero:NO] retain];
+	self->pickNumericValueController = [[PickNumericValueController createWithDelegate:self maxValue:storedResourceTypeQuantity hidesZero:NO showTenths:NO] retain];
 	[self presentModalViewController:self->pickNumericValueController animated:YES];
 	self->pickNumericValueController.titleLabel.text = [self.selectedStoredResourceTypeKey capitalizedString];
 }

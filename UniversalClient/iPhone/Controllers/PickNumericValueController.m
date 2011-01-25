@@ -20,6 +20,7 @@
 @synthesize delegate;
 @synthesize maxValue;
 @synthesize hideZero;
+@synthesize showTenths;
 
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -80,6 +81,8 @@
 			return self->leftMostDigit+1;
 		}
 
+	} else if ((component == self->numDigits-2) && self.showTenths) {
+		return 1;
 	} else {
 		if (self.hideZero) {
 			return 9;
@@ -96,6 +99,8 @@
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
 	if (component == 0 && self.hideZero) {
 		return [NSString stringWithFormat:@"%i", row+1];
+	} else if ((component == self->numDigits-2) && self.showTenths) {
+		return @".";
 	} else {
 		return [NSString stringWithFormat:@"%i", row];
 	}
@@ -109,12 +114,17 @@
 	NSMutableString *valueAsString = [NSMutableString stringWithCapacity:self->numDigits];
 	
 	for (int index=0; index < self->numDigits; index++) {
-		if (self.hideZero) {
-			[valueAsString appendFormat:@"%i", [self.numberPicker selectedRowInComponent:index]+1];
+		if (self.showTenths && index == self->numDigits-2) {
+			[valueAsString appendFormat:@"."];
 		} else {
-			[valueAsString appendFormat:@"%i", [self.numberPicker selectedRowInComponent:index]];
+			if (self.hideZero) {
+				[valueAsString appendFormat:@"%i", [self.numberPicker selectedRowInComponent:index]+1];
+			} else {
+				[valueAsString appendFormat:@"%i", [self.numberPicker selectedRowInComponent:index]];
+			}
 		}
 	}
+	NSLog(@"New Numeric Value: %@", valueAsString);
 	[self.delegate newNumericValue:[NSDecimalNumber decimalNumberWithString:valueAsString]];
 	[self dismissModalViewControllerAnimated:YES];
 }
@@ -161,7 +171,7 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+(PickNumericValueController *) createWithDelegate:(id<PickNumericValueControllerDelegate>)delegate maxValue:(NSDecimalNumber *)maxValue hidesZero:(BOOL)hidesZero {
++(PickNumericValueController *) createWithDelegate:(id<PickNumericValueControllerDelegate>)delegate maxValue:(NSDecimalNumber *)maxValue hidesZero:(BOOL)hidesZero showTenths:(BOOL)showTenths {
 	PickNumericValueController *pickNumericValueController = [[[PickNumericValueController alloc] initWithNibName:@"PickNumericValueController" bundle:nil] autorelease];
 	pickNumericValueController.delegate = delegate;
 	if (!maxValue) {
@@ -169,9 +179,13 @@
 	}
 	NSDecimalNumberHandler *roundingBehavior = [NSDecimalNumberHandler decimalNumberHandlerWithRoundingMode:NSRoundDown scale:0 raiseOnExactness:FALSE raiseOnOverflow:TRUE raiseOnUnderflow:TRUE raiseOnDivideByZero:TRUE]; 
 	pickNumericValueController.hideZero = hidesZero;
+	pickNumericValueController.showTenths = showTenths;
 	pickNumericValueController.maxValue = [maxValue decimalNumberByRoundingAccordingToBehavior:roundingBehavior];
 	NSString *maxValueAsString = [pickNumericValueController.maxValue stringValue];
 	pickNumericValueController->numDigits = [maxValueAsString length];
+	if (pickNumericValueController.showTenths) {
+		pickNumericValueController->numDigits += 2;
+	}
 	pickNumericValueController->leftMostDigit = _intv([maxValueAsString substringToIndex:1]);
 
 	return pickNumericValueController;
