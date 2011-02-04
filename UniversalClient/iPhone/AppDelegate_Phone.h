@@ -42,6 +42,7 @@
 - (void)showTips;
 - (void)restartCreateEmpireId:(NSString *)empireId username:(NSString *)username password:(NSString *)password;
 - (void)showAnnouncement;
+- (void)gameover:(NSString *)endGameUrl;
 
 
 @end

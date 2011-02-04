@@ -217,6 +217,17 @@
 }
 
 
+- (void)gameover:(NSString *)endGameUrl {
+	WebPageController *webPageController = [WebPageController create];
+	[webPageController goToUrl:endGameUrl];
+	if (self.tabBarController.modalViewController) {
+		[self.tabBarController.modalViewController presentModalViewController:webPageController animated:YES];
+	} else {
+		[self.tabBarController presentModalViewController:webPageController animated:YES];
+	}
+}
+
+
 #pragma mark -
 #pragma mark TabBarController Delegate Methods
 

@@ -121,10 +121,17 @@ static id<LERequestMonitor> delegate;
 	if ([self errorCode] == 1006) {
 		Session *session = [Session sharedInstance];
 		[session reloginTarget:self selector:@selector(reloginComplete)];
+	} else if ([self errorCode] == 1200) {
+		[self requestFinished];
+
+		AppDelegate_Phone *appDelegate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
+		NSLog(@"Error Data: %@", [self errorData]);
+		[appDelegate gameover:(NSString *)[self errorData]];
 	} else {
 		[self requestFinished];
 		
 		[self requestComplete];
+
 	}
 	
 	return nil;
