@@ -124,8 +124,8 @@
 #pragma mark Callback Methods
 
 - (id)probedStarsLoaded:(LEBuildingViewProbedStars *)request {
-	self.probedStars = request.probedStars;
 	self.numProbedStars = request.starCount;
+	self.probedStars = request.probedStars;
 	return nil;
 }
 
