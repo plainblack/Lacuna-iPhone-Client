@@ -14,6 +14,7 @@
 #define NSRangeZero NSMakeRange(0,0)
 #define isNull(__o) (__o == nil || ((id)__o == [NSNull null]))
 #define isNotNull(__o) (__o && ((id)__o != [NSNull null]))
+#define isNotEmptyString(__o) (__o && ((id)__o != [NSNull null]) && [__o length]>0)
 
 //Supported Server Version
 #define SERVER_MAJOR 2

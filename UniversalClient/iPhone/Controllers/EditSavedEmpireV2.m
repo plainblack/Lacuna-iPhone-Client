@@ -36,6 +36,7 @@ typedef enum {
 
 
 @synthesize empireKey;
+@synthesize serverKey;
 @synthesize empireNameCell;
 @synthesize passwordCell;
 @synthesize selectedServer;
@@ -73,10 +74,21 @@ typedef enum {
 	Session *session = [Session sharedInstance];
 	
 	if (!self.selectedServer) {
-		KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithIdentifier:self.empireKey accessGroup:nil] autorelease];
-		self.empireNameCell.content.text = [keychainItemWrapper objectForKey:(id)kSecAttrAccount];
+		KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithUsername:self.empireKey serverUri:self.serverKey accessGroup:nil] autorelease];
+
+		if (isNotEmptyString([keychainItemWrapper objectForKey:(id)kSecAttrAccount])) {
+			self.empireNameCell.content.text = [keychainItemWrapper objectForKey:(id)kSecAttrAccount];
+		} else {
+			self.empireNameCell.content.text = self.empireKey;
+		}
+
 		self.passwordCell.textField.text = [keychainItemWrapper objectForKey:(id)kSecValueData];
-		session.serverUri = [keychainItemWrapper objectForKey:(id)kSecAttrService];
+
+		if (isNotEmptyString([keychainItemWrapper objectForKey:(id)kSecAttrService])) {
+			session.serverUri = [keychainItemWrapper objectForKey:(id)kSecAttrService];
+		} else {
+			session.serverUri = self.serverKey;
+		}
 		self.selectedServer = _dict(session.serverUri, @"name", session.serverUri, @"uri");
 	}
 }
@@ -192,6 +204,7 @@ typedef enum {
 
 - (void)dealloc {
 	self.empireKey = nil;
+	self.serverKey = nil;
 	self.empireNameCell = nil;
 	self.passwordCell = nil;
 	self.selectedServer = nil;
@@ -244,9 +257,11 @@ typedef enum {
 #pragma mark Action Methods
 
 - (IBAction)save {
-	KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithIdentifier:self.empireKey accessGroup:nil] autorelease];
+	NSLog(@"Creating wrapper to save");
+	KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithUsername:self.empireKey serverUri:[self.selectedServer objectForKey:@"uri"] accessGroup:nil] autorelease];
+	NSLog(@"Saving");
 	[keychainItemWrapper setObject:self.passwordCell.textField.text forKey:(id)kSecValueData];
-	[keychainItemWrapper setObject:[self.selectedServer objectForKey:@"uri"] forKey:(id)kSecAttrService];
+	//[keychainItemWrapper setObject:[self.selectedServer objectForKey:@"uri"] forKey:(id)kSecAttrService];
 	
 	Session *session = [Session sharedInstance];
 	[session updatedSavedEmpire:self.empireNameCell.content.text uri:[self.selectedServer objectForKey:@"uri"]];

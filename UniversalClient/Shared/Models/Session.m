@@ -104,7 +104,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Session);
 		self->reloginSelector = selector;
 		NSString *username = self.empire.name;
 		if (self.empire.name) {
-			KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithIdentifier:username accessGroup:nil] autorelease];				
+			KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithUsername:username serverUri:self.serverUri accessGroup:nil] autorelease];				
 			NSString *password = [keychainItemWrapper objectForKey:(id)kSecValueData];
 			[[[LEEmpireLogin alloc] initWithCallback:@selector(reloggedIn:) target:self username:username password:password] autorelease];
 		} else {
@@ -227,10 +227,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Session);
 
 
 - (void)saveToKeyChainForUsername:(NSString *)username password:(NSString *)password {
-	KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithIdentifier:username accessGroup:nil] autorelease];
-	[keychainItemWrapper setObject:username forKey:(id)kSecAttrAccount];
+	KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithUsername:username serverUri:self.serverUri accessGroup:nil] autorelease];
+	//[keychainItemWrapper setObject:username forKey:(id)kSecAttrAccount];
 	[keychainItemWrapper setObject:password forKey:(id)kSecValueData];
-	[keychainItemWrapper setObject:self.serverUri forKey:(id)kSecAttrService];
+	//[keychainItemWrapper setObject:self.serverUri forKey:(id)kSecAttrService];
 }
 
 
@@ -319,7 +319,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Session);
 - (void)updatedSavedEmpire:(NSString *)empireName uri:(NSString *)uri {
 	BOOL found = NO;
 	for (NSMutableDictionary *savedEmpire in self.savedEmpireList) {
-		if ([[savedEmpire objectForKey:@"username"] isEqualToString:empireName]){
+		if ([[savedEmpire objectForKey:@"username"] isEqualToString:empireName] && [[savedEmpire objectForKey:@"uri"] isEqualToString:uri]){
 			found = YES;
 			[savedEmpire setObject:uri forKey:@"uri"];
 		}

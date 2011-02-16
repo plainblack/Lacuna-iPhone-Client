@@ -73,6 +73,8 @@ typedef enum {
 	self.passwordCell.label.text = @"Password";
 	self.passwordCell.delegate = self;
 	self.passwordCell.secureTextEntry = YES;
+	
+	[KeychainItemWrapper cleanUp];
 }
 
 
@@ -290,7 +292,8 @@ typedef enum {
 			; //DO NOT REMOVE
 			NSDictionary *empireData = [self.empires objectAtIndex:indexPath.row];
 			NSString *username = [empireData objectForKey:@"username"];
-			KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithIdentifier:username accessGroup:nil] autorelease];				
+			NSString *serverUri = [empireData objectForKey:@"uri"];
+			KeychainItemWrapper *keychainItemWrapper = [[[KeychainItemWrapper alloc] initWithUsername:username serverUri:serverUri accessGroup:nil] autorelease];				
 			NSString *password = [keychainItemWrapper objectForKey:(id)kSecValueData];
 			session.serverUri = [keychainItemWrapper objectForKey:(id)kSecAttrService];
 			if (!session.serverUri || [session.serverUri length] == 0) {
@@ -317,8 +320,10 @@ typedef enum {
 			; //DO NOT REMOVE
 			NSDictionary *empireData = [self.empires objectAtIndex:indexPath.row];
 			NSString *username = [empireData objectForKey:@"username"];
+			NSString *uri = [empireData objectForKey:@"uri"];
 			EditSavedEmpireV2 *editSavedEmpire = [EditSavedEmpireV2 create];
 			editSavedEmpire.empireKey = username;
+			editSavedEmpire.serverKey = uri;
 			[self.navigationController pushViewController:editSavedEmpire animated:YES];
 
 			break;

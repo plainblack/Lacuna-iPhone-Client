@@ -50,6 +50,12 @@
 
 #import "KeychainItemWrapper.h"
 #import <Security/Security.h>
+#import "LEMacros.h"
+#import "Session.h"
+
+
+#define LE_SEC_ITEM_ID @"LE_SEC_ITEM"
+
 
 /*
  
@@ -80,8 +86,8 @@
  to encapsulate the transition between what the detail view controller was expecting (NSString *) and what the
  Keychain API expects as a validly constructed container class.
  */
-- (NSMutableDictionary *)secItemFormatToDictionary:(NSDictionary *)dictionaryToConvert;
-- (NSMutableDictionary *)dictionaryToSecItemFormat:(NSDictionary *)dictionaryToConvert;
++ (NSMutableDictionary *)secItemFormatToDictionary:(NSDictionary *)dictionaryToConvert;
++ (NSMutableDictionary *)dictionaryToSecItemFormat:(NSDictionary *)dictionaryToConvert;
 
 // Updates the item in the keychain, or adds it if it doesn't exist.
 - (void)writeToKeychain;
@@ -96,10 +102,11 @@
 
 #if TARGET_IPHONE_SIMULATOR
 // Dummy implementations for no-building simulator target (reduce compiler warnings)
-- (id)initWithIdentifier: (NSString *)identifier accessGroup:(NSString *) accessGroup {
+- (id)initWithUsername:(NSString *)username serverUri:(NSString *)serverUri accessGroup:(NSString *) accessGroup {
     if (self = [super init]) {
 		self.keychainItemData = [NSMutableDictionary dictionaryWithCapacity:1];
-		[self.keychainItemData setObject:identifier forKey:(id)kSecAttrAccount];
+		[self.keychainItemData setObject:username forKey:(id)kSecAttrAccount];
+		[self.keychainItemData setObject:serverUri forKey:(id)kSecAttrService];
 	}
 	
 	return self;
@@ -117,7 +124,7 @@
 	} else if (key == (id)kSecValueData) {
 		return @"abc123";
 	} else if (key == (id)kSecAttrService) {
-		return @"https://pt.lacunaexpanse.com/";
+		return [self.keychainItemData objectForKey:(id)kSecAttrService];
 	} else {
 		return nil;
 	}
@@ -137,10 +144,14 @@
 }
 
 
++ (void)cleanUp {
+}
+
+
 #else
 
 
-- (id)initWithIdentifier: (NSString *)identifier accessGroup:(NSString *) accessGroup {
+- (id)initWithUsername:(NSString *)username serverUri:(NSString *)serverUri accessGroup:(NSString *) accessGroup {
     if (self = [super init]) {
         // Begin Keychain search setup. The genericPasswordQuery leverages the special user
         // defined attribute kSecAttrGeneric to distinguish itself between other generic Keychain
@@ -148,7 +159,9 @@
         self.genericPasswordQuery = [[NSMutableDictionary alloc] init];
         
         [self.genericPasswordQuery setObject:(id)kSecClassGenericPassword forKey:(id)kSecClass];
-        [self.genericPasswordQuery setObject:identifier forKey:(id)kSecAttrGeneric];
+        [self.genericPasswordQuery setObject:LE_SEC_ITEM_ID forKey:(id)kSecAttrGeneric];
+        [self.genericPasswordQuery setObject:username forKey:(id)kSecAttrAccount];
+        [self.genericPasswordQuery setObject:serverUri forKey:(id)kSecAttrService];
         
         // The keychain access group attribute determines if this item can be shared
         // amongst multiple apps whose code signing entitlements contain the same keychain access group.
@@ -159,26 +172,37 @@
         // Use the proper search constants, return only the attributes of the first match.
         [self.genericPasswordQuery setObject:(id)kSecMatchLimitOne forKey:(id)kSecMatchLimit];
         [self.genericPasswordQuery setObject:(id)kCFBooleanTrue forKey:(id)kSecReturnAttributes];
-        
+
 		//UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"SAN Check" message:[NSString stringWithFormat:@"genericPasswordQuery: %@", self.genericPasswordQuery] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 		//[av show];
         NSDictionary *tempQuery = [NSDictionary dictionaryWithDictionary:self.genericPasswordQuery];
+		
+//		NSLog(@"genericPasswordQuery: %@", genericPasswordQuery);
+//		NSLog(@"tempQuery: %@", tempQuery);
         
         NSMutableDictionary *outDictionary = nil;
         
 		OSStatus copyResult = SecItemCopyMatching((CFDictionaryRef)tempQuery, (CFTypeRef *)&outDictionary);
-        if (! copyResult == noErr) {
-            // Stick these default values into keychain item if nothing found.
-            [self resetKeychainItem];
-            
-            // Add the generic attribute and the keychain access group.
-            [self.keychainItemData setObject:identifier forKey:(id)kSecAttrGeneric];
-            if (accessGroup != nil) {
-                [self.keychainItemData setObject:accessGroup forKey:(id)kSecAttrAccessGroup];
-            }
-        } else {
+//		NSLog(@"outDict: %@", outDictionary);
+        if (copyResult == noErr) {
             // load the saved data from Keychain.
-            self.keychainItemData = [self secItemFormatToDictionary:outDictionary];
+            self.keychainItemData = [KeychainItemWrapper secItemFormatToDictionary:outDictionary];
+		} else if (copyResult == errSecItemNotFound) {
+//			NSLog(@"NOT SET SO RESETTING");
+			[self resetKeychainItem];
+		} else {
+//            // Stick these default values into keychain item if nothing found.
+//            [self resetKeychainItem];
+//            
+//            // Add the generic attribute and the keychain access group.
+//            [self.keychainItemData setObject:username forKey:(id)kSecAttrGeneric];
+//            [self.keychainItemData setObject:serverUri forKey:(id)kSecAttrService];
+//			
+//            if (accessGroup != nil) {
+//                [self.keychainItemData setObject:accessGroup forKey:(id)kSecAttrAccessGroup];
+//            }
+			NSLog(@"UNKNOWN KEYCHAIN LOOK UP ERROR: %i", copyResult);
+			[self resetKeychainItem];
         }
 		
         [outDictionary release];
@@ -219,20 +243,21 @@
     }
     else if (self.keychainItemData)
     {
-        NSMutableDictionary *tempDictionary = [self dictionaryToSecItemFormat:self.keychainItemData];
+        NSMutableDictionary *tempDictionary = [KeychainItemWrapper dictionaryToSecItemFormat:self.keychainItemData];
         SecItemDelete((CFDictionaryRef)tempDictionary);
     }
     
     // Default attributes for keychain item.
-    [self.keychainItemData setObject:@"" forKey:(id)kSecAttrAccount];
-    [self.keychainItemData setObject:@"" forKey:(id)kSecAttrLabel];
-    [self.keychainItemData setObject:@"" forKey:(id)kSecAttrDescription];
+    [self.keychainItemData setObject:[self.genericPasswordQuery objectForKey:(id)kSecClass] forKey:(id)kSecClass];
+    [self.keychainItemData setObject:[self.genericPasswordQuery objectForKey:(id)kSecAttrGeneric] forKey:(id)kSecAttrGeneric];
+    [self.keychainItemData setObject:[self.genericPasswordQuery objectForKey:(id)kSecAttrAccount] forKey:(id)kSecAttrAccount];
+    [self.keychainItemData setObject:[self.genericPasswordQuery objectForKey:(id)kSecAttrService] forKey:(id)kSecAttrService];
     
     // Default data for keychain item.
     [self.keychainItemData setObject:@"" forKey:(id)kSecValueData];
 }
 
-- (NSMutableDictionary *)dictionaryToSecItemFormat:(NSDictionary *)dictionaryToConvert
++ (NSMutableDictionary *)dictionaryToSecItemFormat:(NSDictionary *)dictionaryToConvert
 {
     // The assumption is that this method will be called with a properly populated dictionary
     // containing all the right key/value pairs for a SecItem.
@@ -251,7 +276,7 @@
     return returnDictionary;
 }
 
-- (NSMutableDictionary *)secItemFormatToDictionary:(NSDictionary *)dictionaryToConvert
++ (NSMutableDictionary *)secItemFormatToDictionary:(NSDictionary *)dictionaryToConvert
 {
     // The assumption is that this method will be called with a properly populated dictionary
     // containing all the right key/value pairs for the UI element.
@@ -294,15 +319,17 @@
 	//UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"SAN Check" message:[NSString stringWithFormat:@"genericPasswordQuery: %@", self.genericPasswordQuery] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 	//[av show];
 	OSStatus copyResult = SecItemCopyMatching((CFDictionaryRef)self.genericPasswordQuery, (CFTypeRef *)&attributes);
+//	NSLog(@"Attributes: %@", attributes);
     if (copyResult == noErr)
     {
+//		NSLog(@"UPDATING");
         // First we need the attributes from the Keychain.
         updateItem = [NSMutableDictionary dictionaryWithDictionary:attributes];
         // Second we need to add the appropriate search key/values.
         [updateItem setObject:[self.genericPasswordQuery objectForKey:(id)kSecClass] forKey:(id)kSecClass];
         
         // Lastly, we need to set up the updated attribute list being careful to remove the class.
-        NSMutableDictionary *tempCheck = [self dictionaryToSecItemFormat:self.keychainItemData];
+        NSMutableDictionary *tempCheck = [KeychainItemWrapper dictionaryToSecItemFormat:self.keychainItemData];
         [tempCheck removeObjectForKey:(id)kSecClass];
         
         // An implicit assumption is that you can only update a single item at a time.
@@ -313,11 +340,10 @@
 			UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Update" message:[NSString stringWithFormat:@"Result: %d", updateResult] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 			[av show];
 		}
-    }
-    else
-    {
-		OSStatus addResult = SecItemAdd((CFDictionaryRef)[self dictionaryToSecItemFormat:self.keychainItemData], NULL);
-        NSAssert(addResult == noErr, @"Couldn't add the Keychain Item.");
+    } else {
+//		NSLog(@"INSERTING");
+		OSStatus addResult = SecItemAdd((CFDictionaryRef)[KeychainItemWrapper dictionaryToSecItemFormat:self.keychainItemData], NULL);
+        //NSAssert(addResult == noErr, @"Couldn't add the Keychain Item.");
 
 		if (addResult != noErr) {
 			UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Add" message:[NSString stringWithFormat:@"Result: %d", addResult] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
@@ -325,6 +351,103 @@
 		}
     }
 }
+
+
+#pragma mark -
+#pragma mark Class Methods
+
++ (void)cleanUp {
+//	NSLog(@"cleanUp Called");
+	//Get stored accounts
+	Session *session = [Session sharedInstance];
+	NSMutableDictionary *savedEmpires = [NSMutableDictionary dictionaryWithCapacity:[session.savedEmpireList count]];
+	for (NSDictionary *empire in session.savedEmpireList) {
+		[savedEmpires setObject:empire forKey:[NSString stringWithFormat:@"%@-%@", [empire objectForKey:@"username"], [empire objectForKey:@"uri"]]];
+	}
+	
+	//Get Saved Sec Items
+	NSMutableDictionary *passwordQuery;
+	passwordQuery = [[NSMutableDictionary alloc] init];
+	[passwordQuery setObject:(id)kSecClassGenericPassword forKey:(id)kSecClass];
+	[passwordQuery setObject:(id)kSecMatchLimitAll forKey:(id)kSecMatchLimit];
+	[passwordQuery setObject:(id)kCFBooleanTrue forKey:(id)kSecReturnAttributes];
+	NSDictionary *tempPasswordQuery = [NSDictionary dictionaryWithDictionary:passwordQuery];
+	NSMutableArray *outArray = nil;
+	NSMutableArray *goodSecItems = [NSMutableArray arrayWithCapacity:10];
+	NSMutableArray *partialSecItems = [NSMutableArray arrayWithCapacity:10];
+	SecItemCopyMatching((CFDictionaryRef)tempPasswordQuery, (CFTypeRef *)&outArray);
+	for (NSMutableDictionary *outDictionary in outArray) {
+		NSMutableDictionary *passwordDict = [self secItemFormatToDictionary:outDictionary];
+		NSString *itemId = [passwordDict objectForKey:(id)kSecAttrGeneric];
+
+		//Split Sec Items into Good (all 3 account parts) and Partial
+		NSString *username = [passwordDict objectForKey:(id)kSecAttrAccount];
+		NSString *service = [passwordDict objectForKey:(id)kSecAttrService];
+		NSString *password = [passwordDict objectForKey:(id)kSecValueData]; 
+		if (isNotEmptyString(itemId) && isNotEmptyString(username) && isNotEmptyString(service) && isNotEmptyString(password)) {
+			[goodSecItems addObject:passwordDict];
+		} else {
+			[partialSecItems addObject:passwordDict];
+		}
+	}
+	
+	//Process Good Sec Items
+	for (NSDictionary *secItem in goodSecItems) {
+//		NSLog(@"Processing good secItem: %@", secItem);
+		NSString *itemId = [secItem objectForKey:(id)kSecAttrGeneric];
+		NSString *username = [secItem objectForKey:(id)kSecAttrAccount];
+		NSString *service = [secItem objectForKey:(id)kSecAttrService];
+		NSString *password = [secItem objectForKey:(id)kSecValueData]; 
+		NSString *empireKey = [NSString stringWithFormat:@"%@-%@", username, service];
+		NSDictionary *empire = [savedEmpires objectForKey:empireKey];
+		//If does not have matching stored empire then delete sec item
+		if (!empire) {
+//			NSLog(@"Delete this item");
+			SecItemDelete((CFDictionaryRef)[KeychainItemWrapper dictionaryToSecItemFormat:secItem]);
+		}
+		if (![itemId isEqualToString:LE_SEC_ITEM_ID]) {
+//			NSLog(@"Creating new item");
+			//Delete this Item
+			SecItemDelete((CFDictionaryRef)[KeychainItemWrapper dictionaryToSecItemFormat:secItem]);
+			//Create Real SEC ITEM
+			KeychainItemWrapper *tmp = [[KeychainItemWrapper alloc] initWithUsername:username serverUri:service accessGroup:nil];
+			[tmp setObject:password forKey:(id)kSecValueData];
+			[tmp release];
+		}
+		[savedEmpires removeObjectForKey:empireKey];
+	}
+	
+	//Process Partial Sec Items
+	for (NSDictionary *secItem in partialSecItems) {
+//		NSLog(@"Processing partial secItem: %@", secItem);
+		NSString *username = [secItem objectForKey:(id)kSecAttrAccount];
+		NSString *service = [secItem objectForKey:(id)kSecAttrService];
+		NSString *password = [secItem objectForKey:(id)kSecValueData]; 
+		if ([username isEqualToString:@"bob3"]) {
+			service = @"https://pt.lacunaexpanse.com/";
+		}
+		NSString *empireKey = [NSString stringWithFormat:@"%@-%@", username, service];
+		NSDictionary *empire = [savedEmpires objectForKey:empireKey];
+		//If does not have matching stored empire then delete sec item
+		if (!empire) {
+//			NSLog(@"Delete this item");
+			SecItemDelete((CFDictionaryRef)[KeychainItemWrapper dictionaryToSecItemFormat:secItem]);
+		} else {
+//			NSLog(@"Creating new item");
+			//Delete this Item
+			SecItemDelete((CFDictionaryRef)[KeychainItemWrapper dictionaryToSecItemFormat:secItem]);
+			//Create Real SEC ITEM
+			KeychainItemWrapper *tmp = [[KeychainItemWrapper alloc] initWithUsername:username serverUri:service accessGroup:nil];
+			[tmp setObject:password forKey:(id)kSecValueData];
+			[tmp release];
+		}
+
+		[savedEmpires removeObjectForKey:empireKey];
+	}
+	
+	[passwordQuery release];
+}
+
 
 #endif
 

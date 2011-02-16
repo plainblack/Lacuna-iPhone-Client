@@ -14,14 +14,11 @@
 
 
 @interface EditSavedEmpireV2 : LETableViewControllerGrouped <UITextFieldDelegate, SelectServerControllerDelegate> {
-	NSString *empireKey; 
-	LETableViewCellLabeledText *empireNameCell;
-	LETableViewCellTextEntry *passwordCell;
-	NSDictionary *selectedServer;
 }
 
 
 @property(nonatomic, retain) NSString *empireKey; 
+@property(nonatomic, retain) NSString *serverKey; 
 @property(nonatomic, retain) LETableViewCellLabeledText *empireNameCell;
 @property(nonatomic, retain) LETableViewCellTextEntry *passwordCell;
 @property(nonatomic, retain) NSDictionary *selectedServer;
