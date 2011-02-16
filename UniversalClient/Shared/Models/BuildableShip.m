@@ -42,7 +42,6 @@
 #pragma mark Instance Methods
 
 - (void)parseData:(NSDictionary *)buildableShipData {
-	NSLog(@"Buildable Ship Data: %@", buildableShipData);
 	self.type = [buildableShipData objectForKey:@"type"];
 	self.canBuild = _boolv([buildableShipData objectForKey:@"can"]);
 	self.reason = [buildableShipData objectForKey:@"reason"];
