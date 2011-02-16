@@ -7,6 +7,7 @@
 //
 
 #import "ViewProbedStarsController.h"
+#import "AppDelegate_Phone.h"
 #import "LEMacros.h"
 #import "Util.h"
 #import "Observatory.h"
@@ -62,7 +63,9 @@ typedef enum {
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	[self.observatory addObserver:self forKeyPath:@"probedStars" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
-	[self.observatory loadProbedStarsForPage:1];
+	if (!self.observatory.probedStars) {
+		[self.observatory loadProbedStarsForPage:1];
+	}
 
 	[self togglePageButtons];
 }
@@ -140,7 +143,7 @@ typedef enum {
 			switch (indexPath.row) {
 				case ROW_PROBED_STAR:
 					; //DO NOT REMOVE
-					LETableViewCellStar *starCell = [LETableViewCellStar getCellForTableView:tableView isSelectable:NO];
+					LETableViewCellStar *starCell = [LETableViewCellStar getCellForTableView:tableView isSelectable:YES];
 					[starCell setStar:star];
 					cell = starCell;
 					break;
@@ -180,6 +183,11 @@ typedef enum {
 		if ([self.observatory.probedStars count] > 0) {
 			Star *star = [self.observatory.probedStars objectAtIndex:indexPath.section];
 			switch (indexPath.row) {
+				case ROW_PROBED_STAR:
+					; //DO NOT REMOVE
+					AppDelegate_Phone *appDelegate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
+					[appDelegate showStarMapGridX:star.x gridY:star.y];
+					break;
 				case ROW_ABANDON_PROBE:
 					self.selectedStar = star;
 					UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"Abandon Star %@?", star.name] delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
