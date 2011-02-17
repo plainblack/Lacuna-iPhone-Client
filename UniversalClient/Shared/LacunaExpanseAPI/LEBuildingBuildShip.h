@@ -21,6 +21,9 @@
 @property(nonatomic, retain) NSString *buildingId;
 @property(nonatomic, retain) NSString *buildingUrl;
 @property(nonatomic, retain) NSString *shipType;
+@property(nonatomic, retain) NSMutableDictionary *result;
+@property(nonatomic, retain) NSMutableDictionary *workData;
+@property(nonatomic, retain) NSDecimalNumber *numberShipBuilding;
 @property(nonatomic, retain) NSMutableArray *shipBuildQueue;
 
 

@@ -9,6 +9,7 @@
 #import "Shipyard.h"
 #import "LEMacros.h"
 #import "Util.h"
+#import "MapBuilding.h"
 #import "LEBuildingViewShipBuildQueue.h"
 #import "LEBuildingGetBuildableShips.h"
 #import "LEBuildingBuildShip.h"
@@ -209,6 +210,10 @@
 
 - (id)shipBuildQueued:(LEBuildingBuildShip *)request {
 	self.buildQueue = request.shipBuildQueue;
+	self.numBuildQueue = request.numberShipBuilding;
+	[self parseWorkData:request.workData];
+	[[self findMapBuilding] updateWork:request.workData];
+	self.needsRefresh = YES;
 	return nil;
 }
 

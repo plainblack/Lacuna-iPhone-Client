@@ -98,8 +98,12 @@
 	self.name = [buildingData objectForKey:@"name"];
 	self.imageName = [buildingData objectForKey:@"image"];
 	self.level = [Util asNumber:[buildingData objectForKey:@"level"]];
+	NSLog(@"X Before: %@", self.x);
 	self.x = [Util asNumber:[buildingData objectForKey:@"x"]];
+	NSLog(@"X After: %@", self.x);
+	NSLog(@"Y Before: %@", self.y);
 	self.y = [Util asNumber:[buildingData objectForKey:@"y"]];
+	NSLog(@"Y After: %@", self.y);
 
 	if (!self.resourcesPerHour) {
 		self.resourcesPerHour = [[[ResourceGeneration alloc] init] autorelease];
