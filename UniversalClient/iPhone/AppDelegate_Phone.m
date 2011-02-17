@@ -187,8 +187,15 @@
 
 
 - (void)showStarMapGridX:(NSDecimalNumber *)x gridY:(NSDecimalNumber *)y {
-	[self.viewUniverseController gotoGridX:x gridY:y];
+	self.viewUniverseController.gotoGridX = x;
+	self.viewUniverseController.gotoGridY = y;
 	self.tabBarController.selectedViewController = self.viewUniverseNavigationController;
+}
+
+
+- (void)setStarMapGridX:(NSDecimalNumber *)x gridY:(NSDecimalNumber *)y {
+	self.viewUniverseController.gotoGridX = x;
+	self.viewUniverseController.gotoGridY = y;
 }
 
 

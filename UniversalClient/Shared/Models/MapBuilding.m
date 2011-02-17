@@ -57,7 +57,6 @@
 #pragma mark Instance Methods
 
 - (void)parseData:(NSDictionary *)data {
-	NSLog(@"Map Data: %@", data);
 	self.id = [Util idFromDict:data named:@"id"];
 	if ([data objectForKey:@"url"]) {
 		self.buildingUrl = [data objectForKey:@"url"];
@@ -80,7 +79,6 @@
 	}
 	
 	NSDictionary *workBuildDict = [data objectForKey:@"work"];
-	NSLog(@"Work Dict: %@", workBuildDict);
 	if (isNotNull(workBuildDict)) {
 		if(!self.work) {
 			self.work = [[[TimedActivity alloc] init] autorelease];

@@ -7,6 +7,7 @@
 //
 
 #import "ViewBodyController.h"
+#import "AppDelegate_Phone.h"
 #import "LEMacros.h"
 #import "Util.h"
 #import "Session.h"
@@ -500,13 +501,13 @@ typedef enum {
 			self.oreKeysSorted = nil;
 		}
 
-		
-
 		if (self.watchedBody) {
 			self.navigationItem.title = self.watchedBody.name;
 			self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:newBody.type],
 										 [LEViewSectionTab tableView:self.tableView withText:@"Actions"],
 										 [LEViewSectionTab tableView:self.tableView withText:@"Composition"]);
+			AppDelegate_Phone *appDelegate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
+			[appDelegate setStarMapGridX:self.watchedBody.x gridY:self.watchedBody.y];
 		} else {
 			self.navigationItem.title = @"";
 			self.sectionHeaders = nil;
@@ -514,7 +515,11 @@ typedef enum {
 
 		[self.tableView reloadData];
 	} else if ([keyPath isEqual:@"needsRefresh"]) {
-		self.navigationItem.title = self.watchedBody.name;
+		if (![self.navigationItem.title isEqualToString:self.watchedBody.name]) {
+			self.navigationItem.title = self.watchedBody.name;
+			AppDelegate_Phone *appDelegate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
+			[appDelegate setStarMapGridX:self.watchedBody.x gridY:self.watchedBody.y];
+		}
 		[self.tableView reloadData];
 	}
 }

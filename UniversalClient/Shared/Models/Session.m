@@ -119,7 +119,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Session);
 - (void)logout {
 	[[[LEEmpireLogout alloc] initWithCallback:@selector(loggedOut:) target:self sessionId:self.sessionId] autorelease];
 	self.sessionId = nil;
-	NSLog(@"logout unset empire");
 	self.empire = nil;
 	self.body = nil;
 	self.isLoggedIn = NO;
@@ -219,7 +218,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Session);
 	[self updatedSavedEmpire:username uri:self.serverUri];
 	
 	self.sessionId = inSessionId;
-	NSLog(@"loggedInEmpireData set empire");
 	self.empire = [[Empire alloc] init];
 	[self.empire parseData:inEmpireData];
 	self.isLoggedIn = TRUE;

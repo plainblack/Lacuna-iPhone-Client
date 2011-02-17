@@ -13,16 +13,7 @@
 
 
 @interface ViewUniverseController : UIViewController <UIScrollViewDelegate, UniverseGotoControllerDelegate> {
-	UIScrollView *scrollView;
-	UIView *map;
-	UIActivityIndicatorView *loadingView;
-	NSMutableDictionary *inUseStarCells;
-	NSMutableArray *reusableStarCells;
-	NSMutableDictionary *inUseBodyCells;
-	NSMutableArray *reusableBodyCells;
-	StarMap *starMap;
 	BOOL isUpdating;
-	BOOL updateLocation;
 }
 
 
@@ -34,6 +25,8 @@
 @property (nonatomic, retain) NSMutableDictionary *inUseBodyCells;
 @property (nonatomic, retain) NSMutableArray *reusableBodyCells;
 @property (nonatomic, retain) StarMap *starMap;
+@property (nonatomic, retain) NSDecimalNumber *gotoGridX;
+@property (nonatomic, retain) NSDecimalNumber *gotoGridY;
 
 
 - (IBAction)logout;

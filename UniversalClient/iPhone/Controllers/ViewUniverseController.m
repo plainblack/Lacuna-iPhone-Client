@@ -45,11 +45,14 @@
 @synthesize inUseBodyCells;
 @synthesize reusableBodyCells;
 @synthesize starMap;
+@synthesize gotoGridX;
+@synthesize gotoGridY;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	self->updateLocation = YES;
+	//NSLog(@"viewDidLoad");
+	//self->updateLocation = YES;
 	
 	Session *session = [Session sharedInstance];
 	
@@ -119,17 +122,12 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 
-	if (self->updateLocation) {
-		Session *session = [Session sharedInstance];
-		if (session.body) {
-			[self gotoGridX:session.body.x gridY:session.body.y];
-		} else {
-			float midX = (self.scrollView.contentSize.width/2) - (self.scrollView.frame.size.width/2);
-			float midY = (self.scrollView.contentSize.height/2) - (self.scrollView.frame.size.height/2);
-			self.scrollView.contentOffset = CGPointMake(midX, midY);
-		}
-		self->updateLocation = NO;
+	if (self.gotoGridX && self.gotoGridY) {
+		[self gotoGridX:self.gotoGridX gridY:self.gotoGridY];
+		self.gotoGridX = nil;
+		self.gotoGridY = nil;
 	}
+
 	[self tileView];
 }
 
@@ -181,6 +179,8 @@
 	self.reusableStarCells = nil;
 	self.inUseBodyCells = nil;
 	self.reusableBodyCells = nil;
+	self.gotoGridX = nil;
+	self.gotoGridY = nil;
     [super dealloc];
 }
 
@@ -290,7 +290,8 @@
 	}];
 	[self.inUseStarCells removeAllObjects];
 	[self.reusableStarCells removeAllObjects];
-	self->updateLocation = YES;
+	self.gotoGridX = nil;
+	self.gotoGridY = nil;
 }
 
 
@@ -307,7 +308,6 @@
 	
 	CGRect scrollToRect = CGRectMake(topLeftX, topLeftY, self.scrollView.frame.size.width, self.scrollView.frame.size.height);
 	[self.scrollView scrollRectToVisible:scrollToRect animated:NO];
-	self->updateLocation = NO;
 }
 
 
@@ -331,15 +331,6 @@
 		[self.inUseStarCells removeObjectForKey:obj];
 	}];
 
-	/*
-	for (id key in self.inUseBodyCells) {
-		LEUniverseBodyCell *cell = [self.inUseBodyCells objectForKey:key];
-		if (!CGRectIntersectsRect(cell.frame, visibleBounds)) {
-			[self releaseBodyCell:cell];
-			[keysToRemove addObject:key];
-		}
-	}
-	*/
 	[self.inUseBodyCells enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
 		LEUniverseBodyCell *cell = obj;
 		if (!CGRectIntersectsRect(cell.frame, visibleBounds)) {
