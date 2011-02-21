@@ -459,6 +459,7 @@
 		F6FB458B11F517FE00E24EAC /* Glyph.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB458A11F517FE00E24EAC /* Glyph.m */; };
 		F6FB45A311F52C1F00E24EAC /* SearchForGlyphController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB45A111F52C1F00E24EAC /* SearchForGlyphController.m */; };
 		F6FB45A411F52C1F00E24EAC /* SearchForGlyphController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6FB45A211F52C1F00E24EAC /* SearchForGlyphController.xib */; };
+		F6FB83A3131294C8007B7AAD /* LEBuildingRecallShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB83A2131294C8007B7AAD /* LEBuildingRecallShip.m */; };
 		F6FD9E6B11D79FA0003785AD /* Building.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FD9E6A11D79FA0003785AD /* Building.m */; };
 		F6FD9E6E11D7A05D003785AD /* ResourceGeneration.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FD9E6D11D7A05D003785AD /* ResourceGeneration.m */; };
 		F6FD9E7B11D7A41E003785AD /* ResourceStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FD9E7A11D7A41E003785AD /* ResourceStorage.m */; };
@@ -1338,6 +1339,8 @@
 		F6FB45A011F52C1F00E24EAC /* SearchForGlyphController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchForGlyphController.h; sourceTree = "<group>"; };
 		F6FB45A111F52C1F00E24EAC /* SearchForGlyphController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchForGlyphController.m; sourceTree = "<group>"; };
 		F6FB45A211F52C1F00E24EAC /* SearchForGlyphController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchForGlyphController.xib; sourceTree = "<group>"; };
+		F6FB83A1131294C8007B7AAD /* LEBuildingRecallShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingRecallShip.h; sourceTree = "<group>"; };
+		F6FB83A2131294C8007B7AAD /* LEBuildingRecallShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingRecallShip.m; sourceTree = "<group>"; };
 		F6FD9E6911D79FA0003785AD /* Building.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Building.h; sourceTree = "<group>"; };
 		F6FD9E6A11D79FA0003785AD /* Building.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Building.m; sourceTree = "<group>"; };
 		F6FD9E6C11D7A05D003785AD /* ResourceGeneration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceGeneration.h; sourceTree = "<group>"; };
@@ -1915,6 +1918,8 @@
 				F6DA5A58124E69E9005D11F6 /* LEStatsSpyRank.m */,
 				F6DA5A5A124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.h */,
 				F6DA5A5B124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.m */,
+				F6FB83A1131294C8007B7AAD /* LEBuildingRecallShip.h */,
+				F6FB83A2131294C8007B7AAD /* LEBuildingRecallShip.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -2882,6 +2887,7 @@
 				F6F830BF12CE25BC003A38D2 /* MarketTrade.m in Sources */,
 				F6F8311412CE2D0A003A38D2 /* AcceptMarketTradeController.m in Sources */,
 				F6F0E7E112D4A0380089C721 /* AssignSpyController.m in Sources */,
+				F6FB83A3131294C8007B7AAD /* LEBuildingRecallShip.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
