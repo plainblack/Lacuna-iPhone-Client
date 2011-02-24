@@ -17,7 +17,9 @@
 #import "LETableViewCellLabeledParagraph.h"
 #import "LETableViewCellBody.h"
 #import "LETableViewCellMedal.h"
+#import "LETableViewCellButton.h"
 #import "WebPageController.h"
+#import "ViewAllianceProfileController.h"
 #import "AppDelegate_Phone.h"
 
 
@@ -31,6 +33,7 @@ typedef enum {
 typedef enum {
 	EMPIRE_ROW_NAME,
 	EMPIRE_ROW_SPECIES,
+	EMPIRE_ROW_ALLIANCE,
 	EMPIRE_ROW_LAST_LOGIN,
 	EMPIRE_ROW_EMPIRE_FOUNDED,
 	EMPIRE_ROW_STATUS,
@@ -99,7 +102,7 @@ typedef enum {
 	if (self.profile) {
 		switch (section) {
 			case SECTION_EMPIRE:
-				return 10;
+				return 11;
 				break;
 			case SECTION_COLONIES:
 				return [self.profile.colonies count];
@@ -138,6 +141,8 @@ typedef enum {
 					case EMPIRE_ROW_STATUS:
 						return [LETableViewCellLabeledParagraph getHeightForTableView:tableView text:self.profile.status];
 						break;
+					case EMPIRE_ROW_ALLIANCE:
+						return [LETableViewCellButton getHeightForTableView:tableView];
 					default:
 						return 0.0;
 						break;
@@ -187,6 +192,12 @@ typedef enum {
 							descriptionCell.content.text = @"";
 						}
 						cell = descriptionCell;
+						break;
+					case EMPIRE_ROW_ALLIANCE:
+						; //DO NOT REMOVE
+						LETableViewCellButton *allianceButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+						allianceButtonCell.textLabel.text = self.profile.allianceName;
+						cell = allianceButtonCell;
 						break;
 					case EMPIRE_ROW_STATUS:
 						; //DO NOT REMOVE
@@ -321,6 +332,16 @@ typedef enum {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (self.profile) {
 		switch (indexPath.section) {
+			case SECTION_EMPIRE:
+				switch (indexPath.row) {
+					case EMPIRE_ROW_ALLIANCE:
+						; //DO NOT REMOVE
+						ViewAllianceProfileController *viewAllianceProfileController = [ViewAllianceProfileController create];
+						viewAllianceProfileController.allianceId = self.profile.allianceId;
+						[self.navigationController pushViewController:viewAllianceProfileController animated:YES];
+						break;
+				}
+				break;
 			case SECTION_COLONIES:
 				; //DO NOT REMOVE
 				NSDictionary *body = [self.profile.colonies objectAtIndex:indexPath.row];

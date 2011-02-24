@@ -28,14 +28,16 @@
 @synthesize speciesName;
 @synthesize colonies;
 @synthesize medals;
+@synthesize allianceId;
+@synthesize allianceName;
 
 
 #pragma mark -
 #pragma mark NSObject Methods
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"empireId:%@, name:%@, numPlanets:%@, status:%@, description:%@, city:%@, country:%@, skype:%@, playerName:%@, lastLogin:%@, founded:%@, speciesName:%@, medalCount:%i, medalCount:%i",
-			self.empireId, self.name, self.numPlanets, self.status, self.empireDescription, self.city, self.country, self.skype, self.playerName, self.lastLogin, self.founded, self.speciesName, [self.colonies count], [self.medals count]];
+	return [NSString stringWithFormat:@"empireId:%@, name:%@, numPlanets:%@, status:%@, description:%@, city:%@, country:%@, skype:%@, playerName:%@, lastLogin:%@, founded:%@, speciesName:%@, medalCount:%i, medalCount:%i, allianceId:%@, allianceName:%@",
+			self.empireId, self.name, self.numPlanets, self.status, self.empireDescription, self.city, self.country, self.skype, self.playerName, self.lastLogin, self.founded, self.speciesName, [self.colonies count], [self.medals count], self.allianceId, self.allianceName];
 }
 
 
@@ -55,6 +57,8 @@
 	self.speciesName = nil;
 	self.colonies = nil;
 	self.medals = nil;
+	self.allianceId = nil;
+	self.allianceName = nil;
 	[super dealloc];
 }
 
@@ -75,6 +79,9 @@
 	self.lastLogin = [Util date:[data objectForKey:@"last_login"]];
 	self.founded = [Util date:[data objectForKey:@"date_founded"]];
 	self.speciesName = [data objectForKey:@"species"];
+	NSMutableDictionary *allianceData = [data objectForKey:@"alliance"];
+	self.allianceId = [Util idFromDict:allianceData named:@"id"];
+	self.allianceName = [allianceData objectForKey:@"name"];
 	
 	self.colonies = [data objectForKey:@"known_colonies"];
 	[self.colonies sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease])];

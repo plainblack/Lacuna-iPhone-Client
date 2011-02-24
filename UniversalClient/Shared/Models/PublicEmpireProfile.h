@@ -10,20 +10,6 @@
 
 
 @interface PublicEmpireProfile : NSObject {
-	NSString *empireId;
-	NSString *name;
-	NSDecimalNumber *numPlanets;
-	NSString *status;
-	NSString *empireDescription;
-	NSString *city;
-	NSString *country;
-	NSString *skype;
-	NSString *playerName;
-	NSDate *lastLogin;
-	NSDate *founded;
-	NSString *speciesName;
-	NSMutableArray *colonies;
-	NSMutableArray *medals;
 }
 
 
@@ -41,6 +27,8 @@
 @property (nonatomic, retain) NSString *speciesName;
 @property (nonatomic, retain) NSMutableArray *colonies;
 @property (nonatomic, retain) NSMutableArray *medals;
+@property (nonatomic, retain) NSString *allianceId;
+@property (nonatomic, retain) NSString *allianceName;
 
 
 - (void)parseData:(NSDictionary *)data;
