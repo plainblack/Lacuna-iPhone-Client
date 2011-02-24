@@ -15,6 +15,7 @@
 #import "LEBuildingScuttleShip.h"
 #import "LEBuildingViewShipsTravelling.h"
 #import "LEBuildingViewForeignShips.h"
+#import "LEBuildingRecallShip.h"
 #import "LETableViewCellButton.h"
 #import "ViewDictionaryController.h"
 #import "ViewShipsController.h"
@@ -237,19 +238,22 @@
 	return (self.foreignShipsPageNumber < [Util numPagesForCount:_intv(self.numForeignShips)]);
 }
 
+- (void)recallShip:(Ship *)ship {
+	[[[LEBuildingRecallShip alloc] initWithCallback:@selector(shipRecalled:) target:self buildingId:self.id buildingUrl:self.buildingUrl shipId:ship.id] autorelease];
+}
+
 
 #pragma mark -
 #pragma mark Callback Methods
 
-- (id)shipsLoaded:(LEBuildingViewAllShips *)request {
+- (void)shipsLoaded:(LEBuildingViewAllShips *)request {
 	self.ships = request.ships;
 	self.numShips = request.numberOfShips;
 	self.shipsUpdated = [NSDate date];
-	return nil;
 }
 
 
-- (id)shipScuttled:(LEBuildingScuttleShip *)request {
+- (void)shipScuttled:(LEBuildingScuttleShip *)request {
 	Ship *shipToRemove = nil;
 	for (Ship *newShip in self.ships) {
 		if ([newShip.id isEqualToString:request.shipId]) {
@@ -261,11 +265,10 @@
 	}
 	
 	self.shipsUpdated = [NSDate date];
-	return nil;
 }
 
 
-- (id)shipRenamed:(LEBuildingNameShip *)request {
+- (void)shipRenamed:(LEBuildingNameShip *)request {
 	Ship *renamedShip;
 	for (Ship *ship in self.ships) {
 		if ([ship.id isEqualToString:request.shipId]) {
@@ -275,23 +278,33 @@
 	
 	renamedShip.name = request.name;
 	self.shipsUpdated = [NSDate date];
-	return nil;
 }
 
 
-- (id)travellingShipsLoaded:(LEBuildingViewShipsTravelling *)request {
+- (void)travellingShipsLoaded:(LEBuildingViewShipsTravelling *)request {
 	self.travellingShips = request.travellingShips;
 	self.numTravellingShips = request.numberOfShipsTravelling;
 	self.travellingShipsUpdated = [NSDate date];
-	return nil;
 }
 
 
-- (id)foreignShipsLoaded:(LEBuildingViewForeignShips *)request {
+- (void)foreignShipsLoaded:(LEBuildingViewForeignShips *)request {
 	self.foreignShips = request.foreignShips;
 	self.numForeignShips = request.numberOfShipsForeign;
 	self.foreignShipsUpdated = [NSDate date];
-	return nil;
+}
+
+
+- (void)shipRecalled:(LEBuildingRecallShip *)request {
+	Ship *recalledShip;
+	for (Ship *ship in self.ships) {
+		if ([ship.id isEqualToString:request.shipId]) {
+			recalledShip = ship;
+		}
+	}
+	
+	[recalledShip parseData:request.shipData];
+	self.shipsUpdated = [NSDate date];
 }
 
 

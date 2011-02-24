@@ -21,7 +21,8 @@ typedef enum {
 	ROW_SHIP_INFO,
 	ROW_TASK,
 	ROW_RENAME_BUTTON,
-	ROW_SCUTTLE_BUTTON
+	ROW_SCUTTLE_BUTTON,
+	ROW_RECALL_BUTTON
 } ROW;
 
 
@@ -103,7 +104,12 @@ typedef enum {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (self.spacePort && self.spacePort.ships) {
-		return 4;
+		Ship *currentShip = [self.spacePort.ships objectAtIndex:section];
+		if ([currentShip.task isEqualToString:@"Defend" ]) {
+			return 5;
+		} else {
+			return 4;
+		}
 	} else {
 		return 1;
 	}
@@ -121,6 +127,7 @@ typedef enum {
 				break;
 			case ROW_RENAME_BUTTON:
 			case ROW_SCUTTLE_BUTTON:
+			case ROW_RECALL_BUTTON:
 				return [LETableViewCellButton getHeightForTableView:tableView];
 				break;
 			default:
@@ -166,6 +173,12 @@ typedef enum {
 				scuttleButtonCell.textLabel.text = @"Scuttle";
 				cell = scuttleButtonCell;
 				break;
+			case ROW_RECALL_BUTTON:
+				; //DO NOT REMOVE
+				LETableViewCellButton *recallButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+				recallButtonCell.textLabel.text = @"Recall";
+				cell = recallButtonCell;
+				break;
 			default:
 				break;
 		}
@@ -193,6 +206,9 @@ typedef enum {
 				actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
 				[actionSheet showFromTabBar:self.tabBarController.tabBar];
 				[actionSheet release];
+				break;
+			case ROW_RECALL_BUTTON:
+				[self.spacePort recallShip:currentShip];
 				break;
 			case ROW_RENAME_BUTTON:
 				; //DO NOT REMOVE

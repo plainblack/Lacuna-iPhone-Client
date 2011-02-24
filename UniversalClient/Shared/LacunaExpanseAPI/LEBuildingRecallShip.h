@@ -18,7 +18,7 @@
 @property(nonatomic, retain) NSString *buildingUrl;
 @property(nonatomic, retain) NSString *shipId;
 @property(nonatomic, retain) NSMutableDictionary *result;
-@property(nonatomic, retain) NSString *shipData;
+@property(nonatomic, retain) NSMutableDictionary *shipData;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl shipId:(NSString *)shipId;

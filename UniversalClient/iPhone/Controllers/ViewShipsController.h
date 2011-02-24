@@ -15,10 +15,6 @@
 
 
 @interface ViewShipsController : LETableViewControllerGrouped <UIActionSheetDelegate> {
-	UISegmentedControl *pageSegmentedControl;
-	SpacePort *spacePort;
-	Ship *ship;
-	NSDate *shipsLastUpdated;
 }
 
 

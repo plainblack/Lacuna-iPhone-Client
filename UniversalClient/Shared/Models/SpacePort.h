@@ -14,19 +14,6 @@
 
 
 @interface SpacePort : Building {
-	NSMutableDictionary *dockedShips;
-	NSMutableArray *ships;
-	NSDate *shipsUpdated;
-	NSInteger shipsPageNumber;
-	NSDecimalNumber *numShips;
-	NSMutableArray *travellingShips;
-	NSDate *travellingShipsUpdated;
-	NSInteger travellingShipsPageNumber;
-	NSDecimalNumber *numTravellingShips;
-	NSMutableArray *foreignShips;
-	NSDate *foreignShipsUpdated;
-	NSInteger foreignShipsPageNumber;
-	NSDecimalNumber *numForeignShips;
 }
 
 
@@ -56,7 +43,7 @@
 - (void)loadForeignShipsForPage:(NSInteger)pageNumber;
 - (bool)hasPreviousForeignShipsPage;
 - (bool)hasNextForeignShipsPage;
-
+- (void)recallShip:(Ship *)ship;
 
 
 @end

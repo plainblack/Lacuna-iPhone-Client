@@ -30,7 +30,7 @@
 
 
 - (id)params {
-	return _array([Session sharedInstance].sessionId, self.buildingId, self.shipId, self.name);
+	return _array([Session sharedInstance].sessionId, self.buildingId, self.shipId);
 }
 
 
@@ -46,7 +46,7 @@
 
 
 - (NSString *)methodName {
-	return @"name_ship";
+	return @"recall_ship";
 }
 
 
