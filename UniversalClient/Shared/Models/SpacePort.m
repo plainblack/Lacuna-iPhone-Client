@@ -18,7 +18,7 @@
 #import "LEBuildingRecallShip.h"
 #import "LETableViewCellButton.h"
 #import "ViewDictionaryController.h"
-#import "ViewShipsController.h"
+#import "ViewShipsByTypeController.h"
 #import "ViewTravellingShipsController.h"
 #import "ViewForeignShipsController.h"
 
@@ -121,7 +121,7 @@
 		case BUILDING_ROW_VIEW_SHIPS:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellButton *viewShipsCell = [LETableViewCellButton getCellForTableView:tableView];
-			viewShipsCell.textLabel.text = @"View All Ships";
+			viewShipsCell.textLabel.text = @"View Ships";
 			cell = viewShipsCell;
 			break;
 		case BUILDING_ROW_VIEW_TRAVELLING_SHIPS:
@@ -155,9 +155,9 @@
 			break;
 		case BUILDING_ROW_VIEW_SHIPS:
 			; //DO NOT REMOVE
-			ViewShipsController *viewShipsController = [ViewShipsController create];
-			viewShipsController.spacePort = self;
-			return viewShipsController;
+			ViewShipsByTypeController *viewShipsByTypeController = [ViewShipsByTypeController create];
+			viewShipsByTypeController.spaceport = self;
+			return viewShipsByTypeController;
 			break;
 		case BUILDING_ROW_VIEW_TRAVELLING_SHIPS:
 			; //DO NOT REMOVE

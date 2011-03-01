@@ -11,9 +11,6 @@
 
 
 @interface NewBuildingTypeController : LETableViewControllerGrouped {
-	NSDecimalNumber *x;
-	NSDecimalNumber *y;
-	NSMutableDictionary *buttonsByLoc;
 }
 
 

@@ -243,7 +243,7 @@ static id<LERequestMonitor> delegate;
 	if (!jsonData && error) {
 		[self errorCallback:error];
 	} else {
-		NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]] autorelease];
+		NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:60.0 ] autorelease];
 		[request setTimeoutInterval:600.0];
 		[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
 		[request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];

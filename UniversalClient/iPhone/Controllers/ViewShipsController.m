@@ -20,6 +20,7 @@
 typedef enum {
 	ROW_SHIP_INFO,
 	ROW_TASK,
+	ROW_LOCATION_BUTTON,
 	ROW_RENAME_BUTTON,
 	ROW_SCUTTLE_BUTTON,
 	ROW_RECALL_BUTTON
@@ -38,6 +39,7 @@ typedef enum {
 
 @synthesize pageSegmentedControl;
 @synthesize spacePort;
+@synthesize tag;
 @synthesize ship;
 @synthesize shipsLastUpdated;
 
@@ -106,7 +108,7 @@ typedef enum {
 	if (self.spacePort && self.spacePort.ships) {
 		Ship *currentShip = [self.spacePort.ships objectAtIndex:section];
 		if ([currentShip.task isEqualToString:@"Defend" ]) {
-			return 5;
+			return 6;
 		} else {
 			return 4;
 		}
@@ -125,6 +127,7 @@ typedef enum {
 			case ROW_TASK:
 				return [LETableViewCellLabeledText getHeightForTableView:tableView];
 				break;
+			case ROW_LOCATION_BUTTON:
 			case ROW_RENAME_BUTTON:
 			case ROW_SCUTTLE_BUTTON:
 			case ROW_RECALL_BUTTON:
@@ -160,6 +163,12 @@ typedef enum {
 				taskCell.label.text = @"Task";
 				taskCell.content.text = currentShip.task;
 				cell = taskCell;
+				break;
+			case ROW_LOCATION_BUTTON:
+				; //DO NOT REMOVE
+				LETableViewCellButton *locationButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+				locationButtonCell.textLabel.text = @"Location";
+				cell = locationButtonCell;
 				break;
 			case ROW_RENAME_BUTTON:
 				; //DO NOT REMOVE
@@ -218,6 +227,10 @@ typedef enum {
 				renameShipController.nameCell.textField.text = ship.name;
 				[self.navigationController pushViewController:renameShipController animated:YES];
 				break;
+			case ROW_LOCATION_BUTTON:
+				; //DO NOT REMOVE
+				NSLog(@"Go to ship: %@", currentShip);
+				break;
 		}
 	}
 }
@@ -240,6 +253,7 @@ typedef enum {
 
 - (void)dealloc {
 	self.spacePort = nil;
+	self.tag = nil;
 	self.ship = nil;
 	self.shipsLastUpdated = nil;
     [super dealloc];

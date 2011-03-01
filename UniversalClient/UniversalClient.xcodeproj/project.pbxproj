@@ -122,6 +122,7 @@
 		F67F5774125ABE710041FA37 /* SearchForAllianceController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F67F5772125ABE710041FA37 /* SearchForAllianceController.xib */; };
 		F67F579D125AC1B80041FA37 /* ViewAllianceProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = F67F579C125AC1B80041FA37 /* ViewAllianceProfileController.m */; };
 		F67F57A0125AC24E0041FA37 /* AlliancePublicProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F67F579F125AC24E0041FA37 /* AlliancePublicProfile.m */; };
+		F680BF511315FC8600DA0D12 /* ViewShipsByTypeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F680BF501315FC8600DA0D12 /* ViewShipsByTypeController.m */; };
 		F683BC2511E40311009E64BF /* assets in Resources */ = {isa = PBXBuildFile; fileRef = F683B6A111E40310009E64BF /* assets */; };
 		F6863C16118E475A00861037 /* LETableViewCellAttachedLink.m in Sources */ = {isa = PBXBuildFile; fileRef = F6863C15118E475A00861037 /* LETableViewCellAttachedLink.m */; };
 		F6864F9B1183A131009826A7 /* ViewNetwork19NewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6864F9A1183A131009826A7 /* ViewNetwork19NewsController.m */; };
@@ -685,6 +686,8 @@
 		F67F579C125AC1B80041FA37 /* ViewAllianceProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewAllianceProfileController.m; sourceTree = "<group>"; };
 		F67F579E125AC24E0041FA37 /* AlliancePublicProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlliancePublicProfile.h; sourceTree = "<group>"; };
 		F67F579F125AC24E0041FA37 /* AlliancePublicProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlliancePublicProfile.m; sourceTree = "<group>"; };
+		F680BF4F1315FC8600DA0D12 /* ViewShipsByTypeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewShipsByTypeController.h; sourceTree = "<group>"; };
+		F680BF501315FC8600DA0D12 /* ViewShipsByTypeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewShipsByTypeController.m; sourceTree = "<group>"; };
 		F683B6A111E40310009E64BF /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		F6863C14118E475A00861037 /* LETableViewCellAttachedLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellAttachedLink.h; sourceTree = "<group>"; };
 		F6863C15118E475A00861037 /* LETableViewCellAttachedLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellAttachedLink.m; sourceTree = "<group>"; };
@@ -1714,6 +1717,8 @@
 				F692B8521218765F00E740C1 /* LEBuildingPushItems.m */,
 				F6F3F5921297930B005D6A79 /* LEBuildingQuackDuck.h */,
 				F6F3F5931297930B005D6A79 /* LEBuildingQuackDuck.m */,
+				F6FB83A1131294C8007B7AAD /* LEBuildingRecallShip.h */,
+				F6FB83A2131294C8007B7AAD /* LEBuildingRecallShip.m */,
 				F697BA0A119CE6BD004B2119 /* LEBuildingRecycle.h */,
 				F697BA0B119CE6BD004B2119 /* LEBuildingRecycle.m */,
 				F6E8D5601223E7A9001CD21D /* LEBuildingRejectInvite.h */,
@@ -1918,8 +1923,6 @@
 				F6DA5A58124E69E9005D11F6 /* LEStatsSpyRank.m */,
 				F6DA5A5A124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.h */,
 				F6DA5A5B124E6A09005D11F6 /* LEStatsWeeklyMedalWinners.m */,
-				F6FB83A1131294C8007B7AAD /* LEBuildingRecallShip.h */,
-				F6FB83A2131294C8007B7AAD /* LEBuildingRecallShip.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -2352,6 +2355,8 @@
 				F6D85A3A122DC06C00A44BD9 /* WebPageController.xib */,
 				F6DF42F212289F1D00A526FD /* WithdrawAllianceInviteController.h */,
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
+				F680BF4F1315FC8600DA0D12 /* ViewShipsByTypeController.h */,
+				F680BF501315FC8600DA0D12 /* ViewShipsByTypeController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2888,6 +2893,7 @@
 				F6F8311412CE2D0A003A38D2 /* AcceptMarketTradeController.m in Sources */,
 				F6F0E7E112D4A0380089C721 /* AssignSpyController.m in Sources */,
 				F6FB83A3131294C8007B7AAD /* LEBuildingRecallShip.m in Sources */,
+				F680BF511315FC8600DA0D12 /* ViewShipsByTypeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

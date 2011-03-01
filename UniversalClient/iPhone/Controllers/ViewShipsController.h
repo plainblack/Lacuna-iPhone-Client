@@ -20,6 +20,7 @@
 
 @property (nonatomic, retain) UISegmentedControl *pageSegmentedControl;
 @property (nonatomic, retain) SpacePort *spacePort;
+@property (nonatomic, retain) NSString *tag;
 @property (nonatomic, retain) Ship *ship;
 @property (nonatomic, retain) NSDate *shipsLastUpdated;
 
