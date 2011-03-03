@@ -44,6 +44,7 @@
 - (void)restartCreateEmpireId:(NSString *)empireId username:(NSString *)username password:(NSString *)password;
 - (void)showAnnouncement;
 - (void)gameover:(NSString *)endGameUrl;
+- (void)captchaValidate:(LERequest *)requestToValidate;
 
 
 @end

@@ -17,6 +17,7 @@
 #import "BaseTradeBuilding.h"
 #import "MarketTrade.h"
 #import "AcceptMarketTradeController.h"
+#import "LEBuildingAcceptFromMarket.h"
 
 
 typedef enum {
@@ -39,6 +40,7 @@ typedef enum {
 @synthesize pageSegmentedControl;
 @synthesize baseTradeBuilding;
 @synthesize marketLastUpdated;
+@synthesize selectedTrade;
 
 
 #pragma mark -
@@ -203,11 +205,16 @@ typedef enum {
 	MarketTrade *trade = [self.baseTradeBuilding.marketTrades objectAtIndex:indexPath.section];
 	switch (indexPath.row) {
 		case ROW_ACCEPT:
-			; //DO NOT REMOVE
-			AcceptMarketTradeController *acceptMarketTradeController = [AcceptMarketTradeController create];
-			acceptMarketTradeController.baseTradeBuilding = self.baseTradeBuilding;
-			acceptMarketTradeController.trade = trade;
-			[self.navigationController pushViewController:acceptMarketTradeController animated:YES];
+			if (self.baseTradeBuilding.selectTradeShip) {
+				AcceptMarketTradeController *acceptMarketTradeController = [AcceptMarketTradeController create];
+				acceptMarketTradeController.baseTradeBuilding = self.baseTradeBuilding;
+				acceptMarketTradeController.trade = trade;
+				[self.navigationController pushViewController:acceptMarketTradeController animated:YES];
+			} else {
+				self.selectedTrade = trade;
+				[self.baseTradeBuilding acceptMarketTrade:self.selectedTrade target:self callback:@selector(tradeAccepted:)];
+			}
+
 			break;
 	}
 }
@@ -225,12 +232,15 @@ typedef enum {
 
 - (void)viewDidUnload {
 	[super viewDidUnload];
+	self.pageSegmentedControl = nil;
 }
 
 
 - (void)dealloc {
+	self.pageSegmentedControl = nil;
 	self.baseTradeBuilding = nil;
 	self.marketLastUpdated = nil;
+	self.selectedTrade = nil;
     [super dealloc];
 }
 
@@ -259,6 +269,23 @@ typedef enum {
 			NSLog(@"Invalid switchPage");
 			break;
 	}
+}
+
+
+- (id)tradeAccepted:(LEBuildingAcceptFromMarket *)request {
+	if ([request wasError]) {
+		NSString *errorText = [request errorMessage];
+		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Could not accept trade." message:errorText delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+		[av show];
+		[request markErrorHandled];
+		[self.tableView reloadData];
+		
+	} else {
+		[self.baseTradeBuilding.availableTrades removeObject:self.selectedTrade];
+		[self.navigationController popViewControllerAnimated:YES];
+	}
+	
+	return nil;
 }
 
 

@@ -45,6 +45,7 @@
 - (NSInteger)errorCode;
 - (NSMutableDictionary *)errorData;
 - (void)cancel;
+- (void)resend;
 
 
 + (void)setDelegate:(id<LERequestMonitor>)delegate;

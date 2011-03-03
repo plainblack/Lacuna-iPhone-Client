@@ -11,6 +11,7 @@
 
 
 @class BaseTradeBuilding;
+@class MarketTrade;
 
 
 @interface ViewMarketController : LETableViewControllerGrouped {
@@ -20,6 +21,7 @@
 @property (nonatomic, retain) UISegmentedControl *pageSegmentedControl;
 @property (nonatomic, retain) BaseTradeBuilding *baseTradeBuilding;
 @property (nonatomic, retain) NSDate *marketLastUpdated;
+@property (nonatomic, retain) MarketTrade *selectedTrade;
 
 
 + (ViewMarketController *) create;

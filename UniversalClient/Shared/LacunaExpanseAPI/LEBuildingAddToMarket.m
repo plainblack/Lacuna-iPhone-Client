@@ -39,7 +39,6 @@
 	if (self.tradeShipId) {
 		[params addObject:_dict(self.tradeShipId, @"ship_id", [NSNumber numberWithInt:1], @"stay")];
 	}
-	NSLog(@"add_to_market: %@", params);
 	return params;
 }
 

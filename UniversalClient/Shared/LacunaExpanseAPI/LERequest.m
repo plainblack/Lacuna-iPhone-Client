@@ -120,13 +120,16 @@ static id<LERequestMonitor> delegate;
 	
 	if ([self errorCode] == 1006) {
 		Session *session = [Session sharedInstance];
-		[session reloginTarget:self selector:@selector(reloginComplete)];
+		[session reloginTarget:self selector:@selector(resend)];
 	} else if ([self errorCode] == 1200) {
 		[self requestFinished];
 
 		AppDelegate_Phone *appDelegate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
 		NSLog(@"Error Data: %@", [self errorData]);
 		[appDelegate gameover:(NSString *)[self errorData]];
+	} else if ([self errorCode] == 1016) {
+		AppDelegate_Phone *appDelegate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
+		[appDelegate captchaValidate:self];
 	} else {
 		[self requestFinished];
 		
@@ -229,6 +232,7 @@ static id<LERequestMonitor> delegate;
 			url = [NSString stringWithFormat:@"%@/%@", session.serverUri, serviceUrl];
 		}
 	}
+	//NSLog(@"Calling: %@", url);
 	
 	NSDictionary *methodCall = _dict([self methodName], @"method", 
 									 [self params], @"params", 
@@ -279,9 +283,8 @@ static id<LERequestMonitor> delegate;
 }
 
 
-- (id)reloginComplete{
+- (void)resend {
 	[self sendRequest];
-	return nil;
 }
 
 

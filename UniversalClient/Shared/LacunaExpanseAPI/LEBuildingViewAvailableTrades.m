@@ -20,8 +20,6 @@
 @synthesize pageNumber;
 @synthesize availableTrades;
 @synthesize tradeCount;
-@synthesize captchaGuid;
-@synthesize captchaUrl;
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl pageNumber:(NSInteger)inPageNumber {
@@ -42,10 +40,6 @@
 	
 	self.availableTrades = [result objectForKey:@"trades"];
 	self.tradeCount = [Util asNumber:[result objectForKey:@"trade_count"]];
-
-	NSDictionary *captcha = [result objectForKey:@"captcha"];
-	self.captchaGuid = [captcha objectForKey:@"guid"];
-	self.captchaUrl = [captcha objectForKey:@"url"];
 }
 
 
@@ -64,8 +58,6 @@
 	self.buildingUrl = nil;
 	self.availableTrades = nil;
 	self.tradeCount = nil;
-	self.captchaGuid = nil;
-	self.captchaUrl = nil;
 	[super dealloc];
 }
 

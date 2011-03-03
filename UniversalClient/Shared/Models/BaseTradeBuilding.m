@@ -55,8 +55,6 @@
 @synthesize availableTradeCount;
 @synthesize availableTradesUpdated;
 @synthesize availableTrades;
-@synthesize captchaGuid;
-@synthesize captchaUrl;
 @synthesize myTradePageNumber;
 @synthesize myTradeCount;
 @synthesize myTradesUpdated;
@@ -104,8 +102,6 @@
 	self.availableTradeCount = nil;
 	self.availableTradesUpdated = nil;
 	self.availableTrades = nil;
-	self.captchaGuid = nil;
-	self.captchaUrl = nil;
 	self.myTradeCount = nil;
 	self.myTradesUpdated = nil;
 	self.myTrades = nil;
@@ -521,10 +517,10 @@
 }
 
 
-- (void)acceptTrade:(Trade *)trade solution:(NSString *)solution target:(id)target callback:(SEL)callback {
+- (void)acceptTrade:(Trade *)trade target:(id)target callback:(SEL)callback {
 	self->acceptTradeTarget = target;
 	self->acceptTradeCallback = callback;
-	[[[LEBuildingAcceptTrade alloc] initWithCallback:@selector(acceptedTrade:) target:self buildingId:self.id buildingUrl:self.buildingUrl tradeId:trade.id tradeShipId:trade.tradeShipId captchaGuid:self.captchaGuid captchaSolution:solution] autorelease];
+	[[[LEBuildingAcceptTrade alloc] initWithCallback:@selector(acceptedTrade:) target:self buildingId:self.id buildingUrl:self.buildingUrl tradeId:trade.id tradeShipId:trade.tradeShipId] autorelease];
 }
 
 
@@ -576,10 +572,10 @@
 }
 
 
-- (void)acceptMarketTrade:(MarketTrade *)trade solution:(NSString *)solution target:(id)target callback:(SEL)callback {
+- (void)acceptMarketTrade:(MarketTrade *)trade target:(id)target callback:(SEL)callback {
 	self->acceptFromMarketTarget = target;
 	self->acceptFromMarketCallback = callback;
-	[[[LEBuildingAcceptFromMarket alloc] initWithCallback:@selector(acceptedFromMarket:) target:self buildingId:self.id buildingUrl:self.buildingUrl tradeId:trade.id captchaGuid:self.captchaGuid captchaSolution:solution] autorelease];
+	[[[LEBuildingAcceptFromMarket alloc] initWithCallback:@selector(acceptedFromMarket:) target:self buildingId:self.id buildingUrl:self.buildingUrl tradeId:trade.id] autorelease];
 }
 
 - (void)withdrawMarketTrade:(MarketTrade *)trade {
@@ -716,8 +712,6 @@
 	self.availableTrades = tmpTrades;
 	
 	self.availableTradeCount = request.tradeCount;
-	self.captchaGuid = request.captchaGuid;
-	self.captchaUrl = request.captchaUrl;
 	self.availableTradesUpdated = [NSDate date];
 	return nil;
 }
@@ -800,8 +794,6 @@
 	self.marketTrades = tmpTrades;
 	
 	self.marketTradeCount = request.tradeCount;
-	self.captchaGuid = request.captchaGuid;
-	self.captchaUrl = request.captchaUrl;
 	self.marketUpdated = [NSDate date];
 	return nil;
 }

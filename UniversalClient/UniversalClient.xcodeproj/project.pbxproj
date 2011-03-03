@@ -134,6 +134,7 @@
 		F68709271266A54200068237 /* ViewVotingOptionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F68709261266A54200068237 /* ViewVotingOptionsController.m */; };
 		F6873327131DE84900CBC502 /* LECaptchaFetch.m in Sources */ = {isa = PBXBuildFile; fileRef = F6873326131DE84900CBC502 /* LECaptchaFetch.m */; };
 		F687332A131DE85700CBC502 /* LECaptchaSolve.m in Sources */ = {isa = PBXBuildFile; fileRef = F6873329131DE85700CBC502 /* LECaptchaSolve.m */; };
+		F6873341131DEBF500CBC502 /* CaptchaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6873340131DEBF500CBC502 /* CaptchaViewController.m */; };
 		F6882CFE116EA08A009B624B /* ViewEmpireProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6882CFC116EA08A009B624B /* ViewEmpireProfileController.m */; };
 		F6882D03116EA658009B624B /* NewEmpireController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6882D01116EA658009B624B /* NewEmpireController.m */; };
 		F6882D41116EB44F009B624B /* LETableViewCellLabeledText.m in Sources */ = {isa = PBXBuildFile; fileRef = F6882D40116EB44F009B624B /* LETableViewCellLabeledText.m */; };
@@ -711,6 +712,8 @@
 		F6873326131DE84900CBC502 /* LECaptchaFetch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LECaptchaFetch.m; sourceTree = "<group>"; };
 		F6873328131DE85700CBC502 /* LECaptchaSolve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LECaptchaSolve.h; sourceTree = "<group>"; };
 		F6873329131DE85700CBC502 /* LECaptchaSolve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LECaptchaSolve.m; sourceTree = "<group>"; };
+		F687333F131DEBF500CBC502 /* CaptchaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptchaViewController.h; sourceTree = "<group>"; };
+		F6873340131DEBF500CBC502 /* CaptchaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptchaViewController.m; sourceTree = "<group>"; };
 		F6882CFB116EA08A009B624B /* ViewEmpireProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewEmpireProfileController.h; sourceTree = "<group>"; };
 		F6882CFC116EA08A009B624B /* ViewEmpireProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewEmpireProfileController.m; sourceTree = "<group>"; };
 		F6882D00116EA658009B624B /* NewEmpireController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewEmpireController.h; sourceTree = "<group>"; };
@@ -2367,6 +2370,8 @@
 				F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */,
 				F680BF4F1315FC8600DA0D12 /* ViewShipsByTypeController.h */,
 				F680BF501315FC8600DA0D12 /* ViewShipsByTypeController.m */,
+				F687333F131DEBF500CBC502 /* CaptchaViewController.h */,
+				F6873340131DEBF500CBC502 /* CaptchaViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2906,6 +2911,7 @@
 				F680BF511315FC8600DA0D12 /* ViewShipsByTypeController.m in Sources */,
 				F6873327131DE84900CBC502 /* LECaptchaFetch.m in Sources */,
 				F687332A131DE85700CBC502 /* LECaptchaSolve.m in Sources */,
+				F6873341131DEBF500CBC502 /* CaptchaViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

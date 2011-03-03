@@ -16,18 +16,16 @@
 #import "LETableViewCellTextEntry.h"
 #import "LETableViewCellLabeledText.h"
 #import "LEBuildingAcceptTrade.h"
-#import "LETableViewCellCaptchaImage.h"
 #import "LETableViewCellShip.h"
 #import "LETableViewCellButton.h"
 
 typedef enum {
 	SECTION_SELECT_SHIP,
-	SECTION_CAPTCHA
+	SECTION_ACTION,
 } SECTION;
 
 typedef enum {
-	ROW_CAPTCHA_IMAGE,
-	ROW_CAPTCHA_SOLUTION
+	ROW_ACCEPT,
 } ROWS;
 
 
@@ -42,7 +40,6 @@ typedef enum {
 
 @synthesize baseTradeBuilding;
 @synthesize trade;
-@synthesize answerCell;
 @synthesize sections;
 
 
@@ -54,21 +51,15 @@ typedef enum {
 	
 	self.navigationItem.title = @"Accept Trade";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStylePlain target:self action:@selector(acceptTrade)] autorelease];
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Accept" style:UIBarButtonItemStylePlain target:self action:@selector(acceptTrade)] autorelease];
 	
 	if (self.baseTradeBuilding.selectTradeShip) {
 		self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Cargo Ship"], [LEViewSectionTab tableView:self.tableView withText:@"Confirm"]);
-		self.sections = _array([NSNumber numberWithInt:SECTION_SELECT_SHIP], [NSNumber numberWithInt:SECTION_CAPTCHA]);
+		self.sections = _array([NSNumber numberWithInt:SECTION_SELECT_SHIP], [NSNumber numberWithInt:SECTION_ACTION]);
 	} else {
 		self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Confirm"]);
-		self.sections = _array([NSNumber numberWithInt:SECTION_CAPTCHA]);
+		self.sections = _array([NSNumber numberWithInt:SECTION_ACTION]);
 	}
-	
-	
-	self.answerCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
-	self.answerCell.label.text = @"Answer";
-	self.answerCell.returnKeyType = UIReturnKeySend;
-	self.answerCell.delegate = self;
 }
 
 
@@ -108,8 +99,8 @@ typedef enum {
 				return 1;
 			}
 			break;
-		case SECTION_CAPTCHA:
-			return 2;
+		case SECTION_ACTION:
+			return 1;
 			break;
 		default:
 			return 0;
@@ -137,13 +128,10 @@ typedef enum {
 				return [LETableViewCellButton getHeightForTableView:tableView];
 			}
 			break;
-		case SECTION_CAPTCHA:
+		case SECTION_ACTION:
 			switch (indexPath.row) {
-				case ROW_CAPTCHA_IMAGE:
-					return [LETableViewCellCaptchaImage getHeightForTableView:tableView];
-					break;
-				case ROW_CAPTCHA_SOLUTION:
-					return [LETableViewCellTextEntry getHeightForTableView:tableView];
+				case ROW_ACCEPT:
+					return [LETableViewCellButton getHeightForTableView:tableView];
 					break;
 				default:
 					return 0;
@@ -189,17 +177,13 @@ typedef enum {
 				cell = selectTradeShipButtonCell;
 			}
 			break;
-		case SECTION_CAPTCHA:
+		case SECTION_ACTION:
 			switch (indexPath.row) {
-				case ROW_CAPTCHA_IMAGE:
+				case ROW_ACCEPT:
 					; //DO NOT REMOVE
-					LETableViewCellCaptchaImage *captchaImageCell = [LETableViewCellCaptchaImage getCellForTableView:tableView];
-					[captchaImageCell setCapthchaImageURL:self.baseTradeBuilding.captchaUrl];
-					cell = captchaImageCell;
-					break;
-				case ROW_CAPTCHA_SOLUTION:
-					; //DO NOT REMOVE
-					cell = self.answerCell;
+					LETableViewCellButton *acceptButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+					acceptButtonCell.textLabel.text = @"Accept";
+					cell = acceptButtonCell;
 					break;
 				default:
 					cell = nil;
@@ -229,6 +213,16 @@ typedef enum {
 				break;
 			}
 			break;
+		case SECTION_ACTION:
+			switch (indexPath.row == ROW_ACCEPT) {
+				case ROW_ACCEPT:
+					[self acceptTrade];
+					break;
+				default:
+					break;
+			}
+			break;
+
 	}
 }
 
@@ -252,7 +246,6 @@ typedef enum {
 - (void)dealloc {
 	self.baseTradeBuilding = nil;
 	self.trade = nil;
-	self.answerCell = nil;
 	[self->selectTradeShipController release];
 	self->selectTradeShipController = nil;
     [super dealloc];
@@ -260,23 +253,10 @@ typedef enum {
 
 
 #pragma mark -
-#pragma mark UITextFieldDelegate methods
-
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-	if (textField == self.answerCell.textField) {
-		[self acceptTrade];
-	}
-	
-	return YES;
-}
-
-
-#pragma mark -
 #pragma mark Instance Methods
 
 - (IBAction)acceptTrade {
-	[self.baseTradeBuilding acceptTrade:self.trade solution:self.answerCell.textField.text target:self callback:@selector(tradeAccepted:)];
+	[self.baseTradeBuilding acceptTrade:self.trade target:self callback:@selector(tradeAccepted:)];
 }
 
 
@@ -300,14 +280,6 @@ typedef enum {
 		NSString *errorText = [request errorMessage];
 		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Could not accept trade." message:errorText delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 		[av show];
-
-		switch ([request errorCode]) {
-			case 1014:
-				; //DO NOT REMOVE
-				self.baseTradeBuilding.captchaUrl = [[request errorData] objectForKey:@"url"];
-				self.baseTradeBuilding.captchaGuid = [[request errorData] objectForKey:@"guid"];
-				break;
-		}
 		[request markErrorHandled];
 		[self.tableView reloadData];
 

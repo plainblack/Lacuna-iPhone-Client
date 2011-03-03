@@ -20,12 +20,14 @@
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget {
-	return [self initWithCallback:inCallback target:(NSObject *)inTarget];
+	return [super initWithCallback:inCallback target:(NSObject *)inTarget];
 }
 
 
 - (id)params {
-	return _array([Session sharedInstance].sessionId);
+	Session *session = [Session sharedInstance];
+	
+	return _array(session.sessionId);
 }
 
 
@@ -37,7 +39,7 @@
 
 
 - (NSString *)serviceUrl {
-	return @"/captcha";
+	return @"captcha";
 }
 
 

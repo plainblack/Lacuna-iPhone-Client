@@ -19,6 +19,7 @@
 #import "SelectSpeciesTemplateController.h"
 #import "WebPageController.h"
 #import "ViewTipsController.h"
+#import "CaptchaViewController.h"
 
 
 @interface AppDelegate_Phone(PrivateMethod)
@@ -232,6 +233,13 @@
 	} else {
 		[self.tabBarController presentModalViewController:webPageController animated:YES];
 	}
+}
+
+
+- (void)captchaValidate:(LERequest *)requestToValidate {
+	CaptchaViewController *captchaViewController = [CaptchaViewController create];
+	captchaViewController.requestNeedingCaptcha = requestToValidate;
+	[self.tabBarController presentModalViewController:captchaViewController animated:YES];
 }
 
 

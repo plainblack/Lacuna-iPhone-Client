@@ -19,23 +19,19 @@
 @synthesize buildingUrl;
 @synthesize tradeId;
 @synthesize tradeShipId;
-@synthesize captchaGuid;
-@synthesize captchaSolution;
 
 
-- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl tradeId:(NSString *)inTradeId tradeShipId:(NSString *)inTradeShipId captchaGuid:(NSString *)inCaptchaGuid captchaSolution:(NSString *)inCaptchaSolution {
+- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl tradeId:(NSString *)inTradeId tradeShipId:(NSString *)inTradeShipId {
 	self.buildingId = inBuildingId;
 	self.buildingUrl = inBuildingUrl;
 	self.tradeId = inTradeId;
 	self.tradeShipId = inTradeShipId;
-	self.captchaGuid = inCaptchaGuid;
-	self.captchaSolution = inCaptchaSolution;
 	return [self initWithCallback:inCallback target:(NSObject *)inTarget];
 }
 
 
 - (id)params {
-	NSMutableArray *params = _array([Session sharedInstance].sessionId, self.buildingId, self.tradeId, self.captchaGuid, self.captchaSolution);
+	NSMutableArray *params = _array([Session sharedInstance].sessionId, self.buildingId, self.tradeId);
 	
 	if (self.tradeShipId) {
 		[params addObject:_dict(self.tradeShipId, @"ship_id", [NSNumber numberWithInt:1], @"stay")];
@@ -64,8 +60,6 @@
 	self.buildingUrl = nil;
 	self.tradeId = nil;
 	self.tradeShipId = nil;
-	self.captchaGuid = nil;
-	self.captchaSolution = nil;
 	[super dealloc];
 }
 

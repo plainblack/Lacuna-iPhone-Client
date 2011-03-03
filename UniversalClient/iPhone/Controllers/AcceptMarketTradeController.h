@@ -13,17 +13,15 @@
 
 @class BaseTradeBuilding;
 @class MarketTrade;
-@class LETableViewCellTextEntry;
 
 
-@interface AcceptMarketTradeController : LETableViewControllerGrouped <UITextFieldDelegate, SelectTradeShipControllerDelegate> {
+@interface AcceptMarketTradeController : LETableViewControllerGrouped <SelectTradeShipControllerDelegate> {
 	SelectTradeShipController *selectTradeShipController;
 }
 
 
 @property (nonatomic, retain) BaseTradeBuilding *baseTradeBuilding;
 @property (nonatomic, assign) MarketTrade *trade;
-@property (nonatomic, retain) LETableViewCellTextEntry *answerCell;
 @property (nonatomic, retain) NSMutableArray *sections;
 
 

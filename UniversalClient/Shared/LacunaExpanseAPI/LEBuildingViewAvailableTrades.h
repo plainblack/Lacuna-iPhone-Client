@@ -19,8 +19,6 @@
 @property(nonatomic, assign) NSInteger pageNumber;
 @property(nonatomic, retain) NSMutableArray *availableTrades;
 @property(nonatomic, retain) NSDecimalNumber *tradeCount;
-@property(nonatomic, retain) NSString *captchaGuid;
-@property(nonatomic, retain) NSString *captchaUrl;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl pageNumber:(NSInteger)pageNumber;

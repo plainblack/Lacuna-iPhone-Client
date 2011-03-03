@@ -22,7 +22,7 @@
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget captchaGuid:(NSString *)inCaptchaGuid captchaSolution:(NSString *)inCaptchaSolution {
 	self.captchaGuid = inCaptchaGuid;
 	self.captchaSolution = inCaptchaSolution;
-	return [self initWithCallback:inCallback target:(NSObject *)inTarget];
+	return [super initWithCallback:inCallback target:(NSObject *)inTarget];
 }
 
 

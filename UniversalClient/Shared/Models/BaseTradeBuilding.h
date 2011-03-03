@@ -36,8 +36,6 @@
 @property (nonatomic, retain) NSDecimalNumber *availableTradeCount;
 @property (nonatomic, retain) NSDate *availableTradesUpdated;
 @property (nonatomic, retain) NSMutableArray *availableTrades;
-@property (nonatomic, retain) NSString *captchaGuid;
-@property (nonatomic, retain) NSString *captchaUrl;
 @property (nonatomic, assign) NSInteger myTradePageNumber;
 @property (nonatomic, retain) NSDecimalNumber *myTradeCount;
 @property (nonatomic, retain) NSDate *myTradesUpdated;
@@ -98,7 +96,7 @@
 - (void)pushItems:(ItemPush *)itemPush target:(id)target callback:(SEL)callback;
 - (void)tradeOneForOne:(OneForOneTrade *)oneForOneTrade target:(id)target callback:(SEL)callback;
 - (void)postTrade:(Trade *)trade target:(id)target callback:(SEL)callback;
-- (void)acceptTrade:(Trade *)trade solution:(NSString *)solution target:(id)target callback:(SEL)callback;
+- (void)acceptTrade:(Trade *)trade target:(id)target callback:(SEL)callback;
 - (void)withdrawTrade:(Trade *)trade;
 
 - (void)loadMarketPage:(NSInteger)pageNumber filter:(NSString *)filter;
@@ -108,7 +106,7 @@
 - (bool)hasPreviousMyMarketPage;
 - (bool)hasNextMyMarketPage;
 - (void)postMarketTrade:(MarketTrade *)trade target:(id)target callback:(SEL)callback;
-- (void)acceptMarketTrade:(MarketTrade *)trade solution:(NSString *)solution target:(id)target callback:(SEL)callback;
+- (void)acceptMarketTrade:(MarketTrade *)trade target:(id)target callback:(SEL)callback;
 - (void)withdrawMarketTrade:(MarketTrade *)trade;
 
 
