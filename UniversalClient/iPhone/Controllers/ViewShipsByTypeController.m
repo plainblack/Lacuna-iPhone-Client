@@ -54,6 +54,10 @@ typedef enum {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+	self.navigationItem.title = @"Ship Types";
+	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
+
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Category"], [LEViewSectionTab tableView:self.tableView withText:@"Task"], [LEViewSectionTab tableView:self.tableView withText:@"All"]);
 }
 

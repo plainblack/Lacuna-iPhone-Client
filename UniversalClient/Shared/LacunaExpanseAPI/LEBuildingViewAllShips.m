@@ -44,7 +44,6 @@
 	Ship *ship;
 	
 	for (NSDictionary *shipData in shipsData) {
-		NSLog(@"Ship Data: %@", shipData);
 		ship = [[[Ship alloc] init] autorelease];
 		[ship parseData:shipData];
 		[tmp addObject:ship];

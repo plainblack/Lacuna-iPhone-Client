@@ -15,15 +15,16 @@
 #import "LETableViewCellButton.h"
 #import "LETableViewCellLabeledText.h"
 #import "RenameShipController.h"
+#import "AppDelegate_Phone.h"
 
 
 typedef enum {
 	ROW_SHIP_INFO,
 	ROW_TASK,
-	ROW_LOCATION_BUTTON,
 	ROW_RENAME_BUTTON,
 	ROW_SCUTTLE_BUTTON,
-	ROW_RECALL_BUTTON
+	ROW_LOCATION_BUTTON,
+	ROW_RECALL_BUTTON,
 } ROW;
 
 
@@ -164,12 +165,6 @@ typedef enum {
 				taskCell.content.text = currentShip.task;
 				cell = taskCell;
 				break;
-			case ROW_LOCATION_BUTTON:
-				; //DO NOT REMOVE
-				LETableViewCellButton *locationButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-				locationButtonCell.textLabel.text = @"Location";
-				cell = locationButtonCell;
-				break;
 			case ROW_RENAME_BUTTON:
 				; //DO NOT REMOVE
 				LETableViewCellButton *renameButtonCell = [LETableViewCellButton getCellForTableView:tableView];
@@ -181,6 +176,12 @@ typedef enum {
 				LETableViewCellButton *scuttleButtonCell = [LETableViewCellButton getCellForTableView:tableView];
 				scuttleButtonCell.textLabel.text = @"Scuttle";
 				cell = scuttleButtonCell;
+				break;
+			case ROW_LOCATION_BUTTON:
+				; //DO NOT REMOVE
+				LETableViewCellButton *locationButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+				locationButtonCell.textLabel.text = [NSString stringWithFormat:@"At: %@", currentShip.orbitingName];
+				cell = locationButtonCell;
 				break;
 			case ROW_RECALL_BUTTON:
 				; //DO NOT REMOVE
@@ -229,7 +230,15 @@ typedef enum {
 				break;
 			case ROW_LOCATION_BUTTON:
 				; //DO NOT REMOVE
-				NSLog(@"Go to ship: %@", currentShip);
+				if (currentShip.orbitingX && currentShip.orbitingY) {
+					AppDelegate_Phone *appDelegate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
+					[appDelegate showStarMapGridX:currentShip.orbitingX gridY:currentShip.orbitingY];
+				} else {
+					UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"AARRGGHH!!" message:@"Need server to send orbiting X & Y" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+					[av show];
+					[av release];
+				}
+
 				break;
 		}
 	}

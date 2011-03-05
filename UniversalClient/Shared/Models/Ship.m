@@ -36,14 +36,19 @@
 @synthesize toId;
 @synthesize toType;
 @synthesize toName;
+@synthesize orbitingId;
+@synthesize orbitingType;
+@synthesize orbitingName;
+@synthesize orbitingX;
+@synthesize orbitingY;
 
 
 #pragma mark -
 #pragma mark NSObject Methods
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"id:%@, name:%@, type:%@, typeHumanized:%@, task:%@, speed:%@, holdSize:%@, stealth:%@, combat: %@, maxOccupants:%@, dateStarted:%@, dateAvailable:%@, dateArrives:%@, fromId:%@, fromType:%@, fromName:%@, fromEmpireId:%@ fromEmpireName:%@, toId:%@, toType:%@, toName:%@, payload:%@", 
-			self.id, self.name, self.type, self.typeHumanized, self.task, self.speed, self.holdSize, self.stealth, self.combat, self.maxOccupants, self.dateStarted, self.dateAvailable, self.dateArrives, self.fromId, self.fromType, self.fromName, self.fromEmpireId, self.fromEmpireName, self.toId, self.toType, self.toName, self.payload];
+	return [NSString stringWithFormat:@"id:%@, name:%@, type:%@, typeHumanized:%@, task:%@, speed:%@, holdSize:%@, stealth:%@, combat: %@, maxOccupants:%@, dateStarted:%@, dateAvailable:%@, dateArrives:%@, fromId:%@, fromType:%@, fromName:%@, fromEmpireId:%@ fromEmpireName:%@, toId:%@, toType:%@, toName:%@, payload:%@, obitingId:%@, obitingType:%@, obitingName:%@, orbitingX:%@, orbitingY:%@", 
+			self.id, self.name, self.type, self.typeHumanized, self.task, self.speed, self.holdSize, self.stealth, self.combat, self.maxOccupants, self.dateStarted, self.dateAvailable, self.dateArrives, self.fromId, self.fromType, self.fromName, self.fromEmpireId, self.fromEmpireName, self.toId, self.toType, self.toName, self.payload, self.orbitingId, self.orbitingType, self.orbitingName, self.orbitingX, self.orbitingY];
 }
 
 
@@ -70,6 +75,11 @@
 	self.toId = nil;
 	self.toType = nil;
 	self.toName = nil;
+	self.orbitingId = nil;
+	self.orbitingType = nil;
+	self.orbitingName = nil;
+	self.orbitingX = nil;
+	self.orbitingY = nil;
 	[super dealloc];
 }
 
@@ -104,6 +114,12 @@
 	self.toId = [Util idFromDict:toData named:@"id"];
 	self.toType = [toData objectForKey:@"type"];
 	self.toName = [toData objectForKey:@"name"];
+	NSDictionary *orbitingData = [shipData objectForKey:@"orbiting"];
+	self.orbitingId = [Util idFromDict:orbitingData named:@"id"];
+	self.orbitingType = [orbitingData objectForKey:@"type"];
+	self.orbitingName = [orbitingData objectForKey:@"name"];
+	self.orbitingX = [Util asNumber:[orbitingData objectForKey:@"x"]];
+	self.orbitingY = [Util asNumber:[orbitingData objectForKey:@"y"]];
 }
 
 

@@ -34,6 +34,11 @@
 @property (nonatomic, retain) NSString *toId;
 @property (nonatomic, retain) NSString *toType;
 @property (nonatomic, retain) NSString *toName;
+@property (nonatomic, retain) NSString *orbitingId;
+@property (nonatomic, retain) NSString *orbitingName;
+@property (nonatomic, retain) NSString *orbitingType;
+@property (nonatomic, retain) NSDecimalNumber *orbitingX;
+@property (nonatomic, retain) NSDecimalNumber *orbitingY;
 
 
 - (void)parseData:(NSDictionary *)shipData;
