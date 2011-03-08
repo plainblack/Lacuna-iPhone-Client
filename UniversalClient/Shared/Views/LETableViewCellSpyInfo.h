@@ -13,16 +13,6 @@
 
 
 @interface LETableViewCellSpyInfo : UITableViewCell {
-	UILabel *nameContent;
-	UILabel *locationContent;
-	UILabel *assignmentContent;
-	UILabel *levelContent;
-	UILabel *politicsExpContent;
-	UILabel *mayhemExpContent;
-	UILabel *theftExpContent;
-	UILabel *intelExpContent;
-	UILabel *offenseRatingContent;
-	UILabel *defenseRatingContent;
 }
 
 
@@ -36,6 +26,8 @@
 @property(nonatomic, retain) UILabel *intelExpContent;
 @property(nonatomic, retain) UILabel *offenseRatingContent;
 @property(nonatomic, retain) UILabel *defenseRatingContent;
+@property(nonatomic, retain) UILabel *numOffensiveMissionsLeftContent;
+@property(nonatomic, retain) UILabel *numDefensiveMissionsLeftContent;
 
 
 - (void)setData:(Spy *)spy;

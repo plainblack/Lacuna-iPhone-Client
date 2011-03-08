@@ -31,6 +31,8 @@
 @synthesize assignmentStarted;
 @synthesize assignmentEnds;
 @synthesize possibleAssignments;
+@synthesize numOffensiveMissionsLeft;
+@synthesize numDefensiveMissionsLeft;
 
 
 
@@ -38,8 +40,8 @@
 #pragma mark NSObject Methods
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"id:%@, name:%@, bodyId:%@, bodyName:%@, assignemtn:%@, level:%@, politicsExp:%@, mayhemExp:%@, theftExp:%@, intelExp:%@, offenseRating:%@, defenseRating:%@, isAvailable:%i, secondsRemaining:%i, assignmentStarted:%@, assignmentEnds:%@, possibleAssignments:%@", 
-			self.id, self.name, self.bodyId, self.bodyName, self.assignment, self.level, self.politicsExp, self.mayhemExp, self.theftExp, self.intelExp, self.offenseRating, self.defenseRating, self.isAvailable, self.secondsRemaining, self.assignmentStarted, self.assignmentEnds, self.possibleAssignments];
+	return [NSString stringWithFormat:@"id:%@, name:%@, bodyId:%@, bodyName:%@, assignemtn:%@, level:%@, politicsExp:%@, mayhemExp:%@, theftExp:%@, intelExp:%@, offenseRating:%@, defenseRating:%@, isAvailable:%i, secondsRemaining:%i, assignmentStarted:%@, assignmentEnds:%@, possibleAssignments:%@, numOffensiveMissionsLeft:%@, numDefensiveMissionsLeft:%@", 
+			self.id, self.name, self.bodyId, self.bodyName, self.assignment, self.level, self.politicsExp, self.mayhemExp, self.theftExp, self.intelExp, self.offenseRating, self.defenseRating, self.isAvailable, self.secondsRemaining, self.assignmentStarted, self.assignmentEnds, self.possibleAssignments, self.numOffensiveMissionsLeft, self.numDefensiveMissionsLeft];
 }
 
 
@@ -59,6 +61,8 @@
 	self.assignmentStarted = nil;
 	self.assignmentEnds = nil;
 	self.possibleAssignments = nil;
+	self.numOffensiveMissionsLeft = nil;
+	self.numDefensiveMissionsLeft = nil;
 	[super dealloc];
 }
 
@@ -67,6 +71,7 @@
 #pragma mark Instance Methods
 
 - (void)parseData:(NSDictionary *)spyData {
+	NSLog(@"Spy Data: %@", spyData);
 	self.id = [Util idFromDict:spyData named:@"id"];
 	self.name = [spyData objectForKey:@"name"];
 	self.bodyId = [[spyData objectForKey:@"assigned_to"] objectForKey:@"body_id"];
@@ -87,6 +92,10 @@
 	self.assignmentEnds = [Util date:[spyData objectForKey:@"available_on"] ];
 	
 	self.possibleAssignments = [spyData objectForKey:@"possible_assignments"];
+	
+	NSMutableDictionary *missionCountData = [spyData objectForKey:@"mission_count"];
+	self.numOffensiveMissionsLeft = [Util asNumber:[missionCountData objectForKey:@"offensive"]];
+	self.numDefensiveMissionsLeft = [Util asNumber:[missionCountData objectForKey:@"defensive"]];
 }
 
 
