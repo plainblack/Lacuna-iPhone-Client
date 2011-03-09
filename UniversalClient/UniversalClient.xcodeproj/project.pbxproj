@@ -21,6 +21,7 @@
 		F6023A64123D920F00268ADD /* ViewPlansController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6023A63123D920F00268ADD /* ViewPlansController.m */; };
 		F6023A67123D922200268ADD /* LEBuildingViewPlans.m in Sources */ = {isa = PBXBuildFile; fileRef = F6023A66123D922200268ADD /* LEBuildingViewPlans.m */; };
 		F602E5A4132708F8002D8C7A /* LEBuildingSendFleet.m in Sources */ = {isa = PBXBuildFile; fileRef = F602E5A3132708F8002D8C7A /* LEBuildingSendFleet.m */; };
+		F602E5BC13270DA6002D8C7A /* SendFleetController.m in Sources */ = {isa = PBXBuildFile; fileRef = F602E5BB13270DA6002D8C7A /* SendFleetController.m */; };
 		F603A8BE1177E7FC00BAC73A /* LETableViewCellBody.m in Sources */ = {isa = PBXBuildFile; fileRef = F603A8BD1177E7FC00BAC73A /* LETableViewCellBody.m */; };
 		F603A8EF1177F7F200BAC73A /* LETableViewCellCurrentResources.m in Sources */ = {isa = PBXBuildFile; fileRef = F603A8EE1177F7F200BAC73A /* LETableViewCellCurrentResources.m */; };
 		F6093DD7124EFD7C00BB267E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6093DD6124EFD7C00BB267E /* QuartzCore.framework */; };
@@ -499,6 +500,8 @@
 		F6023A66123D922200268ADD /* LEBuildingViewPlans.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewPlans.m; sourceTree = "<group>"; };
 		F602E5A2132708F8002D8C7A /* LEBuildingSendFleet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingSendFleet.h; sourceTree = "<group>"; };
 		F602E5A3132708F8002D8C7A /* LEBuildingSendFleet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingSendFleet.m; sourceTree = "<group>"; };
+		F602E5BA13270DA6002D8C7A /* SendFleetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendFleetController.h; sourceTree = "<group>"; };
+		F602E5BB13270DA6002D8C7A /* SendFleetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendFleetController.m; sourceTree = "<group>"; };
 		F603A8BC1177E7FC00BAC73A /* LETableViewCellBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellBody.h; sourceTree = "<group>"; };
 		F603A8BD1177E7FC00BAC73A /* LETableViewCellBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellBody.m; sourceTree = "<group>"; };
 		F603A8ED1177F7F200BAC73A /* LETableViewCellCurrentResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellCurrentResources.h; sourceTree = "<group>"; };
@@ -2377,6 +2380,8 @@
 				F680BF501315FC8600DA0D12 /* ViewShipsByTypeController.m */,
 				F687333F131DEBF500CBC502 /* CaptchaViewController.h */,
 				F6873340131DEBF500CBC502 /* CaptchaViewController.m */,
+				F602E5BA13270DA6002D8C7A /* SendFleetController.h */,
+				F602E5BB13270DA6002D8C7A /* SendFleetController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2918,6 +2923,7 @@
 				F687332A131DE85700CBC502 /* LECaptchaSolve.m in Sources */,
 				F6873341131DEBF500CBC502 /* CaptchaViewController.m in Sources */,
 				F602E5A4132708F8002D8C7A /* LEBuildingSendFleet.m in Sources */,
+				F602E5BC13270DA6002D8C7A /* SendFleetController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

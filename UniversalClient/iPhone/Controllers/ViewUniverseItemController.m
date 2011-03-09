@@ -21,6 +21,7 @@
 #import "ViewUniverseMiningPlatformsController.h"
 #import "ViewUniverseIncomingShipsController.h"
 #import "SendShipController.h"
+#import "SendFleetController.h"
 #import "SendSpiesController.h"
 #import "FetchSpiesController.h"
 #import "AppDelegate_Phone.h"
@@ -44,6 +45,7 @@ typedef enum {
 	ROW_VIEW_INCOMING_SHIPS,
 	ROW_VIEW_MINING_PLATFORMS,
 	ROW_SEND_SHIP,
+	ROW_SEND_FLEET,
 	ROW_UNSENDABLE_SHIPS,
 	ROW_PLOTS,
 	ROW_WATER,
@@ -127,6 +129,7 @@ typedef enum {
 			case ROW_VIEW_INCOMING_SHIPS:
 			case ROW_VIEW_MINING_PLATFORMS:
 			case ROW_SEND_SHIP:
+			case ROW_SEND_FLEET:
 			case ROW_UNSENDABLE_SHIPS:
 			case ROW_RENAME:
 			case ROW_VIEW_MY_WORLD:
@@ -213,6 +216,12 @@ typedef enum {
 				LETableViewCellButton *sendShipButtonCell = [LETableViewCellButton getCellForTableView:tableView];
 				sendShipButtonCell.textLabel.text = @"Send Ship Here";
 				cell = sendShipButtonCell;
+				break;
+			case ROW_SEND_FLEET:
+				; //DO NOT REMOVE
+				LETableViewCellButton *sendFleetButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+				sendFleetButtonCell.textLabel.text = @"Send Fleet Here";
+				cell = sendFleetButtonCell;
 				break;
 			case ROW_UNSENDABLE_SHIPS:
 				; //DO NOT REMOVE
@@ -301,6 +310,13 @@ typedef enum {
 				sendShipController.sendFromBodyId = session.body.id;
 				[self.navigationController pushViewController:sendShipController animated:YES];
 				break;
+			case ROW_SEND_FLEET:
+				; //DO NOT REMOVE
+				SendFleetController *sendFleetController = [SendFleetController create];
+				sendFleetController.mapItem = self.mapItem;
+				sendFleetController.sendFromBodyId = session.body.id;
+				[self.navigationController pushViewController:sendFleetController animated:YES];
+				break;
 			case ROW_UNSENDABLE_SHIPS:
 				; //DO NOT REMOVE
 				ViewUniverseItemUnsendableShipsController *viewUniverseItemUnsendableShipsController = [ViewUniverseItemUnsendableShipsController create];
@@ -381,6 +397,7 @@ typedef enum {
 			[shipActionRows addObject:[NSDecimalNumber numberWithInt:ROW_VIEW_MINING_PLATFORMS]];
 		}
 		[shipActionRows addObject:[NSDecimalNumber numberWithInt:ROW_SEND_SHIP]];
+		[shipActionRows addObject:[NSDecimalNumber numberWithInt:ROW_SEND_FLEET]];
 		[shipActionRows addObject:[NSDecimalNumber numberWithInt:ROW_UNSENDABLE_SHIPS]];
 
 		[self.sections addObject:_dict([NSDecimalNumber numberWithInt:SECTION_SHIP_ACTIONS], @"type", @"Ships", @"name", shipActionRows, @"rows")];
