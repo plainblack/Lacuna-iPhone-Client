@@ -25,8 +25,8 @@
 @synthesize intelExpContent;
 @synthesize offenseRatingContent;
 @synthesize defenseRatingContent;
-@synthesize numOffensiveMissionsLeftContent;
-@synthesize numDefensiveMissionsLeftContent;
+@synthesize numOffensiveMissionsContent;
+@synthesize numDefensiveMissionsContent;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -56,8 +56,8 @@
 	self.intelExpContent = nil;
 	self.offenseRatingContent = nil;
 	self.defenseRatingContent = nil;
-	self.numOffensiveMissionsLeftContent = nil;
-	self.numDefensiveMissionsLeftContent = nil;
+	self.numOffensiveMissionsContent = nil;
+	self.numDefensiveMissionsContent = nil;
 	
     [super dealloc];
 }
@@ -77,8 +77,8 @@
 	self.intelExpContent.text = [Util prettyNSDecimalNumber:spy.intelExp];
 	self.offenseRatingContent.text = [Util prettyNSDecimalNumber:spy.offenseRating];
 	self.defenseRatingContent.text = [Util prettyNSDecimalNumber:spy.defenseRating];
-	self.numOffensiveMissionsLeftContent.text = [Util prettyNSDecimalNumber:spy.numOffensiveMissionsLeft];
-	self.numDefensiveMissionsLeftContent.text = [Util prettyNSDecimalNumber:spy.numDefensiveMissionsLeft];
+	self.numOffensiveMissionsContent.text = [Util prettyNSDecimalNumber:spy.numOffensiveMissions];
+	self.numDefensiveMissionsContent.text = [Util prettyNSDecimalNumber:spy.numDefensiveMissions];
 }
 
 
@@ -306,22 +306,21 @@
 		[cell.contentView addSubview:tmpLabel];
 		
 		y += 15;
-		
-		cell.numOffensiveMissionsLeftContent = [[[UILabel alloc] initWithFrame:CGRectMake(10, y, 150, 20)] autorelease];
-		cell.numOffensiveMissionsLeftContent.backgroundColor = [UIColor clearColor];
-		cell.numOffensiveMissionsLeftContent.textAlignment = UITextAlignmentCenter;
-		cell.numOffensiveMissionsLeftContent.font = TEXT_SMALL_FONT;
-		cell.numOffensiveMissionsLeftContent.textColor = TEXT_SMALL_COLOR;
-		cell.numOffensiveMissionsLeftContent.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
-		[cell.contentView addSubview:cell.numOffensiveMissionsLeftContent];
+		cell.numOffensiveMissionsContent = [[[UILabel alloc] initWithFrame:CGRectMake(10, y, 150, 20)] autorelease];
+		cell.numOffensiveMissionsContent.backgroundColor = [UIColor clearColor];
+		cell.numOffensiveMissionsContent.textAlignment = UITextAlignmentCenter;
+		cell.numOffensiveMissionsContent.font = TEXT_SMALL_FONT;
+		cell.numOffensiveMissionsContent.textColor = TEXT_SMALL_COLOR;
+		cell.numOffensiveMissionsContent.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
+		[cell.contentView addSubview:cell.numOffensiveMissionsContent];
 
-		cell.numDefensiveMissionsLeftContent = [[[UILabel alloc] initWithFrame:CGRectMake(160, y, 150, 20)] autorelease];
-		cell.numDefensiveMissionsLeftContent.backgroundColor = [UIColor clearColor];
-		cell.numDefensiveMissionsLeftContent.textAlignment = UITextAlignmentCenter;
-		cell.numDefensiveMissionsLeftContent.font = TEXT_SMALL_FONT;
-		cell.numDefensiveMissionsLeftContent.textColor = TEXT_SMALL_COLOR;
-		cell.numDefensiveMissionsLeftContent.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
-		[cell.contentView addSubview:cell.numDefensiveMissionsLeftContent];
+		cell.numDefensiveMissionsContent = [[[UILabel alloc] initWithFrame:CGRectMake(160, y, 150, 20)] autorelease];
+		cell.numDefensiveMissionsContent.backgroundColor = [UIColor clearColor];
+		cell.numDefensiveMissionsContent.textAlignment = UITextAlignmentCenter;
+		cell.numDefensiveMissionsContent.font = TEXT_SMALL_FONT;
+		cell.numDefensiveMissionsContent.textColor = TEXT_SMALL_COLOR;
+		cell.numDefensiveMissionsContent.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
+		[cell.contentView addSubview:cell.numDefensiveMissionsContent];
 		
 		
 		//Set Cell Defaults

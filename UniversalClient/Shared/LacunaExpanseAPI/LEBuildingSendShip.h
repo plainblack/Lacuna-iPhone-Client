@@ -11,14 +11,6 @@
 
 
 @interface LEBuildingSendShip : LERequest {
-	NSString *shipId;
-	NSString *targetBodyName;
-	NSString *targetBodyId;
-	NSString *targetStarName;
-	NSString *targetStarId;
-	NSDecimalNumber *targetX;
-	NSDecimalNumber *targetY;
-	NSMutableDictionary *ship;
 }
 
 

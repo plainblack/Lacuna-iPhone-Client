@@ -26,8 +26,8 @@
 @property(nonatomic, retain) UILabel *intelExpContent;
 @property(nonatomic, retain) UILabel *offenseRatingContent;
 @property(nonatomic, retain) UILabel *defenseRatingContent;
-@property(nonatomic, retain) UILabel *numOffensiveMissionsLeftContent;
-@property(nonatomic, retain) UILabel *numDefensiveMissionsLeftContent;
+@property(nonatomic, retain) UILabel *numOffensiveMissionsContent;
+@property(nonatomic, retain) UILabel *numDefensiveMissionsContent;
 
 
 - (void)setData:(Spy *)spy;

@@ -30,8 +30,8 @@
 @property (nonatomic, retain) NSDate *assignmentStarted;
 @property (nonatomic, retain) NSDate *assignmentEnds;
 @property (nonatomic, retain) NSMutableArray *possibleAssignments;
-@property (nonatomic, retain) NSDecimalNumber *numOffensiveMissionsLeft;
-@property (nonatomic, retain) NSDecimalNumber *numDefensiveMissionsLeft;
+@property (nonatomic, retain) NSDecimalNumber *numOffensiveMissions;
+@property (nonatomic, retain) NSDecimalNumber *numDefensiveMissions;
 
 
 - (void)parseData:(NSDictionary *)spyData;
