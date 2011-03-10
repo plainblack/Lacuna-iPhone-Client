@@ -29,7 +29,6 @@
 @synthesize dockedShips;
 @synthesize ships;
 @synthesize shipsUpdated;
-@synthesize shipsPageNumber;
 @synthesize numShips;
 @synthesize travellingShips;
 @synthesize travellingShipsUpdated;
@@ -181,19 +180,8 @@
 #pragma mark -
 #pragma mark Instance Methods
 
-- (void)loadShipsForPage:(NSInteger)pageNumber {
-	self.shipsPageNumber = pageNumber;
-	[[[LEBuildingViewAllShips alloc] initWithCallback:@selector(shipsLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl pageNumber:pageNumber] autorelease];
-}
-
-
-- (bool)hasPreviousShipsPage {
-	return (self.shipsPageNumber > 1);
-}
-
-
-- (bool)hasNextShipsPage {
-	return (self.shipsPageNumber < [Util numPagesForCount:_intv(self.numShips)]);
+- (void)loadShipsForTag:(NSString *)tag task:(NSString *)task {
+	[[[LEBuildingViewAllShips alloc] initWithCallback:@selector(shipsLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl tag:tag task:task] autorelease];
 }
 
 

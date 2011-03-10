@@ -17,7 +17,7 @@
 #define isNotEmptyString(__o) (__o && ((id)__o != [NSNull null]) && [__o length]>0)
 
 //Supported Server Version
-#define SERVER_MAJOR 2
+#define SERVER_MAJOR 3
 #define API_KEY @"iOS"
 
 //Time defs

@@ -18,21 +18,31 @@
 
 @synthesize buildingId;
 @synthesize buildingUrl;
-@synthesize pageNumber;
+@synthesize tag;
+@synthesize task;
 @synthesize ships;
 @synthesize numberOfShips;
 
 
-- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl pageNumber:(NSInteger)inPageNumber {
+- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl tag:(NSString *)inTag task:(NSString *)inTask {
 	self.buildingId = inBuildingId;
 	self.buildingUrl = inBuildingUrl;
-	self.pageNumber = inPageNumber;
+	self.tag = inTag;
+	self.task = inTask;
 	return [self initWithCallback:inCallback target:(NSObject *)inTarget];
 }
 
 
 - (id)params {
-	return _array([Session sharedInstance].sessionId, self.buildingId, [NSDecimalNumber numberWithInt:self.pageNumber]);
+	NSMutableDictionary *filter = [NSMutableDictionary dictionaryWithCapacity:2];
+	if (self.tag) {
+		[filter setObject:self.tag forKey:@"tag"];
+	}
+	if (self.task) {
+		[filter setObject:self.task forKey:@"task"];
+	}
+	NSLog(@"View All Ships Filter: %@", filter);
+	return _array([Session sharedInstance].sessionId, self.buildingId, _dict([NSDecimalNumber one], @"no_paging"), filter, @"name");
 }
 
 
@@ -50,6 +60,7 @@
 	}
 	[tmp sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease])];
 	self.ships = tmp;
+	NSLog(@"Num Ships: %i", [self.ships count]);
 }
 
 
@@ -66,6 +77,8 @@
 - (void)dealloc {
 	self.buildingId = nil;
 	self.buildingUrl = nil;
+	self.tag = nil;
+	self.task = nil;
 	self.ships = nil;
 	[super dealloc];
 }

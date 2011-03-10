@@ -20,7 +20,6 @@
 @property (nonatomic, retain) NSMutableDictionary *dockedShips;
 @property (nonatomic, retain) NSMutableArray *ships;
 @property (nonatomic, retain) NSDate *shipsUpdated;
-@property (nonatomic, assign) NSInteger shipsPageNumber;
 @property (nonatomic, retain) NSDecimalNumber *numShips;
 @property (nonatomic, retain) NSMutableArray *travellingShips;
 @property (nonatomic, retain) NSDate *travellingShipsUpdated;
@@ -32,9 +31,7 @@
 @property (nonatomic, retain) NSDecimalNumber *numForeignShips;
 
 
-- (void)loadShipsForPage:(NSInteger)pageNumber;
-- (bool)hasPreviousShipsPage;
-- (bool)hasNextShipsPage;
+- (void)loadShipsForTag:(NSString *)tag task:(NSString *)task;
 - (void)scuttleShip:(Ship *)ship;
 - (void)ship:(Ship *)ship rename:(NSString *)newName;
 - (void)loadTravellingShipsForPage:(NSInteger)pageNumber;

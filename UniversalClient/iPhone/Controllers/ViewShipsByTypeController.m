@@ -30,6 +30,7 @@ typedef enum {
 } CATEGORY_ROW;
 
 typedef enum {
+	TASK_ROW_BUILDING,
 	TASK_ROW_DEFEND,
 	TASK_ROW_DOCKED,
 	TASK_ROW_MINING,
@@ -76,7 +77,7 @@ typedef enum {
 			return 6;
 			break;
 		case SECTION_TASK:
-			return 4;
+			return 5;
 			break;
 		case SECTION_ALL:
 			return 1;
@@ -138,6 +139,12 @@ typedef enum {
 			break;
 		case SECTION_TASK:
 			switch (indexPath.row) {
+				case TASK_ROW_BUILDING:
+					; //DO NOT REMOVE
+					LETableViewCellButton *buildingButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+					buildingButtonCell.textLabel.text = @"Building";
+					cell = buildingButtonCell;
+					break;
 				case TASK_ROW_DEFEND:
 					; //DO NOT REMOVE
 					LETableViewCellButton *defendButtonCell = [LETableViewCellButton getCellForTableView:tableView];
@@ -193,8 +200,11 @@ typedef enum {
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	self.spaceport.ships = nil;
 	ViewShipsController *viewShipsController = [ViewShipsController create];
 	viewShipsController.spacePort = self.spaceport;
+	viewShipsController.task = nil;
+	viewShipsController.tag = nil;
 	switch (indexPath.section) {
 		case SECTION_CATEGORY:
 			switch (indexPath.row) {
@@ -223,35 +233,22 @@ typedef enum {
 			break;
 		case SECTION_TASK:
 			switch (indexPath.row) {
+				case TASK_ROW_BUILDING:
+					viewShipsController.task = @"Building";
+					break;
 				case TASK_ROW_DEFEND:
-					viewShipsController.tag = @"Defend";
+					viewShipsController.task = @"Defend";
 					break;
 				case TASK_ROW_DOCKED:
-					viewShipsController.tag = @"Docked";
+					viewShipsController.task = @"Docked";
 					break;
 				case TASK_ROW_MINING:
-					viewShipsController.tag = @"Mining";
+					viewShipsController.task = @"Mining";
 					break;
 				case TASK_ROW_TRAVELLING:
-					viewShipsController.tag = @"Travelling";
-					break;
-				default:
-					viewShipsController.tag = @"";
+					viewShipsController.task = @"Travelling";
 					break;
 			}
-			break;
-		case SECTION_ALL:
-			switch (indexPath.row) {
-				case ALL_ROW_ALL:
-					viewShipsController.tag = @"";
-					break;
-				default:
-					viewShipsController.tag = @"";
-					break;
-			}
-			break;
-		default:
-			viewShipsController.tag = @"";
 			break;
 	}
 	
