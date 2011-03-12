@@ -22,7 +22,7 @@
 #pragma mark Object Methods
 
 - (id) init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
 		self.items = [NSMutableArray arrayWithCapacity:1];
 		self.stayAtTarget = NO;
 	}

@@ -41,7 +41,6 @@
 	if (self.task) {
 		[filter setObject:self.task forKey:@"task"];
 	}
-	NSLog(@"View All Ships Filter: %@", filter);
 	return _array([Session sharedInstance].sessionId, self.buildingId, _dict([NSDecimalNumber one], @"no_paging"), filter, @"name");
 }
 
@@ -60,7 +59,6 @@
 	}
 	[tmp sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease])];
 	self.ships = tmp;
-	NSLog(@"Num Ships: %i", [self.ships count]);
 }
 
 

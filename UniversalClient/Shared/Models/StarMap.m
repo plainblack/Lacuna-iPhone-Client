@@ -38,7 +38,7 @@ NSTimeInterval INTERVALE_BEFORE_RELOAD = -1 * 60 * 5; //5 Minutes
 #pragma mark NSObject Methods
 
 - (id)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
 		self.sectors = [[[NSCache alloc] init] autorelease];
 		self->numLoading = 0;
 	}

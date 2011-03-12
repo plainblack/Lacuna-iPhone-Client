@@ -40,6 +40,12 @@
 #define WASTE_RECYCLING_URL @"/wasterecycling"
 #define WATER_STORAGE_URL @"/waterstorage"
 
+#define IBS_URL @"/ibs"
+#define PARLIAMENT_URL @"/parliament"
+#define STATION_COMMAND_URL @"/stationcommand"
+#define WAREHOUSE_URL @"/warehouse"
+
+
 typedef enum {
 	BUILDING_SECTION_BUILDING,
 	BUILDING_SECTION_HEALTH,

@@ -97,9 +97,6 @@ static id<LERequestMonitor> delegate;
 }
 
 - (id)errorCallback:(NSError *)err {
-	NSLog(@"Error: %@", err);
-	NSLog(@"Details: %@", err.userInfo);
-	
 	if (err.code == -1009) {
 		//Network appears to be offline so retry.
 		if (self->retryCount < 2) {
@@ -131,10 +128,11 @@ static id<LERequestMonitor> delegate;
 		AppDelegate_Phone *appDelegate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
 		[appDelegate captchaValidate:self];
 	} else {
-		[self requestFinished];
-		
-		[self requestComplete];
+        NSLog(@"Error: %@", err);
+        NSLog(@"Details: %@", err.userInfo);
 
+		[self requestFinished];
+		[self requestComplete];
 	}
 	
 	return nil;

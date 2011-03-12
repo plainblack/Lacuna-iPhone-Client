@@ -9,7 +9,8 @@
 #import "ViewPlansController.h"
 #import "LEMacros.h"
 #import "Util.h"
-#import "PlanetaryCommand.h"
+#import "Building.h"
+#import "BuildingWithPlans.h"
 #import "Plan.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellLabeledText.h"
@@ -19,7 +20,7 @@
 @implementation ViewPlansController
 
 
-@synthesize planetaryCommand;
+@synthesize buildingWithPlans;
 
 
 #pragma mark -
@@ -37,8 +38,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	[self.planetaryCommand addObserver:self forKeyPath:@"plans" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
-	[self.planetaryCommand loadPlans];
+	[self.buildingWithPlans addObserver:self forKeyPath:@"plans" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+	[self.buildingWithPlans loadPlans];
 }
 
 
@@ -49,7 +50,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-	[self.planetaryCommand removeObserver:self forKeyPath:@"plans"];
+	[self.buildingWithPlans removeObserver:self forKeyPath:@"plans"];
 }
 
 
@@ -57,9 +58,9 @@
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	if (self.planetaryCommand && self.planetaryCommand.plans) {
-		if ([self.planetaryCommand.plans count] > 0) {
-			return [self.planetaryCommand.plans count];
+	if (self.buildingWithPlans && self.buildingWithPlans.plans) {
+		if ([self.buildingWithPlans.plans count] > 0) {
+			return [self.buildingWithPlans.plans count];
 		} else {
 			return 1;
 		}
@@ -75,8 +76,8 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (self.planetaryCommand && self.planetaryCommand.plans) {
-		if ([self.planetaryCommand.plans count] > 0) {
+	if (self.buildingWithPlans && self.buildingWithPlans.plans) {
+		if ([self.buildingWithPlans.plans count] > 0) {
 			return [LETableViewCellPlan getHeightForTableView:tableView];
 		} else {
 			return [LETableViewCellLabeledText getHeightForTableView:tableView];
@@ -92,9 +93,9 @@
     
     UITableViewCell *cell = nil;
 	
-	if (self.planetaryCommand && self.planetaryCommand.plans) {
-		if ([self.planetaryCommand.plans count] > 0) {
-			Plan *plan = [self.planetaryCommand.plans objectAtIndex:indexPath.section];
+	if (self.buildingWithPlans && self.buildingWithPlans.plans) {
+		if ([self.buildingWithPlans.plans count] > 0) {
+			Plan *plan = [self.buildingWithPlans.plans objectAtIndex:indexPath.section];
 			LETableViewCellPlan *planCell = [LETableViewCellPlan getCellForTableView:tableView isSelectable:NO];
 			[planCell setPlan:plan];
 			cell = planCell;
@@ -131,7 +132,7 @@
 
 
 - (void)dealloc {
-	self.planetaryCommand = nil;
+	self.buildingWithPlans = nil;
     [super dealloc];
 }
 

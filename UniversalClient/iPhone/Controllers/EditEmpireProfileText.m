@@ -25,7 +25,7 @@
 #pragma mark View lifecycle
 
 - (id)init {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		self.textCell = [LETableViewCellTextView getCellForTableView:self.tableView];
 	}
 	

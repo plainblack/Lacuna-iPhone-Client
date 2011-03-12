@@ -20,7 +20,7 @@
 #pragma mark Object Methods
 
 - (id) init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
 	}
 	
 	return self;

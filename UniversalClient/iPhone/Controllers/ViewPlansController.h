@@ -8,17 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "LETableViewControllerGrouped.h"
+#import "BuildingWithPlans.h"
 
 
-@class PlanetaryCommand;
+@class Building;
 
 
 @interface ViewPlansController : LETableViewControllerGrouped {
-	PlanetaryCommand *planetaryCommand;
 }
 
 
-@property (nonatomic, retain) PlanetaryCommand *planetaryCommand;
+@property (nonatomic, retain) NSObject<BuildingWithPlans> *buildingWithPlans;
 
 
 + (ViewPlansController *) create;

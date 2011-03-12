@@ -34,6 +34,7 @@ typedef enum {
 	TASK_ROW_DEFEND,
 	TASK_ROW_DOCKED,
 	TASK_ROW_MINING,
+    TASK_ROW_ORBITING,
 	TASK_ROW_TRAVELLING,
 } TASK_ROW;
 
@@ -77,7 +78,7 @@ typedef enum {
 			return 6;
 			break;
 		case SECTION_TASK:
-			return 5;
+			return 6;
 			break;
 		case SECTION_ALL:
 			return 1;
@@ -163,6 +164,12 @@ typedef enum {
 					miningButtonCell.textLabel.text = @"Mining";
 					cell = miningButtonCell;
 					break;
+				case TASK_ROW_ORBITING:
+					; //DO NOT REMOVE
+					LETableViewCellButton *orbitingButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+					orbitingButtonCell.textLabel.text = @"Orbiting";
+					cell = orbitingButtonCell;
+					break;
 				case TASK_ROW_TRAVELLING:
 					; //DO NOT REMOVE
 					LETableViewCellButton *travellingButtonCell = [LETableViewCellButton getCellForTableView:tableView];
@@ -244,6 +251,9 @@ typedef enum {
 					break;
 				case TASK_ROW_MINING:
 					viewShipsController.task = @"Mining";
+					break;
+				case TASK_ROW_ORBITING:
+					viewShipsController.task = @"Orbiting";
 					break;
 				case TASK_ROW_TRAVELLING:
 					viewShipsController.task = @"Travelling";

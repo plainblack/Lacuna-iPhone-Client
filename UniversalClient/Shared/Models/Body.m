@@ -8,6 +8,7 @@
 
 #import "Body.h"
 #import "LEMacros.h"
+#import "Session.h"
 #import "Util.h"
 #import "BuildingUtil.h"
 #import "MapBuilding.h"
@@ -43,13 +44,14 @@
 @synthesize needsRefresh;
 @synthesize incomingForeignShips;
 @synthesize ignoreIncomingForeignShipData;
+@dynamic isPlanet;
 
 
 #pragma mark -
 #pragma mark NSObject Methods
 
 - (id)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
 		self.ignoreIncomingForeignShipData = NO;
 	}
 	
@@ -93,6 +95,14 @@
 #pragma mark -
 #pragma mark Instance Methods
 
+- (BOOL)isPlanet {
+    return ([self.type isEqualToString:@"planet"]);
+}
+
+
+#pragma mark -
+#pragma mark Instance Methods
+
 - (void)parseData:(NSMutableDictionary *)bodyData {
 	[super parseData:bodyData];
 	self.starId = [bodyData objectForKey:@"star_id"];
@@ -101,6 +111,9 @@
 	self.imageName = [bodyData objectForKey:@"image"];
 	self.size = [Util asNumber:[bodyData objectForKey:@"size"]];
 	self.plotsAvailable = [Util asNumber:[bodyData objectForKey:@"plots_available"]];
+    if (isNull(self.plotsAvailable)) {
+        self.plotsAvailable = [NSDecimalNumber zero];
+    }
 	self.planetWater = [Util asNumber:[bodyData objectForKey:@"water"]];
 	self.ores = [bodyData objectForKey:@"ore"];
 	NSDictionary *empireData = [bodyData objectForKey:@"empire"];

@@ -399,6 +399,8 @@
 		F6E8D56E1223E7F7001CD21D /* LEBuildingUpdateAlliance.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E8D56D1223E7F7001CD21D /* LEBuildingUpdateAlliance.m */; };
 		F6E8D5711223E817001CD21D /* LEBuildingLeaveAlliance.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E8D5701223E817001CD21D /* LEBuildingLeaveAlliance.m */; };
 		F6E8D5741223E82C001CD21D /* LEBuildingExpelMember.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E8D5731223E82C001CD21D /* LEBuildingExpelMember.m */; };
+		F6E93B17132BD75A00ED7EEB /* Module.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E93B16132BD75A00ED7EEB /* Module.m */; };
+		F6E93B1A132C123700ED7EEB /* StationCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E93B19132C123400ED7EEB /* StationCommand.m */; };
 		F6E98BDD1241A59A00F8640D /* ViewPublicEmpireProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E98BDC1241A59A00F8640D /* ViewPublicEmpireProfileController.m */; };
 		F6E98BE01241AD0E00F8640D /* LEEmpireViewPublicProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E98BDF1241AD0E00F8640D /* LEEmpireViewPublicProfile.m */; };
 		F6E98BE61241AE1900F8640D /* PublicEmpireProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E98BE51241AE1900F8640D /* PublicEmpireProfile.m */; };
@@ -1234,6 +1236,11 @@
 		F6E8D5701223E817001CD21D /* LEBuildingLeaveAlliance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingLeaveAlliance.m; sourceTree = "<group>"; };
 		F6E8D5721223E82C001CD21D /* LEBuildingExpelMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingExpelMember.h; sourceTree = "<group>"; };
 		F6E8D5731223E82C001CD21D /* LEBuildingExpelMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingExpelMember.m; sourceTree = "<group>"; };
+		F6E93B15132BD75A00ED7EEB /* Module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Module.h; sourceTree = "<group>"; };
+		F6E93B16132BD75A00ED7EEB /* Module.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module.m; sourceTree = "<group>"; };
+		F6E93B18132C123100ED7EEB /* StationCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationCommand.h; sourceTree = "<group>"; };
+		F6E93B19132C123400ED7EEB /* StationCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationCommand.m; sourceTree = "<group>"; };
+		F6E93B1B132C15F100ED7EEB /* BuildingWithPlans.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingWithPlans.h; sourceTree = "<group>"; };
 		F6E98BDB1241A59A00F8640D /* ViewPublicEmpireProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewPublicEmpireProfileController.h; sourceTree = "<group>"; };
 		F6E98BDC1241A59A00F8640D /* ViewPublicEmpireProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewPublicEmpireProfileController.m; sourceTree = "<group>"; };
 		F6E98BDE1241AD0E00F8640D /* LEEmpireViewPublicProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireViewPublicProfile.h; sourceTree = "<group>"; };
@@ -2084,6 +2091,11 @@
 				F61D0C2211E2355600B06382 /* WasteRecycling.m */,
 				F6E9F2201293819300544362 /* WaterStorage.h */,
 				F6E9F2211293819300544362 /* WaterStorage.m */,
+				F6E93B15132BD75A00ED7EEB /* Module.h */,
+				F6E93B16132BD75A00ED7EEB /* Module.m */,
+				F6E93B18132C123100ED7EEB /* StationCommand.h */,
+				F6E93B19132C123400ED7EEB /* StationCommand.m */,
+				F6E93B1B132C15F100ED7EEB /* BuildingWithPlans.h */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -2924,6 +2936,8 @@
 				F6873341131DEBF500CBC502 /* CaptchaViewController.m in Sources */,
 				F602E5A4132708F8002D8C7A /* LEBuildingSendFleet.m in Sources */,
 				F602E5BC13270DA6002D8C7A /* SendFleetController.m in Sources */,
+				F6E93B17132BD75A00ED7EEB /* Module.m in Sources */,
+				F6E93B1A132C123700ED7EEB /* StationCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2974,14 +2988,14 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -2989,7 +3003,7 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -2997,7 +3011,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -3005,7 +3019,7 @@
 		F65D36641195EF1500454C2B /* Distribution Ad Hoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -3013,7 +3027,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Distribution Ad Hoc";
@@ -3042,7 +3056,7 @@
 		F6735BDA12551AB9009EA80D /* Distribution App Store */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kevin Runde";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -3051,7 +3065,7 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6CAF667F-CA13-4429-A711-622F98765FF2";
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Distribution App Store";

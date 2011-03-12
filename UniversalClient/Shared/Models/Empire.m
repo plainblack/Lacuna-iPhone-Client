@@ -127,6 +127,19 @@
 }
 
 
+- (BOOL)isMyBody:(NSString *)bodyId {
+    __block BOOL found = NO;
+    [self.planets enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+        NSString *myPlanetBodyId = [obj objectForKey:@"id"];
+        if ([myPlanetBodyId isEqualToString:bodyId]) {
+            found = YES;
+            *stop = YES;
+        }
+    }];
+    return found;
+}
+
+
 #pragma mark -
 #pragma mark Callback Methods
 

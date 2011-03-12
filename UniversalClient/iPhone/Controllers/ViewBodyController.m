@@ -170,7 +170,7 @@ typedef enum {
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	Session *session = [Session sharedInstance];
 	if (session.body) {
-		if ([session.body.empireId isEqualToString:session.empire.id]) {
+        if ([session.empire isMyBody:session.body.id]) {
 			return 3;
 		} else {
 			return 1;
@@ -186,17 +186,25 @@ typedef enum {
 	if (session.body) {
 		switch (section) {
 			case SECTION_BODY_OVERVIEW:
-				if ([session.body.empireId isEqualToString:session.empire.id]) {
+				if ([session.empire isMyBody:session.body.id]) {
 					return 2;
 				} else {
 					return 1;
 				}
 				break;
 			case SECTION_ACTIONS:
-				return 3;
+                if (session.body.isPlanet) {
+                    return 3;
+                } else {
+                    return 1;
+                }
 				break;
 			case SECTION_COMPOSITION:
-				return 3 + [self.oreKeysSorted count];
+                if (session.body.isPlanet) {
+                    return 3 + [self.oreKeysSorted count];
+                } else {
+                    return 2;
+                }
 				break;
 			default:
 				return 0;

@@ -103,7 +103,7 @@
 #if TARGET_IPHONE_SIMULATOR
 // Dummy implementations for no-building simulator target (reduce compiler warnings)
 - (id)initWithUsername:(NSString *)username serverUri:(NSString *)serverUri accessGroup:(NSString *) accessGroup {
-    if (self = [super init]) {
+    if ((self = [super init])) {
 		self.keychainItemData = [NSMutableDictionary dictionaryWithCapacity:1];
 		[self.keychainItemData setObject:username forKey:(id)kSecAttrAccount];
 		[self.keychainItemData setObject:serverUri forKey:(id)kSecAttrService];
@@ -152,7 +152,7 @@
 
 
 - (id)initWithUsername:(NSString *)username serverUri:(NSString *)serverUri accessGroup:(NSString *) accessGroup {
-    if (self = [super init]) {
+    if ((self = [super init])) {
         // Begin Keychain search setup. The genericPasswordQuery leverages the special user
         // defined attribute kSecAttrGeneric to distinguish itself between other generic Keychain
         // items which may be included by the same application.

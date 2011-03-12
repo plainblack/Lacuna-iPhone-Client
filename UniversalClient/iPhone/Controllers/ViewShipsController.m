@@ -81,22 +81,22 @@ typedef enum {
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	if (self.spacePort && self.spacePort.ships) {
-		return [self.spacePort.ships count];
-	} else {
-		return 1;
-	}
+    return MAX(1, [self.spacePort.ships count]);
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (self.spacePort && self.spacePort.ships) {
-		Ship *currentShip = [self.spacePort.ships objectAtIndex:section];
-		if ([currentShip.task isEqualToString:@"Defend" ]) {
-			return 6;
-		} else {
-			return 4;
-		}
+        if ([self.spacePort.ships count] > 0) {
+            Ship *currentShip = [self.spacePort.ships objectAtIndex:section];
+            if ([currentShip.task isEqualToString:@"Defend" ] || [currentShip.task isEqualToString:@"Orbiting" ]) {
+                return 6;
+            } else {
+                return 4;
+            }
+        } else  {
+            return 1;
+        }
 	} else {
 		return 1;
 	}
@@ -105,27 +105,30 @@ typedef enum {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (self.spacePort && self.spacePort.ships) {
-		switch (indexPath.row) {
-			case ROW_SHIP_INFO:
-				return [LETableViewCellShip getHeightForTableView:tableView];
-				break;
-			case ROW_TASK:
-				return [LETableViewCellLabeledText getHeightForTableView:tableView];
-				break;
-			case ROW_LOCATION_BUTTON:
-			case ROW_RENAME_BUTTON:
-			case ROW_SCUTTLE_BUTTON:
-			case ROW_RECALL_BUTTON:
-				return [LETableViewCellButton getHeightForTableView:tableView];
-				break;
-			default:
-				return tableView.rowHeight;
-				break;
-		}
+        if ([self.spacePort.ships count] > 0) {
+            switch (indexPath.row) {
+                case ROW_SHIP_INFO:
+                    return [LETableViewCellShip getHeightForTableView:tableView];
+                    break;
+                case ROW_TASK:
+                    return [LETableViewCellLabeledText getHeightForTableView:tableView];
+                    break;
+                case ROW_LOCATION_BUTTON:
+                case ROW_RENAME_BUTTON:
+                case ROW_SCUTTLE_BUTTON:
+                case ROW_RECALL_BUTTON:
+                    return [LETableViewCellButton getHeightForTableView:tableView];
+                    break;
+                default:
+                    return tableView.rowHeight;
+                    break;
+            }
+        } else {
+            return [LETableViewCellLabeledText getHeightForTableView:tableView];
+        }
 	} else {
 		return [LETableViewCellLabeledText getHeightForTableView:tableView];
 	}
-
 }
 
 
@@ -134,48 +137,55 @@ typedef enum {
 	UITableViewCell *cell = nil;
 	
 	if (self.spacePort && self.spacePort.ships) {
-		Ship *currentShip = [self.spacePort.ships objectAtIndex:indexPath.section];
-		switch (indexPath.row) {
-			case ROW_SHIP_INFO:
-				; //DO NOT REMOVE
-				LETableViewCellShip *infoCell = [LETableViewCellShip getCellForTableView:tableView isSelectable:NO];
-				[infoCell setShip:currentShip];
-				cell = infoCell;
-				break;
-			case ROW_TASK:
-				; //DO NOT REMOVE
-				LETableViewCellLabeledText *taskCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-				taskCell.label.text = @"Task";
-				taskCell.content.text = currentShip.task;
-				cell = taskCell;
-				break;
-			case ROW_RENAME_BUTTON:
-				; //DO NOT REMOVE
-				LETableViewCellButton *renameButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-				renameButtonCell.textLabel.text = @"Rename";
-				cell = renameButtonCell;
-				break;
-			case ROW_SCUTTLE_BUTTON:
-				; //DO NOT REMOVE
-				LETableViewCellButton *scuttleButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-				scuttleButtonCell.textLabel.text = @"Scuttle";
-				cell = scuttleButtonCell;
-				break;
-			case ROW_LOCATION_BUTTON:
-				; //DO NOT REMOVE
-				LETableViewCellButton *locationButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-				locationButtonCell.textLabel.text = [NSString stringWithFormat:@"At: %@", currentShip.orbitingName];
-				cell = locationButtonCell;
-				break;
-			case ROW_RECALL_BUTTON:
-				; //DO NOT REMOVE
-				LETableViewCellButton *recallButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-				recallButtonCell.textLabel.text = @"Recall";
-				cell = recallButtonCell;
-				break;
-			default:
-				break;
-		}
+        if ([self.spacePort.ships count] > 0) {
+            Ship *currentShip = [self.spacePort.ships objectAtIndex:indexPath.section];
+            switch (indexPath.row) {
+                case ROW_SHIP_INFO:
+                    ; //DO NOT REMOVE
+                    LETableViewCellShip *infoCell = [LETableViewCellShip getCellForTableView:tableView isSelectable:NO];
+                    [infoCell setShip:currentShip];
+                    cell = infoCell;
+                    break;
+                case ROW_TASK:
+                    ; //DO NOT REMOVE
+                    LETableViewCellLabeledText *taskCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+                    taskCell.label.text = @"Task";
+                    taskCell.content.text = currentShip.task;
+                    cell = taskCell;
+                    break;
+                case ROW_RENAME_BUTTON:
+                    ; //DO NOT REMOVE
+                    LETableViewCellButton *renameButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+                    renameButtonCell.textLabel.text = @"Rename";
+                    cell = renameButtonCell;
+                    break;
+                case ROW_SCUTTLE_BUTTON:
+                    ; //DO NOT REMOVE
+                    LETableViewCellButton *scuttleButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+                    scuttleButtonCell.textLabel.text = @"Scuttle";
+                    cell = scuttleButtonCell;
+                    break;
+                case ROW_LOCATION_BUTTON:
+                    ; //DO NOT REMOVE
+                    LETableViewCellButton *locationButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+                    locationButtonCell.textLabel.text = [NSString stringWithFormat:@"At: %@", currentShip.orbitingName];
+                    cell = locationButtonCell;
+                    break;
+                case ROW_RECALL_BUTTON:
+                    ; //DO NOT REMOVE
+                    LETableViewCellButton *recallButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+                    recallButtonCell.textLabel.text = @"Recall";
+                    cell = recallButtonCell;
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            LETableViewCellLabeledText *noneCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+            noneCell.label.text = @"Ships";
+            noneCell.content.text = @"None Found";
+            cell = noneCell;
+        }
 	} else {
 		LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 		loadingCell.label.text = @"";

@@ -47,7 +47,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Session);
 #pragma mark Live Cycle methods
 
 - (id)init {
-    if (self = [super init]) {
+    if ((self = [super init])) {
 		NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 		NSString *documentFolderPath = [searchPaths objectAtIndex:0];
 		NSString *empireListFileName = [documentFolderPath stringByAppendingPathComponent:@"empireList.dat"];
@@ -147,13 +147,25 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Session);
 	if (status && [status respondsToSelector:@selector(objectForKey:)]) {
 		NSDictionary *serverStatus = [status objectForKey:@"server"];
 		if (serverStatus) {
-			NSString *newServerVersion = [[serverStatus objectForKey:@"version"] stringValue];
+            id obj = [serverStatus objectForKey:@"version"];
+			NSString *newServerVersion = nil;
+            if ([obj isKindOfClass:[NSString class]]) {
+                newServerVersion = obj;
+            } else {
+                newServerVersion = [obj stringValue];
+            }
 			if (self.serverVersion) {
 				if (![self.serverVersion isEqual:newServerVersion]) {
 					NSLog(@"Server version changed from: %@ to %@", self.serverVersion, newServerVersion);
 					self.serverVersion = newServerVersion;
 					NSArray *parts = [newServerVersion componentsSeparatedByString:@"."];
-					if ([parts count] == 2) {
+					if ([parts count] == 1) {
+						NSInteger majorVersion = [[parts objectAtIndex:0] intValue];
+						if (majorVersion > SERVER_MAJOR) {
+							UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"ERROR" message:[NSString stringWithFormat:@"The server is reporting a Major Version upgrade. This version of the client will not work with it. Server major sersion is %i, but this client is compatible with major version %i.", majorVersion, SERVER_MAJOR] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+							[av show];
+						}
+                    } else if ([parts count] == 2) {
 						NSInteger majorVersion = [[parts objectAtIndex:0] intValue];
 						if (majorVersion > SERVER_MAJOR) {
 							UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"ERROR" message:[NSString stringWithFormat:@"The server is reporting a Major Version upgrade. This version of the client will not work with it. Server major sersion is %i, but this client is compatible with major version %i.", majorVersion, SERVER_MAJOR] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
@@ -168,7 +180,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Session);
 				self.serverVersion = newServerVersion;
 				NSLog(@"Server version is: %@", self.serverVersion);
 				NSArray *parts = [newServerVersion componentsSeparatedByString:@"."];
-				if ([parts count] == 2) {
+                if ([parts count] == 1) {
+                    NSInteger majorVersion = [[parts objectAtIndex:0] intValue];
+                    if (majorVersion > SERVER_MAJOR) {
+                        UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"ERROR" message:[NSString stringWithFormat:@"The server is reporting a Major Version upgrade. This version of the client will not work with it. Server major sersion is %i, but this client is compatible with major version %i.", majorVersion, SERVER_MAJOR] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+                        [av show];
+                    }
+                } else if ([parts count] == 2) {
 					NSInteger majorVersion = [[parts objectAtIndex:0] intValue];
 					if (majorVersion > SERVER_MAJOR) {
 						UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"ERROR" message:[NSString stringWithFormat:@"The server is reporting a Major Version upgrade. This version of the client will not work with it. Server major sersion is %i, but this client is compatible with major version %i.", majorVersion, SERVER_MAJOR] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];

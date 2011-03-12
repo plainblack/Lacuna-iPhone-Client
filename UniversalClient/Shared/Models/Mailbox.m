@@ -28,7 +28,7 @@
 
 
 - (Mailbox *)init:(LEMailBoxType)inLeMailboxType {
-	if (self = [super init]) {
+	if ((self = [super init])) {
 		leMailboxType = inLeMailboxType;
 		pageIndex = START_PAGE;
 		originalMessageHeaderCount = 0;

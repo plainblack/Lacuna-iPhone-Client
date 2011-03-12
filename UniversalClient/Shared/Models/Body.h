@@ -42,6 +42,8 @@
 @property (nonatomic, assign) BOOL needsRefresh;
 @property (nonatomic, retain) NSMutableSet *incomingForeignShips;
 @property (nonatomic, assign) BOOL ignoreIncomingForeignShipData;
+@property (nonatomic, assign) BOOL isPlanet;
+
 
 
 - (void)parseData:(NSMutableDictionary *)bodyData;

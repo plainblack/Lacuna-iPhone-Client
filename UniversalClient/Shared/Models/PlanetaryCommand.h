@@ -8,19 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import	"Building.h"
+#import "BuildingWithPlans.h"
 
 
-@interface PlanetaryCommand : Building {
-	NSDecimalNumber *nextColonyCost;
-	NSMutableArray *plans;
+@interface PlanetaryCommand : Building <BuildingWithPlans> {
 }
 
 
 @property (nonatomic, retain) NSDecimalNumber *nextColonyCost;
-@property (nonatomic, retain) NSMutableArray *plans;
-
-
-- (void)loadPlans;
 
 
 @end

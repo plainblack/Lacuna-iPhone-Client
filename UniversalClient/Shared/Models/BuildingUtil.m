@@ -38,6 +38,9 @@
 #import "WasteRecycling.h"
 #import "WaterStorage.h"
 
+#import "Module.h"
+#import "StationCommand.h"
+
 
 @implementation BuildingUtil
 
@@ -102,6 +105,14 @@
 		building = [[[WasteRecycling alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:WATER_STORAGE_URL]) {
 		building = [[[WaterStorage alloc] init] autorelease];
+    } else if ([request.buildingUrl isEqualToString:IBS_URL]) {
+		building = [[[Module alloc] init] autorelease];
+    } else if ([request.buildingUrl isEqualToString:PARLIAMENT_URL]) {
+		building = [[[Module alloc] init] autorelease];
+    } else if ([request.buildingUrl isEqualToString:STATION_COMMAND_URL]) {
+		building = [[[StationCommand alloc] init] autorelease];
+    } else if ([request.buildingUrl isEqualToString:WAREHOUSE_URL]) {
+		building = [[[Module alloc] init] autorelease];
 	} else {
 		building = [[[Building alloc] init] autorelease];
 	}

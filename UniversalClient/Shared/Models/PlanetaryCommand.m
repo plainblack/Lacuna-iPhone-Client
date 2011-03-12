@@ -112,7 +112,7 @@
 		case BUILDING_ROW_VIEW_PLANS:
 			; //DO NOT REMOVE
 			ViewPlansController *viewPlansController = [ViewPlansController create];
-			viewPlansController.planetaryCommand = self;
+			viewPlansController.buildingWithPlans = self;
 			return viewPlansController;
 			break;
 		default:

@@ -40,6 +40,7 @@
 - (void)setSelfDestruct:(BOOL)enabled;
 - (void)sendInviteTo:(NSString *)emailAddress;
 - (void)redeemEssentiaCode:(NSString *)code;
+- (BOOL)isMyBody:(NSString *)bodyId;
 
 
 @end
