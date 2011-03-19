@@ -284,7 +284,7 @@
 
 
 - (void)shipRecalled:(LEBuildingRecallShip *)request {
-	Ship *recalledShip;
+	Ship *recalledShip = nil;
 	for (Ship *ship in self.ships) {
 		if ([ship.id isEqualToString:request.shipId]) {
 			recalledShip = ship;

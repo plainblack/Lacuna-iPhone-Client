@@ -84,9 +84,9 @@
 }
 
 
-- (void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear:animated];
-	
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+
 	Session *session = [Session sharedInstance];
 	[session.body removeObserver:self forKeyPath:@"currentBuilding"];
 	if (isNotNull(self.watchedBuilding)) {
@@ -94,6 +94,7 @@
 		[self.watchedBuilding removeObserver:self forKeyPath:@"demolished"];
 		self.watchedBuilding = nil;
 	}
+
 }
 
 #pragma mark -
