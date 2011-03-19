@@ -119,6 +119,10 @@
 		F65DC38911EE58FB00A0A782 /* Prisoner.m in Sources */ = {isa = PBXBuildFile; fileRef = F65DC38811EE58FB00A0A782 /* Prisoner.m */; };
 		F6724F55119F74F200D57E0D /* PickNumericValueController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6724F53119F74F200D57E0D /* PickNumericValueController.m */; };
 		F6724F56119F74F200D57E0D /* PickNumericValueController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6724F54119F74F200D57E0D /* PickNumericValueController.xib */; };
+		F67518811334E12B0062D9ED /* SelectPlanTypeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F67518801334E12B0062D9ED /* SelectPlanTypeController.m */; };
+		F67518841334E8CC0062D9ED /* SelectPlanLevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = F67518831334E8CC0062D9ED /* SelectPlanLevelController.m */; };
+		F67518871334EE4C0062D9ED /* LETableViewCellPlanType.m in Sources */ = {isa = PBXBuildFile; fileRef = F67518861334EE4C0062D9ED /* LETableViewCellPlanType.m */; };
+		F675188A1334EE670062D9ED /* LETableViewCellPlanLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = F67518891334EE670062D9ED /* LETableViewCellPlanLevel.m */; };
 		F678F71F11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = F678F71E11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.m */; };
 		F678F75511A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.m in Sources */ = {isa = PBXBuildFile; fileRef = F678F75411A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.m */; };
 		F67E11F1118A75BB00D964FD /* LETableViewCellSpyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F67E11F0118A75BB00D964FD /* LETableViewCellSpyInfo.m */; };
@@ -405,6 +409,7 @@
 		F6E8D56E1223E7F7001CD21D /* LEBuildingUpdateAlliance.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E8D56D1223E7F7001CD21D /* LEBuildingUpdateAlliance.m */; };
 		F6E8D5711223E817001CD21D /* LEBuildingLeaveAlliance.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E8D5701223E817001CD21D /* LEBuildingLeaveAlliance.m */; };
 		F6E8D5741223E82C001CD21D /* LEBuildingExpelMember.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E8D5731223E82C001CD21D /* LEBuildingExpelMember.m */; };
+		F6E913A21334D92C003B3608 /* MakePlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E913A01334D92C003B3608 /* MakePlanViewController.m */; };
 		F6E93B17132BD75A00ED7EEB /* Module.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E93B16132BD75A00ED7EEB /* Module.m */; };
 		F6E93B1A132C123700ED7EEB /* StationCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E93B19132C123400ED7EEB /* StationCommand.m */; };
 		F6E98BDD1241A59A00F8640D /* ViewPublicEmpireProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E98BDC1241A59A00F8640D /* ViewPublicEmpireProfileController.m */; };
@@ -520,7 +525,7 @@
 		F604296713344EC700B838B7 /* LEBuildingMakePlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingMakePlan.m; sourceTree = "<group>"; };
 		F604296913344EE500B838B7 /* LEBuildingSubsidizePlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingSubsidizePlan.h; sourceTree = "<group>"; };
 		F604296A13344EE500B838B7 /* LEBuildingSubsidizePlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingSubsidizePlan.m; sourceTree = "<group>"; };
-		F604296C1334523C00B838B7 /* SpaceStationLabA.h */ = {isa = PBXFileReference; fileEncoding = 4; path = SpaceStationLabA.h; sourceTree = "<group>"; };
+		F604296C1334523C00B838B7 /* SpaceStationLabA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpaceStationLabA.h; sourceTree = "<group>"; };
 		F604296D1334523C00B838B7 /* SpaceStationLabA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpaceStationLabA.m; sourceTree = "<group>"; };
 		F6093DD6124EFD7C00BB267E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F60AF5151224A483005B2F0E /* AllianceStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllianceStatus.h; sourceTree = "<group>"; };
@@ -696,6 +701,14 @@
 		F6724F52119F74F200D57E0D /* PickNumericValueController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickNumericValueController.h; sourceTree = "<group>"; };
 		F6724F53119F74F200D57E0D /* PickNumericValueController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickNumericValueController.m; sourceTree = "<group>"; };
 		F6724F54119F74F200D57E0D /* PickNumericValueController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickNumericValueController.xib; sourceTree = "<group>"; };
+		F675187F1334E12B0062D9ED /* SelectPlanTypeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPlanTypeController.h; sourceTree = "<group>"; };
+		F67518801334E12B0062D9ED /* SelectPlanTypeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPlanTypeController.m; sourceTree = "<group>"; };
+		F67518821334E8CC0062D9ED /* SelectPlanLevelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPlanLevelController.h; sourceTree = "<group>"; };
+		F67518831334E8CC0062D9ED /* SelectPlanLevelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPlanLevelController.m; sourceTree = "<group>"; };
+		F67518851334EE4C0062D9ED /* LETableViewCellPlanType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellPlanType.h; sourceTree = "<group>"; };
+		F67518861334EE4C0062D9ED /* LETableViewCellPlanType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellPlanType.m; sourceTree = "<group>"; };
+		F67518881334EE670062D9ED /* LETableViewCellPlanLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellPlanLevel.h; sourceTree = "<group>"; };
+		F67518891334EE670062D9ED /* LETableViewCellPlanLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellPlanLevel.m; sourceTree = "<group>"; };
 		F678F71D11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellLabeledSwitch.h; sourceTree = "<group>"; };
 		F678F71E11A370C1006E4BA1 /* LETableViewCellLabeledSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellLabeledSwitch.m; sourceTree = "<group>"; };
 		F678F75311A379AC006E4BA1 /* LEBuildingSubsidizeRecycling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingSubsidizeRecycling.h; sourceTree = "<group>"; };
@@ -1256,6 +1269,8 @@
 		F6E8D5701223E817001CD21D /* LEBuildingLeaveAlliance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingLeaveAlliance.m; sourceTree = "<group>"; };
 		F6E8D5721223E82C001CD21D /* LEBuildingExpelMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingExpelMember.h; sourceTree = "<group>"; };
 		F6E8D5731223E82C001CD21D /* LEBuildingExpelMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingExpelMember.m; sourceTree = "<group>"; };
+		F6E9139F1334D92C003B3608 /* MakePlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MakePlanViewController.h; sourceTree = "<group>"; };
+		F6E913A01334D92C003B3608 /* MakePlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MakePlanViewController.m; sourceTree = "<group>"; };
 		F6E93B15132BD75A00ED7EEB /* Module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Module.h; sourceTree = "<group>"; };
 		F6E93B16132BD75A00ED7EEB /* Module.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Module.m; sourceTree = "<group>"; };
 		F6E93B18132C123100ED7EEB /* StationCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationCommand.h; sourceTree = "<group>"; };
@@ -1619,6 +1634,10 @@
 				F6DEDFF9124FDADE00030329 /* LEUniverseStarCell.m */,
 				F6DD2062116D5B3C0013C58D /* LEViewSectionTab.h */,
 				F6DD2063116D5B3C0013C58D /* LEViewSectionTab.m */,
+				F67518851334EE4C0062D9ED /* LETableViewCellPlanType.h */,
+				F67518861334EE4C0062D9ED /* LETableViewCellPlanType.m */,
+				F67518881334EE670062D9ED /* LETableViewCellPlanLevel.h */,
+				F67518891334EE670062D9ED /* LETableViewCellPlanLevel.m */,
 			);
 			name = Views;
 			path = Shared/Views;
@@ -2434,6 +2453,12 @@
 				F6DD250A1330558F00F6CDE0 /* ReserveResourcesController.m */,
 				F6E77B9E1332295A002BAD3C /* ViewReservesController.h */,
 				F6E77B9F1332295A002BAD3C /* ViewReservesController.m */,
+				F6E9139F1334D92C003B3608 /* MakePlanViewController.h */,
+				F6E913A01334D92C003B3608 /* MakePlanViewController.m */,
+				F675187F1334E12B0062D9ED /* SelectPlanTypeController.h */,
+				F67518801334E12B0062D9ED /* SelectPlanTypeController.m */,
+				F67518821334E8CC0062D9ED /* SelectPlanLevelController.h */,
+				F67518831334E8CC0062D9ED /* SelectPlanLevelController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2986,6 +3011,11 @@
 				F604296813344EC700B838B7 /* LEBuildingMakePlan.m in Sources */,
 				F604296B13344EE600B838B7 /* LEBuildingSubsidizePlan.m in Sources */,
 				F604296E1334523C00B838B7 /* SpaceStationLabA.m in Sources */,
+				F6E913A21334D92C003B3608 /* MakePlanViewController.m in Sources */,
+				F67518811334E12B0062D9ED /* SelectPlanTypeController.m in Sources */,
+				F67518841334E8CC0062D9ED /* SelectPlanLevelController.m in Sources */,
+				F67518871334EE4C0062D9ED /* LETableViewCellPlanType.m in Sources */,
+				F675188A1334EE670062D9ED /* LETableViewCellPlanLevel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

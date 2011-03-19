@@ -11,12 +11,6 @@
 
 
 @interface LETableViewCellCost : UITableViewCell {
-	UILabel *energyCostLabel;
-	UILabel *foodCostLabel;
-	UILabel *timeCostLabel;
-	UILabel *oreCostLabel;
-	UILabel *wasteCostLabel;
-	UILabel *waterCostLabel;
 }
 
 @property(nonatomic, retain) IBOutlet UILabel *energyCostLabel;

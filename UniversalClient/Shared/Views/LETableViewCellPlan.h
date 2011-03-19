@@ -13,8 +13,6 @@
 
 
 @interface LETableViewCellPlan : UITableViewCell {
-	UILabel *name;
-	UILabel *buildLevel;
 }
 
 

@@ -13,6 +13,7 @@
 #import "LETableViewCellLabeledText.h"
 #import "LEBuildingMakePlan.h"
 #import "LEBuildingSubsidizePlan.h"
+#import "MakePlanViewController.h"
 
 
 @implementation SpaceStationLabA
@@ -45,10 +46,10 @@
 
 - (void)parseAdditionalData:(NSDictionary *)data {
     NSMutableDictionary *makePlanData = [data objectForKey:@"make_plan"];
-    self.types = [makePlanData objectForKey:@"resources"];
-    self.levels = [makePlanData objectForKey:@"resources"];
-	self.subsidyCost = [Util asNumber:[makePlanData objectForKey:@"max_reserve_size"]];
-    self.making = [makePlanData objectForKey:@"resources"];
+    self.types = [makePlanData objectForKey:@"types"];
+    self.levels = [makePlanData objectForKey:@"level_costs"];
+	self.subsidyCost = [Util asNumber:[makePlanData objectForKey:@"subsidy_cost"]];
+    self.making = [makePlanData objectForKey:@"making"];
 }
 
 
@@ -89,7 +90,7 @@
 		case BUILDING_ROW_SUBSIDIZE:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellButton *subsidizePlanCell = [LETableViewCellButton getCellForTableView:tableView];
-			subsidizePlanCell.textLabel.text = @"Subsidize Plan";
+			subsidizePlanCell.textLabel.text = [NSString stringWithFormat:@"Subsidize Plan (%@)", self.subsidyCost];
 			cell = subsidizePlanCell;
 			break;
 		case BUILDING_ROW_MAKE_PLAN:
@@ -100,7 +101,7 @@
 			break;
 		case BUILDING_ROW_MAKING:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
-			LETableViewCellLabeledText *makingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:YES];
+			LETableViewCellLabeledText *makingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 			makingCell.label.text = @"Making";
             makingCell.content.text = self.making;
 			cell = makingCell;
@@ -121,12 +122,10 @@
             return nil;
 			break;
 		case BUILDING_ROW_MAKE_PLAN:
-//			; //DO NOT REMOVE
-//			ViewReservesController *viewReservesController = [ViewReservesController create];
-//			viewReservesController.distributionCenter = self;
-//			return viewReservesController;
-            NSLog(@"Show Plan Types");
-            return nil;
+			; //DO NOT REMOVE
+			MakePlanViewController *makePlanViewController = [MakePlanViewController create];
+			makePlanViewController.spaceStationLab = self;
+			return makePlanViewController;
 			break;
 		default:
 			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];
