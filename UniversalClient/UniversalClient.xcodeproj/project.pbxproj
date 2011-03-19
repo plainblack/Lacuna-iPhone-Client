@@ -24,6 +24,9 @@
 		F602E5BC13270DA6002D8C7A /* SendFleetController.m in Sources */ = {isa = PBXBuildFile; fileRef = F602E5BB13270DA6002D8C7A /* SendFleetController.m */; };
 		F603A8BE1177E7FC00BAC73A /* LETableViewCellBody.m in Sources */ = {isa = PBXBuildFile; fileRef = F603A8BD1177E7FC00BAC73A /* LETableViewCellBody.m */; };
 		F603A8EF1177F7F200BAC73A /* LETableViewCellCurrentResources.m in Sources */ = {isa = PBXBuildFile; fileRef = F603A8EE1177F7F200BAC73A /* LETableViewCellCurrentResources.m */; };
+		F604296813344EC700B838B7 /* LEBuildingMakePlan.m in Sources */ = {isa = PBXBuildFile; fileRef = F604296713344EC700B838B7 /* LEBuildingMakePlan.m */; };
+		F604296B13344EE600B838B7 /* LEBuildingSubsidizePlan.m in Sources */ = {isa = PBXBuildFile; fileRef = F604296A13344EE500B838B7 /* LEBuildingSubsidizePlan.m */; };
+		F604296E1334523C00B838B7 /* SpaceStationLabA.m in Sources */ = {isa = PBXBuildFile; fileRef = F604296D1334523C00B838B7 /* SpaceStationLabA.m */; };
 		F6093DD7124EFD7C00BB267E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6093DD6124EFD7C00BB267E /* QuartzCore.framework */; };
 		F60AF5171224A483005B2F0E /* AllianceStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = F60AF5161224A483005B2F0E /* AllianceStatus.m */; };
 		F60AF51B1224A48D005B2F0E /* AllianceMember.m in Sources */ = {isa = PBXBuildFile; fileRef = F60AF51A1224A48D005B2F0E /* AllianceMember.m */; };
@@ -513,6 +516,12 @@
 		F603A8BD1177E7FC00BAC73A /* LETableViewCellBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellBody.m; sourceTree = "<group>"; };
 		F603A8ED1177F7F200BAC73A /* LETableViewCellCurrentResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellCurrentResources.h; sourceTree = "<group>"; };
 		F603A8EE1177F7F200BAC73A /* LETableViewCellCurrentResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellCurrentResources.m; sourceTree = "<group>"; };
+		F604296613344EC700B838B7 /* LEBuildingMakePlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingMakePlan.h; sourceTree = "<group>"; };
+		F604296713344EC700B838B7 /* LEBuildingMakePlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingMakePlan.m; sourceTree = "<group>"; };
+		F604296913344EE500B838B7 /* LEBuildingSubsidizePlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingSubsidizePlan.h; sourceTree = "<group>"; };
+		F604296A13344EE500B838B7 /* LEBuildingSubsidizePlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingSubsidizePlan.m; sourceTree = "<group>"; };
+		F604296C1334523C00B838B7 /* SpaceStationLabA.h */ = {isa = PBXFileReference; fileEncoding = 4; path = SpaceStationLabA.h; sourceTree = "<group>"; };
+		F604296D1334523C00B838B7 /* SpaceStationLabA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpaceStationLabA.m; sourceTree = "<group>"; };
 		F6093DD6124EFD7C00BB267E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F60AF5151224A483005B2F0E /* AllianceStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllianceStatus.h; sourceTree = "<group>"; };
 		F60AF5161224A483005B2F0E /* AllianceStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllianceStatus.m; sourceTree = "<group>"; };
@@ -1970,6 +1979,10 @@
 				F6E9CBF71330DC3700189FC4 /* LEBuildingReserve.m */,
 				F6E9CBF91330DC4800189FC4 /* LEBuildingReleaseReserve.h */,
 				F6E9CBFA1330DC4800189FC4 /* LEBuildingReleaseReserve.m */,
+				F604296613344EC700B838B7 /* LEBuildingMakePlan.h */,
+				F604296713344EC700B838B7 /* LEBuildingMakePlan.m */,
+				F604296913344EE500B838B7 /* LEBuildingSubsidizePlan.h */,
+				F604296A13344EE500B838B7 /* LEBuildingSubsidizePlan.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -2117,6 +2130,8 @@
 				F6E93B1B132C15F100ED7EEB /* BuildingWithPlans.h */,
 				F60D1CC8132F876E00919C55 /* DistributionCenter.h */,
 				F60D1CC9132F876E00919C55 /* DistributionCenter.m */,
+				F604296C1334523C00B838B7 /* SpaceStationLabA.h */,
+				F604296D1334523C00B838B7 /* SpaceStationLabA.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -2968,6 +2983,9 @@
 				F6E9CBF81330DC3700189FC4 /* LEBuildingReserve.m in Sources */,
 				F6E9CBFB1330DC4800189FC4 /* LEBuildingReleaseReserve.m in Sources */,
 				F6E77BA11332295A002BAD3C /* ViewReservesController.m in Sources */,
+				F604296813344EC700B838B7 /* LEBuildingMakePlan.m in Sources */,
+				F604296B13344EE600B838B7 /* LEBuildingSubsidizePlan.m in Sources */,
+				F604296E1334523C00B838B7 /* SpaceStationLabA.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

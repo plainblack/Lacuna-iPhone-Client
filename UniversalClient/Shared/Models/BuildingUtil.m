@@ -33,6 +33,7 @@
 #import "Security.h"
 #import "Shipyard.h"
 #import "SpacePort.h"
+#import "SpaceStationLabA.h"
 #import "SubspaceSupplyDepot.h"
 #import "TempleOfTheDrajilites.h"
 #import "ThemePark.h"
@@ -92,6 +93,8 @@
 		building = [[[Security alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:SPACE_PORT_URL]) {
 		building = [[[SpacePort alloc] init] autorelease];
+	} else if ([request.buildingUrl isEqualToString:SPACE_STATION_LAB_A]) {
+		building = [[[SpaceStationLabA alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:SHIPYARD_URL]) {
 		building = [[[Shipyard alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:SUBSPACE_SUPPLY_DEPOT_URL]) {

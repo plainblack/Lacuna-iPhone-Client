@@ -33,6 +33,7 @@
 #define SECURITY_URL @"/security"
 #define SHIPYARD_URL @"/shipyard"
 #define SPACE_PORT_URL @"/spaceport"
+#define SPACE_STATION_LAB_A @"/ssla"
 #define SUBSPACE_SUPPLY_DEPOT_URL @"/subspacesupplydepot"
 #define TEMPLE_OF_THE_DRAJILITEIS_URL @"/templeofthedrajilites"
 #define THEME_PARK_URL @"/themepark"
@@ -163,6 +164,8 @@ typedef enum {
     BUILDING_ROW_STORE_RESOURCES,
     BUILDING_ROW_STORAGE_DURATION,
     BUILDING_ROW_VIEW_RESOURCES,
+    BUILDING_ROW_MAKING,
+    BUILDING_ROW_MAKE_PLAN,
 } BUILDING_ROW;
 
 
