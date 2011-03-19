@@ -12,8 +12,6 @@
 
 @interface ViewDictionaryController : LETableViewControllerGrouped {
 	NSString *name;
-	NSDictionary *data;
-	NSArray *keysSorted;
 	UIImage *icon;
 	BOOL useLongLabels;
 }

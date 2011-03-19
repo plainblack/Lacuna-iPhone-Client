@@ -18,8 +18,8 @@
 #import "Plan.h"
 #import "Prisoner.h"
 #import "Ship.h"
-#import "LEBuildingViewAvailableTrades.h";
-#import "LEBuildingViewMyTrades.h";
+#import "LEBuildingViewAvailableTrades.h"
+#import "LEBuildingViewMyTrades.h"
 #import "LEBuildingPushItems.h"
 #import "LEBuildingTradeOneForOne.h"
 #import "LEBuildingAddTrade.h"
@@ -36,7 +36,7 @@
 #import "LEBuildingViewMarket.h"
 #import "LEBuildingViewMyMarket.h"
 #import "LEBuildingWithdrawFromMarket.h"
-#import "LETableViewCellButton.h";
+#import "LETableViewCellButton.h"
 #import "LETableViewCellLabeledText.h"
 #import "ViewAvailableTradesController.h"
 #import "ViewMyTradesController.h"

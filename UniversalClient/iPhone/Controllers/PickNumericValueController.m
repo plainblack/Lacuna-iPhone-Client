@@ -124,7 +124,6 @@
 			}
 		}
 	}
-	NSLog(@"New Numeric Value: %@", valueAsString);
 	[self.delegate newNumericValue:[NSDecimalNumber decimalNumberWithString:valueAsString]];
 	[self dismissModalViewControllerAnimated:YES];
 }

@@ -29,6 +29,7 @@
 		F60AF51B1224A48D005B2F0E /* AllianceMember.m in Sources */ = {isa = PBXBuildFile; fileRef = F60AF51A1224A48D005B2F0E /* AllianceMember.m */; };
 		F60AF51E1224A4A5005B2F0E /* PendingAllianceInvite.m in Sources */ = {isa = PBXBuildFile; fileRef = F60AF51D1224A4A5005B2F0E /* PendingAllianceInvite.m */; };
 		F60AF5211224A4AE005B2F0E /* MyAllianceInvite.m in Sources */ = {isa = PBXBuildFile; fileRef = F60AF5201224A4AE005B2F0E /* MyAllianceInvite.m */; };
+		F60D1CCA132F876E00919C55 /* DistributionCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F60D1CC9132F876E00919C55 /* DistributionCenter.m */; };
 		F61151D91299988E00108348 /* LEBuildingTransmitFood.m in Sources */ = {isa = PBXBuildFile; fileRef = F61151D81299988E00108348 /* LEBuildingTransmitFood.m */; };
 		F61151DC129998A200108348 /* LEBuildingTransmitEnergy.m in Sources */ = {isa = PBXBuildFile; fileRef = F61151DB129998A200108348 /* LEBuildingTransmitEnergy.m */; };
 		F61151DF129998AE00108348 /* LEBuildingTransmitOre.m in Sources */ = {isa = PBXBuildFile; fileRef = F61151DE129998AE00108348 /* LEBuildingTransmitOre.m */; };
@@ -296,6 +297,7 @@
 		F6DD1FDC116D33FC0013C58D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F6DD1FDB116D33FC0013C58D /* Default.png */; };
 		F6DD2026116D561F0013C58D /* LETableViewCellButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DD2025116D561F0013C58D /* LETableViewCellButton.m */; };
 		F6DD2064116D5B3C0013C58D /* LEViewSectionTab.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DD2063116D5B3C0013C58D /* LEViewSectionTab.m */; };
+		F6DD250C1330558F00F6CDE0 /* ReserveResourcesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DD250A1330558F00F6CDE0 /* ReserveResourcesController.m */; };
 		F6DE5278127F8B2C00986EC5 /* ViewTipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DE5276127F8B2C00986EC5 /* ViewTipsController.m */; };
 		F6DE5279127F8B2C00986EC5 /* ViewTipsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6DE5277127F8B2C00986EC5 /* ViewTipsController.xib */; };
 		F6DEABFE125D5AF2001366C3 /* ChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DEABFC125D5AF2001366C3 /* ChatController.m */; };
@@ -385,6 +387,7 @@
 		F6E767C611D6A4D400778C1D /* Body.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E767C511D6A4D400778C1D /* Body.m */; };
 		F6E768AA11D6BD9300778C1D /* StoredResource.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E768A911D6BD9300778C1D /* StoredResource.m */; };
 		F6E768B411D6C6E500778C1D /* NoLimitResource.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E768B311D6C6E500778C1D /* NoLimitResource.m */; };
+		F6E77BA11332295A002BAD3C /* ViewReservesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E77B9F1332295A002BAD3C /* ViewReservesController.m */; };
 		F6E8003712BF81B20047A39A /* BuildStashExchangeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E8003612BF81B20047A39A /* BuildStashExchangeController.m */; };
 		F6E8D5501223E73B001CD21D /* LEBuildingCreateAlliance.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E8D54F1223E73B001CD21D /* LEBuildingCreateAlliance.m */; };
 		F6E8D5531223E750001CD21D /* LEBuildingDissolveAlliance.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E8D5521223E750001CD21D /* LEBuildingDissolveAlliance.m */; };
@@ -404,6 +407,8 @@
 		F6E98BDD1241A59A00F8640D /* ViewPublicEmpireProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E98BDC1241A59A00F8640D /* ViewPublicEmpireProfileController.m */; };
 		F6E98BE01241AD0E00F8640D /* LEEmpireViewPublicProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E98BDF1241AD0E00F8640D /* LEEmpireViewPublicProfile.m */; };
 		F6E98BE61241AE1900F8640D /* PublicEmpireProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E98BE51241AE1900F8640D /* PublicEmpireProfile.m */; };
+		F6E9CBF81330DC3700189FC4 /* LEBuildingReserve.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E9CBF71330DC3700189FC4 /* LEBuildingReserve.m */; };
+		F6E9CBFB1330DC4800189FC4 /* LEBuildingReleaseReserve.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E9CBFA1330DC4800189FC4 /* LEBuildingReleaseReserve.m */; };
 		F6E9F16512935C6900544362 /* Capitol.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E9F16412935C6900544362 /* Capitol.m */; };
 		F6E9F168129361BE00544362 /* LEBuildingRenameEmpire.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E9F167129361BE00544362 /* LEBuildingRenameEmpire.m */; };
 		F6E9F19B129368D100544362 /* RenameEmpireController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E9F19A129368D100544362 /* RenameEmpireController.m */; };
@@ -517,6 +522,8 @@
 		F60AF51D1224A4A5005B2F0E /* PendingAllianceInvite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PendingAllianceInvite.m; sourceTree = "<group>"; };
 		F60AF51F1224A4AE005B2F0E /* MyAllianceInvite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAllianceInvite.h; sourceTree = "<group>"; };
 		F60AF5201224A4AE005B2F0E /* MyAllianceInvite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAllianceInvite.m; sourceTree = "<group>"; };
+		F60D1CC8132F876E00919C55 /* DistributionCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistributionCenter.h; sourceTree = "<group>"; };
+		F60D1CC9132F876E00919C55 /* DistributionCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistributionCenter.m; sourceTree = "<group>"; };
 		F61151D71299988E00108348 /* LEBuildingTransmitFood.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingTransmitFood.h; sourceTree = "<group>"; };
 		F61151D81299988E00108348 /* LEBuildingTransmitFood.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingTransmitFood.m; sourceTree = "<group>"; };
 		F61151DA129998A200108348 /* LEBuildingTransmitEnergy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingTransmitEnergy.h; sourceTree = "<group>"; };
@@ -1035,6 +1042,8 @@
 		F6DD2025116D561F0013C58D /* LETableViewCellButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellButton.m; sourceTree = "<group>"; };
 		F6DD2062116D5B3C0013C58D /* LEViewSectionTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEViewSectionTab.h; sourceTree = "<group>"; };
 		F6DD2063116D5B3C0013C58D /* LEViewSectionTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEViewSectionTab.m; sourceTree = "<group>"; };
+		F6DD25091330558F00F6CDE0 /* ReserveResourcesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReserveResourcesController.h; sourceTree = "<group>"; };
+		F6DD250A1330558F00F6CDE0 /* ReserveResourcesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReserveResourcesController.m; sourceTree = "<group>"; };
 		F6DE5275127F8B2C00986EC5 /* ViewTipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewTipsController.h; sourceTree = "<group>"; };
 		F6DE5276127F8B2C00986EC5 /* ViewTipsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewTipsController.m; sourceTree = "<group>"; };
 		F6DE5277127F8B2C00986EC5 /* ViewTipsController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewTipsController.xib; sourceTree = "<group>"; };
@@ -1208,6 +1217,8 @@
 		F6E768A911D6BD9300778C1D /* StoredResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoredResource.m; sourceTree = "<group>"; };
 		F6E768B211D6C6E500778C1D /* NoLimitResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoLimitResource.h; sourceTree = "<group>"; };
 		F6E768B311D6C6E500778C1D /* NoLimitResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoLimitResource.m; sourceTree = "<group>"; };
+		F6E77B9E1332295A002BAD3C /* ViewReservesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewReservesController.h; sourceTree = "<group>"; };
+		F6E77B9F1332295A002BAD3C /* ViewReservesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewReservesController.m; sourceTree = "<group>"; };
 		F6E8003512BF81B20047A39A /* BuildStashExchangeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildStashExchangeController.h; sourceTree = "<group>"; };
 		F6E8003612BF81B20047A39A /* BuildStashExchangeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildStashExchangeController.m; sourceTree = "<group>"; };
 		F6E8D54E1223E73B001CD21D /* LEBuildingCreateAlliance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingCreateAlliance.h; sourceTree = "<group>"; };
@@ -1247,6 +1258,10 @@
 		F6E98BDF1241AD0E00F8640D /* LEEmpireViewPublicProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireViewPublicProfile.m; sourceTree = "<group>"; };
 		F6E98BE41241AE1900F8640D /* PublicEmpireProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicEmpireProfile.h; sourceTree = "<group>"; };
 		F6E98BE51241AE1900F8640D /* PublicEmpireProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicEmpireProfile.m; sourceTree = "<group>"; };
+		F6E9CBF61330DC3700189FC4 /* LEBuildingReserve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingReserve.h; sourceTree = "<group>"; };
+		F6E9CBF71330DC3700189FC4 /* LEBuildingReserve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingReserve.m; sourceTree = "<group>"; };
+		F6E9CBF91330DC4800189FC4 /* LEBuildingReleaseReserve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingReleaseReserve.h; sourceTree = "<group>"; };
+		F6E9CBFA1330DC4800189FC4 /* LEBuildingReleaseReserve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingReleaseReserve.m; sourceTree = "<group>"; };
 		F6E9F16312935C6900544362 /* Capitol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Capitol.h; sourceTree = "<group>"; };
 		F6E9F16412935C6900544362 /* Capitol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Capitol.m; sourceTree = "<group>"; };
 		F6E9F166129361BE00544362 /* LEBuildingRenameEmpire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingRenameEmpire.h; sourceTree = "<group>"; };
@@ -1951,6 +1966,10 @@
 				F6873329131DE85700CBC502 /* LECaptchaSolve.m */,
 				F602E5A2132708F8002D8C7A /* LEBuildingSendFleet.h */,
 				F602E5A3132708F8002D8C7A /* LEBuildingSendFleet.m */,
+				F6E9CBF61330DC3700189FC4 /* LEBuildingReserve.h */,
+				F6E9CBF71330DC3700189FC4 /* LEBuildingReserve.m */,
+				F6E9CBF91330DC4800189FC4 /* LEBuildingReleaseReserve.h */,
+				F6E9CBFA1330DC4800189FC4 /* LEBuildingReleaseReserve.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -2096,6 +2115,8 @@
 				F6E93B18132C123100ED7EEB /* StationCommand.h */,
 				F6E93B19132C123400ED7EEB /* StationCommand.m */,
 				F6E93B1B132C15F100ED7EEB /* BuildingWithPlans.h */,
+				F60D1CC8132F876E00919C55 /* DistributionCenter.h */,
+				F60D1CC9132F876E00919C55 /* DistributionCenter.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -2394,6 +2415,10 @@
 				F6873340131DEBF500CBC502 /* CaptchaViewController.m */,
 				F602E5BA13270DA6002D8C7A /* SendFleetController.h */,
 				F602E5BB13270DA6002D8C7A /* SendFleetController.m */,
+				F6DD25091330558F00F6CDE0 /* ReserveResourcesController.h */,
+				F6DD250A1330558F00F6CDE0 /* ReserveResourcesController.m */,
+				F6E77B9E1332295A002BAD3C /* ViewReservesController.h */,
+				F6E77B9F1332295A002BAD3C /* ViewReservesController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2938,6 +2963,11 @@
 				F602E5BC13270DA6002D8C7A /* SendFleetController.m in Sources */,
 				F6E93B17132BD75A00ED7EEB /* Module.m in Sources */,
 				F6E93B1A132C123700ED7EEB /* StationCommand.m in Sources */,
+				F60D1CCA132F876E00919C55 /* DistributionCenter.m in Sources */,
+				F6DD250C1330558F00F6CDE0 /* ReserveResourcesController.m in Sources */,
+				F6E9CBF81330DC3700189FC4 /* LEBuildingReserve.m in Sources */,
+				F6E9CBFB1330DC4800189FC4 /* LEBuildingReleaseReserve.m in Sources */,
+				F6E77BA11332295A002BAD3C /* ViewReservesController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

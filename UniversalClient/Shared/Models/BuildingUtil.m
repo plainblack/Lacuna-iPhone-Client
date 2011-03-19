@@ -13,6 +13,7 @@
 #import "Archaeology.h"
 #import "Capitol.h"
 #import "Development.h"
+#import "DistributionCenter.h"
 #import "Embassy.h"
 #import "EnergyReserve.h"
 #import "Entertainment.h"
@@ -53,6 +54,8 @@
 		building = [[[Capitol alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:DEVELOPMENT_URL]) {
 		building = [[[Development alloc] init] autorelease];
+	} else if ([request.buildingUrl isEqualToString:DISTRIBUTION_CENTER_URL]) {
+		building = [[[DistributionCenter alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:EMBASSY_URL]) {
 		building = [[[Embassy alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:ENERGY_RESERVE_URL]) {

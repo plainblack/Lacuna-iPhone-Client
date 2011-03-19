@@ -35,9 +35,13 @@
 
 - (void)processSuccess {
 	NSDictionary *result = [self.response objectForKey:@"result"];
-	
-	
-	self.storedResources = [result objectForKey:@"resources"];
+
+	NSMutableDictionary *resourcesData = [result objectForKey:@"resources"];
+    NSMutableDictionary *tmp = [NSMutableDictionary dictionaryWithCapacity:[resourcesData count]];
+    [resourcesData enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+        [tmp setObject:[Util asNumber:obj] forKey:key];
+    }];
+	self.storedResources = tmp;
 	self.cargoSpaceUsedPer = [Util asNumber:[result objectForKey:@"cargo_space_used_each"]];
 }
 

@@ -13,7 +13,7 @@
 #import "LETableViewCellButton.h"
 #import "RecycleController.h"
 #import "LEBuildingSubsidizeRecycling.h"
-#import "LETableViewCellLabeledText.h";
+#import "LETableViewCellLabeledText.h"
 
 
 @implementation WasteRecycling
