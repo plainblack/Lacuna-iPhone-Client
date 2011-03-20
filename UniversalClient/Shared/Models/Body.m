@@ -96,7 +96,7 @@
 #pragma mark Instance Methods
 
 - (BOOL)isPlanet {
-    return ([self.type isEqualToString:@"planet"]);
+    return ([self.type isEqualToString:@"gas giant"] || [self.type isEqualToString:@"habitable planet"]);
 }
 
 

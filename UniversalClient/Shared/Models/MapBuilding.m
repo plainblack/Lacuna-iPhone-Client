@@ -103,7 +103,9 @@
 	if (self.work && self.work.secondsRemaining <= 0) {
 		self.work = nil;
 	}
-	self.needsRefresh = YES;
+    if (isNotNull(self.pendingBuild) || isNotNull(self.work)) {
+        self.needsRefresh = YES;
+    }
 }
 
 
