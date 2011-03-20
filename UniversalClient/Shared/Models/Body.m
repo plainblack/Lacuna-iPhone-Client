@@ -45,6 +45,7 @@
 @synthesize incomingForeignShips;
 @synthesize ignoreIncomingForeignShipData;
 @dynamic isPlanet;
+@dynamic isSpaceStation;
 
 
 #pragma mark -
@@ -97,6 +98,11 @@
 
 - (BOOL)isPlanet {
     return ([self.type isEqualToString:@"gas giant"] || [self.type isEqualToString:@"habitable planet"]);
+}
+
+
+- (BOOL)isSpaceStation {
+    return ([self.type isEqualToString:@"space station"]);
 }
 
 

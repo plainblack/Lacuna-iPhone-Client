@@ -193,7 +193,7 @@ typedef enum {
 				}
 				break;
 			case SECTION_ACTIONS:
-                if (session.body.isPlanet) {
+                if (session.body.isPlanet || session.body.isSpaceStation) {
                     return 3;
                 } else {
                     return 1;

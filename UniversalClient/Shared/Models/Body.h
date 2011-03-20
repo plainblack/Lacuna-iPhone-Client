@@ -43,6 +43,7 @@
 @property (nonatomic, retain) NSMutableSet *incomingForeignShips;
 @property (nonatomic, assign) BOOL ignoreIncomingForeignShipData;
 @property (nonatomic, assign) BOOL isPlanet;
+@property (nonatomic, assign) BOOL isSpaceStation;
 
 
 

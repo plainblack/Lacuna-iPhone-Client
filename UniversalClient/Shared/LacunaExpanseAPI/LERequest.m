@@ -106,35 +106,42 @@ static id<LERequestMonitor> delegate;
 		} else {
 			self.response = _dict(_dict(@"Could not connect to server.", @"message"), @"error");
 		}
-
 	} else {
 		self.response = err.userInfo;
 	}
 
-	
-	self->wasError = YES;
-	self->handledError = NO;
-	
-	if ([self errorCode] == 1006) {
-		Session *session = [Session sharedInstance];
-		[session reloginTarget:self selector:@selector(resend)];
-	} else if ([self errorCode] == 1200) {
-		[self requestFinished];
 
-		AppDelegate_Phone *appDelegate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
-		NSLog(@"Error Data: %@", [self errorData]);
-		[appDelegate gameover:(NSString *)[self errorData]];
-	} else if ([self errorCode] == 1016) {
-		AppDelegate_Phone *appDelegate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
-		[appDelegate captchaValidate:self];
-	} else {
-        NSLog(@"Error: %@", err);
-        NSLog(@"Details: %@", err.userInfo);
+	if ([self errorCode] == 1017) {
+        UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Vote Required" message:[self errorMessage] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+        [av show];
 
 		[self requestFinished];
 		[self requestComplete];
-	}
-	
+    } else {
+        self->wasError = YES;
+        self->handledError = NO;
+
+        if ([self errorCode] == 1006) {
+            Session *session = [Session sharedInstance];
+            [session reloginTarget:self selector:@selector(resend)];
+        } else if ([self errorCode] == 1200) {
+            [self requestFinished];
+            
+            AppDelegate_Phone *appDelegate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
+            NSLog(@"Error Data: %@", [self errorData]);
+            [appDelegate gameover:(NSString *)[self errorData]];
+        } else if ([self errorCode] == 1016) {
+            AppDelegate_Phone *appDelegate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
+            [appDelegate captchaValidate:self];
+        } else {
+            NSLog(@"Error: %@", err);
+            NSLog(@"Details: %@", err.userInfo);
+            
+            [self requestFinished];
+            [self requestComplete];
+        }
+    }
+		
 	return nil;
 }
 
