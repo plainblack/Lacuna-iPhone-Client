@@ -41,6 +41,7 @@
 #import "WaterStorage.h"
 
 #import "Module.h"
+#import "Parliament.h"
 #import "StationCommand.h"
 
 
@@ -114,7 +115,7 @@
     } else if ([request.buildingUrl isEqualToString:IBS_URL]) {
 		building = [[[Module alloc] init] autorelease];
     } else if ([request.buildingUrl isEqualToString:PARLIAMENT_URL]) {
-		building = [[[Module alloc] init] autorelease];
+		building = [[[Parliament alloc] init] autorelease];
     } else if ([request.buildingUrl isEqualToString:STATION_COMMAND_URL]) {
 		building = [[[StationCommand alloc] init] autorelease];
     } else if ([request.buildingUrl isEqualToString:WAREHOUSE_URL]) {

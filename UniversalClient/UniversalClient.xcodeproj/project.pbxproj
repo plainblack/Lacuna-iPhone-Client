@@ -389,6 +389,10 @@
 		F6E6562C12C39FE30031EAFB /* OracleOfAnid.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E6562B12C39FE30031EAFB /* OracleOfAnid.m */; };
 		F6E6562F12C3A4A00031EAFB /* LEBuildingGetStar.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E6562E12C3A4A00031EAFB /* LEBuildingGetStar.m */; };
 		F6E6564D12C3A8B20031EAFB /* SelectStarToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E6564C12C3A8B20031EAFB /* SelectStarToViewController.m */; };
+		F6E667191338158D00A94A39 /* Parliament.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E667181338158D00A94A39 /* Parliament.m */; };
+		F6E6671C1338196700A94A39 /* LEBuildingViewPropositions.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E6671B1338196700A94A39 /* LEBuildingViewPropositions.m */; };
+		F6E6671F1338198100A94A39 /* LEBuildingCastVote.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E6671E1338198100A94A39 /* LEBuildingCastVote.m */; };
+		F6E667221338264E00A94A39 /* Proposition.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E667211338264E00A94A39 /* Proposition.m */; };
 		F6E766BE11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E766BD11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.m */; };
 		F6E7671111D68C6400778C1D /* Empire.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E7671011D68C6400778C1D /* Empire.m */; };
 		F6E767C611D6A4D400778C1D /* Body.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E767C511D6A4D400778C1D /* Body.m */; };
@@ -1229,6 +1233,14 @@
 		F6E6562E12C3A4A00031EAFB /* LEBuildingGetStar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetStar.m; sourceTree = "<group>"; };
 		F6E6564B12C3A8B20031EAFB /* SelectStarToViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectStarToViewController.h; sourceTree = "<group>"; };
 		F6E6564C12C3A8B20031EAFB /* SelectStarToViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectStarToViewController.m; sourceTree = "<group>"; };
+		F6E667171338158D00A94A39 /* Parliament.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parliament.h; sourceTree = "<group>"; };
+		F6E667181338158D00A94A39 /* Parliament.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Parliament.m; sourceTree = "<group>"; };
+		F6E6671A1338196700A94A39 /* LEBuildingViewPropositions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewPropositions.h; sourceTree = "<group>"; };
+		F6E6671B1338196700A94A39 /* LEBuildingViewPropositions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewPropositions.m; sourceTree = "<group>"; };
+		F6E6671D1338198100A94A39 /* LEBuildingCastVote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingCastVote.h; sourceTree = "<group>"; };
+		F6E6671E1338198100A94A39 /* LEBuildingCastVote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingCastVote.m; sourceTree = "<group>"; };
+		F6E667201338264D00A94A39 /* Proposition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Proposition.h; sourceTree = "<group>"; };
+		F6E667211338264E00A94A39 /* Proposition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Proposition.m; sourceTree = "<group>"; };
 		F6E766BC11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingSubsidizeBuildQueue.h; sourceTree = "<group>"; };
 		F6E766BD11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingSubsidizeBuildQueue.m; sourceTree = "<group>"; };
 		F6E7670F11D68C6400778C1D /* Empire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Empire.h; sourceTree = "<group>"; };
@@ -2002,6 +2014,10 @@
 				F604296713344EC700B838B7 /* LEBuildingMakePlan.m */,
 				F604296913344EE500B838B7 /* LEBuildingSubsidizePlan.h */,
 				F604296A13344EE500B838B7 /* LEBuildingSubsidizePlan.m */,
+				F6E6671A1338196700A94A39 /* LEBuildingViewPropositions.h */,
+				F6E6671B1338196700A94A39 /* LEBuildingViewPropositions.m */,
+				F6E6671D1338198100A94A39 /* LEBuildingCastVote.h */,
+				F6E6671E1338198100A94A39 /* LEBuildingCastVote.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -2151,6 +2167,10 @@
 				F60D1CC9132F876E00919C55 /* DistributionCenter.m */,
 				F604296C1334523C00B838B7 /* SpaceStationLabA.h */,
 				F604296D1334523C00B838B7 /* SpaceStationLabA.m */,
+				F6E667171338158D00A94A39 /* Parliament.h */,
+				F6E667181338158D00A94A39 /* Parliament.m */,
+				F6E667201338264D00A94A39 /* Proposition.h */,
+				F6E667211338264E00A94A39 /* Proposition.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -3016,6 +3036,10 @@
 				F67518841334E8CC0062D9ED /* SelectPlanLevelController.m in Sources */,
 				F67518871334EE4C0062D9ED /* LETableViewCellPlanType.m in Sources */,
 				F675188A1334EE670062D9ED /* LETableViewCellPlanLevel.m in Sources */,
+				F6E667191338158D00A94A39 /* Parliament.m in Sources */,
+				F6E6671C1338196700A94A39 /* LEBuildingViewPropositions.m in Sources */,
+				F6E6671F1338198100A94A39 /* LEBuildingCastVote.m in Sources */,
+				F6E667221338264E00A94A39 /* Proposition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
