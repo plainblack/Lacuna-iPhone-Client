@@ -9,6 +9,7 @@
 #import "ViewMailMessageWebController.h"
 #import "LEMacros.h"
 #import "Util.h"
+#import "BuildingUtil.h"
 #import "Mailbox.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellLabeledText.h"
@@ -24,6 +25,7 @@
 #import "ViewPublicEmpireProfileController.h"
 #import "ViewAllianceProfileController.h"
 #import "AppDelegate_Phone.h"
+#import "LEBuildingCastVote.h"
 
 
 typedef enum {
@@ -494,6 +496,16 @@ typedef enum {
 }
 
 
+- (void)voteYesForBody:(NSString *)bodyId building:(NSString *)buildingId proposition:(NSString *)propositionId {
+    [[[LEBuildingCastVote alloc] initWithCallback:@selector(voteCast:) target:self buildingId:buildingId buildingUrl:PARLIAMENT_URL propositionId:propositionId vote:YES] autorelease];
+}
+
+
+- (void)voteNoForBody:(NSString *)bodyId building:(NSString *)buildingId proposition:(NSString *)propositionId {
+    [[[LEBuildingCastVote alloc] initWithCallback:@selector(voteCast:) target:self buildingId:buildingId buildingUrl:PARLIAMENT_URL propositionId:propositionId vote:NO] autorelease];
+}
+
+
 #pragma mark -
 #pragma mark Action Methods
 
@@ -522,6 +534,17 @@ typedef enum {
 			NSLog(@"Invalid switchMessage");
 			break;
 	}
+}
+
+#pragma mark -
+#pragma mark Callback Methods
+
+- (void)voteCast:(LEBuildingCastVote *)request {
+    if (![request wasError]) {
+        NSString *msg = [NSString stringWithFormat:@"The vote needs %@ votes to pass. Current Votes Yes: %@, No: %@", [request.proposition objectForKey:@"votes_needed"], [request.proposition objectForKey:@"votes_yes"], [request.proposition objectForKey:@"votes_no"]];
+        UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Vote Cast!" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+        [av show];
+    }
 }
 
 

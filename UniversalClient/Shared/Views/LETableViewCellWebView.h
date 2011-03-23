@@ -17,6 +17,8 @@
 - (void)showAllianceProfile:(NSString *)allianceId;
 - (void)showMyPlanet:(NSString *)myPlanetId;
 - (void)showStarmap:(NSString *)starmapLoc;
+- (void)voteYesForBody:(NSString *)bodyId building:(NSString *)buildingId proposition:(NSString *)propositionId;
+- (void)voteNoForBody:(NSString *)bodyId building:(NSString *)buildingId proposition:(NSString *)propositionId;
 
 
 @end
