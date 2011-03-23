@@ -19,7 +19,7 @@
 @synthesize buildingUrl;
 @synthesize vote;
 @synthesize propositionId;
-@synthesize propositions;
+@synthesize proposition;
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl propositionId:(NSString *)inPropositionId vote:(BOOL)inVote {
@@ -32,14 +32,15 @@
 
 
 - (id)params {
-	NSMutableArray *params = _array([Session sharedInstance].sessionId, self.buildingId);
+	NSMutableArray *params = _array([Session sharedInstance].sessionId, self.buildingId, self.propositionId, self.vote?[NSDecimalNumber one]:[NSDecimalNumber zero]);
 	return params;
 }
 
 
 - (void)processSuccess {
 	NSMutableDictionary *result = [self.response objectForKey:@"result"];
-    self.propositions = [result objectForKey:@"propositions"];
+    self.proposition = [result objectForKey:@"proposition"];
+    NSLog(@"Result of vote: %@", result);
 }
 
 
@@ -49,7 +50,7 @@
 
 
 - (NSString *)methodName {
-	return @"view_propositions";
+	return @"cast_vote";
 }
 
 
@@ -57,7 +58,7 @@
 	self.buildingId = nil;
 	self.buildingUrl = nil;
     self.propositionId = nil;
-    self.propositions = nil;
+    self.proposition = nil;
 	[super dealloc];
 }
 

@@ -16,7 +16,7 @@
 
 @synthesize id;
 @synthesize name;
-@synthesize description;
+@synthesize descriptionText;
 @synthesize votesNeeded;
 @synthesize votesYes;
 @synthesize votesNo;
@@ -33,7 +33,7 @@
 - (void)dealloc {
 	self.id = nil;
 	self.name = nil;
-	self.description = nil;
+	self.descriptionText = nil;
 	self.votesNeeded = nil;
 	self.votesYes = nil;
 	self.votesNo = nil;
@@ -48,7 +48,7 @@
 
 - (NSString *)description {
 	return [NSString stringWithFormat:@"id:%@, name:%@, description:%@, votesNeeded:%@, votesYes:%@, votesNo:%@, status:%@, dateEnds:%@, proposedById:%@, proposedByName:%@, myVote:%@",
-        self.id, self.name, self.description, self.votesNeeded, self.votesYes, self.votesNo, self.status, self.dateEnds, self.proposedById, self.proposedByName, self.myVote];
+        self.id, self.name, self.descriptionText, self.votesNeeded, self.votesYes, self.votesNo, self.status, self.dateEnds, self.proposedById, self.proposedByName, self.myVote];
 }
 
 
@@ -58,15 +58,71 @@
 - (void)parseData:(NSDictionary *)data {
 	self.id = [Util idFromDict:data named:@"id"];
 	self.name = [data objectForKey:@"name"];
-	self.description = [data objectForKey:@"description"];
+	self.descriptionText = [data objectForKey:@"description"];
 	self.votesNeeded = [Util asNumber:[data objectForKey:@"votes_needed"]];
 	self.votesYes = [Util asNumber:[data objectForKey:@"votes_yes"]];
 	self.votesNo = [Util asNumber:[data objectForKey:@"votes_no"]];
 	self.status = [data objectForKey:@"status"];
 	self.dateEnds = [Util date:[data objectForKey:@"date_ends"]];
-	self.proposedById = [data objectForKey:@"proposed_by_id"];
-	self.proposedByName = [data objectForKey:@"proposed_by_name"];
+    NSMutableDictionary *proposedByData = [data objectForKey:@"proposed_by"];
+	self.proposedById = [proposedByData objectForKey:@"id"];
+	self.proposedByName = [proposedByData objectForKey:@"name"];
 	self.myVote = [Util asNumber:[data objectForKey:@"my_vote"]];
+    NSLog(@"Data: %@", data);
+    NSLog(@"Proposition: %@", self);
+}
+
+
+- (NSInteger)numPropositionRowTypes {
+    if (isNotNull(self.myVote)) {
+        return 8;
+    } else {
+        return 9;
+    }
+}
+
+
+- (PROPOSITION_ROW_TYPE)propositionRowType:(NSInteger)rowIndex {
+    switch (rowIndex) {
+        case 0:
+            return PROPOSITION_ROW_DESCRIPTION;
+            break;
+        case 1:
+            return PROPOSITION_ROW_STATUS;
+            break;
+        case 2:
+            return PROPOSITION_ROW_PROPOSED_BY;
+            break;
+        case 3:
+            return PROPOSITION_ROW_END_DATE;
+            break;
+        case 4:
+            return PROPOSITION_ROW_VOTES_NEEDED;
+            break;
+        case 5:
+            return PROPOSITION_ROW_VOTES_FOR;
+            break;
+        case 6:
+            return PROPOSITION_ROW_VOTES_AGAINST;
+            break;
+        case 7:
+            if (isNotNull(self.myVote)) {
+                return PROPOSITION_ROW_MY_VOTE;
+            } else {
+                return PROPOSITION_ROW_VOTE_YES;
+            }
+            break;
+        case 8:
+            if (isNotNull(self.myVote)) {
+                return PROPOSITION_ROW_UNKNOWN;
+            } else {
+                return PROPOSITION_ROW_VOTE_NO;
+            }
+            break;
+        default:
+            return PROPOSITION_ROW_UNKNOWN;
+            break;
+    }
 }
 
 

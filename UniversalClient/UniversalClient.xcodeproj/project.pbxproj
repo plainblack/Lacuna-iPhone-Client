@@ -393,6 +393,7 @@
 		F6E6671C1338196700A94A39 /* LEBuildingViewPropositions.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E6671B1338196700A94A39 /* LEBuildingViewPropositions.m */; };
 		F6E6671F1338198100A94A39 /* LEBuildingCastVote.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E6671E1338198100A94A39 /* LEBuildingCastVote.m */; };
 		F6E667221338264E00A94A39 /* Proposition.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E667211338264E00A94A39 /* Proposition.m */; };
+		F6E667251338386900A94A39 /* ViewPropositionsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E667241338386900A94A39 /* ViewPropositionsController.m */; };
 		F6E766BE11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E766BD11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.m */; };
 		F6E7671111D68C6400778C1D /* Empire.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E7671011D68C6400778C1D /* Empire.m */; };
 		F6E767C611D6A4D400778C1D /* Body.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E767C511D6A4D400778C1D /* Body.m */; };
@@ -1241,6 +1242,8 @@
 		F6E6671E1338198100A94A39 /* LEBuildingCastVote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingCastVote.m; sourceTree = "<group>"; };
 		F6E667201338264D00A94A39 /* Proposition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Proposition.h; sourceTree = "<group>"; };
 		F6E667211338264E00A94A39 /* Proposition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Proposition.m; sourceTree = "<group>"; };
+		F6E667231338386900A94A39 /* ViewPropositionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewPropositionsController.h; sourceTree = "<group>"; };
+		F6E667241338386900A94A39 /* ViewPropositionsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewPropositionsController.m; sourceTree = "<group>"; };
 		F6E766BC11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingSubsidizeBuildQueue.h; sourceTree = "<group>"; };
 		F6E766BD11D625AC00778C1D /* LEBuildingSubsidizeBuildQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingSubsidizeBuildQueue.m; sourceTree = "<group>"; };
 		F6E7670F11D68C6400778C1D /* Empire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Empire.h; sourceTree = "<group>"; };
@@ -2479,6 +2482,8 @@
 				F67518801334E12B0062D9ED /* SelectPlanTypeController.m */,
 				F67518821334E8CC0062D9ED /* SelectPlanLevelController.h */,
 				F67518831334E8CC0062D9ED /* SelectPlanLevelController.m */,
+				F6E667231338386900A94A39 /* ViewPropositionsController.h */,
+				F6E667241338386900A94A39 /* ViewPropositionsController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -3040,6 +3045,7 @@
 				F6E6671C1338196700A94A39 /* LEBuildingViewPropositions.m in Sources */,
 				F6E6671F1338198100A94A39 /* LEBuildingCastVote.m in Sources */,
 				F6E667221338264E00A94A39 /* Proposition.m in Sources */,
+				F6E667251338386900A94A39 /* ViewPropositionsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

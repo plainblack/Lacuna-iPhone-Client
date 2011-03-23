@@ -13,7 +13,7 @@
 #import "LEBuildingViewPropositions.h"
 #import "LEBuildingCastVote.h"
 #import "Proposition.h"
-//#import "MakePlanViewController.h"
+#import "ViewPropositionsController.h"
 
 
 @interface Parliament(PrivateMethods)
@@ -23,6 +23,7 @@
 
 
 @end
+
 
 @implementation Parliament
 
@@ -86,11 +87,10 @@
 - (UIViewController *)tableView:(UITableView *)tableView didSelectBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex {
 	switch (buildingRow) {
 		case BUILDING_ROW_VIEW_PROPOSITIONS:
-//			; //DO NOT REMOVE
-//			MakePlanViewController *makePlanViewController = [MakePlanViewController create];
-//			makePlanViewController.spaceStationLab = self;
-//			return makePlanViewController;
-            return nil;
+			; //DO NOT REMOVE
+			ViewPropositionsController *viewPropositionsController = [ViewPropositionsController create];
+			viewPropositionsController.parliament = self;
+			return viewPropositionsController;
 			break;
 		default:
 			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];
@@ -103,14 +103,14 @@
 #pragma mark Instance Methods
 
 - (void)loadPropositions {
-    [[[LEBuildingViewPropositions alloc] initWithCallback:@selector(makingPlan:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+    [[[LEBuildingViewPropositions alloc] initWithCallback:@selector(loadedPropositions:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
 }
 
 
 - (void)castVote:(BOOL)vote propositionId:(NSString *)propositionId target:(id)target callback:(SEL)callback {
     self.castVoteTarget = target;
     self.castVoteCallback = callback;
-    [[[LEBuildingCastVote alloc] initWithCallback:@selector(makingPlan:) target:self buildingId:self.id buildingUrl:self.buildingUrl propositionId:propositionId vote:vote] autorelease];
+    [[[LEBuildingCastVote alloc] initWithCallback:@selector(voted:) target:self buildingId:self.id buildingUrl:self.buildingUrl propositionId:propositionId vote:vote] autorelease];
 }
 
 
@@ -123,7 +123,14 @@
 
 
 - (void)voted:(LEBuildingCastVote *)request {
-    self.propositions = [self parsePropositions:request.propositions];
+    NSString *propositionId = [Util idFromDict:request.proposition named:@"id"];
+    [self.propositions enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+        Proposition *proposition = obj;
+        if ([proposition.id isEqualToString:propositionId]) {
+            [proposition parseData:request.proposition];
+        }
+    }];
+    [self.castVoteTarget performSelector:self.castVoteCallback withObject:request];
 }
 
 
@@ -135,7 +142,6 @@
     [inPropositions enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL* stop){
         Proposition *proposition = [[Proposition alloc] init];
         [proposition parseData:obj];
-        NSLog(@"Loaded Proposition: %@", proposition);
         [tmp addObject:proposition];
         [proposition release];
     }];

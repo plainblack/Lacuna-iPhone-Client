@@ -18,7 +18,7 @@
 @property (nonatomic, retain) NSString *buildingUrl;
 @property (nonatomic, assign) BOOL vote;
 @property (nonatomic, retain) NSString *propositionId;
-@property (nonatomic, retain) NSMutableArray *propositions;
+@property (nonatomic, retain) NSMutableDictionary *proposition;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl propositionId:(NSString *)propositionId vote:(BOOL)vote;
