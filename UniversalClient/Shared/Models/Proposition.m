@@ -75,9 +75,9 @@
 
 - (NSInteger)numPropositionRowTypes {
     if (isNotNull(self.myVote)) {
-        return 8;
+        return 6;
     } else {
-        return 9;
+        return 7;
     }
 }
 
@@ -97,22 +97,16 @@
             return PROPOSITION_ROW_END_DATE;
             break;
         case 4:
-            return PROPOSITION_ROW_VOTES_NEEDED;
+            return PROPOSITION_ROW_VOTES;
             break;
         case 5:
-            return PROPOSITION_ROW_VOTES_FOR;
-            break;
-        case 6:
-            return PROPOSITION_ROW_VOTES_AGAINST;
-            break;
-        case 7:
             if (isNotNull(self.myVote)) {
                 return PROPOSITION_ROW_MY_VOTE;
             } else {
                 return PROPOSITION_ROW_VOTE_YES;
             }
             break;
-        case 8:
+        case 6:
             if (isNotNull(self.myVote)) {
                 return PROPOSITION_ROW_UNKNOWN;
             } else {

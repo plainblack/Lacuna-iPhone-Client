@@ -435,6 +435,7 @@
 		F6EB025D1202F500001BFD68 /* LEBuildingViewShipsTravelling.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB025C1202F500001BFD68 /* LEBuildingViewShipsTravelling.m */; };
 		F6EB02661202FB01001BFD68 /* ViewTravellingShipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB02651202FB01001BFD68 /* ViewTravellingShipsController.m */; };
 		F6ECEE6F123E477500CACFED /* ViewDictionaryController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6ECEE6E123E477500CACFED /* ViewDictionaryController.m */; };
+		F6EE72A4133979130022D387 /* LETableViewCellVotes.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EE72A3133979130022D387 /* LETableViewCellVotes.m */; };
 		F6EF50251242EA9600EA1B92 /* LETableViewCellAffinitySelectorV2.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF50241242EA9600EA1B92 /* LETableViewCellAffinitySelectorV2.m */; };
 		F6EF714211FE76EA00A93226 /* SpacePort.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF714111FE76EA00A93226 /* SpacePort.m */; };
 		F6EF714F11FE7D1C00A93226 /* LEBuildingViewAllShips.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF714E11FE7D1C00A93226 /* LEBuildingViewAllShips.m */; };
@@ -1327,6 +1328,8 @@
 		F6EB02651202FB01001BFD68 /* ViewTravellingShipsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewTravellingShipsController.m; sourceTree = "<group>"; };
 		F6ECEE6D123E477500CACFED /* ViewDictionaryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewDictionaryController.h; sourceTree = "<group>"; };
 		F6ECEE6E123E477500CACFED /* ViewDictionaryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewDictionaryController.m; sourceTree = "<group>"; };
+		F6EE72A2133979130022D387 /* LETableViewCellVotes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellVotes.h; sourceTree = "<group>"; };
+		F6EE72A3133979130022D387 /* LETableViewCellVotes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellVotes.m; sourceTree = "<group>"; };
 		F6EF50231242EA9600EA1B92 /* LETableViewCellAffinitySelectorV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellAffinitySelectorV2.h; sourceTree = "<group>"; };
 		F6EF50241242EA9600EA1B92 /* LETableViewCellAffinitySelectorV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellAffinitySelectorV2.m; sourceTree = "<group>"; };
 		F6EF714011FE76EA00A93226 /* SpacePort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpacePort.h; sourceTree = "<group>"; };
@@ -1653,6 +1656,8 @@
 				F67518861334EE4C0062D9ED /* LETableViewCellPlanType.m */,
 				F67518881334EE670062D9ED /* LETableViewCellPlanLevel.h */,
 				F67518891334EE670062D9ED /* LETableViewCellPlanLevel.m */,
+				F6EE72A2133979130022D387 /* LETableViewCellVotes.h */,
+				F6EE72A3133979130022D387 /* LETableViewCellVotes.m */,
 			);
 			name = Views;
 			path = Shared/Views;
@@ -3046,6 +3051,7 @@
 				F6E6671F1338198100A94A39 /* LEBuildingCastVote.m in Sources */,
 				F6E667221338264E00A94A39 /* Proposition.m in Sources */,
 				F6E667251338386900A94A39 /* ViewPropositionsController.m in Sources */,
+				F6EE72A4133979130022D387 /* LETableViewCellVotes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

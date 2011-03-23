@@ -15,6 +15,7 @@
 #import "LETableViewCellLabeledText.h"
 #import "LETableViewCellParagraph.h"
 #import "LETableViewCellButton.h"
+#import "LETableViewCellVotes.h"
 #import "LEBuildingCastVote.h"
 #import "ViewPublicEmpireProfileController.h"
 
@@ -79,9 +80,6 @@
                 break;
             case PROPOSITION_ROW_STATUS:
             case PROPOSITION_ROW_END_DATE:
-            case PROPOSITION_ROW_VOTES_NEEDED:
-            case PROPOSITION_ROW_VOTES_FOR:
-            case PROPOSITION_ROW_VOTES_AGAINST:
             case PROPOSITION_ROW_MY_VOTE:
                 return [LETableViewCellLabeledText getHeightForTableView:tableView];
                 break;
@@ -89,6 +87,8 @@
             case PROPOSITION_ROW_VOTE_YES:
             case PROPOSITION_ROW_VOTE_NO:
                 return [LETableViewCellButton getHeightForTableView:tableView];
+            case PROPOSITION_ROW_VOTES:
+                return [LETableViewCellVotes getHeightForTableView:tableView];
             default:
                 return 0;
                 break;
@@ -133,26 +133,11 @@
                     endDateCell.content.text = [Util formatDate:proposition.dateEnds];
                     cell = endDateCell;
                     break;
-                case PROPOSITION_ROW_VOTES_NEEDED:
+                case PROPOSITION_ROW_VOTES:
                     ; //DO NOT REMOVE
-                    LETableViewCellLabeledText *votesNeededCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-                    votesNeededCell.label.text = @"Votes Needed";
-                    votesNeededCell.content.text = [proposition.votesNeeded stringValue];
-                    cell = votesNeededCell;
-                    break;
-                case PROPOSITION_ROW_VOTES_FOR:
-                    ; //DO NOT REMOVE
-                    LETableViewCellLabeledText *votesForCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-                    votesForCell.label.text = @"Votes For";
-                    votesForCell.content.text = [proposition.votesYes stringValue];
-                    cell = votesForCell;
-                    break;
-                case PROPOSITION_ROW_VOTES_AGAINST:
-                    ; //DO NOT REMOVE
-                    LETableViewCellLabeledText *votesAgainstCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-                    votesAgainstCell.label.text = @"Votes Against";
-                    votesAgainstCell.content.text = [proposition.votesNo stringValue];
-                    cell = votesAgainstCell;
+                    LETableViewCellVotes *votesCell = [LETableViewCellVotes getCellForTableView:tableView];
+                    [votesCell setVotesNeeded:proposition.votesNeeded votesFor:proposition.votesYes votesAgainst:proposition.votesNo];
+                    cell = votesCell;
                     break;
                 case PROPOSITION_ROW_MY_VOTE:
                     ; //DO NOT REMOVE
