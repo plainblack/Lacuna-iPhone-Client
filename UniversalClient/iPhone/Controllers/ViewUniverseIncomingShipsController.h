@@ -14,8 +14,6 @@
 
 
 @interface ViewUniverseIncomingShipsController : LETableViewControllerGrouped {
-	NSMutableArray *incomingShips;
-	BaseMapItem *mapItem;
 }
 
 

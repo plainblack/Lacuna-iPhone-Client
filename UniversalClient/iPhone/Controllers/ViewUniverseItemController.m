@@ -20,6 +20,7 @@
 #import "RenameBodyController.h"
 #import "ViewUniverseMiningPlatformsController.h"
 #import "ViewUniverseIncomingShipsController.h"
+#import "ViewUniverseOrbitingShipsController.h"
 #import "SendShipController.h"
 #import "SendFleetController.h"
 #import "SendSpiesController.h"
@@ -43,6 +44,7 @@ typedef enum {
 	ROW_SEND_SPIES,
 	ROW_FETCH_SPIES,
 	ROW_VIEW_INCOMING_SHIPS,
+	ROW_VIEW_ORBITING_SHIPS,
 	ROW_VIEW_MINING_PLATFORMS,
 	ROW_SEND_SHIP,
 	ROW_SEND_FLEET,
@@ -127,6 +129,7 @@ typedef enum {
 			case ROW_SEND_SPIES:
 			case ROW_FETCH_SPIES:
 			case ROW_VIEW_INCOMING_SHIPS:
+			case ROW_VIEW_ORBITING_SHIPS:
 			case ROW_VIEW_MINING_PLATFORMS:
 			case ROW_SEND_SHIP:
 			case ROW_SEND_FLEET:
@@ -204,6 +207,12 @@ typedef enum {
 				LETableViewCellButton *viewIncomingShipsButtonCell = [LETableViewCellButton getCellForTableView:tableView];
 				viewIncomingShipsButtonCell.textLabel.text = @"View Incoming Ships";
 				cell = viewIncomingShipsButtonCell;
+				break;
+			case ROW_VIEW_ORBITING_SHIPS:
+				; //DO NOT REMOVE
+				LETableViewCellButton *viewOrbitingShipsButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+				viewOrbitingShipsButtonCell.textLabel.text = @"View Orbiting Ships";
+				cell = viewOrbitingShipsButtonCell;
 				break;
 			case ROW_VIEW_MINING_PLATFORMS:
 				; //DO NOT REMOVE
@@ -297,6 +306,12 @@ typedef enum {
 				viewUniverseIncomingShipsController.mapItem = self.mapItem;
 				[self.navigationController pushViewController:viewUniverseIncomingShipsController animated:YES];
 				break;
+			case ROW_VIEW_ORBITING_SHIPS:
+				; //DO NOT REMOVE
+				ViewUniverseOrbitingShipsController *viewUniverseOrbitingShipsController = [ViewUniverseOrbitingShipsController create];
+				viewUniverseOrbitingShipsController.mapItem = self.mapItem;
+				[self.navigationController pushViewController:viewUniverseOrbitingShipsController animated:YES];
+				break;
 			case ROW_VIEW_MINING_PLATFORMS:
 				; //DO NOT REMOVE
 				ViewUniverseMiningPlatformsController *viewUniverseMiningPlatformsController = [ViewUniverseMiningPlatformsController create];
@@ -336,6 +351,8 @@ typedef enum {
 				[delgate showMyWorld:self.mapItem.id];
 				[self.navigationController popToRootViewControllerAnimated:NO];
 				break;
+            default:
+                break;
 		}
 	}
 }
@@ -392,7 +409,7 @@ typedef enum {
 			}
 		}
 
-		NSMutableArray *shipActionRows = _array([NSDecimalNumber numberWithInt:ROW_VIEW_INCOMING_SHIPS]);
+		NSMutableArray *shipActionRows = _array([NSDecimalNumber numberWithInt:ROW_VIEW_INCOMING_SHIPS], [NSDecimalNumber numberWithInt:ROW_VIEW_ORBITING_SHIPS]);
 		if ([self.mapItem.type isEqualToString:@"asteroid"]) {
 			[shipActionRows addObject:[NSDecimalNumber numberWithInt:ROW_VIEW_MINING_PLATFORMS]];
 		}

@@ -1,24 +1,22 @@
 //
-//  LETableViewCellTravellingShip.m
+//  LETableViewCellShipOrbitingTime.m
 //  UniversalClient
 //
-//  Created by Kevin Runde on 7/30/10.
-//  Copyright 2010 n/a. All rights reserved.
+//  Created by Kevin Runde on 3/24/11.
+//  Copyright 2011 n/a. All rights reserved.
 //
 
-#import "LETableViewCellTravellingShip.h"
+#import "LETableViewCellShipOrbitingTime.h"
 #import "LEMacros.h"
 #import "Util.h"
 #import "Ship.h"
 
 
-@implementation LETableViewCellTravellingShip
+@implementation LETableViewCellShipOrbitingTime
 
 
 @synthesize dateStartedLabel;
-@synthesize dateArrivesLabel;
 @synthesize fromNameLabel;
-@synthesize toNameLabel;
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -30,18 +28,16 @@
 
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-
+    
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
 
 - (void)dealloc {
 	self.dateStartedLabel = nil;
-	self.dateArrivesLabel = nil;
 	self.fromNameLabel = nil;
-	self.toNameLabel = nil;
     [super dealloc];
 }
 
@@ -51,43 +47,24 @@
 
 - (void)setShip:(Ship *)ship {
 	self.dateStartedLabel.text = [Util formatDate:ship.dateStarted];
-	self.dateArrivesLabel.text = [Util formatDate:ship.dateArrives];
 	self.fromNameLabel.text = [NSString stringWithFormat:@"%@ (%@)", ship.fromName, ship.fromType];
-	self.toNameLabel.text = [NSString stringWithFormat:@"%@ (%@)", ship.toName, ship.toType];
 }
 
 
 #pragma mark -
 #pragma mark Class Methods
 
-+ (LETableViewCellTravellingShip *)getCellForTableView:(UITableView *)tableView {
-    static NSString *CellIdentifier = @"TravellingShipCell";
++ (LETableViewCellShipOrbitingTime *)getCellForTableView:(UITableView *)tableView {
+    static NSString *CellIdentifier = @"OrbitingTimeCell";
 	
-	LETableViewCellTravellingShip *cell = (LETableViewCellTravellingShip *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	LETableViewCellShipOrbitingTime *cell = (LETableViewCellShipOrbitingTime *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-		cell = [[[LETableViewCellTravellingShip alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+		cell = [[[LETableViewCellShipOrbitingTime alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 		cell.backgroundColor = CELL_BACKGROUND_COLOR;
 		cell.autoresizesSubviews = YES;
 		CGFloat y = 10.0;
 		
 		UILabel *tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, y+5, 90, 15)] autorelease];
-		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentRight;
-		tmpLabel.font = LABEL_FONT;
-		tmpLabel.textColor = LABEL_COLOR;
-		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpLabel.text = @"Arrives";
-		[cell.contentView addSubview:tmpLabel];
-		cell.dateArrivesLabel = [[[UILabel alloc] initWithFrame:CGRectMake(110, y, 200, 22)] autorelease];
-		cell.dateArrivesLabel.backgroundColor = [UIColor clearColor];
-		cell.dateArrivesLabel.textAlignment = UITextAlignmentLeft;
-		cell.dateArrivesLabel.font = TEXT_FONT;
-		cell.dateArrivesLabel.textColor = TEXT_COLOR;
-		cell.dateArrivesLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
-		[cell.contentView addSubview:cell.dateArrivesLabel];
-		y += 20;
-		
-		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, y+5, 90, 15)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
 		tmpLabel.textAlignment = UITextAlignmentRight;
 		tmpLabel.font = LABEL_FONT;
@@ -121,22 +98,6 @@
 		[cell.contentView addSubview:cell.fromNameLabel];
 		y += 20;
 		
-		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, y+7, 90, 13)] autorelease];
-		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentRight;
-		tmpLabel.font = LABEL_FONT;
-		tmpLabel.textColor = LABEL_COLOR;
-		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpLabel.text = @"To";
-		[cell.contentView addSubview:tmpLabel];
-		cell.toNameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(110, y+5, 200, 15)] autorelease];
-		cell.toNameLabel.backgroundColor = [UIColor clearColor];
-		cell.toNameLabel.textAlignment = UITextAlignmentLeft;
-		cell.toNameLabel.font = TEXT_SMALL_FONT;
-		cell.toNameLabel.textColor = TEXT_SMALL_COLOR;
-		cell.toNameLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
-		[cell.contentView addSubview:cell.toNameLabel];
-		
 		//Set Cell Defaults
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	}
@@ -146,7 +107,7 @@
 
 
 + (CGFloat)getHeightForTableView:(UITableView *)tableView {
-	return 100.0;
+	return 60.0;
 }
 
 

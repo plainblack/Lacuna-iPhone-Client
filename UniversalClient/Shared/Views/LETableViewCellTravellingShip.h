@@ -13,10 +13,6 @@
 
 
 @interface LETableViewCellTravellingShip : UITableViewCell {
-	UILabel *dateStartedLabel;
-	UILabel *dateArrivesLabel;
-	UILabel *fromNameLabel;
-	UILabel *toNameLabel;
 }
 
 

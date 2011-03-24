@@ -16,6 +16,7 @@
 #import "LEBuildingViewShipsTravelling.h"
 #import "LEBuildingViewForeignShips.h"
 #import "LEBuildingRecallShip.h"
+#import "LEBuildingRecallAll.h"
 #import "LETableViewCellButton.h"
 #import "ViewDictionaryController.h"
 #import "ViewShipsByTypeController.h"
@@ -82,6 +83,7 @@
 	[localShipRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_DOCKED_SHIPS]];
 	[localShipRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_TRAVELLING_SHIPS]];
 	[localShipRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_SHIPS]];
+    [localShipRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_RECALL_ALL_SHIPS]];
 	
 	NSMutableArray *foreignShipRows = [NSMutableArray arrayWithCapacity:1];
 	[foreignShipRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_FOREIGN_SHIPS]];
@@ -99,6 +101,7 @@
 		case BUILDING_ROW_VIEW_TRAVELLING_SHIPS:
 		case BUILDING_ROW_VIEW_SHIPS:
 		case BUILDING_ROW_VIEW_FOREIGN_SHIPS:
+        case BUILDING_ROW_RECALL_ALL_SHIPS:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		default:
@@ -135,6 +138,12 @@
 			viewForeignShipsCell.textLabel.text = @"View Incoming Ships";
 			cell = viewForeignShipsCell;
 			break;
+        case BUILDING_ROW_RECALL_ALL_SHIPS:
+			; //DO NOT REMOVE THIS!!
+			LETableViewCellButton *recallAllShipsCell = [LETableViewCellButton getCellForTableView:tableView];
+			recallAllShipsCell.textLabel.text = @"Recall All Ships";
+			cell = recallAllShipsCell;
+            break;
 		default:
 			cell = [super tableView:tableView cellForBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex];
 			break;
@@ -170,6 +179,10 @@
 			viewForeignShipsController.spacePort = self;
 			return viewForeignShipsController;
 			break;
+        case BUILDING_ROW_RECALL_ALL_SHIPS:
+            [[[LEBuildingRecallAll alloc] initWithCallback:@selector(recalledAllShips:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+            return nil;
+            break;
 		default:
 			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];
 			break;
@@ -228,6 +241,7 @@
 
 - (void)recallShip:(Ship *)ship {
 	[[[LEBuildingRecallShip alloc] initWithCallback:@selector(shipRecalled:) target:self buildingId:self.id buildingUrl:self.buildingUrl shipId:ship.id] autorelease];
+    self.needsRefresh = YES;
 }
 
 
@@ -293,6 +307,10 @@
 	
 	[recalledShip parseData:request.shipData];
 	self.shipsUpdated = [NSDate date];
+}
+
+- (void)recalledAllShips:(LEBuildingRecallAll *)request {
+    //Does nothing for now
 }
 
 

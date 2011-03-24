@@ -171,7 +171,9 @@
 		} else {
 			[self.navigationController pushViewController:subViewController animated:YES];
 		}
-	}
+	} else {
+        [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    }
 	self.selectedIndexPath = nil;
 	self.selectedTableView = nil;
 }

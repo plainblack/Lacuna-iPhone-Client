@@ -26,6 +26,7 @@
 @synthesize available;
 @synthesize unavailabe;
 @synthesize miningPlatforms;
+@synthesize orbiting;
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget fromBodyId:(NSString *)inFromBodyId targetBodyName:(NSString *)inTargetBodyName targetBodyId:(NSString *)inTargetBodyId targetStarName:(NSString *)inTargetStarName targetStarId:(NSString *)inTargetStarId targetX:(NSDecimalNumber *)inTargetX targetY:(NSDecimalNumber *)inTargetY {
@@ -66,6 +67,7 @@
 	self.available = [result objectForKey:@"available"];
 	self.unavailabe = [result objectForKey:@"unavailable"];
 	self.miningPlatforms = [result objectForKey:@"mining_platforms"];
+    self.orbiting = [result objectForKey:@"orbiting"];
 }
 
 
@@ -91,6 +93,7 @@
 	self.available = nil;
 	self.unavailabe = nil;
 	self.miningPlatforms = nil;
+    self.orbiting = nil;
 	[super dealloc];
 }
 

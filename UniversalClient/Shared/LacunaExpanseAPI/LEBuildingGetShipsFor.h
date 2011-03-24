@@ -11,17 +11,6 @@
 
 
 @interface LEBuildingGetShipsFor : LERequest {
-	NSString *fromBodyId;
-	NSString *targetBodyName;
-	NSString *targetBodyId;
-	NSString *targetStarName;
-	NSString *targetStarId;
-	NSDecimalNumber *targetX;
-	NSDecimalNumber *targetY;
-	NSMutableArray *incoming;
-	NSMutableArray *available;
-	NSMutableArray *unavailabe;
-	NSMutableArray *miningPlatforms;
 }
 
 
@@ -36,6 +25,7 @@
 @property(nonatomic, retain) NSMutableArray *available;
 @property(nonatomic, retain) NSMutableArray *unavailabe;
 @property(nonatomic, retain) NSMutableArray *miningPlatforms;
+@property(nonatomic, retain) NSMutableArray *orbiting;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target fromBodyId:(NSString *)fromBodyId targetBodyName:(NSString *)targetBodyName targetBodyId:(NSString *)targetBodyId targetStarName:(NSString *)targetStarName targetStarId:(NSString *)targetStarId targetX:(NSDecimalNumber *)targetX targetY:(NSDecimalNumber *)targetY;

@@ -417,9 +417,11 @@
 		F6E913A21334D92C003B3608 /* MakePlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E913A01334D92C003B3608 /* MakePlanViewController.m */; };
 		F6E93B17132BD75A00ED7EEB /* Module.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E93B16132BD75A00ED7EEB /* Module.m */; };
 		F6E93B1A132C123700ED7EEB /* StationCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E93B19132C123400ED7EEB /* StationCommand.m */; };
+		F6E97582133B63EF004E715C /* ViewUniverseOrbitingShipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E97581133B63EF004E715C /* ViewUniverseOrbitingShipsController.m */; };
 		F6E98BDD1241A59A00F8640D /* ViewPublicEmpireProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E98BDC1241A59A00F8640D /* ViewPublicEmpireProfileController.m */; };
 		F6E98BE01241AD0E00F8640D /* LEEmpireViewPublicProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E98BDF1241AD0E00F8640D /* LEEmpireViewPublicProfile.m */; };
 		F6E98BE61241AE1900F8640D /* PublicEmpireProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E98BE51241AE1900F8640D /* PublicEmpireProfile.m */; };
+		F6E995DF133C034A00C9F968 /* LETableViewCellShipOrbitingTime.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E995DE133C034A00C9F968 /* LETableViewCellShipOrbitingTime.m */; };
 		F6E9CBF81330DC3700189FC4 /* LEBuildingReserve.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E9CBF71330DC3700189FC4 /* LEBuildingReserve.m */; };
 		F6E9CBFB1330DC4800189FC4 /* LEBuildingReleaseReserve.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E9CBFA1330DC4800189FC4 /* LEBuildingReleaseReserve.m */; };
 		F6E9F16512935C6900544362 /* Capitol.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E9F16412935C6900544362 /* Capitol.m */; };
@@ -492,6 +494,7 @@
 		F6FD9E7B11D7A41E003785AD /* ResourceStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FD9E7A11D7A41E003785AD /* ResourceStorage.m */; };
 		F6FD9E7E11D7A42C003785AD /* ResourceCost.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FD9E7D11D7A42C003785AD /* ResourceCost.m */; };
 		F6FD9E8711D7A6F3003785AD /* TimedActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FD9E8611D7A6F3003785AD /* TimedActivity.m */; };
+		F6FEF459133C0629001791F3 /* LEBuildingRecallAll.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FEF458133C0629001791F3 /* LEBuildingRecallAll.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1292,12 +1295,16 @@
 		F6E93B18132C123100ED7EEB /* StationCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationCommand.h; sourceTree = "<group>"; };
 		F6E93B19132C123400ED7EEB /* StationCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationCommand.m; sourceTree = "<group>"; };
 		F6E93B1B132C15F100ED7EEB /* BuildingWithPlans.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingWithPlans.h; sourceTree = "<group>"; };
+		F6E97580133B63EF004E715C /* ViewUniverseOrbitingShipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewUniverseOrbitingShipsController.h; sourceTree = "<group>"; };
+		F6E97581133B63EF004E715C /* ViewUniverseOrbitingShipsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewUniverseOrbitingShipsController.m; sourceTree = "<group>"; };
 		F6E98BDB1241A59A00F8640D /* ViewPublicEmpireProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewPublicEmpireProfileController.h; sourceTree = "<group>"; };
 		F6E98BDC1241A59A00F8640D /* ViewPublicEmpireProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewPublicEmpireProfileController.m; sourceTree = "<group>"; };
 		F6E98BDE1241AD0E00F8640D /* LEEmpireViewPublicProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireViewPublicProfile.h; sourceTree = "<group>"; };
 		F6E98BDF1241AD0E00F8640D /* LEEmpireViewPublicProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireViewPublicProfile.m; sourceTree = "<group>"; };
 		F6E98BE41241AE1900F8640D /* PublicEmpireProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicEmpireProfile.h; sourceTree = "<group>"; };
 		F6E98BE51241AE1900F8640D /* PublicEmpireProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicEmpireProfile.m; sourceTree = "<group>"; };
+		F6E995DD133C034A00C9F968 /* LETableViewCellShipOrbitingTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellShipOrbitingTime.h; sourceTree = "<group>"; };
+		F6E995DE133C034A00C9F968 /* LETableViewCellShipOrbitingTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellShipOrbitingTime.m; sourceTree = "<group>"; };
 		F6E9CBF61330DC3700189FC4 /* LEBuildingReserve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingReserve.h; sourceTree = "<group>"; };
 		F6E9CBF71330DC3700189FC4 /* LEBuildingReserve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingReserve.m; sourceTree = "<group>"; };
 		F6E9CBF91330DC4800189FC4 /* LEBuildingReleaseReserve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingReleaseReserve.h; sourceTree = "<group>"; };
@@ -1433,6 +1440,8 @@
 		F6FD9E7D11D7A42C003785AD /* ResourceCost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceCost.m; sourceTree = "<group>"; };
 		F6FD9E8511D7A6F3003785AD /* TimedActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimedActivity.h; sourceTree = "<group>"; };
 		F6FD9E8611D7A6F3003785AD /* TimedActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimedActivity.m; sourceTree = "<group>"; };
+		F6FEF457133C0629001791F3 /* LEBuildingRecallAll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingRecallAll.h; sourceTree = "<group>"; };
+		F6FEF458133C0629001791F3 /* LEBuildingRecallAll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingRecallAll.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1658,6 +1667,8 @@
 				F67518891334EE670062D9ED /* LETableViewCellPlanLevel.m */,
 				F6EE72A2133979130022D387 /* LETableViewCellVotes.h */,
 				F6EE72A3133979130022D387 /* LETableViewCellVotes.m */,
+				F6E995DD133C034A00C9F968 /* LETableViewCellShipOrbitingTime.h */,
+				F6E995DE133C034A00C9F968 /* LETableViewCellShipOrbitingTime.m */,
 			);
 			name = Views;
 			path = Shared/Views;
@@ -2026,6 +2037,8 @@
 				F6E6671B1338196700A94A39 /* LEBuildingViewPropositions.m */,
 				F6E6671D1338198100A94A39 /* LEBuildingCastVote.h */,
 				F6E6671E1338198100A94A39 /* LEBuildingCastVote.m */,
+				F6FEF457133C0629001791F3 /* LEBuildingRecallAll.h */,
+				F6FEF458133C0629001791F3 /* LEBuildingRecallAll.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -2489,6 +2502,8 @@
 				F67518831334E8CC0062D9ED /* SelectPlanLevelController.m */,
 				F6E667231338386900A94A39 /* ViewPropositionsController.h */,
 				F6E667241338386900A94A39 /* ViewPropositionsController.m */,
+				F6E97580133B63EF004E715C /* ViewUniverseOrbitingShipsController.h */,
+				F6E97581133B63EF004E715C /* ViewUniverseOrbitingShipsController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -3052,6 +3067,9 @@
 				F6E667221338264E00A94A39 /* Proposition.m in Sources */,
 				F6E667251338386900A94A39 /* ViewPropositionsController.m in Sources */,
 				F6EE72A4133979130022D387 /* LETableViewCellVotes.m in Sources */,
+				F6E97582133B63EF004E715C /* ViewUniverseOrbitingShipsController.m in Sources */,
+				F6E995DF133C034A00C9F968 /* LETableViewCellShipOrbitingTime.m in Sources */,
+				F6FEF459133C0629001791F3 /* LEBuildingRecallAll.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
