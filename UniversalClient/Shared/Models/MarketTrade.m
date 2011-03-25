@@ -114,6 +114,14 @@
 }
 
 
+- (void)addSpy:(NSString *)prisonerId {
+	if (!self.offer) {
+		self.offer = [NSMutableArray arrayWithCapacity:5];
+	}
+	[self.offer addObject:_dict(@"spy", @"type", prisonerId, @"spy_id")];
+}
+
+
 - (void)addShip:(NSString *)shipId {
 	if (!self.offer) {
 		self.offer = [NSMutableArray arrayWithCapacity:5];

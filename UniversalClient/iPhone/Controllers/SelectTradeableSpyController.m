@@ -1,21 +1,21 @@
 //
-//  SelectTradeablePrisonerController.m
+//  SelectTradeableSpyController.m
 //  UniversalClient
 //
-//  Created by Kevin Runde on 8/22/10.
-//  Copyright 2010 n/a. All rights reserved.
+//  Created by Kevin Runde on 3/24/11.
+//  Copyright 2011 n/a. All rights reserved.
 //
 
-#import "SelectTradeablePrisonerController.h"
+#import "SelectTradeableSpyController.h"
 #import "LEMacros.h"
 #import "Util.h"
 #import "BaseTradeBuilding.h"
-#import "Prisoner.h"
+#import "Spy.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellLabeledText.h"
 
 
-@implementation SelectTradeablePrisonerController
+@implementation SelectTradeableSpyController
 
 
 @synthesize baseTradeBuilding;
@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.navigationItem.title = @"Select Prisoner";
+	self.navigationItem.title = @"Select Spy";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
 	self.sectionHeaders = [NSArray array];
@@ -37,11 +37,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	[self.baseTradeBuilding addObserver:self forKeyPath:@"prisoners" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
-	if (!self.baseTradeBuilding.prisoners) {
-		[self.baseTradeBuilding loadTradeablePrisoners];
+	[self.baseTradeBuilding addObserver:self forKeyPath:@"spies" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+	if (!self.baseTradeBuilding.spies) {
+		[self.baseTradeBuilding loadTradeableSpies];
 	} else {
-		[self.baseTradeBuilding.prisoners sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease])];
+		[self.baseTradeBuilding.spies sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease])];
 	}
 }
 
@@ -53,7 +53,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-	[self.baseTradeBuilding removeObserver:self forKeyPath:@"prisoners"];
+	[self.baseTradeBuilding removeObserver:self forKeyPath:@"spies"];
 }
 
 
@@ -66,9 +66,9 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if (self.baseTradeBuilding && self.baseTradeBuilding.prisoners) {
-		if ([self.baseTradeBuilding.prisoners count] > 0) {
-			return [self.baseTradeBuilding.prisoners count];
+	if (self.baseTradeBuilding && self.baseTradeBuilding.spies) {
+		if ([self.baseTradeBuilding.spies count] > 0) {
+			return [self.baseTradeBuilding.spies count];
 		} else {
 			return 1;
 		}
@@ -79,8 +79,8 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (self.baseTradeBuilding && self.baseTradeBuilding.prisoners) {
-		if ([self.baseTradeBuilding.prisoners count] > 0) {
+	if (self.baseTradeBuilding && self.baseTradeBuilding.spies) {
+		if ([self.baseTradeBuilding.spies count] > 0) {
 			return [LETableViewCellLabeledText getHeightForTableView:tableView];
 		} else {
 			return [LETableViewCellLabeledText getHeightForTableView:tableView];
@@ -96,22 +96,22 @@
     
     UITableViewCell *cell = nil;
 	
-	if (self.baseTradeBuilding && self.baseTradeBuilding.prisoners) {
-		if ([self.baseTradeBuilding.prisoners count] > 0) {
-			Prisoner *prisoner = [self.baseTradeBuilding.prisoners objectAtIndex:indexPath.row];
-			LETableViewCellLabeledText *prisonerCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:YES];
-			prisonerCell.label.text = [NSString stringWithFormat:@"Level %@", prisoner.level];
-			prisonerCell.content.text = prisoner.name;
-			cell = prisonerCell;
+	if (self.baseTradeBuilding && self.baseTradeBuilding.spies) {
+		if ([self.baseTradeBuilding.spies count] > 0) {
+			Spy *spy = [self.baseTradeBuilding.spies objectAtIndex:indexPath.row];
+			LETableViewCellLabeledText *spyCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:YES];
+			spyCell.label.text = [NSString stringWithFormat:@"Level %@", spy.level];
+			spyCell.content.text = spy.name;
+			cell = spyCell;
 		} else {
 			LETableViewCellLabeledText *emptyCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-			emptyCell.label.text = @"Prisoners";
+			emptyCell.label.text = @"Spies";
 			emptyCell.content.text = @"None";
 			cell = emptyCell;
 		}
 	} else {
 		LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-		loadingCell.label.text = @"Prisoners";
+		loadingCell.label.text = @"Spies";
 		loadingCell.content.text = @"Loading";
 		cell = loadingCell;
 	}
@@ -124,8 +124,8 @@
 #pragma mark UITableViewDataSource Methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	Prisoner *prisoner = [self.baseTradeBuilding.prisoners objectAtIndex:indexPath.row];
-	[self.delegate prisonerSelected:prisoner];
+	Spy *spy = [self.baseTradeBuilding.spies objectAtIndex:indexPath.row];
+	[self.delegate spySelected:spy];
 }
 
 
@@ -153,8 +153,8 @@
 #pragma mark -
 #pragma mark Class Methods
 
-+ (SelectTradeablePrisonerController *)create {
-	return [[[SelectTradeablePrisonerController alloc] init] autorelease];
++ (SelectTradeableSpyController *)create {
+	return [[[SelectTradeableSpyController alloc] init] autorelease];
 }
 
 
@@ -162,12 +162,11 @@
 #pragma mark KVO Methods
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-	if ([keyPath isEqual:@"prisoners"]) {
-		[self.baseTradeBuilding.prisoners sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease])];
+	if ([keyPath isEqual:@"spies"]) {
+		[self.baseTradeBuilding.spies sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease])];
 		[self.tableView reloadData];
 	}
 }
 
 
 @end
-

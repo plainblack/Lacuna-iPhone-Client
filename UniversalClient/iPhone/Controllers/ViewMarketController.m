@@ -281,7 +281,7 @@ typedef enum {
 		[self.tableView reloadData];
 		
 	} else {
-		[self.baseTradeBuilding.availableTrades removeObject:self.selectedTrade];
+		[self.baseTradeBuilding.marketTrades removeObject:self.selectedTrade];
 		[self.navigationController popViewControllerAnimated:YES];
 	}
 	

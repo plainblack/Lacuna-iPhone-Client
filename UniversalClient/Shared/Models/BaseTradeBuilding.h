@@ -12,7 +12,6 @@
 
 @class ItemPush;
 @class OneForOneTrade;
-@class Trade;
 @class MarketTrade;
 
 
@@ -21,25 +20,12 @@
 	SEL itemPushCallback;
 	id oneForOneTradeTarget;
 	SEL oneForOneTradeCallback;
-	id postTradeTarget;
-	SEL postTradeCallback;
-	id acceptTradeTarget;
-	SEL acceptTradeCallback;
 	id postToMarketTarget;
 	SEL postToMarketCallback;
 	id acceptFromMarketTarget;
 	SEL acceptFromMarketCallback;
 }
 
-
-@property (nonatomic, assign) NSInteger availableTradePageNumber;
-@property (nonatomic, retain) NSDecimalNumber *availableTradeCount;
-@property (nonatomic, retain) NSDate *availableTradesUpdated;
-@property (nonatomic, retain) NSMutableArray *availableTrades;
-@property (nonatomic, assign) NSInteger myTradePageNumber;
-@property (nonatomic, retain) NSDecimalNumber *myTradeCount;
-@property (nonatomic, retain) NSDate *myTradesUpdated;
-@property (nonatomic, retain) NSMutableArray *myTrades;
 
 @property (nonatomic, assign) NSInteger marketPageNumber;
 @property (nonatomic, assign) NSString *marketFilter;
@@ -60,6 +46,9 @@
 @property (nonatomic, retain) NSMutableArray *prisoners;
 @property (nonatomic, retain) NSMutableDictionary *prisonersById;
 @property (nonatomic, retain) NSDecimalNumber *cargoUsedPerPrisoner;
+@property (nonatomic, retain) NSMutableArray *spies;
+@property (nonatomic, retain) NSMutableDictionary *spiesById;
+@property (nonatomic, retain) NSDecimalNumber *cargoUsedPerSpy;
 @property (nonatomic, retain) NSMutableArray *ships;
 @property (nonatomic, retain) NSMutableDictionary *shipsById;
 @property (nonatomic, retain) NSDecimalNumber *cargoUsedPerShip;
@@ -68,8 +57,7 @@
 @property (nonatomic, retain) NSDecimalNumber *cargoUsedPerStoredResource;
 @property (nonatomic, readonly) BOOL usesEssentia;
 @property (nonatomic, readonly) BOOL selectTradeShip;
-@property (nonatomic, readonly) BOOL hasMarket;
-@property (nonatomic, readonly) BOOL hasTrade;
+@property (nonatomic, readonly) BOOL spiesOnly;
 @property (nonatomic, retain) NSDecimalNumber *maxCargoSize;
 @property (nonatomic, retain) NSMutableArray *tradeShips;
 @property (nonatomic, retain) NSMutableDictionary *tradeShipsById;
@@ -80,25 +68,16 @@
 - (void)loadTradeableGlyphs;
 - (void)loadTradeablePlans;
 - (void)loadTradeablePrisoners;
+- (void)loadTradeableSpies;
 - (void)loadTradeableResourceTypes;
 - (void)loadTradeableShips;
 - (void)loadTradeableStoredResources;
 - (void)loadTradeShipsToBody:(NSString *)targetBodyId;
 - (void)removeTradeableStoredResource:(NSDictionary *)storedResource;
 - (void)addTradeableStoredResource:(NSDictionary *)storedResource;
-- (NSDecimalNumber *)calculateStorageForGlyphs:(NSInteger)numGlyphs plans:(NSInteger)numPlans prisoners:(NSInteger)numPrisoners storedResources:(NSDecimalNumber *)numStoredResources ships:(NSInteger)numShips;
-- (void)loadAvailableTradesForPage:(NSInteger)pageNumber;
-- (bool)hasPreviousAvailableTradePage;
-- (bool)hasNextAvailableTradePage;
-- (void)loadMyTradesForPage:(NSInteger)pageNumber;
-- (bool)hasPreviousMyTradePage;
-- (bool)hasNextMyTradePage;
+- (NSDecimalNumber *)calculateStorageForGlyphs:(NSInteger)numGlyphs plans:(NSInteger)numPlans prisoners:(NSInteger)numPrisoners spies:(NSInteger)numSpies storedResources:(NSDecimalNumber *)numStoredResources ships:(NSInteger)numShips;
 - (void)pushItems:(ItemPush *)itemPush target:(id)target callback:(SEL)callback;
 - (void)tradeOneForOne:(OneForOneTrade *)oneForOneTrade target:(id)target callback:(SEL)callback;
-- (void)postTrade:(Trade *)trade target:(id)target callback:(SEL)callback;
-- (void)acceptTrade:(Trade *)trade target:(id)target callback:(SEL)callback;
-- (void)withdrawTrade:(Trade *)trade;
-
 - (void)loadMarketPage:(NSInteger)pageNumber filter:(NSString *)filter;
 - (bool)hasPreviousMarketPage;
 - (bool)hasNextMarketPage;

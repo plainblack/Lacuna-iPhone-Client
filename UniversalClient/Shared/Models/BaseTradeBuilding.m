@@ -17,19 +17,17 @@
 #import "Glyph.h"
 #import "Plan.h"
 #import "Prisoner.h"
+#import "Spy.h"
 #import "Ship.h"
 #import "LEBuildingViewAvailableTrades.h"
-#import "LEBuildingViewMyTrades.h"
 #import "LEBuildingPushItems.h"
 #import "LEBuildingTradeOneForOne.h"
-#import "LEBuildingAddTrade.h"
-#import "LEBuildingAcceptTrade.h"
-#import "LEBuildingWithdrawTrade.h"
 #import "LEBuildingGetTradeableGlyphs.h"
 #import "LEBuildingGetTradeablePlans.h"
 #import "LEBuildingGetTradeablePrisoners.h"
 #import "LEBuildingGetTradeableShips.h"
 #import "LEBuildingGetTradeableStoredResources.h"
+#import "LEBuildingGetTradeableSpies.h"
 #import "LEBuildingGetTradeShips.h"
 #import "LEBuildingAcceptFromMarket.h"
 #import "LEBuildingAddToMarket.h"
@@ -38,11 +36,8 @@
 #import "LEBuildingWithdrawFromMarket.h"
 #import "LETableViewCellButton.h"
 #import "LETableViewCellLabeledText.h"
-#import "ViewAvailableTradesController.h"
-#import "ViewMyTradesController.h"
 #import "NewItemPushController.h"
 #import "NewOneForOneTradeController.h"
-#import "NewTradeController.h"
 #import "NewTradeForMarketController.h"
 #import "ViewMarketController.h"
 #import "ViewMyMarketController.h"
@@ -50,15 +45,6 @@
 
 @implementation BaseTradeBuilding
 
-
-@synthesize availableTradePageNumber;
-@synthesize availableTradeCount;
-@synthesize availableTradesUpdated;
-@synthesize availableTrades;
-@synthesize myTradePageNumber;
-@synthesize myTradeCount;
-@synthesize myTradesUpdated;
-@synthesize myTrades;
 
 @synthesize marketPageNumber;
 @synthesize marketFilter;
@@ -79,6 +65,9 @@
 @synthesize prisoners;
 @synthesize prisonersById;
 @synthesize cargoUsedPerPrisoner;
+@synthesize spies;
+@synthesize spiesById;
+@synthesize cargoUsedPerSpy;
 @synthesize resourceTypes;
 @synthesize ships;
 @synthesize shipsById;
@@ -87,8 +76,7 @@
 @synthesize cargoUsedPerStoredResource;
 @synthesize usesEssentia;
 @synthesize selectTradeShip;
-@synthesize hasMarket;
-@synthesize hasTrade;
+@synthesize spiesOnly;
 @synthesize maxCargoSize;
 @synthesize tradeShips;
 @synthesize tradeShipsById;
@@ -99,13 +87,6 @@
 #pragma mark Object Methods
 
 - (void)dealloc {
-	self.availableTradeCount = nil;
-	self.availableTradesUpdated = nil;
-	self.availableTrades = nil;
-	self.myTradeCount = nil;
-	self.myTradesUpdated = nil;
-	self.myTrades = nil;
-	
 	self.marketFilter = nil;
 	self.marketTradeCount = nil;
 	self.marketUpdated = nil;
@@ -123,6 +104,9 @@
 	self.prisoners = nil;
 	self.prisonersById = nil;
 	self.cargoUsedPerPrisoner = nil;
+	self.spies = nil;
+	self.spiesById = nil;
+	self.cargoUsedPerSpy = nil;
 	self.resourceTypes = nil;
 	self.ships = nil;
 	self.shipsById = nil;
@@ -165,27 +149,22 @@
 		[self.sections addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", rows, @"rows")];
 		self->usesEssentia = YES;
 		self->selectTradeShip = NO;
-		self->hasMarket = YES;
-		self->hasTrade = NO;
-	} else {
+        self->spiesOnly = NO;
+    } else if ([self.buildingUrl isEqualToString:TRADE_URL]) {
 		if ([session.empire.planets count] > 1) {
 			[self.sections addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_PUSH_ITEMS]), @"rows")];
 		}
 		self->usesEssentia = NO;
 		self->selectTradeShip = YES;
-		self->hasMarket = YES;
-		self->hasTrade = NO;
-	}
+        self->spiesOnly = NO;
+	} else 	if ([self.buildingUrl isEqualToString:MERCENARIES_GUILD_URL]) {
+		self->usesEssentia = YES;
+		self->selectTradeShip = YES;
+        self->spiesOnly = YES;
+    }
 	
-	if (self.hasMarket) {
-		NSMutableArray *rows = _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MARKET], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MY_MARKET], [NSDecimalNumber numberWithInt:BUILDING_ROW_CREATE_TRADE_FOR_MARKET]);
-		[self.sections addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_MARKET], @"type", @"Market", @"name", rows, @"rows")];
-	}
-	
-	if (self.hasTrade) {
-		NSMutableArray *rows = _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_AVAILABLE_TRADES], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MY_TRADES]);
-		[self.sections addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_TRADE], @"type", @"Trade", @"name", rows, @"rows")];
-	}
+    NSMutableArray *rows = _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MARKET], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MY_MARKET], [NSDecimalNumber numberWithInt:BUILDING_ROW_CREATE_TRADE_FOR_MARKET]);
+    [self.sections addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_MARKET], @"type", @"Market", @"name", rows, @"rows")];
 	
 	[self.sections addObject:[self generateHealthSection]];
 	[self.sections addObject:[self generateUpgradeSection]];
@@ -195,10 +174,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForBuildingRow:(BUILDING_ROW)buildingRow {
 	switch (buildingRow) {
-		case BUILDING_ROW_VIEW_AVAILABLE_TRADES:
-		case BUILDING_ROW_VIEW_MY_TRADES:
 		case BUILDING_ROW_PUSH_ITEMS:
-		case BUILDING_ROW_CREATE_TRADE:
 		case BUILDING_ROW_1_FOR_1_TRADE:
 		case BUILDING_ROW_VIEW_MARKET:
 		case BUILDING_ROW_VIEW_MY_MARKET:
@@ -218,29 +194,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex {
 	UITableViewCell *cell = nil;
 	switch (buildingRow) {
-		case BUILDING_ROW_VIEW_AVAILABLE_TRADES:
-			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
-			LETableViewCellButton *availableTradesButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-			availableTradesButtonCell.textLabel.text = @"Available Trades";
-			cell = availableTradesButtonCell;
-			break;
-		case BUILDING_ROW_VIEW_MY_TRADES:
-			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
-			LETableViewCellButton *myTradesButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-			myTradesButtonCell.textLabel.text = @"My Trades";
-			cell = myTradesButtonCell;
-			break;
 		case BUILDING_ROW_PUSH_ITEMS:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellButton *pushItemsButtonCell = [LETableViewCellButton getCellForTableView:tableView];
 			pushItemsButtonCell.textLabel.text = @"Push Items";
 			cell = pushItemsButtonCell;
-			break;
-		case BUILDING_ROW_CREATE_TRADE:
-			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
-			LETableViewCellButton *createTradeButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-			createTradeButtonCell.textLabel.text = @"Create Trade";
-			cell = createTradeButtonCell;
 			break;
 		case BUILDING_ROW_1_FOR_1_TRADE:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
@@ -284,29 +242,11 @@
 
 - (UIViewController *)tableView:(UITableView *)tableView didSelectBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex {
 	switch (buildingRow) {
-		case BUILDING_ROW_VIEW_AVAILABLE_TRADES:
-			; //DO NOT REMOVE
-			ViewAvailableTradesController *viewAvailableTradesController = [ViewAvailableTradesController create];
-			viewAvailableTradesController.baseTradeBuilding = self;
-			return viewAvailableTradesController;
-			break;
-		case BUILDING_ROW_VIEW_MY_TRADES:
-			; //DO NOT REMOVE
-			ViewMyTradesController *viewMyTradesController = [ViewMyTradesController create];
-			viewMyTradesController.baseTradeBuilding = self;
-			return viewMyTradesController;
-			break;
 		case BUILDING_ROW_PUSH_ITEMS:
 			; //DO NOT REMOVE
 			NewItemPushController *newItemPushController = [NewItemPushController create];
 			newItemPushController.baseTradeBuilding = self;
 			return newItemPushController;
-			break;
-		case BUILDING_ROW_CREATE_TRADE:
-			; //DO NOT REMOVE
-			NewTradeController *newTradeController = [NewTradeController create];
-			newTradeController.baseTradeBuilding = self;
-			return newTradeController;
 			break;
 		case BUILDING_ROW_1_FOR_1_TRADE:
 			; //DO NOT REMOVE
@@ -352,6 +292,9 @@
 	self.prisoners = nil;
 	self.prisonersById = nil;
 	self.cargoUsedPerPrisoner = nil;
+	self.spies = nil;
+	self.spiesById = nil;
+	self.cargoUsedPerSpy = nil;
 	self.resourceTypes = nil;
 	self.ships = nil;
 	self.shipsById = nil;
@@ -376,6 +319,11 @@
 
 - (void)loadTradeablePrisoners {
 	[[[LEBuildingGetTradeablePrisoners alloc] initWithCallback:@selector(loadedTradeablePrisoners:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+}
+
+
+- (void)loadTradeableSpies {
+	[[[LEBuildingGetTradeableSpies alloc] initWithCallback:@selector(loadedTradeableSpies:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
 }
 
 
@@ -439,7 +387,7 @@
 }
 
 
-- (NSDecimalNumber *)calculateStorageForGlyphs:(NSInteger)numGlyphs plans:(NSInteger)numPlans prisoners:(NSInteger)numPrisoners storedResources:(NSDecimalNumber *)numStoredResources ships:(NSInteger)numShips {
+- (NSDecimalNumber *)calculateStorageForGlyphs:(NSInteger)numGlyphs plans:(NSInteger)numPlans prisoners:(NSInteger)numPrisoners spies:(NSInteger) numSpies storedResources:(NSDecimalNumber *)numStoredResources ships:(NSInteger)numShips {
 	NSDecimalNumber *total = [NSDecimalNumber zero];
 	if (numGlyphs > 0) {
 		total = [total decimalNumberByAdding:[self.cargoUsedPerGlyph decimalNumberByMultiplyingBy:[Util decimalFromInt:numGlyphs]]];
@@ -449,6 +397,9 @@
 	}
 	if (numPrisoners > 0) {
 		total = [total decimalNumberByAdding:[self.cargoUsedPerPrisoner decimalNumberByMultiplyingBy:[Util decimalFromInt:numPrisoners]]];
+	}
+	if (numSpies > 0) {
+		total = [total decimalNumberByAdding:[self.cargoUsedPerSpy decimalNumberByMultiplyingBy:[Util decimalFromInt:numSpies]]];
 	}
 	if (_intv(numStoredResources) > 0) {
 		NSDecimalNumber *tmp = [self.cargoUsedPerStoredResource decimalNumberByMultiplyingBy:numStoredResources];
@@ -472,60 +423,6 @@
 	self->oneForOneTradeTarget = target;
 	self->oneForOneTradeCallback = callback;
 	[[[LEBuildingTradeOneForOne alloc] initWithCallback:@selector(tradedOneForOne:) target:self buildingId:self.id buildingUrl:self.buildingUrl haveResourceType:oneForOneTrade.haveResourceType wantResourceType:oneForOneTrade.wantResourceType quantity:oneForOneTrade.quantity] autorelease];
-}
-
-
-#pragma mark -
-#pragma mark Trade Instance Methods
-
-- (void)loadAvailableTradesForPage:(NSInteger)pageNumber {
-	self.availableTradePageNumber = pageNumber;
-	[[[LEBuildingViewAvailableTrades alloc] initWithCallback:@selector(availableTradesLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl pageNumber:pageNumber] autorelease];
-}
-
-
-- (bool)hasPreviousAvailableTradePage {
-	return (self.availableTradePageNumber > 1);
-}
-
-
-- (bool)hasNextAvailableTradePage {
-	return (self.availableTradePageNumber < [Util numPagesForCount:_intv(self.availableTradeCount)]);
-}
-
-
-- (void)loadMyTradesForPage:(NSInteger)pageNumber {
-	self.myTradePageNumber = pageNumber;
-	[[[LEBuildingViewMyTrades alloc] initWithCallback:@selector(myTradesLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl pageNumber:pageNumber] autorelease];
-}
-
-
-- (bool)hasPreviousMyTradePage {
-	return (self.myTradePageNumber > 1);
-}
-
-
-- (bool)hasNextMyTradePage {
-	return (self.myTradePageNumber < [Util numPagesForCount:_intv(self.myTradeCount)]);
-}
-
-
-- (void)postTrade:(Trade *)trade target:(id)target callback:(SEL)callback {
-	self->postTradeTarget = target;
-	self->postTradeCallback = callback;
-	[[[LEBuildingAddTrade alloc] initWithCallback:@selector(addedTrade:) target:self buildingId:self.id buildingUrl:self.buildingUrl askType:trade.askType askQuantity:trade.askQuantity offerType:trade.offerType offerQuantity:trade.offerQuantity offerGlyphId:trade.offerGlyphId offerPlanId:trade.offerPlanId offerPrisonerId:trade.offerPrisonerId offerShipId:trade.offerShipId tradeShipId:trade.tradeShipId] autorelease];
-}
-
-
-- (void)acceptTrade:(Trade *)trade target:(id)target callback:(SEL)callback {
-	self->acceptTradeTarget = target;
-	self->acceptTradeCallback = callback;
-	[[[LEBuildingAcceptTrade alloc] initWithCallback:@selector(acceptedTrade:) target:self buildingId:self.id buildingUrl:self.buildingUrl tradeId:trade.id tradeShipId:trade.tradeShipId] autorelease];
-}
-
-
-- (void)withdrawTrade:(Trade *)trade {
-	[[[LEBuildingWithdrawTrade alloc] initWithCallback:@selector(withdrewTrade:) target:self buildingId:self.id buildingUrl:self.buildingUrl tradeId:trade.id] autorelease];
 }
 
 
@@ -634,6 +531,22 @@
 }
 
 
+- (id)loadedTradeableSpies:(LEBuildingGetTradeableSpies *)request {
+	self.cargoUsedPerSpy = request.cargoSpaceUsedPer;
+	NSMutableArray *tmpArray = [NSMutableArray arrayWithCapacity:[request.spies count]];
+	NSMutableDictionary *tmpDict = [NSMutableDictionary dictionaryWithCapacity:[request.spies count]];
+	[request.spies enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
+		Spy *spy = [[[Spy alloc] init] autorelease];
+		[spy parseData:obj];
+		[tmpArray addObject:spy];
+		[tmpDict setObject:spy forKey:spy.id];
+	}];
+	self.spies = tmpArray;
+	self.spiesById = tmpDict;
+	return nil;
+}
+
+
 - (id)loadedTradeableShips:(LEBuildingGetTradeableShips *)request {
 	self.cargoUsedPerShip = request.cargoSpaceUsedPer;
 	NSMutableArray *tmpArray = [NSMutableArray arrayWithCapacity:[request.ships count]];
@@ -695,88 +608,6 @@
 
 - (id)tradedOneForOne:(LEBuildingTradeOneForOne *)request {
 	[self->oneForOneTradeTarget performSelector:self->oneForOneTradeCallback withObject:request];
-	return nil;
-}
-
-
-#pragma mark -
-#pragma mark Trade Callback Methods
-
-- (id)availableTradesLoaded:(LEBuildingViewAvailableTrades *)request {
-	NSMutableArray *tmpTrades = [NSMutableArray arrayWithCapacity:[request.availableTrades count]];
-	for (NSDictionary *tradeData in request.availableTrades) {
-		Trade *tmpTrade = [[[Trade alloc] init] autorelease];
-		[tmpTrade parseData:tradeData];
-		[tmpTrades addObject:tmpTrade];
-	}
-	self.availableTrades = tmpTrades;
-	
-	self.availableTradeCount = request.tradeCount;
-	self.availableTradesUpdated = [NSDate date];
-	return nil;
-}
-
-
-- (id)myTradesLoaded:(LEBuildingViewMyTrades *)request {
-	NSMutableArray *tmpTrades = [NSMutableArray arrayWithCapacity:[request.myTrades count]];
-	for (NSDictionary *tradeData in request.myTrades) {
-		Trade *tmpTrade = [[[Trade alloc] init] autorelease];
-		[tmpTrade parseData:tradeData];
-		[tmpTrades addObject:tmpTrade];
-	}
-	self.myTrades = tmpTrades;
-	
-	self.myTradeCount = request.tradeCount;
-	self.myTradesUpdated = [NSDate date];
-	return nil;
-}
-
-
-- (id)addedTrade:(LEBuildingAddTrade *)request {
-	[self->postTradeTarget performSelector:self->postTradeCallback withObject:request];
-	if (![request wasError]) {
-		self.myTrades = nil;
-		self.myTradesUpdated = nil;
-	}
-	return nil;
-}
-
-
-- (id)withdrewTrade:(LEBuildingWithdrawTrade *)request {
-	if (![request wasError]) {
-		__block Trade *foundTrade;
-		[self.myTrades enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-			Trade *trade = obj;
-			if ([trade.id isEqualToString:request.tradeId]) {
-				foundTrade = obj;
-				*stop = YES;
-			}
-		}];
-		if (foundTrade) {
-			[self.myTrades removeObject:foundTrade];
-			self.myTradesUpdated = [NSDate date];
-		}
-	}
-	return nil;
-}
-
-
-- (id)acceptedTrade:(LEBuildingAcceptTrade *)request {
-	if (![request wasError]) {
-		__block Trade *foundTrade;
-		[self.availableTrades enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-			Trade *trade = obj;
-			if ([trade.id isEqualToString:request.tradeId]) {
-				foundTrade = obj;
-				*stop = YES;
-			}
-		}];
-		if (foundTrade) {
-			[self.availableTrades removeObject:foundTrade];
-			self.availableTradesUpdated = [NSDate date];
-		}
-	}
-	[self->acceptTradeTarget performSelector:self->acceptTradeCallback withObject:request];
 	return nil;
 }
 

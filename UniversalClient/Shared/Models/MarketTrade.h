@@ -30,6 +30,7 @@
 - (void)addGlyph:(NSString *)glyphId;
 - (void)addPlan:(NSString *)planId;
 - (void)addPrisoner:(NSString *)prisonerId;
+- (void)addSpy:(NSString *)spyId;
 - (void)addShip:(NSString *)shipId;
 
 

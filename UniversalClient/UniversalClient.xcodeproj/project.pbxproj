@@ -33,6 +33,8 @@
 		F60AF51E1224A4A5005B2F0E /* PendingAllianceInvite.m in Sources */ = {isa = PBXBuildFile; fileRef = F60AF51D1224A4A5005B2F0E /* PendingAllianceInvite.m */; };
 		F60AF5211224A4AE005B2F0E /* MyAllianceInvite.m in Sources */ = {isa = PBXBuildFile; fileRef = F60AF5201224A4AE005B2F0E /* MyAllianceInvite.m */; };
 		F60D1CCA132F876E00919C55 /* DistributionCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F60D1CC9132F876E00919C55 /* DistributionCenter.m */; };
+		F6105DC5133C120000007F63 /* LEBuildingGetTradeableSpies.m in Sources */ = {isa = PBXBuildFile; fileRef = F6105DC4133C120000007F63 /* LEBuildingGetTradeableSpies.m */; };
+		F6105DC8133C1D6E00007F63 /* SelectTradeableSpyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6105DC7133C1D6D00007F63 /* SelectTradeableSpyController.m */; };
 		F61151D91299988E00108348 /* LEBuildingTransmitFood.m in Sources */ = {isa = PBXBuildFile; fileRef = F61151D81299988E00108348 /* LEBuildingTransmitFood.m */; };
 		F61151DC129998A200108348 /* LEBuildingTransmitEnergy.m in Sources */ = {isa = PBXBuildFile; fileRef = F61151DB129998A200108348 /* LEBuildingTransmitEnergy.m */; };
 		F61151DF129998AE00108348 /* LEBuildingTransmitOre.m in Sources */ = {isa = PBXBuildFile; fileRef = F61151DE129998AE00108348 /* LEBuildingTransmitOre.m */; };
@@ -153,9 +155,6 @@
 		F688A34911939EEB0062DF8A /* ViewAttachedMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = F688A34711939EEB0062DF8A /* ViewAttachedMapController.m */; };
 		F68DC4FB11CD1B0D00144A49 /* EmpireProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F68DC4FA11CD1B0D00144A49 /* EmpireProfile.m */; };
 		F692B7BE121859E700E740C1 /* LEBuildingViewAvailableTrades.m in Sources */ = {isa = PBXBuildFile; fileRef = F692B7BD121859E700E740C1 /* LEBuildingViewAvailableTrades.m */; };
-		F692B7C1121859F700E740C1 /* LEBuildingViewMyTrades.m in Sources */ = {isa = PBXBuildFile; fileRef = F692B7C0121859F700E740C1 /* LEBuildingViewMyTrades.m */; };
-		F692B7C4121861CC00E740C1 /* ViewAvailableTradesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F692B7C3121861CC00E740C1 /* ViewAvailableTradesController.m */; };
-		F692B7C7121861D600E740C1 /* ViewMyTradesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F692B7C6121861D600E740C1 /* ViewMyTradesController.m */; };
 		F692B7CA121861EC00E740C1 /* Trade.m in Sources */ = {isa = PBXBuildFile; fileRef = F692B7C9121861EC00E740C1 /* Trade.m */; };
 		F692B7CD121867B700E740C1 /* BaseTradeBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = F692B7CC121867B700E740C1 /* BaseTradeBuilding.m */; };
 		F692B8531218765F00E740C1 /* LEBuildingPushItems.m in Sources */ = {isa = PBXBuildFile; fileRef = F692B8521218765F00E740C1 /* LEBuildingPushItems.m */; };
@@ -237,13 +236,8 @@
 		F6D360D31254B1C5003FDE5D /* LEBuildingListPlanets.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D360D21254B1C5003FDE5D /* LEBuildingListPlanets.m */; };
 		F6D360D61254B1D2003FDE5D /* LEBuildingViewPlanet.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D360D51254B1D2003FDE5D /* LEBuildingViewPlanet.m */; };
 		F6D360EA1254B59B003FDE5D /* SelectPlanetToViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D360E91254B59B003FDE5D /* SelectPlanetToViewController.m */; };
-		F6D3F66D1221776A0090E31E /* NewTradeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3F66C1221776A0090E31E /* NewTradeController.m */; };
-		F6D3F6A812218AD10090E31E /* LEBuildingAddTrade.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3F6A712218AD10090E31E /* LEBuildingAddTrade.m */; };
 		F6D3F6BB122193C30090E31E /* SelectTradeablePrisonerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3F6BA122193C30090E31E /* SelectTradeablePrisonerController.m */; };
 		F6D3F6BE122193D70090E31E /* SelectTradeableShipController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3F6BD122193D70090E31E /* SelectTradeableShipController.m */; };
-		F6D3F6FD1221B2A90090E31E /* LEBuildingWithdrawTrade.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3F6FC1221B2A90090E31E /* LEBuildingWithdrawTrade.m */; };
-		F6D3F7001221B2B90090E31E /* LEBuildingAcceptTrade.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3F6FF1221B2B90090E31E /* LEBuildingAcceptTrade.m */; };
-		F6D3F7DD1221F6BC0090E31E /* AcceptTradeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3F7DC1221F6BC0090E31E /* AcceptTradeController.m */; };
 		F6D3F8751222130A0090E31E /* LETableViewCellCaptchaImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D3F8741222130A0090E31E /* LETableViewCellCaptchaImage.m */; };
 		F6D48578120CD80D00D77FC3 /* LEBuildingViewForeignSpies.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D48577120CD80D00D77FC3 /* LEBuildingViewForeignSpies.m */; };
 		F6D4857B120CD82100D77FC3 /* LEBuildingExecutePrisoner.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D4857A120CD82100D77FC3 /* LEBuildingExecutePrisoner.m */; };
@@ -547,6 +541,10 @@
 		F60AF5201224A4AE005B2F0E /* MyAllianceInvite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAllianceInvite.m; sourceTree = "<group>"; };
 		F60D1CC8132F876E00919C55 /* DistributionCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistributionCenter.h; sourceTree = "<group>"; };
 		F60D1CC9132F876E00919C55 /* DistributionCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistributionCenter.m; sourceTree = "<group>"; };
+		F6105DC3133C120000007F63 /* LEBuildingGetTradeableSpies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetTradeableSpies.h; sourceTree = "<group>"; };
+		F6105DC4133C120000007F63 /* LEBuildingGetTradeableSpies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetTradeableSpies.m; sourceTree = "<group>"; };
+		F6105DC6133C1D6D00007F63 /* SelectTradeableSpyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectTradeableSpyController.h; sourceTree = "<group>"; };
+		F6105DC7133C1D6D00007F63 /* SelectTradeableSpyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectTradeableSpyController.m; sourceTree = "<group>"; };
 		F61151D71299988E00108348 /* LEBuildingTransmitFood.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingTransmitFood.h; sourceTree = "<group>"; };
 		F61151D81299988E00108348 /* LEBuildingTransmitFood.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingTransmitFood.m; sourceTree = "<group>"; };
 		F61151DA129998A200108348 /* LEBuildingTransmitEnergy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingTransmitEnergy.h; sourceTree = "<group>"; };
@@ -776,12 +774,6 @@
 		F68DC4FA11CD1B0D00144A49 /* EmpireProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmpireProfile.m; sourceTree = "<group>"; };
 		F692B7BC121859E700E740C1 /* LEBuildingViewAvailableTrades.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewAvailableTrades.h; sourceTree = "<group>"; };
 		F692B7BD121859E700E740C1 /* LEBuildingViewAvailableTrades.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewAvailableTrades.m; sourceTree = "<group>"; };
-		F692B7BF121859F700E740C1 /* LEBuildingViewMyTrades.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewMyTrades.h; sourceTree = "<group>"; };
-		F692B7C0121859F700E740C1 /* LEBuildingViewMyTrades.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewMyTrades.m; sourceTree = "<group>"; };
-		F692B7C2121861CC00E740C1 /* ViewAvailableTradesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewAvailableTradesController.h; sourceTree = "<group>"; };
-		F692B7C3121861CC00E740C1 /* ViewAvailableTradesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewAvailableTradesController.m; sourceTree = "<group>"; };
-		F692B7C5121861D600E740C1 /* ViewMyTradesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMyTradesController.h; sourceTree = "<group>"; };
-		F692B7C6121861D600E740C1 /* ViewMyTradesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMyTradesController.m; sourceTree = "<group>"; };
 		F692B7C8121861EC00E740C1 /* Trade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trade.h; sourceTree = "<group>"; };
 		F692B7C9121861EC00E740C1 /* Trade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trade.m; sourceTree = "<group>"; };
 		F692B7CB121867B700E740C1 /* BaseTradeBuilding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTradeBuilding.h; sourceTree = "<group>"; };
@@ -943,20 +935,10 @@
 		F6D360D51254B1D2003FDE5D /* LEBuildingViewPlanet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewPlanet.m; sourceTree = "<group>"; };
 		F6D360E81254B59B003FDE5D /* SelectPlanetToViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPlanetToViewController.h; sourceTree = "<group>"; };
 		F6D360E91254B59B003FDE5D /* SelectPlanetToViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPlanetToViewController.m; sourceTree = "<group>"; };
-		F6D3F66B1221776A0090E31E /* NewTradeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTradeController.h; sourceTree = "<group>"; };
-		F6D3F66C1221776A0090E31E /* NewTradeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTradeController.m; sourceTree = "<group>"; };
-		F6D3F6A612218AD10090E31E /* LEBuildingAddTrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingAddTrade.h; sourceTree = "<group>"; };
-		F6D3F6A712218AD10090E31E /* LEBuildingAddTrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingAddTrade.m; sourceTree = "<group>"; };
 		F6D3F6B9122193C30090E31E /* SelectTradeablePrisonerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectTradeablePrisonerController.h; sourceTree = "<group>"; };
 		F6D3F6BA122193C30090E31E /* SelectTradeablePrisonerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectTradeablePrisonerController.m; sourceTree = "<group>"; };
 		F6D3F6BC122193D70090E31E /* SelectTradeableShipController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectTradeableShipController.h; sourceTree = "<group>"; };
 		F6D3F6BD122193D70090E31E /* SelectTradeableShipController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectTradeableShipController.m; sourceTree = "<group>"; };
-		F6D3F6FB1221B2A90090E31E /* LEBuildingWithdrawTrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingWithdrawTrade.h; sourceTree = "<group>"; };
-		F6D3F6FC1221B2A90090E31E /* LEBuildingWithdrawTrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingWithdrawTrade.m; sourceTree = "<group>"; };
-		F6D3F6FE1221B2B90090E31E /* LEBuildingAcceptTrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingAcceptTrade.h; sourceTree = "<group>"; };
-		F6D3F6FF1221B2B90090E31E /* LEBuildingAcceptTrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingAcceptTrade.m; sourceTree = "<group>"; };
-		F6D3F7DB1221F6BC0090E31E /* AcceptTradeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptTradeController.h; sourceTree = "<group>"; };
-		F6D3F7DC1221F6BC0090E31E /* AcceptTradeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptTradeController.m; sourceTree = "<group>"; };
 		F6D3F8731222130A0090E31E /* LETableViewCellCaptchaImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellCaptchaImage.h; sourceTree = "<group>"; };
 		F6D3F8741222130A0090E31E /* LETableViewCellCaptchaImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellCaptchaImage.m; sourceTree = "<group>"; };
 		F6D48576120CD80D00D77FC3 /* LEBuildingViewForeignSpies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewForeignSpies.h; sourceTree = "<group>"; };
@@ -1715,14 +1697,10 @@
 				F6F2E68312CCE8B50048AC95 /* LEBuildingAcceptFromMarket.m */,
 				F6E8D55D1223E795001CD21D /* LEBuildingAcceptInvite.h */,
 				F6E8D55E1223E795001CD21D /* LEBuildingAcceptInvite.m */,
-				F6D3F6FE1221B2B90090E31E /* LEBuildingAcceptTrade.h */,
-				F6D3F6FF1221B2B90090E31E /* LEBuildingAcceptTrade.m */,
 				F6E5E62D1205CDB600365AA2 /* LEBuildingAddShipToFleet.h */,
 				F6E5E62E1205CDB600365AA2 /* LEBuildingAddShipToFleet.m */,
 				F6F2E67F12CCE8A50048AC95 /* LEBuildingAddToMarket.h */,
 				F6F2E68012CCE8A50048AC95 /* LEBuildingAddToMarket.m */,
-				F6D3F6A612218AD10090E31E /* LEBuildingAddTrade.h */,
-				F6D3F6A712218AD10090E31E /* LEBuildingAddTrade.m */,
 				F6E8D5691223E7E9001CD21D /* LEBuildingAssignAllianceLeader.h */,
 				F6E8D56A1223E7E9001CD21D /* LEBuildingAssignAllianceLeader.m */,
 				F6A9C5B71184BBA1001F0D9C /* LEBuildingAssignSpy.h */,
@@ -1889,8 +1867,6 @@
 				F6F2E67A12CCE88B0048AC95 /* LEBuildingViewMarket.m */,
 				F6F2E67C12CCE8960048AC95 /* LEBuildingViewMyMarket.h */,
 				F6F2E67D12CCE8960048AC95 /* LEBuildingViewMyMarket.m */,
-				F692B7BF121859F700E740C1 /* LEBuildingViewMyTrades.h */,
-				F692B7C0121859F700E740C1 /* LEBuildingViewMyTrades.m */,
 				F6864F9C1183A3FB009826A7 /* LEBuildingViewNews.h */,
 				F6864F9D1183A3FB009826A7 /* LEBuildingViewNews.m */,
 				F6D360D41254B1D2003FDE5D /* LEBuildingViewPlanet.h */,
@@ -1915,8 +1891,6 @@
 				F6F2E68612CCE8C10048AC95 /* LEBuildingWithdrawFromMarket.m */,
 				F6E8D55A1223E788001CD21D /* LEBuildingWithdrawInvite.h */,
 				F6E8D55B1223E788001CD21D /* LEBuildingWithdrawInvite.m */,
-				F6D3F6FB1221B2A90090E31E /* LEBuildingWithdrawTrade.h */,
-				F6D3F6FC1221B2A90090E31E /* LEBuildingWithdrawTrade.m */,
 				F6AC49EC116C0F9B001B967A /* LECheckEmpireName.h */,
 				F6AC49ED116C0F9B001B967A /* LECheckEmpireName.m */,
 				F6AC49EE116C0F9B001B967A /* LECheckSpeciesName.h */,
@@ -2039,6 +2013,8 @@
 				F6E6671E1338198100A94A39 /* LEBuildingCastVote.m */,
 				F6FEF457133C0629001791F3 /* LEBuildingRecallAll.h */,
 				F6FEF458133C0629001791F3 /* LEBuildingRecallAll.m */,
+				F6105DC3133C120000007F63 /* LEBuildingGetTradeableSpies.h */,
+				F6105DC4133C120000007F63 /* LEBuildingGetTradeableSpies.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -2204,8 +2180,6 @@
 				F6DF433C1228A53D00A526FD /* AcceptAllianceInviteController.m */,
 				F6F8311212CE2D0A003A38D2 /* AcceptMarketTradeController.h */,
 				F6F8311312CE2D0A003A38D2 /* AcceptMarketTradeController.m */,
-				F6D3F7DB1221F6BC0090E31E /* AcceptTradeController.h */,
-				F6D3F7DC1221F6BC0090E31E /* AcceptTradeController.m */,
 				F6F418FF123B046800F93457 /* AssembleGlyphsControllerV2.h */,
 				F6F41900123B046800F93457 /* AssembleGlyphsControllerV2.m */,
 				F6F41901123B046800F93457 /* AssembleGlyphsControllerV2.xib */,
@@ -2279,8 +2253,6 @@
 				F6B2155B1232D20200531EEE /* NewPasswordController.m */,
 				F69D299011725FA400D7277E /* NewSpeciesController.h */,
 				F69D299111725FA400D7277E /* NewSpeciesController.m */,
-				F6D3F66B1221776A0090E31E /* NewTradeController.h */,
-				F6D3F66C1221776A0090E31E /* NewTradeController.m */,
 				F6F2E6C412CD04050048AC95 /* NewTradeForMarketController.h */,
 				F6F2E6C512CD04050048AC95 /* NewTradeForMarketController.m */,
 				F64FA1ED121CB43300CBFC3E /* PickColonyController.h */,
@@ -2375,8 +2347,6 @@
 				F69B7FFA118FB51A0049D4A1 /* ViewAttachedTableController.h */,
 				F69B7FFB118FB51A0049D4A1 /* ViewAttachedTableController.m */,
 				F69B7FFC118FB51A0049D4A1 /* ViewAttachedTableController.xib */,
-				F692B7C2121861CC00E740C1 /* ViewAvailableTradesController.h */,
-				F692B7C3121861CC00E740C1 /* ViewAvailableTradesController.m */,
 				F631A3D111754AEF005E40CC /* ViewBodyController.h */,
 				F631A3D211754AEF005E40CC /* ViewBodyController.m */,
 				F631A3F211755489005E40CC /* ViewBodyController.xib */,
@@ -2425,8 +2395,6 @@
 				F6DF42BF1228990700A526FD /* ViewMyInvitesController.m */,
 				F6F2E6C112CD03F70048AC95 /* ViewMyMarketController.h */,
 				F6F2E6C212CD03F70048AC95 /* ViewMyMarketController.m */,
-				F692B7C5121861D600E740C1 /* ViewMyTradesController.h */,
-				F692B7C6121861D600E740C1 /* ViewMyTradesController.m */,
 				F6864F991183A131009826A7 /* ViewNetwork19NewsController.h */,
 				F6864F9A1183A131009826A7 /* ViewNetwork19NewsController.m */,
 				F6DF424E12288EB600A526FD /* ViewPendingInvitesController.h */,
@@ -2504,6 +2472,8 @@
 				F6E667241338386900A94A39 /* ViewPropositionsController.m */,
 				F6E97580133B63EF004E715C /* ViewUniverseOrbitingShipsController.h */,
 				F6E97581133B63EF004E715C /* ViewUniverseOrbitingShipsController.m */,
+				F6105DC6133C1D6D00007F63 /* SelectTradeableSpyController.h */,
+				F6105DC7133C1D6D00007F63 /* SelectTradeableSpyController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -2790,9 +2760,6 @@
 				F6D485B8120CDEA000D77FC3 /* ViewForeignSpiesController.m in Sources */,
 				F6DB8AE51211718D00F3AB4B /* LEEmpireBoostStorage.m in Sources */,
 				F692B7BE121859E700E740C1 /* LEBuildingViewAvailableTrades.m in Sources */,
-				F692B7C1121859F700E740C1 /* LEBuildingViewMyTrades.m in Sources */,
-				F692B7C4121861CC00E740C1 /* ViewAvailableTradesController.m in Sources */,
-				F692B7C7121861D600E740C1 /* ViewMyTradesController.m in Sources */,
 				F692B7CA121861EC00E740C1 /* Trade.m in Sources */,
 				F692B7CD121867B700E740C1 /* BaseTradeBuilding.m in Sources */,
 				F692B8531218765F00E740C1 /* LEBuildingPushItems.m in Sources */,
@@ -2814,13 +2781,8 @@
 				F6F854C712203FF20000CD09 /* LEBuildingTradeOneForOne.m in Sources */,
 				F6F854CA122040070000CD09 /* OneForOneTrade.m in Sources */,
 				F6F8550D1220B0500000CD09 /* SelectResourceTypeController.m in Sources */,
-				F6D3F66D1221776A0090E31E /* NewTradeController.m in Sources */,
-				F6D3F6A812218AD10090E31E /* LEBuildingAddTrade.m in Sources */,
 				F6D3F6BB122193C30090E31E /* SelectTradeablePrisonerController.m in Sources */,
 				F6D3F6BE122193D70090E31E /* SelectTradeableShipController.m in Sources */,
-				F6D3F6FD1221B2A90090E31E /* LEBuildingWithdrawTrade.m in Sources */,
-				F6D3F7001221B2B90090E31E /* LEBuildingAcceptTrade.m in Sources */,
-				F6D3F7DD1221F6BC0090E31E /* AcceptTradeController.m in Sources */,
 				F6D3F8751222130A0090E31E /* LETableViewCellCaptchaImage.m in Sources */,
 				F623AFFB12236D20007794D5 /* Embassy.m in Sources */,
 				F6E8D5501223E73B001CD21D /* LEBuildingCreateAlliance.m in Sources */,
@@ -3070,6 +3032,8 @@
 				F6E97582133B63EF004E715C /* ViewUniverseOrbitingShipsController.m in Sources */,
 				F6E995DF133C034A00C9F968 /* LETableViewCellShipOrbitingTime.m in Sources */,
 				F6FEF459133C0629001791F3 /* LEBuildingRecallAll.m in Sources */,
+				F6105DC5133C120000007F63 /* LEBuildingGetTradeableSpies.m in Sources */,
+				F6105DC8133C1D6E00007F63 /* SelectTradeableSpyController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

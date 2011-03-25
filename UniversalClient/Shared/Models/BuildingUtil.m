@@ -74,6 +74,8 @@
 		building = [[[Intelligence alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:LIBRARY_OF_JITH_URL]) {
 		building = [[[LibraryOfJith alloc] init] autorelease];
+	} else if ([request.buildingUrl isEqualToString:MERCENARIES_GUILD_URL]) {
+		building = [[[BaseTradeBuilding alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:MINING_MINISTRY_URL]) {
 		building = [[[MiningMinistry alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:MISSION_COMMAND_URL]) {

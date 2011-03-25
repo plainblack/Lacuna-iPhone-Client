@@ -323,6 +323,7 @@ typedef enum {
 					NSInteger numGlyphs = 0;
 					NSInteger numPlans = 0;
 					NSInteger numPrisoners = 0;
+					NSInteger numSpies = 0;
 					NSInteger numShips = 0;
 					NSDecimalNumber *numStoredResources = [NSDecimalNumber zero];
 					
@@ -334,13 +335,15 @@ typedef enum {
 							numPlans++;
 						} else if ([type isEqualToString:@"prisoner"]) {
 							numPrisoners++;
+						} else if ([type isEqualToString:@"spies"]) {
+							numSpies++;
 						} else if ([type isEqualToString:@"ship"]) {
 							numShips++;
 						} else {
 							numStoredResources = [numStoredResources decimalNumberByAdding:[item objectForKey:@"quantity"]];
 						}
 					}
-					NSDecimalNumber *total = [self.baseTradeBuilding calculateStorageForGlyphs:numGlyphs plans:numPlans prisoners:numPrisoners storedResources:numStoredResources ships:numShips];
+					NSDecimalNumber *total = [self.baseTradeBuilding calculateStorageForGlyphs:numGlyphs plans:numPlans prisoners:numPrisoners spies:numSpies storedResources:numStoredResources ships:numShips];
 					LETableViewCellLabeledText *totalCargoCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 					totalCargoCell.label.text = @"Cargo Size";
 					if (self.baseTradeBuilding.maxCargoSize) {

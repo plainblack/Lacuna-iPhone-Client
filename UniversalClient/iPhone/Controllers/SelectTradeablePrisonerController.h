@@ -22,8 +22,6 @@
 
 
 @interface SelectTradeablePrisonerController : LETableViewControllerGrouped {
-	BaseTradeBuilding *baseTradeBuilding;
-	id<SelectTradeablePrisonerControllerDelegate> delegate;
 }
 
 

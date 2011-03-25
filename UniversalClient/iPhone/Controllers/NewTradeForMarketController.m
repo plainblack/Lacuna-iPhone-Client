@@ -15,6 +15,7 @@
 #import "Glyph.h"
 #import "Plan.h"
 #import "Prisoner.h"
+#import "Spy.h"
 #import "Ship.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellParagraph.h"
@@ -125,7 +126,11 @@ typedef enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	switch (_intv([self.sections objectAtIndex:section])) {
 		case SECTION_HAVE:
-			return MAX(1, [self.trade.offer count]) + 5;
+            if (self.baseTradeBuilding.spiesOnly) {
+                return 1;
+            } else {
+                return [self.trade.offer count] + 5;
+            }
 			break;
 		case SECTION_WANT:
 			return 1;
@@ -146,31 +151,56 @@ typedef enum {
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	switch (_intv([self.sections objectAtIndex:indexPath.section])) {
 		case SECTION_HAVE:
-			switch (indexPath.row) {
-				case HAVE_ROW_SELECT_GLYPH:
-				case HAVE_ROW_SELECT_PLAN:
-				case HAVE_ROW_SELECT_PRISONER:
-				case HAVE_ROW_SELECT_RESOURCE:
-				case HAVE_ROW_SELECT_SHIP:
-					return [LETableViewCellButton getHeightForTableView:tableView];
-					break;
-				default:
-					; //DO NOT REMOVE
-					NSMutableDictionary *offerItem = [self.trade.offer objectAtIndex:(indexPath.row - 5)];
-					NSString *offerType = [offerItem objectForKey:@"type"];
-					if ([offerType isEqualToString:@"glyph"]) {
-						return [LETableViewCellGlyph getHeightForTableView:tableView];
-					} else if ([offerType isEqualToString:@"plan"]) {
-						return [LETableViewCellPlan getHeightForTableView:tableView];
-					} else if ([offerType isEqualToString:@"prisoner"]) {
-						return [LETableViewCellLabeledText getHeightForTableView:tableView];
-					} else if ([offerType isEqualToString:@"ship"]) {
-						return [LETableViewCellShip getHeightForTableView:tableView];
-					} else {
-						return [LETableViewCellParagraph getHeightForTableView:tableView text:NOTHING_SELECTED_MESSAGE];
-					}
-					break;
-			}
+            if (self.baseTradeBuilding.spiesOnly) {
+                if ([self.trade.offer count] > 0) {
+                    NSMutableDictionary *offerItem = [self.trade.offer objectAtIndex:(indexPath.row)];
+                    NSString *offerType = [offerItem objectForKey:@"type"];
+                    if ([offerType isEqualToString:@"glyph"]) {
+                        return [LETableViewCellGlyph getHeightForTableView:tableView];
+                    } else if ([offerType isEqualToString:@"plan"]) {
+                        return [LETableViewCellPlan getHeightForTableView:tableView];
+                    } else if ([offerType isEqualToString:@"prisoner"]) {
+                        return [LETableViewCellLabeledText getHeightForTableView:tableView];
+                    } else if ([offerType isEqualToString:@"spy"]) {
+                        return [LETableViewCellLabeledText getHeightForTableView:tableView];
+                    } else if ([offerType isEqualToString:@"ship"]) {
+                        return [LETableViewCellShip getHeightForTableView:tableView];
+                    } else {
+                        return [LETableViewCellParagraph getHeightForTableView:tableView text:NOTHING_SELECTED_MESSAGE];
+                    }
+                    break;
+                } else {
+                    return [LETableViewCellButton getHeightForTableView:tableView];
+                }
+            } else {
+                switch (indexPath.row) {
+                    case HAVE_ROW_SELECT_GLYPH:
+                    case HAVE_ROW_SELECT_PLAN:
+                    case HAVE_ROW_SELECT_PRISONER:
+                    case HAVE_ROW_SELECT_RESOURCE:
+                    case HAVE_ROW_SELECT_SHIP:
+                        return [LETableViewCellButton getHeightForTableView:tableView];
+                        break;
+                    default:
+                        ; //DO NOT REMOVE
+                        NSMutableDictionary *offerItem = [self.trade.offer objectAtIndex:(indexPath.row - 5)];
+                        NSString *offerType = [offerItem objectForKey:@"type"];
+                        if ([offerType isEqualToString:@"glyph"]) {
+                            return [LETableViewCellGlyph getHeightForTableView:tableView];
+                        } else if ([offerType isEqualToString:@"plan"]) {
+                            return [LETableViewCellPlan getHeightForTableView:tableView];
+                        } else if ([offerType isEqualToString:@"prisoner"]) {
+                            return [LETableViewCellLabeledText getHeightForTableView:tableView];
+                        } else if ([offerType isEqualToString:@"spy"]) {
+                            return [LETableViewCellLabeledText getHeightForTableView:tableView];
+                        } else if ([offerType isEqualToString:@"ship"]) {
+                            return [LETableViewCellShip getHeightForTableView:tableView];
+                        } else {
+                            return [LETableViewCellParagraph getHeightForTableView:tableView text:NOTHING_SELECTED_MESSAGE];
+                        }
+                        break;
+                }
+            }
 			break;
 		case SECTION_WANT:
 			return [LETableViewCellLabeledIconText getHeightForTableView:tableView];
@@ -198,78 +228,132 @@ typedef enum {
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = nil;
-	
 	switch (_intv([self.sections objectAtIndex:indexPath.section])) {
 		case SECTION_HAVE:
-			switch (indexPath.row) {
-				case HAVE_ROW_SELECT_GLYPH:
-					; //DO NOT REMOVE
-					LETableViewCellButton *selectGlyphCell = [LETableViewCellButton getCellForTableView:tableView];
-					selectGlyphCell.textLabel.text = @"Add Glyph";
-					cell = selectGlyphCell;
-					break;
-				case HAVE_ROW_SELECT_PLAN:
-					; //DO NOT REMOVE
-					LETableViewCellButton *selectPlanCell = [LETableViewCellButton getCellForTableView:tableView];
-					selectPlanCell.textLabel.text = @"Add Plan";
-					cell = selectPlanCell;
-					break;
-				case HAVE_ROW_SELECT_PRISONER:
-					; //DO NOT REMOVE
-					LETableViewCellButton *selectPrisonerCell = [LETableViewCellButton getCellForTableView:tableView];
-					selectPrisonerCell.textLabel.text = @"Add Prisoner";
-					cell = selectPrisonerCell;
-					break;
-				case HAVE_ROW_SELECT_RESOURCE:
-					; //DO NOT REMOVE
-					LETableViewCellButton *selectResourceCell = [LETableViewCellButton getCellForTableView:tableView];
-					selectResourceCell.textLabel.text = @"Add Resource";
-					cell = selectResourceCell;
-					break;
-				case HAVE_ROW_SELECT_SHIP:
-					; //DO NOT REMOVE
-					LETableViewCellButton *selectShipCell = [LETableViewCellButton getCellForTableView:tableView];
-					selectShipCell.textLabel.text = @"Add Ship";
-					cell = selectShipCell;
-					break;
-				default:
-					; //DO NOT REMOVE
-					NSMutableDictionary *offerItem = [self.trade.offer objectAtIndex:(indexPath.row - 5)];
-					NSString *offerType = [offerItem objectForKey:@"type"];
-					if (!offerType) {
-						LETableViewCellParagraph *nothingSelectedCell = [LETableViewCellParagraph getCellForTableView:tableView];
-						nothingSelectedCell.content.text = NOTHING_SELECTED_MESSAGE;
-						cell = nothingSelectedCell;
-					} else if ([offerType isEqualToString:@"glyph"]) {
-						Glyph *glyph = [self.baseTradeBuilding.glyphsById objectForKey:[offerItem objectForKey:@"glyph_id"]];
-						LETableViewCellGlyph *glyphCell = [LETableViewCellGlyph getCellForTableView:tableView isSelectable:NO];
-						[glyphCell setGlyph:glyph];
-						cell = glyphCell;
-					} else if ([offerType isEqualToString:@"plan"]) {
-						Plan *plan = [self.baseTradeBuilding.plansById objectForKey:[offerItem objectForKey:@"plan_id"]];
-						LETableViewCellPlan *planCell = [LETableViewCellPlan getCellForTableView:tableView isSelectable:NO];
-						[planCell setPlan:plan];
-						cell = planCell;
-					} else if ([offerType isEqualToString:@"prisoner"]) {
-						Prisoner *prisoner = [self.baseTradeBuilding.prisonersById objectForKey:[offerItem objectForKey:@"prisoner_id"]];
-						LETableViewCellLabeledText *prisonerCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-						prisonerCell.label.text = [NSString stringWithFormat:@"Level %@", prisoner.level];
-						prisonerCell.content.text = prisoner.name;
-						cell = prisonerCell;
-					} else if ([offerType isEqualToString:@"ship"]) {
-						Ship* ship = [self.baseTradeBuilding.shipsById objectForKey:[offerItem objectForKey:@"ship_id"]];
-						LETableViewCellShip *shipCell = [LETableViewCellShip getCellForTableView:tableView isSelectable:NO];
-						[shipCell setShip:ship];
-						cell = shipCell;
-					} else {
-						NSDecimalNumber *quantity = [Util asNumber:[offerItem objectForKey:@"quantity"]];
-						LETableViewCellLabeledText *itemCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-						itemCell.label.text = [Util prettyCodeValue:offerType];
-						itemCell.content.text = [Util prettyNSDecimalNumber:quantity];
-						cell = itemCell;
-					}
-					break;
-			}
+            if (self.baseTradeBuilding.spiesOnly) {
+                if ([self.trade.offer count] > 0) {
+                    NSMutableDictionary *offerItem = [self.trade.offer objectAtIndex:(indexPath.row)];
+                    NSString *offerType = [offerItem objectForKey:@"type"];
+                    if (!offerType) {
+                        LETableViewCellParagraph *nothingSelectedCell = [LETableViewCellParagraph getCellForTableView:tableView];
+                        nothingSelectedCell.content.text = NOTHING_SELECTED_MESSAGE;
+                        cell = nothingSelectedCell;
+                    } else if ([offerType isEqualToString:@"glyph"]) {
+                        Glyph *glyph = [self.baseTradeBuilding.glyphsById objectForKey:[offerItem objectForKey:@"glyph_id"]];
+                        LETableViewCellGlyph *glyphCell = [LETableViewCellGlyph getCellForTableView:tableView isSelectable:NO];
+                        [glyphCell setGlyph:glyph];
+                        cell = glyphCell;
+                    } else if ([offerType isEqualToString:@"plan"]) {
+                        Plan *plan = [self.baseTradeBuilding.plansById objectForKey:[offerItem objectForKey:@"plan_id"]];
+                        LETableViewCellPlan *planCell = [LETableViewCellPlan getCellForTableView:tableView isSelectable:NO];
+                        [planCell setPlan:plan];
+                        cell = planCell;
+                    } else if ([offerType isEqualToString:@"prisoner"]) {
+                        Prisoner *prisoner = [self.baseTradeBuilding.prisonersById objectForKey:[offerItem objectForKey:@"prisoner_id"]];
+                        LETableViewCellLabeledText *prisonerCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+                        prisonerCell.label.text = [NSString stringWithFormat:@"Level %@", prisoner.level];
+                        prisonerCell.content.text = prisoner.name;
+                        cell = prisonerCell;
+                    } else if ([offerType isEqualToString:@"spy"]) {
+                        Spy *spy = [self.baseTradeBuilding.spiesById objectForKey:[offerItem objectForKey:@"spy_id"]];
+                        LETableViewCellLabeledText *spyCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+                        spyCell.label.text = [NSString stringWithFormat:@"Level %@", spy.level];
+                        spyCell.content.text = spy.name;
+                        cell = spyCell;
+                    } else if ([offerType isEqualToString:@"ship"]) {
+                        Ship* ship = [self.baseTradeBuilding.shipsById objectForKey:[offerItem objectForKey:@"ship_id"]];
+                        LETableViewCellShip *shipCell = [LETableViewCellShip getCellForTableView:tableView isSelectable:NO];
+                        [shipCell setShip:ship];
+                        cell = shipCell;
+                    } else {
+                        NSDecimalNumber *quantity = [Util asNumber:[offerItem objectForKey:@"quantity"]];
+                        LETableViewCellLabeledText *itemCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+                        itemCell.label.text = [Util prettyCodeValue:offerType];
+                        itemCell.content.text = [Util prettyNSDecimalNumber:quantity];
+                        cell = itemCell;
+                    }
+                } else {
+                    LETableViewCellButton *selectGlyphCell = [LETableViewCellButton getCellForTableView:tableView];
+                    selectGlyphCell.textLabel.text = @"Add Spy";
+                    cell = selectGlyphCell;
+                }
+            } else {
+                switch (indexPath.row) {
+                    case HAVE_ROW_SELECT_GLYPH:
+                        ; //DO NOT REMOVE
+                        LETableViewCellButton *selectGlyphCell = [LETableViewCellButton getCellForTableView:tableView];
+                        selectGlyphCell.textLabel.text = @"Add Glyph";
+                        cell = selectGlyphCell;
+                        break;
+                    case HAVE_ROW_SELECT_PLAN:
+                        ; //DO NOT REMOVE
+                        LETableViewCellButton *selectPlanCell = [LETableViewCellButton getCellForTableView:tableView];
+                        selectPlanCell.textLabel.text = @"Add Plan";
+                        cell = selectPlanCell;
+                        break;
+                    case HAVE_ROW_SELECT_PRISONER:
+                        ; //DO NOT REMOVE
+                        LETableViewCellButton *selectPrisonerCell = [LETableViewCellButton getCellForTableView:tableView];
+                        selectPrisonerCell.textLabel.text = @"Add Prisoner";
+                        cell = selectPrisonerCell;
+                        break;
+                    case HAVE_ROW_SELECT_RESOURCE:
+                        ; //DO NOT REMOVE
+                        LETableViewCellButton *selectResourceCell = [LETableViewCellButton getCellForTableView:tableView];
+                        selectResourceCell.textLabel.text = @"Add Resource";
+                        cell = selectResourceCell;
+                        break;
+                    case HAVE_ROW_SELECT_SHIP:
+                        ; //DO NOT REMOVE
+                        LETableViewCellButton *selectShipCell = [LETableViewCellButton getCellForTableView:tableView];
+                        selectShipCell.textLabel.text = @"Add Ship";
+                        cell = selectShipCell;
+                        break;
+                    default:
+                        ; //DO NOT REMOVE
+                        NSMutableDictionary *offerItem = [self.trade.offer objectAtIndex:(indexPath.row - 5)];
+                        NSString *offerType = [offerItem objectForKey:@"type"];
+                        if (!offerType) {
+                            LETableViewCellParagraph *nothingSelectedCell = [LETableViewCellParagraph getCellForTableView:tableView];
+                            nothingSelectedCell.content.text = NOTHING_SELECTED_MESSAGE;
+                            cell = nothingSelectedCell;
+                        } else if ([offerType isEqualToString:@"glyph"]) {
+                            Glyph *glyph = [self.baseTradeBuilding.glyphsById objectForKey:[offerItem objectForKey:@"glyph_id"]];
+                            LETableViewCellGlyph *glyphCell = [LETableViewCellGlyph getCellForTableView:tableView isSelectable:NO];
+                            [glyphCell setGlyph:glyph];
+                            cell = glyphCell;
+                        } else if ([offerType isEqualToString:@"plan"]) {
+                            Plan *plan = [self.baseTradeBuilding.plansById objectForKey:[offerItem objectForKey:@"plan_id"]];
+                            LETableViewCellPlan *planCell = [LETableViewCellPlan getCellForTableView:tableView isSelectable:NO];
+                            [planCell setPlan:plan];
+                            cell = planCell;
+                        } else if ([offerType isEqualToString:@"prisoner"]) {
+                            Prisoner *prisoner = [self.baseTradeBuilding.prisonersById objectForKey:[offerItem objectForKey:@"prisoner_id"]];
+                            LETableViewCellLabeledText *prisonerCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+                            prisonerCell.label.text = [NSString stringWithFormat:@"Level %@", prisoner.level];
+                            prisonerCell.content.text = prisoner.name;
+                            cell = prisonerCell;
+                        } else if ([offerType isEqualToString:@"spy"]) {
+                            Spy *spy = [self.baseTradeBuilding.spiesById objectForKey:[offerItem objectForKey:@"spy_id"]];
+                            LETableViewCellLabeledText *spyCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+                            spyCell.label.text = [NSString stringWithFormat:@"Level %@", spy.level];
+                            spyCell.content.text = spy.name;
+                            cell = spyCell;
+                        } else if ([offerType isEqualToString:@"ship"]) {
+                            Ship* ship = [self.baseTradeBuilding.shipsById objectForKey:[offerItem objectForKey:@"ship_id"]];
+                            LETableViewCellShip *shipCell = [LETableViewCellShip getCellForTableView:tableView isSelectable:NO];
+                            [shipCell setShip:ship];
+                            cell = shipCell;
+                        } else {
+                            NSDecimalNumber *quantity = [Util asNumber:[offerItem objectForKey:@"quantity"]];
+                            LETableViewCellLabeledText *itemCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+                            itemCell.label.text = [Util prettyCodeValue:offerType];
+                            itemCell.content.text = [Util prettyNSDecimalNumber:quantity];
+                            cell = itemCell;
+                        }
+                        break;
+                }
+            }
 			break;
 		case SECTION_WANT:
 			; //DO NOT REMOVE
@@ -315,43 +399,52 @@ typedef enum {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	switch (_intv([self.sections objectAtIndex:indexPath.section])) {
 		case SECTION_HAVE:
-			switch (indexPath.row) {
-				case HAVE_ROW_SELECT_GLYPH:
-					; //DO NOT REMOVE
-					self->selectGlyphController = [[SelectGlyphController create] retain];
-					self->selectGlyphController.delegate = self;
-					self->selectGlyphController.baseTradeBuilding = self.baseTradeBuilding;
-					[self.navigationController pushViewController:self->selectGlyphController animated:YES];
-					break;
-				case HAVE_ROW_SELECT_PLAN:
-					; //DO NOT REMOVE
-					self->selectPlanController = [[SelectPlanController create] retain];
-					self->selectPlanController.delegate = self;
-					self->selectPlanController.baseTradeBuilding = self.baseTradeBuilding;
-					[self.navigationController pushViewController:self->selectPlanController animated:YES];
-					break;
-				case HAVE_ROW_SELECT_PRISONER:
-					; //DO NOT REMOVE
-					self->selectTradeablePrisonerController = [[SelectTradeablePrisonerController create] retain];
-					self->selectTradeablePrisonerController.delegate = self;
-					self->selectTradeablePrisonerController.baseTradeBuilding = self.baseTradeBuilding;
-					[self.navigationController pushViewController:self->selectTradeablePrisonerController animated:YES];
-					break;
-				case HAVE_ROW_SELECT_RESOURCE:
-					; //DO NOT REMOVE
-					self->selectStoredResourceController = [[SelectStoredResourceController create] retain];
-					self->selectStoredResourceController.delegate = self;
-					self->selectStoredResourceController.baseTradeBuilding = self.baseTradeBuilding;
-					[self.navigationController pushViewController:self->selectStoredResourceController animated:YES];
-					break;
-				case HAVE_ROW_SELECT_SHIP:
-					; //DO NOT REMOVE
-					self->selectTradeableShipController = [[SelectTradeableShipController create] retain];
-					self->selectTradeableShipController.delegate = self;
-					self->selectTradeableShipController.baseTradeBuilding = self.baseTradeBuilding;
-					[self.navigationController pushViewController:self->selectTradeableShipController animated:YES];
-					break;
-			}
+            if (self.baseTradeBuilding.spiesOnly) {
+                if ([self.trade.offer count] == 0) {
+                    self->selectTradeableSpyController = [[SelectTradeableSpyController create] retain];
+                    self->selectTradeableSpyController.delegate = self;
+                    self->selectTradeableSpyController.baseTradeBuilding = self.baseTradeBuilding;
+                    [self.navigationController pushViewController:self->selectTradeableSpyController animated:YES];
+                }
+            } else {
+                switch (indexPath.row) {
+                    case HAVE_ROW_SELECT_GLYPH:
+                        ; //DO NOT REMOVE
+                        self->selectGlyphController = [[SelectGlyphController create] retain];
+                        self->selectGlyphController.delegate = self;
+                        self->selectGlyphController.baseTradeBuilding = self.baseTradeBuilding;
+                        [self.navigationController pushViewController:self->selectGlyphController animated:YES];
+                        break;
+                    case HAVE_ROW_SELECT_PLAN:
+                        ; //DO NOT REMOVE
+                        self->selectPlanController = [[SelectPlanController create] retain];
+                        self->selectPlanController.delegate = self;
+                        self->selectPlanController.baseTradeBuilding = self.baseTradeBuilding;
+                        [self.navigationController pushViewController:self->selectPlanController animated:YES];
+                        break;
+                    case HAVE_ROW_SELECT_PRISONER:
+                        ; //DO NOT REMOVE
+                        self->selectTradeablePrisonerController = [[SelectTradeablePrisonerController create] retain];
+                        self->selectTradeablePrisonerController.delegate = self;
+                        self->selectTradeablePrisonerController.baseTradeBuilding = self.baseTradeBuilding;
+                        [self.navigationController pushViewController:self->selectTradeablePrisonerController animated:YES];
+                        break;
+                    case HAVE_ROW_SELECT_RESOURCE:
+                        ; //DO NOT REMOVE
+                        self->selectStoredResourceController = [[SelectStoredResourceController create] retain];
+                        self->selectStoredResourceController.delegate = self;
+                        self->selectStoredResourceController.baseTradeBuilding = self.baseTradeBuilding;
+                        [self.navigationController pushViewController:self->selectStoredResourceController animated:YES];
+                        break;
+                    case HAVE_ROW_SELECT_SHIP:
+                        ; //DO NOT REMOVE
+                        self->selectTradeableShipController = [[SelectTradeableShipController create] retain];
+                        self->selectTradeableShipController.delegate = self;
+                        self->selectTradeableShipController.baseTradeBuilding = self.baseTradeBuilding;
+                        [self.navigationController pushViewController:self->selectTradeableShipController animated:YES];
+                        break;
+                }
+            }
 			break;
 		case SECTION_WANT:
 			; //DO NOT REMOVE
@@ -368,6 +461,51 @@ typedef enum {
 			}
 			break;
 	}
+}
+
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+	switch (_intv([self.sections objectAtIndex:indexPath.section])) {
+		case SECTION_HAVE:
+            if (self.baseTradeBuilding.spiesOnly) {
+                NSMutableDictionary *offerItem = [self.trade.offer objectAtIndex:indexPath.row];
+                NSString *offerType = [offerItem objectForKey:@"type"];
+                if ([offerType isEqualToString:@"glyph"]) {
+                    [self.baseTradeBuilding.glyphs addObject:[self.baseTradeBuilding.glyphsById objectForKey:[offerItem objectForKey:@"glyph_id"]]];
+                } else if ([offerType isEqualToString:@"plan"]) {
+                    [self.baseTradeBuilding.plans addObject:[self.baseTradeBuilding.plansById objectForKey:[offerItem objectForKey:@"plan_id"]]];
+                } else if ([offerType isEqualToString:@"prisoner"]) {
+                    [self.baseTradeBuilding.prisoners addObject:[self.baseTradeBuilding.prisonersById objectForKey:[offerItem objectForKey:@"prisoner_id"]]];
+                } else if ([offerType isEqualToString:@"spy"]) {
+                    [self.baseTradeBuilding.spies addObject:[self.baseTradeBuilding.spiesById objectForKey:[offerItem objectForKey:@"spy_id"]]];
+                } else if ([offerType isEqualToString:@"ship"]) {
+                    [self.baseTradeBuilding.ships addObject:[self.baseTradeBuilding.shipsById objectForKey:[offerItem objectForKey:@"ship_id"]]];
+                } else {
+                    [self.baseTradeBuilding addTradeableStoredResource:offerItem];
+                }
+                [self.trade.offer removeObjectAtIndex:indexPath.row];
+                [tableView reloadData];
+            } else  {
+                NSMutableDictionary *offerItem = [self.trade.offer objectAtIndex:(indexPath.row - 5)];
+                NSString *offerType = [offerItem objectForKey:@"type"];
+                if ([offerType isEqualToString:@"glyph"]) {
+                    [self.baseTradeBuilding.glyphs addObject:[self.baseTradeBuilding.glyphsById objectForKey:[offerItem objectForKey:@"glyph_id"]]];
+                } else if ([offerType isEqualToString:@"plan"]) {
+                    [self.baseTradeBuilding.plans addObject:[self.baseTradeBuilding.plansById objectForKey:[offerItem objectForKey:@"plan_id"]]];
+                } else if ([offerType isEqualToString:@"prisoner"]) {
+                    [self.baseTradeBuilding.prisoners addObject:[self.baseTradeBuilding.prisonersById objectForKey:[offerItem objectForKey:@"prisoner_id"]]];
+                } else if ([offerType isEqualToString:@"spy"]) {
+                    [self.baseTradeBuilding.spies addObject:[self.baseTradeBuilding.spiesById objectForKey:[offerItem objectForKey:@"spy_id"]]];
+                } else if ([offerType isEqualToString:@"ship"]) {
+                    [self.baseTradeBuilding.ships addObject:[self.baseTradeBuilding.shipsById objectForKey:[offerItem objectForKey:@"ship_id"]]];
+                } else {
+                    [self.baseTradeBuilding addTradeableStoredResource:offerItem];
+                }
+                [self.trade.offer removeObjectAtIndex:(indexPath.row - 5)];
+                [tableView deleteRowsAtIndexPaths:_array(indexPath) withRowAnimation:UITableViewRowAnimationTop];
+            }
+            break;
+    }
 }
 
 
@@ -405,7 +543,12 @@ typedef enum {
 - (IBAction)post {
 	if (self.trade.askEssentia) {
 		if (self.baseTradeBuilding.usesEssentia) {
-			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"If this trade is accepted it will cost you 1 Essentia. Do you wish to contine?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+            NSDecimalNumber *cost = [NSDecimalNumber one];
+            if (self.baseTradeBuilding.spiesOnly) {
+                cost = [[NSDecimalNumber decimalNumberWithString:@"3"] decimalNumberBySubtracting:[[NSDecimalNumber decimalNumberWithString:@"0.1"] decimalNumberByMultiplyingBy:self.baseTradeBuilding.level]];
+            }
+            
+			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"If this trade is accepted it will cost you %@ Essentia. Do you wish to contine?", cost] delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
 			actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
 			[actionSheet showFromTabBar:self.tabBarController.tabBar];
 			[actionSheet release];
@@ -466,6 +609,20 @@ typedef enum {
 	[self->selectTradeablePrisonerController release];
 	self->selectTradeablePrisonerController = nil;
 	[self.baseTradeBuilding.prisoners removeObject:prisoner];
+	[self.tableView reloadData];
+}
+
+
+#pragma mark -
+#pragma mark SelectTradeableSpyController
+
+- (void)spySelected:(Spy *)spy {
+	[self clearExistingOffer];
+	[self.trade addSpy:spy.id];
+	[self.navigationController popViewControllerAnimated:YES];
+	[self->selectTradeableSpyController release];
+	self->selectTradeableSpyController = nil;
+	[self.baseTradeBuilding.spies removeObject:spy];
 	[self.tableView reloadData];
 }
 
