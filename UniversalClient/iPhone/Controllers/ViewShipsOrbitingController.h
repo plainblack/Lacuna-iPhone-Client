@@ -1,9 +1,9 @@
 //
-//  ViewForeignShipsController.h
+//  ViewShipsOrbitingController.h
 //  UniversalClient
 //
-//  Created by Kevin Runde on 9/12/10.
-//  Copyright 2010 n/a. All rights reserved.
+//  Created by Kevin Runde on 3/26/11.
+//  Copyright 2011 n/a. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -13,7 +13,7 @@
 @class SpacePort;
 
 
-@interface ViewForeignShipsController : LETableViewControllerGrouped {
+@interface ViewShipsOrbitingController : LETableViewControllerGrouped {
 }
 
 
@@ -22,7 +22,7 @@
 @property (nonatomic, retain) NSDate *lastUpdated;
 
 
-+ (ViewForeignShipsController *)create;
++ (ViewShipsOrbitingController *)create;
 
 
 @end

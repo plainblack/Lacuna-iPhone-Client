@@ -29,6 +29,10 @@
 @property (nonatomic, retain) NSDate *foreignShipsUpdated;
 @property (nonatomic, assign) NSInteger foreignShipsPageNumber;
 @property (nonatomic, retain) NSDecimalNumber *numForeignShips;
+@property (nonatomic, retain) NSMutableArray *orbitingShips;
+@property (nonatomic, retain) NSDate *orbitingShipsUpdated;
+@property (nonatomic, assign) NSInteger orbitingShipsPageNumber;
+@property (nonatomic, retain) NSDecimalNumber *numOrbitingShips;
 
 
 - (void)loadShipsForTag:(NSString *)tag task:(NSString *)task;
@@ -40,6 +44,9 @@
 - (void)loadForeignShipsForPage:(NSInteger)pageNumber;
 - (bool)hasPreviousForeignShipsPage;
 - (bool)hasNextForeignShipsPage;
+- (void)loadOrbitingShipsForPage:(NSInteger)pageNumber;
+- (bool)hasPreviousOrbitingShipsPage;
+- (bool)hasNextOrbitingShipsPage;
 - (void)recallShip:(Ship *)ship;
 
 

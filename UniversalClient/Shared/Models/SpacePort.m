@@ -15,6 +15,7 @@
 #import "LEBuildingScuttleShip.h"
 #import "LEBuildingViewShipsTravelling.h"
 #import "LEBuildingViewForeignShips.h"
+#import "LEBuildingViewShipsOrbiting.h"
 #import "LEBuildingRecallShip.h"
 #import "LEBuildingRecallAll.h"
 #import "LETableViewCellButton.h"
@@ -22,6 +23,7 @@
 #import "ViewShipsByTypeController.h"
 #import "ViewTravellingShipsController.h"
 #import "ViewForeignShipsController.h"
+#import "ViewShipsOrbitingController.h"
 
 
 @implementation SpacePort
@@ -39,6 +41,10 @@
 @synthesize foreignShipsUpdated;
 @synthesize foreignShipsPageNumber;
 @synthesize numForeignShips;
+@synthesize orbitingShips;
+@synthesize orbitingShipsUpdated;
+@synthesize orbitingShipsPageNumber;
+@synthesize numOrbitingShips;
 
 
 #pragma mark -
@@ -55,6 +61,9 @@
 	self.foreignShips = nil;
 	self.foreignShipsUpdated = nil;
 	self.numForeignShips = nil;
+    self.orbitingShips = nil;
+    self.orbitingShipsUpdated = nil;
+    self.numOrbitingShips = nil;
 	[super dealloc];
 }
 
@@ -87,10 +96,11 @@
 	
 	NSMutableArray *foreignShipRows = [NSMutableArray arrayWithCapacity:1];
 	[foreignShipRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_FOREIGN_SHIPS]];
+    [foreignShipRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_ORBITING_SHIPS]];
 	
 	self.sections = _array([self generateProductionSection],
 						   _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_LOCAL_SHIPS], @"type", @"Local Ships", @"name", localShipRows, @"rows"), 
-						   _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_FOREIGN_SHIPS], @"type", @"Incoming Ships", @"name", foreignShipRows, @"rows"), 
+						   _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_FOREIGN_SHIPS], @"type", @"Other Ships", @"name", foreignShipRows, @"rows"), 
 						   [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
 }
 
@@ -102,6 +112,7 @@
 		case BUILDING_ROW_VIEW_SHIPS:
 		case BUILDING_ROW_VIEW_FOREIGN_SHIPS:
         case BUILDING_ROW_RECALL_ALL_SHIPS:
+        case BUILDING_ROW_VIEW_ORBITING_SHIPS:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		default:
@@ -144,6 +155,12 @@
 			recallAllShipsCell.textLabel.text = @"Recall All Ships";
 			cell = recallAllShipsCell;
             break;
+        case BUILDING_ROW_VIEW_ORBITING_SHIPS:
+			; //DO NOT REMOVE THIS!!
+			LETableViewCellButton *viewOrbitingShipsCell = [LETableViewCellButton getCellForTableView:tableView];
+			viewOrbitingShipsCell.textLabel.text = @"View Ships Obiting Here";
+			cell = viewOrbitingShipsCell;
+            break;
 		default:
 			cell = [super tableView:tableView cellForBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex];
 			break;
@@ -183,6 +200,12 @@
             [[[LEBuildingRecallAll alloc] initWithCallback:@selector(recalledAllShips:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
             return nil;
             break;
+		case BUILDING_ROW_VIEW_ORBITING_SHIPS:
+			; //DO NOT REMOVE
+			ViewShipsOrbitingController *viewShipsOrbitingController = [ViewShipsOrbitingController create];
+			viewShipsOrbitingController.spacePort = self;
+			return viewShipsOrbitingController;
+			break;
 		default:
 			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];
 			break;
@@ -237,6 +260,21 @@
 
 - (bool)hasNextForeignShipsPage {
 	return (self.foreignShipsPageNumber < [Util numPagesForCount:_intv(self.numForeignShips)]);
+}
+
+- (void)loadOrbitingShipsForPage:(NSInteger)pageNumber {
+	self.orbitingShipsPageNumber = pageNumber;
+	[[[LEBuildingViewShipsOrbiting alloc] initWithCallback:@selector(orbitingShipsLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl pageNumber:pageNumber] autorelease];
+}
+
+
+- (bool)hasPreviousOrbitingShipsPage {
+	return (self.orbitingShipsPageNumber > 1);
+}
+
+
+- (bool)hasNextOrbitingShipsPage {
+	return (self.orbitingShipsPageNumber < [Util numPagesForCount:_intv(self.numOrbitingShips)]);
 }
 
 - (void)recallShip:(Ship *)ship {
@@ -294,6 +332,13 @@
 	self.foreignShips = request.foreignShips;
 	self.numForeignShips = request.numberOfShipsForeign;
 	self.foreignShipsUpdated = [NSDate date];
+}
+
+
+- (void)orbitingShipsLoaded:(LEBuildingViewShipsOrbiting *)request {
+	self.orbitingShips = request.orbitingShips;
+	self.numOrbitingShips = request.numberOfShipsOrbiting;
+	self.orbitingShipsUpdated = [NSDate date];
 }
 
 

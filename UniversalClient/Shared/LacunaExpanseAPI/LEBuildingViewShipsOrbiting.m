@@ -1,26 +1,26 @@
 //
-//  LEBuildingViewShipsTravelling.m
+//  MyClass.m
 //  UniversalClient
 //
-//  Created by Kevin Runde on 7/30/10.
-//  Copyright 2010 n/a. All rights reserved.
+//  Created by Kevin Runde on 3/26/11.
+//  Copyright 2011 n/a. All rights reserved.
 //
 
-#import "LEBuildingViewShipsTravelling.h"
+#import "LEBuildingViewShipsOrbiting.h"
 #import "LEMacros.h"
 #import "Util.h"
 #import "Session.h"
 #import "Ship.h"
 
 
-@implementation LEBuildingViewShipsTravelling
+@implementation LEBuildingViewShipsOrbiting
 
 
 @synthesize buildingId;
 @synthesize buildingUrl;
 @synthesize pageNumber;
-@synthesize travellingShips;
-@synthesize numberOfShipsTravelling;
+@synthesize orbitingShips;
+@synthesize numberOfShipsOrbiting;
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl pageNumber:(NSInteger)inPageNumber {
@@ -38,18 +38,18 @@
 
 - (void)processSuccess {
 	NSDictionary *result = [self.response objectForKey:@"result"];
-	self.numberOfShipsTravelling = [Util asNumber:[result objectForKey:@"number_of_ships_travelling"]];
-	NSMutableArray *shipsTravellingData = [result objectForKey:@"ships_travelling"];
-	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[shipsTravellingData count]];
+	self.numberOfShipsOrbiting = [Util asNumber:[result objectForKey:@"number_of_ships"]];
+	NSMutableArray *shipsOrbitingData = [result objectForKey:@"ships"];
+	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[shipsOrbitingData count]];
 	Ship *travellingShip;
 	
-	for (NSDictionary *travellingShipData in shipsTravellingData) {
+	for (NSDictionary *travellingShipData in shipsOrbitingData) {
 		travellingShip = [[[Ship alloc] init] autorelease];
 		[travellingShip parseData:travellingShipData];
 		[tmp addObject:travellingShip];
 	}
-	[tmp sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"dateArrives" ascending:YES] autorelease])];
-	self.travellingShips = tmp;
+	[tmp sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease])];
+	self.orbitingShips = tmp;
 }
 
 
@@ -66,8 +66,8 @@
 - (void)dealloc {
 	self.buildingId = nil;
 	self.buildingUrl = nil;
-	self.travellingShips = nil;
-	self.numberOfShipsTravelling = nil;
+	self.orbitingShips = nil;
+	self.numberOfShipsOrbiting = nil;
 	[super dealloc];
 }
 

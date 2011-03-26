@@ -107,6 +107,7 @@
 		F64FA283121CD67C00CBFC3E /* SelectPlanController.m in Sources */ = {isa = PBXBuildFile; fileRef = F64FA282121CD67C00CBFC3E /* SelectPlanController.m */; };
 		F64FA286121CD68A00CBFC3E /* SelectStoredResourceController.m in Sources */ = {isa = PBXBuildFile; fileRef = F64FA285121CD68A00CBFC3E /* SelectStoredResourceController.m */; };
 		F6531A0E123EFB7F00210C32 /* LETableViewCellLongLabeledText.m in Sources */ = {isa = PBXBuildFile; fileRef = F6531A0D123EFB7F00210C32 /* LETableViewCellLongLabeledText.m */; };
+		F6535238133E4C7D00F29521 /* LEBuildingViewShipsOrbiting.m in Sources */ = {isa = PBXBuildFile; fileRef = F6535237133E4C7D00F29521 /* LEBuildingViewShipsOrbiting.m */; };
 		F655E3CB12A322C600CAFDF3 /* LEBuildingGetUpgradableBuildings.m in Sources */ = {isa = PBXBuildFile; fileRef = F655E3CA12A322C600CAFDF3 /* LEBuildingGetUpgradableBuildings.m */; };
 		F655E3CE12A322E300CAFDF3 /* LEBuildingSacrificeToUpgrade.m in Sources */ = {isa = PBXBuildFile; fileRef = F655E3CD12A322E300CAFDF3 /* LEBuildingSacrificeToUpgrade.m */; };
 		F655E3D112A32C6A00CAFDF3 /* LEBuildingViewStash.m in Sources */ = {isa = PBXBuildFile; fileRef = F655E3D012A32C6A00CAFDF3 /* LEBuildingViewStash.m */; };
@@ -219,6 +220,7 @@
 		F6B2155F1232D20B00531EEE /* ViewSpeciesStatsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B2155E1232D20B00531EEE /* ViewSpeciesStatsController.m */; };
 		F6B215A91232E4F900531EEE /* LEEmpireViewSpeciesStats.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B215A81232E4F900531EEE /* LEEmpireViewSpeciesStats.m */; };
 		F6B21667123324E000531EEE /* LEBodyAbandon.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B21666123324E000531EEE /* LEBodyAbandon.m */; };
+		F6B241BB133E4F4B00E6933F /* ViewShipsOrbitingController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B241BA133E4F4B00E6933F /* ViewShipsOrbitingController.m */; };
 		F6B249241250B46C001AFEC9 /* LEBuildingSubsidizeSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B249231250B46C001AFEC9 /* LEBuildingSubsidizeSearch.m */; };
 		F6B249271250B4BE001AFEC9 /* LEBuildingSubsidizeParty.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B249261250B4BE001AFEC9 /* LEBuildingSubsidizeParty.m */; };
 		F6B2492A1250B4DE001AFEC9 /* LEBuildingSubsidizeTraining.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B249291250B4DE001AFEC9 /* LEBuildingSubsidizeTraining.m */; };
@@ -683,6 +685,8 @@
 		F64FA285121CD68A00CBFC3E /* SelectStoredResourceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectStoredResourceController.m; sourceTree = "<group>"; };
 		F6531A0C123EFB7F00210C32 /* LETableViewCellLongLabeledText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellLongLabeledText.h; sourceTree = "<group>"; };
 		F6531A0D123EFB7F00210C32 /* LETableViewCellLongLabeledText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellLongLabeledText.m; sourceTree = "<group>"; };
+		F6535236133E4C7D00F29521 /* LEBuildingViewShipsOrbiting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewShipsOrbiting.h; sourceTree = "<group>"; };
+		F6535237133E4C7D00F29521 /* LEBuildingViewShipsOrbiting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewShipsOrbiting.m; sourceTree = "<group>"; };
 		F655E3C912A322C600CAFDF3 /* LEBuildingGetUpgradableBuildings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetUpgradableBuildings.h; sourceTree = "<group>"; };
 		F655E3CA12A322C600CAFDF3 /* LEBuildingGetUpgradableBuildings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetUpgradableBuildings.m; sourceTree = "<group>"; };
 		F655E3CC12A322E300CAFDF3 /* LEBuildingSacrificeToUpgrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingSacrificeToUpgrade.h; sourceTree = "<group>"; };
@@ -902,6 +906,8 @@
 		F6B215A81232E4F900531EEE /* LEEmpireViewSpeciesStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireViewSpeciesStats.m; sourceTree = "<group>"; };
 		F6B21665123324E000531EEE /* LEBodyAbandon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBodyAbandon.h; sourceTree = "<group>"; };
 		F6B21666123324E000531EEE /* LEBodyAbandon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBodyAbandon.m; sourceTree = "<group>"; };
+		F6B241B9133E4F4B00E6933F /* ViewShipsOrbitingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewShipsOrbitingController.h; sourceTree = "<group>"; };
+		F6B241BA133E4F4B00E6933F /* ViewShipsOrbitingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewShipsOrbitingController.m; sourceTree = "<group>"; };
 		F6B249221250B46C001AFEC9 /* LEBuildingSubsidizeSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingSubsidizeSearch.h; sourceTree = "<group>"; };
 		F6B249231250B46C001AFEC9 /* LEBuildingSubsidizeSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingSubsidizeSearch.m; sourceTree = "<group>"; };
 		F6B249251250B4BE001AFEC9 /* LEBuildingSubsidizeParty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingSubsidizeParty.h; sourceTree = "<group>"; };
@@ -2015,6 +2021,8 @@
 				F6FEF458133C0629001791F3 /* LEBuildingRecallAll.m */,
 				F6105DC3133C120000007F63 /* LEBuildingGetTradeableSpies.h */,
 				F6105DC4133C120000007F63 /* LEBuildingGetTradeableSpies.m */,
+				F6535236133E4C7D00F29521 /* LEBuildingViewShipsOrbiting.h */,
+				F6535237133E4C7D00F29521 /* LEBuildingViewShipsOrbiting.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -2474,6 +2482,8 @@
 				F6E97581133B63EF004E715C /* ViewUniverseOrbitingShipsController.m */,
 				F6105DC6133C1D6D00007F63 /* SelectTradeableSpyController.h */,
 				F6105DC7133C1D6D00007F63 /* SelectTradeableSpyController.m */,
+				F6B241B9133E4F4B00E6933F /* ViewShipsOrbitingController.h */,
+				F6B241BA133E4F4B00E6933F /* ViewShipsOrbitingController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -3034,6 +3044,8 @@
 				F6FEF459133C0629001791F3 /* LEBuildingRecallAll.m in Sources */,
 				F6105DC5133C120000007F63 /* LEBuildingGetTradeableSpies.m in Sources */,
 				F6105DC8133C1D6E00007F63 /* SelectTradeableSpyController.m in Sources */,
+				F6535238133E4C7D00F29521 /* LEBuildingViewShipsOrbiting.m in Sources */,
+				F6B241BB133E4F4B00E6933F /* ViewShipsOrbitingController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
