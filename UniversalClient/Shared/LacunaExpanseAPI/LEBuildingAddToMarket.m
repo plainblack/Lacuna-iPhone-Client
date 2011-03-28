@@ -34,7 +34,7 @@
 
 
 - (id)params {
-	NSMutableArray *params = _array([Session sharedInstance].sessionId, self.buildingId, offer, self.askEssentia);
+	NSMutableArray *params = _array([Session sharedInstance].sessionId, self.buildingId, self.offer, self.askEssentia);
 	
 	if (self.tradeShipId) {
 		[params addObject:_dict(self.tradeShipId, @"ship_id", [NSNumber numberWithInt:1], @"stay")];

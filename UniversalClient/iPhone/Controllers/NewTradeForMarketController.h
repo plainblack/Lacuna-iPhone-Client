@@ -11,7 +11,6 @@
 #import "SelectGlyphController.h"
 #import "SelectPlanController.h"
 #import "SelectTradeablePrisonerController.h"
-#import "SelectTradeableSpyController.h"
 #import "SelectTradeableShipController.h"
 #import "SelectStoredResourceController.h"
 #import "SelectTradeShipController.h"
@@ -23,11 +22,10 @@
 @class MarketTrade;
 
 
-@interface NewTradeForMarketController : LETableViewControllerGrouped <UIActionSheetDelegate, SelectGlyphControllerDelegate, SelectPlanControllerDelegate, SelectTradeablePrisonerControllerDelegate, SelectTradeableSpyControllerDelegate, SelectTradeableShipControllerDelegate, SelectStoredResourceControllerDelegate, PickNumericValueControllerDelegate, SelectTradeShipControllerDelegate> {
+@interface NewTradeForMarketController : LETableViewControllerGrouped <UIActionSheetDelegate, SelectGlyphControllerDelegate, SelectPlanControllerDelegate, SelectTradeablePrisonerControllerDelegate, SelectTradeableShipControllerDelegate, SelectStoredResourceControllerDelegate, PickNumericValueControllerDelegate, SelectTradeShipControllerDelegate> {
 	SelectGlyphController *selectGlyphController;
 	SelectPlanController *selectPlanController;
 	SelectTradeablePrisonerController *selectTradeablePrisonerController;
-	SelectTradeableSpyController *selectTradeableSpyController;
 	SelectTradeableShipController *selectTradeableShipController;
 	SelectStoredResourceController *selectStoredResourceController;
 	SelectTradeShipController *selectTradeShipController;

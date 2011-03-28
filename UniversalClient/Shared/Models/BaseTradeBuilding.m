@@ -76,7 +76,6 @@
 @synthesize cargoUsedPerStoredResource;
 @synthesize usesEssentia;
 @synthesize selectTradeShip;
-@synthesize spiesOnly;
 @synthesize maxCargoSize;
 @synthesize tradeShips;
 @synthesize tradeShipsById;
@@ -149,18 +148,12 @@
 		[self.sections addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", rows, @"rows")];
 		self->usesEssentia = YES;
 		self->selectTradeShip = NO;
-        self->spiesOnly = NO;
     } else if ([self.buildingUrl isEqualToString:TRADE_URL]) {
 		if ([session.empire.planets count] > 1) {
 			[self.sections addObject:_dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_PUSH_ITEMS]), @"rows")];
 		}
 		self->usesEssentia = NO;
 		self->selectTradeShip = YES;
-        self->spiesOnly = NO;
-	} else 	if ([self.buildingUrl isEqualToString:MERCENARIES_GUILD_URL]) {
-		self->usesEssentia = YES;
-		self->selectTradeShip = YES;
-        self->spiesOnly = YES;
     }
 	
     NSMutableArray *rows = _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MARKET], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_MY_MARKET], [NSDecimalNumber numberWithInt:BUILDING_ROW_CREATE_TRADE_FOR_MARKET]);
@@ -589,7 +582,6 @@
 		NSDecimalNumber *estimatedTravelTime = [obj objectForKey:@"estimated_travel_time"];
 		if (isNull(estimatedTravelTime)) {
 			estimatedTravelTime = [NSDecimalNumber zero];
-			NSLog(@"Could not find estimated_travel_time in: %@", obj);
 		}
 		[tmpTravelTimes setObject:estimatedTravelTime forKey:ship.id];
 	}];

@@ -35,7 +35,6 @@
 
 - (void)processSuccess {
 	NSDictionary *result = [self.response objectForKey:@"result"];
-    NSLog(@"Get Spies Result: %@", result);
 	self.spies = [result objectForKey:@"spies"];
 	self.cargoSpaceUsedPer = [Util asNumber:[result objectForKey:@"cargo_space_used_each"]];
 }

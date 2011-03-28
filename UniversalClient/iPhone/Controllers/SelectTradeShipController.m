@@ -41,7 +41,6 @@
     [super viewWillAppear:animated];
 	[self.baseTradeBuilding addObserver:self forKeyPath:@"tradeShips" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
 	if (!self.baseTradeBuilding.tradeShips) {
-		NSLog(@"Target Body ID: %@", self.targetBodyId);
 		[self.baseTradeBuilding loadTradeShipsToBody:self.targetBodyId];
 	} else {
 		[self.baseTradeBuilding.tradeShips sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"type" ascending:YES] autorelease])];

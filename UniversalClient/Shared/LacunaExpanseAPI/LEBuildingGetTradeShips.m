@@ -35,8 +35,6 @@
 	if (self.targetBodyId) {
 		[params addObject:self.targetBodyId];
 	}
-	
-	NSLog(@"get_trade_ships params: %@", params);
 	return params;
 }
 

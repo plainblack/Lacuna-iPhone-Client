@@ -50,6 +50,7 @@
 	}
 	[tmp sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease])];
 	self.orbitingShips = tmp;
+    NSLog(@"view_ships_orbiting response: %@", result);
 }
 
 
@@ -59,7 +60,7 @@
 
 
 - (NSString *)methodName {
-	return @"view_ships_travelling";
+	return @"view_ships_orbiting";
 }
 
 

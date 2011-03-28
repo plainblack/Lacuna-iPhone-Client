@@ -373,7 +373,6 @@ typedef enum {
 		NSDecimalNumber *estimatedTravelTime = [shipData objectForKey:@"estimated_travel_time"];
 		if (isNull(estimatedTravelTime)) {
 			estimatedTravelTime = [NSDecimalNumber zero];
-			NSLog(@"Could not find estimated_travel_time in: %@", shipData);
 		}
 		[tmpTravelTimes setObject:estimatedTravelTime forKey:ship.id];
 		[ship release];

@@ -55,9 +55,8 @@
 @property (nonatomic, retain) NSMutableArray *resourceTypes;
 @property (nonatomic, retain) NSMutableArray *storedResources;
 @property (nonatomic, retain) NSDecimalNumber *cargoUsedPerStoredResource;
-@property (nonatomic, readonly) BOOL usesEssentia;
-@property (nonatomic, readonly) BOOL selectTradeShip;
-@property (nonatomic, readonly) BOOL spiesOnly;
+@property (nonatomic, assign) BOOL usesEssentia;
+@property (nonatomic, assign) BOOL selectTradeShip;
 @property (nonatomic, retain) NSDecimalNumber *maxCargoSize;
 @property (nonatomic, retain) NSMutableArray *tradeShips;
 @property (nonatomic, retain) NSMutableDictionary *tradeShipsById;

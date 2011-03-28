@@ -61,10 +61,16 @@
 #pragma mark Instance Methods
 
 - (void)parseData:(NSDictionary *)data {
+    NSLog(@"Market Trade Data: %@", data);
 	self.id = [Util idFromDict:data named:@"id"];
 	self.dateOffered = [Util date:[data objectForKey:@"date_offered"]];
 	self.askEssentia = [Util asNumber:[data objectForKey:@"ask"]];
-	self.offerTexts = [data objectForKey:@"offer"];
+    id tmp = [data objectForKey:@"offer"];
+    if ([tmp isKindOfClass:[NSArray class]]) {
+        self.offerTexts = tmp;
+    } else {
+        self.offerTexts = _array(tmp);
+    }
 
 	NSMutableDictionary *bodyData = [data objectForKey:@"body"];
 	if (!bodyData) {
