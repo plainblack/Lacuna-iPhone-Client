@@ -68,8 +68,6 @@
 	self.proposedById = [proposedByData objectForKey:@"id"];
 	self.proposedByName = [proposedByData objectForKey:@"name"];
 	self.myVote = [Util asNumber:[data objectForKey:@"my_vote"]];
-    NSLog(@"Data: %@", data);
-    NSLog(@"Proposition: %@", self);
 }
 
 

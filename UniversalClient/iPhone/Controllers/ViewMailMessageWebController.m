@@ -76,7 +76,7 @@ typedef enum {
 	
 	self.sectionHeaders = [NSMutableArray array];
 	
-	self.bodyCell = [LETableViewCellWebView getCellForTableView:self.tableView];
+	self.bodyCell = [LETableViewCellWebView getCellForTableView:self.tableView dequeueable:YES];
 	self.bodyCell.delegate = self;
 	[self.bodyCell addObserver:self forKeyPath:@"height" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
 }

@@ -13,17 +13,21 @@
 #import "Proposition.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellLabeledText.h"
-#import "LETableViewCellParagraph.h"
+#import "LETableViewCellWebView.h"
 #import "LETableViewCellButton.h"
 #import "LETableViewCellVotes.h"
 #import "LEBuildingCastVote.h"
 #import "ViewPublicEmpireProfileController.h"
+#import "WebPageController.h"
+#import "ViewAllianceProfileController.h"
+#import "AppDelegate_Phone.h"
 
 
 @implementation ViewPropositionsController
 
 
 @synthesize parliament;
+@synthesize webViewCells;
 
 
 #pragma mark -
@@ -36,12 +40,15 @@
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
 	self.sectionHeaders = [NSArray array];
+    
+    self->watchingPropositions = NO;
 }
 
 
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self->watchingPropositions = YES;
     [self.parliament addObserver:self forKeyPath:@"propositions" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
     [self.parliament loadPropositions];
 }
@@ -49,7 +56,10 @@
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [self.parliament removeObserver:self forKeyPath:@"propositions"];
+    if (self->watchingPropositions) {
+        [self.parliament removeObserver:self forKeyPath:@"propositions"];
+        self->watchingPropositions = NO;
+    }
 }
 
 
@@ -76,7 +86,7 @@
         Proposition *proposition = [self.parliament.propositions objectAtIndex:indexPath.section];
         switch ([proposition propositionRowType:indexPath.row]) {
             case PROPOSITION_ROW_DESCRIPTION:
-                return [LETableViewCellParagraph getHeightForTableView:tableView text:proposition.descriptionText];
+                return [self getCellForIndexPath:indexPath].height;
                 break;
             case PROPOSITION_ROW_STATUS:
             case PROPOSITION_ROW_END_DATE:
@@ -109,8 +119,8 @@
             switch ([proposition propositionRowType:indexPath.row]) {
                 case PROPOSITION_ROW_DESCRIPTION:
                     ; //DO NOT REMOVE
-                    LETableViewCellParagraph *descriptionCell = [LETableViewCellParagraph getCellForTableView:tableView];
-                    descriptionCell.content.text = proposition.descriptionText;
+                    LETableViewCellWebView *descriptionCell = [self getCellForIndexPath:indexPath];
+                    [descriptionCell setContent:proposition.descriptionText];
                     cell = descriptionCell;
                     break;
                 case PROPOSITION_ROW_STATUS:
@@ -222,13 +232,96 @@
 }
 
 - (void)viewDidUnload {
+    [self.webViewCells enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+        [obj removeObserver:self forKeyPath:@"height"];
+    }];
+    [self.webViewCells removeAllObjects];
     [super viewDidUnload];
 }
 
 
 - (void)dealloc {
 	self.parliament = nil;
+    [self.webViewCells enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
+        [obj removeObserver:self forKeyPath:@"height"];
+    }];
+    [self.webViewCells removeAllObjects];
+    self.webViewCells = nil;
     [super dealloc];
+}
+
+
+#pragma mark -
+#pragma mark Instance Methods
+
+- (LETableViewCellWebView *)getCellForIndexPath:(NSIndexPath *)indexPath {
+    if (!self.webViewCells) {
+        self.webViewCells = [NSMutableDictionary dictionaryWithCapacity:10];
+    }
+    
+    NSString *key = [NSString stringWithFormat:@"%i-%i", indexPath.section, indexPath.row];
+    LETableViewCellWebView *cell = nil;
+    
+    cell = [self.webViewCells objectForKey:key];
+    
+    if (isNull(cell)) {
+        cell = [LETableViewCellWebView getCellForTableView:self.tableView dequeueable:NO];
+        cell.delegate = self;
+        [cell addObserver:self forKeyPath:@"height" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+        [self.webViewCells setObject:cell forKey:key];
+    }
+    
+    return cell;
+}
+
+
+#pragma mark -
+#pragma mark LETableViewCellWebViewDelegate Methods
+
+- (void)showWebPage:(NSString*)url {
+	WebPageController *webPageController = [WebPageController create];
+	[webPageController goToUrl:url];
+	[self presentModalViewController:webPageController animated:YES];
+}
+
+
+- (void)showEmpireProfile:(NSString *)inEmpireId {
+	ViewPublicEmpireProfileController *viewPublicEmpireProfileController = [ViewPublicEmpireProfileController create];
+	viewPublicEmpireProfileController.empireId = inEmpireId;
+	[self.navigationController pushViewController:viewPublicEmpireProfileController animated:YES];
+}
+
+
+- (void)showAllianceProfile:(NSString *)allianceId {
+	ViewAllianceProfileController *viewAllianceProfileController = [ViewAllianceProfileController create];
+	viewAllianceProfileController.allianceId = allianceId;
+	[self.navigationController pushViewController:viewAllianceProfileController animated:YES];
+}
+
+
+- (void)showMyPlanet:(NSString *)myPlanetId {
+	AppDelegate_Phone *delgate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
+	[delgate showMyWorld:myPlanetId];
+}
+
+
+- (void)showStarmap:(NSString *)starmapLoc {
+	NSArray *parts = [starmapLoc componentsSeparatedByString:@"."];
+	NSDecimalNumber *gridX = [Util asNumber:[parts objectAtIndex:0]];
+	NSDecimalNumber *gridY = [Util asNumber:[parts objectAtIndex:1]];
+	AppDelegate_Phone *delgate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
+	[delgate showStarMapGridX:gridX gridY:gridY];
+	[self.navigationController popToRootViewControllerAnimated:NO];
+}
+
+
+- (void)voteYesForBody:(NSString *)bodyId building:(NSString *)buildingId proposition:(NSString *)propositionId {
+    [[[LEBuildingCastVote alloc] initWithCallback:@selector(voteCast:) target:self buildingId:buildingId buildingUrl:PARLIAMENT_URL propositionId:propositionId vote:YES] autorelease];
+}
+
+
+- (void)voteNoForBody:(NSString *)bodyId building:(NSString *)buildingId proposition:(NSString *)propositionId {
+    [[[LEBuildingCastVote alloc] initWithCallback:@selector(voteCast:) target:self buildingId:buildingId buildingUrl:PARLIAMENT_URL propositionId:propositionId vote:NO] autorelease];
 }
 
 
@@ -251,6 +344,9 @@
             [tmp addObject:[LEViewSectionTab tableView:self.tableView withText:proposition.name]];
         }];
         self.sectionHeaders = tmp;
+		[self.tableView reloadData];
+	} else if ( [keyPath isEqualToString:@"height"]) {
+        NSLog(@"Height Set");
 		[self.tableView reloadData];
 	}
 }

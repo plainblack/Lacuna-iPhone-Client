@@ -35,11 +35,12 @@
 @property(nonatomic, retain) UIWebView *webView;
 @property(nonatomic, assign) NSInteger height;
 @property(nonatomic, assign) id<LETableViewCellWebViewDelegate> delegate;
+@property(nonatomic, retain) NSString *origContent;
 
 
 - (void)setContent:(NSString *)content;
 
-+ (LETableViewCellWebView *)getCellForTableView:(UITableView *)tableView;
++ (LETableViewCellWebView *)getCellForTableView:(UITableView *)tableView dequeueable:(BOOL)isDequeueable;
 
 
 @end
