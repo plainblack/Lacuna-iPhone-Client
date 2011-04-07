@@ -25,10 +25,7 @@
 
 
 @interface LETableViewCellWebView : UITableViewCell <UIWebViewDelegate> {
-	UIWebView *webView;
 	BOOL loadingContent;
-	NSInteger height;
-	id<LETableViewCellWebViewDelegate> delegate;
 }
 
 
@@ -39,6 +36,7 @@
 
 
 - (void)setContent:(NSString *)content;
+
 
 + (LETableViewCellWebView *)getCellForTableView:(UITableView *)tableView dequeueable:(BOOL)isDequeueable;
 

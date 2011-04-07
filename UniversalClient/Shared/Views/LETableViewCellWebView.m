@@ -51,10 +51,10 @@
 - (void)setContent:(NSString *)content {
     if (![self.origContent isEqualToString:content]) {
         self.origContent = content;
-        self.height = MIN_HEIGHT;
         self->loadingContent = YES;
+        self.height = MIN_HEIGHT;
         NSString *htmlString;
-        if (isNotNull(content)) {
+        if (isNotNull(self.origContent)) {
             NSRegularExpression *widthImageRegex = [NSRegularExpression regularExpressionWithPattern:@"\\{(build|essentia)\\}"
                                                                                              options:NSRegularExpressionCaseInsensitive
                                                                                                error:nil];
@@ -89,7 +89,7 @@
                                                                                           options:NSRegularExpressionCaseInsensitive
                                                                                             error:nil];
             self->loadingContent = YES;
-            NSMutableString *mutableString = [content mutableCopy];
+            NSMutableString *mutableString = [self.origContent mutableCopy];
             [widthImageRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<img src=\"assets/iphone ui/$1.png\" width=\"22\" />"];
             [heightImageRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<img src=\"assets/iphone ui/$1.png\" height=\"22\" />"];
             [linkRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<a href=\"$1\">$1</a>"];
@@ -101,7 +101,7 @@
             [voteYesRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<a href=\"voteYes://$1.$2.$3\">Yes!</a>"];
             [voteNoRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<a href=\"voteNo://$1.$2.$3\">No!</a>"];
             [newlineRegex replaceMatchesInString:mutableString options:0 range:NSMakeRange(0, [mutableString length]) withTemplate:@"<br />"];
-            htmlString = [NSString stringWithFormat:@"<html><head><style>a:link {color:#FFC000;}</style></head><body style=\"background-color:transparent; color: #FFF; width: %f; font-family: sans-serif; font-size: 14px;\"><div style=\"margin: 5px;\">%@</div></body></html>", self.webView.frame.size.width-20, mutableString];
+            htmlString = [NSString stringWithFormat:@"<html><head><style>a:link {color:#FFC000;}</style></head><body style=\"background-color:transparent; color: #FFF; width: %f; font-family: sans-serif; font-size: 14px;\"><div style=\"margin: 5px 10px 5px 5px;\">%@</div></body></html>", self.webView.frame.size.width-20, mutableString];
             [mutableString release];
         } else {
             htmlString = [NSString stringWithFormat:@"<html><head><style>a:link {color:#FFC000;}</style></head><body style=\"background-color:transparent; color: #FFF; width: %f; font-family: sans-serif; font-size: 14px;\"></body></html>", self.webView.frame.size.width-20];
@@ -111,6 +111,10 @@
         NSURL *baseURL = [NSURL fileURLWithPath:path];
         [self.webView loadHTMLString:htmlString baseURL:baseURL];
     }
+}
+
+
+- (void)displayContent {
 }
 
 

@@ -346,8 +346,9 @@
         self.sectionHeaders = tmp;
 		[self.tableView reloadData];
 	} else if ( [keyPath isEqualToString:@"height"]) {
-        NSLog(@"Height Set");
-		[self.tableView reloadData];
+        if (!self.tableView.dragging) {
+            [self.tableView reloadData];
+        }
 	}
 }
 
