@@ -443,6 +443,8 @@
 		F6EF716A11FE810900A93226 /* Ship.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF716911FE810900A93226 /* Ship.m */; };
 		F6F0E7E112D4A0380089C721 /* AssignSpyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F0E7E012D4A0380089C721 /* AssignSpyController.m */; };
 		F6F1C21D12326FB100D69BB6 /* ViewMedalsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F1C21C12326FB100D69BB6 /* ViewMedalsController.m */; };
+		F6F296FB134F28B30002C508 /* LEBuildingViewLaws.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F296FA134F28B30002C508 /* LEBuildingViewLaws.m */; };
+		F6F296FE134F28D90002C508 /* LEBuildingProposeRepealLaw.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F296FD134F28D90002C508 /* LEBuildingProposeRepealLaw.m */; };
 		F6F2E65212CCD3EC0048AC95 /* PrepareExperiment.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F2E65112CCD3EC0048AC95 /* PrepareExperiment.m */; };
 		F6F2E67B12CCE88B0048AC95 /* LEBuildingViewMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F2E67A12CCE88B0048AC95 /* LEBuildingViewMarket.m */; };
 		F6F2E67E12CCE8960048AC95 /* LEBuildingViewMyMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F2E67D12CCE8960048AC95 /* LEBuildingViewMyMarket.m */; };
@@ -1346,6 +1348,10 @@
 		F6F0E7E012D4A0380089C721 /* AssignSpyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssignSpyController.m; sourceTree = "<group>"; };
 		F6F1C21B12326FB100D69BB6 /* ViewMedalsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMedalsController.h; sourceTree = "<group>"; };
 		F6F1C21C12326FB100D69BB6 /* ViewMedalsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMedalsController.m; sourceTree = "<group>"; };
+		F6F296F9134F28B30002C508 /* LEBuildingViewLaws.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewLaws.h; sourceTree = "<group>"; };
+		F6F296FA134F28B30002C508 /* LEBuildingViewLaws.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewLaws.m; sourceTree = "<group>"; };
+		F6F296FC134F28D90002C508 /* LEBuildingProposeRepealLaw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingProposeRepealLaw.h; sourceTree = "<group>"; };
+		F6F296FD134F28D90002C508 /* LEBuildingProposeRepealLaw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingProposeRepealLaw.m; sourceTree = "<group>"; };
 		F6F2E65012CCD3EC0048AC95 /* PrepareExperiment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrepareExperiment.h; sourceTree = "<group>"; };
 		F6F2E65112CCD3EC0048AC95 /* PrepareExperiment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrepareExperiment.m; sourceTree = "<group>"; };
 		F6F2E67912CCE88B0048AC95 /* LEBuildingViewMarket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewMarket.h; sourceTree = "<group>"; };
@@ -2034,6 +2040,10 @@
 				F6535237133E4C7D00F29521 /* LEBuildingViewShipsOrbiting.m */,
 				F69114CA133E869A007ED9B8 /* LEBuildingAddToSpyMarket.h */,
 				F69114CB133E869A007ED9B8 /* LEBuildingAddToSpyMarket.m */,
+				F6F296F9134F28B30002C508 /* LEBuildingViewLaws.h */,
+				F6F296FA134F28B30002C508 /* LEBuildingViewLaws.m */,
+				F6F296FC134F28D90002C508 /* LEBuildingProposeRepealLaw.h */,
+				F6F296FD134F28D90002C508 /* LEBuildingProposeRepealLaw.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -3064,6 +3074,8 @@
 				F6B241BE133E7A0300E6933F /* MercenariesGuild.m in Sources */,
 				F6B241C1133E802C00E6933F /* NewSpyTradeController.m in Sources */,
 				F69114CC133E869A007ED9B8 /* LEBuildingAddToSpyMarket.m in Sources */,
+				F6F296FB134F28B30002C508 /* LEBuildingViewLaws.m in Sources */,
+				F6F296FE134F28D90002C508 /* LEBuildingProposeRepealLaw.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
