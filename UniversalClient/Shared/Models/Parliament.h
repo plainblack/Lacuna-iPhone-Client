@@ -15,11 +15,13 @@
 
 
 @property (nonatomic, retain) NSMutableArray *propositions;
+@property (nonatomic, retain) NSMutableArray *laws;
 @property (nonatomic, retain) id castVoteTarget;
 @property (nonatomic, assign) SEL castVoteCallback;
 
 
 - (void)loadPropositions;
+- (void)loadLaws;
 - (void)castVote:(BOOL)vote propositionId:(NSString *)propositionId target:(id)target callback:(SEL)callback;
 
 

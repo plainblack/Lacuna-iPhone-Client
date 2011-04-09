@@ -435,6 +435,26 @@
 		F6E9FD2B129555C10099E1B3 /* DumpFoodController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6E9FD2A129555C10099E1B3 /* DumpFoodController.m */; };
 		F6EB025D1202F500001BFD68 /* LEBuildingViewShipsTravelling.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB025C1202F500001BFD68 /* LEBuildingViewShipsTravelling.m */; };
 		F6EB02661202FB01001BFD68 /* ViewTravellingShipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB02651202FB01001BFD68 /* ViewTravellingShipsController.m */; };
+		F6EB9A121350918A00C1DDB0 /* LEBuildingProposeWrit.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB9A111350918900C1DDB0 /* LEBuildingProposeWrit.m */; };
+		F6EB9A15135091AC00C1DDB0 /* LEBuildingProposeTransferStationOwnership.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB9A14135091AC00C1DDB0 /* LEBuildingProposeTransferStationOwnership.m */; };
+		F6EB9A181350920E00C1DDB0 /* LEBuildingProposeSeizeStar.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB9A171350920E00C1DDB0 /* LEBuildingProposeSeizeStar.m */; };
+		F6EB9A1B1350921F00C1DDB0 /* LEBuildingProposeRenameStar.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB9A1A1350921F00C1DDB0 /* LEBuildingProposeRenameStar.m */; };
+		F6EB9A1E1350923A00C1DDB0 /* LEBuildingProposeBroadcastOnNetwork19.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB9A1D1350923A00C1DDB0 /* LEBuildingProposeBroadcastOnNetwork19.m */; };
+		F6EB9A211350925300C1DDB0 /* LEBuildingProposeInductMember.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB9A201350925200C1DDB0 /* LEBuildingProposeInductMember.m */; };
+		F6EB9A241350926D00C1DDB0 /* LEBuildingProposeExpelMember.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB9A231350926D00C1DDB0 /* LEBuildingProposeExpelMember.m */; };
+		F6EB9A271350928100C1DDB0 /* LEBuildingProposeElectNewLeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB9A261350928100C1DDB0 /* LEBuildingProposeElectNewLeader.m */; };
+		F6EB9A2A1350929800C1DDB0 /* LEBuildingProposeRenameAsteroid.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB9A291350929800C1DDB0 /* LEBuildingProposeRenameAsteroid.m */; };
+		F6EB9A2D135092AE00C1DDB0 /* LEBuildingProposeRenameUninhabited.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB9A2C135092AE00C1DDB0 /* LEBuildingProposeRenameUninhabited.m */; };
+		F6EB9A30135092C400C1DDB0 /* LEBuildingProposeMembersOnlyMiningRights.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB9A2F135092C400C1DDB0 /* LEBuildingProposeMembersOnlyMiningRights.m */; };
+		F6EB9A33135092DE00C1DDB0 /* LEBuildingProposeEvictMiningPlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB9A32135092DE00C1DDB0 /* LEBuildingProposeEvictMiningPlatform.m */; };
+		F6EB9A36135092F300C1DDB0 /* LEBuildingProposeTaxation.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB9A35135092F300C1DDB0 /* LEBuildingProposeTaxation.m */; };
+		F6EB9A391350930600C1DDB0 /* LEBuildingProposeForeignAid.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB9A381350930500C1DDB0 /* LEBuildingProposeForeignAid.m */; };
+		F6EB9A3C1350931D00C1DDB0 /* LEBuildingProposeMembersOnlyColonization.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB9A3B1350931D00C1DDB0 /* LEBuildingProposeMembersOnlyColonization.m */; };
+		F6EB9A3F1350933600C1DDB0 /* LEBuildingProposeFireBfg.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB9A3E1350933600C1DDB0 /* LEBuildingProposeFireBfg.m */; };
+		F6EB9A421350937300C1DDB0 /* LEBuildingViewTaxesCollected.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB9A411350937300C1DDB0 /* LEBuildingViewTaxesCollected.m */; };
+		F6EB9A451350939800C1DDB0 /* LEBuildingGetStarsInJurisdiction.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB9A441350939700C1DDB0 /* LEBuildingGetStarsInJurisdiction.m */; };
+		F6EB9A48135093B800C1DDB0 /* LEBuildingGetBodiesForStarInJurisdiction.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB9A47135093B800C1DDB0 /* LEBuildingGetBodiesForStarInJurisdiction.m */; };
+		F6EB9A4B135093DA00C1DDB0 /* LEBuidingGetMiningPlatformsForAsteroidInJurisdiction.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EB9A4A135093DA00C1DDB0 /* LEBuidingGetMiningPlatformsForAsteroidInJurisdiction.m */; };
 		F6ECEE6F123E477500CACFED /* ViewDictionaryController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6ECEE6E123E477500CACFED /* ViewDictionaryController.m */; };
 		F6EE72A4133979130022D387 /* LETableViewCellVotes.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EE72A3133979130022D387 /* LETableViewCellVotes.m */; };
 		F6EF50251242EA9600EA1B92 /* LETableViewCellAffinitySelectorV2.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF50241242EA9600EA1B92 /* LETableViewCellAffinitySelectorV2.m */; };
@@ -445,6 +465,8 @@
 		F6F1C21D12326FB100D69BB6 /* ViewMedalsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F1C21C12326FB100D69BB6 /* ViewMedalsController.m */; };
 		F6F296FB134F28B30002C508 /* LEBuildingViewLaws.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F296FA134F28B30002C508 /* LEBuildingViewLaws.m */; };
 		F6F296FE134F28D90002C508 /* LEBuildingProposeRepealLaw.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F296FD134F28D90002C508 /* LEBuildingProposeRepealLaw.m */; };
+		F6F29701134F2B2C0002C508 /* Law.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F29700134F2B2C0002C508 /* Law.m */; };
+		F6F29704134F2C5D0002C508 /* ViewLawsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F29703134F2C5D0002C508 /* ViewLawsController.m */; };
 		F6F2E65212CCD3EC0048AC95 /* PrepareExperiment.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F2E65112CCD3EC0048AC95 /* PrepareExperiment.m */; };
 		F6F2E67B12CCE88B0048AC95 /* LEBuildingViewMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F2E67A12CCE88B0048AC95 /* LEBuildingViewMarket.m */; };
 		F6F2E67E12CCE8960048AC95 /* LEBuildingViewMyMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F2E67D12CCE8960048AC95 /* LEBuildingViewMyMarket.m */; };
@@ -1332,6 +1354,46 @@
 		F6EB025C1202F500001BFD68 /* LEBuildingViewShipsTravelling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewShipsTravelling.m; sourceTree = "<group>"; };
 		F6EB02641202FB01001BFD68 /* ViewTravellingShipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewTravellingShipsController.h; sourceTree = "<group>"; };
 		F6EB02651202FB01001BFD68 /* ViewTravellingShipsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewTravellingShipsController.m; sourceTree = "<group>"; };
+		F6EB9A101350918900C1DDB0 /* LEBuildingProposeWrit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingProposeWrit.h; sourceTree = "<group>"; };
+		F6EB9A111350918900C1DDB0 /* LEBuildingProposeWrit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingProposeWrit.m; sourceTree = "<group>"; };
+		F6EB9A13135091AC00C1DDB0 /* LEBuildingProposeTransferStationOwnership.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingProposeTransferStationOwnership.h; sourceTree = "<group>"; };
+		F6EB9A14135091AC00C1DDB0 /* LEBuildingProposeTransferStationOwnership.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingProposeTransferStationOwnership.m; sourceTree = "<group>"; };
+		F6EB9A161350920E00C1DDB0 /* LEBuildingProposeSeizeStar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingProposeSeizeStar.h; sourceTree = "<group>"; };
+		F6EB9A171350920E00C1DDB0 /* LEBuildingProposeSeizeStar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingProposeSeizeStar.m; sourceTree = "<group>"; };
+		F6EB9A191350921F00C1DDB0 /* LEBuildingProposeRenameStar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingProposeRenameStar.h; sourceTree = "<group>"; };
+		F6EB9A1A1350921F00C1DDB0 /* LEBuildingProposeRenameStar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingProposeRenameStar.m; sourceTree = "<group>"; };
+		F6EB9A1C1350923A00C1DDB0 /* LEBuildingProposeBroadcastOnNetwork19.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingProposeBroadcastOnNetwork19.h; sourceTree = "<group>"; };
+		F6EB9A1D1350923A00C1DDB0 /* LEBuildingProposeBroadcastOnNetwork19.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingProposeBroadcastOnNetwork19.m; sourceTree = "<group>"; };
+		F6EB9A1F1350925200C1DDB0 /* LEBuildingProposeInductMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingProposeInductMember.h; sourceTree = "<group>"; };
+		F6EB9A201350925200C1DDB0 /* LEBuildingProposeInductMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingProposeInductMember.m; sourceTree = "<group>"; };
+		F6EB9A221350926D00C1DDB0 /* LEBuildingProposeExpelMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingProposeExpelMember.h; sourceTree = "<group>"; };
+		F6EB9A231350926D00C1DDB0 /* LEBuildingProposeExpelMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingProposeExpelMember.m; sourceTree = "<group>"; };
+		F6EB9A251350928100C1DDB0 /* LEBuildingProposeElectNewLeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingProposeElectNewLeader.h; sourceTree = "<group>"; };
+		F6EB9A261350928100C1DDB0 /* LEBuildingProposeElectNewLeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingProposeElectNewLeader.m; sourceTree = "<group>"; };
+		F6EB9A281350929800C1DDB0 /* LEBuildingProposeRenameAsteroid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingProposeRenameAsteroid.h; sourceTree = "<group>"; };
+		F6EB9A291350929800C1DDB0 /* LEBuildingProposeRenameAsteroid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingProposeRenameAsteroid.m; sourceTree = "<group>"; };
+		F6EB9A2B135092AD00C1DDB0 /* LEBuildingProposeRenameUninhabited.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingProposeRenameUninhabited.h; sourceTree = "<group>"; };
+		F6EB9A2C135092AE00C1DDB0 /* LEBuildingProposeRenameUninhabited.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingProposeRenameUninhabited.m; sourceTree = "<group>"; };
+		F6EB9A2E135092C400C1DDB0 /* LEBuildingProposeMembersOnlyMiningRights.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingProposeMembersOnlyMiningRights.h; sourceTree = "<group>"; };
+		F6EB9A2F135092C400C1DDB0 /* LEBuildingProposeMembersOnlyMiningRights.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingProposeMembersOnlyMiningRights.m; sourceTree = "<group>"; };
+		F6EB9A31135092DE00C1DDB0 /* LEBuildingProposeEvictMiningPlatform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingProposeEvictMiningPlatform.h; sourceTree = "<group>"; };
+		F6EB9A32135092DE00C1DDB0 /* LEBuildingProposeEvictMiningPlatform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingProposeEvictMiningPlatform.m; sourceTree = "<group>"; };
+		F6EB9A34135092F200C1DDB0 /* LEBuildingProposeTaxation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingProposeTaxation.h; sourceTree = "<group>"; };
+		F6EB9A35135092F300C1DDB0 /* LEBuildingProposeTaxation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingProposeTaxation.m; sourceTree = "<group>"; };
+		F6EB9A371350930500C1DDB0 /* LEBuildingProposeForeignAid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingProposeForeignAid.h; sourceTree = "<group>"; };
+		F6EB9A381350930500C1DDB0 /* LEBuildingProposeForeignAid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingProposeForeignAid.m; sourceTree = "<group>"; };
+		F6EB9A3A1350931D00C1DDB0 /* LEBuildingProposeMembersOnlyColonization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingProposeMembersOnlyColonization.h; sourceTree = "<group>"; };
+		F6EB9A3B1350931D00C1DDB0 /* LEBuildingProposeMembersOnlyColonization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingProposeMembersOnlyColonization.m; sourceTree = "<group>"; };
+		F6EB9A3D1350933600C1DDB0 /* LEBuildingProposeFireBfg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingProposeFireBfg.h; sourceTree = "<group>"; };
+		F6EB9A3E1350933600C1DDB0 /* LEBuildingProposeFireBfg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingProposeFireBfg.m; sourceTree = "<group>"; };
+		F6EB9A401350937300C1DDB0 /* LEBuildingViewTaxesCollected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewTaxesCollected.h; sourceTree = "<group>"; };
+		F6EB9A411350937300C1DDB0 /* LEBuildingViewTaxesCollected.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewTaxesCollected.m; sourceTree = "<group>"; };
+		F6EB9A431350939700C1DDB0 /* LEBuildingGetStarsInJurisdiction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetStarsInJurisdiction.h; sourceTree = "<group>"; };
+		F6EB9A441350939700C1DDB0 /* LEBuildingGetStarsInJurisdiction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetStarsInJurisdiction.m; sourceTree = "<group>"; };
+		F6EB9A46135093B800C1DDB0 /* LEBuildingGetBodiesForStarInJurisdiction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetBodiesForStarInJurisdiction.h; sourceTree = "<group>"; };
+		F6EB9A47135093B800C1DDB0 /* LEBuildingGetBodiesForStarInJurisdiction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetBodiesForStarInJurisdiction.m; sourceTree = "<group>"; };
+		F6EB9A49135093D900C1DDB0 /* LEBuidingGetMiningPlatformsForAsteroidInJurisdiction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuidingGetMiningPlatformsForAsteroidInJurisdiction.h; sourceTree = "<group>"; };
+		F6EB9A4A135093DA00C1DDB0 /* LEBuidingGetMiningPlatformsForAsteroidInJurisdiction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuidingGetMiningPlatformsForAsteroidInJurisdiction.m; sourceTree = "<group>"; };
 		F6ECEE6D123E477500CACFED /* ViewDictionaryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewDictionaryController.h; sourceTree = "<group>"; };
 		F6ECEE6E123E477500CACFED /* ViewDictionaryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewDictionaryController.m; sourceTree = "<group>"; };
 		F6EE72A2133979130022D387 /* LETableViewCellVotes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellVotes.h; sourceTree = "<group>"; };
@@ -1352,6 +1414,10 @@
 		F6F296FA134F28B30002C508 /* LEBuildingViewLaws.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewLaws.m; sourceTree = "<group>"; };
 		F6F296FC134F28D90002C508 /* LEBuildingProposeRepealLaw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingProposeRepealLaw.h; sourceTree = "<group>"; };
 		F6F296FD134F28D90002C508 /* LEBuildingProposeRepealLaw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingProposeRepealLaw.m; sourceTree = "<group>"; };
+		F6F296FF134F2B2C0002C508 /* Law.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Law.h; sourceTree = "<group>"; };
+		F6F29700134F2B2C0002C508 /* Law.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Law.m; sourceTree = "<group>"; };
+		F6F29702134F2C5D0002C508 /* ViewLawsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewLawsController.h; sourceTree = "<group>"; };
+		F6F29703134F2C5D0002C508 /* ViewLawsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewLawsController.m; sourceTree = "<group>"; };
 		F6F2E65012CCD3EC0048AC95 /* PrepareExperiment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrepareExperiment.h; sourceTree = "<group>"; };
 		F6F2E65112CCD3EC0048AC95 /* PrepareExperiment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrepareExperiment.m; sourceTree = "<group>"; };
 		F6F2E67912CCE88B0048AC95 /* LEBuildingViewMarket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewMarket.h; sourceTree = "<group>"; };
@@ -2044,6 +2110,46 @@
 				F6F296FA134F28B30002C508 /* LEBuildingViewLaws.m */,
 				F6F296FC134F28D90002C508 /* LEBuildingProposeRepealLaw.h */,
 				F6F296FD134F28D90002C508 /* LEBuildingProposeRepealLaw.m */,
+				F6EB9A101350918900C1DDB0 /* LEBuildingProposeWrit.h */,
+				F6EB9A111350918900C1DDB0 /* LEBuildingProposeWrit.m */,
+				F6EB9A13135091AC00C1DDB0 /* LEBuildingProposeTransferStationOwnership.h */,
+				F6EB9A14135091AC00C1DDB0 /* LEBuildingProposeTransferStationOwnership.m */,
+				F6EB9A161350920E00C1DDB0 /* LEBuildingProposeSeizeStar.h */,
+				F6EB9A171350920E00C1DDB0 /* LEBuildingProposeSeizeStar.m */,
+				F6EB9A191350921F00C1DDB0 /* LEBuildingProposeRenameStar.h */,
+				F6EB9A1A1350921F00C1DDB0 /* LEBuildingProposeRenameStar.m */,
+				F6EB9A1C1350923A00C1DDB0 /* LEBuildingProposeBroadcastOnNetwork19.h */,
+				F6EB9A1D1350923A00C1DDB0 /* LEBuildingProposeBroadcastOnNetwork19.m */,
+				F6EB9A1F1350925200C1DDB0 /* LEBuildingProposeInductMember.h */,
+				F6EB9A201350925200C1DDB0 /* LEBuildingProposeInductMember.m */,
+				F6EB9A221350926D00C1DDB0 /* LEBuildingProposeExpelMember.h */,
+				F6EB9A231350926D00C1DDB0 /* LEBuildingProposeExpelMember.m */,
+				F6EB9A251350928100C1DDB0 /* LEBuildingProposeElectNewLeader.h */,
+				F6EB9A261350928100C1DDB0 /* LEBuildingProposeElectNewLeader.m */,
+				F6EB9A281350929800C1DDB0 /* LEBuildingProposeRenameAsteroid.h */,
+				F6EB9A291350929800C1DDB0 /* LEBuildingProposeRenameAsteroid.m */,
+				F6EB9A2B135092AD00C1DDB0 /* LEBuildingProposeRenameUninhabited.h */,
+				F6EB9A2C135092AE00C1DDB0 /* LEBuildingProposeRenameUninhabited.m */,
+				F6EB9A2E135092C400C1DDB0 /* LEBuildingProposeMembersOnlyMiningRights.h */,
+				F6EB9A2F135092C400C1DDB0 /* LEBuildingProposeMembersOnlyMiningRights.m */,
+				F6EB9A31135092DE00C1DDB0 /* LEBuildingProposeEvictMiningPlatform.h */,
+				F6EB9A32135092DE00C1DDB0 /* LEBuildingProposeEvictMiningPlatform.m */,
+				F6EB9A34135092F200C1DDB0 /* LEBuildingProposeTaxation.h */,
+				F6EB9A35135092F300C1DDB0 /* LEBuildingProposeTaxation.m */,
+				F6EB9A371350930500C1DDB0 /* LEBuildingProposeForeignAid.h */,
+				F6EB9A381350930500C1DDB0 /* LEBuildingProposeForeignAid.m */,
+				F6EB9A3A1350931D00C1DDB0 /* LEBuildingProposeMembersOnlyColonization.h */,
+				F6EB9A3B1350931D00C1DDB0 /* LEBuildingProposeMembersOnlyColonization.m */,
+				F6EB9A3D1350933600C1DDB0 /* LEBuildingProposeFireBfg.h */,
+				F6EB9A3E1350933600C1DDB0 /* LEBuildingProposeFireBfg.m */,
+				F6EB9A401350937300C1DDB0 /* LEBuildingViewTaxesCollected.h */,
+				F6EB9A411350937300C1DDB0 /* LEBuildingViewTaxesCollected.m */,
+				F6EB9A431350939700C1DDB0 /* LEBuildingGetStarsInJurisdiction.h */,
+				F6EB9A441350939700C1DDB0 /* LEBuildingGetStarsInJurisdiction.m */,
+				F6EB9A46135093B800C1DDB0 /* LEBuildingGetBodiesForStarInJurisdiction.h */,
+				F6EB9A47135093B800C1DDB0 /* LEBuildingGetBodiesForStarInJurisdiction.m */,
+				F6EB9A49135093D900C1DDB0 /* LEBuidingGetMiningPlatformsForAsteroidInJurisdiction.h */,
+				F6EB9A4A135093DA00C1DDB0 /* LEBuidingGetMiningPlatformsForAsteroidInJurisdiction.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -2199,6 +2305,8 @@
 				F6E667211338264E00A94A39 /* Proposition.m */,
 				F6B241BC133E7A0300E6933F /* MercenariesGuild.h */,
 				F6B241BD133E7A0300E6933F /* MercenariesGuild.m */,
+				F6F296FF134F2B2C0002C508 /* Law.h */,
+				F6F29700134F2B2C0002C508 /* Law.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -2509,6 +2617,8 @@
 				F6B241BA133E4F4B00E6933F /* ViewShipsOrbitingController.m */,
 				F6B241BF133E802C00E6933F /* NewSpyTradeController.h */,
 				F6B241C0133E802C00E6933F /* NewSpyTradeController.m */,
+				F6F29702134F2C5D0002C508 /* ViewLawsController.h */,
+				F6F29703134F2C5D0002C508 /* ViewLawsController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -3076,6 +3186,28 @@
 				F69114CC133E869A007ED9B8 /* LEBuildingAddToSpyMarket.m in Sources */,
 				F6F296FB134F28B30002C508 /* LEBuildingViewLaws.m in Sources */,
 				F6F296FE134F28D90002C508 /* LEBuildingProposeRepealLaw.m in Sources */,
+				F6F29701134F2B2C0002C508 /* Law.m in Sources */,
+				F6F29704134F2C5D0002C508 /* ViewLawsController.m in Sources */,
+				F6EB9A121350918A00C1DDB0 /* LEBuildingProposeWrit.m in Sources */,
+				F6EB9A15135091AC00C1DDB0 /* LEBuildingProposeTransferStationOwnership.m in Sources */,
+				F6EB9A181350920E00C1DDB0 /* LEBuildingProposeSeizeStar.m in Sources */,
+				F6EB9A1B1350921F00C1DDB0 /* LEBuildingProposeRenameStar.m in Sources */,
+				F6EB9A1E1350923A00C1DDB0 /* LEBuildingProposeBroadcastOnNetwork19.m in Sources */,
+				F6EB9A211350925300C1DDB0 /* LEBuildingProposeInductMember.m in Sources */,
+				F6EB9A241350926D00C1DDB0 /* LEBuildingProposeExpelMember.m in Sources */,
+				F6EB9A271350928100C1DDB0 /* LEBuildingProposeElectNewLeader.m in Sources */,
+				F6EB9A2A1350929800C1DDB0 /* LEBuildingProposeRenameAsteroid.m in Sources */,
+				F6EB9A2D135092AE00C1DDB0 /* LEBuildingProposeRenameUninhabited.m in Sources */,
+				F6EB9A30135092C400C1DDB0 /* LEBuildingProposeMembersOnlyMiningRights.m in Sources */,
+				F6EB9A33135092DE00C1DDB0 /* LEBuildingProposeEvictMiningPlatform.m in Sources */,
+				F6EB9A36135092F300C1DDB0 /* LEBuildingProposeTaxation.m in Sources */,
+				F6EB9A391350930600C1DDB0 /* LEBuildingProposeForeignAid.m in Sources */,
+				F6EB9A3C1350931D00C1DDB0 /* LEBuildingProposeMembersOnlyColonization.m in Sources */,
+				F6EB9A3F1350933600C1DDB0 /* LEBuildingProposeFireBfg.m in Sources */,
+				F6EB9A421350937300C1DDB0 /* LEBuildingViewTaxesCollected.m in Sources */,
+				F6EB9A451350939800C1DDB0 /* LEBuildingGetStarsInJurisdiction.m in Sources */,
+				F6EB9A48135093B800C1DDB0 /* LEBuildingGetBodiesForStarInJurisdiction.m in Sources */,
+				F6EB9A4B135093DA00C1DDB0 /* LEBuidingGetMiningPlatformsForAsteroidInJurisdiction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
