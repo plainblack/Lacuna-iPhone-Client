@@ -299,6 +299,7 @@ typedef enum {
 
 
 - (void)proposedRepealLaw:(LEBuildingProposeRepealLaw *)request {
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
 
