@@ -14,10 +14,33 @@
 #import "LEBuildingViewPropositions.h"
 #import "LEBuildingViewLaws.h"
 #import "LEBuildingCastVote.h"
+#import "LEBuildingProposeRepealLaw.h"
+#import "LEBuildingProposeWrit.h"
+#import "LEBuildingProposeTransferStationOwnership.h"
+#import "LEBuildingProposeSeizeStar.h"
+#import "LEBuildingProposeRenameStar.h"
+#import "LEBuildingProposeBroadcastOnNetwork19.h"
+#import "LEBuildingProposeInductMember.h"
+#import "LEBuildingProposeExpelMember.h"
+#import "LEBuildingProposeElectNewLeader.h"
+#import "LEBuildingProposeRenameAsteroid.h"
+#import "LEBuildingProposeRenameUninhabited.h"
+#import "LEBuildingProposeMembersOnlyMiningRights.h"
+#import "LEBuildingProposeEvictMiningPlatform.h"
+#import "LEBuildingProposeTaxation.h"
+#import "LEBuildingProposeForeignAid.h"
+#import "LEBuildingProposeMembersOnlyColonization.h"
+#import "LEBuildingProposeFireBfg.h"
+#import "LEBuildingViewTaxesCollected.h"
+#import "LEBuildingGetStarsInJurisdiction.h"
+#import "LEBuildingGetBodiesForStarInJurisdiction.h"
+#import "LEBuidingGetMiningPlatformsForAsteroidInJurisdiction.h"
 #import "Proposition.h"
 #import "Law.h"
+#import "MiningPlatform.h"
 #import "ViewPropositionsController.h"
 #import "ViewLawsController.h"
+#import "NewWritViewController.h"
 
 
 @interface Parliament(PrivateMethods)
@@ -37,6 +60,40 @@
 @synthesize laws;
 @synthesize castVoteTarget;
 @synthesize castVoteCallback;
+@synthesize repealLawTarget;
+@synthesize repealLawCallback;
+@synthesize proposeWritTarget;
+@synthesize proposeWritCallback;
+@synthesize proposeTransferStationOwnershipTarget;
+@synthesize proposeTransferStationOwnershipCallback;
+@synthesize proposeSeizeStarTarget;
+@synthesize proposeSeizeStarCallback;
+@synthesize proposeRenameStarTarget;
+@synthesize proposeRenameStarCallback;
+@synthesize proposeBroadcastOnNetwork19Target;
+@synthesize proposeBroadcastOnNetwork19Callback;
+@synthesize proposeInductMemberTarget;
+@synthesize proposeInductMemberCallback;
+@synthesize proposeExpelMemberTarget;
+@synthesize proposeExpelMemberCallback;
+@synthesize proposeElectNewLeaderTarget;
+@synthesize proposeElectNewLeaderCallback;
+@synthesize proposeRenameAsteroidTarget;
+@synthesize proposeRenameAsteroidCallback;
+@synthesize proposeRenameUninhabitedTarget;
+@synthesize proposeRenameUninhabitedCallback;
+@synthesize proposeMembersOnlyMiningRightsTarget;
+@synthesize proposeMembersOnlyMiningRightsCallback;
+@synthesize proposeEvictMiningPlatformTarget;
+@synthesize proposeEvictMiningPlatformCallback;
+@synthesize proposeTaxationTarget;
+@synthesize proposeTaxationCallback;
+@synthesize proposeForeignAidTarget;
+@synthesize proposeForeignAidCallback;
+@synthesize proposeMembersOnlyColonizationTarget;
+@synthesize proposeMembersOnlyColonizationCallback;
+@synthesize proposeFireBfgTarget;
+@synthesize proposeFireBfgCallback;
 
 
 #pragma mark -
@@ -46,6 +103,40 @@
     self.propositions = nil;
     self.castVoteTarget = nil;
     self.castVoteCallback = nil;
+    self.repealLawTarget = nil;
+    self.repealLawCallback = nil;
+    self.proposeWritTarget = nil;
+    self.proposeWritCallback = nil;
+    self.proposeTransferStationOwnershipTarget = nil;
+    self.proposeTransferStationOwnershipCallback = nil;
+    self.proposeSeizeStarTarget = nil;
+    self.proposeSeizeStarCallback = nil;
+    self.proposeRenameStarTarget = nil;
+    self.proposeRenameStarCallback = nil;
+    self.proposeBroadcastOnNetwork19Target = nil;
+    self.proposeBroadcastOnNetwork19Callback = nil;
+    self.proposeInductMemberTarget = nil;
+    self.proposeInductMemberCallback = nil;
+    self.proposeExpelMemberTarget = nil;
+    self.proposeExpelMemberCallback = nil;
+    self.proposeElectNewLeaderTarget = nil;
+    self.proposeElectNewLeaderCallback = nil;
+    self.proposeRenameAsteroidTarget = nil;
+    self.proposeRenameAsteroidCallback = nil;
+    self.proposeRenameUninhabitedTarget = nil;
+    self.proposeRenameUninhabitedCallback = nil;
+    self.proposeMembersOnlyMiningRightsTarget = nil;
+    self.proposeMembersOnlyMiningRightsCallback = nil;
+    self.proposeEvictMiningPlatformTarget = nil;
+    self.proposeEvictMiningPlatformCallback = nil;
+    self.proposeTaxationTarget = nil;
+    self.proposeTaxationCallback = nil;
+    self.proposeForeignAidTarget = nil;
+    self.proposeForeignAidCallback = nil;
+    self.proposeMembersOnlyColonizationTarget = nil;
+    self.proposeMembersOnlyColonizationCallback = nil;
+    self.proposeFireBfgTarget = nil;
+    self.proposeFireBfgCallback = nil;
 	[super dealloc];
 }
 
@@ -132,10 +223,9 @@
 			break;
 		case BUILDING_ROW_PROPOSE_WRIT:
 			; //DO NOT REMOVE
-//			ViewLawsController *viewLawsController = [ViewLawsController create];
-//			viewLawsController.parliament = self;
-//			return viewLawsController;
-            return nil;
+			NewWritViewController *newWritViewController = [NewWritViewController create];
+			newWritViewController.parliament = self;
+			return newWritViewController;
 			break;
 		case BUILDING_ROW_TRANSFER_OWNERSHIP:
 			; //DO NOT REMOVE
@@ -159,8 +249,8 @@
 }
 
 
-- (void)loadLaws {
-    [[[LEBuildingViewLaws alloc] initWithCallback:@selector(loadedLaws:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+- (void)loadLawsForStationId:(NSString *)stationId {
+    [[[LEBuildingViewLaws alloc] initWithCallback:@selector(loadedLaws:) target:self stationId:stationId buildingUrl:self.buildingUrl] autorelease];
 }
 
 
@@ -168,6 +258,125 @@
     self.castVoteTarget = target;
     self.castVoteCallback = callback;
     [[[LEBuildingCastVote alloc] initWithCallback:@selector(voted:) target:self buildingId:self.id buildingUrl:self.buildingUrl propositionId:propositionId vote:vote] autorelease];
+}
+
+
+- (void)repealLaw:(Law *)law target:(id)target callback:(SEL)callback {
+    self.repealLawTarget = target;
+    self.repealLawCallback = callback;
+    [[[LEBuildingProposeRepealLaw alloc] initWithCallback:@selector(proposedRepealLaw:) target:self buildingId:self.id buildingUrl:self.buildingUrl lawId:law.id] autorelease];
+}
+
+
+- (void)proposeWritTitle:(NSString *)title description:(NSString *)description target:(id)target callback:(SEL)callback {
+    self.proposeWritTarget = target;
+    self.proposeWritCallback = callback;
+    [[[LEBuildingProposeWrit alloc] initWithCallback:@selector(proposedWrit:) target:self buildingId:self.id buildingUrl:self.buildingUrl title:title description:description] autorelease];
+}
+
+
+- (void)proposeTransferStationOwnershipTo:(NSString *)empireId target:(id)target callback:(SEL)callback {
+    self.proposeTransferStationOwnershipTarget = target;
+    self.proposeTransferStationOwnershipCallback = callback;
+    [[[LEBuildingProposeTransferStationOwnership alloc] initWithCallback:@selector(proposedTransferStationOwnership:) target:self buildingId:self.id buildingUrl:self.buildingUrl toEmpireId:empireId] autorelease];
+}
+
+
+- (void)proposeSeizeStar:(NSString *)starId target:(id)target callback:(SEL)callback {
+    self.proposeSeizeStarTarget = target;
+    self.proposeSeizeStarCallback = callback;
+    [[[LEBuildingProposeSeizeStar alloc] initWithCallback:@selector(proposedSeizeStar:) target:self buildingId:self.id buildingUrl:self.buildingUrl starId:starId] autorelease];
+}
+
+
+- (void)proposeRenameStar:(NSString *)starId name:(NSString *)name target:(id)target callback:(SEL)callback {
+    self.proposeRenameStarTarget = target;
+    self.proposeRenameStarCallback = callback;
+    [[[LEBuildingProposeRenameStar alloc] initWithCallback:@selector(proposedRenameStar:) target:self buildingId:self.id buildingUrl:self.buildingUrl starId:starId name:name] autorelease];
+}
+
+
+- (void)proposeBroadcastOnNetwork19:(NSString *)message target:(id)target callback:(SEL)callback {
+    self.proposeBroadcastOnNetwork19Target = target;
+    self.proposeBroadcastOnNetwork19Callback = callback;
+    [[[LEBuildingProposeBroadcastOnNetwork19 alloc] initWithCallback:@selector(proposedBroadcastOnNetwork19:) target:self buildingId:self.id buildingUrl:self.buildingUrl message:message] autorelease];
+}
+
+
+- (void)proposeInductMember:(NSString *)empireId message:(NSString *)message target:(id)target callback:(SEL)callback {
+    self.proposeInductMemberTarget = target;
+    self.proposeInductMemberCallback = callback;
+    [[[LEBuildingProposeInductMember alloc] initWithCallback:@selector(proposedInductMember:) target:self buildingId:self.id buildingUrl:self.buildingUrl empireId:empireId message:message] autorelease];
+}
+
+
+- (void)proposeExpelMember:(NSString *)empireId message:(NSString *)message target:(id)target callback:(SEL)callback {
+    self.proposeExpelMemberTarget = target;
+    self.proposeExpelMemberCallback = callback;
+    [[[LEBuildingProposeExpelMember alloc]initWithCallback:@selector(proposedExpelMember:) target:self buildingId:self.id buildingUrl:self.buildingUrl empireId:empireId message:message] autorelease];
+}
+
+
+- (void)proposeElectNewLeader:(NSString *)empireId target:(id)target callback:(SEL)callback {
+    self.proposeElectNewLeaderTarget = target;
+    self.proposeElectNewLeaderCallback = callback;
+    [[[LEBuildingProposeElectNewLeader alloc] initWithCallback:@selector(proposedElectNewLeader:) target:self buildingId:self.id buildingUrl:self.buildingUrl empireId:empireId] autorelease];
+}
+
+
+- (void)proposeRenameAsteroid:(NSString *)asteroidId name:(NSString *)name target:(id)target callback:(SEL)callback {
+    self.proposeRenameAsteroidTarget = target;
+    self.proposeRenameAsteroidCallback = callback;
+    [[[LEBuildingProposeRenameAsteroid alloc] initWithCallback:@selector(proposedRenameAsteroid:) target:self buildingId:self.id buildingUrl:self.buildingUrl asteroidId:asteroidId name:name] autorelease];
+}
+
+
+- (void)proposeRenameUninhabited:(NSString *)bodyId name:(NSString *)name target:(id)target callback:(SEL)callback {
+    self.proposeRenameUninhabitedTarget = target;
+    self.proposeRenameUninhabitedCallback = callback;
+    [[[LEBuildingProposeRenameUninhabited alloc] initWithCallback:@selector(proposedRenameUninhabited:) target:self buildingId:self.id buildingUrl:self.buildingUrl planetId:bodyId name:name] autorelease];
+}
+
+
+- (void)proposeMembersOnlyMiningRightsTarget:(id)target callback:(SEL)callback {
+    self.proposeMembersOnlyMiningRightsTarget = target;
+    self.proposeMembersOnlyMiningRightsCallback = callback;
+    [[[LEBuildingProposeMembersOnlyMiningRights alloc] initWithCallback:@selector(proposedMembersOnlyMiningRights:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+}
+
+
+- (void)proposeEvictMiningPlatform:(MiningPlatform *)miningPlatform target:(id)target callback:(SEL)callback {
+    self.proposeEvictMiningPlatformTarget = target;
+    self.proposeEvictMiningPlatformCallback = callback;
+    [[[LEBuildingProposeEvictMiningPlatform alloc] initWithCallback:@selector(proposedEvictMiningPlatform:) target:self buildingId:self.id buildingUrl:self.buildingUrl miningPlatformId:miningPlatform.id] autorelease];
+}
+
+
+- (void)proposeTaxation:(NSDecimalNumber *)amount target:(id)target callback:(SEL)callback {
+    self.proposeTaxationTarget = target;
+    self.proposeTaxationCallback = callback;
+    [[[LEBuildingProposeTaxation alloc] initWithCallback:@selector(proposedTaxation:) target:self buildingId:self.id buildingUrl:self.buildingUrl taxAmount:amount] autorelease];
+}
+
+
+- (void)proposeForeignAidTo:(NSString *)bodyId amount:(NSDecimalNumber *)amount target:(id)target callback:(SEL)callback {
+    self.proposeForeignAidTarget = target;
+    self.proposeForeignAidCallback = callback;
+    [[[LEBuildingProposeForeignAid alloc] initWithCallback:@selector(proposedForeignAid:) target:self buildingId:self.id buildingUrl:self.buildingUrl planetId:bodyId resourceAmount:amount] autorelease];
+}
+
+
+- (void)proposeMembersOnlyColonizationTarget:(id)target callback:(SEL)callback {
+    self.proposeMembersOnlyColonizationTarget = target;
+    self.proposeMembersOnlyColonizationCallback = callback;
+    [[[LEBuildingProposeMembersOnlyColonization alloc] initWithCallback:@selector(proposedMembersOnlyColonization:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+}
+
+
+- (void)proposeFireBfgOn:(NSString *)bodyId reason:(NSString *)reason target:(id)target callback:(SEL)callback {
+    self.proposeFireBfgTarget = target;
+    self.proposeFireBfgCallback = callback;
+    [[[LEBuildingProposeFireBfg alloc] initWithCallback:@selector(proposedFireBfg:) target:self buildingId:self.id buildingUrl:self.buildingUrl bodyId:bodyId reason:reason] autorelease];
 }
 
 
@@ -193,6 +402,91 @@
         }
     }];
     [self.castVoteTarget performSelector:self.castVoteCallback withObject:request];
+}
+
+
+- (void)proposedRepealLaw:(LEBuildingProposeRepealLaw *)request {
+    [self.repealLawTarget performSelector:self.repealLawCallback withObject:request];
+}
+
+
+- (void)proposedWrit:(LEBuildingProposeWrit *)request {
+    [self.proposeWritTarget performSelector:self.proposeWritCallback withObject:request];
+}
+
+
+- (void)proposedTransferStationOwnership:(LEBuildingProposeTransferStationOwnership *)request {
+    [self.proposeTransferStationOwnershipTarget performSelector:self.proposeTransferStationOwnershipCallback withObject:request];
+}
+
+
+- (void)proposedSeizeStar:(LEBuildingProposeSeizeStar *)request {
+    [self.proposeSeizeStarTarget performSelector:self.proposeSeizeStarCallback withObject:request];
+}
+
+
+- (void)proposedRenameStar:(LEBuildingProposeRenameStar *)request {
+    [self.proposeRenameStarTarget performSelector:self.proposeRenameStarCallback withObject:request];
+}
+
+
+- (void)proposedBroadcastOnNetwork19:(LEBuildingProposeBroadcastOnNetwork19 *)request {
+    [self.proposeBroadcastOnNetwork19Target performSelector:self.proposeBroadcastOnNetwork19Callback withObject:request];
+}
+
+
+- (void)proposedInductMember:(LEBuildingProposeInductMember *)request {
+    [self.proposeInductMemberTarget performSelector:self.proposeInductMemberCallback withObject:request];
+}
+
+
+- (void)proposedExpelMember:(LEBuildingProposeExpelMember *)request {
+    [self.proposeExpelMemberTarget performSelector:self.proposeExpelMemberCallback withObject:request];
+}
+
+
+- (void)proposedElectNewLeader:(LEBuildingProposeElectNewLeader *)request {
+    [self.proposeElectNewLeaderTarget performSelector:self.proposeElectNewLeaderCallback withObject:request];
+}
+
+
+- (void)proposedRenameAsteroid:(LEBuildingProposeRenameAsteroid *)request {
+    [self.proposeRenameAsteroidTarget performSelector:self.proposeRenameAsteroidCallback withObject:request];
+}
+
+
+- (void)proposedRenameUninhabited:(LEBuildingProposeRenameUninhabited *)request {
+    [self.proposeRenameUninhabitedTarget performSelector:self.proposeRenameUninhabitedCallback withObject:request];
+}
+
+
+- (void)proposedMembersOnlyMiningRights:(LEBuildingProposeMembersOnlyColonization *)request {
+    [self.proposeMembersOnlyColonizationTarget performSelector:self.proposeMembersOnlyColonizationCallback withObject:request];
+}
+
+
+- (void)proposedEvictMiningPlatform:(LEBuildingProposeEvictMiningPlatform *)request {
+    [self.proposeEvictMiningPlatformTarget performSelector:self.proposeEvictMiningPlatformCallback withObject:request];
+}
+
+
+- (void)proposedTaxation:(LEBuildingProposeTaxation *)request {
+    [self.proposeTaxationTarget performSelector:self.proposeTaxationCallback withObject:request];
+}
+
+
+- (void)proposedForeignAid:(LEBuildingProposeForeignAid *)request {
+    [self.proposeForeignAidTarget performSelector:self.proposeForeignAidCallback withObject:request];
+}
+
+
+- (void)proposedMembersOnlyColonization:(LEBuildingProposeMembersOnlyColonization *)request {
+    [self.proposeMembersOnlyColonizationTarget performSelector:self.proposeMembersOnlyColonizationCallback withObject:request];
+}
+
+
+- (void)proposedFireBfg:(LEBuildingProposeFireBfg *)request {
+    [self.proposeFireBfgTarget performSelector:self.proposeFireBfgCallback withObject:request];
 }
 
 
@@ -223,7 +517,6 @@
     
     return tmp;
 }
-
 
 
 @end

@@ -40,7 +40,6 @@
 - (void)processSuccess {
 	NSMutableDictionary *result = [self.response objectForKey:@"result"];
     self.proposition = [result objectForKey:@"proposition"];
-    NSLog(@"Result of vote: %@", result);
 }
 
 

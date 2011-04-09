@@ -9,6 +9,7 @@
 #import "ViewLawsController.h"
 #import "LEMacros.h"
 #import "Util.h"
+#import "Session.h"
 #import "Parliament.h"
 #import "Law.h"
 #import "LEViewSectionTab.h"
@@ -58,7 +59,8 @@ typedef enum {
     [super viewWillAppear:animated];
     self->watchingLaws = YES;
     [self.parliament addObserver:self forKeyPath:@"laws" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
-    [self.parliament loadLaws];
+    Session *session = [Session sharedInstance];
+    [self.parliament loadLawsForStationId:session.body.id];
 }
 
 
@@ -173,8 +175,7 @@ typedef enum {
             Law *law = [self.parliament.laws objectAtIndex:indexPath.section];
             switch (indexPath.row) {
                 case ROW_REPEAL:
-//                    [self.parliament castVote:YES propositionId:proposition.id target:self callback:@selector(voteCast:)];
-                    NSLog(@"KEVIN IMPLEMENT ME! So we can repeal law: %@", law);
+                    [self.parliament repealLaw:law target:self callback:@selector(proposedRepealLaw:)];
                     break;
                 default:
                     //Does nothing but removes compiler warning
@@ -294,6 +295,10 @@ typedef enum {
 
 - (void)voteCast:(LEBuildingCastVote *)request {
     [self.tableView reloadData];
+}
+
+
+- (void)proposedRepealLaw:(LEBuildingProposeRepealLaw *)request {
 }
 
 

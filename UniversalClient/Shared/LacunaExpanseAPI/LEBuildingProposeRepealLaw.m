@@ -30,7 +30,7 @@
 
 
 - (id)params {
-	NSMutableArray *params = _array([Session sharedInstance].sessionId, self.buildingId);
+	NSMutableArray *params = _array([Session sharedInstance].sessionId, self.buildingId, self.lawId);
 	return params;
 }
 

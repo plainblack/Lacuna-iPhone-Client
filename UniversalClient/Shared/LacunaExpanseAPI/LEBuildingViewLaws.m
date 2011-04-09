@@ -15,20 +15,20 @@
 @implementation LEBuildingViewLaws
 
 
-@synthesize buildingId;
+@synthesize stationId;
 @synthesize buildingUrl;
 @synthesize laws;
 
 
-- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl {
-	self.buildingId = inBuildingId;
+- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget stationId:(NSString *)inStationId buildingUrl:(NSString *)inBuildingUrl {
+	self.stationId = inStationId;
 	self.buildingUrl = inBuildingUrl;
 	return [self initWithCallback:inCallback target:(NSObject *)inTarget];
 }
 
 
 - (id)params {
-	NSMutableArray *params = _array([Session sharedInstance].sessionId, self.buildingId);
+	NSMutableArray *params = _array([Session sharedInstance].sessionId, self.stationId);
 	return params;
 }
 
@@ -50,7 +50,7 @@
 
 
 - (void)dealloc {
-	self.buildingId = nil;
+	self.stationId = nil;
 	self.buildingUrl = nil;
     self.laws = nil;
 	[super dealloc];

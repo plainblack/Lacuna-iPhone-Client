@@ -15,9 +15,6 @@
 
 
 @interface NewAllianceInvite : LETableViewControllerGrouped <SelectEmpireControllerDelegate> {
-	Embassy *embassy;
-	LETableViewCellLabeledTextView *messageCell;
-	NSMutableArray *invitees;
 }
 
 

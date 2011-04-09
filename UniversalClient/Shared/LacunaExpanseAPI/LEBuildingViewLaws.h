@@ -14,12 +14,12 @@
 }
 
 
-@property (nonatomic, retain) NSString *buildingId;
+@property (nonatomic, retain) NSString *stationId;
 @property (nonatomic, retain) NSString *buildingUrl;
 @property (nonatomic, retain) NSMutableArray *laws;
 
 
-- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl;
+- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target stationId:(NSString *)stationId buildingUrl:(NSString *)buildingUrl;
 
 
 @end

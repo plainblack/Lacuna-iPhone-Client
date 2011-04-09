@@ -47,6 +47,7 @@
 		F61152E31299CE7800108348 /* LEBuildingSkipMission.m in Sources */ = {isa = PBXBuildFile; fileRef = F61152E21299CE7800108348 /* LEBuildingSkipMission.m */; };
 		F6132E5B119E3A78000F99A9 /* LETableViewCellNumberEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = F6132E5A119E3A78000F99A9 /* LETableViewCellNumberEntry.m */; };
 		F614450B11E961D40052D010 /* Spy.m in Sources */ = {isa = PBXBuildFile; fileRef = F614450A11E961D40052D010 /* Spy.m */; };
+		F614D19F1350BCC000BDA4A1 /* NewWritViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F614D19E1350BCC000BDA4A1 /* NewWritViewController.m */; };
 		F61D0C2311E2355600B06382 /* WasteRecycling.m in Sources */ = {isa = PBXBuildFile; fileRef = F61D0C2211E2355600B06382 /* WasteRecycling.m */; };
 		F61D0C2611E235C100B06382 /* BuildingUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = F61D0C2511E235C100B06382 /* BuildingUtil.m */; };
 		F61D0D3E11E24B8100B06382 /* Network19.m in Sources */ = {isa = PBXBuildFile; fileRef = F61D0D3D11E24B8100B06382 /* Network19.m */; };
@@ -598,6 +599,8 @@
 		F6132E5A119E3A78000F99A9 /* LETableViewCellNumberEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellNumberEntry.m; sourceTree = "<group>"; };
 		F614450911E961D40052D010 /* Spy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spy.h; sourceTree = "<group>"; };
 		F614450A11E961D40052D010 /* Spy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spy.m; sourceTree = "<group>"; };
+		F614D19D1350BCC000BDA4A1 /* NewWritViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewWritViewController.h; sourceTree = "<group>"; };
+		F614D19E1350BCC000BDA4A1 /* NewWritViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewWritViewController.m; sourceTree = "<group>"; };
 		F61D0C2111E2355600B06382 /* WasteRecycling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WasteRecycling.h; sourceTree = "<group>"; };
 		F61D0C2211E2355600B06382 /* WasteRecycling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WasteRecycling.m; sourceTree = "<group>"; };
 		F61D0C2411E235C100B06382 /* BuildingUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildingUtil.h; sourceTree = "<group>"; };
@@ -2619,6 +2622,8 @@
 				F6B241C0133E802C00E6933F /* NewSpyTradeController.m */,
 				F6F29702134F2C5D0002C508 /* ViewLawsController.h */,
 				F6F29703134F2C5D0002C508 /* ViewLawsController.m */,
+				F614D19D1350BCC000BDA4A1 /* NewWritViewController.h */,
+				F614D19E1350BCC000BDA4A1 /* NewWritViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -3208,6 +3213,7 @@
 				F6EB9A451350939800C1DDB0 /* LEBuildingGetStarsInJurisdiction.m in Sources */,
 				F6EB9A48135093B800C1DDB0 /* LEBuildingGetBodiesForStarInJurisdiction.m in Sources */,
 				F6EB9A4B135093DA00C1DDB0 /* LEBuidingGetMiningPlatformsForAsteroidInJurisdiction.m in Sources */,
+				F614D19F1350BCC000BDA4A1 /* NewWritViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
