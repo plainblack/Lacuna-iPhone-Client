@@ -32,6 +32,7 @@ typedef enum {
 
 
 @synthesize parliament;
+@synthesize writTemplate;
 @synthesize nameCell;
 @synthesize messageCell;
 
@@ -47,10 +48,12 @@ typedef enum {
 	
 	self.nameCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
 	self.nameCell.label.text = @"Title";
+    self.nameCell.textField.text = [self.writTemplate objectForKey:@"title"];
 	
 	
 	self.messageCell = [LETableViewCellLabeledTextView getCellForTableView:self.tableView];
 	self.messageCell.label.text = @"Description";
+    self.messageCell.textView.text = [self.writTemplate objectForKey:@"description"];
 	
 	
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"To"], [LEViewSectionTab tableView:self.tableView withText:@"Message"]);
@@ -173,6 +176,7 @@ typedef enum {
     self.nameCell = nil;
 	self.messageCell = nil;
 	self.parliament = nil;
+    self.writTemplate = nil;
     [super dealloc];
 }
 

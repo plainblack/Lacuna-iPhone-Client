@@ -40,7 +40,7 @@
 #import "MiningPlatform.h"
 #import "ViewPropositionsController.h"
 #import "ViewLawsController.h"
-#import "NewWritViewController.h"
+#import "ChooseWritTemplateViewController.h"
 
 
 @interface Parliament(PrivateMethods)
@@ -223,9 +223,9 @@
 			break;
 		case BUILDING_ROW_PROPOSE_WRIT:
 			; //DO NOT REMOVE
-			NewWritViewController *newWritViewController = [NewWritViewController create];
-			newWritViewController.parliament = self;
-			return newWritViewController;
+			ChooseWritTemplateViewController *chooseWritTemplateViewController = [ChooseWritTemplateViewController create];
+			chooseWritTemplateViewController.parliament = self;
+			return chooseWritTemplateViewController;
 			break;
 		case BUILDING_ROW_TRANSFER_OWNERSHIP:
 			; //DO NOT REMOVE

@@ -20,6 +20,7 @@
 
 
 @property (nonatomic, retain) Parliament *parliament;
+@property (nonatomic, retain) NSMutableDictionary *writTemplate;
 @property (nonatomic, retain) LETableViewCellTextEntry *nameCell;
 @property (nonatomic, retain) LETableViewCellLabeledTextView *messageCell;
 
