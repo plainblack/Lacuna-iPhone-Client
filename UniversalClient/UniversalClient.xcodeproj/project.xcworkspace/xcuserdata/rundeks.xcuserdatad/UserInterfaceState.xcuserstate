@@ -7504,7 +7504,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>125</integer>
+					<integer>17</integer>
 				</dict>
 			</array>
 		</dict>
@@ -9551,8 +9551,8 @@
 				</dict>
 			</array>
 		</dict>
-		<real>324079917.41784698</real>
-		<string>{18180, 2776}</string>
+		<real>324079945.94999599</real>
+		<string>{18180, 3179}</string>
 		<string>{8548, 0}</string>
 		<string>-tableView:didSelectBuildingRow:rowIndex:</string>
 		<dict>
@@ -9587,7 +9587,7 @@
 				</dict>
 			</array>
 		</dict>
-		<string>{{0, 0}, {1105, 962}}</string>
+		<string>{{0, 0}, {1105, 1229}}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -9893,8 +9893,8 @@
     s = 0;
 }</string>
 		</dict>
-		<real>324079917.41769803</real>
-		<string>{235, 1868}</string>
+		<real>324079945.94988102</real>
+		<string>{235, 2639}</string>
 		<string>{1564, 0}</string>
 		<string>-numberOfSectionsInTableView:</string>
 		<dict>
@@ -9929,7 +9929,7 @@
 				</dict>
 			</array>
 		</dict>
-		<string>{{0, 0}, {2211, 962}}</string>
+		<string>{{0, 0}, {2211, 1229}}</string>
 		<string>ChooseWritTemplateViewController.m</string>
 		<dict>
 			<key>$class</key>
@@ -31020,8 +31020,8 @@
 				</dict>
 			</array>
 		</dict>
-		<real>324079917.41462201</real>
-		<string>{235, 1868}</string>
+		<real>324079945.947173</real>
+		<string>{235, 2639}</string>
 		<string>{1564, 0}</string>
 		<dict>
 			<key>$class</key>
