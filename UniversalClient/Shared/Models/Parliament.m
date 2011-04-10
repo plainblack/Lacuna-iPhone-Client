@@ -58,6 +58,7 @@
 
 @synthesize propositions;
 @synthesize laws;
+@synthesize starsInJurisdiction;
 @synthesize castVoteTarget;
 @synthesize castVoteCallback;
 @synthesize repealLawTarget;
@@ -101,6 +102,8 @@
 
 - (void)dealloc {
     self.propositions = nil;
+    self.laws = nil;
+    self.starsInJurisdiction = nil;
     self.castVoteTarget = nil;
     self.castVoteCallback = nil;
     self.repealLawTarget = nil;
@@ -233,6 +236,11 @@
 
 - (void)loadLawsForStationId:(NSString *)stationId {
     [[[LEBuildingViewLaws alloc] initWithCallback:@selector(loadedLaws:) target:self stationId:stationId buildingUrl:self.buildingUrl] autorelease];
+}
+
+
+- (void)loadStarsInJurisdiction {
+    [[[LEBuildingGetStarsInJurisdiction alloc] initWithCallback:@selector(loadedStarsInJurisdiction:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
 }
 
 
@@ -372,6 +380,11 @@
 
 - (void)loadedLaws:(LEBuildingViewLaws *)request {
     self.laws = [self parseLaws:request.laws];
+}
+
+
+- (void)loadedStarsInJurisdiction:(LEBuildingGetStarsInJurisdiction *)request {
+    self.starsInJurisdiction = request.stars;
 }
 
 

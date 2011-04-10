@@ -20,6 +20,7 @@
 
 @property (nonatomic, retain) NSMutableArray *propositions;
 @property (nonatomic, retain) NSMutableArray *laws;
+@property (nonatomic, retain) NSMutableArray *starsInJurisdiction;
 @property (nonatomic, retain) id castVoteTarget;
 @property (nonatomic, assign) SEL castVoteCallback;
 @property (nonatomic, retain) id repealLawTarget;
@@ -60,6 +61,7 @@
 
 - (void)loadPropositions;
 - (void)loadLawsForStationId:(NSString *)stationId;
+- (void)loadStarsInJurisdiction;
 - (void)castVote:(BOOL)vote propositionId:(NSString *)propositionId target:(id)target callback:(SEL)callback;
 - (void)repealLaw:(Law *)law target:(id)target callback:(SEL)callback;
 - (void)proposeWritTitle:(NSString *)title description:(NSString *)description target:(id)target callback:(SEL)callback;

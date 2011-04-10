@@ -14,6 +14,7 @@
 #import "LEViewSectionTab.h"
 #import "LETableViewCellButton.h"
 #import "ChooseWritTemplateViewController.h"
+#import "ProposeFireBfgViewController.h"
 
 
 typedef enum {
@@ -93,7 +94,10 @@ typedef enum {
             [self.navigationController pushViewController:chooseWritTemplateViewController animated:YES];
             break;
         case ROW_FIRE_BFG:
-            NSLog(@"YOU CAN'T HANDLE THE BFG YET!");
+            ; //DO NOT REMOVE
+            ProposeFireBfgViewController *proposeFireBfgViewController = [ProposeFireBfgViewController create];
+            proposeFireBfgViewController.parliament = self.parliament;
+            [self.navigationController pushViewController:proposeFireBfgViewController animated:YES];
             break;
         default:
             NSLog(@"Propose what???");
