@@ -40,7 +40,7 @@
 #import "MiningPlatform.h"
 #import "ViewPropositionsController.h"
 #import "ViewLawsController.h"
-#import "ChooseWritTemplateViewController.h"
+#import "ChooseProposeTypeViewController.h"
 
 
 @interface Parliament(PrivateMethods)
@@ -145,11 +145,7 @@
 #pragma mark Overriden Building Methods
 
 - (void)generateSections {
-    NSMutableArray *actionRows = _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_PROPOSITIONS], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_LAWS], [NSDecimalNumber numberWithInt:BUILDING_ROW_PROPOSE_WRIT]);
-    Session *session = [Session sharedInstance];
-    if ([session.empire.id isEqualToString:session.body.empireId]) {
-        [actionRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_TRANSFER_OWNERSHIP]];
-    }
+    NSMutableArray *actionRows = _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_PROPOSITIONS], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_LAWS], [NSDecimalNumber numberWithInt:BUILDING_ROW_PROPOSE]);
 	NSMutableDictionary *actionSection = _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", actionRows, @"rows");
     
 	self.sections = _array([self generateProductionSection], actionSection, [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
@@ -160,8 +156,7 @@
 	switch (buildingRow) {
 		case BUILDING_ROW_VIEW_PROPOSITIONS:
 		case BUILDING_ROW_VIEW_LAWS:
-		case BUILDING_ROW_PROPOSE_WRIT:
-		case BUILDING_ROW_TRANSFER_OWNERSHIP:
+		case BUILDING_ROW_PROPOSE:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		default:
@@ -186,17 +181,11 @@
 			viewLawsCell.textLabel.text = @"View Laws";
 			cell = viewLawsCell;
 			break;
-		case BUILDING_ROW_PROPOSE_WRIT:
+		case BUILDING_ROW_PROPOSE:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellButton *proposeWritCell = [LETableViewCellButton getCellForTableView:tableView];
-			proposeWritCell.textLabel.text = @"Propose Writ";
+			proposeWritCell.textLabel.text = @"Propose";
 			cell = proposeWritCell;
-			break;
-		case BUILDING_ROW_TRANSFER_OWNERSHIP:
-			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
-			LETableViewCellButton *transferOwnershipCell = [LETableViewCellButton getCellForTableView:tableView];
-			transferOwnershipCell.textLabel.text = @"Transfer Station Ownership";
-			cell = transferOwnershipCell;
 			break;
 		default:
 			cell = [super tableView:tableView cellForBuildingRow:buildingRow rowIndex:rowIndex];
@@ -221,18 +210,11 @@
 			viewLawsController.parliament = self;
 			return viewLawsController;
 			break;
-		case BUILDING_ROW_PROPOSE_WRIT:
+		case BUILDING_ROW_PROPOSE:
 			; //DO NOT REMOVE
-			ChooseWritTemplateViewController *chooseWritTemplateViewController = [ChooseWritTemplateViewController create];
-			chooseWritTemplateViewController.parliament = self;
-			return chooseWritTemplateViewController;
-			break;
-		case BUILDING_ROW_TRANSFER_OWNERSHIP:
-			; //DO NOT REMOVE
-//			ViewLawsController *viewLawsController = [ViewLawsController create];
-//			viewLawsController.parliament = self;
-//			return viewLawsController;
-            return nil;
+			ChooseProposeTypeViewController *chooseProposeTypeViewController = [ChooseProposeTypeViewController create];
+			chooseProposeTypeViewController.parliament = self;
+			return chooseProposeTypeViewController;
 			break;
 		default:
 			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];

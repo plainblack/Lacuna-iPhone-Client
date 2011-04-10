@@ -325,6 +325,7 @@
 		F6DF23231229558C0023FE65 /* EditTextFieldController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF23221229558C0023FE65 /* EditTextFieldController.m */; };
 		F6DF239F122960BE0023FE65 /* LEBuildingDowngrade.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF239E122960BE0023FE65 /* LEBuildingDowngrade.m */; };
 		F6DF395313510AA3008B0076 /* ChooseWritTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF395213510AA3008B0076 /* ChooseWritTemplateViewController.m */; };
+		F6DF395613511186008B0076 /* ChooseProposeTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF395513511186008B0076 /* ChooseProposeTypeViewController.m */; };
 		F6DF425012288EB600A526FD /* ViewPendingInvitesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF424F12288EB600A526FD /* ViewPendingInvitesController.m */; };
 		F6DF42C01228990700A526FD /* ViewMyInvitesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF42BF1228990700A526FD /* ViewMyInvitesController.m */; };
 		F6DF42F412289F1D00A526FD /* WithdrawAllianceInviteController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DF42F312289F1D00A526FD /* WithdrawAllianceInviteController.m */; };
@@ -1136,6 +1137,8 @@
 		F6DF239E122960BE0023FE65 /* LEBuildingDowngrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingDowngrade.m; sourceTree = "<group>"; };
 		F6DF395113510AA3008B0076 /* ChooseWritTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseWritTemplateViewController.h; sourceTree = "<group>"; };
 		F6DF395213510AA3008B0076 /* ChooseWritTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseWritTemplateViewController.m; sourceTree = "<group>"; };
+		F6DF395413511186008B0076 /* ChooseProposeTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseProposeTypeViewController.h; sourceTree = "<group>"; };
+		F6DF395513511186008B0076 /* ChooseProposeTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseProposeTypeViewController.m; sourceTree = "<group>"; };
 		F6DF424E12288EB600A526FD /* ViewPendingInvitesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewPendingInvitesController.h; sourceTree = "<group>"; };
 		F6DF424F12288EB600A526FD /* ViewPendingInvitesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewPendingInvitesController.m; sourceTree = "<group>"; };
 		F6DF42BE1228990700A526FD /* ViewMyInvitesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMyInvitesController.h; sourceTree = "<group>"; };
@@ -2629,6 +2632,8 @@
 				F614D19E1350BCC000BDA4A1 /* NewWritViewController.m */,
 				F6DF395113510AA3008B0076 /* ChooseWritTemplateViewController.h */,
 				F6DF395213510AA3008B0076 /* ChooseWritTemplateViewController.m */,
+				F6DF395413511186008B0076 /* ChooseProposeTypeViewController.h */,
+				F6DF395513511186008B0076 /* ChooseProposeTypeViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -3220,6 +3225,7 @@
 				F6EB9A4B135093DA00C1DDB0 /* LEBuidingGetMiningPlatformsForAsteroidInJurisdiction.m in Sources */,
 				F614D19F1350BCC000BDA4A1 /* NewWritViewController.m in Sources */,
 				F6DF395313510AA3008B0076 /* ChooseWritTemplateViewController.m in Sources */,
+				F6DF395613511186008B0076 /* ChooseProposeTypeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
