@@ -1,19 +1,18 @@
 //
-//  ProposeFireBfgViewController.m
+//  ProposeSeizeStar.m
 //  UniversalClient
 //
-//  Created by Kevin Runde on 4/9/11.
+//  Created by Kevin Runde on 4/12/11.
 //  Copyright 2011 n/a. All rights reserved.
 //
 
-#import "ProposeFireBfgViewController.h"
+#import "ProposeSeizeStarViewController.h"
 #import "LEMacros.h"
 #import "Util.h"
 #import "Parliament.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellButton.h"
-#import "LETableViewCellLabeledTextView.h"
-#import "LEBuildingProposeFireBfg.h"
+#import "LEBuildingProposeSeizeStar.h"
 
 
 typedef enum {
@@ -25,17 +24,15 @@ typedef enum {
 
 typedef enum {
     TARGET_ROW_BODY,
-    TARGET_ROW_REASON,
     TARGET_ROW_COUNT
 } TARGET_ROW;
 
 
-@implementation ProposeFireBfgViewController
+@implementation ProposeSeizeStarViewController
 
 
 @synthesize parliament;
 @synthesize selectedStar;
-@synthesize reasonCell;
 
 
 #pragma mark -
@@ -44,12 +41,9 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.navigationItem.title = @"Fire BFG";
+	self.navigationItem.title = @"Seize Star";
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleDone target:self action:@selector(propose)] autorelease];
 	
-	self.reasonCell = [LETableViewCellLabeledTextView getCellForTableView:self.tableView];
-	self.reasonCell.label.text = @"Reason";
-		
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Target"], [LEViewSectionTab tableView:self.tableView withText:@"Action"]);
 }
 
@@ -89,9 +83,6 @@ typedef enum {
                 case TARGET_ROW_BODY:
                     return [LETableViewCellButton getHeightForTableView:tableView];
                     break;
-                case TARGET_ROW_REASON:
-                    return [LETableViewCellLabeledTextView getHeightForTableView:tableView];
-                    break;
                 default:
                     return 0.0;
                     break;
@@ -123,9 +114,6 @@ typedef enum {
                         targetCell.textLabel.text = @"Pick target";
                     }
                     cell = targetCell;
-                    break;
-                case TARGET_ROW_REASON:
-                    cell = self.reasonCell;
                     break;
             }
             break;
@@ -174,13 +162,11 @@ typedef enum {
 }
 
 - (void)viewDidUnload {
-	self.reasonCell = nil;
     [super viewDidUnload];
 }
 
 
 - (void)dealloc {
-	self.reasonCell = nil;
 	self.parliament = nil;
     self.selectedStar = nil;
     [super dealloc];
@@ -201,9 +187,9 @@ typedef enum {
 
 - (IBAction)propose {
     if (isNotNull(self.selectedStar)) {
-        [self.parliament proposeFireBfgOn:[Util idFromDict:self.selectedStar named:@"id"] reason:self.reasonCell.textView.text target:self callback:@selector(proposedFireBfg:)];
+        [self.parliament proposeSeizeStar:[Util idFromDict:self.selectedStar named:@"id"] target:self callback:@selector(proposedSeizeStar:)];
     } else {
-        UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must select an planet to fire at." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+        UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must select a star to seize control over." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
         [av show];
     }
 }
@@ -212,7 +198,7 @@ typedef enum {
 #pragma mark -
 #pragma mark Callback Methods
 
-- (void)proposedFireBfg:(LEBuildingProposeFireBfg *)request {
+- (void)proposedSeizeStar:(LEBuildingProposeSeizeStar *)request {
     if (![request wasError]) {
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -222,8 +208,8 @@ typedef enum {
 #pragma mark -
 #pragma mark Class Methods
 
-+ (ProposeFireBfgViewController *)create {
-	return [[[ProposeFireBfgViewController alloc] init] autorelease];
++ (ProposeSeizeStarViewController *)create {
+	return [[[ProposeSeizeStarViewController alloc] init] autorelease];
 }
 
 

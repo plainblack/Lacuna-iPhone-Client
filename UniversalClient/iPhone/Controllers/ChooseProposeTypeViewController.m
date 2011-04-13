@@ -16,11 +16,13 @@
 #import "ChooseWritTemplateViewController.h"
 #import "ProposeFireBfgViewController.h"
 #import "ProposeTransferStationOwnership.h"
+#import "ProposeSeizeStarViewController.h"
 
 
 typedef enum {
     ROW_WRIT,
     ROW_FIRE_BFG,
+    ROW_SEIZE_STAR,
     ROW_TRANSFER_STATION_OWNERSHIP,
     ROW_COUNT,
 } ROWS;
@@ -75,6 +77,9 @@ typedef enum {
         case ROW_FIRE_BFG:
             button.textLabel.text = @"Fire BFG";
             break;
+        case ROW_SEIZE_STAR:
+            button.textLabel.text = @"Seize Star";
+            break;
         case ROW_TRANSFER_STATION_OWNERSHIP:
             button.textLabel.text = @"Transfer Station Ownership";
             break;
@@ -103,6 +108,12 @@ typedef enum {
             ProposeFireBfgViewController *proposeFireBfgViewController = [ProposeFireBfgViewController create];
             proposeFireBfgViewController.parliament = self.parliament;
             [self.navigationController pushViewController:proposeFireBfgViewController animated:YES];
+            break;
+        case ROW_SEIZE_STAR:
+            ; //DO NOT REMOVE
+            ProposeSeizeStarViewController *proposeSeizeStarViewController = [ProposeSeizeStarViewController create];
+            proposeSeizeStarViewController.parliament = self.parliament;
+            [self.navigationController pushViewController:proposeSeizeStarViewController animated:YES];
             break;
         case ROW_TRANSFER_STATION_OWNERSHIP:
             ; //DO NOT REMOVE
