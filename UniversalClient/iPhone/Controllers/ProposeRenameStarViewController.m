@@ -1,18 +1,18 @@
 //
-//  ProposeSeizeStar.m
+//  ProposeRenameStarViewController.m
 //  UniversalClient
 //
 //  Created by Kevin Runde on 4/12/11.
 //  Copyright 2011 n/a. All rights reserved.
 //
 
-#import "ProposeSeizeStarViewController.h"
+#import "ProposeRenameStarViewController.h"
 #import "LEMacros.h"
 #import "Util.h"
 #import "Parliament.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellButton.h"
-#import "LEBuildingProposeSeizeStar.h"
+#import "LEBuildingProposeRenameStar.h"
 
 
 typedef enum {
@@ -24,15 +24,17 @@ typedef enum {
 
 typedef enum {
     TARGET_ROW_STAR,
+    TARGET_ROW_NAME,
     TARGET_ROW_COUNT
 } TARGET_ROW;
 
 
-@implementation ProposeSeizeStarViewController
+@implementation ProposeRenameStarViewController
 
 
 @synthesize parliament;
 @synthesize selectedStar;
+@synthesize nameCell;
 
 
 #pragma mark -
@@ -41,10 +43,15 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.navigationItem.title = @"Seize Star";
+	self.navigationItem.title = @"Rename Star";
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleDone target:self action:@selector(propose)] autorelease];
 	
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Target"], [LEViewSectionTab tableView:self.tableView withText:@"Action"]);
+	self.nameCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
+	self.nameCell.delegate = self;
+	self.nameCell.label.text = @"New Name";
+	self.nameCell.textField.text = @"";
+
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Star"], [LEViewSectionTab tableView:self.tableView withText:@"Action"]);
 }
 
 
@@ -83,6 +90,9 @@ typedef enum {
                 case TARGET_ROW_STAR:
                     return [LETableViewCellButton getHeightForTableView:tableView];
                     break;
+                case TARGET_ROW_NAME:
+                    return [LETableViewCellTextEntry getHeightForTableView:tableView];
+                    break;
                 default:
                     return 0.0;
                     break;
@@ -114,6 +124,9 @@ typedef enum {
                         targetCell.textLabel.text = @"Pick target";
                     }
                     cell = targetCell;
+                    break;
+                case TARGET_ROW_NAME:
+                    cell = self.nameCell;
                     break;
             }
             break;
@@ -187,18 +200,30 @@ typedef enum {
 
 - (IBAction)propose {
     if (isNotNull(self.selectedStar)) {
-        [self.parliament proposeSeizeStar:[Util idFromDict:self.selectedStar named:@"id"] target:self callback:@selector(proposedSeizeStar:)];
+        [self.parliament proposeRenameStar:[Util idFromDict:self.selectedStar named:@"id"] name:self.nameCell.textField.text target:self callback:@selector(proposedSeizeStar:)];
     } else {
-        UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must select a star to seize control over." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+        UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must select a star to rename." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
         [av show];
     }
 }
 
 
 #pragma mark -
+#pragma mark UITextFieldDelegate methods
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	if (textField == self.nameCell.textField) {
+		[self.nameCell resignFirstResponder];
+	}
+	
+	return YES;
+}
+
+
+#pragma mark -
 #pragma mark Callback Methods
 
-- (void)proposedSeizeStar:(LEBuildingProposeSeizeStar *)request {
+- (void)proposedSeizeStar:(LEBuildingProposeRenameStar *)request {
     if (![request wasError]) {
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -208,8 +233,8 @@ typedef enum {
 #pragma mark -
 #pragma mark Class Methods
 
-+ (ProposeSeizeStarViewController *)create {
-	return [[[ProposeSeizeStarViewController alloc] init] autorelease];
++ (ProposeRenameStarViewController *)create {
+	return [[[ProposeRenameStarViewController alloc] init] autorelease];
 }
 
 

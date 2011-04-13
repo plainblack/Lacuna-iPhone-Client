@@ -15,8 +15,6 @@
 
 
 @interface RenameBodyController : LETableViewControllerGrouped <UITextFieldDelegate> {
-	Body *body;
-	LETableViewCellTextEntry *nameCell;
 }
 
 
