@@ -18,11 +18,13 @@
 #import "ProposeTransferStationOwnership.h"
 #import "ProposeSeizeStarViewController.h"
 #import "ProposeRenameStarViewController.h"
+#import "ProposeNetwork19BroadcastViewController.h"
 
 
 typedef enum {
     ROW_WRIT,
     ROW_FIRE_BFG,
+    ROW_NETWORK19_BROADCAST,
     ROW_RENAME_STAR,
     ROW_SEIZE_STAR,
     ROW_TRANSFER_STATION_OWNERSHIP,
@@ -79,6 +81,9 @@ typedef enum {
         case ROW_FIRE_BFG:
             button.textLabel.text = @"Fire BFG";
             break;
+        case ROW_NETWORK19_BROADCAST:
+            button.textLabel.text = @"Network19 Broadcast";
+            break;
         case ROW_RENAME_STAR:
             button.textLabel.text = @"Rename Star";
             break;
@@ -113,6 +118,12 @@ typedef enum {
             ProposeFireBfgViewController *proposeFireBfgViewController = [ProposeFireBfgViewController create];
             proposeFireBfgViewController.parliament = self.parliament;
             [self.navigationController pushViewController:proposeFireBfgViewController animated:YES];
+            break;
+        case ROW_NETWORK19_BROADCAST:
+            ; //DO NOT REMOVE
+            ProposeNetwork19BroadcastViewController *proposeNetwork19BroadcastViewController = [ProposeNetwork19BroadcastViewController create];
+            proposeNetwork19BroadcastViewController.parliament = self.parliament;
+            [self.navigationController pushViewController:proposeNetwork19BroadcastViewController animated:YES];
             break;
         case ROW_RENAME_STAR:
             ; //DO NOT REMOVE
