@@ -89,7 +89,8 @@
             cell = starButtonCell;
         } else {
             LETableViewCellLabeledText *noMatchesCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-            noMatchesCell.content.text = @"No Stars In Jurisdiction";
+            noMatchesCell.label.text = @"Stars";
+            noMatchesCell.content.text = @"None In Jurisdiction";
             cell = noMatchesCell;
         }
         

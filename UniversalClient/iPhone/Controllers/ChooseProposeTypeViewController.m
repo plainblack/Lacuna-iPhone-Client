@@ -19,13 +19,21 @@
 #import "ProposeSeizeStarViewController.h"
 #import "ProposeRenameStarViewController.h"
 #import "ProposeNetwork19BroadcastViewController.h"
+#import "ProposeInductMemberViewController.h"
+#import "ProposeExpelMemberViewController.h"
+#import "ProposeRenameAsteroidViewController.h"
+#import "ProposeRenameUninhabitedViewController.h"
 
 
 typedef enum {
     ROW_WRIT,
+    ROW_EXPEL_MEMBER,
     ROW_FIRE_BFG,
+    ROW_INDUCT_MEMBER,
     ROW_NETWORK19_BROADCAST,
+    ROW_RENAME_ASTEROID,
     ROW_RENAME_STAR,
+    ROW_RENAME_UNINHABITED,
     ROW_SEIZE_STAR,
     ROW_TRANSFER_STATION_OWNERSHIP,
     ROW_COUNT,
@@ -78,14 +86,26 @@ typedef enum {
         case ROW_WRIT:
             button.textLabel.text = @"Writ";
             break;
+        case ROW_EXPEL_MEMBER:
+            button.textLabel.text = @"Expel Member";
+            break;
         case ROW_FIRE_BFG:
             button.textLabel.text = @"Fire BFG";
+            break;
+        case ROW_INDUCT_MEMBER:
+            button.textLabel.text = @"Induct Member";
             break;
         case ROW_NETWORK19_BROADCAST:
             button.textLabel.text = @"Network19 Broadcast";
             break;
+        case ROW_RENAME_ASTEROID:
+            button.textLabel.text = @"Rename Asteroid";
+            break;
         case ROW_RENAME_STAR:
             button.textLabel.text = @"Rename Star";
+            break;
+        case ROW_RENAME_UNINHABITED:
+            button.textLabel.text = @"Rename Uninhabited Planet";
             break;
         case ROW_SEIZE_STAR:
             button.textLabel.text = @"Seize Star";
@@ -113,11 +133,23 @@ typedef enum {
             chooseWritTemplateViewController.parliament = self.parliament;
             [self.navigationController pushViewController:chooseWritTemplateViewController animated:YES];
             break;
+        case ROW_EXPEL_MEMBER:
+            ; //DO NOT REMOVE
+            ProposeExpelMemberViewController *proposeExpelMemberViewController = [ProposeExpelMemberViewController create];
+            proposeExpelMemberViewController.parliament = self.parliament;
+            [self.navigationController pushViewController:proposeExpelMemberViewController animated:YES];
+            break;
         case ROW_FIRE_BFG:
             ; //DO NOT REMOVE
             ProposeFireBfgViewController *proposeFireBfgViewController = [ProposeFireBfgViewController create];
             proposeFireBfgViewController.parliament = self.parliament;
             [self.navigationController pushViewController:proposeFireBfgViewController animated:YES];
+            break;
+        case ROW_INDUCT_MEMBER:
+            ; //DO NOT REMOVE
+            ProposeInductMemberViewController *proposeInductMemberViewController = [ProposeInductMemberViewController create];
+            proposeInductMemberViewController.parliament = self.parliament;
+            [self.navigationController pushViewController:proposeInductMemberViewController animated:YES];
             break;
         case ROW_NETWORK19_BROADCAST:
             ; //DO NOT REMOVE
@@ -125,11 +157,23 @@ typedef enum {
             proposeNetwork19BroadcastViewController.parliament = self.parliament;
             [self.navigationController pushViewController:proposeNetwork19BroadcastViewController animated:YES];
             break;
+        case ROW_RENAME_ASTEROID:
+            ; //DO NOT REMOVE
+            ProposeRenameAsteroidViewController *proposeRenameAsteroidViewController = [ProposeRenameAsteroidViewController create];
+            proposeRenameAsteroidViewController.parliament = self.parliament;
+            [self.navigationController pushViewController:proposeRenameAsteroidViewController animated:YES];
+            break;
         case ROW_RENAME_STAR:
             ; //DO NOT REMOVE
             ProposeRenameStarViewController *proposeRenameStarViewController = [ProposeRenameStarViewController create];
             proposeRenameStarViewController.parliament = self.parliament;
             [self.navigationController pushViewController:proposeRenameStarViewController animated:YES];
+            break;
+        case ROW_RENAME_UNINHABITED:
+            ; //DO NOT REMOVE
+            ProposeRenameUninhabitedViewController *proposeRenameUninhabitedViewController = [ProposeRenameUninhabitedViewController create];
+            proposeRenameUninhabitedViewController.parliament = self.parliament;
+            [self.navigationController pushViewController:proposeRenameUninhabitedViewController animated:YES];
             break;
         case ROW_SEIZE_STAR:
             ; //DO NOT REMOVE
