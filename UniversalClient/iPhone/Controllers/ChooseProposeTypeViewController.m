@@ -15,11 +15,13 @@
 #import "LETableViewCellButton.h"
 #import "ChooseWritTemplateViewController.h"
 #import "ProposeFireBfgViewController.h"
+#import "ProposeTransferStationOwnership.h"
 
 
 typedef enum {
     ROW_WRIT,
     ROW_FIRE_BFG,
+    ROW_TRANSFER_STATION_OWNERSHIP,
     ROW_COUNT,
 } ROWS;
 
@@ -73,6 +75,9 @@ typedef enum {
         case ROW_FIRE_BFG:
             button.textLabel.text = @"Fire BFG";
             break;
+        case ROW_TRANSFER_STATION_OWNERSHIP:
+            button.textLabel.text = @"Transfer Station Ownership";
+            break;
         default:
             button.textLabel.text = @"???";
             break;
@@ -98,6 +103,12 @@ typedef enum {
             ProposeFireBfgViewController *proposeFireBfgViewController = [ProposeFireBfgViewController create];
             proposeFireBfgViewController.parliament = self.parliament;
             [self.navigationController pushViewController:proposeFireBfgViewController animated:YES];
+            break;
+        case ROW_TRANSFER_STATION_OWNERSHIP:
+            ; //DO NOT REMOVE
+            ProposeTransferStationOwnership *proposeTransferStationOwnership = [ProposeTransferStationOwnership create];
+            proposeTransferStationOwnership.parliament = self.parliament;
+            [self.navigationController pushViewController:proposeTransferStationOwnership animated:YES];
             break;
         default:
             NSLog(@"Propose what???");

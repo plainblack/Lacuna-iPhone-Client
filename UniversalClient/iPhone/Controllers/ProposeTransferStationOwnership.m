@@ -1,41 +1,39 @@
 //
-//  ProposeFireBfgViewController.m
+//  ProposeTransferStationOwnership.m
 //  UniversalClient
 //
-//  Created by Kevin Runde on 4/9/11.
+//  Created by Kevin Runde on 4/10/11.
 //  Copyright 2011 n/a. All rights reserved.
 //
 
-#import "ProposeFireBfgViewController.h"
+#import "ProposeTransferStationOwnership.h"
 #import "LEMacros.h"
 #import "Util.h"
+#import "Session.h"
 #import "Parliament.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellButton.h"
-#import "LETableViewCellLabeledTextView.h"
-#import "LEBuildingProposeFireBfg.h"
+#import "LEBuildingProposeTransferStationOwnership.h"
 
 
 typedef enum {
-    SECTION_TARGET,
+    SECTION_TRANSFER_TO,
     SECTION_ACTIONS,
     SECTION_COUNT,
 } SECTION;
 
 
 typedef enum {
-    TARGET_ROW_BODY,
-    TARGET_ROW_REASON,
-    TARGET_ROW_COUNT
+    TRANSFER_TO_ROW_EMPIRE,
+    TRANSFER_TO_ROW_COUNT
 } TARGET_ROW;
 
 
-@implementation ProposeFireBfgViewController
+@implementation ProposeTransferStationOwnership
 
 
 @synthesize parliament;
-@synthesize selectedStar;
-@synthesize reasonCell;
+@synthesize selectedEmpire;
 
 
 #pragma mark -
@@ -44,13 +42,10 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.navigationItem.title = @"Fire BFG";
+	self.navigationItem.title = @"Transfer Station Ownership";
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleDone target:self action:@selector(propose)] autorelease];
-	
-	self.reasonCell = [LETableViewCellLabeledTextView getCellForTableView:self.tableView];
-	self.reasonCell.label.text = @"Reason";
-		
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Target"], [LEViewSectionTab tableView:self.tableView withText:@"Action"]);
+    
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Transfer To"], [LEViewSectionTab tableView:self.tableView withText:@"Action"]);
 }
 
 
@@ -69,8 +64,8 @@ typedef enum {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
-        case SECTION_TARGET:
-            return TARGET_ROW_COUNT;
+        case SECTION_TRANSFER_TO:
+            return TRANSFER_TO_ROW_COUNT;
             break;
         case SECTION_ACTIONS:
             return 1;
@@ -84,13 +79,10 @@ typedef enum {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
-        case SECTION_TARGET:
+        case SECTION_TRANSFER_TO:
             switch (indexPath.row) {
-                case TARGET_ROW_BODY:
+                case TRANSFER_TO_ROW_EMPIRE:
                     return [LETableViewCellButton getHeightForTableView:tableView];
-                    break;
-                case TARGET_ROW_REASON:
-                    return [LETableViewCellLabeledTextView getHeightForTableView:tableView];
                     break;
                 default:
                     return 0.0;
@@ -112,20 +104,17 @@ typedef enum {
     UITableViewCell *cell = nil;
     
     switch (indexPath.section) {
-        case SECTION_TARGET:
+        case SECTION_TRANSFER_TO:
             switch (indexPath.row) {
-                case TARGET_ROW_BODY:
+                case TRANSFER_TO_ROW_EMPIRE:
                     ; //DO NOT REMOVE
                     LETableViewCellButton *targetCell = [LETableViewCellButton getCellForTableView:tableView];
-                    if (self.selectedStar) {
-                        targetCell.textLabel.text = [self.selectedStar objectForKey:@"name"];
+                    if (self.selectedEmpire) {
+                        targetCell.textLabel.text = [self.selectedEmpire objectForKey:@"name"];
                     } else {
-                        targetCell.textLabel.text = @"Pick target";
+                        targetCell.textLabel.text = @"Pick Alliance Member";
                     }
                     cell = targetCell;
-                    break;
-                case TARGET_ROW_REASON:
-                    cell = self.reasonCell;
                     break;
             }
             break;
@@ -146,12 +135,13 @@ typedef enum {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
-        case SECTION_TARGET:
-            if (indexPath.row == TARGET_ROW_BODY) {
-                SelectStarInJurisdictionViewController *selectStarInJurisdictionViewController = [SelectStarInJurisdictionViewController create];
-                selectStarInJurisdictionViewController.parliament = self.parliament;
-                selectStarInJurisdictionViewController.delegate = self;
-                [self.navigationController pushViewController:selectStarInJurisdictionViewController animated:YES];
+        case SECTION_TRANSFER_TO:
+            if (indexPath.row == TRANSFER_TO_ROW_EMPIRE) {
+                Session *session = [Session sharedInstance];
+                SelectAllianceMemberViewController *selectAllianceMemberViewController = [SelectAllianceMemberViewController create];
+                selectAllianceMemberViewController.allianceId = session.body.allianceId;
+                selectAllianceMemberViewController.delegate = self;
+                [self.navigationController pushViewController:selectAllianceMemberViewController animated:YES];
             }
             break;
         case SECTION_ACTIONS:
@@ -174,40 +164,43 @@ typedef enum {
 }
 
 - (void)viewDidUnload {
-	self.reasonCell = nil;
     [super viewDidUnload];
 }
 
 
 - (void)dealloc {
-	self.reasonCell = nil;
 	self.parliament = nil;
-    self.selectedStar = nil;
+    self.selectedEmpire = nil;
     [super dealloc];
 }
 
 
-#pragma mark - SelectStarInJurisdictionViewControllerDelegate Methods
+#pragma mark - SelectAllianceMemberViewControllerDelegate
 
-- (void)selectedStarInJurisdiction:(NSDictionary *)star {
-    self.selectedStar = star;
-    [self.tableView reloadRowsAtIndexPaths:_array([NSIndexPath indexPathForRow:TARGET_ROW_BODY inSection:SECTION_TARGET]) withRowAnimation:UITableViewRowAnimationLeft];
+- (void)selectedAllianceMember:(NSDictionary *)empire {
+    self.selectedEmpire = empire;
+    [self.navigationController popViewControllerAnimated:YES];
+    [self.tableView reloadData];
 }
-
 
 
 #pragma mark -
 #pragma mark Action Methods
 
 - (IBAction)propose {
-    [self.parliament proposeFireBfgOn:[Util idFromDict:self.selectedStar named:@"id"] reason:self.reasonCell.textView.text target:self callback:@selector(proposedFireBfg:)];
+    if (isNotNull(self.selectedEmpire)) {
+        [self.parliament proposeTransferStationOwnershipTo:[Util idFromDict:self.selectedEmpire named:@"id"] target:self callback:@selector(proposedTransferStationOwnership:)];
+    } else {
+        UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must select an alliance member to transfer station ownership to." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+        [av show];
+    }
 }
 
 
 #pragma mark -
 #pragma mark Callback Methods
 
-- (void)proposedFireBfg:(LEBuildingProposeFireBfg *)request {
+- (void)proposedTransferStationOwnership:(LEBuildingProposeTransferStationOwnership *)request {
     if (![request wasError]) {
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -217,8 +210,8 @@ typedef enum {
 #pragma mark -
 #pragma mark Class Methods
 
-+ (ProposeFireBfgViewController *)create {
-	return [[[ProposeFireBfgViewController alloc] init] autorelease];
++ (ProposeTransferStationOwnership *)create {
+	return [[[ProposeTransferStationOwnership alloc] init] autorelease];
 }
 
 

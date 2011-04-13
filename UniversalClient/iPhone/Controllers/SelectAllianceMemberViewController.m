@@ -1,25 +1,26 @@
 //
-//  SelectStarInJurisdictionViewController.m
+//  SelectAllianceMemberViewController.m
 //  UniversalClient
 //
 //  Created by Kevin Runde on 4/10/11.
 //  Copyright 2011 n/a. All rights reserved.
 //
 
-#import "SelectStarInJurisdictionViewController.h"
+#import "SelectAllianceMemberViewController.h"
 #import "LEMacros.h"
-#import "Session.h"
 #import "Parliament.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellButton.h"
 #import "LETableViewCellLabeledText.h"
 #import "LETableViewCellTextEntry.h"
+#import "LEAllianceViewProfile.h"
 
 
-@implementation SelectStarInJurisdictionViewController
+@implementation SelectAllianceMemberViewController
 
 
-@synthesize parliament;
+@synthesize allianceId;
+@synthesize allianceMembers;
 @synthesize delegate;
 
 
@@ -29,27 +30,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.navigationItem.title = @"Select Star";
+	self.navigationItem.title = @"Select Alliance Member";
 	
 	self.sectionHeaders = [NSMutableArray array];
-    self->watchingStarsInJurisdiction = NO;
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self->watchingStarsInJurisdiction = YES;
-    [self.parliament addObserver:self forKeyPath:@"starsInJurisdiction" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
-    [self.parliament loadStarsInJurisdiction];
-}
-
-
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    if (self->watchingStarsInJurisdiction) {
-        [self.parliament removeObserver:self forKeyPath:@"starsInJurisdiction"];
-        self->watchingStarsInJurisdiction = NO;
-    }
+    //LOAD LIST OF ALLLIANCE MEMBERS HERE
+    [[[LEAllianceViewProfile alloc] initWithCallback:@selector(allianceLoaded:) target:self allianceId:self.allianceId] autorelease];
 }
 
 
@@ -63,13 +53,13 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return MAX(1, [self.parliament.starsInJurisdiction count]);
+    return MAX(1, [self.allianceMembers count]);
 }
 
 
 // Customize the appearance of table view cells.
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.parliament.starsInJurisdiction && [self.parliament.starsInJurisdiction count] > 0) {
+    if (self.allianceMembers && [self.allianceMembers count] > 0) {
         return [LETableViewCellButton getHeightForTableView:tableView];
     } else {
         return [LETableViewCellLabeledText getHeightForTableView:tableView];
@@ -81,21 +71,21 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = nil;
 	
-    if (self.parliament.starsInJurisdiction) {
-        if ([self.parliament.starsInJurisdiction count] > 0) {
-            NSDictionary *star = [self.parliament.starsInJurisdiction objectAtIndex:indexPath.row];
-            LETableViewCellButton *starButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-            starButtonCell.textLabel.text = [star objectForKey:@"name"];
-            cell = starButtonCell;
+    if (self.allianceMembers) {
+        if ([self.allianceMembers count] > 0) {
+            NSDictionary *allianceMember = [self.allianceMembers objectAtIndex:indexPath.row];
+            LETableViewCellButton *allianceMemberButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+            allianceMemberButtonCell.textLabel.text = [allianceMember objectForKey:@"name"];
+            cell = allianceMemberButtonCell;
         } else {
             LETableViewCellLabeledText *noMatchesCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-            noMatchesCell.content.text = @"No Stars In Jurisdiction";
+            noMatchesCell.content.text = @"No Alliance Members Found";
             cell = noMatchesCell;
         }
         
     } else {
         LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-        loadingCell.label.text = @"Stars";
+        loadingCell.label.text = @"Alliance Members";
         loadingCell.content.text = @"Loading";
         cell = loadingCell;
     }
@@ -108,9 +98,9 @@
 #pragma mark UITableViewDataSource Methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.parliament.starsInJurisdiction && [self.parliament.starsInJurisdiction count] > 0) {
-        NSDictionary *star = [self.parliament.starsInJurisdiction objectAtIndex:indexPath.row];
-        [delegate selectedStarInJurisdiction:star];
+    if (self.allianceMembers && [self.allianceMembers count] > 0) {
+        NSDictionary *allianceMember = [self.allianceMembers objectAtIndex:indexPath.row];
+        [delegate selectedAllianceMember:allianceMember];
     }
 }
 
@@ -131,26 +121,26 @@
 
 
 - (void)dealloc {
-	self.parliament = nil;
+    self.allianceId = nil;
+	self.allianceMembers = nil;
+    self.delegate = nil;
     [super dealloc];
 }
 
 
-#pragma mark -
-#pragma mark KVO Methods
+#pragma mark - Callbacks Methods
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-	if ([keyPath isEqual:@"starsInJurisdiction"]) {
-		[self.tableView reloadData];
-    }
+- (void)allianceLoaded:(LEAllianceViewProfile *)request {
+    self.allianceMembers = [request.profile objectForKey:@"members"];
+    [self.tableView reloadData];
 }
 
 
 #pragma mark -
 #pragma mark Class Methods
 
-+ (SelectStarInJurisdictionViewController *)create {
-	return [[[SelectStarInJurisdictionViewController alloc] init] autorelease];
++ (SelectAllianceMemberViewController *)create {
+	return [[[SelectAllianceMemberViewController alloc] init] autorelease];
 }
 
 

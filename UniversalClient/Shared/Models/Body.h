@@ -44,6 +44,15 @@
 @property (nonatomic, assign) BOOL ignoreIncomingForeignShipData;
 @property (nonatomic, assign) BOOL isPlanet;
 @property (nonatomic, assign) BOOL isSpaceStation;
+@property (nonatomic, retain) NSString *stationId;
+@property (nonatomic, retain) NSString *stationName;
+@property (nonatomic, retain) NSDecimalNumber *stationX;
+@property (nonatomic, retain) NSDecimalNumber *stationY;
+@property (nonatomic, retain) NSString *allianceId;
+@property (nonatomic, retain) NSString *allianceName;
+@property (nonatomic, retain) NSDecimalNumber *influenceTotal;
+@property (nonatomic, retain) NSDecimalNumber *influenceSpent;
+
 
 
 

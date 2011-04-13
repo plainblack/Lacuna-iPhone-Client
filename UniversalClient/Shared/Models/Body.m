@@ -46,6 +46,14 @@
 @synthesize ignoreIncomingForeignShipData;
 @dynamic isPlanet;
 @dynamic isSpaceStation;
+@synthesize stationId;
+@synthesize stationName;
+@synthesize stationX;
+@synthesize stationY;
+@synthesize allianceId;
+@synthesize allianceName;
+@synthesize influenceTotal;
+@synthesize influenceSpent;
 
 
 #pragma mark -
@@ -60,8 +68,8 @@
 }
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"id:%@, name:%@, type:%@, surfaceImageName:%@, empireId:%@, empireName:%@, x:%@, y:%@, starId:%@, starName:%@, orbit:%@, buildingCount:%@, needsSurfaceRefresh:%i, incomingForeignShips:%@, planetWater: %@, ores:%@", 
-			self.id, self.name, self.type, self.surfaceImageName, self.empireId, self.empireName, self.x, self.y, self.starId, self.starName, self.orbit, self.buildingCount, self.needsSurfaceRefresh, self.incomingForeignShips, self.planetWater, self.ores];
+	return [NSString stringWithFormat:@"id:%@, name:%@, type:%@, surfaceImageName:%@, empireId:%@, empireName:%@, x:%@, y:%@, starId:%@, starName:%@, orbit:%@, buildingCount:%@, needsSurfaceRefresh:%i, incomingForeignShips:%@, planetWater: %@, ores:%@, stationId:%@, stationName:%@, stationX:%@, stationY:%@, allianceId:%@, allianceName:%@, influenceTotal:%@, influenceSpent:%@", 
+			self.id, self.name, self.type, self.surfaceImageName, self.empireId, self.empireName, self.x, self.y, self.starId, self.starName, self.orbit, self.buildingCount, self.needsSurfaceRefresh, self.incomingForeignShips, self.planetWater, self.ores, self.stationId, self.stationName, self.stationX, self.stationY, self.allianceId, self.allianceName, self.influenceTotal, self.influenceSpent];
 }
 
 
@@ -89,6 +97,14 @@
 	[self.currentBuilding removeObserver:self forKeyPath:@"needsReload"];
 	self.currentBuilding = nil;
 	self.incomingForeignShips = nil;
+    self.stationId = nil;
+    self.stationName = nil;
+    self.stationX = nil;
+    self.stationY = nil;
+    self.allianceId = nil;
+    self.allianceName = nil;
+    self.influenceTotal = nil;
+    self.influenceSpent = nil;
 	[super dealloc];
 }
 
@@ -201,7 +217,37 @@
 			}
 		}
 	}
-
+    
+    NSMutableDictionary *stationData = [bodyData objectForKey:@"station"];
+    if (isNotNull(stationData)) {
+        self.stationId = [Util idFromDict:stationData named:@"id"];
+        self.stationName = [stationData objectForKey:@"name"];
+        self.stationX = [Util asNumber:[stationData objectForKey:@"x"]];
+        self.stationY = [Util asNumber:[stationData objectForKey:@"y"]];
+    } else {
+        self.stationId = nil;
+        self.stationName = nil;
+        self.stationX = nil;
+        self.stationY = nil;
+    }
+    
+    NSMutableDictionary *allianceData = [bodyData objectForKey:@"alliance"];
+    if (isNotNull(allianceData)) {
+        self.allianceId = [Util idFromDict:allianceData named:@"id"];
+        self.allianceName = [allianceData objectForKey:@"name"];
+    } else {
+        self.allianceId = nil;
+        self.allianceName = nil;
+    }
+    
+    NSMutableDictionary *influenceData = [bodyData objectForKey:@"influence"];
+    if (isNotNull(influenceData)) {
+        self.influenceTotal = [Util asNumber:[influenceData objectForKey:@"total"]];
+        self.influenceSpent = [Util asNumber:[influenceData objectForKey:@"spent"]];
+    } else {
+        self.influenceTotal = nil;
+        self.influenceSpent = nil;
+    }
 	
 	self.needsRefresh = YES;
 }
