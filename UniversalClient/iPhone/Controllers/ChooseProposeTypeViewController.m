@@ -23,18 +23,26 @@
 #import "ProposeExpelMemberViewController.h"
 #import "ProposeRenameAsteroidViewController.h"
 #import "ProposeRenameUninhabitedViewController.h"
+#import "LEBuildingProposeMembersOnlyMiningRights.h"
+#import "LEBuildingProposeMembersOnlyColonization.h"
+#import "ProposeEvictMiningPlatformViewController.h"
+#import "ProposeTaxationViewController.h"
 
 
 typedef enum {
     ROW_WRIT,
+    ROW_EVICT_MINING_PLATFORM,
     ROW_EXPEL_MEMBER,
     ROW_FIRE_BFG,
     ROW_INDUCT_MEMBER,
+    ROW_MEMBERS_ONLY_COLONIZATION_RIGHTS,
+    ROW_MEMBERS_ONLY_MINING_RIGHTS,
     ROW_NETWORK19_BROADCAST,
     ROW_RENAME_ASTEROID,
     ROW_RENAME_STAR,
     ROW_RENAME_UNINHABITED,
     ROW_SEIZE_STAR,
+    ROW_TAXATION,
     ROW_TRANSFER_STATION_OWNERSHIP,
     ROW_COUNT,
 } ROWS;
@@ -86,6 +94,9 @@ typedef enum {
         case ROW_WRIT:
             button.textLabel.text = @"Writ";
             break;
+        case ROW_EVICT_MINING_PLATFORM:
+            button.textLabel.text = @"Evict Mining Platform";
+            break;
         case ROW_EXPEL_MEMBER:
             button.textLabel.text = @"Expel Member";
             break;
@@ -94,6 +105,12 @@ typedef enum {
             break;
         case ROW_INDUCT_MEMBER:
             button.textLabel.text = @"Induct Member";
+            break;
+        case ROW_MEMBERS_ONLY_COLONIZATION_RIGHTS:
+            button.textLabel.text = @"Members Only Colonization Rights";
+            break;
+        case ROW_MEMBERS_ONLY_MINING_RIGHTS:
+            button.textLabel.text = @"Members Only Mining Rights";
             break;
         case ROW_NETWORK19_BROADCAST:
             button.textLabel.text = @"Network19 Broadcast";
@@ -109,6 +126,9 @@ typedef enum {
             break;
         case ROW_SEIZE_STAR:
             button.textLabel.text = @"Seize Star";
+            break;
+        case ROW_TAXATION:
+            button.textLabel.text = @"Taxation";
             break;
         case ROW_TRANSFER_STATION_OWNERSHIP:
             button.textLabel.text = @"Transfer Station Ownership";
@@ -133,6 +153,12 @@ typedef enum {
             chooseWritTemplateViewController.parliament = self.parliament;
             [self.navigationController pushViewController:chooseWritTemplateViewController animated:YES];
             break;
+        case ROW_EVICT_MINING_PLATFORM:
+            ; //DO NOT REMOVE
+            ProposeEvictMiningPlatformViewController *proposeEvictMiningPlatformViewController = [ProposeEvictMiningPlatformViewController create];
+            proposeEvictMiningPlatformViewController.parliament = self.parliament;
+            [self.navigationController pushViewController:proposeEvictMiningPlatformViewController animated:YES];
+            break;
         case ROW_EXPEL_MEMBER:
             ; //DO NOT REMOVE
             ProposeExpelMemberViewController *proposeExpelMemberViewController = [ProposeExpelMemberViewController create];
@@ -150,6 +176,12 @@ typedef enum {
             ProposeInductMemberViewController *proposeInductMemberViewController = [ProposeInductMemberViewController create];
             proposeInductMemberViewController.parliament = self.parliament;
             [self.navigationController pushViewController:proposeInductMemberViewController animated:YES];
+            break;
+        case ROW_MEMBERS_ONLY_COLONIZATION_RIGHTS:
+            [self.parliament proposeMembersOnlyColonizationTarget:self callback:@selector(proposedMembersOnlyColonization:)];
+            break;
+        case ROW_MEMBERS_ONLY_MINING_RIGHTS:
+            [self.parliament proposeMembersOnlyMiningRightsTarget:self callback:@selector(proposedMembersOnlyMiningRights:)];
             break;
         case ROW_NETWORK19_BROADCAST:
             ; //DO NOT REMOVE
@@ -180,6 +212,12 @@ typedef enum {
             ProposeSeizeStarViewController *proposeSeizeStarViewController = [ProposeSeizeStarViewController create];
             proposeSeizeStarViewController.parliament = self.parliament;
             [self.navigationController pushViewController:proposeSeizeStarViewController animated:YES];
+            break;
+        case ROW_TAXATION:
+            ; //DO NOT REMOVE
+            ProposeTaxationViewController *proposeTaxationViewController = [ProposeTaxationViewController create];
+            proposeTaxationViewController.parliament = self.parliament;
+            [self.navigationController pushViewController:proposeTaxationViewController animated:YES];
             break;
         case ROW_TRANSFER_STATION_OWNERSHIP:
             ; //DO NOT REMOVE
@@ -212,6 +250,22 @@ typedef enum {
 - (void)dealloc {
 	self.parliament = nil;
     [super dealloc];
+}
+
+
+#pragma mark - Callback Methods
+
+- (void)proposedMembersOnlyColonization:(LEBuildingProposeMembersOnlyColonization *)request {
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Proposed" message:@"Members only colonization rights has been proposed." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+    [av show];
+}
+
+
+- (void)proposedMembersOnlyMiningRights:(LEBuildingProposeMembersOnlyMiningRights *)request {
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Proposed" message:@"Members only mining rights has been proposed." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+    [av show];
 }
 
 

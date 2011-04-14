@@ -81,6 +81,7 @@
 		F629683613566026007DB3A6 /* ProposeExpelMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F629683513566026007DB3A6 /* ProposeExpelMemberViewController.m */; };
 		F629683913566560007DB3A6 /* ProposeRenameAsteroidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F629683813566560007DB3A6 /* ProposeRenameAsteroidViewController.m */; };
 		F629683C13566575007DB3A6 /* ProposeRenameUninhabitedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F629683B13566575007DB3A6 /* ProposeRenameUninhabitedViewController.m */; };
+		F629683F135682F1007DB3A6 /* ProposeEvictMiningPlatformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F629683E135682F1007DB3A6 /* ProposeEvictMiningPlatformViewController.m */; };
 		F6310B54124D6BCC00B5F77B /* LETableViewCellSavedEmpire.m in Sources */ = {isa = PBXBuildFile; fileRef = F6310B53124D6BCC00B5F77B /* LETableViewCellSavedEmpire.m */; };
 		F631A3D311754AEF005E40CC /* ViewBodyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F631A3D211754AEF005E40CC /* ViewBodyController.m */; };
 		F631A3F311755489005E40CC /* ViewBodyController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F631A3F211755489005E40CC /* ViewBodyController.xib */; };
@@ -477,6 +478,7 @@
 		F6EF716A11FE810900A93226 /* Ship.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF716911FE810900A93226 /* Ship.m */; };
 		F6F0E7E112D4A0380089C721 /* AssignSpyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F0E7E012D4A0380089C721 /* AssignSpyController.m */; };
 		F6F1C21D12326FB100D69BB6 /* ViewMedalsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F1C21C12326FB100D69BB6 /* ViewMedalsController.m */; };
+		F6F1CBFA13570FCA00D98F35 /* ProposeTaxationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F1CBF913570FCA00D98F35 /* ProposeTaxationViewController.m */; };
 		F6F296FB134F28B30002C508 /* LEBuildingViewLaws.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F296FA134F28B30002C508 /* LEBuildingViewLaws.m */; };
 		F6F296FE134F28D90002C508 /* LEBuildingProposeRepealLaw.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F296FD134F28D90002C508 /* LEBuildingProposeRepealLaw.m */; };
 		F6F29701134F2B2C0002C508 /* Law.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F29700134F2B2C0002C508 /* Law.m */; };
@@ -680,6 +682,8 @@
 		F629683813566560007DB3A6 /* ProposeRenameAsteroidViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProposeRenameAsteroidViewController.m; sourceTree = "<group>"; };
 		F629683A13566575007DB3A6 /* ProposeRenameUninhabitedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProposeRenameUninhabitedViewController.h; sourceTree = "<group>"; };
 		F629683B13566575007DB3A6 /* ProposeRenameUninhabitedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProposeRenameUninhabitedViewController.m; sourceTree = "<group>"; };
+		F629683D135682F0007DB3A6 /* ProposeEvictMiningPlatformViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProposeEvictMiningPlatformViewController.h; sourceTree = "<group>"; };
+		F629683E135682F1007DB3A6 /* ProposeEvictMiningPlatformViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProposeEvictMiningPlatformViewController.m; sourceTree = "<group>"; };
 		F6310B52124D6BCC00B5F77B /* LETableViewCellSavedEmpire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellSavedEmpire.h; sourceTree = "<group>"; };
 		F6310B53124D6BCC00B5F77B /* LETableViewCellSavedEmpire.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellSavedEmpire.m; sourceTree = "<group>"; };
 		F631A3D111754AEF005E40CC /* ViewBodyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewBodyController.h; sourceTree = "<group>"; };
@@ -1452,6 +1456,8 @@
 		F6F0E7E012D4A0380089C721 /* AssignSpyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssignSpyController.m; sourceTree = "<group>"; };
 		F6F1C21B12326FB100D69BB6 /* ViewMedalsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMedalsController.h; sourceTree = "<group>"; };
 		F6F1C21C12326FB100D69BB6 /* ViewMedalsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewMedalsController.m; sourceTree = "<group>"; };
+		F6F1CBF813570FCA00D98F35 /* ProposeTaxationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProposeTaxationViewController.h; sourceTree = "<group>"; };
+		F6F1CBF913570FCA00D98F35 /* ProposeTaxationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProposeTaxationViewController.m; sourceTree = "<group>"; };
 		F6F296F9134F28B30002C508 /* LEBuildingViewLaws.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewLaws.h; sourceTree = "<group>"; };
 		F6F296FA134F28B30002C508 /* LEBuildingViewLaws.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewLaws.m; sourceTree = "<group>"; };
 		F6F296FC134F28D90002C508 /* LEBuildingProposeRepealLaw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingProposeRepealLaw.h; sourceTree = "<group>"; };
@@ -2689,6 +2695,10 @@
 				F629683813566560007DB3A6 /* ProposeRenameAsteroidViewController.m */,
 				F629683A13566575007DB3A6 /* ProposeRenameUninhabitedViewController.h */,
 				F629683B13566575007DB3A6 /* ProposeRenameUninhabitedViewController.m */,
+				F629683D135682F0007DB3A6 /* ProposeEvictMiningPlatformViewController.h */,
+				F629683E135682F1007DB3A6 /* ProposeEvictMiningPlatformViewController.m */,
+				F6F1CBF813570FCA00D98F35 /* ProposeTaxationViewController.h */,
+				F6F1CBF913570FCA00D98F35 /* ProposeTaxationViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -3292,6 +3302,8 @@
 				F629683613566026007DB3A6 /* ProposeExpelMemberViewController.m in Sources */,
 				F629683913566560007DB3A6 /* ProposeRenameAsteroidViewController.m in Sources */,
 				F629683C13566575007DB3A6 /* ProposeRenameUninhabitedViewController.m in Sources */,
+				F629683F135682F1007DB3A6 /* ProposeEvictMiningPlatformViewController.m in Sources */,
+				F6F1CBFA13570FCA00D98F35 /* ProposeTaxationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

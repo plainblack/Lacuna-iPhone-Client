@@ -75,7 +75,7 @@
 - (void)proposeRenameAsteroid:(NSString *)asteroidId name:(NSString *)name target:(id)target callback:(SEL)callback;
 - (void)proposeRenameUninhabited:(NSString *)bodyId name:(NSString *)name target:(id)target callback:(SEL)callback;
 - (void)proposeMembersOnlyMiningRightsTarget:(id)target callback:(SEL)callback;
-- (void)proposeEvictMiningPlatform:(MiningPlatform *)miningPlatform target:(id)target callback:(SEL)callback;
+- (void)proposeEvictMiningPlatform:(NSString *)miningPlatformId target:(id)target callback:(SEL)callback;
 - (void)proposeTaxation:(NSDecimalNumber *)amount target:(id)target callback:(SEL)callback;
 - (void)proposeForeignAidTo:(NSString *)bodyId amount:(NSDecimalNumber *)amount target:(id)target callback:(SEL)callback;
 - (void)proposeMembersOnlyColonizationTarget:(id)target callback:(SEL)callback;

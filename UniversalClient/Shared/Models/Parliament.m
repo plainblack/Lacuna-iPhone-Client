@@ -335,10 +335,10 @@
 }
 
 
-- (void)proposeEvictMiningPlatform:(MiningPlatform *)miningPlatform target:(id)target callback:(SEL)callback {
+- (void)proposeEvictMiningPlatform:(NSString *)miningPlatformId target:(id)target callback:(SEL)callback {
     self.proposeEvictMiningPlatformTarget = target;
     self.proposeEvictMiningPlatformCallback = callback;
-    [[[LEBuildingProposeEvictMiningPlatform alloc] initWithCallback:@selector(proposedEvictMiningPlatform:) target:self buildingId:self.id buildingUrl:self.buildingUrl miningPlatformId:miningPlatform.id] autorelease];
+    [[[LEBuildingProposeEvictMiningPlatform alloc] initWithCallback:@selector(proposedEvictMiningPlatform:) target:self buildingId:self.id buildingUrl:self.buildingUrl miningPlatformId:miningPlatformId] autorelease];
 }
 
 
