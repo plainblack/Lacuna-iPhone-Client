@@ -17,7 +17,15 @@ typedef enum {
 	ROW_HAPPINESS,
 	ROW_RESOURCE,
 	ROW_POLLUTION,
-	ROW_MEDAL
+	ROW_MEDAL,
+	ROW_FACEBOOK_WALL_POSTS,
+	ROW_FOUND_NOTHING,
+	ROW_EXCAVATOR_RESOURCES,
+	ROW_EXCAVATOR_GLYPH,
+	ROW_EXCAVATOR_PLAN,
+	ROW_SPY_RECOVERY,
+	ROW_PROBE_DETECTED,
+	ROW_COUNT
 } ROW;
 
 @implementation ViewEmpireMailSettingController
@@ -27,6 +35,13 @@ typedef enum {
 @synthesize skipResourceWarningsCell;
 @synthesize skipPollutionWarningsCell;
 @synthesize skipMedalMessagesCell;
+@synthesize skipFacebookWallPostsCell;
+@synthesize skipFoundNothingCell;
+@synthesize skipExcavatorResourcesCell;
+@synthesize skipExcavatorGlyphCell;
+@synthesize skipExcavatorPlanCell;
+@synthesize skipSpyRecoveryCell;
+@synthesize skipProbeDetectedCell;
 @synthesize empireProfile;
 
 
@@ -65,6 +80,48 @@ typedef enum {
 	self.skipMedalMessagesCell.label.font = LABEL_FONT;
 	self.skipMedalMessagesCell.isSelected = !self.empireProfile.skipMedalMessages;
 	self.skipMedalMessagesCell.delegate = self;
+	
+	self.skipFacebookWallPostsCell = [LETableViewCellLabeledSwitch getCellForTableView:self.tableView];
+	self.skipFacebookWallPostsCell.label.text = @"Facebook Wall Posts";
+	self.skipFacebookWallPostsCell.label.font = LABEL_FONT;
+	self.skipFacebookWallPostsCell.isSelected = !self.empireProfile.skipFacebookWallPosts;
+	self.skipFacebookWallPostsCell.delegate = self;
+	
+	self.skipFoundNothingCell = [LETableViewCellLabeledSwitch getCellForTableView:self.tableView];
+	self.skipFoundNothingCell.label.text = @"Found Nothing";
+	self.skipFoundNothingCell.label.font = LABEL_FONT;
+	self.skipFoundNothingCell.isSelected = !self.empireProfile.skipFoundNothing;
+	self.skipFoundNothingCell.delegate = self;
+	
+	self.skipExcavatorResourcesCell = [LETableViewCellLabeledSwitch getCellForTableView:self.tableView];
+	self.skipExcavatorResourcesCell.label.text = @"Excavator Resources";
+	self.skipExcavatorResourcesCell.label.font = LABEL_FONT;
+	self.skipExcavatorResourcesCell.isSelected = !self.empireProfile.skipExcavatorResources;
+	self.skipExcavatorResourcesCell.delegate = self;
+	
+	self.skipExcavatorGlyphCell = [LETableViewCellLabeledSwitch getCellForTableView:self.tableView];
+	self.skipExcavatorGlyphCell.label.text = @"Excavator Glyphs";
+	self.skipExcavatorGlyphCell.label.font = LABEL_FONT;
+	self.skipExcavatorGlyphCell.isSelected = !self.empireProfile.skipExcavatorGlyph;
+	self.skipExcavatorGlyphCell.delegate = self;
+	
+	self.skipExcavatorPlanCell = [LETableViewCellLabeledSwitch getCellForTableView:self.tableView];
+	self.skipExcavatorPlanCell.label.text = @"Excavator Plan";
+	self.skipExcavatorPlanCell.label.font = LABEL_FONT;
+	self.skipExcavatorPlanCell.isSelected = !self.empireProfile.skipExcavatorPlan;
+	self.skipExcavatorPlanCell.delegate = self;
+	
+	self.skipSpyRecoveryCell = [LETableViewCellLabeledSwitch getCellForTableView:self.tableView];
+	self.skipSpyRecoveryCell.label.text = @"Spy Recovery";
+	self.skipSpyRecoveryCell.label.font = LABEL_FONT;
+	self.skipSpyRecoveryCell.isSelected = !self.empireProfile.skipSpyRecovery;
+	self.skipSpyRecoveryCell.delegate = self;
+	
+	self.skipProbeDetectedCell = [LETableViewCellLabeledSwitch getCellForTableView:self.tableView];
+	self.skipProbeDetectedCell.label.text = @"Probe Detected";
+	self.skipProbeDetectedCell.label.font = LABEL_FONT;
+	self.skipProbeDetectedCell.isSelected = !self.empireProfile.skipProbeDetected;
+	self.skipProbeDetectedCell.delegate = self;
 }
 
 
@@ -88,7 +145,7 @@ typedef enum {
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return 4;
+	return ROW_COUNT;
 }
 
 
@@ -113,6 +170,27 @@ typedef enum {
 			break;
 		case ROW_MEDAL:
 			cell = self.skipMedalMessagesCell;
+			break;
+		case ROW_FACEBOOK_WALL_POSTS:
+			cell = self.skipFacebookWallPostsCell;
+			break;
+		case ROW_FOUND_NOTHING:
+			cell = self.skipFoundNothingCell;
+			break;
+		case ROW_EXCAVATOR_RESOURCES:
+			cell = self.skipExcavatorResourcesCell;
+			break;
+		case ROW_EXCAVATOR_GLYPH:
+			cell = self.skipExcavatorGlyphCell;
+			break;
+		case ROW_EXCAVATOR_PLAN:
+			cell = self.skipExcavatorPlanCell;
+			break;
+		case ROW_SPY_RECOVERY:
+			cell = self.skipSpyRecoveryCell;
+			break;
+		case ROW_PROBE_DETECTED:
+			cell = self.skipProbeDetectedCell;
 			break;
 		default:
 			break;
@@ -142,6 +220,13 @@ typedef enum {
 	self.skipResourceWarningsCell = nil;
 	self.skipPollutionWarningsCell = nil;
 	self.skipMedalMessagesCell = nil;
+	self.skipFacebookWallPostsCell = nil;
+	self.skipFoundNothingCell = nil;
+	self.skipExcavatorResourcesCell = nil;
+	self.skipExcavatorGlyphCell = nil;
+	self.skipExcavatorPlanCell = nil;
+	self.skipSpyRecoveryCell = nil;
+	self.skipProbeDetectedCell = nil;
 	self.empireProfile = nil;
     [super dealloc];
 }
@@ -166,6 +251,27 @@ typedef enum {
 			break;
 		case ROW_MEDAL:
 			filterName = @"skip_medal_messages";
+			break;
+		case ROW_FACEBOOK_WALL_POSTS:
+			filterName = @"skip_facebook_wall_posts";
+			break;
+		case ROW_FOUND_NOTHING:
+			filterName = @"skip_found_nothing";
+			break;
+		case ROW_EXCAVATOR_RESOURCES:
+			filterName = @"skip_excavator_resources";
+			break;
+		case ROW_EXCAVATOR_GLYPH:
+			filterName = @"skip_excavator_glyph";
+			break;
+		case ROW_EXCAVATOR_PLAN:
+			filterName = @"skip_excavator_plan";
+			break;
+		case ROW_SPY_RECOVERY:
+			filterName = @"skip_spy_recovery";
+			break;
+		case ROW_PROBE_DETECTED:
+			filterName = @"skip_probe_detected";
 			break;
 		default:
 			break;

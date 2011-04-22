@@ -27,7 +27,13 @@
 @synthesize skipResourceWarnings;
 @synthesize skipPollutionWarnings;
 @synthesize skipMedalMessages;
-
+@synthesize skipFacebookWallPosts;
+@synthesize skipFoundNothing;
+@synthesize skipExcavatorResources;
+@synthesize skipExcavatorGlyph;
+@synthesize skipExcavatorPlan;
+@synthesize skipSpyRecovery;
+@synthesize skipProbeDetected;
 
 
 #pragma mark -
@@ -71,6 +77,13 @@
 	self.skipResourceWarnings = _boolv([data objectForKey:@"skip_resource_warnings"]);
 	self.skipPollutionWarnings = _boolv([data objectForKey:@"skip_pollution_warnings"]);
 	self.skipMedalMessages = _boolv([data objectForKey:@"skip_medal_messages"]);
+	self.skipFacebookWallPosts = _boolv([data objectForKey:@"skip_facebook_wall_posts"]);
+	self.skipFoundNothing = _boolv([data objectForKey:@"skip_found_nothing"]);
+	self.skipExcavatorResources = _boolv([data objectForKey:@"skip_excavator_resources"]);
+	self.skipExcavatorGlyph = _boolv([data objectForKey:@"skip_excavator_glyph"]);
+	self.skipExcavatorPlan = _boolv([data objectForKey:@"skip_excavator_plan"]);
+	self.skipSpyRecovery = _boolv([data objectForKey:@"skip_spy_recovery"]);
+	self.skipProbeDetected = _boolv([data objectForKey:@"skip_probe_detected"]);
 
 	NSMutableDictionary *medalsDictionary = [data objectForKey:@"medals"];
 	NSMutableArray *medalArray = [NSMutableArray arrayWithCapacity:[medalsDictionary count]];

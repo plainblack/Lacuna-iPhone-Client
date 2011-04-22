@@ -10,20 +10,6 @@
 
 
 @interface EmpireProfile : NSObject {
-	NSString *empireDescription;
-	NSString *status;
-	NSArray *medals;
-	NSString *city;
-	NSString *country;
-	NSString *skype;
-	NSString *playerName;
-	NSString *email;
-	NSString *sitterPassword;
-	NSString *notes;
-	BOOL skipHappinessWarnings;
-	BOOL skipResourceWarnings;
-	BOOL skipPollutionWarnings;
-	BOOL skipMedalMessages;
 }
 
 
@@ -41,6 +27,13 @@
 @property (nonatomic, assign) BOOL skipResourceWarnings;
 @property (nonatomic, assign) BOOL skipPollutionWarnings;
 @property (nonatomic, assign) BOOL skipMedalMessages;
+@property (nonatomic, assign) BOOL skipFacebookWallPosts;
+@property (nonatomic, assign) BOOL skipFoundNothing;
+@property (nonatomic, assign) BOOL skipExcavatorResources;
+@property (nonatomic, assign) BOOL skipExcavatorGlyph;
+@property (nonatomic, assign) BOOL skipExcavatorPlan;
+@property (nonatomic, assign) BOOL skipSpyRecovery;
+@property (nonatomic, assign) BOOL skipProbeDetected;
 
 
 - (void)parseData:(NSDictionary *)data;
