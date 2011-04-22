@@ -7464,7 +7464,7 @@
 			<array>
 				<dict>
 					<key>CF$UID</key>
-					<integer>138</integer>
+					<integer>16</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
@@ -9117,8 +9117,8 @@
 				</dict>
 			</array>
 		</dict>
-		<real>325130175.27433503</real>
-		<string>{3166, 2958}</string>
+		<real>325130205.28419101</real>
+		<string>{3166, 3419}</string>
 		<string>{7068, 0}</string>
 		<string>-actionSheet:clickedButtonAtIndex:</string>
 		<dict>
@@ -9153,7 +9153,7 @@
 				</dict>
 			</array>
 		</dict>
-		<string>{{0, 0}, {975, 984}}</string>
+		<string>{{0, 0}, {975, 1251}}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -9449,7 +9449,7 @@
 				</dict>
 			</array>
 		</dict>
-		<real>325130175.27420002</real>
+		<real>325130205.28406101</real>
 		<string>{0, 509}</string>
 		<string>{328, 0}</string>
 		<string>@interface ViewShipBuildQueueController</string>
@@ -9485,7 +9485,7 @@
 				</dict>
 			</array>
 		</dict>
-		<string>{{0, 0}, {1951, 984}}</string>
+		<string>{{0, 0}, {1951, 1251}}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -30429,7 +30429,7 @@
 				</dict>
 			</array>
 		</dict>
-		<real>325130175.27158803</real>
+		<real>325130205.28184199</real>
 		<string>{0, 509}</string>
 		<string>{328, 0}</string>
 		<dict>
