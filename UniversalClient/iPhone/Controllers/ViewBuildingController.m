@@ -208,7 +208,8 @@
 #pragma mark -
 #pragma mark Instance Methods
 
-- (IBAction)refresh {
+- (void)refresh {
+    NSLog(@"refresh called");
 	Session *session = [Session sharedInstance];
 	session.body.currentBuilding.needsReload = YES;
 }
@@ -254,8 +255,12 @@
 		self.watchedBuilding = newBuilding;
 
 		[self.tableView reloadData];
+        if (isNotNull(self.watchedBuilding)) {
+            [self stopLoading];
+        }
 	} else if ([keyPath isEqual:@"needsRefresh"]) {
 		[self.tableView reloadData];
+//        [self stopLoading];
 	} else if ([keyPath isEqual:@"demolished"]) {
 		Session *session = [Session sharedInstance];
 		if (session.body.currentBuilding.demolished) {

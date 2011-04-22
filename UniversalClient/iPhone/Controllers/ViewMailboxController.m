@@ -42,7 +42,7 @@
 	[self.navigationController.toolbar setTintColor:TINT_COLOR];
 
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
-	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadMessages)] autorelease];
+//	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadMessages)] autorelease];
 	
 	self.pageSegmentedControl = [[[UISegmentedControl alloc] initWithItems:_array(UP_ARROW_ICON, DOWN_ARROW_ICON)] autorelease];
 	[self.pageSegmentedControl addTarget:self action:@selector(switchPage) forControlEvents:UIControlEventValueChanged]; 
@@ -220,6 +220,13 @@
 }
 
 
+#pragma mark - PullRefreshTableViewController Methods
+
+- (void)refresh {
+    [self loadMessages];
+}
+
+
 #pragma mark -
 #pragma mark Instance Methods
 
@@ -301,7 +308,15 @@
 		[self setToolbarItems:self.otherMailboxBarButtonItems animated:NO];
 	}
 	
-	[self performSelector:@selector(delayedShowMessage) withObject:nil afterDelay:0.5];
+//	[self performSelector:@selector(delayedShowMessage) withObject:nil afterDelay:0.5];
+	if (self.showMessageId) {
+		ViewMailMessageWebController *viewMailMessageController = [ViewMailMessageWebController create];
+		viewMailMessageController.mailbox = self.mailbox;
+		viewMailMessageController.messageId = self.showMessageId;
+		self.showMessageId = nil;
+		[[self navigationController] pushViewController:viewMailMessageController animated:YES];
+	}
+    [self stopLoading];
 }
 
 

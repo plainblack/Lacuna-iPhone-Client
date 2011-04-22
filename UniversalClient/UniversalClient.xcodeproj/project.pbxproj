@@ -239,6 +239,8 @@
 		F6C3906311F1E36C004FB38F /* LETableViewCellMailSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C3906211F1E36C004FB38F /* LETableViewCellMailSelect.m */; };
 		F6C390C311F1ED14004FB38F /* LETableViewCellMailHeaders.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C390C211F1ED14004FB38F /* LETableViewCellMailHeaders.m */; };
 		F6C390EE11F23D54004FB38F /* LETableViewCellBuildQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C390ED11F23D54004FB38F /* LETableViewCellBuildQueueItem.m */; };
+		F6CE0C00136102730090AA30 /* PullRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CE0BFF136102730090AA30 /* PullRefreshTableViewController.m */; };
+		F6CE0C03136102CF0090AA30 /* LEPullToRefreshTableViewControllerGrouped.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CE0C02136102CF0090AA30 /* LEPullToRefreshTableViewControllerGrouped.m */; };
 		F6D02A191230698B000D8811 /* LEEmpireSendPasswordResetMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D02A181230698B000D8811 /* LEEmpireSendPasswordResetMessage.m */; };
 		F6D02A1C1230699F000D8811 /* LEEmpireResetPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D02A1B1230699F000D8811 /* LEEmpireResetPassword.m */; };
 		F6D162B7124E1D8700820AAE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D162B6124E1D8700820AAE /* Reachability.m */; };
@@ -988,6 +990,10 @@
 		F6C390C211F1ED14004FB38F /* LETableViewCellMailHeaders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellMailHeaders.m; sourceTree = "<group>"; };
 		F6C390EC11F23D54004FB38F /* LETableViewCellBuildQueueItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellBuildQueueItem.h; sourceTree = "<group>"; };
 		F6C390ED11F23D54004FB38F /* LETableViewCellBuildQueueItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellBuildQueueItem.m; sourceTree = "<group>"; };
+		F6CE0BFE136102730090AA30 /* PullRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullRefreshTableViewController.h; sourceTree = "<group>"; };
+		F6CE0BFF136102730090AA30 /* PullRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullRefreshTableViewController.m; sourceTree = "<group>"; };
+		F6CE0C01136102CF0090AA30 /* LEPullToRefreshTableViewControllerGrouped.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEPullToRefreshTableViewControllerGrouped.h; sourceTree = "<group>"; };
+		F6CE0C02136102CF0090AA30 /* LEPullToRefreshTableViewControllerGrouped.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEPullToRefreshTableViewControllerGrouped.m; sourceTree = "<group>"; };
 		F6D02A171230698B000D8811 /* LEEmpireSendPasswordResetMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireSendPasswordResetMessage.h; sourceTree = "<group>"; };
 		F6D02A181230698B000D8811 /* LEEmpireSendPasswordResetMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEEmpireSendPasswordResetMessage.m; sourceTree = "<group>"; };
 		F6D02A1A1230699F000D8811 /* LEEmpireResetPassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEEmpireResetPassword.h; sourceTree = "<group>"; };
@@ -2366,6 +2372,8 @@
 		F6E4D66A1168D4CD00980B59 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F6CE0BFE136102730090AA30 /* PullRefreshTableViewController.h */,
+				F6CE0BFF136102730090AA30 /* PullRefreshTableViewController.m */,
 				F6DF433B1228A53D00A526FD /* AcceptAllianceInviteController.h */,
 				F6DF433C1228A53D00A526FD /* AcceptAllianceInviteController.m */,
 				F6F8311212CE2D0A003A38D2 /* AcceptMarketTradeController.h */,
@@ -2704,6 +2712,8 @@
 				F6F1CBF913570FCA00D98F35 /* ProposeTaxationViewController.m */,
 				F6F1CBFB1357152F00D98F35 /* ProposeForeignAidViewController.h */,
 				F6F1CBFC1357152F00D98F35 /* ProposeForeignAidViewController.m */,
+				F6CE0C01136102CF0090AA30 /* LEPullToRefreshTableViewControllerGrouped.h */,
+				F6CE0C02136102CF0090AA30 /* LEPullToRefreshTableViewControllerGrouped.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -3310,6 +3320,8 @@
 				F629683F135682F1007DB3A6 /* ProposeEvictMiningPlatformViewController.m in Sources */,
 				F6F1CBFA13570FCA00D98F35 /* ProposeTaxationViewController.m in Sources */,
 				F6F1CBFD1357152F00D98F35 /* ProposeForeignAidViewController.m in Sources */,
+				F6CE0C00136102730090AA30 /* PullRefreshTableViewController.m in Sources */,
+				F6CE0C03136102CF0090AA30 /* LEPullToRefreshTableViewControllerGrouped.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

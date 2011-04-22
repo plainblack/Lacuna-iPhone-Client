@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LETableViewControllerGrouped.h"
+#import "LEPullToRefreshTableViewControllerGrouped.h"
 
 
 @class Building;
 
 
-@interface ViewBuildingController : LETableViewControllerGrouped <UIActionSheetDelegate> {
+@interface ViewBuildingController : LEPullToRefreshTableViewControllerGrouped <UIActionSheetDelegate> {
 	NSString *buildingId;
 	NSString *urlPart;
 	UITableView *selectedTableView;
@@ -27,9 +27,6 @@
 @property(nonatomic, retain) UITableView *selectedTableView;
 @property(nonatomic, retain) NSIndexPath *selectedIndexPath;
 @property(nonatomic, retain) Building *watchedBuilding;
-
-
-- (IBAction)refresh;
 
 
 + (ViewBuildingController *)create;

@@ -1,17 +1,17 @@
 //
-//  LETableViewControllerGrouped.m
+//  LEPullToRefreshTableViewControllerGrouped.m
 //  UniversalClient
 //
-//  Created by Kevin Runde on 4/11/10.
-//  Copyright 2010 n/a. All rights reserved.
+//  Created by Kevin Runde on 4/21/11.
+//  Copyright 2011 n/a. All rights reserved.
 //
 
-#import "LETableViewControllerGrouped.h"
+#import "LEPullToRefreshTableViewControllerGrouped.h"
 #import "LEViewSectionTab.h"
 #import "LEMacros.h"
 
 
-@implementation LETableViewControllerGrouped
+@implementation LEPullToRefreshTableViewControllerGrouped
 
 
 @synthesize sectionHeaders;
@@ -35,7 +35,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-
+    self.refreshHeaderView.backgroundColor = [UIColor whiteColor];
+    
 	self.view.autoresizesSubviews = YES;
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	self.tableView.backgroundColor = [UIColor clearColor];
@@ -63,7 +64,7 @@
 	} else {
 		return nil;
 	}
-
+    
 }
 
 
@@ -77,13 +78,13 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
 	/*
-	Removed for now. This is not working correctly need to research this more.
-	if (indexPath.row == 0) {
-		cell.backgroundColor = TOP_CELL_BACKGROUND_COLOR;
-	} else {
-		cell.backgroundColor = CELL_BACKGROUND_COLOR;
-	}
-	*/
+     Removed for now. This is not working correctly need to research this more.
+     if (indexPath.row == 0) {
+     cell.backgroundColor = TOP_CELL_BACKGROUND_COLOR;
+     } else {
+     cell.backgroundColor = CELL_BACKGROUND_COLOR;
+     }
+     */
 }
 
 
@@ -103,4 +104,3 @@
 
 
 @end
-

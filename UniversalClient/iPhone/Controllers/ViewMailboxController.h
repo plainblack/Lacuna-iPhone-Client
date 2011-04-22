@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "PullRefreshTableViewController.h"
 
 @class Mailbox;
 
 
-@interface ViewMailboxController : UITableViewController <UIActionSheetDelegate> {
+@interface ViewMailboxController : PullRefreshTableViewController <UIActionSheetDelegate> {
 	UISegmentedControl *pageSegmentedControl;
 	UISegmentedControl *mailboxSegmentedControl;
 	NSArray *inboxBarButtonItems;
