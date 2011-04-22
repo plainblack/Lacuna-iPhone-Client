@@ -11,11 +11,6 @@
 
 
 @interface Shipyard : Building {
-	NSMutableArray *buildQueue;
-	NSMutableArray *buildableShips;
-	NSDecimalNumber *docksAvailable;
-	NSInteger buildQueuePageNumber;
-	NSDecimalNumber *numBuildQueue;
 }
 
 
@@ -24,6 +19,7 @@
 @property (nonatomic, retain) NSDecimalNumber *docksAvailable;
 @property (nonatomic, assign) NSInteger buildQueuePageNumber;
 @property (nonatomic, retain) NSDecimalNumber *numBuildQueue;
+@property (nonatomic, retain) NSDecimalNumber *subsidizeCost;
 
 
 - (void)loadBuildQueueForPage:(NSInteger)pageNumber;
@@ -31,6 +27,7 @@
 - (void)buildShipOfType:(NSString *)shipType;
 - (bool)hasPreviousBuildQueuePage;
 - (bool)hasNextBuildQueuePage;
+- (void)subsidizeBuildQueue;
 
 
 @end

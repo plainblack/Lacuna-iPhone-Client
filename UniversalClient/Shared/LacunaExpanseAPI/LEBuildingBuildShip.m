@@ -22,6 +22,7 @@
 @synthesize result;
 @synthesize workData;
 @synthesize numberShipBuilding;
+@synthesize subsidizeBuildCost;
 @synthesize shipBuildQueue;
 
 
@@ -42,6 +43,7 @@
 	self.result = [self.response objectForKey:@"result"];
 	self.workData = [[self.result objectForKey:@"building"] objectForKey:@"work"];
 	self.numberShipBuilding = [Util asNumber:[result objectForKey:@"number_of_ships_building"]];
+    self.subsidizeBuildCost = [Util asNumber:[result objectForKey:@"cost_to_subsidize"]];
 	NSMutableArray *shipsTravellingData = [result objectForKey:@"ships_building"];
 	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[shipsTravellingData count]];
 	ShipBuildQueueItem *shipBuildQueueItem;
@@ -73,6 +75,7 @@
 	self.result = nil;
 	self.workData = nil;
 	self.numberShipBuilding = nil;
+    self.subsidizeBuildCost  = nil;
 	self.shipBuildQueue = nil;
 	[super dealloc];
 }

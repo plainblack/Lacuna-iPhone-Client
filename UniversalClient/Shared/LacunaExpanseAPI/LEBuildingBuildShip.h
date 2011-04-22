@@ -11,20 +11,17 @@
 
 
 @interface LEBuildingBuildShip : LERequest {
-	NSString *buildingId;
-	NSString *buildingUrl;
-	NSString *shipType;
-	NSMutableArray *shipBuildQueue;
 }
 
 
-@property(nonatomic, retain) NSString *buildingId;
-@property(nonatomic, retain) NSString *buildingUrl;
-@property(nonatomic, retain) NSString *shipType;
-@property(nonatomic, retain) NSMutableDictionary *result;
-@property(nonatomic, retain) NSMutableDictionary *workData;
-@property(nonatomic, retain) NSDecimalNumber *numberShipBuilding;
-@property(nonatomic, retain) NSMutableArray *shipBuildQueue;
+@property (nonatomic, retain) NSString *buildingId;
+@property (nonatomic, retain) NSString *buildingUrl;
+@property (nonatomic, retain) NSString *shipType;
+@property (nonatomic, retain) NSMutableDictionary *result;
+@property (nonatomic, retain) NSMutableDictionary *workData;
+@property (nonatomic, retain) NSDecimalNumber *numberShipBuilding;
+@property (nonatomic, retain) NSDecimalNumber *subsidizeBuildCost;
+@property (nonatomic, retain) NSMutableArray *shipBuildQueue;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl shipType:(NSString *)shipType;

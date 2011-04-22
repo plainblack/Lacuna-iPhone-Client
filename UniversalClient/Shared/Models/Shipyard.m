@@ -27,6 +27,7 @@
 @synthesize docksAvailable;
 @synthesize buildQueuePageNumber;
 @synthesize numBuildQueue;
+@synthesize subsidizeCost;
 
 
 #pragma mark -
@@ -37,6 +38,7 @@
 	self.buildableShips = nil;
 	self.docksAvailable = nil;
 	self.numBuildQueue = nil;
+    self.subsidizeCost = nil;
 	[super dealloc];
 }
 
@@ -56,7 +58,6 @@
 	NSMutableArray *actionRows = [NSMutableArray arrayWithCapacity:1];
 	[actionRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_SHIP_BUILD_QUEUE]];
 	[actionRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_BUILD_SHIP]];
-	[actionRows addObject:[NSDecimalNumber numberWithInt:BUILDING_ROW_SUBSIDIZE]];
 	
 	self.sections = _array(productionSection, _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", actionRows, @"rows"), [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
 }
@@ -66,7 +67,6 @@
 	switch (buildingRow) {
 		case BUILDING_ROW_VIEW_SHIP_BUILD_QUEUE:
 		case BUILDING_ROW_BUILD_SHIP:
-		case BUILDING_ROW_SUBSIDIZE:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		default:
@@ -90,12 +90,6 @@
 			LETableViewCellButton *buildShipCell = [LETableViewCellButton getCellForTableView:tableView];
 			buildShipCell.textLabel.text = @"Build Ship";
 			cell = buildShipCell;
-			break;
-		case BUILDING_ROW_SUBSIDIZE:
-			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
-			LETableViewCellButton *subsidizeButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-			subsidizeButtonCell.textLabel.text = @"Subsidize Build Queue";
-			cell = subsidizeButtonCell;
 			break;
 		default:
 			cell = [super tableView:tableView cellForBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex];
@@ -121,10 +115,6 @@
 			return buildShipTypeController;
 			return nil;
 			break;
-		case BUILDING_ROW_SUBSIDIZE:
-			[[[LEBuildingSubsidizeBuildQueue alloc] initWithCallback:@selector(subsidizedBuildQueue:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
-			return nil;
-			break;
 		default:
 			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];
 			break;
@@ -132,38 +122,7 @@
 }
 
 
-- (BOOL)isConfirmCell:(NSIndexPath *)indexPath {
-	NSDictionary *section = [self.sections objectAtIndex:indexPath.section];
-	NSArray *rows = [section objectForKey:@"rows"];
-	
-	switch (_intv([rows objectAtIndex:indexPath.row])) {
-		case BUILDING_ROW_SUBSIDIZE:
-			return YES;
-			break;
-		default:
-			return [super isConfirmCell:indexPath];
-			break;
-	}
-}
-
-
-- (NSString *)confirmMessage:(NSIndexPath *)indexPath {
-	NSDictionary *section = [self.sections objectAtIndex:indexPath.section];
-	NSArray *rows = [section objectForKey:@"rows"];
-	
-	switch (_intv([rows objectAtIndex:indexPath.row])) {
-		case BUILDING_ROW_SUBSIDIZE:
-			return @"This will cost you 1 essentia per ship building. Do you wish to continue?";
-			break;
-		default:
-			return [super confirmMessage:indexPath];
-			break;
-	}
-}
-
-
-#pragma mark -
-#pragma mark Instance Methods
+#pragma mark - Instance Methods
 
 - (void)loadBuildQueueForPage:(NSInteger)pageNumber {
 	self.buildQueuePageNumber = pageNumber;
@@ -190,39 +149,44 @@
 	return (self.buildQueuePageNumber < [Util numPagesForCount:_intv(self.numBuildQueue)]);
 }
 
+- (void)subsidizeBuildQueue {
+    [[[LEBuildingSubsidizeBuildQueue alloc] initWithCallback:@selector(subsidizedBuildQueue:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
+}
+
 
 #pragma mark -
 #pragma mark Callback Methods
 
-- (id)buildQueueLoaded:(LEBuildingViewShipBuildQueue *)request {
+- (void)buildQueueLoaded:(LEBuildingViewShipBuildQueue *)request {
 	self.buildQueue = request.shipBuildQueue;
 	self.numBuildQueue = request.numberShipBuilding;
-	return nil;
+    self.subsidizeCost = request.subsidizeBuildCost;
 }
 
 
-- (id)buildableShipsLoaded:(LEBuildingGetBuildableShips *)request {
+- (void)buildableShipsLoaded:(LEBuildingGetBuildableShips *)request {
 	self.docksAvailable = request.docksAvailable;
 	self.buildableShips = request.buildableShips;
-	return nil;
 }
 
 
-- (id)shipBuildQueued:(LEBuildingBuildShip *)request {
+- (void)shipBuildQueued:(LEBuildingBuildShip *)request {
 	self.buildQueue = request.shipBuildQueue;
 	self.numBuildQueue = request.numberShipBuilding;
+    self.subsidizeCost = request.subsidizeBuildCost;
 	[self parseWorkData:request.workData];
 	[[self findMapBuilding] updateWork:request.workData];
 	self.needsRefresh = YES;
-	return nil;
 }
 
 
-- (id)subsidizedBuildQueue:(LEBuildingSubsidizeBuildQueue *)request {
+- (void)subsidizedBuildQueue:(LEBuildingSubsidizeBuildQueue *)request {
 	[self parseData:request.result];
 	[[self findMapBuilding] parseData:[request.result objectForKey:@"building"]];
+    self.buildQueue = [NSArray array];
+    self.numBuildQueue = [NSDecimalNumber zero];
+    self.subsidizeCost = [NSDecimalNumber zero];
 	self.needsRefresh = YES;
-	return nil;
 }
 
 

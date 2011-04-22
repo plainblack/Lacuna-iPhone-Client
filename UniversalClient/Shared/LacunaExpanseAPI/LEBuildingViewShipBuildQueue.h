@@ -11,11 +11,6 @@
 
 
 @interface LEBuildingViewShipBuildQueue : LERequest {
-	NSString *buildingId;
-	NSString *buildingUrl;
-	NSInteger pageNumber;
-	NSMutableArray *shipBuildQueue;
-	NSDecimalNumber *numberShipBuilding;
 }
 
 
@@ -24,6 +19,7 @@
 @property (nonatomic, assign) NSInteger pageNumber;
 @property (nonatomic, retain) NSMutableArray *shipBuildQueue;
 @property (nonatomic, retain) NSDecimalNumber *numberShipBuilding;
+@property (nonatomic, retain) NSDecimalNumber *subsidizeBuildCost;
 
 
 - (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl pageNumber:(NSInteger)pageNumber;

@@ -13,9 +13,7 @@
 @class Shipyard;
 
 
-@interface ViewShipBuildQueueController : LETableViewControllerGrouped {
-	UISegmentedControl *pageSegmentedControl;
-	Shipyard *shipyard;
+@interface ViewShipBuildQueueController : LETableViewControllerGrouped <UIActionSheetDelegate> {
 }
 
 

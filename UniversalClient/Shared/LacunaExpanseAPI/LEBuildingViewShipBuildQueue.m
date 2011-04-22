@@ -21,6 +21,7 @@
 @synthesize pageNumber;
 @synthesize shipBuildQueue;
 @synthesize numberShipBuilding;
+@synthesize subsidizeBuildCost;
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl pageNumber:(NSInteger)inPageNumber {
@@ -38,17 +39,19 @@
 
 - (void)processSuccess {
 	NSDictionary *result = [self.response objectForKey:@"result"];
-	NSMutableArray *shipsTravellingData = [result objectForKey:@"ships_building"];
-	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[shipsTravellingData count]];
+	NSMutableArray *shipsBuildingData = [result objectForKey:@"ships_building"];
+	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[shipsBuildingData count]];
 	ShipBuildQueueItem *shipBuildQueueItem;
 	
-	for (NSDictionary *shipBuildQueueItemData in shipsTravellingData) {
+	for (NSDictionary *shipBuildQueueItemData in shipsBuildingData) {
 		shipBuildQueueItem = [[[ShipBuildQueueItem alloc] init] autorelease];
 		[shipBuildQueueItem parseData:shipBuildQueueItemData];
 		[tmp addObject:shipBuildQueueItem];
 	}
 	[tmp sortUsingDescriptors:_array([[[NSSortDescriptor alloc] initWithKey:@"dateCompleted" ascending:YES] autorelease])];
 	self.shipBuildQueue = tmp;
+    self.numberShipBuilding = [Util asNumber:[result objectForKey:@"number_of_ships_building"]];
+    self.subsidizeBuildCost = [Util asNumber:[result objectForKey:@"cost_to_subsidize"]];
 }
 
 
@@ -66,7 +69,8 @@
 	self.buildingId = nil;
 	self.buildingUrl = nil;
 	self.shipBuildQueue = nil;
-	self.numberShipBuilding = nil; //KEVIN THIS IS NOT USED?
+	self.numberShipBuilding = nil;
+    self.subsidizeBuildCost = nil;
 	[super dealloc];
 }
 

@@ -12,6 +12,7 @@
 #import "Shipyard.h"
 #import "ShipBuildQueueItem.h"
 #import "LETableViewCellLabeledText.h"
+#import "LETableViewCellButton.h"
 #import "LETableViewCellShipBuildQueueItem.h"
 
 
@@ -34,8 +35,7 @@ typedef enum {
 @synthesize shipyard;
 
 
-#pragma mark -
-#pragma mark View lifecycle
+#pragma mark - View lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -71,39 +71,33 @@ typedef enum {
 }
 
 
-#pragma mark -
-#pragma mark Table view data source
+#pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	if (self.shipyard && self.shipyard.buildQueue) {
-		if ([self.shipyard.buildQueue count] > 0) {
-			return [self.shipyard.buildQueue count];
-		} else {
-			return 1;
-		}
-		
-	} else {
-		return 1;
-	}
+    return [self.shipyard.buildQueue count] + 1;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return 1;
+    return 1;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (self.shipyard && self.shipyard.buildQueue) {
 		if ([self.shipyard.buildQueue count] > 0) {
-			switch (indexPath.row) {
-				case ROW_SHIP_BUILD_QUEUE_ITEM:
-					return [LETableViewCellShipBuildQueueItem getHeightForTableView:tableView];
-					break;
-				default:
-					return tableView.rowHeight;
-					break;
-			}
+            if (indexPath.section < [self.shipyard.buildQueue count]) {
+                switch (indexPath.row) {
+                    case ROW_SHIP_BUILD_QUEUE_ITEM:
+                        return [LETableViewCellShipBuildQueueItem getHeightForTableView:tableView];
+                        break;
+                    default:
+                        return tableView.rowHeight;
+                        break;
+                }
+            } else {
+                return [LETableViewCellButton getHeightForTableView:tableView];
+            }
 		} else {
 			return [LETableViewCellLabeledText getHeightForTableView:tableView];
 		}
@@ -111,7 +105,6 @@ typedef enum {
 	} else {
 		return [LETableViewCellLabeledText getHeightForTableView:tableView];
 	}
-	
 }
 
 
@@ -121,18 +114,24 @@ typedef enum {
 	
 	if (self.shipyard && self.shipyard.buildQueue) {
 		if ([self.shipyard.buildQueue count] > 0) {
-			ShipBuildQueueItem *currentShip = [self.shipyard.buildQueue objectAtIndex:indexPath.section];
-			switch (indexPath.row) {
-				case ROW_SHIP_BUILD_QUEUE_ITEM:
-					; //DO NOT REMOVE
-					LETableViewCellShipBuildQueueItem *shipBuildQueueCell = [LETableViewCellShipBuildQueueItem getCellForTableView:tableView];
-					[shipBuildQueueCell setShipBuildQueueItem:currentShip];
-					cell = shipBuildQueueCell;
-					break;
-				default:
-					cell = nil;
-					break;
-			}
+            if (indexPath.section < [self.shipyard.buildQueue count]) {
+                ShipBuildQueueItem *currentShip = [self.shipyard.buildQueue objectAtIndex:indexPath.section];
+                switch (indexPath.row) {
+                    case ROW_SHIP_BUILD_QUEUE_ITEM:
+                        ; //DO NOT REMOVE
+                        LETableViewCellShipBuildQueueItem *shipBuildQueueCell = [LETableViewCellShipBuildQueueItem getCellForTableView:tableView];
+                        [shipBuildQueueCell setShipBuildQueueItem:currentShip];
+                        cell = shipBuildQueueCell;
+                        break;
+                    default:
+                        cell = nil;
+                        break;
+                }
+            } else {
+                LETableViewCellButton *subsidizeCell = [LETableViewCellButton getCellForTableView:tableView];
+                subsidizeCell.textLabel.text = [NSString stringWithFormat:@"Subsidize (%@ essentia)", self.shipyard.subsidizeCost];
+                cell = subsidizeCell;
+            }
 		} else {
 			LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
 			loadingCell.label.text = @"Building";
@@ -151,8 +150,21 @@ typedef enum {
 }
 
 
-#pragma mark -
-#pragma mark Memory management
+#pragma mark - UITableViewDataSource Methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"TEST 1");
+	if (self.shipyard && self.shipyard.buildQueue && indexPath.section >= [self.shipyard.buildQueue count]) {
+        NSLog(@"TEST 2");
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"Subsidizing the ship build queue will cost %@ essentia. Are you sure you want to do this?", self.shipyard.subsidizeCost] delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+        actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+        [actionSheet showFromTabBar:self.tabBarController.tabBar];
+        [actionSheet release];
+    }
+}
+
+
+#pragma mark - Memory management
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -174,8 +186,7 @@ typedef enum {
 }
 
 
-#pragma mark -
-#pragma mark Callback Methods
+#pragma mark - Callback Methods
 
 - (void) switchPage {
 	switch (self.pageSegmentedControl.selectedSegmentIndex) {
@@ -192,8 +203,7 @@ typedef enum {
 }
 
 
-#pragma mark -
-#pragma mark Private Methods
+#pragma mark - Private Methods
 
 - (void)togglePageButtons {
 	[self.pageSegmentedControl setEnabled:[self.shipyard hasPreviousBuildQueuePage] forSegmentAtIndex:0];
@@ -201,16 +211,23 @@ typedef enum {
 }
 
 
-#pragma mark -
-#pragma mark Class Methods
+#pragma mark - UIActionSheetDelegate Methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
+        [self.shipyard subsidizeBuildQueue];
+	}
+}
+
+
+#pragma mark - Class Methods
 
 + (ViewShipBuildQueueController *)create {
 	return [[[ViewShipBuildQueueController alloc] init] autorelease];
 }
 
 
-#pragma mark -
-#pragma mark KVO Methods
+#pragma mark - KVO Methods
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ([keyPath isEqual:@"buildQueue"]) {
