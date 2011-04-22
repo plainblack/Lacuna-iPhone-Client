@@ -1,5 +1,5 @@
 //
-//  ProposeTaxationViewController.h
+//  ProposeForeignAidViewController.h
 //  UniversalClient
 //
 //  Created by Kevin Runde on 4/14/11.
@@ -8,16 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "LETableViewControllerGrouped.h"
+#import "SelectEmpireController.h"
 
 
 @class Parliament;
 @class LETableViewCellNumberEntry;
 
 
-@interface ProposeTaxationViewController : LETableViewControllerGrouped {
+@interface ProposeForeignAidViewController : LETableViewControllerGrouped <SelectEmpireControllerDelegate> {
 }
 
 
+@property (nonatomic, retain) NSDictionary *selectedEmpire;
 @property (nonatomic, retain) Parliament *parliament;
 @property (nonatomic, retain) LETableViewCellNumberEntry *amountCell;
 
@@ -25,7 +27,7 @@
 - (void)propose;
 
 
-+ (ProposeTaxationViewController *)create;
++ (ProposeForeignAidViewController *)create;
 
 
 @end

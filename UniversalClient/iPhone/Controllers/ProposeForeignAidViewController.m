@@ -1,37 +1,39 @@
 //
-//  ProposeTaxationViewController.m
+//  ProposeForeignAidViewController.m
 //  UniversalClient
 //
 //  Created by Kevin Runde on 4/14/11.
 //  Copyright 2011 n/a. All rights reserved.
 //
 
-#import "ProposeTaxationViewController.h"
+#import "ProposeForeignAidViewController.h"
 #import "LEMacros.h"
 #import "Util.h"
 #import "Parliament.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellButton.h"
 #import "LETableViewCellNumberEntry.h"
-#import "LEBuildingProposeTaxation.h"
+#import "LEBuildingProposeForeignAid.h"
 
 
 typedef enum {
-    SECTION_TAX,
+    SECTION_TARGET,
     SECTION_ACTIONS,
     SECTION_COUNT,
 } SECTION;
 
 
 typedef enum {
-    TAX_ROW_AMOUNT,
-    TAX_ROW_COUNT
-} TAX_ROW;
+    TARGET_ROW_TARGET,
+    TARGET_ROW_AMOUNT,
+    TARGET_ROW_COUNT
+} TARGET_ROW;
 
 
-@implementation ProposeTaxationViewController
+@implementation ProposeForeignAidViewController
 
 
+@synthesize selectedEmpire;
 @synthesize parliament;
 @synthesize amountCell;
 
@@ -42,7 +44,7 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.navigationItem.title = @"Taxation";
+	self.navigationItem.title = @"Foreign Aid";
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleDone target:self action:@selector(propose)] autorelease];
 	
 	self.amountCell = [LETableViewCellNumberEntry getCellForTableView:self.tableView viewController:self maxValue:[NSDecimalNumber decimalNumberWithString:@"999999999"]];
@@ -67,8 +69,8 @@ typedef enum {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
-        case SECTION_TAX:
-            return TAX_ROW_COUNT;
+        case SECTION_TARGET:
+            return TARGET_ROW_COUNT;
             break;
         case SECTION_ACTIONS:
             return 1;
@@ -82,9 +84,12 @@ typedef enum {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
-        case SECTION_TAX:
+        case SECTION_TARGET:
             switch (indexPath.row) {
-                case TAX_ROW_AMOUNT:
+                case TARGET_ROW_TARGET:
+                    return [LETableViewCellButton getHeightForTableView:tableView];
+                    break;
+                case TARGET_ROW_AMOUNT:
                     return [LETableViewCellNumberEntry getHeightForTableView:tableView];
                     break;
                 default:
@@ -107,9 +112,19 @@ typedef enum {
     UITableViewCell *cell = nil;
     
     switch (indexPath.section) {
-        case SECTION_TAX:
+        case SECTION_TARGET:
             switch (indexPath.row) {
-                case TAX_ROW_AMOUNT:
+                case TARGET_ROW_TARGET:
+                    ; //DO NOT REMOVE
+                    LETableViewCellButton *targetCell = [LETableViewCellButton getCellForTableView:tableView];
+                    if (isNotNull(self.selectedEmpire)) {
+                        targetCell.textLabel.text = [self.selectedEmpire objectForKey:@"name"];
+                    } else {
+                        targetCell.textLabel.text = @"Pick a body to send aid to";
+                    }
+                    cell = targetCell;
+                    break;
+                case TARGET_ROW_AMOUNT:
                     cell = self.amountCell;
                     break;
             }
@@ -131,6 +146,16 @@ typedef enum {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
+        case SECTION_TARGET:
+            switch (indexPath.row) {
+                case TARGET_ROW_TARGET:
+                    ; //DO NOT REMOVE
+                    SelectEmpireController *selectEmpireController = [SelectEmpireController create];
+                    selectEmpireController.delegate = self;
+                    [self.navigationController pushViewController:selectEmpireController animated:YES];
+                    break;
+            }
+            break;
         case SECTION_ACTIONS:
             if (indexPath.row == 0) {
                 [self propose];
@@ -160,6 +185,7 @@ typedef enum {
 - (void)dealloc {
 	self.amountCell = nil;
 	self.parliament = nil;
+    self.selectedEmpire = nil;
     [super dealloc];
 }
 
@@ -168,14 +194,24 @@ typedef enum {
 #pragma mark Action Methods
 
 - (IBAction)propose {
-    [self.parliament proposeTaxation:self.amountCell.numericValue target:self callback:@selector(proposedTaxation:)];
+    [self.parliament proposeForeignAidTo:@"" amount:self.amountCell.numericValue target:self callback:@selector(proposedForeignAid:)];
+}
+
+
+#pragma mark - SelectEmpireControllerDelegate Methods
+
+- (void)selectedEmpire:(NSDictionary *)empire {
+    self.selectedEmpire = empire;
+    NSLog(@"Selected Empire: %@", self.selectedEmpire);
+    [self.navigationController popViewControllerAnimated:YES];
+    [self.tableView reloadRowsAtIndexPaths:_array([NSIndexPath indexPathForRow:TARGET_ROW_TARGET inSection:SECTION_TARGET]) withRowAnimation:UITableViewRowAnimationLeft];
 }
 
 
 #pragma mark -
 #pragma mark Callback Methods
 
-- (void)proposedTaxation:(LEBuildingProposeTaxation *)request {
+- (void)proposedForeignAid:(LEBuildingProposeForeignAid *)request {
     if (![request wasError]) {
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -185,8 +221,8 @@ typedef enum {
 #pragma mark -
 #pragma mark Class Methods
 
-+ (ProposeTaxationViewController *)create {
-	return [[[ProposeTaxationViewController alloc] init] autorelease];
++ (ProposeForeignAidViewController *)create {
+	return [[[ProposeForeignAidViewController alloc] init] autorelease];
 }
 
 

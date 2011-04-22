@@ -27,6 +27,7 @@
 #import "LEBuildingProposeMembersOnlyColonization.h"
 #import "ProposeEvictMiningPlatformViewController.h"
 #import "ProposeTaxationViewController.h"
+#import "ProposeForeignAidViewController.h"
 
 
 typedef enum {
@@ -34,6 +35,7 @@ typedef enum {
     ROW_EVICT_MINING_PLATFORM,
     ROW_EXPEL_MEMBER,
     ROW_FIRE_BFG,
+    ROW_FOREIGN_AID,
     ROW_INDUCT_MEMBER,
     ROW_MEMBERS_ONLY_COLONIZATION_RIGHTS,
     ROW_MEMBERS_ONLY_MINING_RIGHTS,
@@ -103,6 +105,9 @@ typedef enum {
         case ROW_FIRE_BFG:
             button.textLabel.text = @"Fire BFG";
             break;
+        case ROW_FOREIGN_AID:
+            button.textLabel.text = @"Foreign Aid";
+            break;
         case ROW_INDUCT_MEMBER:
             button.textLabel.text = @"Induct Member";
             break;
@@ -170,6 +175,12 @@ typedef enum {
             ProposeFireBfgViewController *proposeFireBfgViewController = [ProposeFireBfgViewController create];
             proposeFireBfgViewController.parliament = self.parliament;
             [self.navigationController pushViewController:proposeFireBfgViewController animated:YES];
+            break;
+        case ROW_FOREIGN_AID:
+            ; //DO NOT REMOVE
+            ProposeForeignAidViewController *proposeForeignAidViewController = [ProposeForeignAidViewController create];
+            proposeForeignAidViewController.parliament = self.parliament;
+            [self.navigationController pushViewController:proposeForeignAidViewController animated:YES];
             break;
         case ROW_INDUCT_MEMBER:
             ; //DO NOT REMOVE

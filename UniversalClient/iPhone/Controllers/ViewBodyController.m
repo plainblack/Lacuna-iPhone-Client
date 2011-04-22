@@ -33,7 +33,9 @@ typedef enum {
 
 typedef enum {
 	BODY_OVERVIEW_ROW_NAME,
-	BODY_OVERVIEW_ROW_PRODUCTION
+	BODY_OVERVIEW_ROW_PRODUCTION,
+    BODY_OVERVIEW_ROW_ALLIANCE,
+    BODY_OVERVIEW_ROW_INFLUENCE,
 } BODY_OVERVIEW_ROW;
 
 
@@ -187,7 +189,11 @@ typedef enum {
 		switch (section) {
 			case SECTION_BODY_OVERVIEW:
 				if ([session.empire isMyBody:session.body.id]) {
-					return 2;
+                    if (session.body.isSpaceStation) {
+                        return 4;
+                    } else {
+                        return 2;
+                    }
 				} else {
 					return 1;
 				}
@@ -223,9 +229,17 @@ typedef enum {
 				case BODY_OVERVIEW_ROW_NAME:
 					return [LETableViewCellBody getHeightForTableView:tableView];
 					break;
-				default:
+                case BODY_OVERVIEW_ROW_PRODUCTION:
 					return [LETableViewCellCurrentResources getHeightForTableView:tableView];
 					break;
+                case BODY_OVERVIEW_ROW_ALLIANCE:
+                    return [LETableViewCellButton getHeightForTableView:tableView];
+                    break;
+                case BODY_OVERVIEW_ROW_INFLUENCE:
+                    return [LETableViewCellLabeledText getHeightForTableView:tableView];
+                    break;
+                default:
+                    return 0.0;
 			}
 			break;
 		case SECTION_ACTIONS:
@@ -259,12 +273,25 @@ typedef enum {
 					bodyCell.empireLabel.text = session.body.empireName;
 					cell = bodyCell;
 					break;
-				default:
+                case BODY_OVERVIEW_ROW_PRODUCTION:
 					; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 					LETableViewCellCurrentResources *resourceCell = [LETableViewCellCurrentResources getCellForTableView:tableView];
 					[resourceCell showBodyData:session.body];
 					cell = resourceCell;
-					break;
+                    break;
+                case BODY_OVERVIEW_ROW_ALLIANCE:
+					; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+					LETableViewCellButton *allianceButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+					allianceButtonCell.textLabel.text = session.body.allianceName;
+					cell = allianceButtonCell;
+                    break;
+                case BODY_OVERVIEW_ROW_INFLUENCE:
+					; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+					LETableViewCellLabeledText *influenceCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+					influenceCell.label.text = @"Influence";
+                    influenceCell.content.text = [NSString stringWithFormat:@"%@ / %@", [Util prettyNSDecimalNumber:session.body.influenceSpent], [Util prettyNSDecimalNumber:session.body.influenceTotal]];
+					cell = influenceCell;
+                    break;
 			}
 			break;
 		case SECTION_ACTIONS:
