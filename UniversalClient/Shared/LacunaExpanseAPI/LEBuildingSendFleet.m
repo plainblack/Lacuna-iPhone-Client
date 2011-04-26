@@ -22,10 +22,11 @@
 @synthesize targetStarId;
 @synthesize targetX;
 @synthesize targetY;
+@synthesize fleetSpeed;
 @synthesize fleet;
 
 
-- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget shipIds:(NSMutableArray *)inShipIds targetBodyName:(NSString *)inTargetBodyName targetBodyId:(NSString *)inTargetBodyId targetStarName:(NSString *)inTargetStarName targetStarId:(NSString *)inTargetStarId targetX:(NSDecimalNumber *)inTargetX targetY:(NSDecimalNumber *)inTargetY {
+- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget shipIds:(NSMutableArray *)inShipIds targetBodyName:(NSString *)inTargetBodyName targetBodyId:(NSString *)inTargetBodyId targetStarName:(NSString *)inTargetStarName targetStarId:(NSString *)inTargetStarId targetX:(NSDecimalNumber *)inTargetX targetY:(NSDecimalNumber *)inTargetY fleetSpeed:(NSDecimalNumber *)inFleetSpeed {
 	self.shipIds = inShipIds;
 	self.targetBodyName = inTargetBodyName;
 	self.targetBodyId = inTargetBodyId;
@@ -33,25 +34,27 @@
 	self.targetStarId = inTargetStarId;
 	self.targetX = inTargetX;
 	self.targetY = inTargetY;
+    self.fleetSpeed = inFleetSpeed;
 	return [super initWithCallback:inCallback target:inTarget];
 }
 
 
 - (id)params {
 	Session *session = [Session sharedInstance];
-	NSMutableArray *params = nil;
+	NSMutableArray *params = _array(session.sessionId, self.shipIds);
 	
 	if (self.targetBodyName) {
-		params = _array(session.sessionId, self.shipIds, _dict(self.targetBodyName, @"body_name"));
+		[params addObject:_dict(self.targetBodyName, @"body_name")];
 	} else if (self.targetBodyId) {
-		params = _array(session.sessionId, self.shipIds, _dict(self.targetBodyId, @"body_id"));
+		[params addObject:_dict(self.targetBodyId, @"body_id")];
 	} else if (self.targetStarName) {
-		params = _array(session.sessionId, self.shipIds, _dict(self.targetStarName, @"star_name"));
+		[params addObject:_dict(self.targetStarName, @"star_name")];
 	} else if (self.targetStarId) {
-		params = _array(session.sessionId, self.shipIds, _dict(self.targetStarId, @"star_id"));
+		[params addObject:_dict(self.targetStarId, @"star_id")];
 	} else if (self.targetX && self.targetY) {
-		params = _array(session.sessionId, self.shipIds, _dict(self.targetX, @"x", self.targetY, @"y"));
-	}
+		[params addObject:_dict(self.targetX, @"x", self.targetY, @"y")];
+    }
+    [params addObject:self.fleetSpeed];
 	
 	return params;
 }
@@ -81,6 +84,7 @@
 	self.targetStarId = nil;
 	self.targetX = nil;
 	self.targetY = nil;
+    self.fleetSpeed = nil;
 	self.fleet = nil;
 	[super dealloc];
 }

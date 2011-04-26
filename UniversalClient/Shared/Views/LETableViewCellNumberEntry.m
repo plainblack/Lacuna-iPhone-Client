@@ -66,6 +66,7 @@
 #pragma mark Instance Methods
 
 - (IBAction)editNumericValue {
+    NSLog(@"maxValue: %@", self.maxValue);
 	PickNumericValueController *pickNumericValueController = [PickNumericValueController createWithDelegate:self maxValue:self.maxValue hidesZero:NO showTenths:NO];
 	[self.viewController presentModalViewController:pickNumericValueController animated:YES];
 	[pickNumericValueController setValue:self.numericValue];

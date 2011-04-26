@@ -9,18 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "LETableViewControllerGrouped.h"
 #import "SelectStarInJurisdictionViewController.h"
+#import "SelectBodyForStarInJurisdictionViewController.h"
 
 
 @class Parliament;
 @class LETableViewCellLabeledTextView;
 
 
-@interface ProposeFireBfgViewController : LETableViewControllerGrouped <SelectStarInJurisdictionViewControllerDelegate> {
+@interface ProposeFireBfgViewController : LETableViewControllerGrouped <SelectStarInJurisdictionViewControllerDelegate, SelectBodyForStarInJurisdictionViewControllerDelegate> {
 }
 
 
 @property (nonatomic, retain) Parliament *parliament;
 @property (nonatomic, retain) NSDictionary *selectedStar;
+@property (nonatomic, retain) NSDictionary *selectedBody;
 @property (nonatomic, retain) LETableViewCellLabeledTextView *reasonCell;
 
 

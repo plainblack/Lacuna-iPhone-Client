@@ -61,7 +61,19 @@
 	self.nameLabel.text = ship.name;
 	self.typeLabel.text = [Util prettyCodeValue:ship.type];
 	if (isNotNull(ship.speed)) {
-		self.speedLabel.text = [Util prettyNSDecimalNumber:ship.speed];
+        if (isNotNull(ship.fleetSpeed)) {
+            if ([ship.fleetSpeed compare:[NSDecimalNumber zero]] != NSOrderedSame) {
+                if ([ship.fleetSpeed compare:ship.speed]==NSOrderedAscending) {
+                    self.speedLabel.text = [Util prettyNSDecimalNumber:ship.fleetSpeed];
+                } else {
+                    self.speedLabel.text = [Util prettyNSDecimalNumber:ship.speed];
+                }
+            } else {
+                self.speedLabel.text = [Util prettyNSDecimalNumber:ship.speed];
+            }
+        } else {
+            self.speedLabel.text = [Util prettyNSDecimalNumber:ship.speed];
+        }
 	} else {
 		self.speedLabel.text = @"Unknown";
 	}
@@ -148,7 +160,7 @@
 		cell.speedLabel.textColor = TEXT_SMALL_COLOR;
 		cell.speedLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.speedLabel];
-
+        
 		y += 15;
 		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, y, 100, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];

@@ -21,10 +21,11 @@
 @property(nonatomic, retain) NSString *targetStarId;
 @property(nonatomic, retain) NSDecimalNumber *targetX;
 @property(nonatomic, retain) NSDecimalNumber *targetY;
+@property(nonatomic, retain) NSDecimalNumber *fleetSpeed;
 @property(nonatomic, retain) NSMutableArray *fleet;
 
 
-- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target shipIds:(NSMutableArray *)shipIds targetBodyName:(NSString *)targetBodyName targetBodyId:(NSString *)targetBodyId targetStarName:(NSString *)targetStarName targetStarId:(NSString *)targetStarId targetX:(NSDecimalNumber *)targetX targetY:(NSDecimalNumber *)targetY;
+- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target shipIds:(NSMutableArray *)shipIds targetBodyName:(NSString *)targetBodyName targetBodyId:(NSString *)targetBodyId targetStarName:(NSString *)targetStarName targetStarId:(NSString *)targetStarId targetX:(NSDecimalNumber *)targetX targetY:(NSDecimalNumber *)targetY fleetSpeed:(NSDecimalNumber *)fleetSpeed;
 
 
 @end

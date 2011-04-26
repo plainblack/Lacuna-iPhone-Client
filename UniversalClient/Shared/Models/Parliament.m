@@ -244,6 +244,16 @@
 }
 
 
+- (void)loadMiningPlatformsForAsteroidInJurisdiction:(NSString *)asteroidId target:(id)target callback:(SEL)callback {
+    [[[LEBuidingGetMiningPlatformsForAsteroidInJurisdiction alloc] initWithCallback:callback target:target buildingId:self.id buildingUrl:self.buildingUrl asteroidId:asteroidId] autorelease];
+}
+
+
+- (void)loadBodiesForStarInJurisdiction:(NSString *)starId target:(id)target callback:(SEL)callback {
+    [[[LEBuildingGetBodiesForStarInJurisdiction alloc] initWithCallback:callback target:target buildingId:self.id buildingUrl:self.buildingUrl starId:starId] autorelease];
+}
+
+
 - (void)castVote:(BOOL)vote propositionId:(NSString *)propositionId target:(id)target callback:(SEL)callback {
     self.castVoteTarget = target;
     self.castVoteCallback = callback;

@@ -531,6 +531,7 @@
 		F6FB45A311F52C1F00E24EAC /* SearchForGlyphController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB45A111F52C1F00E24EAC /* SearchForGlyphController.m */; };
 		F6FB45A411F52C1F00E24EAC /* SearchForGlyphController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F6FB45A211F52C1F00E24EAC /* SearchForGlyphController.xib */; };
 		F6FB83A3131294C8007B7AAD /* LEBuildingRecallShip.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FB83A2131294C8007B7AAD /* LEBuildingRecallShip.m */; };
+		F6FD93C8136651A000BD1938 /* SelectBodyForStarInJurisdictionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FD93C71366519F00BD1938 /* SelectBodyForStarInJurisdictionViewController.m */; };
 		F6FD9E6B11D79FA0003785AD /* Building.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FD9E6A11D79FA0003785AD /* Building.m */; };
 		F6FD9E6E11D7A05D003785AD /* ResourceGeneration.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FD9E6D11D7A05D003785AD /* ResourceGeneration.m */; };
 		F6FD9E7B11D7A41E003785AD /* ResourceStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = F6FD9E7A11D7A41E003785AD /* ResourceStorage.m */; };
@@ -1556,6 +1557,8 @@
 		F6FB45A211F52C1F00E24EAC /* SearchForGlyphController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchForGlyphController.xib; sourceTree = "<group>"; };
 		F6FB83A1131294C8007B7AAD /* LEBuildingRecallShip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingRecallShip.h; sourceTree = "<group>"; };
 		F6FB83A2131294C8007B7AAD /* LEBuildingRecallShip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingRecallShip.m; sourceTree = "<group>"; };
+		F6FD93C61366519F00BD1938 /* SelectBodyForStarInJurisdictionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectBodyForStarInJurisdictionViewController.h; sourceTree = "<group>"; };
+		F6FD93C71366519F00BD1938 /* SelectBodyForStarInJurisdictionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectBodyForStarInJurisdictionViewController.m; sourceTree = "<group>"; };
 		F6FD9E6911D79FA0003785AD /* Building.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Building.h; sourceTree = "<group>"; };
 		F6FD9E6A11D79FA0003785AD /* Building.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Building.m; sourceTree = "<group>"; };
 		F6FD9E6C11D7A05D003785AD /* ResourceGeneration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceGeneration.h; sourceTree = "<group>"; };
@@ -2714,6 +2717,8 @@
 				F6F1CBFC1357152F00D98F35 /* ProposeForeignAidViewController.m */,
 				F6CE0C01136102CF0090AA30 /* LEPullToRefreshTableViewControllerGrouped.h */,
 				F6CE0C02136102CF0090AA30 /* LEPullToRefreshTableViewControllerGrouped.m */,
+				F6FD93C61366519F00BD1938 /* SelectBodyForStarInJurisdictionViewController.h */,
+				F6FD93C71366519F00BD1938 /* SelectBodyForStarInJurisdictionViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -3322,6 +3327,7 @@
 				F6F1CBFD1357152F00D98F35 /* ProposeForeignAidViewController.m in Sources */,
 				F6CE0C00136102730090AA30 /* PullRefreshTableViewController.m in Sources */,
 				F6CE0C03136102CF0090AA30 /* LEPullToRefreshTableViewControllerGrouped.m in Sources */,
+				F6FD93C8136651A000BD1938 /* SelectBodyForStarInJurisdictionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

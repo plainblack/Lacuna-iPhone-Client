@@ -18,8 +18,9 @@
 @property (nonatomic, retain) NSString *typeHumanized;
 @property (nonatomic, retain) NSString *task;
 @property (nonatomic, retain) NSDecimalNumber *speed;
-@property (nonatomic, retain) NSDecimalNumber *holdSize;
+@property (nonatomic, retain) NSDecimalNumber *fleetSpeed;
 @property (nonatomic, retain) NSDecimalNumber *stealth;
+@property (nonatomic, retain) NSDecimalNumber *holdSize;
 @property (nonatomic, retain) NSDecimalNumber *combat;
 @property (nonatomic, retain) NSDecimalNumber *maxOccupants;
 @property (nonatomic, retain) NSMutableArray *payload;

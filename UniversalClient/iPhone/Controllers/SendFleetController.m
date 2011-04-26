@@ -22,6 +22,7 @@
 
 typedef enum {
 	SECTION_SEND_TO,
+	SECTION_FLEET_SPEED,
 	SECTION_FLEET,
 } SECTIONS;
 
@@ -34,6 +35,7 @@ typedef enum {
 @interface SendFleetController(PrivateMethods)
 
 - (void)sendFleet;
+- (void)addSelectedShip;
 
 @end
 
@@ -41,6 +43,7 @@ typedef enum {
 @implementation SendFleetController
 
 
+@synthesize fleetSpeedCell;
 @synthesize availableShips;
 @synthesize shipTravelTimes;
 @synthesize mapItem;
@@ -60,7 +63,11 @@ typedef enum {
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStylePlain target:self action:@selector(sendFleet)] autorelease];
 	
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Send From"], [LEViewSectionTab tableView:self.tableView withText:@"Fleet To Send"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Send From"], [LEViewSectionTab tableView:self.tableView withText:@"Fleet Speed"], [LEViewSectionTab tableView:self.tableView withText:@"Fleet To Send"]);
+    
+    self.fleetSpeedCell = [LETableViewCellNumberEntry getCellForTableView:self.tableView viewController:self maxValue:[NSDecimalNumber zero]] ;
+    self.fleetSpeedCell.label.text = @"Fleet Speed";
+    [self.fleetSpeedCell newNumericValue:[NSDecimalNumber zero]];
 }
 
 
@@ -92,12 +99,12 @@ typedef enum {
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	if (self.availableShips) {
 		if ([self.availableShips count] > 0) {
-			return [self.availableShips count] + 2;
+			return [self.availableShips count] + 3;
 		} else {
-			return 3;
+			return 4;
 		}
 	} else {
-		return 3;
+		return 4;
 	}
 }
 
@@ -105,6 +112,9 @@ typedef enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	switch (section) {
 		case SECTION_SEND_TO:
+			return 1;
+			break;
+		case SECTION_FLEET_SPEED:
 			return 1;
 			break;
 		case SECTION_FLEET:
@@ -130,6 +140,9 @@ typedef enum {
 	switch (indexPath.section) {
 		case SECTION_SEND_TO:
 			return [LETableViewCellButton getHeightForTableView:tableView];
+			break;
+		case SECTION_FLEET_SPEED:
+			return [LETableViewCellNumberEntry getHeightForTableView:tableView];
 			break;
 		case SECTION_FLEET:
 			if ([self.fleetShips count] > 0) {
@@ -186,6 +199,9 @@ typedef enum {
 			}
 			cell = selectColonyButton;
 			break;
+        case SECTION_FLEET_SPEED:
+            cell = self.fleetSpeedCell;
+            break;
 		case SECTION_FLEET:
 			if ([self.fleetShips count] > 0) {
 				Ship *currentFleetShip = [self.fleetShips objectAtIndex:(indexPath.row)];
@@ -202,7 +218,7 @@ typedef enum {
 		default:
 			if (self.availableShips) {
 				if ([self.availableShips count] > 0) {
-					Ship *currentShip = [self.availableShips objectAtIndex:(indexPath.section-2)];
+					Ship *currentShip = [self.availableShips objectAtIndex:(indexPath.section-3)];
 					switch (indexPath.row) {
 						case ROW_SHIP_INFO:
 							; //DO NOT REMOVE
@@ -259,7 +275,7 @@ typedef enum {
 		default:
 			if (self.availableShips) {
 				if ([self.availableShips count] > 0) {
-					self.selectedShip = [self.availableShips objectAtIndex:(indexPath.section-2)];
+					self.selectedShip = [self.availableShips objectAtIndex:(indexPath.section-3)];
 					Session *session = [Session sharedInstance];
 					if (session.empire.isIsolationist && ([self.selectedShip.type isEqualToString:@"colony_ship"] || [self.selectedShip.type isEqualToString:@"short_range_colony_ship"])) {
 						UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Sending out a Colony Ship or Short Range Colongy Ship will take you out of Isolationist mode. This means spies can be sent to your Colonies. Are you sure you want to do this?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
@@ -267,13 +283,48 @@ typedef enum {
 						[actionSheet showFromTabBar:self.tabBarController.tabBar];
 						[actionSheet release];
 					} else {
-						[self.fleetShips addObject:self.selectedShip];
-						[self.availableShips removeObject:self.selectedShip];
-						[tableView reloadData];
+                        [self addSelectedShip];
 					}
 				}
 			}
 			break;
+	}
+}
+
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+	switch (indexPath.section) {
+		case SECTION_FLEET:
+			return [self.fleetShips count] > 0 && indexPath.row < [self.fleetShips count];
+			break;
+		default:
+			return NO;
+			break;
+	}
+}
+
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+	if ( ([self.fleetShips count] > 0 && indexPath.row < [self.fleetShips count]) && (editingStyle == UITableViewCellEditingStyleDelete) ) {
+		Ship *ship = [self.fleetShips objectAtIndex:indexPath.row];
+		[self.availableShips addObject:ship];
+		[self.fleetShips removeObject:ship];
+        if ([ship.speed compare:self.fleetSpeedCell.maxValue] == NSOrderedSame) {
+            __block NSDecimalNumber *minSpeed = nil;
+            [self.fleetShips enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                Ship *ship = (Ship *)obj;
+                if (minSpeed == nil) {
+                    minSpeed = ship.speed;
+                } else if ([ship.speed compare:minSpeed] == NSOrderedAscending) {
+                    minSpeed = ship.speed;
+                }
+            }];
+            self.fleetSpeedCell.maxValue = minSpeed;
+            if ([ship.speed compare:self.fleetSpeedCell.numericValue] == NSOrderedSame) {
+                [self.fleetSpeedCell newNumericValue:minSpeed];
+            }
+        }
+		[tableView reloadData];
 	}
 }
 
@@ -289,6 +340,7 @@ typedef enum {
 }
 
 - (void)viewDidUnload {
+    self.fleetSpeedCell = nil;
 	self.availableShips = nil;
 	self.shipTravelTimes = nil;
     [super viewDidUnload];
@@ -296,6 +348,7 @@ typedef enum {
 
 
 - (void)dealloc {
+    self.fleetSpeedCell = nil;
 	self.availableShips = nil;
 	self.shipTravelTimes = nil;
 	self.mapItem = nil;
@@ -326,36 +379,12 @@ typedef enum {
 }
 
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-	switch (indexPath.section) {
-		case SECTION_FLEET:
-			return [self.fleetShips count] > 0 && indexPath.row < [self.fleetShips count];
-			break;
-		default:
-			return NO;
-			break;
-	}
-}
-
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-	if ( ([self.fleetShips count] > 0 && indexPath.row < [self.fleetShips count]) && (editingStyle == UITableViewCellEditingStyleDelete) ) {
-		Ship *ship = [self.fleetShips objectAtIndex:indexPath.row];
-		[self.availableShips addObject:ship];
-		[self.fleetShips removeObject:ship];
-		[tableView reloadData];
-	}
-}
-
-
 #pragma mark -
 #pragma mark UIActionSheetDelegate Methods
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
-		[self.fleetShips addObject:self.selectedShip];
-		[self.availableShips removeObject:self.selectedShip];
-		[self.tableView reloadData];
+        [self addSelectedShip];
 	}
 }
 
@@ -382,7 +411,7 @@ typedef enum {
 	[self.tableView reloadData];
 }
 
-- (void)shipLaunched:(LEBuildingSendFleet *)request {
+- (void)fleetLaunched:(LEBuildingSendFleet *)request {
 	[self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -398,10 +427,24 @@ typedef enum {
 	}];
 	
 	if ([self.mapItem.type isEqualToString:@"star"]) {
-		[[[LEBuildingSendFleet alloc] initWithCallback:@selector(shipLaunched:) target:self shipIds:fleetShipIds targetBodyName:nil targetBodyId:nil targetStarName:nil targetStarId:self.mapItem.id targetX:nil targetY:nil] autorelease];
+		[[[LEBuildingSendFleet alloc] initWithCallback:@selector(fleetLaunched:) target:self shipIds:fleetShipIds targetBodyName:nil targetBodyId:nil targetStarName:nil targetStarId:self.mapItem.id targetX:nil targetY:nil fleetSpeed:self.fleetSpeedCell.numericValue] autorelease];
 	} else {
-		[[[LEBuildingSendFleet alloc] initWithCallback:@selector(shipLaunched:) target:self shipIds:fleetShipIds targetBodyName:nil targetBodyId:self.mapItem.id targetStarName:nil targetStarId:nil targetX:nil targetY:nil] autorelease];
+		[[[LEBuildingSendFleet alloc] initWithCallback:@selector(fleetLaunched:) target:self shipIds:fleetShipIds targetBodyName:nil targetBodyId:self.mapItem.id targetStarName:nil targetStarId:nil targetX:nil targetY:nil fleetSpeed:self.fleetSpeedCell.numericValue] autorelease];
 	}
+}
+
+
+- (void)addSelectedShip {
+    if ( ([self.fleetShips  count] == 0) || ([self.selectedShip.speed compare:self.fleetSpeedCell.maxValue] == NSOrderedAscending)) {
+        self.fleetSpeedCell.maxValue = self.selectedShip.speed;
+    }
+    if (([self.selectedShip.speed compare:self.fleetSpeedCell.numericValue] == NSOrderedAscending) ||
+        ([self.fleetSpeedCell.numericValue compare:[NSDecimalNumber zero]] == NSOrderedSame)) {
+        [self.fleetSpeedCell newNumericValue:self.selectedShip.speed ];
+    }
+    [self.fleetShips addObject:self.selectedShip];
+    [self.availableShips removeObject:self.selectedShip];
+    [self.tableView reloadData];
 }
 
 

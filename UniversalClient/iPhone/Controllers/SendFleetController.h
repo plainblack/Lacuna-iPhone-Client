@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LETableViewControllerGrouped.h"
 #import "PickColonyController.h"
+#import "LETableViewCellNumberEntry.h"
 
 
 @class BaseMapItem;
@@ -19,6 +20,7 @@
 }
 
 
+@property (nonatomic, retain) IBOutlet LETableViewCellNumberEntry *fleetSpeedCell;
 @property (nonatomic, retain) NSMutableArray *availableShips;
 @property (nonatomic, retain) NSMutableDictionary *shipTravelTimes;
 @property (nonatomic, retain) BaseMapItem *mapItem;

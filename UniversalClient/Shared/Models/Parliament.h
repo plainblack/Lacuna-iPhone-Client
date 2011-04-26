@@ -62,6 +62,8 @@
 - (void)loadPropositions;
 - (void)loadLawsForStationId:(NSString *)stationId;
 - (void)loadStarsInJurisdiction;
+- (void)loadBodiesForStarInJurisdiction:(NSString *)starId target:(id)target callback:(SEL)callback;
+- (void)loadMiningPlatformsForAsteroidInJurisdiction:(NSString *)asteroidId target:(id)target callback:(SEL)callback;
 - (void)castVote:(BOOL)vote propositionId:(NSString *)propositionId target:(id)target callback:(SEL)callback;
 - (void)repealLaw:(Law *)law target:(id)target callback:(SEL)callback;
 - (void)proposeWritTitle:(NSString *)title description:(NSString *)description target:(id)target callback:(SEL)callback;

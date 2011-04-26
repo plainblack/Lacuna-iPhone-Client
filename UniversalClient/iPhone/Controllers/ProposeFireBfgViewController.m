@@ -35,6 +35,7 @@ typedef enum {
 
 @synthesize parliament;
 @synthesize selectedStar;
+@synthesize selectedBody;
 @synthesize reasonCell;
 
 
@@ -183,6 +184,7 @@ typedef enum {
 	self.reasonCell = nil;
 	self.parliament = nil;
     self.selectedStar = nil;
+    self.selectedBody = nil;
     [super dealloc];
 }
 
@@ -191,9 +193,20 @@ typedef enum {
 
 - (void)selectedStarInJurisdiction:(NSDictionary *)star {
     self.selectedStar = star;
-    [self.tableView reloadRowsAtIndexPaths:_array([NSIndexPath indexPathForRow:TARGET_ROW_BODY inSection:SECTION_TARGET]) withRowAnimation:UITableViewRowAnimationLeft];
+    SelectBodyForStarInJurisdictionViewController *vc = [SelectBodyForStarInJurisdictionViewController create];
+    vc.parliament = self.parliament;
+    vc.star = self.selectedStar;
+    vc.delegate = self;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
+
+#pragma mark - SelectBodyForStarInJurisdictionViewControllerDelegate Methods
+
+- (void)selectedBodyForStarInJurisdiction:(NSDictionary *)body {
+    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:([self.navigationController.viewControllers count]-3)] animated:YES];
+    [self.tableView reloadRowsAtIndexPaths:_array([NSIndexPath indexPathForRow:TARGET_ROW_BODY inSection:SECTION_TARGET]) withRowAnimation:UITableViewRowAnimationLeft];
+}
 
 
 #pragma mark -

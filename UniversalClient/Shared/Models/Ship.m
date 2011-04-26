@@ -20,6 +20,7 @@
 @synthesize typeHumanized;
 @synthesize task;
 @synthesize speed;
+@synthesize fleetSpeed;
 @synthesize holdSize;
 @synthesize stealth;
 @synthesize combat;
@@ -47,7 +48,7 @@
 #pragma mark NSObject Methods
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"id:%@, name:%@, type:%@, typeHumanized:%@, task:%@, speed:%@, holdSize:%@, stealth:%@, combat: %@, maxOccupants:%@, dateStarted:%@, dateAvailable:%@, dateArrives:%@, fromId:%@, fromType:%@, fromName:%@, fromEmpireId:%@ fromEmpireName:%@, toId:%@, toType:%@, toName:%@, payload:%@, obitingId:%@, obitingType:%@, obitingName:%@, orbitingX:%@, orbitingY:%@", 
+	return [NSString stringWithFormat:@"id:%@, name:%@, type:%@, typeHumanized:%@, task:%@, speed:%@, fleetSpeed:%@, holdSize:%@, stealth:%@, combat: %@, maxOccupants:%@, dateStarted:%@, dateAvailable:%@, dateArrives:%@, fromId:%@, fromType:%@, fromName:%@, fromEmpireId:%@ fromEmpireName:%@, toId:%@, toType:%@, toName:%@, payload:%@, obitingId:%@, obitingType:%@, obitingName:%@, orbitingX:%@, orbitingY:%@", 
 			self.id, self.name, self.type, self.typeHumanized, self.task, self.speed, self.holdSize, self.stealth, self.combat, self.maxOccupants, self.dateStarted, self.dateAvailable, self.dateArrives, self.fromId, self.fromType, self.fromName, self.fromEmpireId, self.fromEmpireName, self.toId, self.toType, self.toName, self.payload, self.orbitingId, self.orbitingType, self.orbitingName, self.orbitingX, self.orbitingY];
 }
 
@@ -59,6 +60,7 @@
 	self.typeHumanized = nil;
 	self.task = nil;
 	self.speed = nil;
+    self.fleetSpeed = nil;
 	self.holdSize = nil;
 	self.stealth = nil;
 	self.combat = nil;
@@ -88,12 +90,14 @@
 #pragma mark Instance Methods
 
 - (void)parseData:(NSDictionary *)shipData {
+    NSLog(@"Ship Data: %@", shipData);
 	self.id = [Util idFromDict:shipData named:@"id"];
 	self.name = [shipData objectForKey:@"name"];
 	self.type = [shipData objectForKey:@"type"];
 	self.typeHumanized = [shipData objectForKey:@"type_human"];
 	self.task = [shipData objectForKey:@"task"];
 	self.speed = [Util asNumber:[shipData objectForKey:@"speed"]];
+	self.fleetSpeed = [Util asNumber:[shipData objectForKey:@"fleet_speed"]];
 	self.holdSize = [Util asNumber:[shipData objectForKey:@"hold_size"]];
 	self.stealth = [Util asNumber:[shipData objectForKey:@"stealth"]];
 	self.combat = [Util asNumber:[shipData objectForKey:@"combat"]];
