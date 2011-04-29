@@ -9,16 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "LETableViewControllerGrouped.h"
 #import "SelectStarInJurisdictionViewController.h"
+#import "SelectBodyForStarInJurisdictionViewController.h"
 
 
 @class Parliament;
 
 
-@interface ProposeEvictMiningPlatformViewController : LETableViewControllerGrouped <SelectStarInJurisdictionViewControllerDelegate> {
+@interface ProposeEvictMiningPlatformViewController : LETableViewControllerGrouped <SelectStarInJurisdictionViewControllerDelegate, SelectBodyForStarInJurisdictionViewControllerDelegate> {
 }
 
 
 @property (nonatomic, retain) Parliament *parliament;
+@property (nonatomic, retain) NSDictionary *selectedStar;
+@property (nonatomic, retain) NSDictionary *selectedAsteroid;
 @property (nonatomic, retain) NSDictionary *selectedMiningPlatform;
 
 

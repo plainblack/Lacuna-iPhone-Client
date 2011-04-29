@@ -32,6 +32,8 @@ typedef enum {
 
 
 @synthesize parliament;
+@synthesize selectedStar;
+@synthesize selectedAsteroid;
 @synthesize selectedMiningPlatform;
 
 
@@ -168,6 +170,8 @@ typedef enum {
 
 - (void)dealloc {
 	self.parliament = nil;
+    self.selectedStar = nil;
+    self.selectedAsteroid = nil;
     self.selectedMiningPlatform = nil;
     [super dealloc];
 }
@@ -177,9 +181,23 @@ typedef enum {
 
 - (void)selectedStarInJurisdiction:(NSDictionary *)star {
     self.selectedMiningPlatform = star;
-    [self.tableView reloadRowsAtIndexPaths:_array([NSIndexPath indexPathForRow:TARGET_ROW_MINING_PLATFORM inSection:SECTION_TARGET]) withRowAnimation:UITableViewRowAnimationLeft];
+    SelectBodyForStarInJurisdictionViewController *vc = [SelectBodyForStarInJurisdictionViewController create];
+    vc.parliament = self.parliament;
+    vc.star = self.selectedStar;
+    vc.delegate = self;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
+
+
+#pragma mark - SelectBodyForStarInJurisdictionViewControllerDelegate Methods
+
+- (void)selectedBodyForStarInJurisdiction:(NSDictionary *)body {
+    self.selectedAsteroid = body;
+    NSLog(@"PLACEHOLDER UNTIL I GET SELECT MINING PLATFORM DONE!");
+    self.selectedMiningPlatform = body;
+    [self.tableView reloadRowsAtIndexPaths:_array([NSIndexPath indexPathForRow:TARGET_ROW_MINING_PLATFORM inSection:SECTION_TARGET]) withRowAnimation:UITableViewRowAnimationLeft];
+}
 
 
 #pragma mark -

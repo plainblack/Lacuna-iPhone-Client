@@ -190,6 +190,7 @@ typedef enum {
 
 - (void)selectedStarInJurisdiction:(NSDictionary *)star {
     self.selectedStar = star;
+    [self.navigationController popViewControllerAnimated:YES];
     [self.tableView reloadRowsAtIndexPaths:_array([NSIndexPath indexPathForRow:TARGET_ROW_STAR inSection:SECTION_TARGET]) withRowAnimation:UITableViewRowAnimationLeft];
 }
 

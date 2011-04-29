@@ -9,17 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "LETableViewControllerGrouped.h"
 #import "SelectStarInJurisdictionViewController.h"
+#import "SelectBodyForStarInJurisdictionViewController.h"
 #import "LETableViewCellTextEntry.h"
 
 
 @class Parliament;
 
 
-@interface ProposeRenameUninhabitedViewController : LETableViewControllerGrouped <SelectStarInJurisdictionViewControllerDelegate, UITextFieldDelegate> {
+@interface ProposeRenameUninhabitedViewController : LETableViewControllerGrouped <SelectStarInJurisdictionViewControllerDelegate, SelectBodyForStarInJurisdictionViewControllerDelegate, UITextFieldDelegate> {
 }
 
 
 @property (nonatomic, retain) Parliament *parliament;
+@property (nonatomic, retain) NSDictionary *selectedStar;
 @property (nonatomic, retain) NSDictionary *selectedUninhabited;
 @property (nonatomic, retain) LETableViewCellTextEntry *nameCell;
 
