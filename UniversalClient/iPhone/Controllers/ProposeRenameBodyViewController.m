@@ -45,7 +45,7 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.navigationItem.title = @"Rename Uninhabited Planet";
+	self.navigationItem.title = @"Rename Body";
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleDone target:self action:@selector(propose)] autorelease];
 	
 	self.nameCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];

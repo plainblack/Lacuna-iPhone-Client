@@ -108,6 +108,7 @@
 		F64C43DC11F3B527002981EC /* OreStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = F64C43DB11F3B527002981EC /* OreStorage.m */; };
 		F64C43F611F3C37A002981EC /* Archaeology.m in Sources */ = {isa = PBXBuildFile; fileRef = F64C43F511F3C37A002981EC /* Archaeology.m */; };
 		F64C441911F3C6F8002981EC /* NewBuildingTypeController.m in Sources */ = {isa = PBXBuildFile; fileRef = F64C441811F3C6F8002981EC /* NewBuildingTypeController.m */; };
+		F64DC9F0136B8BF8003E18D5 /* SelectMiningPlatformForBodyInJurisdictionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F64DC9EF136B8BF8003E18D5 /* SelectMiningPlatformForBodyInJurisdictionViewController.m */; };
 		F64FA1B9121CA70D00CBFC3E /* NewItemPushController.m in Sources */ = {isa = PBXBuildFile; fileRef = F64FA1B8121CA70D00CBFC3E /* NewItemPushController.m */; };
 		F64FA1F0121CB43300CBFC3E /* PickColonyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F64FA1EE121CB43300CBFC3E /* PickColonyController.m */; };
 		F64FA1F1121CB43300CBFC3E /* PickColonyController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F64FA1EF121CB43300CBFC3E /* PickColonyController.xib */; };
@@ -734,6 +735,8 @@
 		F64C43F511F3C37A002981EC /* Archaeology.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Archaeology.m; sourceTree = "<group>"; };
 		F64C441711F3C6F8002981EC /* NewBuildingTypeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewBuildingTypeController.h; sourceTree = "<group>"; };
 		F64C441811F3C6F8002981EC /* NewBuildingTypeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewBuildingTypeController.m; sourceTree = "<group>"; };
+		F64DC9EE136B8BF7003E18D5 /* SelectMiningPlatformForBodyInJurisdictionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectMiningPlatformForBodyInJurisdictionViewController.h; sourceTree = "<group>"; };
+		F64DC9EF136B8BF8003E18D5 /* SelectMiningPlatformForBodyInJurisdictionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectMiningPlatformForBodyInJurisdictionViewController.m; sourceTree = "<group>"; };
 		F64FA1B7121CA70D00CBFC3E /* NewItemPushController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewItemPushController.h; sourceTree = "<group>"; };
 		F64FA1B8121CA70D00CBFC3E /* NewItemPushController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewItemPushController.m; sourceTree = "<group>"; };
 		F64FA1ED121CB43300CBFC3E /* PickColonyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickColonyController.h; sourceTree = "<group>"; };
@@ -2714,6 +2717,8 @@
 				F6CE0C02136102CF0090AA30 /* LEPullToRefreshTableViewControllerGrouped.m */,
 				F6FD93C61366519F00BD1938 /* SelectBodyForStarInJurisdictionViewController.h */,
 				F6FD93C71366519F00BD1938 /* SelectBodyForStarInJurisdictionViewController.m */,
+				F64DC9EE136B8BF7003E18D5 /* SelectMiningPlatformForBodyInJurisdictionViewController.h */,
+				F64DC9EF136B8BF8003E18D5 /* SelectMiningPlatformForBodyInJurisdictionViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -3322,6 +3327,7 @@
 				F6CE0C00136102730090AA30 /* PullRefreshTableViewController.m in Sources */,
 				F6CE0C03136102CF0090AA30 /* LEPullToRefreshTableViewControllerGrouped.m in Sources */,
 				F6FD93C8136651A000BD1938 /* SelectBodyForStarInJurisdictionViewController.m in Sources */,
+				F64DC9F0136B8BF8003E18D5 /* SelectMiningPlatformForBodyInJurisdictionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

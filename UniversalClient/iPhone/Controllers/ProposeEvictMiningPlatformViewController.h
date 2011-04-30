@@ -10,12 +10,13 @@
 #import "LETableViewControllerGrouped.h"
 #import "SelectStarInJurisdictionViewController.h"
 #import "SelectBodyForStarInJurisdictionViewController.h"
+#import "SelectMiningPlatformForBodyInJurisdictionViewController.h"
 
 
 @class Parliament;
 
 
-@interface ProposeEvictMiningPlatformViewController : LETableViewControllerGrouped <SelectStarInJurisdictionViewControllerDelegate, SelectBodyForStarInJurisdictionViewControllerDelegate> {
+@interface ProposeEvictMiningPlatformViewController : LETableViewControllerGrouped <SelectStarInJurisdictionViewControllerDelegate, SelectBodyForStarInJurisdictionViewControllerDelegate, SelectMiningPlatformForBodyInJurisdictionViewControllerDelegate> {
 }
 
 

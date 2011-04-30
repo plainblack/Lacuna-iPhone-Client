@@ -195,8 +195,18 @@ typedef enum {
 
 - (void)selectedBodyForStarInJurisdiction:(NSDictionary *)body {
     self.selectedAsteroid = body;
-    NSLog(@"PLACEHOLDER UNTIL I GET SELECT MINING PLATFORM DONE!");
-    self.selectedMiningPlatform = body;
+    SelectMiningPlatformForBodyInJurisdictionViewController *vc = [SelectMiningPlatformForBodyInJurisdictionViewController create];
+    vc.parliament = self.parliament;
+    vc.body = self.selectedAsteroid;
+    vc.delegate = self;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+
+#pragma mark - SelectMiningPlatformForBodyInJurisdictionViewControllerDelegate Methods
+
+- (void)selectedMiningPlatformForBodyInJurisdiction:(NSDictionary *)miningPlatform {
+    self.selectedMiningPlatform = miningPlatform;
     [self.navigationController popToViewController:self animated:YES];
     [self.tableView reloadRowsAtIndexPaths:_array([NSIndexPath indexPathForRow:TARGET_ROW_MINING_PLATFORM inSection:SECTION_TARGET]) withRowAnimation:UITableViewRowAnimationLeft];
 }

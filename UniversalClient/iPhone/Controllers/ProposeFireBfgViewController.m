@@ -118,8 +118,8 @@ typedef enum {
                 case TARGET_ROW_BODY:
                     ; //DO NOT REMOVE
                     LETableViewCellButton *targetCell = [LETableViewCellButton getCellForTableView:tableView];
-                    if (self.selectedStar) {
-                        targetCell.textLabel.text = [self.selectedStar objectForKey:@"name"];
+                    if (self.selectedBody) {
+                        targetCell.textLabel.text = [self.selectedBody objectForKey:@"name"];
                     } else {
                         targetCell.textLabel.text = @"Pick target";
                     }
@@ -214,8 +214,8 @@ typedef enum {
 #pragma mark Action Methods
 
 - (IBAction)propose {
-    if (isNotNull(self.selectedStar)) {
-        [self.parliament proposeFireBfgOn:[Util idFromDict:self.selectedStar named:@"id"] reason:self.reasonCell.textView.text target:self callback:@selector(proposedFireBfg:)];
+    if (isNotNull(self.selectedBody)) {
+        [self.parliament proposeFireBfgOn:[Util idFromDict:self.selectedBody named:@"id"] reason:self.reasonCell.textView.text target:self callback:@selector(proposedFireBfg:)];
     } else {
         UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must select an planet to fire at." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
         [av show];
