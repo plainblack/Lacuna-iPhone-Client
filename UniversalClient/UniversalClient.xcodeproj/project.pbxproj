@@ -79,8 +79,7 @@
 		F62968301355C329007DB3A6 /* ProposeNetwork19BroadcastViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F629682F1355C329007DB3A6 /* ProposeNetwork19BroadcastViewController.m */; };
 		F629683313565B26007DB3A6 /* ProposeInductMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F629683213565B26007DB3A6 /* ProposeInductMemberViewController.m */; };
 		F629683613566026007DB3A6 /* ProposeExpelMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F629683513566026007DB3A6 /* ProposeExpelMemberViewController.m */; };
-		F629683913566560007DB3A6 /* ProposeRenameAsteroidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F629683813566560007DB3A6 /* ProposeRenameAsteroidViewController.m */; };
-		F629683C13566575007DB3A6 /* ProposeRenameUninhabitedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F629683B13566575007DB3A6 /* ProposeRenameUninhabitedViewController.m */; };
+		F629683C13566575007DB3A6 /* ProposeRenameBodyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F629683B13566575007DB3A6 /* ProposeRenameBodyViewController.m */; };
 		F629683F135682F1007DB3A6 /* ProposeEvictMiningPlatformViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F629683E135682F1007DB3A6 /* ProposeEvictMiningPlatformViewController.m */; };
 		F6310B54124D6BCC00B5F77B /* LETableViewCellSavedEmpire.m in Sources */ = {isa = PBXBuildFile; fileRef = F6310B53124D6BCC00B5F77B /* LETableViewCellSavedEmpire.m */; };
 		F631A3D311754AEF005E40CC /* ViewBodyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F631A3D211754AEF005E40CC /* ViewBodyController.m */; };
@@ -682,10 +681,8 @@
 		F629683213565B26007DB3A6 /* ProposeInductMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProposeInductMemberViewController.m; sourceTree = "<group>"; };
 		F629683413566026007DB3A6 /* ProposeExpelMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProposeExpelMemberViewController.h; sourceTree = "<group>"; };
 		F629683513566026007DB3A6 /* ProposeExpelMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProposeExpelMemberViewController.m; sourceTree = "<group>"; };
-		F629683713566560007DB3A6 /* ProposeRenameAsteroidViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProposeRenameAsteroidViewController.h; sourceTree = "<group>"; };
-		F629683813566560007DB3A6 /* ProposeRenameAsteroidViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProposeRenameAsteroidViewController.m; sourceTree = "<group>"; };
-		F629683A13566575007DB3A6 /* ProposeRenameUninhabitedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProposeRenameUninhabitedViewController.h; sourceTree = "<group>"; };
-		F629683B13566575007DB3A6 /* ProposeRenameUninhabitedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProposeRenameUninhabitedViewController.m; sourceTree = "<group>"; };
+		F629683A13566575007DB3A6 /* ProposeRenameBodyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProposeRenameBodyViewController.h; sourceTree = "<group>"; };
+		F629683B13566575007DB3A6 /* ProposeRenameBodyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProposeRenameBodyViewController.m; sourceTree = "<group>"; };
 		F629683D135682F0007DB3A6 /* ProposeEvictMiningPlatformViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProposeEvictMiningPlatformViewController.h; sourceTree = "<group>"; };
 		F629683E135682F1007DB3A6 /* ProposeEvictMiningPlatformViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProposeEvictMiningPlatformViewController.m; sourceTree = "<group>"; };
 		F6310B52124D6BCC00B5F77B /* LETableViewCellSavedEmpire.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellSavedEmpire.h; sourceTree = "<group>"; };
@@ -2705,10 +2702,8 @@
 				F629683213565B26007DB3A6 /* ProposeInductMemberViewController.m */,
 				F629683413566026007DB3A6 /* ProposeExpelMemberViewController.h */,
 				F629683513566026007DB3A6 /* ProposeExpelMemberViewController.m */,
-				F629683713566560007DB3A6 /* ProposeRenameAsteroidViewController.h */,
-				F629683813566560007DB3A6 /* ProposeRenameAsteroidViewController.m */,
-				F629683A13566575007DB3A6 /* ProposeRenameUninhabitedViewController.h */,
-				F629683B13566575007DB3A6 /* ProposeRenameUninhabitedViewController.m */,
+				F629683A13566575007DB3A6 /* ProposeRenameBodyViewController.h */,
+				F629683B13566575007DB3A6 /* ProposeRenameBodyViewController.m */,
 				F629683D135682F0007DB3A6 /* ProposeEvictMiningPlatformViewController.h */,
 				F629683E135682F1007DB3A6 /* ProposeEvictMiningPlatformViewController.m */,
 				F6F1CBF813570FCA00D98F35 /* ProposeTaxationViewController.h */,
@@ -3320,8 +3315,7 @@
 				F62968301355C329007DB3A6 /* ProposeNetwork19BroadcastViewController.m in Sources */,
 				F629683313565B26007DB3A6 /* ProposeInductMemberViewController.m in Sources */,
 				F629683613566026007DB3A6 /* ProposeExpelMemberViewController.m in Sources */,
-				F629683913566560007DB3A6 /* ProposeRenameAsteroidViewController.m in Sources */,
-				F629683C13566575007DB3A6 /* ProposeRenameUninhabitedViewController.m in Sources */,
+				F629683C13566575007DB3A6 /* ProposeRenameBodyViewController.m in Sources */,
 				F629683F135682F1007DB3A6 /* ProposeEvictMiningPlatformViewController.m in Sources */,
 				F6F1CBFA13570FCA00D98F35 /* ProposeTaxationViewController.m in Sources */,
 				F6F1CBFD1357152F00D98F35 /* ProposeForeignAidViewController.m in Sources */,

@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "LETableViewControllerGrouped.h"
-#import "SelectStarInJurisdictionViewController.h"
+#import "SelectStarController.h"
 
 
 @class Parliament;
 
 
-@interface ProposeSeizeStarViewController : LETableViewControllerGrouped <SelectStarInJurisdictionViewControllerDelegate> {
+@interface ProposeSeizeStarViewController : LETableViewControllerGrouped <SelectStarControllerDelegate> {
 }
 
 

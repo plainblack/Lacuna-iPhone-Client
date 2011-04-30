@@ -1,18 +1,19 @@
 //
-//  ProposeRenameAsteroidViewController.m
+//  ProposeRenameUninhabitedViewController.m
 //  UniversalClient
 //
 //  Created by Kevin Runde on 4/13/11.
 //  Copyright 2011 n/a. All rights reserved.
 //
 
-#import "ProposeRenameAsteroidViewController.h"
+#import "ProposeRenameBodyViewController.h"
 #import "LEMacros.h"
 #import "Util.h"
 #import "Parliament.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellButton.h"
 #import "LEBuildingProposeRenameAsteroid.h"
+#import "LEBuildingProposeRenameUninhabited.h"
 
 
 typedef enum {
@@ -23,18 +24,18 @@ typedef enum {
 
 
 typedef enum {
-    TARGET_ROW_ASTEROID,
+    TARGET_ROW_UNINHABITED,
     TARGET_ROW_NAME,
     TARGET_ROW_COUNT
 } TARGET_ROW;
 
 
-@implementation ProposeRenameAsteroidViewController
+@implementation ProposeRenameBodyViewController
 
 
 @synthesize parliament;
 @synthesize selectedStar;
-@synthesize selectedAsteroid;
+@synthesize selectedBody;
 @synthesize nameCell;
 
 
@@ -44,7 +45,7 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.navigationItem.title = @"Rename Asteroid";
+	self.navigationItem.title = @"Rename Uninhabited Planet";
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStyleDone target:self action:@selector(propose)] autorelease];
 	
 	self.nameCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
@@ -52,7 +53,7 @@ typedef enum {
 	self.nameCell.label.text = @"New Name";
 	self.nameCell.textField.text = @"";
     
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Asteroid"], [LEViewSectionTab tableView:self.tableView withText:@"Action"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Uninhabited Planet"], [LEViewSectionTab tableView:self.tableView withText:@"Action"]);
 }
 
 
@@ -88,7 +89,7 @@ typedef enum {
     switch (indexPath.section) {
         case SECTION_TARGET:
             switch (indexPath.row) {
-                case TARGET_ROW_ASTEROID:
+                case TARGET_ROW_UNINHABITED:
                     return [LETableViewCellButton getHeightForTableView:tableView];
                     break;
                 case TARGET_ROW_NAME:
@@ -116,11 +117,11 @@ typedef enum {
     switch (indexPath.section) {
         case SECTION_TARGET:
             switch (indexPath.row) {
-                case TARGET_ROW_ASTEROID:
+                case TARGET_ROW_UNINHABITED:
                     ; //DO NOT REMOVE
                     LETableViewCellButton *targetCell = [LETableViewCellButton getCellForTableView:tableView];
-                    if (self.selectedAsteroid) {
-                        targetCell.textLabel.text = [self.selectedAsteroid objectForKey:@"name"];
+                    if (self.selectedBody) {
+                        targetCell.textLabel.text = [self.selectedBody objectForKey:@"name"];
                     } else {
                         targetCell.textLabel.text = @"Pick target";
                     }
@@ -149,7 +150,7 @@ typedef enum {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
         case SECTION_TARGET:
-            if (indexPath.row == TARGET_ROW_ASTEROID) {
+            if (indexPath.row == TARGET_ROW_UNINHABITED) {
                 SelectStarInJurisdictionViewController *selectStarInJurisdictionViewController = [SelectStarInJurisdictionViewController create];
                 selectStarInJurisdictionViewController.parliament = self.parliament;
                 selectStarInJurisdictionViewController.delegate = self;
@@ -183,7 +184,7 @@ typedef enum {
 - (void)dealloc {
 	self.parliament = nil;
     self.selectedStar = nil;
-    self.selectedAsteroid = nil;
+    self.selectedBody = nil;
     [super dealloc];
 }
 
@@ -191,7 +192,7 @@ typedef enum {
 #pragma mark - SelectStarInJurisdictionViewControllerDelegate Methods
 
 - (void)selectedStarInJurisdiction:(NSDictionary *)star {
-    self.selectedAsteroid = star;
+    self.selectedStar = star;
     SelectBodyForStarInJurisdictionViewController *vc = [SelectBodyForStarInJurisdictionViewController create];
     vc.parliament = self.parliament;
     vc.star = self.selectedStar;
@@ -200,12 +201,13 @@ typedef enum {
 }
 
 
+
 #pragma mark - SelectBodyForStarInJurisdictionViewControllerDelegate Methods
 
 - (void)selectedBodyForStarInJurisdiction:(NSDictionary *)body {
-    self.selectedAsteroid = body;
-    [self.navigationController popViewControllerAnimated:YES];
-    [self.tableView reloadRowsAtIndexPaths:_array([NSIndexPath indexPathForRow:TARGET_ROW_ASTEROID inSection:SECTION_TARGET]) withRowAnimation:UITableViewRowAnimationLeft];
+    self.selectedBody = body;
+    [self.navigationController popToViewController:self animated:YES];
+    [self.tableView reloadRowsAtIndexPaths:_array([NSIndexPath indexPathForRow:TARGET_ROW_UNINHABITED inSection:SECTION_TARGET]) withRowAnimation:UITableViewRowAnimationLeft];
 }
 
 
@@ -213,8 +215,17 @@ typedef enum {
 #pragma mark Action Methods
 
 - (IBAction)propose {
-    if (isNotNull(self.selectedAsteroid)) {
-        [self.parliament proposeRenameStar:[Util idFromDict:self.selectedAsteroid named:@"id"] name:self.nameCell.textField.text target:self callback:@selector(proposedRenameAsteroid:)];
+    if (isNotNull(self.selectedBody)) {
+        if ([[self.selectedBody objectForKey:@"type"] isEqualToString:@"asteroid"]) {
+            [self.parliament proposeRenameAsteroid:[Util idFromDict:self.selectedBody named:@"id"] name:self.nameCell.textField.text target:self callback:@selector(proposedRenameAsteroid:)];
+        } else {
+            if (isNotNull([self.selectedBody objectForKey:@"empire"])) {
+                UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You cannot rename a planet that is already controlled." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+                [av show];
+            } else {
+                [self.parliament proposeRenameUninhabited:[Util idFromDict:self.selectedBody named:@"id"] name:self.nameCell.textField.text target:self callback:@selector(proposedRenameUninhabited:)];
+            }
+        }
     } else {
         UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must select an asteroid to rename." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
         [av show];
@@ -244,11 +255,18 @@ typedef enum {
 }
 
 
+- (void)proposedRenameUninhabited:(LEBuildingProposeRenameUninhabited *)request {
+    if (![request wasError]) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+
 #pragma mark -
 #pragma mark Class Methods
 
-+ (ProposeRenameAsteroidViewController *)create {
-	return [[[ProposeRenameAsteroidViewController alloc] init] autorelease];
++ (ProposeRenameBodyViewController *)create {
+	return [[[ProposeRenameBodyViewController alloc] init] autorelease];
 }
 
 

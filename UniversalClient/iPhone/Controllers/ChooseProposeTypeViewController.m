@@ -21,8 +21,7 @@
 #import "ProposeNetwork19BroadcastViewController.h"
 #import "ProposeInductMemberViewController.h"
 #import "ProposeExpelMemberViewController.h"
-#import "ProposeRenameAsteroidViewController.h"
-#import "ProposeRenameUninhabitedViewController.h"
+#import "ProposeRenameBodyViewController.h"
 #import "LEBuildingProposeMembersOnlyMiningRights.h"
 #import "LEBuildingProposeMembersOnlyColonization.h"
 #import "ProposeEvictMiningPlatformViewController.h"
@@ -40,9 +39,8 @@ typedef enum {
     ROW_MEMBERS_ONLY_COLONIZATION_RIGHTS,
     ROW_MEMBERS_ONLY_MINING_RIGHTS,
     ROW_NETWORK19_BROADCAST,
-    ROW_RENAME_ASTEROID,
+    ROW_RENAME_BODY,
     ROW_RENAME_STAR,
-    ROW_RENAME_UNINHABITED,
     ROW_SEIZE_STAR,
     ROW_TAXATION,
     ROW_TRANSFER_STATION_OWNERSHIP,
@@ -120,14 +118,11 @@ typedef enum {
         case ROW_NETWORK19_BROADCAST:
             button.textLabel.text = @"Network19 Broadcast";
             break;
-        case ROW_RENAME_ASTEROID:
-            button.textLabel.text = @"Rename Asteroid";
+        case ROW_RENAME_BODY:
+            button.textLabel.text = @"Rename Body";
             break;
         case ROW_RENAME_STAR:
             button.textLabel.text = @"Rename Star";
-            break;
-        case ROW_RENAME_UNINHABITED:
-            button.textLabel.text = @"Rename Uninhabited Planet";
             break;
         case ROW_SEIZE_STAR:
             button.textLabel.text = @"Seize Star";
@@ -200,23 +195,17 @@ typedef enum {
             proposeNetwork19BroadcastViewController.parliament = self.parliament;
             [self.navigationController pushViewController:proposeNetwork19BroadcastViewController animated:YES];
             break;
-        case ROW_RENAME_ASTEROID:
+        case ROW_RENAME_BODY:
             ; //DO NOT REMOVE
-            ProposeRenameAsteroidViewController *proposeRenameAsteroidViewController = [ProposeRenameAsteroidViewController create];
-            proposeRenameAsteroidViewController.parliament = self.parliament;
-            [self.navigationController pushViewController:proposeRenameAsteroidViewController animated:YES];
+            ProposeRenameBodyViewController *proposeRenameBodyViewController = [ProposeRenameBodyViewController create];
+            proposeRenameBodyViewController.parliament = self.parliament;
+            [self.navigationController pushViewController:proposeRenameBodyViewController animated:YES];
             break;
         case ROW_RENAME_STAR:
             ; //DO NOT REMOVE
             ProposeRenameStarViewController *proposeRenameStarViewController = [ProposeRenameStarViewController create];
             proposeRenameStarViewController.parliament = self.parliament;
             [self.navigationController pushViewController:proposeRenameStarViewController animated:YES];
-            break;
-        case ROW_RENAME_UNINHABITED:
-            ; //DO NOT REMOVE
-            ProposeRenameUninhabitedViewController *proposeRenameUninhabitedViewController = [ProposeRenameUninhabitedViewController create];
-            proposeRenameUninhabitedViewController.parliament = self.parliament;
-            [self.navigationController pushViewController:proposeRenameUninhabitedViewController animated:YES];
             break;
         case ROW_SEIZE_STAR:
             ; //DO NOT REMOVE

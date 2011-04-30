@@ -1,5 +1,5 @@
 //
-//  ProposeRenameAsteroidViewController.h
+//  ProposeRenameUninhabitedViewController.h
 //  UniversalClient
 //
 //  Created by Kevin Runde on 4/13/11.
@@ -16,20 +16,20 @@
 @class Parliament;
 
 
-@interface ProposeRenameAsteroidViewController : LETableViewControllerGrouped <SelectStarInJurisdictionViewControllerDelegate, SelectBodyForStarInJurisdictionViewControllerDelegate, UITextFieldDelegate> {
+@interface ProposeRenameBodyViewController : LETableViewControllerGrouped <SelectStarInJurisdictionViewControllerDelegate, SelectBodyForStarInJurisdictionViewControllerDelegate, UITextFieldDelegate> {
 }
 
 
 @property (nonatomic, retain) Parliament *parliament;
 @property (nonatomic, retain) NSDictionary *selectedStar;
-@property (nonatomic, retain) NSDictionary *selectedAsteroid;
+@property (nonatomic, retain) NSDictionary *selectedBody;
 @property (nonatomic, retain) LETableViewCellTextEntry *nameCell;
 
 
 - (void)propose;
 
 
-+ (ProposeRenameAsteroidViewController *)create;
++ (ProposeRenameBodyViewController *)create;
 
 
 @end

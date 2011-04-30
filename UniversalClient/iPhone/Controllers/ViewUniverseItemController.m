@@ -35,6 +35,7 @@ typedef enum {
 	SECTION_SPY_ACTIONS,
 	SECTION_SHIP_ACTIONS,
 	SECTION_COMPOSITION,
+    SECTION_INFLUENCE,
 } SECTIONS;
 
 
@@ -52,7 +53,9 @@ typedef enum {
 	ROW_PLOTS,
 	ROW_WATER,
 	ROW_RENAME,
-	ROW_VIEW_MY_WORLD
+	ROW_VIEW_MY_WORLD,
+    ROW_INFLUENCING_STATION,
+    ROW_VIEW_LAWS,
 } ROWS;
 
 
@@ -136,6 +139,8 @@ typedef enum {
 			case ROW_UNSENDABLE_SHIPS:
 			case ROW_RENAME:
 			case ROW_VIEW_MY_WORLD:
+            case ROW_INFLUENCING_STATION:
+            case ROW_VIEW_LAWS:
 				return [LETableViewCellButton getHeightForTableView:tableView];
 				break;
 			case ROW_PLOTS:
@@ -266,6 +271,18 @@ typedef enum {
 				showInMyWorldsButtonCell.textLabel.text = @"Show in my worlds";
 				cell = showInMyWorldsButtonCell;
 				break;
+            case ROW_INFLUENCING_STATION:
+				; //DO NOT REMOVE
+				LETableViewCellButton *influenceingStationButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+				influenceingStationButtonCell.textLabel.text = self.mapItem.stationName;
+				cell = influenceingStationButtonCell;
+				break;
+            case ROW_VIEW_LAWS:
+				; //DO NOT REMOVE
+				LETableViewCellButton *viewLawsButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+				viewLawsButtonCell.textLabel.text = @"View Laws";
+				cell = viewLawsButtonCell;
+				break;
 			default:
 				cell = nil;
 				break;
@@ -351,6 +368,13 @@ typedef enum {
 				[delgate showMyWorld:self.mapItem.id];
 				[self.navigationController popToRootViewControllerAnimated:NO];
 				break;
+            case ROW_INFLUENCING_STATION:
+				NSLog(@"SHOW STATION");
+				break;
+            case ROW_VIEW_LAWS:
+				; //DO NOT REMOVE
+				NSLog(@"SHOW LAWS");
+				break;
             default:
                 break;
 		}
@@ -386,7 +410,7 @@ typedef enum {
 
 - (void)genSectionInfo {
 	if (self.mapItem) {
-		self.sections = [NSMutableArray arrayWithCapacity:4];
+		self.sections = [NSMutableArray arrayWithCapacity:5];
 
 		if ([self.mapItem.type isEqualToString:@"asteroid"] || [self.mapItem.type isEqualToString:@"gas giant"] || [self.mapItem.type isEqualToString:@"habitable planet"]) {
 			Session *session = [Session sharedInstance];
@@ -400,12 +424,15 @@ typedef enum {
 		} else {
 			[self.sections addObject:_dict([NSDecimalNumber numberWithInt:SECTION_INFO], @"type", [self.mapItem.type capitalizedString], @"name", _array([NSDecimalNumber numberWithInt:ROW_INFO]), @"rows")];
 		}
-		
+
+        if (isNotNull(self.mapItem.stationId)) {
+			[self.sections addObject:_dict([NSDecimalNumber numberWithInt:SECTION_INFLUENCE], @"type", [self.mapItem.type capitalizedString], @"name", _array([NSDecimalNumber numberWithInt:ROW_INFLUENCING_STATION], [NSDecimalNumber numberWithInt:ROW_VIEW_LAWS]), @"rows")];
+        }
 
 		if ([self.mapItem.type isEqualToString:@"habitable planet"]) {
-			Body *body = (Body *)self.mapItem;
+            Body *body = (Body *)self.mapItem;
 			if (body.empireId) {
-				[self.sections addObject:_dict([NSDecimalNumber numberWithInt:SECTION_SPY_ACTIONS], @"type", @"Spies", @"name", _array([NSDecimalNumber numberWithInt:ROW_SEND_SPIES], [NSDecimalNumber numberWithInt:ROW_FETCH_SPIES]), @"rows")];
+				[self.sections addObject:_dict([NSDecimalNumber numberWithInt:SECTION_SPY_ACTIONS], @"type", @"Spies", @"name", _array([NSDecimalNumber numberWithInt:ROW_SEND_SPIES]), @"rows")];
 			}
 		}
 

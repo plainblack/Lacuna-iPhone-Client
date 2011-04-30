@@ -136,10 +136,9 @@ typedef enum {
     switch (indexPath.section) {
         case SECTION_TARGET:
             if (indexPath.row == TARGET_ROW_STAR) {
-                SelectStarInJurisdictionViewController *selectStarInJurisdictionViewController = [SelectStarInJurisdictionViewController create];
-                selectStarInJurisdictionViewController.parliament = self.parliament;
-                selectStarInJurisdictionViewController.delegate = self;
-                [self.navigationController pushViewController:selectStarInJurisdictionViewController animated:YES];
+                SelectStarController *selectStarController = [SelectStarController create];
+                selectStarController.delegate = self;
+                [self.navigationController pushViewController:selectStarController animated:YES];
             }
             break;
         case SECTION_ACTIONS:
@@ -173,10 +172,11 @@ typedef enum {
 }
 
 
-#pragma mark - SelectStarInJurisdictionViewControllerDelegate Methods
+#pragma mark - SelectStarViewControllerDelegate Methods
 
-- (void)selectedStarInJurisdiction:(NSDictionary *)star {
+- (void)selectedStar:(NSDictionary *)star {
     self.selectedStar = star;
+    [self.navigationController popToViewController:self animated:YES];
     [self.tableView reloadRowsAtIndexPaths:_array([NSIndexPath indexPathForRow:TARGET_ROW_STAR inSection:SECTION_TARGET]) withRowAnimation:UITableViewRowAnimationLeft];
 }
 

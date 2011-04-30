@@ -204,6 +204,7 @@ typedef enum {
 #pragma mark - SelectBodyForStarInJurisdictionViewControllerDelegate Methods
 
 - (void)selectedBodyForStarInJurisdiction:(NSDictionary *)body {
+    self.selectedBody = body;
     [self.navigationController popToViewController:self animated:YES];
     [self.tableView reloadRowsAtIndexPaths:_array([NSIndexPath indexPathForRow:TARGET_ROW_BODY inSection:SECTION_TARGET]) withRowAnimation:UITableViewRowAnimationLeft];
 }

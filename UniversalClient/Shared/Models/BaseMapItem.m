@@ -7,6 +7,7 @@
 //
 
 #import "BaseMapItem.h"
+#import "LEMacros.h"
 #import "Util.h"
 
 
@@ -18,6 +19,10 @@
 @synthesize name;
 @synthesize x;
 @synthesize y;
+@synthesize stationId;
+@synthesize stationName;
+@synthesize stationX;
+@synthesize stationY;
 
 
 #pragma mark -
@@ -29,13 +34,17 @@
 	self.name = nil;
 	self.x = nil;
 	self.y = nil;
+    self.stationId = nil;
+    self.stationName = nil;
+    self.stationX = nil;
+    self.stationY = nil;
 	[super dealloc];
 }
 
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"id:%@, type:%@, name:%@, x:%@, y:%@",
-			self.id, self.type, self.name, self.x, self.y];
+	return [NSString stringWithFormat:@"id:%@, type:%@, name:%@, x:%@, y:%@, stationId:%@, stationName:%@, stationX:%@, stationY:%@",
+			self.id, self.type, self.name, self.x, self.y, self.stationId, self.stationName, self.stationX, self.stationY];
 }
 
 
@@ -48,6 +57,19 @@
 	self.name = [data objectForKey:@"name"];
 	self.x = [Util asNumber:[data objectForKey:@"x"]];
 	self.y = [Util asNumber:[data objectForKey:@"y"]];
+
+    NSMutableDictionary *stationData = [data objectForKey:@"station"];
+    if (isNotNull(data)) {
+        self.stationId = [Util idFromDict:stationData named:@"id"];
+        self.stationName = [stationData objectForKey:@"name"];
+        self.stationX = [Util asNumber:[stationData objectForKey:@"x"]];
+        self.stationY = [Util asNumber:[stationData objectForKey:@"y"]];
+    } else {
+        self.stationId = nil;
+        self.stationName = nil;
+        self.stationX = nil;
+        self.stationY = nil;
+    }
 }
 
 

@@ -46,10 +46,6 @@
 @synthesize ignoreIncomingForeignShipData;
 @dynamic isPlanet;
 @dynamic isSpaceStation;
-@synthesize stationId;
-@synthesize stationName;
-@synthesize stationX;
-@synthesize stationY;
 @synthesize allianceId;
 @synthesize allianceName;
 @synthesize influenceTotal;
@@ -97,10 +93,6 @@
 	[self.currentBuilding removeObserver:self forKeyPath:@"needsReload"];
 	self.currentBuilding = nil;
 	self.incomingForeignShips = nil;
-    self.stationId = nil;
-    self.stationName = nil;
-    self.stationX = nil;
-    self.stationY = nil;
     self.allianceId = nil;
     self.allianceName = nil;
     self.influenceTotal = nil;
@@ -217,19 +209,6 @@
 			}
 		}
 	}
-    
-    NSMutableDictionary *stationData = [bodyData objectForKey:@"station"];
-    if (isNotNull(stationData)) {
-        self.stationId = [Util idFromDict:stationData named:@"id"];
-        self.stationName = [stationData objectForKey:@"name"];
-        self.stationX = [Util asNumber:[stationData objectForKey:@"x"]];
-        self.stationY = [Util asNumber:[stationData objectForKey:@"y"]];
-    } else {
-        self.stationId = nil;
-        self.stationName = nil;
-        self.stationX = nil;
-        self.stationY = nil;
-    }
     
     NSMutableDictionary *allianceData = [bodyData objectForKey:@"alliance"];
     if (isNotNull(allianceData)) {

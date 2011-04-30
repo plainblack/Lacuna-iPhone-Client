@@ -10,11 +10,6 @@
 
 
 @interface BaseMapItem : NSObject {
-	NSString *id;
-	NSString *type;
-	NSString *name;
-	NSDecimalNumber *x;
-	NSDecimalNumber *y;
 }
 
 
@@ -23,6 +18,10 @@
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSDecimalNumber *x;
 @property (nonatomic, retain) NSDecimalNumber *y;
+@property (nonatomic, retain) NSString *stationId;
+@property (nonatomic, retain) NSString *stationName;
+@property (nonatomic, retain) NSDecimalNumber *stationX;
+@property (nonatomic, retain) NSDecimalNumber *stationY;
 
 
 - (void)parseData:(NSMutableDictionary *)data;

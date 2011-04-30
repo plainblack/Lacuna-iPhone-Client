@@ -24,6 +24,7 @@
 @synthesize parliament;
 @synthesize star;
 @synthesize bodies;
+@synthesize asteroidsOnly;
 @synthesize delegate;
 
 
@@ -32,8 +33,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
-	self.navigationItem.title = @"Select Body";
+
+	if (self.asteroidsOnly) {
+        self.navigationItem.title = @"Select Asteroid";
+    } else {
+        self.navigationItem.title = @"Select Body";
+    }
 	
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Select one"]);
 }
@@ -82,14 +87,22 @@
             cell = bodyButtonCell;
         } else {
             LETableViewCellLabeledText *noMatchesCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-            noMatchesCell.label.text = @"Bodies";
+            if (self.asteroidsOnly) {
+                noMatchesCell.label.text = @"Asteroids";
+            } else {
+                noMatchesCell.label.text = @"Bodies";
+            }
             noMatchesCell.content.text = @"None";
             cell = noMatchesCell;
         }
         
     } else {
         LETableViewCellLabeledText *loadingCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-        loadingCell.label.text = @"Bodies";
+        if (self.asteroidsOnly) {
+            loadingCell.label.text = @"Asteroids";
+        } else {
+            loadingCell.label.text = @"Bodies";
+        }
         loadingCell.content.text = @"Loading";
         cell = loadingCell;
     }
@@ -136,7 +149,17 @@
 #pragma mark - Callback Methods
 
 - (void)bodiesLoaded:(LEBuildingGetBodiesForStarInJurisdiction *)request {
-    self.bodies = request.bodies;
+    NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[request.bodies count]];
+    [request.bodies enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if (self.asteroidsOnly) {
+            if ([[obj objectForKey:@"type"] isEqualToString:@"asteroid"]) {
+                [tmp addObject:obj];
+            }
+        } else {
+            [tmp addObject:obj];
+        }
+    }];
+    self.bodies = tmp;
     [self.tableView reloadData];
 }
 

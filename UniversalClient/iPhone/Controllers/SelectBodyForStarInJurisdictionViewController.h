@@ -27,6 +27,7 @@
 @property (nonatomic, retain) Parliament *parliament;
 @property (nonatomic, retain) NSDictionary *star;
 @property (nonatomic, retain) NSMutableArray *bodies;
+@property (nonatomic, assign) BOOL asteroidsOnly;
 @property (nonatomic, assign) id<SelectBodyForStarInJurisdictionViewControllerDelegate> delegate;
 
 
