@@ -221,24 +221,37 @@ typedef enum {
 #pragma mark -
 #pragma mark Table view delegate
 
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self->pendingRequest) {
+        return nil;
+    } else {
+        return indexPath;
+    }
+}
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (self.missionCommand && self.missionCommand.missions) {
-		if ([self.missionCommand.missions count] > 0) {
-			Mission *mission = [self.missionCommand.missions objectAtIndex:indexPath.section];
-			switch (indexPath.row) {
-				case ROW_ACCEPT_BUTTON:
-					[self.missionCommand completeMission:mission target:self callback:@selector(missionCompleted:)];
-					break;
-				case ROW_SKIP_BUTTON:
-					self.skipMission = mission;
-					UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Are you really sure you want to skip this mission?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
-					actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-					[actionSheet showFromTabBar:self.tabBarController.tabBar];
-					[actionSheet release];
-					break;
-			}
-		}
-	}
+    if (!self->pendingRequest) {
+        if (self.missionCommand && self.missionCommand.missions) {
+            if ([self.missionCommand.missions count] > 0) {
+                Mission *mission = [self.missionCommand.missions objectAtIndex:indexPath.section];
+                switch (indexPath.row) {
+                    case ROW_ACCEPT_BUTTON:
+                        self->pendingRequest = YES;
+                        [self.missionCommand completeMission:mission target:self callback:@selector(missionCompleted:)];
+                        break;
+                    case ROW_SKIP_BUTTON:
+                        self.skipMission = mission;
+                        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Are you really sure you want to skip this mission?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+                        actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+                        [actionSheet showFromTabBar:self.tabBarController.tabBar];
+                        [actionSheet release];
+                        break;
+                }
+            }
+        }
+    }
 }
 
 
@@ -270,7 +283,9 @@ typedef enum {
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
 		[self.missionCommand skipMission:self.skipMission target:self callback:@selector(missionSkipped:)];
-	}
+	} else {
+        [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    }
 }
 
 
@@ -280,7 +295,10 @@ typedef enum {
 - (void)missionCompleted:(LEBuildingCompleteMission *)request {
 	if (![request wasError]) {
 		[self.tableView reloadData];
-	}
+	} else {
+        [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    }
+    self->pendingRequest = NO;
 }
 
 
