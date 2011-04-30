@@ -282,6 +282,7 @@ typedef enum {
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
+        self->pendingRequest = YES;
 		[self.missionCommand skipMission:self.skipMission target:self callback:@selector(missionSkipped:)];
 	} else {
         [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
@@ -305,7 +306,10 @@ typedef enum {
 - (void)missionSkipped:(LEBuildingSkipMission *)request {
 	if (![request wasError]) {
 		[self.tableView reloadData];
-	}
+	} else {
+        [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    }
+    self->pendingRequest = NO;
 }
 
 
