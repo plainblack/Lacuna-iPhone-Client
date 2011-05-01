@@ -10,17 +10,37 @@
 
 
 typedef enum {
+    LEMailboxTypeNone,
 	LEMailboxTypeArchived,
 	LEMailboxTypeInbox,
-	LEMailboxTypeSent
-} LEMailBoxType;
+	LEMailboxTypeSent,
+	LEMailboxTypeTrash,
+} LEMailboxType;
+
+
+typedef enum {
+    LEMailboxFilterTypeNone,
+    LEMailboxFilterTypeAlert,
+    LEMailboxFilterTypeAttack,
+    LEMailboxFilterTypeColonization,
+    LEMailboxFilterTypeComplaint,
+    LEMailboxFilterTypeCorrespondence,
+    LEMailboxFilterTypeExcavator,
+    LEMailboxFilterTypeIntelligence,
+    LEMailboxFilterTypeMedal,
+    LEMailboxFilterTypeMission,
+    LEMailboxFilterTypeParliament,
+    LEMailboxFilterTypeProbe,
+    LEMailboxFilterTypeSpies,
+    LEMailboxFilterTypeTrade,    
+    LEMailboxFilterTypeTutorial,
+} LEMailboxFilterType;
 
 
 @interface Mailbox : NSObject {
-	NSMutableArray *messageHeaders;
-	NSMutableDictionary *messageDetails;
 	NSInteger pageIndex;
-	LEMailBoxType leMailboxType;
+	LEMailboxType leMailboxType;
+	LEMailboxFilterType leMailboxFilterType;
 	NSInteger originalMessageHeaderCount;
 	NSInteger numPages;
 }
@@ -30,21 +50,27 @@ typedef enum {
 @property(nonatomic, retain) NSMutableDictionary *messageDetails;
 
 
-- (Mailbox *)init:(LEMailBoxType)leMailboxType;
+- (Mailbox *)initMailbox:(LEMailboxType)leMailboxType filter:(LEMailboxFilterType)leMailboxFilterType;
 - (BOOL)canArchive;
+- (BOOL)canTrash;
 - (BOOL)hasNextPage;
 - (BOOL)hasPreviousPage;
 - (void)nextPage;
 - (void)previousPage;
 - (void)loadMessage:(NSInteger)index;
 - (void)archiveMessage:(NSInteger)index;
+- (void)archiveMessages:(NSSet *)messageIds;
+- (void)trashMessage:(NSInteger)index;
+- (void)trashMessages:(NSSet *)messageIds;
 - (void)loadMessageHeaders;
 - (void)loadMessageById:(NSString *)messageId;
+- (NSArray *)filterTags;
 
 
-+ (Mailbox *)loadArchived;
-+ (Mailbox *)loadInbox;
-+ (Mailbox *)loadSent;
++ (Mailbox *)loadArchivedWithFilter:(LEMailboxFilterType)filterType;
++ (Mailbox *)loadInboxWithFilter:(LEMailboxFilterType)filterType;
++ (Mailbox *)loadSentWithFilter:(LEMailboxFilterType)filterType;
++ (Mailbox *)loadTrashWithFilter:(LEMailboxFilterType)filterType;
 
 
 @end

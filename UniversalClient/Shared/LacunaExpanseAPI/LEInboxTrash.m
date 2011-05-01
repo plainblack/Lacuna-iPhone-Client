@@ -1,17 +1,17 @@
 //
-//  LEInboxArchive.m
-//  DKTest
+//  LEInboxTrash.m
+//  UniversalClient
 //
-//  Created by Kevin Runde on 3/12/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Created by Kevin Runde on 4/30/11.
+//  Copyright 2011 n/a. All rights reserved.
 //
 
-#import "LEInboxArchive.h"
+#import "LEInboxTrash.h"
 #import "Session.h"
 #import "LEMacros.h"
 
 
-@implementation LEInboxArchive
+@implementation LEInboxTrash
 
 
 @synthesize messageIds;
@@ -41,7 +41,7 @@
 
 
 - (NSString *)methodName {
-	return @"archive_messages";
+	return @"trash_messages";
 }
 
 

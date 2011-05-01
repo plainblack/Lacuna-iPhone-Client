@@ -8,10 +8,12 @@
 
 #import "Mailbox.h"
 #import "LEInboxArchive.h"
+#import "LEInboxTrash.h"
 #import "LEInboxRead.h"
 #import "LEInboxView.h"
 #import "LEInboxViewSent.h"
 #import "LEInboxViewArchived.h"
+#import "LEInboxViewTrash.h"
 #import "LEMacros.h"
 #import "Util.h"
 #import "Session.h"
@@ -27,11 +29,12 @@
 @synthesize messageDetails;
 
 
-- (Mailbox *)init:(LEMailBoxType)inLeMailboxType {
+- (Mailbox *)initMailbox:(LEMailboxType)inLeMailboxType filter:(LEMailboxFilterType)inLeMailboxFilterType {
 	if ((self = [super init])) {
-		leMailboxType = inLeMailboxType;
-		pageIndex = START_PAGE;
-		originalMessageHeaderCount = 0;
+		self->leMailboxType = inLeMailboxType;
+		self->leMailboxFilterType = inLeMailboxFilterType;
+		self->pageIndex = START_PAGE;
+		self->originalMessageHeaderCount = 0;
 		[self loadMessageHeaders];
 	}
 	
@@ -48,7 +51,12 @@
 
 
 - (BOOL)canArchive {
-	return leMailboxType == LEMailboxTypeInbox;
+	return self->leMailboxType == LEMailboxTypeInbox || self->leMailboxType == LEMailboxTypeTrash;
+}
+
+
+- (BOOL)canTrash {
+	return self->leMailboxType == LEMailboxTypeInbox || self->leMailboxType == LEMailboxTypeArchived;
 }
 
 
@@ -111,13 +119,80 @@
 	if ([self canArchive]) {
 		NSDictionary *headers = [self.messageHeaders objectAtIndex:index];
 		NSString *messageId = [Util idFromDict:headers named:@"id"];
-		[[[LEInboxArchive alloc] initWithCallback:@selector(messageArchived:) target:self messageIds:_array(messageId)] autorelease];
+		[[[LEInboxArchive alloc] initWithCallback:@selector(messagesArchived:) target:self messageIds:_array(messageId)] autorelease];
 		[self.messageHeaders removeObjectAtIndex:index];
 	}
 }
 
 
-- (id)messageArchived:(LEInboxArchive *)request {
+- (void)archiveMessages:(NSSet *)messageIds {
+	if ([self canArchive]) {
+        NSMutableArray *messageIdArray = [NSMutableArray arrayWithCapacity:[messageIds count]];
+        [messageIds enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+            [messageIdArray addObject:obj];
+        }];
+		[[[LEInboxArchive alloc] initWithCallback:@selector(messagesArchived:) target:self messageIds:messageIdArray] autorelease];
+        
+        [messageIds enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+            NSString *toRemoveMessageId = (NSString *)obj;
+            __block NSInteger messageHeaderIndex = -1;
+            [self.messageHeaders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                NSString *messageId = [Util idFromDict:obj named:@"id"];
+                if ([messageId isEqualToString:toRemoveMessageId]) {
+                    messageHeaderIndex = idx;
+                    *stop = YES;
+                }
+            }];
+            if (messageHeaderIndex > -1) {
+                [self.messageHeaders removeObjectAtIndex:messageHeaderIndex];
+            }
+        }];
+	}
+}
+
+
+- (void)trashMessage:(NSInteger)index {
+	if ([self canArchive]) {
+		NSDictionary *headers = [self.messageHeaders objectAtIndex:index];
+		NSString *messageId = [Util idFromDict:headers named:@"id"];
+		[[[LEInboxTrash alloc] initWithCallback:@selector(messagesTrashed:) target:self messageIds:_array(messageId)] autorelease];
+		[self.messageHeaders removeObjectAtIndex:index];
+	}
+}
+
+
+- (void)trashMessages:(NSSet *)messageIds {
+	if ([self canTrash]) {
+        NSMutableArray *messageIdArray = [NSMutableArray arrayWithCapacity:[messageIds count]];
+        [messageIds enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+            [messageIdArray addObject:obj];
+        }];
+		[[[LEInboxTrash alloc] initWithCallback:@selector(messagesTrashed:) target:self messageIds:messageIdArray] autorelease];
+        
+        [messageIds enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+            NSString *toRemoveMessageId = (NSString *)obj;
+            __block NSInteger messageHeaderIndex = -1;
+            [self.messageHeaders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                NSString *messageId = [Util idFromDict:obj named:@"id"];
+                if ([messageId isEqualToString:toRemoveMessageId]) {
+                    messageHeaderIndex = idx;
+                    *stop = YES;
+                }
+            }];
+            if (messageHeaderIndex > -1) {
+                [self.messageHeaders removeObjectAtIndex:messageHeaderIndex];
+            }
+        }];
+	}
+}
+
+
+- (id)messagesArchived:(LEInboxArchive *)request {
+	return nil;
+}
+
+
+- (id)messagesTrashed:(LEInboxTrash *)request {
 	return nil;
 }
 
@@ -126,13 +201,16 @@
 	//Load Page
 	switch (leMailboxType) {
 		case LEMailboxTypeArchived:
-			[[[LEInboxViewArchived alloc] initWithCallback:@selector(messagesLoaded:) target:self page:[Util decimalFromInt:pageIndex]] autorelease];
+			[[[LEInboxViewArchived alloc] initWithCallback:@selector(messagesLoaded:) target:self page:[Util decimalFromInt:pageIndex] tags:[self filterTags]] autorelease];
 			break;
 		case LEMailboxTypeInbox:
-			[[[LEInboxView alloc] initWithCallback:@selector(messagesLoaded:) target:self page:[Util decimalFromInt:pageIndex]] autorelease];
+			[[[LEInboxView alloc] initWithCallback:@selector(messagesLoaded:) target:self page:[Util decimalFromInt:pageIndex] tags:[self filterTags]] autorelease];
 			break;
 		case LEMailboxTypeSent:
-			[[[LEInboxViewSent alloc] initWithCallback:@selector(messagesLoaded:) target:self page:[Util decimalFromInt:pageIndex]] autorelease];
+			[[[LEInboxViewSent alloc] initWithCallback:@selector(messagesLoaded:) target:self page:[Util decimalFromInt:pageIndex] tags:[self filterTags]] autorelease];
+			break;
+		case LEMailboxTypeTrash:
+			[[[LEInboxViewTrash alloc] initWithCallback:@selector(messagesLoaded:) target:self page:[Util decimalFromInt:pageIndex] tags:[self filterTags]] autorelease];
 			break;
 		default:
 			NSLog(@"No LEMailboxType Set");
@@ -140,6 +218,62 @@
 	}
 }
 
+
+- (NSArray *)filterTags {
+    switch (self->leMailboxFilterType) {
+        case LEMailboxFilterTypeNone:
+            return [NSArray array];
+            break;
+        case LEMailboxFilterTypeAlert:
+            return _array(@"Alert");
+            break;
+        case LEMailboxFilterTypeAttack:
+            return _array(@"Attack");
+            break;
+        case LEMailboxFilterTypeColonization:
+            return _array(@"Colonization");
+            break;
+        case LEMailboxFilterTypeComplaint:
+            return _array(@"Complaint");
+            break;
+        case LEMailboxFilterTypeCorrespondence:
+            return _array(@"Correspondence");
+            break;
+        case LEMailboxFilterTypeExcavator:
+            return _array(@"Excavator");
+            break;
+        case LEMailboxFilterTypeIntelligence:
+            return _array(@"Intelligence");
+            break;
+        case LEMailboxFilterTypeMedal:
+            return _array(@"Medal");
+            break;
+        case LEMailboxFilterTypeMission:
+            return _array(@"Mission");
+            break;
+        case LEMailboxFilterTypeParliament:
+            return _array(@"Parliament");
+            break;
+        case LEMailboxFilterTypeProbe:
+            return _array(@"Probe");
+            break;
+        case LEMailboxFilterTypeSpies:
+            return _array(@"Spies");
+            break;
+        case LEMailboxFilterTypeTrade:
+            return _array(@"Trade");
+            break;
+        case LEMailboxFilterTypeTutorial:
+            return _array(@"Tutorial");
+            break;
+        default:
+            return nil;
+            break;
+    }
+}
+
+
+#pragma mark - Callback Methods
 
 - (id)messagesLoaded:(LEInboxView *)request {
 	if (![request wasError]) {
@@ -152,18 +286,23 @@
 }
 
 
-+ (Mailbox *)loadArchived {
-	return [[[Mailbox alloc] init:LEMailboxTypeArchived] autorelease];
++ (Mailbox *)loadArchivedWithFilter:(LEMailboxFilterType)filterType {
+	return [[[Mailbox alloc] initMailbox:LEMailboxTypeArchived filter:filterType] autorelease];
 }
 
 
-+ (Mailbox *)loadInbox {
-	return [[[Mailbox alloc] init:LEMailboxTypeInbox] autorelease];
++ (Mailbox *)loadInboxWithFilter:(LEMailboxFilterType)filterType {
+	return [[[Mailbox alloc] initMailbox:LEMailboxTypeInbox filter:filterType] autorelease];
 }
 
 
-+ (Mailbox *)loadSent {
-	return [[[Mailbox alloc] init:LEMailboxTypeSent] autorelease];
++ (Mailbox *)loadSentWithFilter:(LEMailboxFilterType)filterType {
+	return [[[Mailbox alloc] initMailbox:LEMailboxTypeSent filter:filterType] autorelease];
+}
+
+
++ (Mailbox *)loadTrashWithFilter:(LEMailboxFilterType)filterType {
+	return [[[Mailbox alloc] initMailbox:LEMailboxTypeTrash filter:filterType] autorelease];
 }
 
 

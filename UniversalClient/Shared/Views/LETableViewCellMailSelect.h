@@ -10,22 +10,20 @@
 
 
 @interface LETableViewCellMailSelect : UITableViewCell {
-	UILabel *subjectText;
-	UILabel *fromLabel;
-	UILabel *fromText;
-	UILabel *dateLabel;
-	UILabel *dateText;
 }
 
 
-@property(nonatomic, retain) UILabel *subjectText;
-@property(nonatomic, retain) UILabel *fromLabel;
-@property(nonatomic, retain) UILabel *fromText;
-@property(nonatomic, retain) UILabel *dateLabel;
-@property(nonatomic, retain) UILabel *dateText;
+@property (nonatomic, retain) UIImageView *selectedImageView;
+@property (nonatomic, retain) UILabel *subjectText;
+@property (nonatomic, retain) UILabel *fromLabel;
+@property (nonatomic, retain) UILabel *fromText;
+@property (nonatomic, retain) UILabel *dateLabel;
+@property (nonatomic, retain) UILabel *dateText;
 
 
 - (void)setMessage:(NSDictionary *)message;
+- (void)selectForDelete;
+- (void)unselectForDelete;
 
 
 + (LETableViewCellMailSelect *)getCellForTableView:(UITableView *)tableView;

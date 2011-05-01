@@ -353,7 +353,17 @@ typedef enum {
 - (IBAction)archiveMessage {
 	self->isArchiving = YES;
 	self->isResending = NO;
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Archive message?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+
+	UIActionSheet *actionSheet;
+    if ([self.mailbox canArchive] && [self.mailbox canTrash]) {
+        actionSheet = [[UIActionSheet alloc] initWithTitle:@"Archive or Trash this message?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Trash" otherButtonTitles:@"Archive", nil];
+    } else if ([self.mailbox canArchive]) {
+        actionSheet = [[UIActionSheet alloc] initWithTitle:@"Archive this message?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Archive", nil];
+    } else if ([self.mailbox canTrash]) {
+        actionSheet = [[UIActionSheet alloc] initWithTitle:@"Trash this message?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Trash" otherButtonTitles:nil];
+    } else {
+        actionSheet = nil;
+    }
 	actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
 	[actionSheet showFromTabBar:self.tabBarController.tabBar];
 	[actionSheet release];
@@ -394,10 +404,16 @@ typedef enum {
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (self->isArchiving) {
-		if (actionSheet.destructiveButtonIndex == buttonIndex ) {
+        if (actionSheet.cancelButtonIndex == buttonIndex ) {
+            //DO NOTHING
+		} else if (actionSheet.destructiveButtonIndex == buttonIndex ) {
+			[self.mailbox trashMessage:self.messageIndex];
+			[self.navigationController popViewControllerAnimated:YES];
+		} else {
 			[self.mailbox archiveMessage:self.messageIndex];
 			[self.navigationController popViewControllerAnimated:YES];
-		}
+        }
+
 	} else if (self->isResending) {
 		switch (buttonIndex) {
 			case REPLY_TO_BUTTON_INDEX: //Archive

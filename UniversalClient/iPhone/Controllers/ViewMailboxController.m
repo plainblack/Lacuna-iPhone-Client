@@ -8,9 +8,9 @@
 
 #import "ViewMailboxController.h"
 #import "LEMacros.h"
-#import "Mailbox.h"
+#import "Util.h"
 #import "Session.h"
-//#import "ViewMailMessageController.h"
+#import "Mailbox.h"
 #import "ViewMailMessageWebController.h"
 #import "NewMailMessageController.h"
 #import "LETableViewCellMailSelect.h"
@@ -20,29 +20,43 @@
 
 
 @synthesize pageSegmentedControl;
-@synthesize mailboxSegmentedControl;
-@synthesize inboxBarButtonItems;
-@synthesize otherMailboxBarButtonItems;
+@synthesize mailboxFilterBarButtonItem;
+@synthesize viewingBarButtonItems;
+@synthesize editingBarButtonItems;
+@synthesize editBarButtonItem;
+@synthesize archiveOrTrashBarButtonItem;
 @synthesize mailbox;
 @synthesize reloadTimer;
 @synthesize lastMessageAt;
 @synthesize showMessageId;
+@synthesize selectedMessageIds;
 
 
 #pragma mark -
 #pragma mark View lifecycle
 
 - (void)viewDidLoad {
+    if (self->mailboxType == LEMailboxTypeNone) {
+        self->mailboxType = LEMailboxTypeInbox;
+        self->mailboxFilterType = LEMailboxFilterTypeNone;
+    }
     [super viewDidLoad];
+    self.tableView.allowsSelectionDuringEditing = YES;
 	
+    if (isNull(self.selectedMessageIds)) {
+        self.selectedMessageIds = [NSMutableSet setWithCapacity:25];
+    }
+
 	self->observingMailbox = NO;
 
 	self.view.autoresizesSubviews = YES;
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	[self.navigationController.toolbar setTintColor:TINT_COLOR];
 
+    self.navigationItem.title = nil;
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
-//	self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadMessages)] autorelease];
+    self.mailboxFilterBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Select" style:UIBarButtonItemStyleBordered target:self action:@selector(showSelectMailbox)] autorelease];
+    self.navigationItem.leftBarButtonItem = self.mailboxFilterBarButtonItem;
 	
 	self.pageSegmentedControl = [[[UISegmentedControl alloc] initWithItems:_array(UP_ARROW_ICON, DOWN_ARROW_ICON)] autorelease];
 	[self.pageSegmentedControl addTarget:self action:@selector(switchPage) forControlEvents:UIControlEventValueChanged]; 
@@ -51,24 +65,17 @@
 	UIBarButtonItem *rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.pageSegmentedControl] autorelease];
 	self.navigationItem.rightBarButtonItem = rightBarButtonItem; 
 	
-	UIBarButtonItem *trash = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(toggleEdit)] autorelease];
-	UIBarButtonItem	*compose = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(newMessage)] autorelease];
-	UIBarButtonItem *flexable = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
-	UIBarButtonItem *fixed = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil] autorelease];
-	UIBarButtonItem *trash_placeholder = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil] autorelease];
-	trash_placeholder.width = 25.0;
-	self.mailboxSegmentedControl = [[[UISegmentedControl alloc] initWithItems:_array(@"Inbox", @"Archived", @"Sent")] autorelease]; 
-	[self.mailboxSegmentedControl addTarget:self action:@selector(switchMailBox) forControlEvents:UIControlEventValueChanged]; 
-	self.mailboxSegmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-	self.mailboxSegmentedControl.tintColor = TINT_COLOR;
-	UIBarButtonItem *mailboxChooser = [[[UIBarButtonItem alloc] initWithCustomView:self.mailboxSegmentedControl] autorelease];
-	
-	fixed.width = 10.0;
-	
-	self.inboxBarButtonItems = _array(fixed, trash, flexable, mailboxChooser, flexable, compose, fixed);
-	self.otherMailboxBarButtonItems = _array(fixed, trash_placeholder, flexable, mailboxChooser, flexable, compose, fixed);
+	self.editBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Archive/Trash" style:UIBarButtonItemStyleBordered target:self action:@selector(edit:)] autorelease];
+	UIBarButtonItem *cancelBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancel:)] autorelease];
+	self.archiveOrTrashBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Archive/Trash (0)" style:UIBarButtonItemStyleDone target:self action:@selector(archiveSelected:)] autorelease];
+	UIBarButtonItem	*composeBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(newMessage)] autorelease];
+	UIBarButtonItem *flexableBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+	UIBarButtonItem *fixedBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil] autorelease];
+	fixedBarButtonItem.width = 10.0;
+	self.viewingBarButtonItems = _array(fixedBarButtonItem, self.editBarButtonItem, flexableBarButtonItem, composeBarButtonItem, fixedBarButtonItem);
+	self.editingBarButtonItems = _array(fixedBarButtonItem, cancelBarButtonItem, flexableBarButtonItem, self.archiveOrTrashBarButtonItem, fixedBarButtonItem);
 
-	self.toolbarItems = self.inboxBarButtonItems;
+	self.toolbarItems = self.viewingBarButtonItems;
 }
 
 
@@ -77,13 +84,13 @@
 	
 	[self.navigationController setToolbarHidden:NO animated:NO];
 
-	if (self.mailboxSegmentedControl.selectedSegmentIndex == UISegmentedControlNoSegment) {
-		self.mailboxSegmentedControl.selectedSegmentIndex = 0;
-	} else {
-		[self.pageSegmentedControl setEnabled:[self.mailbox hasPreviousPage] forSegmentAtIndex:0];
-		[self.pageSegmentedControl setEnabled:[self.mailbox hasNextPage] forSegmentAtIndex:1];
-		[self.tableView reloadData];
-	}
+    if (isNull(self.mailbox.messageHeaders)) {
+        [self loadMessages];
+    } else {
+        [self.pageSegmentedControl setEnabled:[self.mailbox hasPreviousPage] forSegmentAtIndex:0];
+        [self.pageSegmentedControl setEnabled:[self.mailbox hasNextPage] forSegmentAtIndex:1];
+        [self.tableView reloadData];
+    }
 }
 
 
@@ -152,8 +159,14 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSDictionary *message = [self.mailbox.messageHeaders objectAtIndex:indexPath.row];
+    NSString *messageId = [Util idFromDict:message named:@"id"];
 
 	LETableViewCellMailSelect *cell = [LETableViewCellMailSelect getCellForTableView:tableView];
+    if ([self.selectedMessageIds containsObject:messageId]) {
+        [cell selectForDelete];
+    } else {
+        [cell unselectForDelete];
+    }
 	[cell setMessage:message];
 	
     return cell;
@@ -162,8 +175,9 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (editingStyle == UITableViewCellEditingStyleDelete && [self.mailbox canArchive]) {
-		[mailbox archiveMessage:indexPath.row];
-		[self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        NSString *messageId = [Util idFromDict:[self.mailbox.messageHeaders objectAtIndex:indexPath.row] named:@"id"];
+        [self.selectedMessageIds addObject:messageId];
+        [self archiveOrTrash];
 	}
 }
 
@@ -172,18 +186,48 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	//ViewMailMessageController *viewMailMessageController = [ViewMailMessageController create];
-	ViewMailMessageWebController *viewMailMessageController = [ViewMailMessageWebController create];
-	viewMailMessageController.mailbox = self.mailbox;
-	viewMailMessageController.messageIndex = indexPath.row;
-	
-	[[self navigationController] pushViewController:viewMailMessageController animated:YES];
+    if (!tableView.editing) {
+        //ViewMailMessageController *viewMailMessageController = [ViewMailMessageController create];
+        ViewMailMessageWebController *viewMailMessageController = [ViewMailMessageWebController create];
+        viewMailMessageController.mailbox = self.mailbox;
+        viewMailMessageController.messageIndex = indexPath.row;
+        
+        [[self navigationController] pushViewController:viewMailMessageController animated:YES];
+    } else {
+        NSString *messageId = [Util idFromDict:[self.mailbox.messageHeaders objectAtIndex:indexPath.row] named:@"id"];
+        if ([self.selectedMessageIds containsObject:messageId]) {
+            [self.selectedMessageIds removeObject:messageId];
+            [(LETableViewCellMailSelect *)[self.tableView cellForRowAtIndexPath:indexPath] unselectForDelete];
+        } else {
+            [self.selectedMessageIds addObject:messageId];
+            [(LETableViewCellMailSelect *)[self.tableView cellForRowAtIndexPath:indexPath] selectForDelete];
+        }
+        [self updateSelectionCount];
+    }
 }
 
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
-	return @"Archive";
+    if ([self.mailbox canArchive] && [self.mailbox canTrash]) {
+        return @"Archive/Trash";
+    } else if ([self.mailbox canArchive]) {
+        return @"Archive";
+    } else if ([self.mailbox canTrash]) {
+        return @"Trash";
+    } else {
+        return @"Cannot Delete";
+    }
 }
+
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.tableView.editing) {
+        return UITableViewCellEditingStyleNone;
+    } else {
+        return UITableViewCellEditingStyleDelete;
+    }
+}
+
 
 #pragma mark -
 #pragma mark Memory management
@@ -197,9 +241,11 @@
 
 - (void)viewDidUnload {
 	self.pageSegmentedControl = nil;
-	self.mailboxSegmentedControl = nil;
-	self.inboxBarButtonItems = nil;
-	self.otherMailboxBarButtonItems = nil;
+    self.mailboxFilterBarButtonItem = nil;
+	self.viewingBarButtonItems = nil;
+	self.editingBarButtonItems = nil;
+    self.editBarButtonItem = nil;
+    self.archiveOrTrashBarButtonItem = nil;
 	self.mailbox = nil;
 	self.lastMessageAt = nil;
     [super viewDidUnload];
@@ -210,12 +256,15 @@
 	[self.reloadTimer invalidate];
 	self.reloadTimer = nil;
 	self.pageSegmentedControl = nil;
-	self.mailboxSegmentedControl = nil;
-	self.inboxBarButtonItems = nil;
-	self.otherMailboxBarButtonItems = nil;
+    self.mailboxFilterBarButtonItem = nil;
+	self.viewingBarButtonItems = nil;
+	self.editingBarButtonItems = nil;
+    self.editBarButtonItem = nil;
+    self.archiveOrTrashBarButtonItem = nil;
 	self.mailbox = nil;
 	self.lastMessageAt = nil;
 	self.showMessageId = nil;
+    self.selectedMessageIds = nil;
     [super dealloc];
 }
 
@@ -233,7 +282,6 @@
 - (void)clear {
 	self.mailbox = nil;
 	self.lastMessageAt = nil;
-	self.mailboxSegmentedControl.selectedSegmentIndex = UISegmentedControlNoSegment;
 	[self.tableView reloadData];
 }
 
@@ -279,36 +327,48 @@
 
 
 - (void)loadMessages {
-	[self.mailbox removeObserver:self forKeyPath:@"messageHeaders"];
-	self->observingMailbox = NO;
+    if (self->observingMailbox) {
+        [self.mailbox removeObserver:self forKeyPath:@"messageHeaders"];
+        self->observingMailbox = NO;
+    }
 	
-	switch (self.mailboxSegmentedControl.selectedSegmentIndex) {
-		case 0:
-			self.navigationItem.title = @"Inbox";
-			self.mailbox = [Mailbox loadInbox];
-			break;
-		case 1:
-			self.navigationItem.title = @"Archived";
-			self.mailbox = [Mailbox loadArchived];
-			break;
-		case 2:
-			self.navigationItem.title = @"Sent";
-			self.mailbox = [Mailbox loadSent];
-			break;
-	}
+    [self setMailboxFilterName];
+    switch (self->mailboxType) {
+        case LEMailboxTypeInbox:
+            self.mailbox = [Mailbox loadInboxWithFilter:self->mailboxFilterType];
+            break;
+        case LEMailboxTypeArchived:
+            self.mailbox = [Mailbox loadArchivedWithFilter:self->mailboxFilterType];
+            break;
+        case LEMailboxTypeTrash:
+            self.mailbox = [Mailbox loadTrashWithFilter:self->mailboxFilterType];
+            break;
+        case LEMailboxTypeSent:
+            self.mailbox = [Mailbox loadSentWithFilter:self->mailboxFilterType];
+            break;
+        default:
+            break;
+    }
+    
+    if ([self.mailbox canArchive] && [self.mailbox canTrash]) {
+        self.editBarButtonItem.title = @"Archive/Trash";
+        self.editBarButtonItem.enabled = YES;
+    } else if ([self.mailbox canArchive]) {
+        self.editBarButtonItem.title = @"Archive";
+        self.editBarButtonItem.enabled = YES;
+    } else if ([self.mailbox canTrash]) {
+        self.editBarButtonItem.title = @"Trash";
+        self.editBarButtonItem.enabled = YES;
+    } else {
+        self.editBarButtonItem.title = @"Cannot Delete";
+        self.editBarButtonItem.enabled = NO;
+    }
 	
 	if (!self->observingMailbox) {
 		[self.mailbox addObserver:self forKeyPath:@"messageHeaders" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 		self->observingMailbox = YES;
 	}
 	
-	if ([self.mailbox canArchive]) {
-		[self setToolbarItems:self.inboxBarButtonItems animated:NO];
-	} else {
-		[self setToolbarItems:self.otherMailboxBarButtonItems animated:NO];
-	}
-	
-//	[self performSelector:@selector(delayedShowMessage) withObject:nil afterDelay:0.5];
 	if (self.showMessageId) {
 		ViewMailMessageWebController *viewMailMessageController = [ViewMailMessageWebController create];
 		viewMailMessageController.mailbox = self.mailbox;
@@ -317,17 +377,6 @@
 		[[self navigationController] pushViewController:viewMailMessageController animated:YES];
 	}
     [self stopLoading];
-}
-
-
-- (void) delayedShowMessage {
-	if (self.showMessageId) {
-		ViewMailMessageWebController *viewMailMessageController = [ViewMailMessageWebController create];
-		viewMailMessageController.mailbox = self.mailbox;
-		viewMailMessageController.messageId = self.showMessageId;
-		self.showMessageId = nil;
-		[[self navigationController] pushViewController:viewMailMessageController animated:YES];
-	}
 }
 
 
@@ -342,9 +391,189 @@
 }
 
 
-#pragma mark -
-#pragma mark KVO Methods
+- (IBAction)showSelectMailbox {
+    SelectMailboxController *selectMailboxController = [SelectMailboxController create];
+    selectMailboxController.delegate = self;
+    [self.navigationController pushViewController:selectMailboxController animated:YES];
+}
 
+- (IBAction)edit:(id)sender {
+    [self.selectedMessageIds removeAllObjects];
+    [[self.tableView visibleCells] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        LETableViewCellMailSelect *cell = obj;
+        [cell unselectForDelete];
+    }];
+    [self setToolbarItems:self.editingBarButtonItems animated:YES];
+    [self.pageSegmentedControl setEnabled:NO forSegmentAtIndex:0];
+    [self.pageSegmentedControl setEnabled:NO forSegmentAtIndex:1];
+	[self.tableView setEditing:YES animated:YES];
+}
+
+
+- (IBAction)cancel:(id)sender {
+    [self setToolbarItems:self.viewingBarButtonItems animated:YES];
+    [self.pageSegmentedControl setEnabled:[self.mailbox hasPreviousPage] forSegmentAtIndex:0];
+    [self.pageSegmentedControl setEnabled:[self.mailbox hasNextPage] forSegmentAtIndex:1];
+	[self.tableView setEditing:NO animated:YES];
+}
+
+
+- (IBAction)trashSelected:(id)sender {
+    [self archiveOrTrash];
+    [self cancel:sender];
+}
+
+
+- (IBAction)archiveSelected:(id)sender {    
+    [self archiveOrTrash];
+    [self cancel:sender];
+}
+
+
+- (void)updateSelectionCount {
+    if ([self.mailbox canArchive] && [self.mailbox canTrash]) {
+        self.archiveOrTrashBarButtonItem.title = [NSString stringWithFormat:@"Archive/Trash (%i)", [self.selectedMessageIds count]];
+    } else if ([self.mailbox canArchive]) {
+        self.archiveOrTrashBarButtonItem.title = [NSString stringWithFormat:@"Archive (%i)", [self.selectedMessageIds count]];
+    } else if ([self.mailbox canTrash]) {
+        self.archiveOrTrashBarButtonItem.title = [NSString stringWithFormat:@"Trash (%i)", [self.selectedMessageIds count]];
+    } else {
+        self.archiveOrTrashBarButtonItem.title = [NSString stringWithFormat:@"Nothing (%i)", [self.selectedMessageIds count]];
+    }
+}
+
+
+- (void)archiveOrTrash {
+    UIActionSheet *actionSheet;
+    if ([self.mailbox canArchive] && [self.mailbox canTrash]) {
+        actionSheet = [[UIActionSheet alloc] initWithTitle:@"What do you want to do with the selected messages?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Trash" otherButtonTitles:@"Archive", nil];
+    } else if ([self.mailbox canArchive]) {
+        actionSheet = [[UIActionSheet alloc] initWithTitle:@"What do you want to do with the selected messages?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Archive", nil];
+    } else if ([self.mailbox canTrash]) {
+        actionSheet = [[UIActionSheet alloc] initWithTitle:@"What do you want to do with the selected messages?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Trash" otherButtonTitles:nil];
+    } else {
+        actionSheet = nil;
+    }
+	actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+	[actionSheet showFromTabBar:self.tabBarController.tabBar];
+	[actionSheet release];
+}
+
+- (void)setMailboxFilterName {
+    NSString *mailboxName;
+    NSString *filterName;
+    
+    switch (self->mailboxType) {
+        case LEMailboxTypeArchived:
+            mailboxName = @"Archive";
+            break;
+        case LEMailboxTypeInbox:
+            mailboxName = @"Inbox";
+            break;
+        case LEMailboxTypeSent:
+            mailboxName = @"Sent";
+            break;
+        case LEMailboxTypeTrash:
+            mailboxName = @"Trash";
+            break;
+        default:
+            mailboxName = @"?";
+            break;
+    }
+    switch (self->mailboxFilterType) {
+        case LEMailboxFilterTypeNone:
+            filterName = @"All";
+            break;
+        case LEMailboxFilterTypeAlert:
+            filterName = @"Alert";
+            break;
+        case LEMailboxFilterTypeAttack:
+            filterName = @"Attack";
+            break;
+        case LEMailboxFilterTypeColonization:
+            filterName = @"Colonization";
+            break;
+        case LEMailboxFilterTypeComplaint:
+            filterName = @"Complaint";
+            break;
+        case LEMailboxFilterTypeCorrespondence:
+            filterName = @"Correspondence";
+            break;
+        case LEMailboxFilterTypeExcavator:
+            filterName = @"Excavator";
+            break;
+        case LEMailboxFilterTypeIntelligence:
+            filterName = @"Intelligence";
+            break;
+        case LEMailboxFilterTypeMedal:
+            filterName = @"Medal";
+            break;
+        case LEMailboxFilterTypeMission:
+            filterName = @"Mission";
+            break;
+        case LEMailboxFilterTypeParliament:
+            filterName = @"Parliament";
+            break;
+        case LEMailboxFilterTypeProbe:
+            filterName = @"Probe";
+            break;
+        case LEMailboxFilterTypeSpies:
+            filterName = @"Spies";
+            break;
+        case LEMailboxFilterTypeTrade:
+            filterName = @"Trade";
+            break;
+        case LEMailboxFilterTypeTutorial:
+            filterName = @"Tutorial";
+            break;
+        default:
+            filterName = @"?";
+            break;
+    }
+    
+    self.mailboxFilterBarButtonItem.title = [NSString stringWithFormat:@"%@ : %@", mailboxName, filterName];
+}
+
+
+#pragma mark - UIActionSheetDelegate Methods
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if (actionSheet.cancelButtonIndex == buttonIndex ) {
+        NSLog(@"Cancelled");
+        //Does nothing
+	} else if (actionSheet.destructiveButtonIndex == buttonIndex) {
+        NSLog(@"Destructive");
+		[self.mailbox trashMessages:self.selectedMessageIds];
+        [self.tableView reloadData];
+	} else {
+        NSLog(@"Archive");
+		[self.mailbox archiveMessages:self.selectedMessageIds];
+        [self.tableView reloadData];
+    }
+}
+
+
+#pragma mark - SelectMailboxControllerDelegate Methods
+
+- (void)selectedMailbox:(LEMailboxType)inMailboxType {
+    self->mailboxType = inMailboxType;
+    SelectMailboxFilterController *vc = [SelectMailboxFilterController create];
+    vc.delegate = self;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+
+#pragma mark - SelectMailboxFilterControllerDelegate Methods
+
+
+- (void)selectedMailboxFilter:(LEMailboxFilterType)inMailboxFilterType {
+    self->mailboxFilterType = inMailboxFilterType;
+    [self.navigationController popToViewController:self animated:YES];
+    [self loadMessages];
+}
+
+
+#pragma mark - KVO Methods
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
 	if ( [keyPath isEqual:@"messageHeaders"]) {

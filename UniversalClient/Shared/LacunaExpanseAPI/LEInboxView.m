@@ -15,18 +15,25 @@
 
 
 @synthesize page;
+@synthesize tags;
 @synthesize messages;
 @synthesize messageCount;
 
 
-- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget page:(NSDecimalNumber *)inPage {
+- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget page:(NSDecimalNumber *)inPage tags:(NSArray *)inTags{
 	self.page = inPage;
+    self.tags = inTags;
 	return [self initWithCallback:inCallback target:(NSObject *)inTarget];
 }
 
 
 - (id)params {
-	NSArray *params = _array([Session sharedInstance].sessionId, _dict(self.page, @"page_number"));
+    NSMutableDictionary *options = _dict(self.page, @"page_number");
+    if ([self.tags count] > 0) {
+        [options setObject:self.tags forKey:@"tags"];
+    }
+    
+	NSArray *params = _array([Session sharedInstance].sessionId, options);
 	return params;
 }
 

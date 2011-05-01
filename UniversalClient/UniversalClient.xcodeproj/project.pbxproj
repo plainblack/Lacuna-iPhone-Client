@@ -35,6 +35,7 @@
 		F60AF51E1224A4A5005B2F0E /* PendingAllianceInvite.m in Sources */ = {isa = PBXBuildFile; fileRef = F60AF51D1224A4A5005B2F0E /* PendingAllianceInvite.m */; };
 		F60AF5211224A4AE005B2F0E /* MyAllianceInvite.m in Sources */ = {isa = PBXBuildFile; fileRef = F60AF5201224A4AE005B2F0E /* MyAllianceInvite.m */; };
 		F60D1CCA132F876E00919C55 /* DistributionCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F60D1CC9132F876E00919C55 /* DistributionCenter.m */; };
+		F60F33B9136D03E20012D561 /* LEInboxTrash.m in Sources */ = {isa = PBXBuildFile; fileRef = F60F33B8136D03E20012D561 /* LEInboxTrash.m */; };
 		F6105DC5133C120000007F63 /* LEBuildingGetTradeableSpies.m in Sources */ = {isa = PBXBuildFile; fileRef = F6105DC4133C120000007F63 /* LEBuildingGetTradeableSpies.m */; };
 		F6105DC8133C1D6E00007F63 /* SelectTradeableSpyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6105DC7133C1D6D00007F63 /* SelectTradeableSpyController.m */; };
 		F61151D91299988E00108348 /* LEBuildingTransmitFood.m in Sources */ = {isa = PBXBuildFile; fileRef = F61151D81299988E00108348 /* LEBuildingTransmitFood.m */; };
@@ -122,6 +123,9 @@
 		F655E3D112A32C6A00CAFDF3 /* LEBuildingViewStash.m in Sources */ = {isa = PBXBuildFile; fileRef = F655E3D012A32C6A00CAFDF3 /* LEBuildingViewStash.m */; };
 		F655E3D412A32C8500CAFDF3 /* LEBuildingDonateToStash.m in Sources */ = {isa = PBXBuildFile; fileRef = F655E3D312A32C8500CAFDF3 /* LEBuildingDonateToStash.m */; };
 		F655E3D712A32CB100CAFDF3 /* LEBuildingExchangeWithStash.m in Sources */ = {isa = PBXBuildFile; fileRef = F655E3D612A32CB100CAFDF3 /* LEBuildingExchangeWithStash.m */; };
+		F65ACB84136DAFEC001A579D /* SelectMailboxController.m in Sources */ = {isa = PBXBuildFile; fileRef = F65ACB83136DAFEC001A579D /* SelectMailboxController.m */; };
+		F65ACB87136DB002001A579D /* SelectMailboxFilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = F65ACB86136DB002001A579D /* SelectMailboxFilterController.m */; };
+		F65ACB8A136DDC4C001A579D /* LEInboxViewTrash.m in Sources */ = {isa = PBXBuildFile; fileRef = F65ACB89136DDC4C001A579D /* LEInboxViewTrash.m */; };
 		F65D35B91195E00400454C2B /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = F65D35B81195E00400454C2B /* iTunesArtwork */; };
 		F65D36681195F05B00454C2B /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = F65D36671195F05B00454C2B /* Entitlements.plist */; };
 		F65DC32611EE09AE00A0A782 /* PlanetaryCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = F65DC32511EE09AE00A0A782 /* PlanetaryCommand.m */; };
@@ -594,6 +598,8 @@
 		F60AF5201224A4AE005B2F0E /* MyAllianceInvite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAllianceInvite.m; sourceTree = "<group>"; };
 		F60D1CC8132F876E00919C55 /* DistributionCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistributionCenter.h; sourceTree = "<group>"; };
 		F60D1CC9132F876E00919C55 /* DistributionCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistributionCenter.m; sourceTree = "<group>"; };
+		F60F33B7136D03E20012D561 /* LEInboxTrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEInboxTrash.h; sourceTree = "<group>"; };
+		F60F33B8136D03E20012D561 /* LEInboxTrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEInboxTrash.m; sourceTree = "<group>"; };
 		F6105DC3133C120000007F63 /* LEBuildingGetTradeableSpies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetTradeableSpies.h; sourceTree = "<group>"; };
 		F6105DC4133C120000007F63 /* LEBuildingGetTradeableSpies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingGetTradeableSpies.m; sourceTree = "<group>"; };
 		F6105DC6133C1D6D00007F63 /* SelectTradeableSpyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectTradeableSpyController.h; sourceTree = "<group>"; };
@@ -762,6 +768,12 @@
 		F655E3D312A32C8500CAFDF3 /* LEBuildingDonateToStash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingDonateToStash.m; sourceTree = "<group>"; };
 		F655E3D512A32CB100CAFDF3 /* LEBuildingExchangeWithStash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingExchangeWithStash.h; sourceTree = "<group>"; };
 		F655E3D612A32CB100CAFDF3 /* LEBuildingExchangeWithStash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingExchangeWithStash.m; sourceTree = "<group>"; };
+		F65ACB82136DAFEC001A579D /* SelectMailboxController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectMailboxController.h; sourceTree = "<group>"; };
+		F65ACB83136DAFEC001A579D /* SelectMailboxController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectMailboxController.m; sourceTree = "<group>"; };
+		F65ACB85136DB002001A579D /* SelectMailboxFilterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectMailboxFilterController.h; sourceTree = "<group>"; };
+		F65ACB86136DB002001A579D /* SelectMailboxFilterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectMailboxFilterController.m; sourceTree = "<group>"; };
+		F65ACB88136DDC4C001A579D /* LEInboxViewTrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEInboxViewTrash.h; sourceTree = "<group>"; };
+		F65ACB89136DDC4C001A579D /* LEInboxViewTrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEInboxViewTrash.m; sourceTree = "<group>"; };
 		F65D35B81195E00400454C2B /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		F65D36671195F05B00454C2B /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		F65DC32411EE09AE00A0A782 /* PlanetaryCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanetaryCommand.h; sourceTree = "<group>"; };
@@ -2210,6 +2222,10 @@
 				F6EB9A47135093B800C1DDB0 /* LEBuildingGetBodiesForStarInJurisdiction.m */,
 				F6EB9A49135093D900C1DDB0 /* LEBuidingGetMiningPlatformsForAsteroidInJurisdiction.h */,
 				F6EB9A4A135093DA00C1DDB0 /* LEBuidingGetMiningPlatformsForAsteroidInJurisdiction.m */,
+				F60F33B7136D03E20012D561 /* LEInboxTrash.h */,
+				F60F33B8136D03E20012D561 /* LEInboxTrash.m */,
+				F65ACB88136DDC4C001A579D /* LEInboxViewTrash.h */,
+				F65ACB89136DDC4C001A579D /* LEInboxViewTrash.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -2719,6 +2735,10 @@
 				F6FD93C71366519F00BD1938 /* SelectBodyForStarInJurisdictionViewController.m */,
 				F64DC9EE136B8BF7003E18D5 /* SelectMiningPlatformForBodyInJurisdictionViewController.h */,
 				F64DC9EF136B8BF8003E18D5 /* SelectMiningPlatformForBodyInJurisdictionViewController.m */,
+				F65ACB82136DAFEC001A579D /* SelectMailboxController.h */,
+				F65ACB83136DAFEC001A579D /* SelectMailboxController.m */,
+				F65ACB85136DB002001A579D /* SelectMailboxFilterController.h */,
+				F65ACB86136DB002001A579D /* SelectMailboxFilterController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -3328,6 +3348,10 @@
 				F6CE0C03136102CF0090AA30 /* LEPullToRefreshTableViewControllerGrouped.m in Sources */,
 				F6FD93C8136651A000BD1938 /* SelectBodyForStarInJurisdictionViewController.m in Sources */,
 				F64DC9F0136B8BF8003E18D5 /* SelectMiningPlatformForBodyInJurisdictionViewController.m in Sources */,
+				F60F33B9136D03E20012D561 /* LEInboxTrash.m in Sources */,
+				F65ACB84136DAFEC001A579D /* SelectMailboxController.m in Sources */,
+				F65ACB87136DB002001A579D /* SelectMailboxFilterController.m in Sources */,
+				F65ACB8A136DDC4C001A579D /* LEInboxViewTrash.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

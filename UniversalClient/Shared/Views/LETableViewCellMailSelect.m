@@ -14,6 +14,7 @@
 @implementation LETableViewCellMailSelect
 
 
+@synthesize selectedImageView;
 @synthesize subjectText;
 @synthesize fromLabel;
 @synthesize fromText;
@@ -38,6 +39,7 @@
 
 
 - (void)dealloc {
+    self.selectedImageView = nil;
 	self.subjectText = nil;
 	self.fromLabel = nil;
 	self.fromText = nil;
@@ -47,8 +49,7 @@
 }
 
 
-#pragma mark -
-#pragma mark Instance Methods
+#pragma mark - Instance Methods
 
 - (void)setMessage:(NSDictionary *)message {
 	self.subjectText.text = [message objectForKey:@"subject"];
@@ -72,6 +73,16 @@
 }
 
 
+- (void)selectForDelete {
+    self.selectedImageView.image = [UIImage imageNamed:@"assets/iphone ui/is_selected"];
+}
+
+
+- (void)unselectForDelete {
+    self.selectedImageView.image = [UIImage imageNamed:@"assets/iphone ui/not_selected"];
+}
+
+
 #pragma mark -
 #pragma mark Class Methods
 
@@ -85,6 +96,12 @@
 		cell.autoresizesSubviews = YES;
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		
+        cell.selectedImageView = [[[UIImageView alloc] initWithFrame:CGRectMake(-30.0, 5.0, 30.0, 55.0)] autorelease];
+        cell.selectedImageView.backgroundColor = [UIColor clearColor];
+        cell.selectedImageView.autoresizingMask = UIViewAutoresizingNone;
+        cell.selectedImageView.contentMode = UIViewContentModeCenter;
+        [cell.contentView addSubview:cell.selectedImageView];
+        
 		cell.subjectText = [[[UILabel alloc] initWithFrame:CGRectMake(5, 5, 310, 20)] autorelease];
 		cell.subjectText.backgroundColor = [UIColor clearColor];
 		cell.subjectText.textAlignment = UITextAlignmentLeft;

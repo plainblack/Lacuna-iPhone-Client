@@ -1,16 +1,16 @@
 //
-//  LEInboxArchive.h
-//  DKTest
+//  LEInboxTrash.h
+//  UniversalClient
 //
-//  Created by Kevin Runde on 3/12/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Created by Kevin Runde on 4/30/11.
+//  Copyright 2011 n/a. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "LERequest.h"
 
 
-@interface LEInboxArchive : LERequest {
+@interface LEInboxTrash : LERequest {
 }
 
 

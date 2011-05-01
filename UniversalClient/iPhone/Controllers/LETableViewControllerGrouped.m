@@ -73,21 +73,6 @@
 
 
 #pragma mark -
-#pragma mark Table view delegate source
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-	/*
-	Removed for now. This is not working correctly need to research this more.
-	if (indexPath.row == 0) {
-		cell.backgroundColor = TOP_CELL_BACKGROUND_COLOR;
-	} else {
-		cell.backgroundColor = CELL_BACKGROUND_COLOR;
-	}
-	*/
-}
-
-
-#pragma mark -
 #pragma mark Memory management
 
 - (void)viewDidUnload {
