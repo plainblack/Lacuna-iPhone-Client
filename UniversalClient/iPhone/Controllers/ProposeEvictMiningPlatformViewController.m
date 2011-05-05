@@ -111,7 +111,7 @@ typedef enum {
                     ; //DO NOT REMOVE
                     LETableViewCellButton *targetCell = [LETableViewCellButton getCellForTableView:tableView];
                     if (self.selectedMiningPlatform) {
-                        targetCell.textLabel.text = [self.selectedMiningPlatform objectForKey:@"name"];
+                        targetCell.textLabel.text = [NSString stringWithFormat:@"Owner: %@", [[self.selectedMiningPlatform objectForKey:@"empire"] objectForKey:@"name"]];
                     } else {
                         targetCell.textLabel.text = @"Pick target";
                     }

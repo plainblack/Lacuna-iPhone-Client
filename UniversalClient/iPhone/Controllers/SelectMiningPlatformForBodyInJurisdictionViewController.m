@@ -78,7 +78,7 @@
         if ([self.miningPlatforms count] > 0) {
             NSDictionary *miningPlatform = [self.miningPlatforms objectAtIndex:indexPath.row];
             LETableViewCellButton *miningPlatformButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-            miningPlatformButtonCell.textLabel.text = [[miningPlatform objectForKey:@"empire"] objectForKey:@"name"];
+            miningPlatformButtonCell.textLabel.text = [NSString stringWithFormat:@"Owner: %@", [[miningPlatform objectForKey:@"empire"] objectForKey:@"name"]];
             cell = miningPlatformButtonCell;
         } else {
             LETableViewCellLabeledText *noMatchesCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];

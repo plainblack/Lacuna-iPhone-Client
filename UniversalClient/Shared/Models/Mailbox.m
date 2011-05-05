@@ -277,6 +277,7 @@
 
 - (id)messagesLoaded:(LEInboxView *)request {
 	if (![request wasError]) {
+        NSLog(@"Messages Loaded: %@", request.response);
 		self->originalMessageHeaderCount = [request.messages count];
 		self->numPages = [Util numPagesForCount:_intv(request.messageCount)];
 		self.messageHeaders = request.messages;
