@@ -43,6 +43,7 @@
 
 #import "Module.h"
 #import "Parliament.h"
+#import "PoliceStation.h"
 #import "StationCommand.h"
 
 
@@ -119,6 +120,8 @@
 		building = [[[Module alloc] init] autorelease];
     } else if ([request.buildingUrl isEqualToString:PARLIAMENT_URL]) {
 		building = [[[Parliament alloc] init] autorelease];
+    } else if ([request.buildingUrl isEqualToString:POLICE_STATION_URL]) {
+		building = [[[PoliceStation alloc] init] autorelease];
     } else if ([request.buildingUrl isEqualToString:STATION_COMMAND_URL]) {
 		building = [[[StationCommand alloc] init] autorelease];
     } else if ([request.buildingUrl isEqualToString:WAREHOUSE_URL]) {

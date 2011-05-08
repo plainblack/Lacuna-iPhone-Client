@@ -35,6 +35,7 @@
 		F60AF51E1224A4A5005B2F0E /* PendingAllianceInvite.m in Sources */ = {isa = PBXBuildFile; fileRef = F60AF51D1224A4A5005B2F0E /* PendingAllianceInvite.m */; };
 		F60AF5211224A4AE005B2F0E /* MyAllianceInvite.m in Sources */ = {isa = PBXBuildFile; fileRef = F60AF5201224A4AE005B2F0E /* MyAllianceInvite.m */; };
 		F60D1CCA132F876E00919C55 /* DistributionCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = F60D1CC9132F876E00919C55 /* DistributionCenter.m */; };
+		F60D638B1376F94800C202DC /* PoliceStation.m in Sources */ = {isa = PBXBuildFile; fileRef = F60D638A1376F94800C202DC /* PoliceStation.m */; };
 		F60F33B9136D03E20012D561 /* LEInboxTrash.m in Sources */ = {isa = PBXBuildFile; fileRef = F60F33B8136D03E20012D561 /* LEInboxTrash.m */; };
 		F6105DC5133C120000007F63 /* LEBuildingGetTradeableSpies.m in Sources */ = {isa = PBXBuildFile; fileRef = F6105DC4133C120000007F63 /* LEBuildingGetTradeableSpies.m */; };
 		F6105DC8133C1D6E00007F63 /* SelectTradeableSpyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6105DC7133C1D6D00007F63 /* SelectTradeableSpyController.m */; };
@@ -598,6 +599,9 @@
 		F60AF5201224A4AE005B2F0E /* MyAllianceInvite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAllianceInvite.m; sourceTree = "<group>"; };
 		F60D1CC8132F876E00919C55 /* DistributionCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistributionCenter.h; sourceTree = "<group>"; };
 		F60D1CC9132F876E00919C55 /* DistributionCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistributionCenter.m; sourceTree = "<group>"; };
+		F60D63891376F94800C202DC /* PoliceStation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PoliceStation.h; sourceTree = "<group>"; };
+		F60D638A1376F94800C202DC /* PoliceStation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PoliceStation.m; sourceTree = "<group>"; };
+		F60D638C1376F9B400C202DC /* SpySecurity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpySecurity.h; sourceTree = "<group>"; };
 		F60F33B7136D03E20012D561 /* LEInboxTrash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEInboxTrash.h; sourceTree = "<group>"; };
 		F60F33B8136D03E20012D561 /* LEInboxTrash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEInboxTrash.m; sourceTree = "<group>"; };
 		F6105DC3133C120000007F63 /* LEBuildingGetTradeableSpies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingGetTradeableSpies.h; sourceTree = "<group>"; };
@@ -2383,6 +2387,9 @@
 				F6B241BD133E7A0300E6933F /* MercenariesGuild.m */,
 				F6F296FF134F2B2C0002C508 /* Law.h */,
 				F6F29700134F2B2C0002C508 /* Law.m */,
+				F60D63891376F94800C202DC /* PoliceStation.h */,
+				F60D638A1376F94800C202DC /* PoliceStation.m */,
+				F60D638C1376F9B400C202DC /* SpySecurity.h */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -3352,6 +3359,7 @@
 				F65ACB84136DAFEC001A579D /* SelectMailboxController.m in Sources */,
 				F65ACB87136DB002001A579D /* SelectMailboxFilterController.m in Sources */,
 				F65ACB8A136DDC4C001A579D /* LEInboxViewTrash.m in Sources */,
+				F60D638B1376F94800C202DC /* PoliceStation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

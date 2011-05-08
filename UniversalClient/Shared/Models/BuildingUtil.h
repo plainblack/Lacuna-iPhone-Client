@@ -45,6 +45,7 @@
 
 #define IBS_URL @"/ibs"
 #define PARLIAMENT_URL @"/parliament"
+#define POLICE_STATION_URL @"/policestation"
 #define STATION_COMMAND_URL @"/stationcommand"
 #define WAREHOUSE_URL @"/warehouse"
 

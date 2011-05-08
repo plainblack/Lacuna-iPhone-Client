@@ -8,20 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "LETableViewControllerGrouped.h"
-
-
-@class Security;
+#import "SpySecurity.h"
 
 
 @interface ViewForeignSpiesController : LETableViewControllerGrouped {
-	UISegmentedControl *pageSegmentedControl;
-	Security *securityBuilding;
-	NSDate *foreignSpiesLastUpdated;
 }
 
 
 @property (nonatomic, retain) UISegmentedControl *pageSegmentedControl;
-@property (nonatomic, retain) Security *securityBuilding;
+@property (nonatomic, retain) NSObject<SpySecurity> *spySecurityBuilding;
 @property (nonatomic, retain) NSDate *foreignSpiesLastUpdated;
 
 

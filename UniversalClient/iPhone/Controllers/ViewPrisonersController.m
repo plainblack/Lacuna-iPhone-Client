@@ -8,11 +8,11 @@
 
 #import "ViewPrisonersController.h"
 #import "LEMacros.h"
+#import "Building.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellLabeledText.h"
 #import "LETableViewCellButton.h"
 #import "Util.h"
-#import "Security.h"
 #import "Prisoner.h"
 
 
@@ -35,7 +35,7 @@ typedef enum {
 
 
 @synthesize pageSegmentedControl;
-@synthesize securityBuilding;
+@synthesize spySecurityBuilding;
 @synthesize prisonersLastUpdated;
 @synthesize selectedPrisoner;
 
@@ -62,17 +62,17 @@ typedef enum {
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	[self.securityBuilding addObserver:self forKeyPath:@"prisonersUpdated" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
-	if (!self.securityBuilding.prisoners) {
-		[self.securityBuilding loadPrisonersForPage:1];
+	[self.spySecurityBuilding addObserver:self forKeyPath:@"prisonersUpdated" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+	if (!self.spySecurityBuilding.prisoners) {
+		[self.spySecurityBuilding loadPrisonersForPage:1];
 	} else {
 		if (self.prisonersLastUpdated) {
-			if ([self.prisonersLastUpdated compare:self.securityBuilding.prisonersUpdated] == NSOrderedAscending) {
+			if ([self.prisonersLastUpdated compare:self.spySecurityBuilding.prisonersUpdated] == NSOrderedAscending) {
 				[self.tableView reloadData];
-				self.prisonersLastUpdated = self.securityBuilding.prisonersUpdated;
+				self.prisonersLastUpdated = self.spySecurityBuilding.prisonersUpdated;
 			}
 		} else {
-			self.prisonersLastUpdated = self.securityBuilding.prisonersUpdated;
+			self.prisonersLastUpdated = self.spySecurityBuilding.prisonersUpdated;
 		}
 	}
 
@@ -87,7 +87,7 @@ typedef enum {
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-	[self.securityBuilding removeObserver:self forKeyPath:@"prisonersUpdated"];
+	[self.spySecurityBuilding removeObserver:self forKeyPath:@"prisonersUpdated"];
 }
 
 
@@ -95,9 +95,9 @@ typedef enum {
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	if (self.securityBuilding && self.securityBuilding.prisoners) {
-		if ([self.securityBuilding.prisoners count] > 0) {
-			return [self.securityBuilding.prisoners count];
+	if (self.spySecurityBuilding && self.spySecurityBuilding.prisoners) {
+		if ([self.spySecurityBuilding.prisoners count] > 0) {
+			return [self.spySecurityBuilding.prisoners count];
 		} else {
 			return 1;
 		}
@@ -108,8 +108,8 @@ typedef enum {
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if (self.securityBuilding && self.securityBuilding.prisoners) {
-		if ([self.securityBuilding.prisoners count] > 0) {
+	if (self.spySecurityBuilding && self.spySecurityBuilding.prisoners) {
+		if ([self.spySecurityBuilding.prisoners count] > 0) {
 			return 4;
 		} else {
 			return 1;
@@ -121,8 +121,8 @@ typedef enum {
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (self.securityBuilding && self.securityBuilding.prisoners) {
-		if ([self.securityBuilding.prisoners count] > 0) {
+	if (self.spySecurityBuilding && self.spySecurityBuilding.prisoners) {
+		if ([self.spySecurityBuilding.prisoners count] > 0) {
 			switch (indexPath.row) {
 				case ROW_PRISONER_NAME:
 				case ROW_PRISONER_SENTENCE:
@@ -149,9 +149,9 @@ typedef enum {
     
     UITableViewCell *cell = nil;
 	
-	if (self.securityBuilding && self.securityBuilding.prisoners) {
-		if ([self.securityBuilding.prisoners count] > 0) {
-			Prisoner *prisoner = [self.securityBuilding.prisoners objectAtIndex:indexPath.section];
+	if (self.spySecurityBuilding && self.spySecurityBuilding.prisoners) {
+		if ([self.spySecurityBuilding.prisoners count] > 0) {
+			Prisoner *prisoner = [self.spySecurityBuilding.prisoners objectAtIndex:indexPath.section];
 			switch (indexPath.row) {
 				case ROW_PRISONER_NAME:
 					; //DO NOT REMOVE
@@ -204,7 +204,7 @@ typedef enum {
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	Prisoner *prisoner = [self.securityBuilding.prisoners objectAtIndex:indexPath.section];
+	Prisoner *prisoner = [self.spySecurityBuilding.prisoners objectAtIndex:indexPath.section];
 	switch (indexPath.row) {
 		case ROW_PRISONER_EXECUTE:
 			self.selectedPrisoner = prisoner;
@@ -214,7 +214,7 @@ typedef enum {
 			[actionSheet release];
 			break;
 		case ROW_PRISONER_RELEASE:
-			[self.securityBuilding releasePrisoner:prisoner.id];
+			[self.spySecurityBuilding releasePrisoner:prisoner.id];
 			break;
 	}
 }
@@ -238,7 +238,7 @@ typedef enum {
 
 - (void)dealloc {
 	self.pageSegmentedControl = nil;
-	self.securityBuilding = nil;
+	self.spySecurityBuilding = nil;
 	self.prisonersLastUpdated = nil;
 	self.selectedPrisoner = nil;
     [super dealloc];
@@ -251,7 +251,7 @@ typedef enum {
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
 	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
-		[self.securityBuilding executePrisoner:self.selectedPrisoner.id];
+		[self.spySecurityBuilding executePrisoner:self.selectedPrisoner.id];
 		self.selectedPrisoner = nil;
 	}
 }
@@ -263,10 +263,10 @@ typedef enum {
 - (void) switchPage {
 	switch (self.pageSegmentedControl.selectedSegmentIndex) {
 		case 0:
-			[self.securityBuilding loadPrisonersForPage:(self.securityBuilding.prisonersPageNumber-1)];
+			[self.spySecurityBuilding loadPrisonersForPage:(self.spySecurityBuilding.prisonersPageNumber-1)];
 			break;
 		case 1:
-			[self.securityBuilding loadPrisonersForPage:(self.securityBuilding.prisonersPageNumber+1)];
+			[self.spySecurityBuilding loadPrisonersForPage:(self.spySecurityBuilding.prisonersPageNumber+1)];
 			break;
 		default:
 			NSLog(@"Invalid switchPage");
@@ -279,8 +279,8 @@ typedef enum {
 #pragma mark Private Methods
 
 - (void)togglePageButtons {
-	[self.pageSegmentedControl setEnabled:[self.securityBuilding hasPreviousPrisonersPage] forSegmentAtIndex:0];
-	[self.pageSegmentedControl setEnabled:[self.securityBuilding hasNextPrisonersPage] forSegmentAtIndex:1];
+	[self.pageSegmentedControl setEnabled:[self.spySecurityBuilding hasPreviousPrisonersPage] forSegmentAtIndex:0];
+	[self.pageSegmentedControl setEnabled:[self.spySecurityBuilding hasNextPrisonersPage] forSegmentAtIndex:1];
 }
 
 
@@ -299,7 +299,7 @@ typedef enum {
 	if ([keyPath isEqual:@"prisonersUpdated"]) {
 		[self togglePageButtons];
 		[self.tableView reloadData];
-		self.prisonersLastUpdated = self.securityBuilding.prisonersUpdated;
+		self.prisonersLastUpdated = self.spySecurityBuilding.prisonersUpdated;
 	}
 }
 

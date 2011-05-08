@@ -8,10 +8,10 @@
 
 #import "ViewForeignSpiesController.h"
 #import "LEMacros.h"
+#import "Building.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellLabeledText.h"
 #import "Util.h"
-#import "Security.h"
 
 
 typedef enum {
@@ -32,7 +32,7 @@ typedef enum {
 
 
 @synthesize pageSegmentedControl;
-@synthesize securityBuilding;
+@synthesize spySecurityBuilding;
 @synthesize foreignSpiesLastUpdated;
 
 
@@ -58,17 +58,17 @@ typedef enum {
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	[self.securityBuilding addObserver:self forKeyPath:@"foreignSpiesUpdated" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
-	if (!self.securityBuilding.foreignSpies) {
-		[self.securityBuilding loadForeignSpiesForPage:1];
+	[self.spySecurityBuilding addObserver:self forKeyPath:@"foreignSpiesUpdated" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+	if (!self.spySecurityBuilding.foreignSpies) {
+		[self.spySecurityBuilding loadForeignSpiesForPage:1];
 	} else {
 		if (self.foreignSpiesLastUpdated) {
-			if ([self.foreignSpiesLastUpdated compare:self.securityBuilding.foreignSpiesUpdated] == NSOrderedAscending) {
+			if ([self.foreignSpiesLastUpdated compare:self.spySecurityBuilding.foreignSpiesUpdated] == NSOrderedAscending) {
 				[self.tableView reloadData];
-				self.foreignSpiesLastUpdated = self.securityBuilding.foreignSpiesUpdated;
+				self.foreignSpiesLastUpdated = self.spySecurityBuilding.foreignSpiesUpdated;
 			}
 		} else {
-			self.foreignSpiesLastUpdated = self.securityBuilding.foreignSpiesUpdated;
+			self.foreignSpiesLastUpdated = self.spySecurityBuilding.foreignSpiesUpdated;
 		}
 	}
 
@@ -83,7 +83,7 @@ typedef enum {
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-	[self.securityBuilding removeObserver:self forKeyPath:@"foreignSpiesUpdated"];
+	[self.spySecurityBuilding removeObserver:self forKeyPath:@"foreignSpiesUpdated"];
 }
 
 
@@ -91,9 +91,9 @@ typedef enum {
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	if (self.securityBuilding && self.securityBuilding.foreignSpies) {
-		if ([self.securityBuilding.foreignSpies count] > 0) {
-			return [self.securityBuilding.foreignSpies count];
+	if (self.spySecurityBuilding && self.spySecurityBuilding.foreignSpies) {
+		if ([self.spySecurityBuilding.foreignSpies count] > 0) {
+			return [self.spySecurityBuilding.foreignSpies count];
 		} else {
 			return 1;
 		}
@@ -104,8 +104,8 @@ typedef enum {
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if (self.securityBuilding && self.securityBuilding.foreignSpies) {
-		if ([self.securityBuilding.foreignSpies count] > 0) {
+	if (self.spySecurityBuilding && self.spySecurityBuilding.foreignSpies) {
+		if ([self.spySecurityBuilding.foreignSpies count] > 0) {
 			return 3;
 		} else {
 			return 1;
@@ -117,8 +117,8 @@ typedef enum {
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (self.securityBuilding && self.securityBuilding.foreignSpies) {
-		if ([self.securityBuilding.foreignSpies count] > 0) {
+	if (self.spySecurityBuilding && self.spySecurityBuilding.foreignSpies) {
+		if ([self.spySecurityBuilding.foreignSpies count] > 0) {
 			switch (indexPath.row) {
 				case ROW_NAME:
 				case ROW_LEVEL:
@@ -143,9 +143,9 @@ typedef enum {
     
     UITableViewCell *cell = nil;
 	
-	if (self.securityBuilding && self.securityBuilding.foreignSpies) {
-		if ([self.securityBuilding.foreignSpies count] > 0) {
-			NSDictionary *foreignSpy = [self.securityBuilding.foreignSpies objectAtIndex:indexPath.section];
+	if (self.spySecurityBuilding && self.spySecurityBuilding.foreignSpies) {
+		if ([self.spySecurityBuilding.foreignSpies count] > 0) {
+			NSDictionary *foreignSpy = [self.spySecurityBuilding.foreignSpies objectAtIndex:indexPath.section];
 			switch (indexPath.row) {
 				case ROW_NAME:
 					; //DO NOT REMOVE
@@ -207,7 +207,7 @@ typedef enum {
 
 - (void)dealloc {
 	self.pageSegmentedControl = nil;
-	self.securityBuilding = nil;
+	self.spySecurityBuilding = nil;
 	self.foreignSpiesLastUpdated = nil;
     [super dealloc];
 }
@@ -219,10 +219,10 @@ typedef enum {
 - (void) switchPage {
 	switch (self.pageSegmentedControl.selectedSegmentIndex) {
 		case 0:
-			[self.securityBuilding loadForeignSpiesForPage:(self.securityBuilding.foreignSpyPageNumber-1)];
+			[self.spySecurityBuilding loadForeignSpiesForPage:(self.spySecurityBuilding.foreignSpyPageNumber-1)];
 			break;
 		case 1:
-			[self.securityBuilding loadForeignSpiesForPage:(self.securityBuilding.foreignSpyPageNumber+1)];
+			[self.spySecurityBuilding loadForeignSpiesForPage:(self.spySecurityBuilding.foreignSpyPageNumber+1)];
 			break;
 		default:
 			NSLog(@"Invalid switchPage");
@@ -235,8 +235,8 @@ typedef enum {
 #pragma mark Private Methods
 
 - (void)togglePageButtons {
-	[self.pageSegmentedControl setEnabled:[self.securityBuilding hasPreviousForeignSpyPage] forSegmentAtIndex:0];
-	[self.pageSegmentedControl setEnabled:[self.securityBuilding hasNextForeignSpyPage] forSegmentAtIndex:1];
+	[self.pageSegmentedControl setEnabled:[self.spySecurityBuilding hasPreviousForeignSpyPage] forSegmentAtIndex:0];
+	[self.pageSegmentedControl setEnabled:[self.spySecurityBuilding hasNextForeignSpyPage] forSegmentAtIndex:1];
 }
 
 
@@ -255,8 +255,7 @@ typedef enum {
 	if ([keyPath isEqual:@"foreignSpiesUpdated"]) {
 		[self togglePageButtons];
 		[self.tableView reloadData];
-		self.foreignSpiesLastUpdated = self.securityBuilding.foreignSpiesUpdated;
-		NSLog(@"Foreign Spies: %@", self.securityBuilding.foreignSpies);
+		self.foreignSpiesLastUpdated = self.spySecurityBuilding.foreignSpiesUpdated;
 	}
 }
 

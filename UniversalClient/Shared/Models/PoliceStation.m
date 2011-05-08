@@ -1,12 +1,12 @@
 //
-//  Security.m
+//  PoliceStation.m
 //  UniversalClient
 //
-//  Created by Kevin Runde on 7/14/10.
-//  Copyright 2010 n/a. All rights reserved.
+//  Created by Kevin Runde on 5/8/11.
+//  Copyright 2011 n/a. All rights reserved.
 //
 
-#import "Security.h"
+#import "PoliceStation.h"
 #import "LEMacros.h"
 #import	"Util.h"
 #import "LETableViewCellButton.h"
@@ -19,7 +19,7 @@
 #import "Prisoner.h"
 
 
-@implementation Security
+@implementation PoliceStation
 
 
 @synthesize prisoners;
@@ -51,7 +51,7 @@
 
 - (BOOL)tick:(NSInteger)interval {
 	BOOL reloadPrisoners = NO;
-
+    
 	for (Prisoner *prisoner in self.prisoners) {
 		if ([prisoner tick:interval]) {
 			reloadPrisoners = YES;

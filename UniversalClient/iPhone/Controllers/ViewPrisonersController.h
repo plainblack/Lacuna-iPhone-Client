@@ -9,21 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "LETableViewControllerGrouped.h"
 #import "Prisoner.h"
-
-
-@class Security;
+#import "SpySecurity.h"
 
 
 @interface ViewPrisonersController : LETableViewControllerGrouped <UIActionSheetDelegate> {
-	UISegmentedControl *pageSegmentedControl;
-	Security *securityBuilding;
-	NSDate *prisonersLastUpdated;
-	Prisoner *selectedPrisoner;
 }
 
 
 @property (nonatomic, retain) UISegmentedControl *pageSegmentedControl;
-@property (nonatomic, retain) Security *securityBuilding;
+@property (nonatomic, retain) NSObject<SpySecurity> *spySecurityBuilding;
 @property (nonatomic, retain) NSDate *prisonersLastUpdated;
 @property (nonatomic, retain) Prisoner *selectedPrisoner;
 
