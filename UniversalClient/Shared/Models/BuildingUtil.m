@@ -112,6 +112,8 @@
 		building = [[[BaseTradeBuilding alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:TRANSPORTER_URL]) {
 		building = [[[BaseTradeBuilding alloc] init] autorelease];
+	} else if ([request.buildingUrl isEqualToString:WASTE_EXCHANGER_URL]) {
+		building = [[[WasteRecycling alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:WASTE_RECYCLING_URL]) {
 		building = [[[WasteRecycling alloc] init] autorelease];
 	} else if ([request.buildingUrl isEqualToString:WATER_STORAGE_URL]) {

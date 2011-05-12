@@ -40,6 +40,7 @@
 #define THEME_PARK_URL @"/themepark"
 #define TRADE_URL @"/trade"
 #define TRANSPORTER_URL @"/transporter"
+#define WASTE_EXCHANGER_URL @"/wasteexchanger"
 #define WASTE_RECYCLING_URL @"/wasterecycling"
 #define WATER_STORAGE_URL @"/waterstorage"
 
