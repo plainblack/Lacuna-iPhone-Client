@@ -483,6 +483,7 @@
 		F6EF714211FE76EA00A93226 /* SpacePort.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF714111FE76EA00A93226 /* SpacePort.m */; };
 		F6EF714F11FE7D1C00A93226 /* LEBuildingViewAllShips.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF714E11FE7D1C00A93226 /* LEBuildingViewAllShips.m */; };
 		F6EF716A11FE810900A93226 /* Ship.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EF716911FE810900A93226 /* Ship.m */; };
+		F6F01A46137BFC6D00724B91 /* ViewLawsPubliclyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F01A45137BFC6D00724B91 /* ViewLawsPubliclyController.m */; };
 		F6F0E7E112D4A0380089C721 /* AssignSpyController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F0E7E012D4A0380089C721 /* AssignSpyController.m */; };
 		F6F1C21D12326FB100D69BB6 /* ViewMedalsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F1C21C12326FB100D69BB6 /* ViewMedalsController.m */; };
 		F6F1CBFA13570FCA00D98F35 /* ProposeTaxationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F1CBF913570FCA00D98F35 /* ProposeTaxationViewController.m */; };
@@ -1476,6 +1477,8 @@
 		F6EF714E11FE7D1C00A93226 /* LEBuildingViewAllShips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewAllShips.m; sourceTree = "<group>"; };
 		F6EF716811FE810900A93226 /* Ship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ship.h; sourceTree = "<group>"; };
 		F6EF716911FE810900A93226 /* Ship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ship.m; sourceTree = "<group>"; };
+		F6F01A44137BFC6C00724B91 /* ViewLawsPubliclyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewLawsPubliclyController.h; sourceTree = "<group>"; };
+		F6F01A45137BFC6D00724B91 /* ViewLawsPubliclyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewLawsPubliclyController.m; sourceTree = "<group>"; };
 		F6F0E7DF12D4A0380089C721 /* AssignSpyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssignSpyController.h; sourceTree = "<group>"; };
 		F6F0E7E012D4A0380089C721 /* AssignSpyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssignSpyController.m; sourceTree = "<group>"; };
 		F6F1C21B12326FB100D69BB6 /* ViewMedalsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewMedalsController.h; sourceTree = "<group>"; };
@@ -2746,6 +2749,8 @@
 				F65ACB83136DAFEC001A579D /* SelectMailboxController.m */,
 				F65ACB85136DB002001A579D /* SelectMailboxFilterController.h */,
 				F65ACB86136DB002001A579D /* SelectMailboxFilterController.m */,
+				F6F01A44137BFC6C00724B91 /* ViewLawsPubliclyController.h */,
+				F6F01A45137BFC6D00724B91 /* ViewLawsPubliclyController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -3360,6 +3365,7 @@
 				F65ACB87136DB002001A579D /* SelectMailboxFilterController.m in Sources */,
 				F65ACB8A136DDC4C001A579D /* LEInboxViewTrash.m in Sources */,
 				F60D638B1376F94800C202DC /* PoliceStation.m in Sources */,
+				F6F01A46137BFC6D00724B91 /* ViewLawsPubliclyController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

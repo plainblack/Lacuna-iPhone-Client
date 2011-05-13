@@ -29,6 +29,7 @@
 
 - (id)params {
 	NSMutableArray *params = _array([Session sharedInstance].sessionId, self.stationId);
+    NSLog(@"Params: %@", params);
 	return params;
 }
 

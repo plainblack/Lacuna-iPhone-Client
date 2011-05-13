@@ -27,6 +27,7 @@
 #import "FetchSpiesController.h"
 #import "AppDelegate_Phone.h"
 #import "ViewUniverseItemUnsendableShipsController.h"
+#import "ViewLawsPubliclyController.h"
 
 
 typedef enum {
@@ -297,10 +298,12 @@ typedef enum {
 #pragma mark UITableViewDataSource Methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"Selected: %@", indexPath);
 	NSMutableDictionary *sectionData = [self.sections objectAtIndex:indexPath.section];
 	if (_intv([sectionData objectForKey:@"type"]) != SECTION_COMPOSITION) {
 		ROWS row = _intv([[sectionData objectForKey:@"rows"] objectAtIndex:indexPath.row]);
 		Session *session = [Session sharedInstance];
+        AppDelegate_Phone *delgate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
 
 		switch (row) {
 			case ROW_SEND_SPIES:
@@ -364,16 +367,19 @@ typedef enum {
 				break;
 			case ROW_VIEW_MY_WORLD:
 				; //DO NOT REMOVE
-				AppDelegate_Phone *delgate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
 				[delgate showMyWorld:self.mapItem.id];
 				[self.navigationController popToRootViewControllerAnimated:NO];
 				break;
             case ROW_INFLUENCING_STATION:
-				NSLog(@"SHOW STATION");
+				; //DO NOT REMOVE
+                [delgate setStarMapGridX:self.mapItem.stationX gridY:self.mapItem.stationY];
+                [self.navigationController popViewControllerAnimated:YES];
 				break;
             case ROW_VIEW_LAWS:
 				; //DO NOT REMOVE
-				NSLog(@"SHOW LAWS");
+				ViewLawsPubliclyController *viewLawsPubliclyController = [ViewLawsPubliclyController create];
+                viewLawsPubliclyController.stationId = self.mapItem.stationId;
+                [self.navigationController pushViewController:viewLawsPubliclyController animated:YES];
 				break;
             default:
                 break;
@@ -426,7 +432,7 @@ typedef enum {
 		}
 
         if (isNotNull(self.mapItem.stationId)) {
-			[self.sections addObject:_dict([NSDecimalNumber numberWithInt:SECTION_INFLUENCE], @"type", [self.mapItem.type capitalizedString], @"name", _array([NSDecimalNumber numberWithInt:ROW_INFLUENCING_STATION], [NSDecimalNumber numberWithInt:ROW_VIEW_LAWS]), @"rows")];
+			[self.sections addObject:_dict([NSDecimalNumber numberWithInt:SECTION_INFLUENCE], @"type", @"Influenced By", @"name", _array([NSDecimalNumber numberWithInt:ROW_INFLUENCING_STATION], [NSDecimalNumber numberWithInt:ROW_VIEW_LAWS]), @"rows")];
         }
 
 		if ([self.mapItem.type isEqualToString:@"habitable planet"]) {
