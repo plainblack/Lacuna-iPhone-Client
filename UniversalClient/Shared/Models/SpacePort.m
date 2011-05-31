@@ -187,13 +187,13 @@
 		case BUILDING_ROW_VIEW_TRAVELLING_SHIPS:
 			; //DO NOT REMOVE
 			ViewTravellingShipsController *viewTravellingShipsController = [ViewTravellingShipsController create];
-			viewTravellingShipsController.spacePort = self;
+			viewTravellingShipsController.shipIntel = self;
 			return viewTravellingShipsController;
 			break;
 		case BUILDING_ROW_VIEW_FOREIGN_SHIPS:
 			; //DO NOT REMOVE
 			ViewForeignShipsController *viewForeignShipsController = [ViewForeignShipsController create];
-			viewForeignShipsController.spacePort = self;
+			viewForeignShipsController.shipIntel = self;
 			return viewForeignShipsController;
 			break;
         case BUILDING_ROW_RECALL_ALL_SHIPS:
@@ -203,7 +203,7 @@
 		case BUILDING_ROW_VIEW_ORBITING_SHIPS:
 			; //DO NOT REMOVE
 			ViewShipsOrbitingController *viewShipsOrbitingController = [ViewShipsOrbitingController create];
-			viewShipsOrbitingController.spacePort = self;
+			viewShipsOrbitingController.shipIntel = self;
 			return viewShipsOrbitingController;
 			break;
 		default:

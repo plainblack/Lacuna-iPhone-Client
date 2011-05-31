@@ -8,20 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "LETableViewControllerGrouped.h"
-
-
-@class SpacePort;
+#import "ShipIntel.h"
 
 
 @interface ViewTravellingShipsController : LETableViewControllerGrouped {
-	UISegmentedControl *pageSegmentedControl;
-	SpacePort *spacePort;
-	NSDate *lastUpdated;
 }
 
 
 @property (nonatomic, retain) UISegmentedControl *pageSegmentedControl;
-@property (nonatomic, retain) SpacePort *spacePort;
+@property (nonatomic, retain) NSObject<ShipIntel> *shipIntel;
 @property (nonatomic, retain) NSDate *lastUpdated;
 
 

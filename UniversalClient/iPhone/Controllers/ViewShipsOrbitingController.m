@@ -9,7 +9,6 @@
 #import "ViewShipsOrbitingController.h"
 #import "LEMacros.h"
 #import "Util.h"
-#import	"SpacePort.h"
 #import "Ship.h"
 #import "LETableViewCellLabeledText.h"
 #import "LETableViewCellShip.h"
@@ -35,7 +34,7 @@ typedef enum {
 
 
 @synthesize pageSegmentedControl;
-@synthesize spacePort;
+@synthesize shipIntel;
 @synthesize lastUpdated;
 
 
@@ -63,17 +62,17 @@ typedef enum {
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	[self.spacePort addObserver:self forKeyPath:@"orbitingShipsUpdated" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
-	if (!self.spacePort.orbitingShips) {
-		[self.spacePort loadOrbitingShipsForPage:1];
+	[self.shipIntel addObserver:self forKeyPath:@"orbitingShipsUpdated" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+	if (!self.shipIntel.orbitingShips) {
+		[self.shipIntel loadOrbitingShipsForPage:1];
 	} else {
 		if (self.lastUpdated) {
-			if ([self.lastUpdated compare:self.spacePort.orbitingShipsUpdated] == NSOrderedAscending) {
+			if ([self.lastUpdated compare:self.shipIntel.orbitingShipsUpdated] == NSOrderedAscending) {
 				[self.tableView reloadData];
-				self.lastUpdated = self.spacePort.orbitingShipsUpdated;
+				self.lastUpdated = self.shipIntel.orbitingShipsUpdated;
 			}
 		} else {
-			self.lastUpdated = self.spacePort.orbitingShipsUpdated;
+			self.lastUpdated = self.shipIntel.orbitingShipsUpdated;
 		}
 	}
 	
@@ -83,7 +82,7 @@ typedef enum {
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-	[self.spacePort removeObserver:self forKeyPath:@"orbitingShipsUpdated"];
+	[self.shipIntel removeObserver:self forKeyPath:@"orbitingShipsUpdated"];
 }
 
 
@@ -91,9 +90,9 @@ typedef enum {
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	if (self.spacePort && self.spacePort.orbitingShips) {
-		if ([self.spacePort.orbitingShips count] > 0) {
-			return [self.spacePort.orbitingShips count];
+	if (self.shipIntel && self.shipIntel.orbitingShips) {
+		if ([self.shipIntel.orbitingShips count] > 0) {
+			return [self.shipIntel.orbitingShips count];
 		} else {
 			return 1;
 		}
@@ -105,8 +104,8 @@ typedef enum {
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if (self.spacePort && self.spacePort.orbitingShips) {
-		if ([self.spacePort.orbitingShips count] > 0) {
+	if (self.shipIntel && self.shipIntel.orbitingShips) {
+		if ([self.shipIntel.orbitingShips count] > 0) {
 			return 3;
 		} else {
 			return 1;
@@ -119,9 +118,9 @@ typedef enum {
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (self.spacePort && self.spacePort.orbitingShips) {
-		if ([self.spacePort.orbitingShips count] > 0) {
-			Ship *currentShip = [self.spacePort.orbitingShips objectAtIndex:indexPath.section];
+	if (self.shipIntel && self.shipIntel.orbitingShips) {
+		if ([self.shipIntel.orbitingShips count] > 0) {
+			Ship *currentShip = [self.shipIntel.orbitingShips objectAtIndex:indexPath.section];
 			switch (indexPath.row) {
 				case ROW_SHIP_INFO:
 					return [LETableViewCellShip getHeightForTableView:tableView];
@@ -151,9 +150,9 @@ typedef enum {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = nil;
 	
-	if (self.spacePort && self.spacePort.orbitingShips) {
-		if ([self.spacePort.orbitingShips count] > 0) {
-			Ship *currentShip = [self.spacePort.orbitingShips objectAtIndex:indexPath.section];
+	if (self.shipIntel && self.shipIntel.orbitingShips) {
+		if ([self.shipIntel.orbitingShips count] > 0) {
+			Ship *currentShip = [self.shipIntel.orbitingShips objectAtIndex:indexPath.section];
 			switch (indexPath.row) {
 				case ROW_SHIP_INFO:
 					; //DO NOT REMOVE
@@ -213,7 +212,7 @@ typedef enum {
 
 - (void)dealloc {
 	self.pageSegmentedControl = nil;
-	self.spacePort = nil;
+	self.shipIntel = nil;
 	self.lastUpdated = nil;
     [super dealloc];
 }
@@ -225,10 +224,10 @@ typedef enum {
 - (void) switchPage {
 	switch (self.pageSegmentedControl.selectedSegmentIndex) {
 		case 0:
-			[self.spacePort loadOrbitingShipsForPage:(self.spacePort.orbitingShipsPageNumber-1)];
+			[self.shipIntel loadOrbitingShipsForPage:(self.shipIntel.orbitingShipsPageNumber-1)];
 			break;
 		case 1:
-			[self.spacePort loadOrbitingShipsForPage:(self.spacePort.orbitingShipsPageNumber+1)];
+			[self.shipIntel loadOrbitingShipsForPage:(self.shipIntel.orbitingShipsPageNumber+1)];
 			break;
 		default:
 			NSLog(@"Invalid switchPage");
@@ -241,8 +240,8 @@ typedef enum {
 #pragma mark Private Methods
 
 - (void)togglePageButtons {
-	[self.pageSegmentedControl setEnabled:[self.spacePort hasPreviousOrbitingShipsPage] forSegmentAtIndex:0];
-	[self.pageSegmentedControl setEnabled:[self.spacePort hasNextOrbitingShipsPage] forSegmentAtIndex:1];
+	[self.pageSegmentedControl setEnabled:[self.shipIntel hasPreviousOrbitingShipsPage] forSegmentAtIndex:0];
+	[self.pageSegmentedControl setEnabled:[self.shipIntel hasNextOrbitingShipsPage] forSegmentAtIndex:1];
 }
 
 
@@ -261,7 +260,7 @@ typedef enum {
 	if ([keyPath isEqual:@"orbitingShipsUpdated"]) {
 		[self togglePageButtons];
 		[self.tableView reloadData];
-		self.lastUpdated = self.spacePort.orbitingShipsUpdated;
+		self.lastUpdated = self.shipIntel.orbitingShipsUpdated;
 	}
 }
 

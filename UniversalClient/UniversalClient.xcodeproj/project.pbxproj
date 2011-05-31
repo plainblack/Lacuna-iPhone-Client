@@ -565,6 +565,7 @@
 		F600294E1355342C0066E633 /* ProposeSeizeStarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProposeSeizeStarViewController.m; sourceTree = "<group>"; };
 		F6002950135537E00066E633 /* ProposeRenameStarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProposeRenameStarViewController.h; sourceTree = "<group>"; };
 		F6002951135537E00066E633 /* ProposeRenameStarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProposeRenameStarViewController.m; sourceTree = "<group>"; };
+		F6021A5B139477E70068EE6B /* ShipIntel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipIntel.h; sourceTree = "<group>"; };
 		F60238B4123D596800268ADD /* LEBuildingViewForeignShips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewForeignShips.h; sourceTree = "<group>"; };
 		F60238B5123D596800268ADD /* LEBuildingViewForeignShips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewForeignShips.m; sourceTree = "<group>"; };
 		F60238D1123D63B200268ADD /* ViewForeignShipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewForeignShipsController.h; sourceTree = "<group>"; };
@@ -2393,6 +2394,7 @@
 				F60D63891376F94800C202DC /* PoliceStation.h */,
 				F60D638A1376F94800C202DC /* PoliceStation.m */,
 				F60D638C1376F9B400C202DC /* SpySecurity.h */,
+				F6021A5B139477E70068EE6B /* ShipIntel.h */,
 			);
 			name = Models;
 			path = Shared/Models;

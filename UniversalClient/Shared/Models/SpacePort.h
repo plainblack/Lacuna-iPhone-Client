@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "Building.h"
+#import "ShipIntel.h"
 
 
 @class Ship;
 
 
-@interface SpacePort : Building {
+@interface SpacePort : Building <ShipIntel> {
 }
 
 
@@ -21,32 +22,11 @@
 @property (nonatomic, retain) NSMutableArray *ships;
 @property (nonatomic, retain) NSDate *shipsUpdated;
 @property (nonatomic, retain) NSDecimalNumber *numShips;
-@property (nonatomic, retain) NSMutableArray *travellingShips;
-@property (nonatomic, retain) NSDate *travellingShipsUpdated;
-@property (nonatomic, assign) NSInteger travellingShipsPageNumber;
-@property (nonatomic, retain) NSDecimalNumber *numTravellingShips;
-@property (nonatomic, retain) NSMutableArray *foreignShips;
-@property (nonatomic, retain) NSDate *foreignShipsUpdated;
-@property (nonatomic, assign) NSInteger foreignShipsPageNumber;
-@property (nonatomic, retain) NSDecimalNumber *numForeignShips;
-@property (nonatomic, retain) NSMutableArray *orbitingShips;
-@property (nonatomic, retain) NSDate *orbitingShipsUpdated;
-@property (nonatomic, assign) NSInteger orbitingShipsPageNumber;
-@property (nonatomic, retain) NSDecimalNumber *numOrbitingShips;
 
 
 - (void)loadShipsForTag:(NSString *)tag task:(NSString *)task;
 - (void)scuttleShip:(Ship *)ship;
 - (void)ship:(Ship *)ship rename:(NSString *)newName;
-- (void)loadTravellingShipsForPage:(NSInteger)pageNumber;
-- (bool)hasPreviousTravellingShipsPage;
-- (bool)hasNextTravellingShipsPage;
-- (void)loadForeignShipsForPage:(NSInteger)pageNumber;
-- (bool)hasPreviousForeignShipsPage;
-- (bool)hasNextForeignShipsPage;
-- (void)loadOrbitingShipsForPage:(NSInteger)pageNumber;
-- (bool)hasPreviousOrbitingShipsPage;
-- (bool)hasNextOrbitingShipsPage;
 - (void)recallShip:(Ship *)ship;
 
 

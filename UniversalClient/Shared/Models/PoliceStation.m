@@ -17,6 +17,12 @@
 #import "ViewPrisonersController.h"
 #import "ViewForeignSpiesController.h"
 #import "Prisoner.h"
+#import "LEBuildingViewShipsTravelling.h"
+#import "LEBuildingViewForeignShips.h"
+#import "LEBuildingViewShipsOrbiting.h"
+#import "ViewTravellingShipsController.h"
+#import "ViewForeignShipsController.h"
+#import "ViewShipsOrbitingController.h"
 
 
 @implementation PoliceStation
@@ -30,6 +36,18 @@
 @synthesize foreignSpyPageNumber;
 @synthesize numPrisoners;
 @synthesize numForeignSpy;
+@synthesize travellingShips;
+@synthesize travellingShipsUpdated;
+@synthesize travellingShipsPageNumber;
+@synthesize numTravellingShips;
+@synthesize foreignShips;
+@synthesize foreignShipsUpdated;
+@synthesize foreignShipsPageNumber;
+@synthesize numForeignShips;
+@synthesize orbitingShips;
+@synthesize orbitingShipsUpdated;
+@synthesize orbitingShipsPageNumber;
+@synthesize numOrbitingShips;
 
 
 #pragma mark -
@@ -42,6 +60,15 @@
 	self.foreignSpiesUpdated = nil;
 	self.numPrisoners = nil;
 	self.numForeignSpy = nil;
+	self.travellingShips = nil;
+	self.travellingShipsUpdated = nil;
+	self.numTravellingShips = nil;
+	self.foreignShips = nil;
+	self.foreignShipsUpdated = nil;
+	self.numForeignShips = nil;
+    self.orbitingShips = nil;
+    self.orbitingShipsUpdated = nil;
+    self.numOrbitingShips = nil;
 	[super dealloc];
 }
 
@@ -73,7 +100,7 @@
 
 
 - (void)generateSections {
-	self.sections = _array([self generateProductionSection], _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_PRISONERS], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_FOREIGN_SPIES]), @"rows"), [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
+	self.sections = _array([self generateProductionSection], _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_PRISONERS], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_FOREIGN_SPIES], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_TRAVELLING_SHIPS], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_FOREIGN_SHIPS], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_ORBITING_SHIPS]), @"rows"), [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
 }
 
 
@@ -81,6 +108,9 @@
 	switch (buildingRow) {
 		case BUILDING_ROW_VIEW_PRISONERS:
 		case BUILDING_ROW_VIEW_FOREIGN_SPIES:
+		case BUILDING_ROW_VIEW_TRAVELLING_SHIPS:
+		case BUILDING_ROW_VIEW_FOREIGN_SHIPS:
+		case BUILDING_ROW_VIEW_ORBITING_SHIPS:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		default:
@@ -105,6 +135,24 @@
 			viewForeignSpiesButtonCell.textLabel.text = @"View Foreign Spies";
 			cell = viewForeignSpiesButtonCell;
 			break;
+		case BUILDING_ROW_VIEW_TRAVELLING_SHIPS:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *viewTravellingShipsCell = [LETableViewCellButton getCellForTableView:tableView];
+			viewTravellingShipsCell.textLabel.text = @"Ships In Transit";
+			cell = viewTravellingShipsCell;
+			break;
+		case BUILDING_ROW_VIEW_FOREIGN_SHIPS:
+			; //DO NOT REMOVE THIS!!
+			LETableViewCellButton *viewForeignShipsCell = [LETableViewCellButton getCellForTableView:tableView];
+			viewForeignShipsCell.textLabel.text = @"View Incoming Ships";
+			cell = viewForeignShipsCell;
+			break;
+		case BUILDING_ROW_VIEW_ORBITING_SHIPS:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *viewOrbitingShipsButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			viewOrbitingShipsButtonCell.textLabel.text = @"View Orbiting Ships";
+			cell = viewOrbitingShipsButtonCell;
+			break;
 		default:
 			cell = [super tableView:tableView cellForBuildingRow:buildingRow rowIndex:rowIndex];
 			break;
@@ -127,6 +175,24 @@
 			ViewForeignSpiesController *viewForeignSpiesController = [ViewForeignSpiesController create];
 			viewForeignSpiesController.spySecurityBuilding = self;
 			return viewForeignSpiesController;
+			break;
+		case BUILDING_ROW_VIEW_TRAVELLING_SHIPS:
+			; //DO NOT REMOVE
+			ViewTravellingShipsController *viewTravellingShipsController = [ViewTravellingShipsController create];
+			viewTravellingShipsController.shipIntel = self;
+			return viewTravellingShipsController;
+			break;
+		case BUILDING_ROW_VIEW_FOREIGN_SHIPS:
+			; //DO NOT REMOVE
+			ViewForeignShipsController *viewForeignShipsController = [ViewForeignShipsController create];
+			viewForeignShipsController.shipIntel = self;
+			return viewForeignShipsController;
+			break;
+		case BUILDING_ROW_VIEW_ORBITING_SHIPS:
+			; //DO NOT REMOVE
+			ViewShipsOrbitingController *viewShipsOrbitingController = [ViewShipsOrbitingController create];
+			viewShipsOrbitingController.shipIntel = self;
+			return viewShipsOrbitingController;
 			break;
 		default:
 			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];
@@ -176,6 +242,53 @@
 
 - (bool)hasNextForeignSpyPage {
 	return (self.foreignSpyPageNumber < [Util numPagesForCount:_intv(self.numForeignSpy)]);
+}
+
+
+- (void)loadTravellingShipsForPage:(NSInteger)pageNumber {
+	self.travellingShipsPageNumber = pageNumber;
+	[[[LEBuildingViewShipsTravelling alloc] initWithCallback:@selector(travellingShipsLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl pageNumber:pageNumber] autorelease];
+}
+
+
+- (bool)hasPreviousTravellingShipsPage {
+	return (self.travellingShipsPageNumber > 1);
+}
+
+
+- (bool)hasNextTravellingShipsPage {
+	return (self.travellingShipsPageNumber < [Util numPagesForCount:_intv(self.numTravellingShips)]);
+}
+
+
+- (void)loadForeignShipsForPage:(NSInteger)pageNumber {
+	self.foreignShipsPageNumber = pageNumber;
+	[[[LEBuildingViewForeignShips alloc] initWithCallback:@selector(foreignShipsLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl pageNumber:pageNumber] autorelease];
+}
+
+
+- (bool)hasPreviousForeignShipsPage {
+	return (self.foreignShipsPageNumber > 1);
+}
+
+
+- (bool)hasNextForeignShipsPage {
+	return (self.foreignShipsPageNumber < [Util numPagesForCount:_intv(self.numForeignShips)]);
+}
+
+- (void)loadOrbitingShipsForPage:(NSInteger)pageNumber {
+	self.orbitingShipsPageNumber = pageNumber;
+	[[[LEBuildingViewShipsOrbiting alloc] initWithCallback:@selector(orbitingShipsLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl pageNumber:pageNumber] autorelease];
+}
+
+
+- (bool)hasPreviousOrbitingShipsPage {
+	return (self.orbitingShipsPageNumber > 1);
+}
+
+
+- (bool)hasNextOrbitingShipsPage {
+	return (self.orbitingShipsPageNumber < [Util numPagesForCount:_intv(self.numOrbitingShips)]);
 }
 
 
@@ -242,6 +355,20 @@
 	}
 	
 	return nil;
+}
+
+
+- (void)foreignShipsLoaded:(LEBuildingViewForeignShips *)request {
+	self.foreignShips = request.foreignShips;
+	self.numForeignShips = request.numberOfShipsForeign;
+	self.foreignShipsUpdated = [NSDate date];
+}
+
+
+- (void)orbitingShipsLoaded:(LEBuildingViewShipsOrbiting *)request {
+	self.orbitingShips = request.orbitingShips;
+	self.numOrbitingShips = request.numberOfShipsOrbiting;
+	self.orbitingShipsUpdated = [NSDate date];
 }
 
 

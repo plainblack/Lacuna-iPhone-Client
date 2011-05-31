@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "SpySecurity.h"
+#import "ShipIntel.h"
 #import "Module.h"
 
-@interface PoliceStation : Module <SpySecurity> {
+@interface PoliceStation : Module <SpySecurity, ShipIntel> {
     
 }
 
