@@ -44,6 +44,11 @@
 #define WASTE_RECYCLING_URL @"/wasterecycling"
 #define WATER_STORAGE_URL @"/waterstorage"
 
+#define INTEL_TRAINING_URL @"/inteltraining"
+#define MAYHEM_TRAINING_URL @"/mayhemtraining"
+#define THEFT_TRAINING_URL @"/thefttraining"
+#define POLITICS_TRAINING_URL @"/politicstraining"
+
 #define IBS_URL @"/ibs"
 #define PARLIAMENT_URL @"/parliament"
 #define POLICE_STATION_URL @"/policestation"

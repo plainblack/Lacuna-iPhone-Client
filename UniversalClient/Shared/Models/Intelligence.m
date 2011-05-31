@@ -22,8 +22,8 @@
 #import "Spy.h"
 
 
-
 @implementation Intelligence
+
 
 @synthesize maxSpies;
 @synthesize numSpies;

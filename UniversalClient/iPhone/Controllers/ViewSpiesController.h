@@ -15,10 +15,6 @@
 
 
 @interface ViewSpiesController : LETableViewControllerGrouped <UIActionSheetDelegate> {
-	UISegmentedControl *pageSegmentedControl;
-	Intelligence *intelligenceBuilding;
-	NSDate *spiesLastUpdated;
-	Spy *selectedSpy;
 }
 
 

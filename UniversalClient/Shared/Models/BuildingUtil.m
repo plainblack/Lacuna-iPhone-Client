@@ -41,6 +41,8 @@
 #import "WasteRecycling.h"
 #import "WaterStorage.h"
 
+#import "SpyTraining.h"
+
 #import "Module.h"
 #import "Parliament.h"
 #import "PoliceStation.h"
@@ -120,6 +122,16 @@
 		building = [[[WaterStorage alloc] init] autorelease];
     } else if ([request.buildingUrl isEqualToString:IBS_URL]) {
 		building = [[[Module alloc] init] autorelease];
+
+    } else if ([request.buildingUrl isEqualToString:INTEL_TRAINING_URL]) {
+		building = [[[SpyTraining alloc] init] autorelease];
+    } else if ([request.buildingUrl isEqualToString:MAYHEM_TRAINING_URL]) {
+		building = [[[SpyTraining alloc] init] autorelease];
+    } else if ([request.buildingUrl isEqualToString:THEFT_TRAINING_URL]) {
+		building = [[[SpyTraining alloc] init] autorelease];
+    } else if ([request.buildingUrl isEqualToString:POLITICS_TRAINING_URL]) {
+		building = [[[SpyTraining alloc] init] autorelease];
+
     } else if ([request.buildingUrl isEqualToString:PARLIAMENT_URL]) {
 		building = [[[Parliament alloc] init] autorelease];
     } else if ([request.buildingUrl isEqualToString:POLICE_STATION_URL]) {

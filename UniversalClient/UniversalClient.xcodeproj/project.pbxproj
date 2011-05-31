@@ -16,6 +16,9 @@
 		28EEC04B1118E28000187D67 /* AppDelegate_Shared.m in Sources */ = {isa = PBXBuildFile; fileRef = 28EEC04A1118E28000187D67 /* AppDelegate_Shared.m */; };
 		F600294F1355342D0066E633 /* ProposeSeizeStarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F600294E1355342C0066E633 /* ProposeSeizeStarViewController.m */; };
 		F6002952135537E00066E633 /* ProposeRenameStarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6002951135537E00066E633 /* ProposeRenameStarViewController.m */; };
+		F6021A5E139483980068EE6B /* LEBuildingTrainSpySkill.m in Sources */ = {isa = PBXBuildFile; fileRef = F6021A5D139483980068EE6B /* LEBuildingTrainSpySkill.m */; };
+		F6021A61139485070068EE6B /* SpyTraining.m in Sources */ = {isa = PBXBuildFile; fileRef = F6021A60139485070068EE6B /* SpyTraining.m */; };
+		F6021A64139488EF0068EE6B /* ViewSpiesForTrainingController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6021A63139488EF0068EE6B /* ViewSpiesForTrainingController.m */; };
 		F60238B6123D596800268ADD /* LEBuildingViewForeignShips.m in Sources */ = {isa = PBXBuildFile; fileRef = F60238B5123D596800268ADD /* LEBuildingViewForeignShips.m */; };
 		F60238D3123D63B200268ADD /* ViewForeignShipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F60238D2123D63B200268ADD /* ViewForeignShipsController.m */; };
 		F6023996123D7CD900268ADD /* LETableViewCellForeignIncomingShip.m in Resources */ = {isa = PBXBuildFile; fileRef = F6023995123D7CD900268ADD /* LETableViewCellForeignIncomingShip.m */; };
@@ -566,6 +569,12 @@
 		F6002950135537E00066E633 /* ProposeRenameStarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProposeRenameStarViewController.h; sourceTree = "<group>"; };
 		F6002951135537E00066E633 /* ProposeRenameStarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProposeRenameStarViewController.m; sourceTree = "<group>"; };
 		F6021A5B139477E70068EE6B /* ShipIntel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipIntel.h; sourceTree = "<group>"; };
+		F6021A5C139483980068EE6B /* LEBuildingTrainSpySkill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingTrainSpySkill.h; sourceTree = "<group>"; };
+		F6021A5D139483980068EE6B /* LEBuildingTrainSpySkill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingTrainSpySkill.m; sourceTree = "<group>"; };
+		F6021A5F139485070068EE6B /* SpyTraining.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpyTraining.h; sourceTree = "<group>"; };
+		F6021A60139485070068EE6B /* SpyTraining.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpyTraining.m; sourceTree = "<group>"; };
+		F6021A62139488EF0068EE6B /* ViewSpiesForTrainingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewSpiesForTrainingController.h; sourceTree = "<group>"; };
+		F6021A63139488EF0068EE6B /* ViewSpiesForTrainingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewSpiesForTrainingController.m; sourceTree = "<group>"; };
 		F60238B4123D596800268ADD /* LEBuildingViewForeignShips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewForeignShips.h; sourceTree = "<group>"; };
 		F60238B5123D596800268ADD /* LEBuildingViewForeignShips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewForeignShips.m; sourceTree = "<group>"; };
 		F60238D1123D63B200268ADD /* ViewForeignShipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewForeignShipsController.h; sourceTree = "<group>"; };
@@ -2234,6 +2243,8 @@
 				F60F33B8136D03E20012D561 /* LEInboxTrash.m */,
 				F65ACB88136DDC4C001A579D /* LEInboxViewTrash.h */,
 				F65ACB89136DDC4C001A579D /* LEInboxViewTrash.m */,
+				F6021A5C139483980068EE6B /* LEBuildingTrainSpySkill.h */,
+				F6021A5D139483980068EE6B /* LEBuildingTrainSpySkill.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -2395,6 +2406,8 @@
 				F60D638A1376F94800C202DC /* PoliceStation.m */,
 				F60D638C1376F9B400C202DC /* SpySecurity.h */,
 				F6021A5B139477E70068EE6B /* ShipIntel.h */,
+				F6021A5F139485070068EE6B /* SpyTraining.h */,
+				F6021A60139485070068EE6B /* SpyTraining.m */,
 			);
 			name = Models;
 			path = Shared/Models;
@@ -2753,6 +2766,8 @@
 				F65ACB86136DB002001A579D /* SelectMailboxFilterController.m */,
 				F6F01A44137BFC6C00724B91 /* ViewLawsPubliclyController.h */,
 				F6F01A45137BFC6D00724B91 /* ViewLawsPubliclyController.m */,
+				F6021A62139488EF0068EE6B /* ViewSpiesForTrainingController.h */,
+				F6021A63139488EF0068EE6B /* ViewSpiesForTrainingController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -3368,6 +3383,9 @@
 				F65ACB8A136DDC4C001A579D /* LEInboxViewTrash.m in Sources */,
 				F60D638B1376F94800C202DC /* PoliceStation.m in Sources */,
 				F6F01A46137BFC6D00724B91 /* ViewLawsPubliclyController.m in Sources */,
+				F6021A5E139483980068EE6B /* LEBuildingTrainSpySkill.m in Sources */,
+				F6021A61139485070068EE6B /* SpyTraining.m in Sources */,
+				F6021A64139488EF0068EE6B /* ViewSpiesForTrainingController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
