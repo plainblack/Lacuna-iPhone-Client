@@ -13,7 +13,9 @@
 #import "LETableViewCellButton.h"
 #import "LEBuildingPrepareExperiment.h"
 #import "LEBuildingRunExperiment.h"
+#import "LEBuildingRenameSpecies.h"
 #import "PrepareExperimentController.h"
+#import "RenameSpeciesController.h"
 
 
 @implementation GeneticsLab
@@ -30,13 +32,14 @@
 #pragma mark Overriden Building Methods
 
 - (void)generateSections {
-	self.sections = _array([self generateProductionSection], _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_EXPERIMENT]), @"rows"), [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
+	self.sections = _array([self generateProductionSection], _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Actions", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_EXPERIMENT], [NSDecimalNumber numberWithInt:BUILDING_ROW_EDIT_NAME]), @"rows"), [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForBuildingRow:(BUILDING_ROW)buildingRow {
 	switch (buildingRow) {
 		case BUILDING_ROW_EXPERIMENT:
+        case BUILDING_ROW_EDIT_NAME:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		default:
@@ -55,6 +58,12 @@
 			viewStarButtonCell.textLabel.text = @"New Experiment";
 			cell = viewStarButtonCell;
 			break;
+		case BUILDING_ROW_EDIT_NAME:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellButton *renameSpeciesButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			renameSpeciesButtonCell.textLabel.text = @"Rename Species";
+			cell = renameSpeciesButtonCell;
+			break;
 		default:
 			cell = [super tableView:tableView cellForBuildingRow:buildingRow rowIndex:rowIndex];
 			break;
@@ -72,6 +81,12 @@
 			prepareExperimentController.geneticsLab = self;
 			return prepareExperimentController;
 			break;
+		case BUILDING_ROW_EDIT_NAME:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+            RenameSpeciesController *renameSpeciesController = [RenameSpeciesController create];
+            renameSpeciesController.geneticsLab = self;
+            return renameSpeciesController;
+            break;
 		default:
 			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];
 			break;
@@ -88,6 +103,13 @@
 	[[[LEBuildingPrepareExperiment alloc] initWithCallback:@selector(preparedExperiments:) target:self buildingId:self.id buildingUrl:self.buildingUrl] autorelease];
 }
 
+- (void)changeName:(NSString *)speciesName description:(NSString *)description forTarger:(id)target callback:(SEL)callback {
+    self->changeNameTarget = target;
+    self->changeNameCallback = callback;
+    [[[LEBuildingRenameSpecies alloc] initWithCallback:@selector(renamedSpecies:) target:self buildingId:self.id buildingUrl:self.buildingUrl speciesName:speciesName speciesDescription:description] autorelease];
+}
+
+
 - (void)runExperimentWithSpy:(NSString *)spyId affinity:(NSString *)affinity target:(id)target callback:(SEL)callback {
 	self->runExperimentTarget = target;
 	self->runExperimentCallback = callback;
@@ -100,6 +122,11 @@
 
 - (void)preparedExperiments:(LEBuildingPrepareExperiment *)request {
 	[self->prepareExperimentTarget performSelector:self->prepareExperimentCallback withObject:request];
+}
+
+
+- (void)renamedSpecies:(LEBuildingRenameSpecies *)request {
+	[self->changeNameTarget performSelector:self->changeNameCallback withObject:request];
 }
 
 

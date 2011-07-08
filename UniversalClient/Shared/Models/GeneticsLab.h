@@ -13,12 +13,15 @@
 @interface GeneticsLab : Building {
 	id prepareExperimentTarget;
 	SEL prepareExperimentCallback;
+	id changeNameTarget;
+	SEL changeNameCallback;
 	id runExperimentTarget;
 	SEL runExperimentCallback;
 }
 
 
 - (void)prepareExperiments:(id)target callback:(SEL)callback;
+- (void)changeName:(NSString *)speciesName description:(NSString *)description forTarger:(id)target callback:(SEL)callback;
 - (void)runExperimentWithSpy:(NSString *)spyId affinity:(NSString *)affinity target:(id)target callback:(SEL)callback;
 
 
