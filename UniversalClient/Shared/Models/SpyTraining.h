@@ -13,17 +13,11 @@
 }
 
 
-@property (nonatomic, retain) NSDecimalNumber *numSpies;
 @property (nonatomic, retain) NSMutableArray *spies;
-@property (nonatomic, retain) NSDate *spiesUpdated;
-@property (nonatomic, assign) NSInteger spyPageNumber;
 @property(nonatomic, retain) id trainSpyTaget;
 @property(nonatomic, assign) SEL trainSpyCallback;
 
 
-- (void)loadSpiesForPage:(NSInteger)pageNumber;
-- (bool)hasPreviousSpyPage;
-- (bool)hasNextSpyPage;
 - (void)trainSpy:(NSString *)spyId target:(id)taget callback:(SEL)callback;
 
 

@@ -18,9 +18,7 @@
 }
 
 
-@property (nonatomic, retain) UISegmentedControl *pageSegmentedControl;
 @property (nonatomic, retain) SpyTraining *spyTraining;
-@property (nonatomic, retain) NSDate *spiesLastUpdated;
 @property (nonatomic, retain) Spy *selectedSpy;
 
 

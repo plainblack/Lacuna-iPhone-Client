@@ -27,19 +27,10 @@ typedef enum {
 } ROW;
 
 
-@interface ViewSpiesForTrainingController (PrivateMethods)
-
-- (void)togglePageButtons;
-
-@end
-
-
 @implementation ViewSpiesForTrainingController
 
 
-@synthesize pageSegmentedControl;
 @synthesize spyTraining;
-@synthesize spiesLastUpdated;
 @synthesize selectedSpy;
 
 
@@ -49,37 +40,15 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	self.navigationItem.title = @"Spies";
+	self.navigationItem.title = @"Available Spies";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
-	self.pageSegmentedControl = [[[UISegmentedControl alloc] initWithItems:_array(UP_ARROW_ICON, DOWN_ARROW_ICON)] autorelease];
-	[self.pageSegmentedControl addTarget:self action:@selector(switchPage) forControlEvents:UIControlEventValueChanged]; 
-	self.pageSegmentedControl.momentary = YES;
-	self.pageSegmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
-	UIBarButtonItem *rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.pageSegmentedControl] autorelease];
-	self.navigationItem.rightBarButtonItem = rightBarButtonItem; 
-    
 	self.sectionHeaders = [NSArray array];
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	[self.spyTraining addObserver:self forKeyPath:@"spiesUpdated" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
-	if (!self.spyTraining.spies) {
-		[self.spyTraining loadSpiesForPage:1];
-	} else {
-		if (self.spiesLastUpdated) {
-			if ([self.spiesLastUpdated compare:self.spyTraining.spiesUpdated] == NSOrderedAscending) {
-				[self.tableView reloadData];
-				self.spiesLastUpdated = self.spyTraining.spiesUpdated;
-			}
-		} else {
-			self.spiesLastUpdated = self.spyTraining.spiesUpdated;
-		}
-	}
-    
-	[self togglePageButtons];
 }
 
 
@@ -90,7 +59,6 @@ typedef enum {
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-	[self.spyTraining removeObserver:self forKeyPath:@"spiesUpdated"];
 }
 
 
@@ -112,17 +80,12 @@ typedef enum {
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	Spy *spy = [self.spyTraining.spies objectAtIndex:indexPath.section];
 	switch (indexPath.row) {
 		case ROW_SPY_INFO:
-			return [LETableViewCellSpyInfo getHeightForTableView:tableView];
+			return [LETableViewCellLabeledText getHeightForTableView:tableView];
 			break;
 		case ROW_TRAIN_BUTTON:
-			if (spy.isAvailable) {
-				return [LETableViewCellButton getHeightForTableView:tableView];
-			} else {
-				return [LETableViewCellLabeledText getHeightForTableView:tableView];
-			}
+            return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		default:
 			return tableView.rowHeight;
@@ -133,28 +96,23 @@ typedef enum {
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	Spy *spy = [self.spyTraining.spies objectAtIndex:indexPath.section];
+	NSMutableDictionary *spy = [self.spyTraining.spies objectAtIndex:indexPath.section];
     
     UITableViewCell *cell = nil;
 	
 	switch (indexPath.row) {
 		case ROW_SPY_INFO:
 			; //DO NOT REMOVE
-			LETableViewCellSpyInfo *spyInfoCell = [LETableViewCellSpyInfo getCellForTableView:tableView];
-			[spyInfoCell setData:spy];
+			LETableViewCellLabeledText *spyInfoCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+			spyInfoCell.label.text = @"Name";
+			spyInfoCell.content.text = [spy objectForKey:@"name"];
 			cell = spyInfoCell;
 			break;
 		case ROW_TRAIN_BUTTON:
-			if (spy.isAvailable) {
-				LETableViewCellButton *trainButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-				trainButtonCell.textLabel.text = @"Train";
-				cell = trainButtonCell;
-			} else {
-				LETableViewCellLabeledText *assignedCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
-				assignedCell.label.text = @"Busy for";
-				assignedCell.content.text = [Util prettyDuration:spy.secondsRemaining];
-				cell = assignedCell;
-			}
+			; //DO NOT REMOVE
+            LETableViewCellButton *trainButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+            trainButtonCell.textLabel.text = @"Train";
+            cell = trainButtonCell;
 			break;
 		default:
 			cell = nil;
@@ -169,12 +127,10 @@ typedef enum {
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	Spy *spy = [self.spyTraining.spies objectAtIndex:indexPath.section];
+	NSMutableDictionary *spy = [self.spyTraining.spies objectAtIndex:indexPath.section];
 	switch (indexPath.row) {
 		case ROW_TRAIN_BUTTON:
-			if (spy.isAvailable) {
-                [self.spyTraining trainSpy:spy.id target:self callback:@selector(trainedSpy:)];
-			}
+            [self.spyTraining trainSpy:[Util idFromDict:spy named:@"spy_id"] target:self callback:@selector(trainedSpy:)];
 			break;
 	}
 }
@@ -191,15 +147,12 @@ typedef enum {
 }
 
 - (void)viewDidUnload {
-	self.pageSegmentedControl = nil;
 	[super viewDidUnload];
 }
 
 
 - (void)dealloc {
-	self.pageSegmentedControl = nil;
 	self.spyTraining = nil;
-	self.spiesLastUpdated = nil;
 	self.selectedSpy = nil;
     [super dealloc];
 }
@@ -208,29 +161,14 @@ typedef enum {
 #pragma mark -
 #pragma mark Callback Methods
 
-- (void) switchPage {
-	switch (self.pageSegmentedControl.selectedSegmentIndex) {
-		case 0:
-			[self.spyTraining loadSpiesForPage:(self.spyTraining.spyPageNumber-1)];
-			break;
-		case 1:
-			[self.spyTraining loadSpiesForPage:(self.spyTraining.spyPageNumber+1)];
-			break;
-		default:
-			NSLog(@"Invalid switchPage");
-			break;
-	}
-}
-
-
 - (void)trainedSpy:(LEBuildingTrainSpySkill *)request {
-    NSLog(@"Response: %@", request.response);
 	if (_intv(request.notTrained) > 0) {
 		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Your spy could not be trained. You probably don't have enough resources to train one." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 		[av show];
 	} else {
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Training Started" message:@"Your spy is busy training." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Training Started" message:@"Your spy is now busy training." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 		[av show];
+        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:[self.tableView indexPathForSelectedRow].section] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
@@ -247,31 +185,10 @@ typedef enum {
 
 
 #pragma mark -
-#pragma mark Private Methods
-
-- (void)togglePageButtons {
-	[self.pageSegmentedControl setEnabled:[self.spyTraining hasPreviousSpyPage] forSegmentAtIndex:0];
-	[self.pageSegmentedControl setEnabled:[self.spyTraining hasNextSpyPage] forSegmentAtIndex:1];
-}
-
-
-#pragma mark -
 #pragma mark Class Methods
 
 + (ViewSpiesForTrainingController *)create {
 	return [[[ViewSpiesForTrainingController alloc] init] autorelease];
-}
-
-
-#pragma mark -
-#pragma mark KVO Methods
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-	if ([keyPath isEqual:@"spiesUpdated"]) {
-		[self togglePageButtons];
-		[self.tableView reloadData];
-		self.spiesLastUpdated = self.spyTraining.spiesUpdated;
-	}
 }
 
 

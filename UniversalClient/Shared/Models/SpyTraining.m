@@ -14,7 +14,6 @@
 #import "LETableViewCellCost.h"
 #import "LEBuildingTrainSpy.h"
 #import "ViewSpiesForTrainingController.h"
-#import "LEBuildingViewSpies.h"
 #import "LEBuildingTrainSpySkill.h"
 #import "Spy.h"
 
@@ -22,10 +21,7 @@
 @implementation SpyTraining
 
 
-@synthesize numSpies;
 @synthesize spies;
-@synthesize spiesUpdated;
-@synthesize spyPageNumber;
 @synthesize trainSpyTaget;
 @synthesize trainSpyCallback;
 
@@ -34,9 +30,7 @@
 #pragma mark Object Methods
 
 - (void)dealloc {
-	self.numSpies = nil;
 	self.spies = nil;
-	self.spiesUpdated = nil;
     self.trainSpyCallback = nil;
     self.trainSpyTaget = nil;
 	[super dealloc];
@@ -46,30 +40,10 @@
 #pragma mark -
 #pragma mark Overriden Building Methods
 
-- (BOOL)tick:(NSInteger)interval {
-	BOOL reloadSpies = NO;
-    
-	if (self.spies) {
-		for (Spy *spy in self.spies) {
-			if ([spy tick:interval]) {
-				reloadSpies = YES;
-			}
-		}
-	}
-    
-	if (reloadSpies) {
-		[self loadSpiesForPage:self.spyPageNumber];
-	}
-    
-	self.spiesUpdated = [NSDate date];
-	
-	return [super tick:interval];
-}
-
-
 - (void)parseAdditionalData:(NSDictionary *)data {
-	NSDictionary *spyData = [data objectForKey:@"spies"];
-	self.numSpies = [Util asNumber:[spyData objectForKey:@"current"]];
+    NSMutableDictionary *spyTrainingData = [data objectForKey:@"spies"];
+    NSMutableDictionary *spyTrainingCostData = [spyTrainingData objectForKey:@"training_costs"];
+    self.spies = [spyTrainingCostData objectForKey:@"time"];
 }
 
 
@@ -126,37 +100,18 @@
 #pragma mark -
 #pragma mark Instance Methods
 
-- (void)loadSpiesForPage:(NSInteger)pageNumber {
-	self.spyPageNumber = pageNumber;
-	[[[LEBuildingViewSpies alloc] initWithCallback:@selector(spiesLoaded:) target:self buildingId:self.id buildingUrl:self.buildingUrl pageNumber:pageNumber] autorelease];
-    
-}
-
-
--(bool)hasPreviousSpyPage {
-	return (self.spyPageNumber > 1);
-}
-
-
-- (bool)hasNextSpyPage {
-	return (self.spyPageNumber < [Util numPagesForCount:_intv(self.numSpies)]);
-}
-
-
 - (void)trainSpy:(NSString *)spyId target:(id)target callback:(SEL)callback {
     self.trainSpyTaget = target;
     self.trainSpyCallback = callback;
     [[[LEBuildingTrainSpySkill alloc] initWithCallback:@selector(spyTrained:) target:self buildingId:self.id buildingUrl:self.buildingUrl spyId:spyId] autorelease];
-    NSLog(@"KEVIN FOR NOW REMOVE SPY SINCE WE DON'T KNOW HOW LONG IT WILL BE BUSY!");
     NSMutableArray *toRemove = [NSMutableArray arrayWithCapacity:1];
     [self.spies enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        Spy *spy = obj;
-        if ([spy.id isEqualToString:spyId]) {
+        NSMutableDictionary *spy = obj;
+        if ([[Util idFromDict:spy named:@"spy_id"] isEqualToString:spyId]) {
             [toRemove addObject:spy];
         }
     }];
     [self.spies removeObjectsInArray:toRemove];
-	self.spiesUpdated = [NSDate date];
 }
 
 
@@ -167,20 +122,6 @@
     [self.trainSpyTaget performSelector:self.trainSpyCallback withObject:request];
     self.trainSpyCallback = nil;
     self.trainSpyTaget = nil;
-}
-
-
-- (void)spiesLoaded:(LEBuildingViewSpies *)request {
-	NSMutableArray *tmpSpies = [NSMutableArray arrayWithCapacity:[request.spies count]];
-	for (NSDictionary *spyData in request.spies) {
-		Spy *tmpSpy = [[[Spy alloc] init] autorelease];
-		[tmpSpy parseData:spyData];
-		[tmpSpies addObject:tmpSpy];
-	}
-	
-	self.spies = tmpSpies;
-	
-	self.spiesUpdated = [NSDate date];
 }
 
 
