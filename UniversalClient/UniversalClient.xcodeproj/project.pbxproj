@@ -249,6 +249,9 @@
 		F6C390EE11F23D54004FB38F /* LETableViewCellBuildQueueItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F6C390ED11F23D54004FB38F /* LETableViewCellBuildQueueItem.m */; };
 		F6CCAFE013C696FB00DB2F13 /* LEBuildingRenameSpecies.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CCAFDF13C696FB00DB2F13 /* LEBuildingRenameSpecies.m */; };
 		F6CCAFE313C699C300DB2F13 /* RenameSpeciesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CCAFE213C699C300DB2F13 /* RenameSpeciesController.m */; };
+		F6CCAFE613C6A27000DB2F13 /* LEBuildingViewBattleReport.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CCAFE513C6A26F00DB2F13 /* LEBuildingViewBattleReport.m */; };
+		F6CCAFE913C6A38E00DB2F13 /* ViewBattleLogsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CCAFE813C6A38E00DB2F13 /* ViewBattleLogsController.m */; };
+		F6CCAFEC13C6AABB00DB2F13 /* LETableViewCellBattleReport.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CCAFEB13C6AABB00DB2F13 /* LETableViewCellBattleReport.m */; };
 		F6CE0C00136102730090AA30 /* PullRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CE0BFF136102730090AA30 /* PullRefreshTableViewController.m */; };
 		F6CE0C03136102CF0090AA30 /* LEPullToRefreshTableViewControllerGrouped.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CE0C02136102CF0090AA30 /* LEPullToRefreshTableViewControllerGrouped.m */; };
 		F6D02A191230698B000D8811 /* LEEmpireSendPasswordResetMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D02A181230698B000D8811 /* LEEmpireSendPasswordResetMessage.m */; };
@@ -1024,6 +1027,12 @@
 		F6CCAFDF13C696FB00DB2F13 /* LEBuildingRenameSpecies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingRenameSpecies.m; sourceTree = "<group>"; };
 		F6CCAFE113C699C300DB2F13 /* RenameSpeciesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenameSpeciesController.h; sourceTree = "<group>"; };
 		F6CCAFE213C699C300DB2F13 /* RenameSpeciesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenameSpeciesController.m; sourceTree = "<group>"; };
+		F6CCAFE413C6A26F00DB2F13 /* LEBuildingViewBattleReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEBuildingViewBattleReport.h; sourceTree = "<group>"; };
+		F6CCAFE513C6A26F00DB2F13 /* LEBuildingViewBattleReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LEBuildingViewBattleReport.m; sourceTree = "<group>"; };
+		F6CCAFE713C6A38D00DB2F13 /* ViewBattleLogsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewBattleLogsController.h; sourceTree = "<group>"; };
+		F6CCAFE813C6A38E00DB2F13 /* ViewBattleLogsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewBattleLogsController.m; sourceTree = "<group>"; };
+		F6CCAFEA13C6AABB00DB2F13 /* LETableViewCellBattleReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LETableViewCellBattleReport.h; sourceTree = "<group>"; };
+		F6CCAFEB13C6AABB00DB2F13 /* LETableViewCellBattleReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LETableViewCellBattleReport.m; sourceTree = "<group>"; };
 		F6CE0BFE136102730090AA30 /* PullRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullRefreshTableViewController.h; sourceTree = "<group>"; };
 		F6CE0BFF136102730090AA30 /* PullRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullRefreshTableViewController.m; sourceTree = "<group>"; };
 		F6CE0C01136102CF0090AA30 /* LEPullToRefreshTableViewControllerGrouped.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LEPullToRefreshTableViewControllerGrouped.h; sourceTree = "<group>"; };
@@ -1833,6 +1842,8 @@
 				F6EE72A3133979130022D387 /* LETableViewCellVotes.m */,
 				F6E995DD133C034A00C9F968 /* LETableViewCellShipOrbitingTime.h */,
 				F6E995DE133C034A00C9F968 /* LETableViewCellShipOrbitingTime.m */,
+				F6CCAFEA13C6AABB00DB2F13 /* LETableViewCellBattleReport.h */,
+				F6CCAFEB13C6AABB00DB2F13 /* LETableViewCellBattleReport.m */,
 			);
 			name = Views;
 			path = Shared/Views;
@@ -2253,6 +2264,8 @@
 				F6021A5D139483980068EE6B /* LEBuildingTrainSpySkill.m */,
 				F6CCAFDE13C696FB00DB2F13 /* LEBuildingRenameSpecies.h */,
 				F6CCAFDF13C696FB00DB2F13 /* LEBuildingRenameSpecies.m */,
+				F6CCAFE413C6A26F00DB2F13 /* LEBuildingViewBattleReport.h */,
+				F6CCAFE513C6A26F00DB2F13 /* LEBuildingViewBattleReport.m */,
 			);
 			name = LacunaExpanseAPI;
 			path = Shared/LacunaExpanseAPI;
@@ -2778,6 +2791,8 @@
 				F6021A63139488EF0068EE6B /* ViewSpiesForTrainingController.m */,
 				F6CCAFE113C699C300DB2F13 /* RenameSpeciesController.h */,
 				F6CCAFE213C699C300DB2F13 /* RenameSpeciesController.m */,
+				F6CCAFE713C6A38D00DB2F13 /* ViewBattleLogsController.h */,
+				F6CCAFE813C6A38E00DB2F13 /* ViewBattleLogsController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -3398,6 +3413,9 @@
 				F6021A64139488EF0068EE6B /* ViewSpiesForTrainingController.m in Sources */,
 				F6CCAFE013C696FB00DB2F13 /* LEBuildingRenameSpecies.m in Sources */,
 				F6CCAFE313C699C300DB2F13 /* RenameSpeciesController.m in Sources */,
+				F6CCAFE613C6A27000DB2F13 /* LEBuildingViewBattleReport.m in Sources */,
+				F6CCAFE913C6A38E00DB2F13 /* ViewBattleLogsController.m in Sources */,
+				F6CCAFEC13C6AABB00DB2F13 /* LETableViewCellBattleReport.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

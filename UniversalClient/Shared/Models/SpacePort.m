@@ -18,12 +18,14 @@
 #import "LEBuildingViewShipsOrbiting.h"
 #import "LEBuildingRecallShip.h"
 #import "LEBuildingRecallAll.h"
+#import "LEBuildingViewBattleReport.h"
 #import "LETableViewCellButton.h"
 #import "ViewDictionaryController.h"
 #import "ViewShipsByTypeController.h"
 #import "ViewTravellingShipsController.h"
 #import "ViewForeignShipsController.h"
 #import "ViewShipsOrbitingController.h"
+#import "ViewBattleLogsController.h"
 
 
 @implementation SpacePort
@@ -45,6 +47,10 @@
 @synthesize orbitingShipsUpdated;
 @synthesize orbitingShipsPageNumber;
 @synthesize numOrbitingShips;
+@synthesize battleLogs;
+@synthesize numberOfBattleLogs;
+@synthesize battleLogPageNumber;
+@synthesize battleLogsUpdated;
 
 
 #pragma mark -
@@ -64,6 +70,10 @@
     self.orbitingShips = nil;
     self.orbitingShipsUpdated = nil;
     self.numOrbitingShips = nil;
+    self.battleLogs = nil;
+    self.numberOfBattleLogs = nil;
+    self.battleLogPageNumber = nil;
+    self.battleLogsUpdated = nil;
 	[super dealloc];
 }
 
@@ -101,6 +111,7 @@
 	self.sections = _array([self generateProductionSection],
 						   _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_LOCAL_SHIPS], @"type", @"Local Ships", @"name", localShipRows, @"rows"), 
 						   _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_FOREIGN_SHIPS], @"type", @"Other Ships", @"name", foreignShipRows, @"rows"), 
+                           _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type", @"Reports", @"name", _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_BATTLE_LOG]), @"rows"),
 						   [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
 }
 
@@ -113,6 +124,7 @@
 		case BUILDING_ROW_VIEW_FOREIGN_SHIPS:
         case BUILDING_ROW_RECALL_ALL_SHIPS:
         case BUILDING_ROW_VIEW_ORBITING_SHIPS:
+        case BUILDING_ROW_VIEW_BATTLE_LOG:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		default:
@@ -161,6 +173,12 @@
 			viewOrbitingShipsCell.textLabel.text = @"View Ships Obiting Here";
 			cell = viewOrbitingShipsCell;
             break;
+        case BUILDING_ROW_VIEW_BATTLE_LOG:
+			; //DO NOT REMOVE THIS!!
+			LETableViewCellButton *viewBattleReportCell = [LETableViewCellButton getCellForTableView:tableView];
+			viewBattleReportCell.textLabel.text = @"View Battle Log";
+			cell = viewBattleReportCell;
+            break;
 		default:
 			cell = [super tableView:tableView cellForBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex];
 			break;
@@ -206,6 +224,12 @@
 			viewShipsOrbitingController.shipIntel = self;
 			return viewShipsOrbitingController;
 			break;
+        case BUILDING_ROW_VIEW_BATTLE_LOG:
+            ; //DO NOT REMOVE
+            ViewBattleLogsController *viewBattleLogsController = [ViewBattleLogsController create];
+            viewBattleLogsController.spacePort = self;
+            return viewBattleLogsController;
+            break;
 		default:
 			return [super tableView:tableView didSelectBuildingRow:buildingRow rowIndex:rowIndex];
 			break;
@@ -283,6 +307,21 @@
 }
 
 
+- (void)loadBattleLogsForPage:(NSDecimalNumber *)pageNumber {
+    [[[LEBuildingViewBattleReport alloc] initWithCallback:@selector(loadedBattleLogs:) target:self buildingId:self.id buildingUrl:self.buildingUrl pageNumber:_intv(pageNumber)] autorelease];
+}
+
+
+- (BOOL)hasPreviousBattleLogPage {
+    return _intv(self.battleLogPageNumber) > 1;
+}
+
+
+- (BOOL)hasNextBattleLogPage {
+    return _intv(self.battleLogPageNumber) < [Util numPagesForCount:_intv(self.numberOfBattleLogs)];
+}
+
+
 #pragma mark -
 #pragma mark Callback Methods
 
@@ -356,6 +395,13 @@
 
 - (void)recalledAllShips:(LEBuildingRecallAll *)request {
     //Does nothing for now
+}
+
+- (void)loadedBattleLogs:(LEBuildingViewBattleReport *)request {
+    self.battleLogPageNumber = [Util decimalFromInt:request.pageNumber];
+    self.numberOfBattleLogs = request.numberOfBattleLogs;
+    self.battleLogs = request.battleLogs;
+    self.battleLogsUpdated = [NSDate date];
 }
 
 

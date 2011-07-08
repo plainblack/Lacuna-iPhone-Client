@@ -162,8 +162,9 @@ typedef enum {
 #pragma mark Callback Methods
 
 - (void)trainedSpy:(LEBuildingTrainSpySkill *)request {
-	if (_intv(request.notTrained) > 0) {
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Your spy could not be trained. You probably don't have enough resources to train one." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+    NSMutableDictionary *reasonNotTrained = [request.results objectForKey:@"reason_not_trained"];
+	if (isNotNull(reasonNotTrained)) {
+		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Warning" message:[NSString stringWithFormat:@"Your spy could not be trained. %@", [reasonNotTrained objectForKey:@"message"]] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 		[av show];
 	} else {
 		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Training Started" message:@"Your spy is now busy training." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
