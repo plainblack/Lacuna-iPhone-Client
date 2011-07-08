@@ -34,6 +34,7 @@
 @synthesize skipExcavatorPlan;
 @synthesize skipSpyRecovery;
 @synthesize skipProbeDetected;
+@synthesize skipAttackMessages;
 
 
 #pragma mark -
@@ -84,6 +85,7 @@
 	self.skipExcavatorPlan = _boolv([data objectForKey:@"skip_excavator_plan"]);
 	self.skipSpyRecovery = _boolv([data objectForKey:@"skip_spy_recovery"]);
 	self.skipProbeDetected = _boolv([data objectForKey:@"skip_probe_detected"]);
+	self.skipAttackMessages = _boolv([data objectForKey:@"skip_attack_messages"]);
 
 	NSMutableDictionary *medalsDictionary = [data objectForKey:@"medals"];
 	NSMutableArray *medalArray = [NSMutableArray arrayWithCapacity:[medalsDictionary count]];

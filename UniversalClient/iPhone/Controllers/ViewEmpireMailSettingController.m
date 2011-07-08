@@ -25,6 +25,7 @@ typedef enum {
 	ROW_EXCAVATOR_PLAN,
 	ROW_SPY_RECOVERY,
 	ROW_PROBE_DETECTED,
+	ROW_ATTACK_MESSAGES,
 	ROW_COUNT
 } ROW;
 
@@ -42,6 +43,7 @@ typedef enum {
 @synthesize skipExcavatorPlanCell;
 @synthesize skipSpyRecoveryCell;
 @synthesize skipProbeDetectedCell;
+@synthesize skipAttackMessagesCell;
 @synthesize empireProfile;
 
 
@@ -122,6 +124,12 @@ typedef enum {
 	self.skipProbeDetectedCell.label.font = LABEL_FONT;
 	self.skipProbeDetectedCell.isSelected = !self.empireProfile.skipProbeDetected;
 	self.skipProbeDetectedCell.delegate = self;
+	
+	self.skipAttackMessagesCell = [LETableViewCellLabeledSwitch getCellForTableView:self.tableView];
+	self.skipAttackMessagesCell.label.text = @"Attack Messages";
+	self.skipAttackMessagesCell.label.font = LABEL_FONT;
+	self.skipAttackMessagesCell.isSelected = !self.empireProfile.skipAttackMessages;
+	self.skipAttackMessagesCell.delegate = self;
 }
 
 
@@ -192,6 +200,9 @@ typedef enum {
 		case ROW_PROBE_DETECTED:
 			cell = self.skipProbeDetectedCell;
 			break;
+        case ROW_ATTACK_MESSAGES:
+            cell = skipAttackMessagesCell;
+            break;
 		default:
 			break;
 	}
@@ -227,6 +238,7 @@ typedef enum {
 	self.skipExcavatorPlanCell = nil;
 	self.skipSpyRecoveryCell = nil;
 	self.skipProbeDetectedCell = nil;
+    self.skipAttackMessagesCell = nil;
 	self.empireProfile = nil;
     [super dealloc];
 }
@@ -273,6 +285,8 @@ typedef enum {
 		case ROW_PROBE_DETECTED:
 			filterName = @"skip_probe_detected";
 			break;
+        case ROW_ATTACK_MESSAGES:
+            filterName = @"skip_attack_messages";
 		default:
 			break;
 	}

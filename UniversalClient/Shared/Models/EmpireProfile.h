@@ -34,6 +34,7 @@
 @property (nonatomic, assign) BOOL skipExcavatorPlan;
 @property (nonatomic, assign) BOOL skipSpyRecovery;
 @property (nonatomic, assign) BOOL skipProbeDetected;
+@property (nonatomic, assign) BOOL skipAttackMessages;
 
 
 - (void)parseData:(NSDictionary *)data;
