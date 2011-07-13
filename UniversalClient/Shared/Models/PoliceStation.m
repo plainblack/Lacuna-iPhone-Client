@@ -358,6 +358,13 @@
 }
 
 
+- (void)travellingShipsLoaded:(LEBuildingViewShipsTravelling *)request {
+	self.travellingShips = request.travellingShips;
+	self.numTravellingShips = request.numberOfShipsTravelling;
+	self.travellingShipsUpdated = [NSDate date];
+}
+
+
 - (void)foreignShipsLoaded:(LEBuildingViewForeignShips *)request {
 	self.foreignShips = request.foreignShips;
 	self.numForeignShips = request.numberOfShipsForeign;

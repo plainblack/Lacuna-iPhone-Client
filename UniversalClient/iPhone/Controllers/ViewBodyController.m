@@ -22,6 +22,7 @@
 #import "PickColonyController.h"
 #import "ViewCreditsController.h"
 #import "LEBodyAbandon.h"
+#import "ViewAllianceProfileController.h"
 
 
 typedef enum {
@@ -369,34 +370,47 @@ typedef enum {
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == SECTION_ACTIONS) {
-		switch (indexPath.row) {
-			case ACTION_ROW_VIEW_BUILDINGS:
-				; //DO NOT REMOVE
-				ViewBodyMapControllerV2 *viewBodyMapController = [[ViewBodyMapControllerV2 alloc] init];
-				[self.navigationController pushViewController:viewBodyMapController animated:YES];
-				[viewBodyMapController release];
-				break;
-			case ACTION_ROW_RENAME_BODY:
-				; //DO NOT REMOVE
-				Session *session = [Session sharedInstance];
-				RenameBodyController *renameBodyController = [RenameBodyController create];
-				renameBodyController.body = session.body;
-				[[self navigationController] pushViewController:renameBodyController animated:YES];
-				break;
-			case ACTION_ROW_ABANDON_BODY:
-				; //DO NOT REMOVE
-				UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Do you really wish to abandon this colony?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
-				actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-				[actionSheet showFromTabBar:self.tabBarController.tabBar];
-				[actionSheet release];
-				break;
-			default:
-				NSLog(@"Invalid action clicked: %i:%i", indexPath.section, indexPath.row);
-				break;
-		}
-		[self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-	}
+	Session *session = [Session sharedInstance];
+	switch (indexPath.section) {
+		case SECTION_BODY_OVERVIEW:
+			switch (indexPath.row) {
+                case BODY_OVERVIEW_ROW_ALLIANCE:
+                    ; //DO NOT REMOVE
+                    ViewAllianceProfileController *viewAllianceProfileController = [ViewAllianceProfileController create];
+                    viewAllianceProfileController.allianceId = session.body.allianceId;
+                    [self.navigationController pushViewController:viewAllianceProfileController animated:YES];
+                    break;
+            }
+            break;
+        case SECTION_ACTIONS:
+            switch (indexPath.row) {
+                case ACTION_ROW_VIEW_BUILDINGS:
+                    ; //DO NOT REMOVE
+                    ViewBodyMapControllerV2 *viewBodyMapController = [[ViewBodyMapControllerV2 alloc] init];
+                    [self.navigationController pushViewController:viewBodyMapController animated:YES];
+                    [viewBodyMapController release];
+                    break;
+                case ACTION_ROW_RENAME_BODY:
+                    ; //DO NOT REMOVE
+                    Session *session = [Session sharedInstance];
+                    RenameBodyController *renameBodyController = [RenameBodyController create];
+                    renameBodyController.body = session.body;
+                    [[self navigationController] pushViewController:renameBodyController animated:YES];
+                    break;
+                case ACTION_ROW_ABANDON_BODY:
+                    ; //DO NOT REMOVE
+                    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Do you really wish to abandon this colony?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
+                    actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+                    [actionSheet showFromTabBar:self.tabBarController.tabBar];
+                    [actionSheet release];
+                    break;
+                default:
+                    NSLog(@"Invalid action clicked: %i:%i", indexPath.section, indexPath.row);
+                    break;
+            }
+            break;
+    }
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 
