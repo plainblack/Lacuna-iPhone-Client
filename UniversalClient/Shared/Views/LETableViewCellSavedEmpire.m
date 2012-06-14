@@ -50,7 +50,7 @@
 	if ([data objectForKey:@"uri"]) {
 		self.serverUriLabel.text = [data objectForKey:@"uri"];
 	} else {
-		self.serverUriLabel.text = @"https://pt.lacunaexpanse.com/";
+		self.serverUriLabel.text = @"http://pt.lacunaexpanse.com/";
 	}
 
 }

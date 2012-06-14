@@ -7,7 +7,7 @@
 //
 
 #import "ViewNetwork19NewsController.h"
-#import "LEMacros.h";
+#import "LEMacros.h"
 #import "LEViewSectionTab.h"
 #import "LETableViewCellNewsItem.h"
 #import "LETableViewCellLabeledText.h"

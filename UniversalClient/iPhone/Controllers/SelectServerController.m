@@ -68,7 +68,7 @@ typedef enum {
 	[self.servers loadServers];
 
 //#if TARGET_IPHONE_SIMULATOR
-	self.customerServerCell.textField.text = @"https://pt.lacunaexpanse.com";
+	self.customerServerCell.textField.text = @"http://pt.lacunaexpanse.com";
 //#endif
 	
 }
