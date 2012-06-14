@@ -26,6 +26,8 @@ typedef enum {
 	ROW_SPY_RECOVERY,
 	ROW_PROBE_DETECTED,
 	ROW_ATTACK_MESSAGES,
+    ROW_SKIP_EXCAVATOR_REPLACE_MSG,
+    ROW_DO_NOT_REPLACE_EXCAVATOR_AUTOMATICALLY,
 	ROW_COUNT
 } ROW;
 
@@ -44,7 +46,10 @@ typedef enum {
 @synthesize skipSpyRecoveryCell;
 @synthesize skipProbeDetectedCell;
 @synthesize skipAttackMessagesCell;
+@synthesize skipExcavatorReplaceMsg;
+@synthesize dontReplaceExcavator;
 @synthesize empireProfile;
+
 
 
 #pragma mark -
@@ -130,6 +135,18 @@ typedef enum {
 	self.skipAttackMessagesCell.label.font = LABEL_FONT;
 	self.skipAttackMessagesCell.isSelected = !self.empireProfile.skipAttackMessages;
 	self.skipAttackMessagesCell.delegate = self;
+    
+	self.skipExcavatorReplaceMsg = [LETableViewCellLabeledSwitch getCellForTableView:self.tableView];
+	self.skipExcavatorReplaceMsg.label.text = @"Stop Excavator Replace Alert";
+	self.skipExcavatorReplaceMsg.label.font = LABEL_FONT;
+	self.skipExcavatorReplaceMsg.isSelected = !self.empireProfile.skipExcavatorReplaceMsg;
+	self.skipExcavatorReplaceMsg.delegate = self;
+    
+	self.dontReplaceExcavator = [LETableViewCellLabeledSwitch getCellForTableView:self.tableView];
+	self.dontReplaceExcavator.label.text = @"Do not replace Excavator Automatically";
+	self.dontReplaceExcavator.label.font = LABEL_FONT;
+	self.dontReplaceExcavator.isSelected = !self.empireProfile.dontReplaceExcavator;
+	self.dontReplaceExcavator.delegate = self;
 }
 
 
@@ -203,6 +220,12 @@ typedef enum {
         case ROW_ATTACK_MESSAGES:
             cell = skipAttackMessagesCell;
             break;
+        case ROW_SKIP_EXCAVATOR_REPLACE_MSG:
+			cell = skipExcavatorReplaceMsg;
+			break;
+        case ROW_DO_NOT_REPLACE_EXCAVATOR_AUTOMATICALLY:
+            cell = self.dontReplaceExcavator;
+            break;
 		default:
 			break;
 	}
@@ -239,6 +262,8 @@ typedef enum {
 	self.skipSpyRecoveryCell = nil;
 	self.skipProbeDetectedCell = nil;
     self.skipAttackMessagesCell = nil;
+    self.skipExcavatorReplaceMsg = nil;
+    self.dontReplaceExcavator = nil;
 	self.empireProfile = nil;
     [super dealloc];
 }
@@ -287,6 +312,12 @@ typedef enum {
 			break;
         case ROW_ATTACK_MESSAGES:
             filterName = @"skip_attack_messages";
+            break;
+        case ROW_SKIP_EXCAVATOR_REPLACE_MSG:
+            filterName = @"skip_excavator_replace_msg";
+            break;
+        case ROW_DO_NOT_REPLACE_EXCAVATOR_AUTOMATICALLY:
+            filterName = @"dont_replace_excavator";
 		default:
 			break;
 	}

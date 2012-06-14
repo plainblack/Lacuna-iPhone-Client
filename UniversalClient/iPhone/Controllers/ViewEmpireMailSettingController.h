@@ -30,6 +30,8 @@
 @property (nonatomic, retain) LETableViewCellLabeledSwitch *skipSpyRecoveryCell;
 @property (nonatomic, retain) LETableViewCellLabeledSwitch *skipProbeDetectedCell;
 @property (nonatomic, retain) LETableViewCellLabeledSwitch *skipAttackMessagesCell;
+@property (nonatomic, retain) LETableViewCellLabeledSwitch *skipExcavatorReplaceMsg;
+@property (nonatomic, retain) LETableViewCellLabeledSwitch *dontReplaceExcavator;
 @property (nonatomic, retain) EmpireProfile *empireProfile;
 
 
