@@ -51,7 +51,6 @@ typedef enum {
 @synthesize empireProfile;
 
 
-
 #pragma mark -
 #pragma mark View lifecycle
 
