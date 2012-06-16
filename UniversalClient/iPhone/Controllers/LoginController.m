@@ -298,7 +298,7 @@ typedef enum {
 			session.serverUri = [keychainItemWrapper objectForKey:(id)kSecAttrService];
 			if (!session.serverUri || [session.serverUri length] == 0) {
 				//KEVIN REMOVE AFTER BETA
-				session.serverUri = @"https://pt.lacunaexpanse.com/";
+				session.serverUri = @"http://pt.lacunaexpanse.com/";
 			}
 			[session loginWithUsername:username password:password];
 			[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];

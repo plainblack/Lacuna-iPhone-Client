@@ -15,7 +15,7 @@
 #import "LETableViewCellLabeledSwitch.h"
 #import "Util.h"
 #import "WasteRecycling.h"
-#import "Session.h";
+#import "Session.h"
 
 
 typedef enum {

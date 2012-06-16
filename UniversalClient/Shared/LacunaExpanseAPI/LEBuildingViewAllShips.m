@@ -8,9 +8,9 @@
 
 #import "LEBuildingViewAllShips.h"
 #import "LEMacros.h"
-#import "Util.h";
+#import "Util.h"
 #import "Session.h"
-#import "Ship.h";
+#import "Ship.h"
 
 
 @implementation LEBuildingViewAllShips
