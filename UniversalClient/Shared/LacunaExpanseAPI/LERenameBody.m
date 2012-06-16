@@ -14,19 +14,19 @@
 @implementation LERenameBody
 
 
-@synthesize bodyId;
-@synthesize newBodyName;
-@synthesize result;
+@synthesize bodyId = _bodyId;
+@synthesize bodyName = _bodyName;
+@synthesize result = _result;
 
 
-- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget forBody:(NSString *)inBodyId newName:(NSString *)inNewBodyName {
+- (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget forBody:(NSString *)inBodyId newName:(NSString *)bodyName {
 	self.bodyId = inBodyId;
-	self.newBodyName = inNewBodyName;
+	self.bodyName = bodyName;
 	return [self initWithCallback:inCallback target:(NSObject *)inTarget];
 }
 
 - (id)params {
-	return _array([Session sharedInstance].sessionId, self.bodyId, self.newBodyName);
+	return _array([Session sharedInstance].sessionId, self.bodyId, self.bodyName);
 }
 
 
@@ -48,7 +48,7 @@
 
 - (void)dealloc {
 	self.bodyId = nil;
-	self.newBodyName = nil;
+	self.bodyName = nil;
 	self.result = nil;
 	[super dealloc];
 }

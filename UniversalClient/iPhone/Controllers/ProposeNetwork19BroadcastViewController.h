@@ -23,7 +23,7 @@
 @property (nonatomic, retain) LETableViewCellTextView *messageCell;
 
 
-- (void)propose;
+- (IBAction)propose;
 
 
 + (ProposeNetwork19BroadcastViewController *)create;

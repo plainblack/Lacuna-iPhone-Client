@@ -13,14 +13,11 @@
 @class LETableViewCellTextEntry;
 
 
-@interface NewPasswordController : LETableViewControllerGrouped <UITextFieldDelegate> {
-	LETableViewCellTextEntry *newPasswordCell;
-	LETableViewCellTextEntry *newPasswordConfirmCell;
-}
+@interface NewPasswordController : LETableViewControllerGrouped <UITextFieldDelegate>
 
 
-@property (nonatomic, retain) LETableViewCellTextEntry *newPasswordCell;
-@property (nonatomic, retain) LETableViewCellTextEntry *newPasswordConfirmCell;
+@property (nonatomic, retain) LETableViewCellTextEntry *passwordCell;
+@property (nonatomic, retain) LETableViewCellTextEntry *passwordConfirmCell;
 
 
 + (NewPasswordController *)create;

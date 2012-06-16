@@ -10,21 +10,15 @@
 #import "LERequest.h"
 
 
-@interface LEBuildingAssignAllianceLeader : LERequest {
-	NSString *buildingId;
-	NSString *buildingUrl;
-	NSString *newLeaderId;
-	NSMutableDictionary *allianceStatus;
-}
-
+@interface LEBuildingAssignAllianceLeader : LERequest
 
 @property (nonatomic, retain) NSString *buildingId;
 @property (nonatomic, retain) NSString *buildingUrl;
-@property (nonatomic, retain) NSString *newLeaderId;
+@property (nonatomic, retain) NSString *leaderId;
 @property (nonatomic, retain) NSMutableDictionary *allianceStatus;
 
 
-- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl newLeaderId:(NSString *)newLeaderId;
+- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target buildingId:(NSString *)buildingId buildingUrl:(NSString *)buildingUrl newLeaderId:(NSString *)leaderId;
 
 
 @end

@@ -16,7 +16,7 @@
 
 @property(nonatomic, retain) NSString *buildingId;
 @property(nonatomic, retain) NSString *buildingUrl;
-@property(nonatomic, retain) NSString *newEmpireName;
+@property(nonatomic, retain) NSString *empireName;
 @property(nonatomic, retain) NSString *oldEmpireName;
 
 

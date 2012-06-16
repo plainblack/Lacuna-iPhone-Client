@@ -22,7 +22,7 @@
 @property (nonatomic, retain) NSDictionary *selectedEmpire;
 
 
-- (void)propose;
+- (IBAction)propose;
 
 
 + (ProposeTransferStationOwnership *)create;

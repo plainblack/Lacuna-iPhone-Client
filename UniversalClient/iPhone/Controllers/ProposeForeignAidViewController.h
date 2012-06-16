@@ -24,7 +24,7 @@
 @property (nonatomic, retain) LETableViewCellNumberEntry *amountCell;
 
 
-- (void)propose;
+- (IBAction)propose;
 
 
 + (ProposeForeignAidViewController *)create;

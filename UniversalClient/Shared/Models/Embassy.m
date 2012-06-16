@@ -371,8 +371,8 @@
 }
 
 
-- (void)assignAllianceLeader:(NSString *)newLeaderId {
-	[[[LEBuildingAssignAllianceLeader alloc] initWithCallback:@selector(allianceLeaderAssigned:) target:self buildingId:self.id buildingUrl:self.buildingUrl newLeaderId:newLeaderId] autorelease];
+- (void)assignAllianceLeader:(NSString *)leaderId {
+	[[[LEBuildingAssignAllianceLeader alloc] initWithCallback:@selector(allianceLeaderAssigned:) target:self buildingId:self.id buildingUrl:self.buildingUrl newLeaderId:leaderId] autorelease];
 }
 
 

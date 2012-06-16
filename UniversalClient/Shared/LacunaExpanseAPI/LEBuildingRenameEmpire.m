@@ -16,14 +16,14 @@
 
 @synthesize buildingId;
 @synthesize buildingUrl;
-@synthesize newEmpireName;
+@synthesize empireName;
 @synthesize oldEmpireName;
 
 
 - (LERequest *)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget buildingId:(NSString *)inBuildingId buildingUrl:(NSString *)inBuildingUrl newEmpireName:(NSString *)inNewEmpireName {
 	self.buildingId = inBuildingId;
 	self.buildingUrl = inBuildingUrl;
-	self.newEmpireName = inNewEmpireName;
+	self.empireName = inNewEmpireName;
 	Session *session = [Session sharedInstance];
 	self.oldEmpireName = session.empire.name;
 	return [self initWithCallback:inCallback target:(NSObject *)inTarget];
@@ -31,13 +31,13 @@
 
 
 - (id)params {
-	return _array([Session sharedInstance].sessionId, self.buildingId, self.newEmpireName);
+	return _array([Session sharedInstance].sessionId, self.buildingId, self.empireName);
 }
 
 
 - (void)processSuccess {
 	Session *session = [Session sharedInstance];
-	[session renameSavedEmpireNameFrom:self.oldEmpireName to:self.newEmpireName];
+	[session renameSavedEmpireNameFrom:self.oldEmpireName to:self.empireName];
 }
 
 
@@ -55,7 +55,7 @@
 	self.buildingId = nil;
 	self.buildingUrl = nil;
 	self.oldEmpireName = nil;
-	self.newEmpireName = nil;
+	self.empireName = nil;
 	[super dealloc];
 }
 

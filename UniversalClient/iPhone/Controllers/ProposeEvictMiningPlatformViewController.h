@@ -26,7 +26,7 @@
 @property (nonatomic, retain) NSDictionary *selectedMiningPlatform;
 
 
-- (void)propose;
+- (IBAction)propose;
 
 
 + (ProposeEvictMiningPlatformViewController *)create;

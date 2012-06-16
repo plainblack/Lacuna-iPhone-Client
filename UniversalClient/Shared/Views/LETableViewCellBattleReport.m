@@ -45,14 +45,13 @@ typedef enum {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.accessoryType = UITableViewCellAccessoryNone;
 
-        self.dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 5.0, 310.0, 20.0)];
+        self.dateLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10.0, 5.0, 310.0, 20.0)] autorelease];
         self.dateLabel.backgroundColor = [UIColor clearColor];
         self.dateLabel.textAlignment = UITextAlignmentLeft;
         self.dateLabel.font = BUTTON_TEXT_FONT;
         self.dateLabel.textColor = BUTTON_TEXT_COLOR;
         self.dateLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
         [self.contentView addSubview:self.dateLabel];
-        [self.dateLabel release];
 
         self.attackerNameLabel = [self setupLabels:@"Attacker" level:LEVEL_1 y:30.0];
         self.attackerFromLabel = [self setupLabels:@"From" level:LEVEL_2 y:50.0];

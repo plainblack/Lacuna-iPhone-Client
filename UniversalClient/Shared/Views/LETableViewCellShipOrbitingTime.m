@@ -96,7 +96,6 @@
 		cell.fromNameLabel.textColor = TEXT_SMALL_COLOR;
 		cell.fromNameLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.fromNameLabel];
-		y += 20;
 		
 		//Set Cell Defaults
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;

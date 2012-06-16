@@ -179,9 +179,9 @@
     }
     if (cell == nil) {
         if (isDequeueable) {
-            cell = [[LETableViewCellWebView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            cell = [[[LETableViewCellWebView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         } else {
-            cell = [[LETableViewCellWebView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+            cell = [[[LETableViewCellWebView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil] autorelease];
         }
 		cell.backgroundColor = CELL_BACKGROUND_COLOR;
 		cell.autoresizesSubviews = YES;

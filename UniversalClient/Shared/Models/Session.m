@@ -40,9 +40,6 @@
 @synthesize universeMaxY;
 
 
-SYNTHESIZE_SINGLETON_FOR_CLASS(Session);
-
-
 #pragma mark -
 #pragma mark Live Cycle methods
 
@@ -236,7 +233,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Session);
 	[self updatedSavedEmpire:username uri:self.serverUri];
 	
 	self.sessionId = inSessionId;
-	self.empire = [[Empire alloc] init];
+	self.empire = [[[Empire alloc] init] autorelease];
 	[self.empire parseData:inEmpireData];
 	self.isLoggedIn = TRUE;
 }
@@ -417,7 +414,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Session);
 	} else {
 		self.sessionId = request.sessionId;
 		NSLog(@"relogin set empire");
-		self.empire = [[Empire alloc] init];
+		self.empire = [[[Empire alloc] init] autorelease];
 		[self.empire parseData:request.empireData];
 		//Don't change self.isLoggedIn becuase well it should stay logged in
 	}
@@ -447,5 +444,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Session);
 	return nil;
 }
 
+
+#pragma mark - Class Methods
+
++ (Session *)sharedInstance {
+    static dispatch_once_t pred;
+    static Session *session = nil;
+    
+    dispatch_once(&pred, ^{ session = [[self alloc] init]; });
+    return session;
+}
 
 @end

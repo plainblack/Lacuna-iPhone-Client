@@ -22,7 +22,7 @@
 @property (nonatomic, retain) NSDictionary *selectedStar;
 
 
-- (void)propose;
+- (IBAction)propose;
 
 
 + (ProposeSeizeStarViewController *)create;

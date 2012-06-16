@@ -10,7 +10,7 @@
 #import "LEMacros.h"
 #import "Util.h"
 #import "Session.h"
-#import "Ship.h";
+#import "Ship.h"
 
 
 @implementation LEBuildingViewForeignShips

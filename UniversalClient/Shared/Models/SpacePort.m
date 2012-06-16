@@ -348,14 +348,17 @@
 
 
 - (void)shipRenamed:(LEBuildingNameShip *)request {
-	Ship *renamedShip;
-	for (Ship *ship in self.ships) {
+	__block Ship *renamedShip = nil;;
+    [self.ships enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        Ship *ship = obj;
 		if ([ship.id isEqualToString:request.shipId]) {
 			renamedShip = ship;
+            *stop = YES;
 		}
-	}
-	
-	renamedShip.name = request.name;
+    }];
+	if (renamedShip) {
+        renamedShip.name = request.name;
+    }
 	self.shipsUpdated = [NSDate date];
 }
 

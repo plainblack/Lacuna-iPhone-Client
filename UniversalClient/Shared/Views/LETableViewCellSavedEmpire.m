@@ -35,8 +35,8 @@
 
 
 - (void)dealloc {
-	self.empireNameText;
-	self.serverUriLabel;
+	self.empireNameText = nil;
+	self.serverUriLabel = nil;
     [super dealloc];
 }
 

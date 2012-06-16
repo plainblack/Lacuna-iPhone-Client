@@ -22,7 +22,7 @@
 @property (nonatomic, retain) LETableViewCellNumberEntry *amountCell;
 
 
-- (void)propose;
+- (IBAction)propose;
 
 
 + (ProposeTaxationViewController *)create;

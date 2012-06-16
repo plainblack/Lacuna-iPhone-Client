@@ -10,19 +10,14 @@
 #import "LERequest.h"
 
 
-@interface LERenameBody : LERequest {
-	NSString *bodyId;
-	NSString *newBodyName;
-	NSString *result;
-}
-
+@interface LERenameBody : LERequest
 
 @property(nonatomic, retain) NSString *bodyId;
-@property(nonatomic, retain) NSString *newBodyName;
+@property(nonatomic, retain) NSString *bodyName;
 @property(nonatomic, retain) NSString *result;
 
 
-- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target forBody:(NSString *)bodyId newName:(NSString *)newBodyName;
+- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target forBody:(NSString *)bodyId newName:(NSString *)bodyName;
 
 
 @end

@@ -73,7 +73,7 @@ typedef enum {
 	if ([self.navigationController.viewControllers objectAtIndex:0] == self) {
 		self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout)] autorelease];
 	}
-	self.navigationItem.title = @"Loading";
+	self.navigationItem.title = @"Stats";
 	
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Weekly Medals"],
 								 [LEViewSectionTab tableView:self.tableView withText:@"Alliance Rankings"],

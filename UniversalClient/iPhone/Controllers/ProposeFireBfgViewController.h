@@ -26,7 +26,7 @@
 @property (nonatomic, retain) LETableViewCellLabeledTextView *reasonCell;
 
 
-- (void)propose;
+- (IBAction)propose;
 
 
 + (ProposeFireBfgViewController *)create;

@@ -108,7 +108,7 @@
 	self.scrollView.minimumZoomScale = 0.5;
 	self.scrollView.maximumZoomScale = 4.0;
 	
-	self.map = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.scrollView.contentSize.width, self.scrollView.contentSize.height)];
+	self.map = [[[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.scrollView.contentSize.width, self.scrollView.contentSize.height)] autorelease];
 	self.map.autoresizesSubviews = YES;
 	self.map.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 

@@ -306,13 +306,14 @@
 
 
 - (id)spyRenamed:(LEBuildingNameSpy *)request {
-	Spy *renamedSpy;
-	for (Spy *spy in self.spies) {
+	__block Spy *renamedSpy = nil;
+    [self.spies enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        Spy *spy = obj;
 		if ([spy.id isEqualToString:request.spyId]) {
 			renamedSpy = spy;
+            *stop = YES;
 		}
-	}
-	
+    }];
 	self.spiesUpdated = [NSDate date];
 	renamedSpy.name = request.name;
 	return nil;

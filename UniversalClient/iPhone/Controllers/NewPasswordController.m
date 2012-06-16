@@ -26,8 +26,8 @@ typedef enum {
 @implementation NewPasswordController
 
 
-@synthesize newPasswordCell;
-@synthesize newPasswordConfirmCell;
+@synthesize passwordCell = _passwordCell;
+@synthesize passwordConfirmCell = _passwordConfirmCell;
 
 
 #pragma mark -
@@ -42,13 +42,13 @@ typedef enum {
 	
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"New Password"]);
 	
-	self.newPasswordCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
-	self.newPasswordCell.label.text = @"New Password";
-	self.newPasswordCell.delegate = self;
+	self.passwordCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
+	self.passwordCell.label.text = @"New Password";
+	self.passwordCell.delegate = self;
 	
-	self.newPasswordConfirmCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
-	self.newPasswordConfirmCell.label.text = @"Confirm";
-	self.newPasswordConfirmCell.delegate = self;
+	self.passwordConfirmCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
+	self.passwordConfirmCell.label.text = @"Confirm";
+	self.passwordConfirmCell.delegate = self;
 }
 
 
@@ -96,10 +96,10 @@ typedef enum {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	switch (indexPath.row) {
 		case ROW_NEW_PASSWORD:
-			return self.newPasswordCell;
+			return self.passwordCell;
 			break;
 		case ROW_NEW_PASSWORD_CONFIRM:
-			return self.newPasswordConfirmCell;
+			return self.passwordConfirmCell;
 			break;
 		case ROW_SAVE:
 			; //DO NOT REMOVE
@@ -120,15 +120,15 @@ typedef enum {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	switch (indexPath.row) {
 		case ROW_SAVE:
-			if ([self.newPasswordCell.textField.text length] == 0) {
+			if ([self.passwordCell.textField.text length] == 0) {
 				UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must enter the new password." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 				[av show];
-			} else if ([self.newPasswordConfirmCell.textField.text length] == 0) {
+			} else if ([self.passwordConfirmCell.textField.text length] == 0) {
 				UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must enter the confirmation of the new password." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 				[av show];
 			} else {
 				Session *session = [Session sharedInstance];
-				[session.empire changeToPassword:self.newPasswordCell.textField.text confirmPassword:self.newPasswordConfirmCell.textField.text target:self callback:@selector(passwordChanged:)];
+				[session.empire changeToPassword:self.passwordCell.textField.text confirmPassword:self.passwordConfirmCell.textField.text target:self callback:@selector(passwordChanged:)];
 			}
 			break;
 	}
@@ -146,15 +146,15 @@ typedef enum {
 }
 
 - (void)viewDidUnload {
-	self.newPasswordCell = nil;
-	self.newPasswordConfirmCell = nil;
+	self.passwordCell = nil;
+	self.passwordConfirmCell = nil;
     [super viewDidUnload];
 }
 
 
 - (void)dealloc {
-	self.newPasswordCell = nil;
-	self.newPasswordConfirmCell = nil;
+	self.passwordCell = nil;
+	self.passwordConfirmCell = nil;
     [super dealloc];
 }
 
@@ -163,11 +163,11 @@ typedef enum {
 #pragma mark UITextFieldDelegate Methods
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-	if (textField == self.newPasswordCell.textField) {
-		[self.newPasswordCell resignFirstResponder];
-		[self.newPasswordConfirmCell becomeFirstResponder];
-	} else if (textField == self.newPasswordConfirmCell.textField) {
-		[self.newPasswordConfirmCell resignFirstResponder];
+	if (textField == self.passwordCell.textField) {
+		[self.passwordCell resignFirstResponder];
+		[self.passwordConfirmCell becomeFirstResponder];
+	} else if (textField == self.passwordConfirmCell.textField) {
+		[self.passwordConfirmCell resignFirstResponder];
 	}
 	return YES;
 }
@@ -181,7 +181,7 @@ typedef enum {
 		//Let generic error handler do pop up.
 	} else {
 		Session *session = [Session sharedInstance];
-		[session saveToKeyChainForUsername:session.empire.name password:request.newPassword];
+		[session saveToKeyChainForUsername:session.empire.name password:request.password];
 		[self.navigationController popViewControllerAnimated:YES];
 	}
 }

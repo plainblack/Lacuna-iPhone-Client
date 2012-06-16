@@ -52,8 +52,7 @@ typedef enum {
 	self.navigationItem.title = @"Select Server";
 	
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Servers"], [LEViewSectionTab tableView:self.tableView withText:@"Custom"]);
-	self.servers = [[Servers alloc] init];
-	[self.servers release];
+	self.servers = [[[Servers alloc] init] autorelease];
 
 	self.customerServerCell =  [LETableViewCellTextEntry getCellForTableView:self.tableView includeToolbar:NO];
 	self.customerServerCell.label.text = @"URL";

@@ -26,7 +26,7 @@
 @property (nonatomic, retain) LETableViewCellTextEntry *nameCell;
 
 
-- (void)propose;
+- (IBAction)propose;
 
 
 + (ProposeRenameBodyViewController *)create;

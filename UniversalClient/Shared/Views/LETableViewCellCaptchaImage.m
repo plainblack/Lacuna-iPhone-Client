@@ -48,6 +48,7 @@
 		[[NSOperationQueue mainQueue] addOperationWithBlock:^{
 			UIImage *img = [[UIImage alloc] initWithData:data];
 			self.imageView.image = img;
+            [img release];
 		}];
 	}];
 }

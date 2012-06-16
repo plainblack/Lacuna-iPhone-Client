@@ -37,7 +37,7 @@
 
 
 - (void)acceptInvite:(NSString *)inviteId withMessage:(NSString *)message;
-- (void)assignAllianceLeader:(NSString *)newLeaderId;
+- (void)assignAllianceLeader:(NSString *)leaderId;
 - (void)createAllianceWithName:(NSString *)name target:(id)target callback:(SEL)callback;
 - (void)disolveAlliance;
 - (void)expelMemeber:(NSString *)empireId withMessage:(NSString *)message;

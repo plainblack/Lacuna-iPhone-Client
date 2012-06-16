@@ -38,11 +38,11 @@
 
 
 - (void)dealloc {
-	self.buildingNameText;
-	self.levelLabel;
-	self.levelText;
-	self.durationLabel;
-	self.durationText;
+	self.buildingNameText = nil;
+	self.levelLabel = nil;
+	self.levelText = nil;
+	self.durationLabel = nil;
+	self.durationText = nil;
     [super dealloc];
 }
 

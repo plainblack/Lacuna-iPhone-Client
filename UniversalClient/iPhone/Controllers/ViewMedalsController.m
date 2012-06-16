@@ -173,7 +173,6 @@ typedef enum {
 #pragma mark Callback Methods
 
 - (id)medalsUpdated:(LEEmpireEditProfile *)request {
-	NSLog(@"Medals Updated", request);
 	return nil;
 }
 

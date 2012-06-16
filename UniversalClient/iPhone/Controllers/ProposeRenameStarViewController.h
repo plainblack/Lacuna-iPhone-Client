@@ -24,7 +24,7 @@
 @property (nonatomic, retain) LETableViewCellTextEntry *nameCell;
 
 
-- (void)propose;
+- (IBAction)propose;
 
 
 + (ProposeRenameStarViewController *)create;

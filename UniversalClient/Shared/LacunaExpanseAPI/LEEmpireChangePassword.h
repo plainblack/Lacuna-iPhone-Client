@@ -10,17 +10,14 @@
 #import "LERequest.h"
 
 
-@interface LEEmpireChangePassword : LERequest {
-	NSString *newPassword;
-	NSString *newPasswordConfirm;
-}
+@interface LEEmpireChangePassword : LERequest
 
 
-@property (nonatomic, retain) NSString *newPassword;
-@property (nonatomic, retain) NSString *newPasswordConfirm;
+@property (nonatomic, retain) NSString *password;
+@property (nonatomic, retain) NSString *passwordConfirm;
 
 
-- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target newPassword:(NSString *)newPassword newPasswordConfirm:(NSString *)newPasswordConfirm;
+- (LERequest *)initWithCallback:(SEL)callback target:(NSObject *)target newPassword:(NSString *)password newPasswordConfirm:(NSString *)passwordConfirm;
 
 
 @end
