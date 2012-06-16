@@ -201,7 +201,7 @@
 //            if (accessGroup != nil) {
 //                [self.keychainItemData setObject:accessGroup forKey:(id)kSecAttrAccessGroup];
 //            }
-			NSLog(@"UNKNOWN KEYCHAIN LOOK UP ERROR: %i", copyResult);
+			NSLog(@"UNKNOWN KEYCHAIN LOOK UP ERROR: %ld", copyResult);
 			[self resetKeychainItem];
         }
 		
