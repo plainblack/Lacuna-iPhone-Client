@@ -142,7 +142,7 @@ typedef enum {
 	self.skipExcavatorReplaceMsg.delegate = self;
     
 	self.dontReplaceExcavator = [LETableViewCellLabeledSwitch getCellForTableView:self.tableView];
-	self.dontReplaceExcavator.label.text = @"Do not replace Excavator Automatically";
+	self.dontReplaceExcavator.label.text = @"Replace Excavators Automatically";
 	self.dontReplaceExcavator.label.font = LABEL_FONT;
 	self.dontReplaceExcavator.isSelected = !self.empireProfile.dontReplaceExcavator;
 	self.dontReplaceExcavator.delegate = self;
