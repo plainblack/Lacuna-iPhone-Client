@@ -18,6 +18,7 @@
 #import "LEEmpireBoostOre.h"
 #import "LEEmpireBoostWater.h"
 #import "LEEmpireBoostStorage.h"
+#import "LEEmpireBoostBuilding.h"
 #import "Util.h"
 
 
@@ -27,7 +28,8 @@ typedef enum {
 	EMPIRE_BOOST_SECTION_HAPPINESS,
 	EMPIRE_BOOST_SECTION_ORE,
 	EMPIRE_BOOST_SECTION_WATER,
-	EMPIRE_BOOST_SECTION_STORAGE
+	EMPIRE_BOOST_SECTION_STORAGE,
+    EMPIRE_BOOST_SECTION_BUILDING
 } EMPIRE_BOOST_SECTION;
 
 
@@ -58,7 +60,8 @@ typedef enum {
 								 [LEViewSectionTab tableView:self.tableView withText:@"Happiness" withIcon:HAPPINESS_ICON],
 								 [LEViewSectionTab tableView:self.tableView withText:@"Ore" withIcon:ORE_ICON],
 								 [LEViewSectionTab tableView:self.tableView withText:@"Water" withIcon:WATER_ICON],
-								 [LEViewSectionTab tableView:self.tableView withText:@"Storage" withIcon:STORAGE_ICON]);
+								 [LEViewSectionTab tableView:self.tableView withText:@"Storage" withIcon:STORAGE_ICON],
+								 [LEViewSectionTab tableView:self.tableView withText:@"Building" withIcon:STORAGE_ICON]);
 }
 
 
@@ -102,6 +105,7 @@ typedef enum {
 		case EMPIRE_BOOST_SECTION_ORE:
 		case EMPIRE_BOOST_SECTION_WATER:
 		case EMPIRE_BOOST_SECTION_STORAGE:
+        case EMPIRE_BOOST_SECTION_BUILDING:
 			switch (indexPath.row) {
 				case EMPIRE_BOOST_ROW_EXPIRES:
 					return [LETableViewCellLabeledText getHeightForTableView:tableView];
@@ -214,6 +218,22 @@ typedef enum {
 				default:
 					cell = nil;
 					break;
+            }
+			break;
+		case EMPIRE_BOOST_SECTION_BUILDING:
+			; //DO NOT REMOVE
+			NSDate *buildingBoostEndDate = [self.empireBoosts objectForKey:@"building"];
+			switch (indexPath.row) {
+				case EMPIRE_BOOST_ROW_EXPIRES:
+					cell = [self setupExpiresCellForTableView:tableView secondsRemaining:[buildingBoostEndDate timeIntervalSinceNow]];
+					break;
+				case EMPIRE_BOOST_ROW_BUTTON:
+					cell = [self setupButtonCellForTableView:tableView secondsRemaining:[buildingBoostEndDate timeIntervalSinceNow] name:@"Building"];
+					break;
+				default:
+					cell = nil;
+					break;
+
 			}
 			break;
 		default:
@@ -248,6 +268,9 @@ typedef enum {
 			break;
 		case EMPIRE_BOOST_SECTION_STORAGE:
 			msg = [NSString stringWithFormat:@"Are you sure you want to spend 5 essentia to boost your Storage Capacity by 25%%?"];
+			break;
+        case EMPIRE_BOOST_SECTION_BUILDING:
+			msg = [NSString stringWithFormat:@"Are you sure you want to spend 5 essentia to boost your Building by 25%%?"];
 			break;
 	}
 	if (msg) {
@@ -342,6 +365,9 @@ typedef enum {
 			case EMPIRE_BOOST_SECTION_STORAGE:
 				[[[LEEmpireBoostStorage alloc] initWithCallback:@selector(boostedStorage:) target:self] autorelease];
 				break;
+            case EMPIRE_BOOST_SECTION_BUILDING:
+				[[[LEEmpireBoostBuilding alloc] initWithCallback:@selector(boostedBuilding:) target:self] autorelease];
+				break;
 		}
 	}
 	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
@@ -414,6 +440,14 @@ typedef enum {
 - (id)boostedStorage:(LEEmpireBoostStorage *)request {
 	if (![request wasError]) {
 		[self.empireBoosts setObject:request.boostEndDate forKey:@"storage"];
+		[self.tableView reloadData];
+	}
+	return nil;
+}
+
+- (id)boostedBuilding:(LEEmpireBoostBuilding *)request {
+	if (![request wasError]) {
+		[self.empireBoosts setObject:request.boostEndDate forKey:@"building"];
 		[self.tableView reloadData];
 	}
 	return nil;
