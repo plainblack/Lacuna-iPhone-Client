@@ -35,20 +35,22 @@ static id<LERequestMonitor> delegate;
 
 
 - (id)initWithCallback:(SEL)inCallback target:(NSObject *)inTarget {
-	[self init];
-	self->canceled = NO;
-	self->wasError = NO;
-	self->handledError = NO;
-	self->retryCount = 0;
-	
-	self->callback = inCallback;
-	self->target = inTarget;
-	
-	[self->target retain];
-	
-	numRequests++;
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-	[self sendRequest];
+    self = [super init];
+    if (self) {
+        self->canceled = NO;
+        self->wasError = NO;
+        self->handledError = NO;
+        self->retryCount = 0;
+        
+        self->callback = inCallback;
+        self->target = inTarget;
+        
+        [self->target retain];
+        
+        numRequests++;
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        [self sendRequest];
+    }
 	
 	return self;
 }

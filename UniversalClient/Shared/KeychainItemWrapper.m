@@ -156,7 +156,7 @@
         // Begin Keychain search setup. The genericPasswordQuery leverages the special user
         // defined attribute kSecAttrGeneric to distinguish itself between other generic Keychain
         // items which may be included by the same application.
-        self.genericPasswordQuery = [[NSMutableDictionary alloc] init];
+        self.genericPasswordQuery = [[[NSMutableDictionary alloc] init] autorelease];
         
         [self.genericPasswordQuery setObject:(id)kSecClassGenericPassword forKey:(id)kSecClass];
         [self.genericPasswordQuery setObject:LE_SEC_ITEM_ID forKey:(id)kSecAttrGeneric];
@@ -337,7 +337,7 @@
         //NSAssert(updateResult == noErr, @"Couldn't update the Keychain Item." );
 
 		if (updateResult != noErr) {
-			UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Update" message:[NSString stringWithFormat:@"Result: %d", updateResult] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+			UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Update" message:[NSString stringWithFormat:@"Result: %ld", updateResult] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 			[av show];
 		}
     } else {
@@ -346,7 +346,7 @@
         //NSAssert(addResult == noErr, @"Couldn't add the Keychain Item.");
 
 		if (addResult != noErr) {
-			UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Add" message:[NSString stringWithFormat:@"Result: %d", addResult] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+			UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Add" message:[NSString stringWithFormat:@"Result: %ld", addResult] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 			[av show];
 		}
     }
