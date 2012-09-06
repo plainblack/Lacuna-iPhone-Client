@@ -29,7 +29,7 @@ typedef enum {
 	EMPIRE_BOOST_SECTION_ORE,
 	EMPIRE_BOOST_SECTION_WATER,
 	EMPIRE_BOOST_SECTION_STORAGE,
-    EMPIRE_BOOST_SECTION_BUILDING
+    EMPIRE_BOOST_SECTION_BUILDING,
 } EMPIRE_BOOST_SECTION;
 
 
@@ -80,9 +80,10 @@ typedef enum {
 #pragma mark -
 #pragma mark Table view data source
 
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	if (self.empireBoosts) {
-		return 6;
+		return 7;
 	} else {
 		return 0;
 	}
@@ -101,7 +102,7 @@ typedef enum {
 	switch (indexPath.section) {
 		case EMPIRE_BOOST_SECTION_ENERGY:
 		case EMPIRE_BOOST_SECTION_FOOD:
-		case EMPIRE_BOOST_SECTION_HAPPINESS:
+            case EMPIRE_BOOST_SECTION_HAPPINESS:
 		case EMPIRE_BOOST_SECTION_ORE:
 		case EMPIRE_BOOST_SECTION_WATER:
 		case EMPIRE_BOOST_SECTION_STORAGE:
@@ -270,7 +271,7 @@ typedef enum {
 			msg = [NSString stringWithFormat:@"Are you sure you want to spend 5 essentia to boost your Storage Capacity by 25%%?"];
 			break;
         case EMPIRE_BOOST_SECTION_BUILDING:
-			msg = [NSString stringWithFormat:@"Are you sure you want to spend 5 essentia to boost your Building by 25%%?"];
+			msg = [NSString stringWithFormat:@"Are you sure you want to spend 5 essentia to boost your Building Speed by 25%%?"];
 			break;
 	}
 	if (msg) {

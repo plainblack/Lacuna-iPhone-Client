@@ -42,6 +42,7 @@
 	[newDict setObject:[Util date:[tmp objectForKey:@"ore"]] forKey:@"ore"];
 	[newDict setObject:[Util date:[tmp objectForKey:@"water"]] forKey:@"water"];
 	[newDict setObject:[Util date:[tmp objectForKey:@"storage"]] forKey:@"storage"];
+    [newDict setObject:[Util date:[tmp objectForKey:@"building"]] forKey:@"building"];
 	
 	self.boosts = newDict;
 }
