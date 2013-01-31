@@ -17,6 +17,7 @@
 
 typedef enum {
 	ROW_ALLIANCE,
+    ROW_ALLIANCE_ID,
 	ROW_INFLUENCE,
 	ROW_NUM_MEMBERS,
 	ROW_NUM_COLONIES,
@@ -131,7 +132,7 @@ typedef enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (self.alliances) {
 		if ([self.alliances count] > 0) {
-			return 12;
+			return 13;
 		} else {
 			return 1;
 		}
@@ -146,6 +147,9 @@ typedef enum {
 		if ([self.alliances count] > 0) {
 			switch (indexPath.row) {
 				case ROW_ALLIANCE:
+					return [LETableViewCellLabeledText getHeightForTableView:tableView];
+					break;
+                case ROW_ALLIANCE_ID:
 					return [LETableViewCellLabeledText getHeightForTableView:tableView];
 					break;
 				case ROW_INFLUENCE:
@@ -208,6 +212,13 @@ typedef enum {
 					allianceCell.label.text = @"Alliance";
 					allianceCell.content.text = [alliance objectForKey:@"alliance_name"];
 					cell = allianceCell;
+					break;
+                case ROW_ALLIANCE_ID:
+					; //DO NOT REMOVE
+					LETableViewCellLabeledText *allianceidCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+					allianceidCell.label.text = @"Alliance ID";
+					allianceidCell.content.text = [Util asString:[alliance objectForKey:@"alliance_id"]];
+					cell = allianceidCell;
 					break;
 				case ROW_INFLUENCE:
 					; //DO NOT REMOVE

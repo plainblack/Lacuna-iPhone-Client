@@ -21,6 +21,8 @@
 @synthesize stealthLabel;
 @synthesize combatLabel;
 @synthesize maxOccupantLabel;
+//Below RedOrion0 Added - Birth Level
+@synthesize birthLevelLabel;
 @synthesize shipImageView;
 
 
@@ -47,6 +49,8 @@
 	self.stealthLabel = nil;
 	self.combatLabel = nil;
 	self.maxOccupantLabel = nil;
+    //Below RedOrion0 Added - Birth Level
+    self.birthLevelLabel = nil;
 	self.shipImageView = nil;
     [super dealloc];
 }
@@ -62,6 +66,8 @@
 	self.stealthLabel.text = [NSString stringWithFormat:@"%@", [buildableShip.attributes objectForKey:@"stealth"]];
 	self.combatLabel.text = [NSString stringWithFormat:@"%@", [buildableShip.attributes objectForKey:@"combat"]];
 	self.maxOccupantLabel.text = [NSString stringWithFormat:@"%@", [buildableShip.attributes objectForKey:@"max_occupants"]];
+    //Below RedOrion0 Added - Birth Level
+    self.birthLevelLabel.text = [NSString stringWithFormat:@"%@", [buildableShip.attributes objectForKey:@"birth_level"]];
 	NSString *shipImageName = [NSString stringWithFormat:@"assets/ships/%@.png", buildableShip.type];
 	self.shipImageView.image = [UIImage imageNamed:shipImageName];
 }
@@ -176,6 +182,24 @@
 		cell.maxOccupantLabel.textColor = TEXT_SMALL_COLOR;
 		cell.maxOccupantLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.maxOccupantLabel];
+        
+        //Below RedOrion0 Added - Birth Level
+        y += 15;
+		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, y, 100, 20)] autorelease];
+		tmpLabel.backgroundColor = [UIColor clearColor];
+		tmpLabel.textAlignment = UITextAlignmentRight;
+		tmpLabel.font = LABEL_FONT;
+		tmpLabel.textColor = LABEL_COLOR;
+		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+		tmpLabel.text = @"Birth Level";
+		[cell.contentView addSubview:tmpLabel];
+		cell.birthLevelLabel = [[[UILabel alloc] initWithFrame:CGRectMake(225, y, 100, 20)] autorelease];
+		cell.birthLevelLabel.backgroundColor = [UIColor clearColor];
+		cell.birthLevelLabel.textAlignment = UITextAlignmentLeft;
+		cell.birthLevelLabel.font = TEXT_SMALL_FONT;
+		cell.birthLevelLabel.textColor = TEXT_SMALL_COLOR;
+		cell.birthLevelLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+		[cell.contentView addSubview:cell.birthLevelLabel];
 		
 		//Set Cell Defaults
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;

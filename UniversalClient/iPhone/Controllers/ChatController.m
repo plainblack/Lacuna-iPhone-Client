@@ -25,7 +25,8 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	//self.webView.hidden = YES;
+    //below RedOrion0
+	self.webView.hidden = YES;
 	
 	Session *session = [Session sharedInstance];
 	NSURL *baseUrl = [NSURL URLWithString:session.serverUri];
@@ -89,7 +90,8 @@
 	self.previousButton.enabled = YES;
 	self.nextButton.enabled = self.webView.canGoForward;
 	self.refreshButton.enabled = NO;
-	//self.webView.hidden = YES;
+    //below RedOrion0
+	self.webView.hidden = YES;
 	[self.activityIndicatorView startAnimating];
 }
 
@@ -99,7 +101,8 @@
 	self.nextButton.enabled = self.webView.canGoForward;
 	self.refreshButton.enabled = YES;
 	[self.activityIndicatorView stopAnimating];
-	//self.webView.hidden = NO;
+    //below RedOrion0
+	self.webView.hidden = NO;
 }
 
 
@@ -108,7 +111,8 @@
 	self.nextButton.enabled = self.webView.canGoForward;
 	self.refreshButton.enabled = YES;
 	[self.activityIndicatorView stopAnimating];
-	//self.webView.hidden = NO;
+    //below RedOrion0
+	self.webView.hidden = NO;
 }
 
 

@@ -19,6 +19,8 @@
 #import "SelectSpeciesTemplateController.h"
 #import "WebPageController.h"
 #import "ViewTipsController.h"
+//Below RedOrion0 Added - Chat
+//#import "ChatController.h"
 #import "CaptchaViewController.h"
 
 
@@ -45,7 +47,9 @@
 @synthesize viewUniverseController;
 @synthesize viewUniverseNavigationController;
 @synthesize viewTipsController;
-
+//Below RedOrion0 Added - Chat
+//@synthesize ChatController;
+//@synthesize chatNavigationController;
 
 #pragma mark -
 #pragma mark Application delegate
@@ -167,6 +171,8 @@
 	self.viewUniverseController = nil;
 	self.viewUniverseNavigationController = nil;
 	self.viewTipsController = nil;
+//    self.ChatController = nil;
+//    chatNavigationController
 	
 	[super dealloc];
 }
@@ -204,6 +210,9 @@
 	self.tabBarController.selectedViewController = self.viewTipsController;
 }
 
+//- (void)showChat:(NSString *)messageId {
+//	self.tabBarController.selectedViewController = self.mailNavigationController;
+//}
 
 - (void)restartCreateEmpireId:(NSString *)empireId username:(NSString *)username password:(NSString *)password {
 	NSLog(@"Need to restart create for %@", empireId);

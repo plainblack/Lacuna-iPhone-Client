@@ -17,6 +17,9 @@
 
 typedef enum {
 	ROW_EMPIRE,
+    //Below RedOrion0 Added - Empire IDs
+    ROW_EMPIRE_ID, 
+    ROW_ALLIANCE, 
 	ROW_NUM_COLONIES,
 	ROW_POPULATION,
 	ROW_EMPIRE_SIZE,
@@ -128,7 +131,7 @@ typedef enum {
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (self.empires) {
 		if ([self.empires count] > 0) {
-			return 9;
+			return 11;
 		} else {
 			return 1;
 		}
@@ -143,6 +146,12 @@ typedef enum {
 		if ([self.empires count] > 0) {
 			switch (indexPath.row) {
 				case ROW_EMPIRE:
+					return [LETableViewCellLabeledText getHeightForTableView:tableView];
+					break;
+				case ROW_EMPIRE_ID:
+					return [LETableViewCellLabeledText getHeightForTableView:tableView];
+					break;
+				case ROW_ALLIANCE:
 					return [LETableViewCellLabeledText getHeightForTableView:tableView];
 					break;
 				case ROW_NUM_COLONIES:
@@ -197,6 +206,22 @@ typedef enum {
 					empireCell.label.text = @"Empire";
 					empireCell.content.text = [empire objectForKey:@"empire_name"];
 					cell = empireCell;
+					break;
+                //Below RedOrion0 Added - Empire IDs
+                case ROW_EMPIRE_ID:
+					; //DO NOT REMOVE
+					LETableViewCellLabeledText *empireidCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+					empireidCell.label.text = @"Empire ID";
+					empireidCell.content.text =  [Util asString:[empire objectForKey:@"empire_id"]];
+					cell = empireidCell;
+					break;
+                //Below RedOrion0 Added - Alliance
+                case ROW_ALLIANCE:
+					; //DO NOT REMOVE
+					LETableViewCellLabeledText *allianceCell = [LETableViewCellLabeledText getCellForTableView:tableView isSelectable:NO];
+					allianceCell.label.text = @"Alliance";
+					allianceCell.content.text = [empire objectForKey:@"alliance_name"];
+					cell = allianceCell;
 					break;
 				case ROW_NUM_COLONIES:
 					; //DO NOT REMOVE

@@ -61,7 +61,7 @@ typedef enum {
 								 [LEViewSectionTab tableView:self.tableView withText:@"Ore" withIcon:ORE_ICON],
 								 [LEViewSectionTab tableView:self.tableView withText:@"Water" withIcon:WATER_ICON],
 								 [LEViewSectionTab tableView:self.tableView withText:@"Storage" withIcon:STORAGE_ICON],
-								 [LEViewSectionTab tableView:self.tableView withText:@"Building" withIcon:STORAGE_ICON]);
+								 [LEViewSectionTab tableView:self.tableView withText:@"Building" withIcon:BUILD_ICON]);
 }
 
 

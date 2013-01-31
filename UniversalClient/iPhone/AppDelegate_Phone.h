@@ -16,7 +16,8 @@
 @class ViewMailboxController;
 @class ViewUniverseController;
 @class ViewTipsController;
-
+//Below RedOrion0 Added - Chat
+//@class ChatController;
 
 @interface AppDelegate_Phone : AppDelegate_Shared <UITabBarDelegate, LERequestMonitor, UIAlertViewDelegate> {
 	UIBackgroundTaskIdentifier backgroundTask;
@@ -34,13 +35,16 @@
 @property(nonatomic, retain) IBOutlet ViewUniverseController *viewUniverseController;
 @property(nonatomic, retain) IBOutlet UINavigationController *viewUniverseNavigationController;
 @property(nonatomic, retain) IBOutlet ViewTipsController *viewTipsController;
-
+//Below RedOrion0 Added - Chat
+//@property(nonatomic, retain) IBOutlet ChatController *ChatController;
+//property(nonatomic, retain) IBOutlet UINavigationController *chatNavigationController;
 
 - (void)showMessage:(NSString *)messageId;
 - (void)showMyWorld:(NSString *)bodyId;
 - (void)showStarMapGridX:(NSDecimalNumber *)x gridY:(NSDecimalNumber *)y;
 - (void)setStarMapGridX:(NSDecimalNumber *)x gridY:(NSDecimalNumber *)y;
 - (void)showTips;
+//- (void)showChat;
 - (void)restartCreateEmpireId:(NSString *)empireId username:(NSString *)username password:(NSString *)password;
 - (void)showAnnouncement;
 - (void)gameover:(NSString *)endGameUrl;

@@ -25,6 +25,8 @@
 @synthesize stealth;
 @synthesize combat;
 @synthesize	maxOccupants;
+//Below RedOrion0 Added - Birth Level
+@synthesize birthLevel;
 @synthesize payload;
 @synthesize dateStarted;
 @synthesize dateAvailable;
@@ -47,9 +49,10 @@
 #pragma mark -
 #pragma mark NSObject Methods
 
+//Below RedOrion0 Added - Birth Level
 - (NSString *)description {
-	return [NSString stringWithFormat:@"id:%@, name:%@, type:%@, typeHumanized:%@, task:%@, speed:%@, fleetSpeed:%@, holdSize:%@, stealth:%@, combat: %@, maxOccupants:%@, dateStarted:%@, dateAvailable:%@, dateArrives:%@, fromId:%@, fromType:%@, fromName:%@, fromEmpireId:%@ fromEmpireName:%@, toId:%@, toType:%@, toName:%@, payload:%@, obitingId:%@, obitingType:%@, obitingName:%@, orbitingX:%@, orbitingY:%@", 
-			self.id, self.name, self.type, self.typeHumanized, self.task, self.speed, self.fleetSpeed, self.holdSize, self.stealth, self.combat, self.maxOccupants, self.dateStarted, self.dateAvailable, self.dateArrives, self.fromId, self.fromType, self.fromName, self.fromEmpireId, self.fromEmpireName, self.toId, self.toType, self.toName, self.payload, self.orbitingId, self.orbitingType, self.orbitingName, self.orbitingX, self.orbitingY];
+	return [NSString stringWithFormat:@"id:%@, name:%@, type:%@, typeHumanized:%@, task:%@, speed:%@, fleetSpeed:%@, holdSize:%@, stealth:%@, combat: %@, maxOccupants:%@, birthLevel:%@, dateStarted:%@, dateAvailable:%@, dateArrives:%@, fromId:%@, fromType:%@, fromName:%@, fromEmpireId:%@ fromEmpireName:%@, toId:%@, toType:%@, toName:%@, payload:%@, obitingId:%@, obitingType:%@, obitingName:%@, orbitingX:%@, orbitingY:%@",
+			self.id, self.name, self.type, self.typeHumanized, self.task, self.speed, self.fleetSpeed, self.holdSize, self.stealth, self.combat, self.maxOccupants, self.birthLevel, self.dateStarted, self.dateAvailable, self.dateArrives, self.fromId, self.fromType, self.fromName, self.fromEmpireId, self.fromEmpireName, self.toId, self.toType, self.toName, self.payload, self.orbitingId, self.orbitingType, self.orbitingName, self.orbitingX, self.orbitingY];
 }
 
 
@@ -65,6 +68,8 @@
 	self.stealth = nil;
 	self.combat = nil;
 	self.maxOccupants = nil;
+    //Below RedOrion0 Added - Birth Level
+    self.birthLevel = nil;
 	self.payload = nil;
 	self.dateStarted = nil;
 	self.dateAvailable = nil;
@@ -102,6 +107,8 @@
 	self.stealth = [Util asNumber:[shipData objectForKey:@"stealth"]];
 	self.combat = [Util asNumber:[shipData objectForKey:@"combat"]];
 	self.maxOccupants = [Util asNumber:[shipData objectForKey:@"max_occupants"]];
+    //Below RedOrion0 Added - Birth Level
+    self.birthLevel = [Util asNumber:[shipData objectForKey:@"birth_level"]];
 	self.stealth = [Util asNumber:[shipData objectForKey:@"stealth"]];
 	self.payload = [shipData objectForKey:@"payload"];
 	self.dateStarted = [Util date:[shipData objectForKey:@"date_started"]];
