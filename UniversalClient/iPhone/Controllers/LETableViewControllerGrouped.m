@@ -38,8 +38,9 @@
 
 	self.view.autoresizesSubviews = YES;
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	self.tableView.backgroundColor = [UIColor clearColor];
 	self.tableView.separatorColor = SEPARATOR_COLOR;
+    self.tableView.backgroundView = [[UIView alloc] initWithFrame:self.tableView.bounds];
+    self.tableView.backgroundView.backgroundColor = [UIColor clearColor];
 }
 
 

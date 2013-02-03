@@ -80,7 +80,8 @@
         self.tabBarController.viewControllers = newViewControllers;
     }
 	
-	[self.window addSubview:self.tabBarController.view];
+	//[self.window addSubview:self.tabBarController.view];
+    self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
 
 	[application setStatusBarStyle:UIStatusBarStyleBlackOpaque];
@@ -158,7 +159,7 @@
 
 - (void)dealloc {
 	Session *session = [Session sharedInstance];
-	[session removeObserver:self forKeyPath:@"numNewMessages"];
+	[session.empire removeObserver:self forKeyPath:@"numNewMessages"];
 
 	self.tabBarController = nil;
 	self.mailTabBarItem = nil;

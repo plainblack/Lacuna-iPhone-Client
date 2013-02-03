@@ -46,8 +46,7 @@ typedef enum {
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
     self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancel)] autorelease];
-	self.tableView.backgroundColor = [UIColor clearColor];
-	self.tableView.separatorColor = SEPARATOR_COLOR;
+    
 
 	self.navigationItem.title = @"Select Server";
 	
@@ -63,7 +62,7 @@ typedef enum {
 
 
 - (void)viewWillAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
+	[super viewWillAppear:animated];
 	[self.servers loadServers];
 
 //#if TARGET_IPHONE_SIMULATOR

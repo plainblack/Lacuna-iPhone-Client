@@ -62,8 +62,6 @@ typedef enum {
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
 	self.navigationItem.title = @"Empire";
-	self.tableView.backgroundColor = [UIColor clearColor];
-	self.tableView.separatorColor = SEPARATOR_COLOR;
 
 	self.empireNameCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];
 	self.empireNameCell.label.text = @"Name";

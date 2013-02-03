@@ -115,10 +115,10 @@
 
 - (void)logout {
 	[[[LEEmpireLogout alloc] initWithCallback:@selector(loggedOut:) target:self sessionId:self.sessionId] autorelease];
+	self.isLoggedIn = NO;
 	self.sessionId = nil;
 	self.empire = nil;
 	self.body = nil;
-	self.isLoggedIn = NO;
 	self.serverUri = nil;
 }
 

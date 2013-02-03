@@ -67,7 +67,11 @@
 	self.combatLabel.text = [NSString stringWithFormat:@"%@", [buildableShip.attributes objectForKey:@"combat"]];
 	self.maxOccupantLabel.text = [NSString stringWithFormat:@"%@", [buildableShip.attributes objectForKey:@"max_occupants"]];
     //Below RedOrion0 Added - Birth Level
-    self.birthLevelLabel.text = [NSString stringWithFormat:@"%@", [buildableShip.attributes objectForKey:@"birth_level"]];
+    if (isNull([buildableShip.attributes objectForKey:@"birth_level"])) {
+        self.birthLevelLabel.text = @"";
+    } else {
+        self.birthLevelLabel.text = [NSString stringWithFormat:@"%@", [buildableShip.attributes objectForKey:@"birth_level"]];
+    }
 	NSString *shipImageName = [NSString stringWithFormat:@"assets/ships/%@.png", buildableShip.type];
 	self.shipImageView.image = [UIImage imageNamed:shipImageName];
 }
@@ -210,7 +214,7 @@
 
 
 + (CGFloat)getHeightForTableView:(UITableView *)tableView {
-	return 120.0;
+	return 140.0;
 }
 
 

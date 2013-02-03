@@ -81,8 +81,6 @@ typedef enum {
 	//Duplicated in case loaded from Nib instead of create
 	self.view.autoresizesSubviews = YES;
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	self.tableView.backgroundColor = [UIColor clearColor];
-	self.tableView.separatorColor = SEPARATOR_COLOR;
 	
 	self.navigationItem.title = @"Loading";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
@@ -100,32 +98,35 @@ typedef enum {
 	[super viewWillAppear:animated];
 
 	Session *session = [Session sharedInstance];
-	if (!self.bodyId) {
-		self.bodyId = session.empire.homePlanetId;
-	}
-	
-	self.reloadTimer = [NSTimer scheduledTimerWithTimeInterval:600 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
-
-	if ([session.empire.planets count] > 1) {
-		self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Change" style:UIBarButtonItemStylePlain target:self action:@selector(pickColony)] autorelease];
-	} else {
-		self.navigationItem.rightBarButtonItem = nil;
-	}
-
-	self->watchingSession = YES;
-	[session addObserver:self forKeyPath:@"body" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-	[session addObserver:self forKeyPath:@"lastTick" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-
-	if (isNotNull(session.body)) {
-		[session.body addObserver:self forKeyPath:@"needsRefresh" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
-		self.watchedBody = session.body;
-		self.oreKeysSorted = [[session.body.ores allKeys] sortedArrayUsingSelector:@selector(compare:)];
-	}
-
-	if (![session.body.id isEqualToString:self.bodyId]) {
-		self.navigationItem.title = @"Loading";
-		[self loadBody];
-	}
+    
+    if (session.isLoggedIn) {
+        if (!self.bodyId) {
+            self.bodyId = session.empire.homePlanetId;
+        }
+        
+        self.reloadTimer = [NSTimer scheduledTimerWithTimeInterval:600 target:self selector:@selector(handleTimer:) userInfo:nil repeats:YES];
+        
+        if ([session.empire.planets count] > 1) {
+            self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Change" style:UIBarButtonItemStylePlain target:self action:@selector(pickColony)] autorelease];
+        } else {
+            self.navigationItem.rightBarButtonItem = nil;
+        }
+        
+        self->watchingSession = YES;
+        [session addObserver:self forKeyPath:@"body" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+        [session addObserver:self forKeyPath:@"lastTick" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+        
+        if (isNotNull(session.body)) {
+            [session.body addObserver:self forKeyPath:@"needsRefresh" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+            self.watchedBody = session.body;
+            self.oreKeysSorted = [[session.body.ores allKeys] sortedArrayUsingSelector:@selector(compare:)];
+        }
+        
+        if (![session.body.id isEqualToString:self.bodyId]) {
+            self.navigationItem.title = @"Loading";
+            [self loadBody];
+        }
+    }
 }
 
 
@@ -511,6 +512,7 @@ typedef enum {
 	} else {
 		Session *session = [Session sharedInstance];
 		self.bodyId = session.empire.homePlanetId;
+        NSLog(@"Body abandoned so loading home body");
 		[self loadBody];
 	}
 }

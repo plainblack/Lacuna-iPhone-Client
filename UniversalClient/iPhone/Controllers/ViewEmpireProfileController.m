@@ -87,8 +87,6 @@ typedef enum {
 	
 	self.view.autoresizesSubviews = YES;
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	self.tableView.backgroundColor = [UIColor clearColor];
-	self.tableView.separatorColor = SEPARATOR_COLOR;
 
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	if ([self.navigationController.viewControllers objectAtIndex:0] == self) {

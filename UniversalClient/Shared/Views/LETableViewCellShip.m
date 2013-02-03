@@ -271,7 +271,7 @@
 
 
 + (CGFloat)getHeightForTableView:(UITableView *)tableView {
-	return 130.0;
+	return 150.0;
 }
 
 

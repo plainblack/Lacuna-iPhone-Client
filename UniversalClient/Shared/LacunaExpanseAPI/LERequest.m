@@ -136,6 +136,7 @@ static id<LERequestMonitor> delegate;
             AppDelegate_Phone *appDelegate = (AppDelegate_Phone *)[UIApplication sharedApplication].delegate;
             [appDelegate captchaValidate:self];
         } else {
+            NSLog(@"For Request: %@", self.class);
             NSLog(@"Error: %@", err);
             NSLog(@"Details: %@", err.userInfo);
             

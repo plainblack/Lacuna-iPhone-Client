@@ -49,7 +49,6 @@
 #pragma mark Instance Methods
 
 - (void)setServer:(NSDictionary *)serverData {
-	NSLog(@"Server Data: %@", serverData);
 	self.nameLabel.text = [serverData objectForKey:@"name"];
 	self.locationLabel.text = [serverData objectForKey:@"location"];
 	self.statusLabel.text = [serverData objectForKey:@"status"];

@@ -55,9 +55,6 @@ typedef enum {
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save)] autorelease];
 	self.navigationItem.title = @"Saved Empire";
 
-	self.tableView.backgroundColor = [UIColor clearColor];
-	self.tableView.separatorColor = SEPARATOR_COLOR;
-	
 	self.empireNameCell = [LETableViewCellLabeledText getCellForTableView:self.tableView isSelectable:NO];
 	self.empireNameCell.label.text = @"Name";
 	
