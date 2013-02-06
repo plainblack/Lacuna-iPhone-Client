@@ -16,6 +16,7 @@
 
 
 @property (nonatomic, retain) NSDecimalNumber *nextColonyCost;
-
+//RedOrion
+@property (nonatomic, retain) NSDecimalNumber *population;
 
 @end

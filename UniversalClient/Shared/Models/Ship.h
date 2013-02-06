@@ -23,7 +23,7 @@
 @property (nonatomic, retain) NSDecimalNumber *holdSize;
 @property (nonatomic, retain) NSDecimalNumber *combat;
 @property (nonatomic, retain) NSDecimalNumber *maxOccupants;
-//Below RedOrion0 Added - Birth Level
+//Below RedOrion Added - Birth Level
 @property (nonatomic, retain) NSDecimalNumber *birthLevel;
 @property (nonatomic, retain) NSMutableArray *payload;
 @property (nonatomic, retain) NSDate *dateStarted;

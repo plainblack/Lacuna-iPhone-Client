@@ -21,7 +21,7 @@
 @synthesize stealthLabel;
 @synthesize combatLabel;
 @synthesize maxOccupantLabel;
-//Below RedOrion0 Added - Birth Level
+//Below RedOrion Added - Birth Level
 @synthesize birthLevelLabel;
 @synthesize shipImageView;
 
@@ -49,7 +49,7 @@
 	self.stealthLabel = nil;
 	self.combatLabel = nil;
 	self.maxOccupantLabel = nil;
-    //Below RedOrion0 Added - Birth Level
+    //Below RedOrion Added - Birth Level
     self.birthLevelLabel = nil;
 	self.shipImageView = nil;
     [super dealloc];
@@ -66,7 +66,7 @@
 	self.stealthLabel.text = [NSString stringWithFormat:@"%@", [buildableShip.attributes objectForKey:@"stealth"]];
 	self.combatLabel.text = [NSString stringWithFormat:@"%@", [buildableShip.attributes objectForKey:@"combat"]];
 	self.maxOccupantLabel.text = [NSString stringWithFormat:@"%@", [buildableShip.attributes objectForKey:@"max_occupants"]];
-    //Below RedOrion0 Added - Birth Level
+    //Below RedOrion Added - Birth Level
     if (isNull([buildableShip.attributes objectForKey:@"birth_level"])) {
         self.birthLevelLabel.text = @"";
     } else {
@@ -187,7 +187,7 @@
 		cell.maxOccupantLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.maxOccupantLabel];
         
-        //Below RedOrion0 Added - Birth Level
+        //Below RedOrion Added - Birth Level
         y += 15;
 		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, y, 100, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];

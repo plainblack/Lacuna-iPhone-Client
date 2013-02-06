@@ -22,7 +22,7 @@
 @property(nonatomic, retain) IBOutlet UILabel *stealthLabel;
 @property(nonatomic, retain) IBOutlet UILabel *combatLabel;
 @property(nonatomic, retain) IBOutlet UILabel *maxOccupantLabel;
-//Below RedOrion0 Added - Birth Level
+//Below RedOrion Added - Birth Level
 @property(nonatomic, retain) IBOutlet UILabel *birthLevelLabel;
 @property(nonatomic, retain) IBOutlet UIImageView *shipImageView;
 

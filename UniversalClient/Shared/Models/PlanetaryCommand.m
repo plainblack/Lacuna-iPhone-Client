@@ -23,6 +23,8 @@
 
 @synthesize nextColonyCost;
 @synthesize plans;
+//RedOrion
+@synthesize population;
 
 
 #pragma mark -
@@ -31,6 +33,8 @@
 - (void)dealloc {
 	self.nextColonyCost = nil;
 	self.plans = nil;
+    //RedOrion
+    self.population = nil;
 	[super dealloc];
 }
 
@@ -40,6 +44,7 @@
 
 - (void)parseAdditionalData:(NSDictionary *)data {
 	self.nextColonyCost = [Util asNumber:[data objectForKey:@"next_colony_cost"]];
+    self.population = [Util asNumber:[data objectForKey:@"population"]];
 }
 
 
@@ -51,8 +56,11 @@
 	NSMutableDictionary *actions = _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type",
 												   @"Actions", @"name",
 												   _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_PLANS]), @"rows");
+    NSMutableDictionary *planetInfo = _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_PLANET_INFO], @"type",
+                                         @"Planet Info", @"name",
+                                         _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_POPULATION]), @"rows");
 	
-	self.sections = _array([self generateProductionSection], actions, nextColonySection, [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
+	self.sections = _array([self generateProductionSection], actions, nextColonySection, planetInfo, [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
 }
 
 
@@ -62,6 +70,10 @@
 		case BUILDING_ROW_CURRENT_HAPPINESS:
 			return [LETableViewCellLabeledIconText getHeightForTableView:tableView];
 			break;
+        //RedOrion
+        case BUILDING_ROW_VIEW_POPULATION:
+            return [LETableViewCellLabeledIconText getHeightForTableView:tableView];
+            break;
 		case BUILDING_ROW_VIEW_PLANS:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
@@ -91,6 +103,15 @@
 			Session *session = [Session sharedInstance];
 			currentHappinessCell.content.text = [Util prettyNSDecimalNumber:session.body.happiness.current];
 			cell = currentHappinessCell;
+			break;
+        //RedOrion
+        case BUILDING_ROW_VIEW_POPULATION:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellLabeledIconText *currentPopulationCell = [LETableViewCellLabeledIconText getCellForTableView:tableView isSelectable:NO];
+			currentPopulationCell.label.text = @"Population";
+//			currentPopulationCell.icon.image = HAPPINESS_ICON;
+			currentPopulationCell.content.text = [Util prettyNSDecimalNumber:self.population];
+			cell = currentPopulationCell;
 			break;
 		case BUILDING_ROW_VIEW_PLANS:
 			; //DO NOT REMOVE
