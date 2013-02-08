@@ -25,28 +25,66 @@
 @synthesize plans;
 //RedOrion
 @synthesize population;
+//RedOrion
+@synthesize buildingCount;
 
 
 #pragma mark -
 #pragma mark NSObject Methods
+
+//RedOrion
+- (NSString *)description {
+	return [NSString stringWithFormat:@"population:%@, buildingCount:%@",
+			self.population, self.buildingCount];
+}
+
 
 - (void)dealloc {
 	self.nextColonyCost = nil;
 	self.plans = nil;
     //RedOrion
     self.population = nil;
+    //RedOrion
+    self.buildingCount = nil;
 	[super dealloc];
 }
+
 
 
 #pragma mark -
 #pragma mark Overriden Building Methods
 
-- (void)parseAdditionalData:(NSDictionary *)data {
-	self.nextColonyCost = [Util asNumber:[data objectForKey:@"next_colony_cost"]];
-    self.population = [Util asNumber:[data objectForKey:@"population"]];
+- (void)parseAdditionalData:(NSDictionary *)bodyData {
+    [super parseData:bodyData];
+	self.nextColonyCost = [Util asNumber:[bodyData objectForKey:@"next_colony_cost"]];
+    self.buildingCount = [Util asNumber:[bodyData objectForKey:@"building_count"]];
+    if (!self.population) {
+        self.population = [[[NSDecimalNumber alloc] init] autorelease];
+    }
+    [self.population parseFromData:bodyData withPrefix:@"population"];
 }
-
+/*    NSDictionary *data = [bodyData objectForKey:@"empire"];
+    self.population = [Util asNumber:[bodyData objectForKey:@"population"]];
+    self.buildingCount = [Util asNumber:[bodyData objectForKey:@"building_count"]];
+}
+*/
+/*self.buildingCount = [Util asNumber:[bodyData objectForKey:@"building_count"]];
+if (!self.population) {
+    self.population = [[[NoLimitResource alloc] init] autorelease];
+}
+[self.population parseFromData:bodyData withPrefix:@"population"];
+}
+*/
+ 
+//RedOrion
+//NSMutableDictionary
+/*- (void)parseData:(NSDictionary *)planet {
+    NSDictionary *planet = [planet objectForKey:@"planet"];
+    //[super parseData:planet];
+    self.population = [Util asNumber:[planet objectForKey:@"population"]];
+    self.building_count = [Util asNumber:[planet objectForKey:@"building_count"]];
+}
+*/
 
 - (void)generateSections {
 	NSMutableDictionary *nextColonySection = _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_NEXT_COLONY], @"type",
@@ -58,7 +96,7 @@
 												   _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_PLANS]), @"rows");
     NSMutableDictionary *planetInfo = _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_PLANET_INFO], @"type",
                                          @"Planet Info", @"name",
-                                         _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_POPULATION]), @"rows");
+                                         _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_POPULATION], [NSDecimalNumber numberWithInt:BUILDING_ROW_BUILDING_COUNT]), @"rows");
 	
 	self.sections = _array([self generateProductionSection], actions, nextColonySection, planetInfo, [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
 }
@@ -109,9 +147,19 @@
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellLabeledIconText *currentPopulationCell = [LETableViewCellLabeledIconText getCellForTableView:tableView isSelectable:NO];
 			currentPopulationCell.label.text = @"Population";
+// No population Icon that I know of
 //			currentPopulationCell.icon.image = HAPPINESS_ICON;
 			currentPopulationCell.content.text = [Util prettyNSDecimalNumber:self.population];
 			cell = currentPopulationCell;
+			break;
+            //RedOrion
+        case BUILDING_ROW_BUILDING_COUNT:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellLabeledIconText *planetBuildingCount = [LETableViewCellLabeledIconText getCellForTableView:tableView isSelectable:NO];
+			planetBuildingCount.label.text = @"Building Count";
+			planetBuildingCount.icon.image = BUILD_ICON;
+			planetBuildingCount.content.text = [Util prettyNSDecimalNumber:self.buildingCount];
+			cell = planetBuildingCount;
 			break;
 		case BUILDING_ROW_VIEW_PLANS:
 			; //DO NOT REMOVE
