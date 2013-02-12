@@ -90,6 +90,7 @@
 	Session *session = [Session sharedInstance];
 	[session.body removeObserver:self forKeyPath:@"currentBuilding"];
 	if (isNotNull(self.watchedBuilding)) {
+//        NSLog(@"removeObserver - Test");
 		[self.watchedBuilding removeObserver:self forKeyPath:@"needsRefresh"];
 		[self.watchedBuilding removeObserver:self forKeyPath:@"demolished"];
 		self.watchedBuilding = nil;
@@ -147,6 +148,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	Session *session = [Session sharedInstance];
+//RedOrion Fix - Push Should Now Work
+    [session.body addObserver:self forKeyPath:@"currentBuilding" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 	if (session.body.currentBuilding) {
 		self.selectedTableView = tableView;
 		self.selectedIndexPath = indexPath;
@@ -239,13 +242,14 @@
 
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+//    NSLog(@"TradePushError");
 	if ([keyPath isEqual:@"currentBuilding"]) {
-		
+//        NSLog(@"TradePushError2 - currentBuilding");
 		if (isNotNull(self.watchedBuilding)) {
+//            NSLog(@"TradePushError3 - watchedBuilding");
 			[self.watchedBuilding removeObserver:self forKeyPath:@"needsRefresh"];
 			[self.watchedBuilding removeObserver:self forKeyPath:@"demolished"];
 		}
-		
 		Building *newBuilding = (Building *)[change objectForKey:NSKeyValueChangeNewKey];
 		if (newBuilding && ((id)newBuilding != [NSNull null])) {
 			[newBuilding addObserver:self forKeyPath:@"needsRefresh" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
