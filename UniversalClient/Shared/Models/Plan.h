@@ -14,6 +14,7 @@
 	NSString *name;
 	NSDecimalNumber *buildLevel;
 	NSDecimalNumber *extraBuildLevel;
+    NSDecimalNumber *quantity;
 }
 
 
@@ -21,6 +22,7 @@
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSDecimalNumber *buildLevel;
 @property (nonatomic, retain) NSDecimalNumber *extraBuildLevel;
+@property (nonatomic, retain) NSDecimalNumber *quantity;
 
 
 - (void)parseData:(NSDictionary *)data;
