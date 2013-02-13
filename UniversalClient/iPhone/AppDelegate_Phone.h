@@ -16,7 +16,7 @@
 @class ViewMailboxController;
 @class ViewUniverseController;
 @class ViewTipsController;
-//Below RedOrion0 Added - Chat
+//Below RedOrion Added - Chat
 //@class ChatController;
 
 @interface AppDelegate_Phone : AppDelegate_Shared <UITabBarDelegate, LERequestMonitor, UIAlertViewDelegate> {
@@ -35,7 +35,7 @@
 @property(nonatomic, retain) IBOutlet ViewUniverseController *viewUniverseController;
 @property(nonatomic, retain) IBOutlet UINavigationController *viewUniverseNavigationController;
 @property(nonatomic, retain) IBOutlet ViewTipsController *viewTipsController;
-//Below RedOrion0 Added - Chat
+//Below RedOrion Added - Chat
 //@property(nonatomic, retain) IBOutlet ChatController *ChatController;
 //property(nonatomic, retain) IBOutlet UINavigationController *chatNavigationController;
 

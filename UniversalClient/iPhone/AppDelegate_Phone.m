@@ -19,7 +19,7 @@
 #import "SelectSpeciesTemplateController.h"
 #import "WebPageController.h"
 #import "ViewTipsController.h"
-//Below RedOrion0 Added - Chat
+//Below RedOrion Added - Chat
 //#import "ChatController.h"
 #import "CaptchaViewController.h"
 
@@ -47,7 +47,7 @@
 @synthesize viewUniverseController;
 @synthesize viewUniverseNavigationController;
 @synthesize viewTipsController;
-//Below RedOrion0 Added - Chat
+//Below RedOrion Added - Chat
 //@synthesize ChatController;
 //@synthesize chatNavigationController;
 

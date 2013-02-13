@@ -16,6 +16,11 @@
 
 
 @property (nonatomic, retain) NSDecimalNumber *nextColonyCost;
+//RedOrion
+@property (nonatomic, retain) NSDecimalNumber *population;
+//RedOrion
+@property (nonatomic, retain) NSDecimalNumber *buildingCount;
 
+- (void)parseData:(NSMutableDictionary *)bodyData;
 
 @end
