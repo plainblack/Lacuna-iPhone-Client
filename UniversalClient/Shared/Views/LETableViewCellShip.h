@@ -20,11 +20,11 @@
 @property(nonatomic, retain) IBOutlet UILabel *typeLabel;
 @property(nonatomic, retain) IBOutlet UILabel *speedLabel;
 @property(nonatomic, retain) IBOutlet UILabel *holdSizeLabel;
+//Below RedOrion0 Added - Berth Level
+@property(nonatomic, retain) IBOutlet UILabel *berthLevelLabel;
 @property(nonatomic, retain) IBOutlet UILabel *stealthLabel;
 @property(nonatomic, retain) IBOutlet UILabel *combatLabel;
 @property(nonatomic, retain) IBOutlet UILabel *maxOccupantLabel;
-//Below RedOrion0 Added - Birth Level
-@property(nonatomic, retain) IBOutlet UILabel *birthLevelLabel;
 @property(nonatomic, retain) IBOutlet UIImageView *shipImageView;
 
 
