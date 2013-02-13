@@ -17,17 +17,12 @@
 
 @synthesize typeLabel;
 @synthesize holdSizeLabel;
-//Below RedOrion0 Added - Berth Level
+//Below RedOrion Added - Berth Level
 @synthesize berthLevelLabel;
 @synthesize speedLabel;
 @synthesize stealthLabel;
 @synthesize combatLabel;
 @synthesize maxOccupantLabel;
-<<<<<<< HEAD
-=======
-//Below RedOrion Added - Birth Level
-@synthesize birthLevelLabel;
->>>>>>> PPC
 @synthesize shipImageView;
 
 
@@ -50,17 +45,12 @@
 - (void)dealloc {
 	self.typeLabel = nil;
 	self.holdSizeLabel = nil;
-    //Below RedOrion0 Added - Berth Level
+    //Below RedOrion Added - Berth Level
     self.berthLevelLabel = nil;
 	self.speedLabel = nil;
 	self.stealthLabel = nil;
 	self.combatLabel = nil;
 	self.maxOccupantLabel = nil;
-<<<<<<< HEAD
-=======
-    //Below RedOrion Added - Birth Level
-    self.birthLevelLabel = nil;
->>>>>>> PPC
 	self.shipImageView = nil;
     [super dealloc];
 }
@@ -76,19 +66,13 @@
 	self.stealthLabel.text = [NSString stringWithFormat:@"%@", [buildableShip.attributes objectForKey:@"stealth"]];
 	self.combatLabel.text = [NSString stringWithFormat:@"%@", [buildableShip.attributes objectForKey:@"combat"]];
 	self.maxOccupantLabel.text = [NSString stringWithFormat:@"%@", [buildableShip.attributes objectForKey:@"max_occupants"]];
-<<<<<<< HEAD
-    //Below RedOrion0 Added - Berth Level
+    //Below RedOrion Added - Berth Level
     self.berthLevelLabel.text = [NSString stringWithFormat:@"%@", [buildableShip.attributes objectForKey:@"berth_level"]];
-/*    if (isNull([buildableShip.attributes objectForKey:@"berth_level"])) {
+    if (isNull([buildableShip.attributes objectForKey:@"berth_level"])) {
         self.berthLevelLabel.text = @"";
-=======
-    //Below RedOrion Added - Birth Level
-    if (isNull([buildableShip.attributes objectForKey:@"birth_level"])) {
-        self.birthLevelLabel.text = @"";
->>>>>>> PPC
     } else {
         self.berthLevelLabel.text = [NSString stringWithFormat:@"%@", [buildableShip.attributes objectForKey:@"berth_level"]];
-    }*/
+    }
 	NSString *shipImageName = [NSString stringWithFormat:@"assets/ships/%@.png", buildableShip.type];
 	self.shipImageView.image = [UIImage imageNamed:shipImageName];
 }
@@ -221,27 +205,6 @@
 		cell.maxOccupantLabel.textColor = TEXT_SMALL_COLOR;
 		cell.maxOccupantLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.maxOccupantLabel];
-<<<<<<< HEAD
-=======
-        
-        //Below RedOrion Added - Birth Level
-        y += 15;
-		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, y, 100, 20)] autorelease];
-		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentRight;
-		tmpLabel.font = LABEL_FONT;
-		tmpLabel.textColor = LABEL_COLOR;
-		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-		tmpLabel.text = @"Birth Level";
-		[cell.contentView addSubview:tmpLabel];
-		cell.birthLevelLabel = [[[UILabel alloc] initWithFrame:CGRectMake(225, y, 100, 20)] autorelease];
-		cell.birthLevelLabel.backgroundColor = [UIColor clearColor];
-		cell.birthLevelLabel.textAlignment = UITextAlignmentLeft;
-		cell.birthLevelLabel.font = TEXT_SMALL_FONT;
-		cell.birthLevelLabel.textColor = TEXT_SMALL_COLOR;
-		cell.birthLevelLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
-		[cell.contentView addSubview:cell.birthLevelLabel];
->>>>>>> PPC
 		
 		//Set Cell Defaults
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;

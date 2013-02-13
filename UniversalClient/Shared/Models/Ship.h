@@ -25,11 +25,6 @@
 @property (nonatomic, retain) NSDecimalNumber *berthLevel;
 @property (nonatomic, retain) NSDecimalNumber *combat;
 @property (nonatomic, retain) NSDecimalNumber *maxOccupants;
-<<<<<<< HEAD
-=======
-//Below RedOrion Added - Birth Level
-@property (nonatomic, retain) NSDecimalNumber *birthLevel;
->>>>>>> PPC
 @property (nonatomic, retain) NSMutableArray *payload;
 @property (nonatomic, retain) NSDate *dateStarted;
 @property (nonatomic, retain) NSDate *dateAvailable;
