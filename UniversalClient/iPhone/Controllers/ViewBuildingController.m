@@ -149,7 +149,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	Session *session = [Session sharedInstance];
 //RedOrion Fix - Push Should Now Work
-    [session.body addObserver:self forKeyPath:@"currentBuilding" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+    //[session.body addObserver:self forKeyPath:@"currentBuilding" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
+    //The above line is already in viewWillAppear so you don't need to repeat it here. So this causes this to be listening twice and thus this was causing an error
 	if (session.body.currentBuilding) {
 		self.selectedTableView = tableView;
 		self.selectedIndexPath = indexPath;

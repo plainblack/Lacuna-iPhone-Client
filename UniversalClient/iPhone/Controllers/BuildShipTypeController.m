@@ -38,7 +38,8 @@ typedef enum {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Resources"], [LEViewSectionTab tableView:self.tableView withText:@"Infrastructure"], [LEViewSectionTab tableView:self.tableView withText:@"All"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Ship Type"], [LEViewSectionTab tableView:self.tableView withText:@"Infrastructure"], [LEViewSectionTab tableView:self.tableView withText:@"All"]);
+    self.navigationItem.title = @"Build Ship";
 }
 
 
