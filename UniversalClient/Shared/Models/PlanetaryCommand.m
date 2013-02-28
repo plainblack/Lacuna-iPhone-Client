@@ -39,6 +39,7 @@
 #pragma mark Overriden Building Methods
 
 - (void)parseAdditionalData:(NSDictionary *)data {
+    
 	self.nextColonyCost = [Util asNumber:[data objectForKey:@"next_colony_cost"]];
 }
 
@@ -51,6 +52,10 @@
 	NSMutableDictionary *actions = _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type",
                                          @"Actions", @"name",
                                          _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_PLANS]), @"rows");
+
+    NSMutableDictionary *planetinfo = _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_PLANET_INFO], @"type",
+                                         @"Planet", @"name",
+                                         _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_POPULATION]), @"rows");
 	
 	self.sections = _array([self generateProductionSection], actions, nextColonySection, [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
 }
@@ -63,6 +68,9 @@
 			return [LETableViewCellLabeledIconText getHeightForTableView:tableView];
 			break;
 		case BUILDING_ROW_VIEW_PLANS:
+			return [LETableViewCellButton getHeightForTableView:tableView];
+			break;
+        case BUILDING_ROW_VIEW_POPULATION:
 			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		default:
@@ -98,6 +106,15 @@
 			viewPlansCell.textLabel.text = @"View Plans";
 			cell = viewPlansCell;
 			break;
+        case BUILDING_ROW_VIEW_POPULATION:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellLabeledIconText *currentPopulationCell = [LETableViewCellLabeledIconText getCellForTableView:tableView isSelectable:NO];
+			currentPopulationCell.label.text = @"Current";
+//			currentPopulationCell.icon.image = HAPPINESS_ICON;
+//			Session *session = [Session sharedInstance];
+			currentPopulationCell.content.text = [Util prettyNSDecimalNumber:session.body.population.current];
+			cell = currentPopulationCell;
+            break;
 		default:
 			cell = [super tableView:tableView cellForBuildingRow:buildingRow rowIndex:rowIndex];
 			break;
