@@ -373,10 +373,6 @@ typedef enum {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	Session *session = [Session sharedInstance];
 	switch (indexPath.section) {
-//RedOrion Fix - Push Should Now Work
-//I added this code to fix it when it crashes when selecting push.
-//Without this code it crashes
-    [session.body addObserver:self forKeyPath:@"currentBuilding" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 		case SECTION_BODY_OVERVIEW:
 			switch (indexPath.row) {
                 case BODY_OVERVIEW_ROW_ALLIANCE:
