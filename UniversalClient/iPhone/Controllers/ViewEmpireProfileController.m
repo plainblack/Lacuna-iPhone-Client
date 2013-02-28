@@ -64,7 +64,7 @@ typedef enum {
 
 
 typedef enum {
-	ACCOUNT_ACTION_ROW_PURCHASE_ESSENTIA,
+//	ACCOUNT_ACTION_ROW_PURCHASE_ESSENTIA,
 	ACCOUNT_ACTION_ROW_REDEEM_ESSENTIA_CODE,
 	ACCOUNT_ACTION_ROW_CHANGE_PASSWORD,
 	ACCOUNT_ACTION_ROW_SEND_INVITE,
@@ -145,7 +145,7 @@ typedef enum {
 				return 3;
 				break;
 			case SECTION_ACCOUNT_ACTIONS:
-				return 5;
+				return 4;
 				break;
 			case SECTION_SELF_DESTRUCT:
 				return 1;
@@ -208,7 +208,7 @@ typedef enum {
 				break;
 			case SECTION_ACCOUNT_ACTIONS:
 				switch (indexPath.row) {
-					case ACCOUNT_ACTION_ROW_PURCHASE_ESSENTIA:
+//					case ACCOUNT_ACTION_ROW_PURCHASE_ESSENTIA:
 					case ACCOUNT_ACTION_ROW_REDEEM_ESSENTIA_CODE:
 					case ACCOUNT_ACTION_ROW_CHANGE_PASSWORD:
 					case ACCOUNT_ACTION_ROW_SEND_INVITE:
@@ -400,12 +400,12 @@ typedef enum {
 				break;
 			case SECTION_ACCOUNT_ACTIONS:
 				switch (indexPath.row) {
-					case ACCOUNT_ACTION_ROW_PURCHASE_ESSENTIA:
-						; //DO NOT REMOVE
-						LETableViewCellButton *essentiaButton = [LETableViewCellButton getCellForTableView:tableView];
-						essentiaButton.textLabel.text = @"Purchase Essentia";
-						cell = essentiaButton;
-						break;
+//					case ACCOUNT_ACTION_ROW_PURCHASE_ESSENTIA:
+//						; //DO NOT REMOVE
+//						LETableViewCellButton *essentiaButton = [LETableViewCellButton getCellForTableView:tableView];
+//						essentiaButton.textLabel.text = @"Purchase Essentia";
+//						cell = essentiaButton;
+//						break;
 					case ACCOUNT_ACTION_ROW_REDEEM_ESSENTIA_CODE:
 						; //DO NOT REMOVE
 						LETableViewCellButton *redeemEssentiaCodeButton = [LETableViewCellButton getCellForTableView:tableView];
@@ -463,7 +463,6 @@ typedef enum {
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	Session *session = [Session sharedInstance];
 	if (self.empireProfile) {
 		switch (indexPath.section) {
 			case SECTION_EMPIRE:
@@ -544,14 +543,15 @@ typedef enum {
 				break;
 			case SECTION_ACCOUNT_ACTIONS:
 				switch (indexPath.row) {
-					case ACCOUNT_ACTION_ROW_PURCHASE_ESSENTIA:
-						; //DO NOT REMOVE
-						NSURL *baseUrl = [NSURL URLWithString:[session.serverUri stringByReplacingOccurrencesOfString:@"http://" withString:@"https://"]];
-						NSURL *purchaseUrl = [NSURL URLWithString:[NSString stringWithFormat:@"/pay?session_id=%@", session.sessionId] relativeToURL:baseUrl];
-						WebPageController *webPageController = [WebPageController create];
-						[webPageController goToUrl:[purchaseUrl absoluteString]];
-						[self presentModalViewController:webPageController animated:YES];
-						break;
+//					case ACCOUNT_ACTION_ROW_PURCHASE_ESSENTIA:
+//						; //DO NOT REMOVE
+//						Session *session = [Session sharedInstance];
+//						NSURL *baseUrl = [NSURL URLWithString:[session.serverUri stringByReplacingOccurrencesOfString:@"http://" withString:@"https://"]];
+//						NSURL *purchaseUrl = [NSURL URLWithString:[NSString stringWithFormat:@"/pay?session_id=%@", session.sessionId] relativeToURL:baseUrl];
+//						WebPageController *webPageController = [WebPageController create];
+//						[webPageController goToUrl:[purchaseUrl absoluteString]];
+//						[self presentModalViewController:webPageController animated:YES];
+//						break;
 					case ACCOUNT_ACTION_ROW_REDEEM_ESSENTIA_CODE:
 						; //DO NOT REMOVE
 						EditTextFieldController *redeemEssentiaCodeController = [EditTextFieldController createForTextName:@"Essentia Code" textValue:@""];
