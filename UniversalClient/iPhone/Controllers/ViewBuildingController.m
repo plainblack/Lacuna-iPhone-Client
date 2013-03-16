@@ -79,8 +79,8 @@
 		[session.body loadBuilding:self.buildingId buildingUrl:self.urlPart];
 		self.navigationItem.title = @"Loading";
 	}
-	[session.body addObserver:self forKeyPath:@"currentBuilding" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 
+	[session.body addObserver:self forKeyPath:@"currentBuilding" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 }
 
 
@@ -90,7 +90,6 @@
 	Session *session = [Session sharedInstance];
 	[session.body removeObserver:self forKeyPath:@"currentBuilding"];
 	if (isNotNull(self.watchedBuilding)) {
-//        NSLog(@"removeObserver - Test");
 		[self.watchedBuilding removeObserver:self forKeyPath:@"needsRefresh"];
 		[self.watchedBuilding removeObserver:self forKeyPath:@"demolished"];
 		self.watchedBuilding = nil;
@@ -148,10 +147,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	Session *session = [Session sharedInstance];
-//RedOrion Fix - Push Should Now Work
-//Re-added - this fixed push, without this code, push feature crashes
-    [session.body addObserver:self forKeyPath:@"currentBuilding" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-    //The above line is already in viewWillAppear so you don't need to repeat it here. So this causes this to be listening twice and thus this was causing an error
 	if (session.body.currentBuilding) {
 		self.selectedTableView = tableView;
 		self.selectedIndexPath = indexPath;
