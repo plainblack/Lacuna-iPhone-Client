@@ -59,6 +59,8 @@
 @synthesize demolished;
 @synthesize needsReload;
 @synthesize needsRefresh;
+//RedOrion
+@synthesize population;
 
 
 #pragma mark -
@@ -84,6 +86,8 @@
 	self.repairCost = nil;
 	self.efficiency = nil;
 	self.sections = nil;
+    //RedOrion
+    self.population = nil;
 	[super dealloc];
 }
 

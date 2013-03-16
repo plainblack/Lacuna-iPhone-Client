@@ -21,6 +21,8 @@
 //RedOrion
 //@property (nonatomic, retain) NSDecimalNumber *buildingCount;
 
-//- (void)parseData:(NSMutableDictionary *)bodyData;
+- (void)parseData:(NSMutableDictionary *)bodyData;
+//RedOrion
+- (void)parseData:(NSMutableDictionary *)populationData;
 
 @end

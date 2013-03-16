@@ -51,11 +51,7 @@
 	
 	NSMutableDictionary *actions = _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type",
                                          @"Actions", @"name",
-                                         _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_PLANS]), @"rows");
-
-    NSMutableDictionary *planetinfo = _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_PLANET_INFO], @"type",
-                                         @"Planet", @"name",
-                                         _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_POPULATION]), @"rows");
+                                         _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_PLANS], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_POPULATION]), @"rows");
 	
 	self.sections = _array([self generateProductionSection], actions, nextColonySection, [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
 }
@@ -106,13 +102,17 @@
 			viewPlansCell.textLabel.text = @"View Plans";
 			cell = viewPlansCell;
 			break;
+        //RedOrion
         case BUILDING_ROW_VIEW_POPULATION:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellLabeledIconText *currentPopulationCell = [LETableViewCellLabeledIconText getCellForTableView:tableView isSelectable:NO];
-			currentPopulationCell.label.text = @"Current";
+			currentPopulationCell.label.text = @"Planet Population";
 //			currentPopulationCell.icon.image = HAPPINESS_ICON;
 //			Session *session = [Session sharedInstance];
-			currentPopulationCell.content.text = [Util prettyNSDecimalNumber:session.body.population.current];
+//            Building *building = [Building sharedInstance];
+//			currentPopulationCell.content.text = [Util prettyNSDecimalNumber:session.body.population.current];
+//            currentPopulationCell.content.text = [Util prettyNSDecimalNumber:session.body.population];
+//            currentPopulationCell.content.text = [Util prettyNSDecimalNumber:building.population];
 			cell = currentPopulationCell;
             break;
 		default:

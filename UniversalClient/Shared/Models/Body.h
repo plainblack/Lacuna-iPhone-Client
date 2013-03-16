@@ -48,6 +48,8 @@
 @property (nonatomic, retain) NSString *allianceName;
 @property (nonatomic, retain) NSDecimalNumber *influenceTotal;
 @property (nonatomic, retain) NSDecimalNumber *influenceSpent;
+//RedOrion
+@property (nonatomic, retain) NSDecimalNumber *population;
 
 
 

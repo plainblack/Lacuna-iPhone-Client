@@ -45,6 +45,8 @@
 @property (nonatomic, assign) BOOL demolished;
 @property (nonatomic, assign) BOOL needsReload;
 @property (nonatomic, assign) BOOL needsRefresh;
+//RedOrion
+@property (nonatomic, assign) NSDecimalNumber *population;
 
 
 - (void)parseData:(NSDictionary *)data;
