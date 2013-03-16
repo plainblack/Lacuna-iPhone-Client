@@ -141,13 +141,15 @@
 	self.alignment = [empireData objectForKey:@"alignment"];
 	self.needsSurfaceRefresh = _boolv([bodyData objectForKey:@"needs_surface_refresh"]);
 	self.buildingCount = [Util asNumber:[bodyData objectForKey:@"building_count"]];
+    //RedOrion
+    self.population = [Util asNumber:[bodyData objectForKey:@"population"]];
 	if (!self.happiness) {
 		self.happiness = [[[NoLimitResource alloc] init] autorelease];
 	}
 	[self.happiness parseFromData:bodyData withPrefix:@"happiness"];
 	if (!self.energy) {
 		self.energy = [[[StoredResource alloc] init] autorelease];
-	}
+    }
 	[self.energy parseFromData:bodyData withPrefix:@"energy"];
 	if (!self.food) {
 		self.food = [[[StoredResource alloc] init] autorelease];

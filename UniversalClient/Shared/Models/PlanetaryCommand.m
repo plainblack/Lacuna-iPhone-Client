@@ -51,9 +51,14 @@
 	
 	NSMutableDictionary *actions = _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_ACTIONS], @"type",
                                          @"Actions", @"name",
-                                         _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_PLANS], [NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_POPULATION]), @"rows");
-	
-	self.sections = _array([self generateProductionSection], actions, nextColonySection, [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
+                                         _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_PLANS]), @"rows");
+    
+    //RedOrion Added Population
+    NSMutableDictionary *planetInfo = _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_PLANET_INFO], @"type",
+                                         @"Planet Info", @"name",
+                                         _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_POPULATION], [NSDecimalNumber numberWithInt:BUILDING_ROW_BUILDING_COUNT], [NSDecimalNumber numberWithInt:BUILDING_ROW_SIZE]), @"rows");
+	//RedOrion Added Population
+	self.sections = _array([self generateProductionSection], actions, nextColonySection, planetInfo, [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
 }
 
 
@@ -77,7 +82,7 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex {
-	UITableViewCell *cell = nil;
+	UITableViewCell *cell = nil; Session *session = [Session sharedInstance];
 	switch (buildingRow) {
 		case BUILDING_ROW_NEXT_COLONY_COST:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
@@ -92,7 +97,7 @@
 			LETableViewCellLabeledIconText *currentHappinessCell = [LETableViewCellLabeledIconText getCellForTableView:tableView isSelectable:NO];
 			currentHappinessCell.label.text = @"Current";
 			currentHappinessCell.icon.image = HAPPINESS_ICON;
-			Session *session = [Session sharedInstance];
+//			Session *session = [Session sharedInstance];
 			currentHappinessCell.content.text = [Util prettyNSDecimalNumber:session.body.happiness.current];
 			cell = currentHappinessCell;
 			break;
@@ -106,14 +111,34 @@
         case BUILDING_ROW_VIEW_POPULATION:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellLabeledIconText *currentPopulationCell = [LETableViewCellLabeledIconText getCellForTableView:tableView isSelectable:NO];
-			currentPopulationCell.label.text = @"Planet Population";
-//			currentPopulationCell.icon.image = HAPPINESS_ICON;
+			currentPopulationCell.label.text = @"Population";
+//
+//NEED ICON FOR POPULATION
+//
+			currentPopulationCell.icon.image = PLOTS_ICON;
 //			Session *session = [Session sharedInstance];
-//            Building *building = [Building sharedInstance];
-//			currentPopulationCell.content.text = [Util prettyNSDecimalNumber:session.body.population.current];
-//            currentPopulationCell.content.text = [Util prettyNSDecimalNumber:session.body.population];
-//            currentPopulationCell.content.text = [Util prettyNSDecimalNumber:building.population];
+            currentPopulationCell.content.text = [Util prettyNSDecimalNumber:session.body.population];
 			cell = currentPopulationCell;
+            break;
+        //RedOrion
+        case BUILDING_ROW_BUILDING_COUNT:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellLabeledIconText *currentBuildingCountCell = [LETableViewCellLabeledIconText getCellForTableView:tableView isSelectable:NO];
+			currentBuildingCountCell.label.text = @"Building Count";
+			currentBuildingCountCell.icon.image = PLOTS_ICON;
+//			Session *session = [Session sharedInstance];
+            currentBuildingCountCell.content.text = [Util prettyNSDecimalNumber:session.body.buildingCount];
+			cell = currentBuildingCountCell;
+            break;
+        //RedOrion
+        case BUILDING_ROW_SIZE:
+			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
+			LETableViewCellLabeledIconText *currentSizeCell = [LETableViewCellLabeledIconText getCellForTableView:tableView isSelectable:NO];
+			currentSizeCell.label.text = @"Planet Size";
+			currentSizeCell.icon.image = PLOTS_ICON;
+//			Session *session = [Session sharedInstance];
+            currentSizeCell.content.text = [Util prettyNSDecimalNumber:session.body.size];
+			cell = currentSizeCell;
             break;
 		default:
 			cell = [super tableView:tableView cellForBuildingRow:buildingRow rowIndex:rowIndex];
@@ -122,7 +147,6 @@
 	
 	return cell;
 }
-
 
 - (UIViewController *)tableView:(UITableView *)tableView didSelectBuildingRow:(BUILDING_ROW)buildingRow rowIndex:(NSInteger)rowIndex {
 	switch (buildingRow) {
