@@ -79,8 +79,8 @@
 		[session.body loadBuilding:self.buildingId buildingUrl:self.urlPart];
 		self.navigationItem.title = @"Loading";
 	}
-	[session.body addObserver:self forKeyPath:@"currentBuilding" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 
+	[session.body addObserver:self forKeyPath:@"currentBuilding" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
 }
 
 
@@ -90,7 +90,6 @@
 	Session *session = [Session sharedInstance];
 	[session.body removeObserver:self forKeyPath:@"currentBuilding"];
 	if (isNotNull(self.watchedBuilding)) {
-//        NSLog(@"removeObserver - Test");
 		[self.watchedBuilding removeObserver:self forKeyPath:@"needsRefresh"];
 		[self.watchedBuilding removeObserver:self forKeyPath:@"demolished"];
 		self.watchedBuilding = nil;

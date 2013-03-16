@@ -97,6 +97,12 @@ typedef enum {
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
+}
+
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+
 	if (!self.itemPush.targetId) {
 		Session *session = [Session sharedInstance];
 		if	([session.empire.planets count] == 2) {
@@ -109,11 +115,6 @@ typedef enum {
 			[self showColonyPicker];
 		}
 	}
-}
-
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
 }
 
 
