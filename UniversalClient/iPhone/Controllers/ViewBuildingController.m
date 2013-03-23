@@ -147,10 +147,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	Session *session = [Session sharedInstance];
-//RedOrion Fix - Push Should Now Work
-//Re-added - this fixed push, without this code, push feature crashes
-    //[session.body addObserver:self forKeyPath:@"currentBuilding" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
-    //The above line is already in viewWillAppear so you don't need to repeat it here. So this causes this to be listening twice and thus this was causing an error
 	if (session.body.currentBuilding) {
 		self.selectedTableView = tableView;
 		self.selectedIndexPath = indexPath;
@@ -243,11 +239,8 @@
 
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-//    NSLog(@"TradePushError");
 	if ([keyPath isEqual:@"currentBuilding"]) {
-//        NSLog(@"TradePushError2 - currentBuilding");
 		if (isNotNull(self.watchedBuilding)) {
-//            NSLog(@"TradePushError3 - watchedBuilding");
 			[self.watchedBuilding removeObserver:self forKeyPath:@"needsRefresh"];
 			[self.watchedBuilding removeObserver:self forKeyPath:@"demolished"];
 		}
