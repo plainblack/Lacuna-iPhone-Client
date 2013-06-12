@@ -5,6 +5,8 @@
 //  Created by Kevin Runde on 9/23/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
+//	Updated by Bernard Kluskens on 6/12/13
+
 
 #import "ViewEmpireMailSettingController.h"
 #import "LEMacros.h"
@@ -14,22 +16,32 @@
 #import "LEEmpireEditProfile.h"
 
 typedef enum {
-	ROW_HAPPINESS,
-	ROW_RESOURCE,
-	ROW_POLLUTION,
-	ROW_MEDAL,
-	ROW_FACEBOOK_WALL_POSTS,
-	ROW_FOUND_NOTHING,
-	ROW_EXCAVATOR_RESOURCES,
-	ROW_EXCAVATOR_GLYPH,
-	ROW_EXCAVATOR_PLAN,
-	ROW_SPY_RECOVERY,
-	ROW_PROBE_DETECTED,
-	ROW_ATTACK_MESSAGES,
-    ROW_SKIP_EXCAVATOR_REPLACE_MSG,
-    ROW_DO_NOT_REPLACE_EXCAVATOR_AUTOMATICALLY,
-	ROW_COUNT
-} ROW;
+	SECTION_MAIL_FILTERS,
+	SECTION_SERVER_SETTINGS,
+	SECTION_COUNT,
+} SECTION;
+
+typedef enum {
+	MAIL_FILTERS_ROW_HAPPINESS,
+	MAIL_FILTERS_ROW_RESOURCE,
+	MAIL_FILTERS_ROW_POLLUTION,
+	MAIL_FILTERS_ROW_MEDAL,
+	MAIL_FILTERS_ROW_FACEBOOK_WALL_POSTS,
+	MAIL_FILTERS_ROW_FOUND_NOTHING,
+	MAIL_FILTERS_ROW_EXCAVATOR_RESOURCES,
+	MAIL_FILTERS_ROW_EXCAVATOR_GLYPH,
+	MAIL_FILTERS_ROW_EXCAVATOR_PLAN,
+	MAIL_FILTERS_ROW_SPY_RECOVERY,
+	MAIL_FILTERS_ROW_PROBE_DETECTED,
+	MAIL_FILTERS_ROW_ATTACK_MESSAGES,
+	MAIL_FILTERS_ROW_SKIP_EXCAVATOR_REPLACE_MSG,
+	MAIL_FILTERS_ROW_COUNT,
+} MAIL_FILTERS_ROW;
+
+typedef enum {
+	SERVER_SETTINGS_ROW_DO_NOT_REPLACE_EXCAVATOR_AUTOMATICALLY,
+	SERVER_SETTINGS_ROW_COUNT,
+} SERVER_SETTINGS_ROW;
 
 @implementation ViewEmpireMailSettingController
 
@@ -58,10 +70,11 @@ typedef enum {
     [super viewDidLoad];
 	
 	
-	self.navigationItem.title = @"Mail Settings";
+	self.navigationItem.title = @"Settings";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	
-	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Mail Filters"]);
+	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Mail Filters"],
+								 [LEViewSectionTab tableView:self.tableView withText:@"Server Settings"]);
 	
 	self.skipHappinessWarningsCell = [LETableViewCellLabeledSwitch getCellForTableView:self.tableView];
 	self.skipHappinessWarningsCell.label.text = @"Happiness Warnings";
@@ -136,13 +149,13 @@ typedef enum {
 	self.skipAttackMessagesCell.delegate = self;
     
 	self.skipExcavatorReplaceMsg = [LETableViewCellLabeledSwitch getCellForTableView:self.tableView];
-	self.skipExcavatorReplaceMsg.label.text = @"Stop Excavator Replace Alert";
+	self.skipExcavatorReplaceMsg.label.text = @"Excavator Replace Alert";
 	self.skipExcavatorReplaceMsg.label.font = LABEL_FONT;
 	self.skipExcavatorReplaceMsg.isSelected = !self.empireProfile.skipExcavatorReplaceMsg;
 	self.skipExcavatorReplaceMsg.delegate = self;
     
 	self.dontReplaceExcavator = [LETableViewCellLabeledSwitch getCellForTableView:self.tableView];
-	self.dontReplaceExcavator.label.text = @"Replace Excavators Automatically";
+	self.dontReplaceExcavator.label.text = @"Auto Replace Excavators";
 	self.dontReplaceExcavator.label.font = LABEL_FONT;
 	self.dontReplaceExcavator.isSelected = !self.empireProfile.dontReplaceExcavator;
 	self.dontReplaceExcavator.delegate = self;
@@ -164,17 +177,88 @@ typedef enum {
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 1;
+	//return 1;
+	return SECTION_COUNT;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return ROW_COUNT;
+	//return ROW_COUNT;
+	switch (section) {
+		case SECTION_MAIL_FILTERS:
+			//return 13
+			return MAIL_FILTERS_ROW_COUNT;
+			break;
+		case SECTION_SERVER_SETTINGS:
+			//return 1;
+			return SERVER_SETTINGS_ROW_COUNT;
+			break;
+		default:
+			return 0;
+			break;
+	}
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	return [LETableViewCellLabeledSwitch getHeightForTableView:tableView];
+	//return [LETableViewCellLabeledSwitch getHeightForTableView:tableView];
+	switch (indexPath.section) {
+		case SECTION_MAIL_FILTERS:
+			switch (indexPath.row) {
+				case MAIL_FILTERS_ROW_HAPPINESS:
+					return [LETableViewCellLabeledSwitch getHeightForTableView:tableView];
+					break;
+				case MAIL_FILTERS_ROW_RESOURCE:
+					return [LETableViewCellLabeledSwitch getHeightForTableView:tableView];
+					break;
+				case MAIL_FILTERS_ROW_POLLUTION:
+					return [LETableViewCellLabeledSwitch getHeightForTableView:tableView];
+					break;
+				case MAIL_FILTERS_ROW_MEDAL:
+					return [LETableViewCellLabeledSwitch getHeightForTableView:tableView];
+					break;
+				case MAIL_FILTERS_ROW_FACEBOOK_WALL_POSTS:
+					return [LETableViewCellLabeledSwitch getHeightForTableView:tableView];
+					break;
+				case MAIL_FILTERS_ROW_FOUND_NOTHING:
+					return [LETableViewCellLabeledSwitch getHeightForTableView:tableView];
+					break;
+				case MAIL_FILTERS_ROW_EXCAVATOR_RESOURCES:
+					return [LETableViewCellLabeledSwitch getHeightForTableView:tableView];
+					break;
+				case MAIL_FILTERS_ROW_EXCAVATOR_GLYPH:
+					return [LETableViewCellLabeledSwitch getHeightForTableView:tableView];
+					break;
+				case MAIL_FILTERS_ROW_EXCAVATOR_PLAN:
+					return [LETableViewCellLabeledSwitch getHeightForTableView:tableView];
+					break;
+				case MAIL_FILTERS_ROW_SPY_RECOVERY:
+					return [LETableViewCellLabeledSwitch getHeightForTableView:tableView];
+					break;
+				case MAIL_FILTERS_ROW_PROBE_DETECTED:
+					return [LETableViewCellLabeledSwitch getHeightForTableView:tableView];
+					break;
+				case MAIL_FILTERS_ROW_ATTACK_MESSAGES:
+					return [LETableViewCellLabeledSwitch getHeightForTableView:tableView];
+					break;
+				case MAIL_FILTERS_ROW_SKIP_EXCAVATOR_REPLACE_MSG:
+					return [LETableViewCellLabeledSwitch getHeightForTableView:tableView];
+					break;
+				default:
+					return 0.0;
+					break;
+			}
+			break;
+		case SECTION_SERVER_SETTINGS:
+			switch (indexPath.row) {
+				case SERVER_SETTINGS_ROW_DO_NOT_REPLACE_EXCAVATOR_AUTOMATICALLY:
+					return [LETableViewCellLabeledSwitch getHeightForTableView:tableView];
+					break;
+				default:
+					return 0.0;
+					break;
+			}
+	}
 }
 
 
@@ -182,49 +266,55 @@ typedef enum {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = nil;
 	
-	switch (indexPath.row) {
-		case ROW_HAPPINESS:
-			cell = self.skipHappinessWarningsCell;
-			break;
-		case ROW_RESOURCE:
-			cell = self.skipResourceWarningsCell;
-			break;
-		case ROW_POLLUTION:
-			cell = self.skipPollutionWarningsCell;
-			break;
-		case ROW_MEDAL:
-			cell = self.skipMedalMessagesCell;
-			break;
-		case ROW_FACEBOOK_WALL_POSTS:
-			cell = self.skipFacebookWallPostsCell;
-			break;
-		case ROW_FOUND_NOTHING:
-			cell = self.skipFoundNothingCell;
-			break;
-		case ROW_EXCAVATOR_RESOURCES:
-			cell = self.skipExcavatorResourcesCell;
-			break;
-		case ROW_EXCAVATOR_GLYPH:
-			cell = self.skipExcavatorGlyphCell;
-			break;
-		case ROW_EXCAVATOR_PLAN:
-			cell = self.skipExcavatorPlanCell;
-			break;
-		case ROW_SPY_RECOVERY:
-			cell = self.skipSpyRecoveryCell;
-			break;
-		case ROW_PROBE_DETECTED:
-			cell = self.skipProbeDetectedCell;
-			break;
-        case ROW_ATTACK_MESSAGES:
-            cell = skipAttackMessagesCell;
-            break;
-        case ROW_SKIP_EXCAVATOR_REPLACE_MSG:
-			cell = skipExcavatorReplaceMsg;
-			break;
-        case ROW_DO_NOT_REPLACE_EXCAVATOR_AUTOMATICALLY:
-            cell = self.dontReplaceExcavator;
-            break;
+	switch (indexPath.section) {
+		case SECTION_MAIL_FILTERS:
+			switch (indexPath.row) {
+				case MAIL_FILTERS_ROW_HAPPINESS:
+					cell = self.skipHappinessWarningsCell;
+					break;
+				case MAIL_FILTERS_ROW_RESOURCE:
+					cell = self.skipResourceWarningsCell;
+					break;
+				case MAIL_FILTERS_ROW_POLLUTION:
+					cell = self.skipPollutionWarningsCell;
+					break;
+				case MAIL_FILTERS_ROW_MEDAL:
+					cell = self.skipMedalMessagesCell;
+					break;
+				case MAIL_FILTERS_ROW_FACEBOOK_WALL_POSTS:
+					cell = self.skipFacebookWallPostsCell;
+					break;
+				case MAIL_FILTERS_ROW_FOUND_NOTHING:
+					cell = self.skipFoundNothingCell;
+					break;
+				case MAIL_FILTERS_ROW_EXCAVATOR_RESOURCES:
+					cell = self.skipExcavatorResourcesCell;
+					break;
+				case MAIL_FILTERS_ROW_EXCAVATOR_GLYPH:
+					cell = self.skipExcavatorGlyphCell;
+					break;
+				case MAIL_FILTERS_ROW_EXCAVATOR_PLAN:
+					cell = self.skipExcavatorPlanCell;
+					break;
+				case MAIL_FILTERS_ROW_SPY_RECOVERY:
+					cell = self.skipSpyRecoveryCell;
+					break;
+				case MAIL_FILTERS_ROW_PROBE_DETECTED:
+					cell = self.skipProbeDetectedCell;
+					break;
+				case MAIL_FILTERS_ROW_ATTACK_MESSAGES:
+					cell = skipAttackMessagesCell;
+					break;
+				case MAIL_FILTERS_ROW_SKIP_EXCAVATOR_REPLACE_MSG:
+					cell = skipExcavatorReplaceMsg;
+					break;
+			}
+		case SECTION_SERVER_SETTINGS:
+			switch (indexPath.row) {
+				case SERVER_SETTINGS_ROW_DO_NOT_REPLACE_EXCAVATOR_AUTOMATICALLY:
+					cell = self.dontReplaceExcavator;
+					break;
+			}
 		default:
 			break;
 	}
@@ -275,48 +365,54 @@ typedef enum {
 	NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
 	NSString *filterName = nil;
 
-	switch (indexPath.row) {
-		case ROW_HAPPINESS:
-			filterName = @"skip_happiness_warnings";
-			break;
-		case ROW_RESOURCE:
-			filterName = @"skip_resource_warnings";
-			break;
-		case ROW_POLLUTION:
-			filterName = @"skip_pollution_warnings";
-			break;
-		case ROW_MEDAL:
-			filterName = @"skip_medal_messages";
-			break;
-		case ROW_FACEBOOK_WALL_POSTS:
-			filterName = @"skip_facebook_wall_posts";
-			break;
-		case ROW_FOUND_NOTHING:
-			filterName = @"skip_found_nothing";
-			break;
-		case ROW_EXCAVATOR_RESOURCES:
-			filterName = @"skip_excavator_resources";
-			break;
-		case ROW_EXCAVATOR_GLYPH:
-			filterName = @"skip_excavator_glyph";
-			break;
-		case ROW_EXCAVATOR_PLAN:
-			filterName = @"skip_excavator_plan";
-			break;
-		case ROW_SPY_RECOVERY:
-			filterName = @"skip_spy_recovery";
-			break;
-		case ROW_PROBE_DETECTED:
-			filterName = @"skip_probe_detected";
-			break;
-        case ROW_ATTACK_MESSAGES:
-            filterName = @"skip_attack_messages";
-            break;
-        case ROW_SKIP_EXCAVATOR_REPLACE_MSG:
-            filterName = @"skip_excavator_replace_msg";
-            break;
-        case ROW_DO_NOT_REPLACE_EXCAVATOR_AUTOMATICALLY:
-            filterName = @"dont_replace_excavator";
+	switch (indexPath.section) {
+		case SECTION_MAIL_FILTERS:
+			switch (indexPath.row) {
+				case MAIL_FILTERS_ROW_HAPPINESS:
+					filterName = @"skip_happiness_warnings";
+					break;
+				case MAIL_FILTERS_ROW_RESOURCE:
+					filterName = @"skip_resource_warnings";
+					break;
+				case MAIL_FILTERS_ROW_POLLUTION:
+					filterName = @"skip_pollution_warnings";
+					break;
+				case MAIL_FILTERS_ROW_MEDAL:
+					filterName = @"skip_medal_messages";
+					break;
+				case MAIL_FILTERS_ROW_FACEBOOK_WALL_POSTS:
+					filterName = @"skip_facebook_wall_posts";
+					break;
+				case MAIL_FILTERS_ROW_FOUND_NOTHING:
+					filterName = @"skip_found_nothing";
+					break;
+				case MAIL_FILTERS_ROW_EXCAVATOR_RESOURCES:
+					filterName = @"skip_excavator_resources";
+					break;
+				case MAIL_FILTERS_ROW_EXCAVATOR_GLYPH:
+					filterName = @"skip_excavator_glyph";
+					break;
+				case MAIL_FILTERS_ROW_EXCAVATOR_PLAN:
+					filterName = @"skip_excavator_plan";
+					break;
+				case MAIL_FILTERS_ROW_SPY_RECOVERY:
+					filterName = @"skip_spy_recovery";
+					break;
+				case MAIL_FILTERS_ROW_PROBE_DETECTED:
+					filterName = @"skip_probe_detected";
+					break;
+				case MAIL_FILTERS_ROW_ATTACK_MESSAGES:
+					filterName = @"skip_attack_messages";
+					break;
+				case MAIL_FILTERS_ROW_SKIP_EXCAVATOR_REPLACE_MSG:
+					filterName = @"skip_excavator_replace_msg";
+					break;
+			}
+		case SECTION_SERVER_SETTINGS:
+			switch (indexPath.row) {
+				case SERVER_SETTINGS_ROW_DO_NOT_REPLACE_EXCAVATOR_AUTOMATICALLY:
+					filterName = @"dont_replace_excavator";
+			}
 		default:
 			break;
 	}

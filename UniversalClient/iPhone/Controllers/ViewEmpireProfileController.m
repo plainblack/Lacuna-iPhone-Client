@@ -5,6 +5,8 @@
 //  Created by Kevin Runde on 4/8/10.
 //  Copyright 2010 n/a. All rights reserved.
 //
+//	Updated by Bernard Kluskens on 6/12/13
+
 
 #import "ViewEmpireProfileController.h"
 #import "LEEmpireViewProfile.h"
@@ -427,7 +429,7 @@ typedef enum {
 					case ACCOUNT_ACTION_ROW_MAIL_SETTINGS:
 						; //DO NOT REMOVE
 						LETableViewCellButton *mailSettingsButton = [LETableViewCellButton getCellForTableView:tableView];
-						mailSettingsButton.textLabel.text = @"Mail Settings";
+						mailSettingsButton.textLabel.text = @"Settings";
 						cell = mailSettingsButton;
 						break;
 					default:
