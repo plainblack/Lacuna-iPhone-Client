@@ -3613,7 +3613,7 @@
 					"$(ARCHS_STANDARD_32_BIT)",
 					armv6,
 				);
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lonely Ridge Studios, LLC";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Lonely Ridge Studios, LLC (Y69WQ9Y964)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = UniversalClient_Prefix.pch;
@@ -3623,7 +3623,7 @@
 				INFOPLIST_FILE = "UniversalClient-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = UniversalClient;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DA10AADD-9B1E-4C96-B489-49538E39EFCC";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A994BA63-66F0-4873-A580-D1B3A7D8D816";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;

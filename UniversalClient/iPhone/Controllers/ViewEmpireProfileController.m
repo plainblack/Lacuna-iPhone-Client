@@ -33,6 +33,7 @@
 
 
 #define ISOLATIONIST_MSG @"Isolationist mode enabled. If you build an Espionage Ministry, Munitions Labratory, or Colonize a second world you will no longer be an Isolationist and others can send spies to your colonies."
+#define PURCHASE_ESSENTIA_MSG @"This mobile application does not current support purchasing Essentia. However you may access your account on the web client and purchase Essentia there."
 
 typedef enum {
 	SECTION_EMPIRE,
@@ -66,7 +67,7 @@ typedef enum {
 
 
 typedef enum {
-//	ACCOUNT_ACTION_ROW_PURCHASE_ESSENTIA,
+	ACCOUNT_ACTION_ROW_PURCHASE_ESSENTIA,
 	ACCOUNT_ACTION_ROW_REDEEM_ESSENTIA_CODE,
 	ACCOUNT_ACTION_ROW_CHANGE_PASSWORD,
 	ACCOUNT_ACTION_ROW_SEND_INVITE,
@@ -210,7 +211,9 @@ typedef enum {
 				break;
 			case SECTION_ACCOUNT_ACTIONS:
 				switch (indexPath.row) {
-//					case ACCOUNT_ACTION_ROW_PURCHASE_ESSENTIA:
+					case ACCOUNT_ACTION_ROW_PURCHASE_ESSENTIA:
+						return [LETableViewCellParagraph getHeightForTableView:tableView text:PURCHASE_ESSENTIA_MSG];
+                        break;
 					case ACCOUNT_ACTION_ROW_REDEEM_ESSENTIA_CODE:
 					case ACCOUNT_ACTION_ROW_CHANGE_PASSWORD:
 					case ACCOUNT_ACTION_ROW_SEND_INVITE:
@@ -402,12 +405,15 @@ typedef enum {
 				break;
 			case SECTION_ACCOUNT_ACTIONS:
 				switch (indexPath.row) {
-//					case ACCOUNT_ACTION_ROW_PURCHASE_ESSENTIA:
-//						; //DO NOT REMOVE
+					case ACCOUNT_ACTION_ROW_PURCHASE_ESSENTIA:
+						; //DO NOT REMOVE
+						LETableViewCellParagraph *essentiaPurchaseCell = [LETableViewCellParagraph getCellForTableView:tableView];
+						essentiaPurchaseCell.content.text = PURCHASE_ESSENTIA_MSG;
+						cell = essentiaPurchaseCell;
 //						LETableViewCellButton *essentiaButton = [LETableViewCellButton getCellForTableView:tableView];
 //						essentiaButton.textLabel.text = @"Purchase Essentia";
 //						cell = essentiaButton;
-//						break;
+						break;
 					case ACCOUNT_ACTION_ROW_REDEEM_ESSENTIA_CODE:
 						; //DO NOT REMOVE
 						LETableViewCellButton *redeemEssentiaCodeButton = [LETableViewCellButton getCellForTableView:tableView];
