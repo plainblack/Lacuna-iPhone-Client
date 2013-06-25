@@ -148,7 +148,7 @@ typedef enum {
 				return 3;
 				break;
 			case SECTION_ACCOUNT_ACTIONS:
-				return 4;
+				return 5;
 				break;
 			case SECTION_SELF_DESTRUCT:
 				return 1;
