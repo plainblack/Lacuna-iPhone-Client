@@ -41,7 +41,8 @@
     [super viewWillAppear:animated];
 	self.storedResourceTypeKeys = [NSMutableArray arrayWithCapacity:[self.storedResourceTypes count]];
 	[self.storedResourceTypes enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop){
-		if (![obj isEqualToNumber:[NSDecimalNumber zero]]) {
+        NSDecimalNumber *number = [Util asNumber:obj];
+		if (![number isEqualToNumber:[NSDecimalNumber zero]]) {
 			[self.storedResourceTypeKeys addObject:key];
 		}
 	}];
@@ -112,7 +113,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	self.selectedStoredResourceTypeKey = [self.storedResourceTypeKeys objectAtIndex:indexPath.row];
-	NSDecimalNumber *storedResourceTypeQuantity = [Util asNumber:[[self.storedResourceTypes objectForKey:self.selectedStoredResourceTypeKey] stringValue]];
+	NSDecimalNumber *storedResourceTypeQuantity = [Util asNumber:[self.storedResourceTypes objectForKey:self.selectedStoredResourceTypeKey]];
 	self->pickNumericValueController = [[PickNumericValueController createWithDelegate:self maxValue:storedResourceTypeQuantity hidesZero:NO showTenths:NO] retain];
 	[self presentModalViewController:self->pickNumericValueController animated:YES];
 	self->pickNumericValueController.titleLabel.text = [self.selectedStoredResourceTypeKey capitalizedString];

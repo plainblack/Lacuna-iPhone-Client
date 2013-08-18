@@ -168,7 +168,6 @@
 #pragma mark Callback Methods
 
 - (void)foodDumped:(LEBuildingDump *)request {
-	NSLog(@"Food Dumped: %@", request.response);
 	if (![request wasError]) {
 		[[self navigationController] popViewControllerAnimated:YES];
 	}

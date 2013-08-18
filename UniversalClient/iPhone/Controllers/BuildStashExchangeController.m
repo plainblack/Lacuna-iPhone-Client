@@ -328,7 +328,6 @@ typedef enum {
 #pragma mark Callback Methods
 
 - (void)exchanged:(LEBuildingExchangeWithStash *)request {
-	NSLog(@"Exchanged: %@", request.response);
 	if (![request wasError]) {
 		[[self navigationController] popViewControllerAnimated:YES];
 	}

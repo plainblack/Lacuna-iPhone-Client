@@ -191,7 +191,6 @@
 #pragma mark Callback Methods
 
 - (void)donated:(LEBuildingDonateToStash *)request {
-	NSLog(@"Donated: %@", request.response);
 	if (![request wasError]) {
 		[[self navigationController] popViewControllerAnimated:YES];
 	}

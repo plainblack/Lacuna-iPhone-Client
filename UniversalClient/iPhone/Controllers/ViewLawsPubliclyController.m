@@ -265,7 +265,6 @@ typedef enum {
 #pragma mark Callback Methods
 
 - (void)lawsLoaded:(LEBuildingViewLaws *)request {
-    NSLog(@"Laws Loaded: %@", request.response);
     NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[self.laws count]];
     [request.laws enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         Law *law = [[Law alloc] init];

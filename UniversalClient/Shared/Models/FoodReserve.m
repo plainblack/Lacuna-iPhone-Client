@@ -119,7 +119,7 @@
 #pragma mark Callback Methods
 
 - (id)foodDumped:(LEBuildingDump *)request {
-	NSDecimalNumber *originalAmount = [Util asNumber:[[self.storedFood objectForKey:request.type] stringValue]];
+	NSDecimalNumber *originalAmount = [Util asNumber:[self.storedFood objectForKey:request.type]];
 	NSDecimalNumber *newAmount = [originalAmount decimalNumberBySubtracting:request.amount];
 	[self.storedFood setObject:newAmount forKey:request.type];
 	[self->dumpFoodTarget performSelector:self->dumpFoodCallback withObject:request];

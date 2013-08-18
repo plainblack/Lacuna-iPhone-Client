@@ -169,7 +169,6 @@
 #pragma mark Callback Methods
 
 - (void)oreDumped:(LEBuildingDump *)request {
-	NSLog(@"Ore Dumped: %@", request.response);
 	if (![request wasError]) {
 		[[self navigationController] popViewControllerAnimated:YES];
 	}
