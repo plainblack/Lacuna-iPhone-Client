@@ -57,7 +57,6 @@ typedef enum {
 
 	self.listChooser = [[[UISegmentedControl alloc] initWithItems:_array(@"Buildable", @"All")] autorelease];
 	[self.listChooser addTarget:self action:@selector(switchList) forControlEvents:UIControlEventValueChanged];
-	self.listChooser.segmentedControlStyle = UISegmentedControlStyleBar;
 	self.listChooser.selectedSegmentIndex = 0;
 	self.navigationItem.titleView = self.listChooser;
 }

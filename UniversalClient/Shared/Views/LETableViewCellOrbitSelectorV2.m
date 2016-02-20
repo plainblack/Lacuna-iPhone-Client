@@ -62,7 +62,7 @@
 #pragma mark UIAlertViewDelegate Methods
 
 
-- (void) alertView:(UIAlertView *) alertView clickedButtonAtIndex:(int)index {
+- (void) alertView:(UIAlertView *) alertView clickedButtonAtIndex:(long)index {
 	if (index != [alertView cancelButtonIndex]) {
 		self.numericValue = [NSDecimalNumber one];
 		[self.numberButton setTitle:[self.numericValue stringValue] forState:UIControlStateNormal];
