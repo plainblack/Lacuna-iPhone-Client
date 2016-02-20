@@ -55,7 +55,7 @@
 
     self.navigationItem.title = nil;
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
-    self.mailboxFilterBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Select" style:UIBarButtonItemStyleBordered target:self action:@selector(showSelectMailbox)] autorelease];
+    self.mailboxFilterBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Select" style:UIBarButtonItemStylePlain target:self action:@selector(showSelectMailbox)] autorelease];
     self.navigationItem.leftBarButtonItem = self.mailboxFilterBarButtonItem;
 	
 	self.pageSegmentedControl = [[[UISegmentedControl alloc] initWithItems:_array(UP_ARROW_ICON, DOWN_ARROW_ICON)] autorelease];
@@ -65,8 +65,8 @@
 	UIBarButtonItem *rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.pageSegmentedControl] autorelease];
 	self.navigationItem.rightBarButtonItem = rightBarButtonItem; 
 	
-	self.editBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Archive/Trash" style:UIBarButtonItemStyleBordered target:self action:@selector(edit:)] autorelease];
-	UIBarButtonItem *cancelBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancel:)] autorelease];
+	self.editBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Archive/Trash" style:UIBarButtonItemStylePlain target:self action:@selector(edit:)] autorelease];
+	UIBarButtonItem *cancelBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancel:)] autorelease];
 	self.archiveOrTrashBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Archive/Trash (0)" style:UIBarButtonItemStyleDone target:self action:@selector(archiveSelected:)] autorelease];
 	UIBarButtonItem	*composeBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(newMessage)] autorelease];
 	UIBarButtonItem *flexableBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];

@@ -256,7 +256,7 @@ static NSString *CellIdentifier = @"TextEntryCell";
 		if (includeToolbar) {
 			UIToolbar *toolbar = [[[UIToolbar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 44.0f)] autorelease];
 			toolbar.center = CGPointMake(160.0f, 200.0f);
-			UIBarButtonItem *clearItem = [[[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStyleBordered target:cell action:@selector(clearText)] autorelease];
+			UIBarButtonItem *clearItem = [[[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStylePlain target:cell action:@selector(clearText)] autorelease];
 			UIBarButtonItem *spacer = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
 			UIBarButtonItem *dismissItem = [[[UIBarButtonItem alloc] initWithTitle:@"Dismiss" style:UIBarButtonItemStyleDone target:cell action:@selector(dismissKeyboard)] autorelease];
 			toolbar.items = _array(clearItem, spacer, dismissItem);

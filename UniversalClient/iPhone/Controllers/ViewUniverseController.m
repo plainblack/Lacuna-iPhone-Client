@@ -58,10 +58,10 @@
 	
 	self.navigationItem.title = @"Star Map";
 	if ([self.navigationController.viewControllers objectAtIndex:0] == self) {
-		self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout)] autorelease];
+		self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logout)] autorelease];
 	}
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Go To" style:UIBarButtonItemStyleBordered target:self action:@selector(showGotoPage)] autorelease];
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Go To" style:UIBarButtonItemStylePlain target:self action:@selector(showGotoPage)] autorelease];
 	
 	if (!self.starMap) {
 		self.starMap = [[[StarMap alloc] init] autorelease];

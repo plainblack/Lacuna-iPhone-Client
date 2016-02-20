@@ -56,7 +56,7 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-    self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil] autorelease];
+    self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
 	self.navigationItem.title = @"Forgot Password";
 	
 	self.emailCell = [LETableViewCellTextEntry getCellForTableView:self.tableView];

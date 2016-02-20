@@ -17,7 +17,7 @@
     [super viewDidLoad];
 	self.navigationItem.title = @"Stats";
 	if ([self.navigationController.viewControllers objectAtIndex:0] == self) {
-		self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout)] autorelease];
+		self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logout)] autorelease];
 	}
 }
 

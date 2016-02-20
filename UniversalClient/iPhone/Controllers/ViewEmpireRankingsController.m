@@ -81,7 +81,7 @@ typedef enum {
 	
 	self.toolbarItems = _array(
 		[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease],
-		[[[UIBarButtonItem alloc] initWithTitle:@"Search for Empire" style:UIBarButtonItemStyleBordered target:self action:@selector(searchForEmpire)] autorelease],
+		[[[UIBarButtonItem alloc] initWithTitle:@"Search for Empire" style:UIBarButtonItemStylePlain target:self action:@selector(searchForEmpire)] autorelease],
 		[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]
 	);
 	

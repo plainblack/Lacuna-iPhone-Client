@@ -44,8 +44,8 @@
 	self.tipLabel.text = @"Tips";
 	UIBarButtonItem *tipsBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.tipLabel] autorelease];
 	UIBarButtonItem *flexable = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
-	UIBarButtonItem	*prevButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"<<" style:UIBarButtonItemStyleBordered target:self action:@selector(previousTip)] autorelease];
-	UIBarButtonItem	*nextButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@">>" style:UIBarButtonItemStyleBordered target:self action:@selector(nextTip)] autorelease];
+	UIBarButtonItem	*prevButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"<<" style:UIBarButtonItemStylePlain target:self action:@selector(previousTip)] autorelease];
+	UIBarButtonItem	*nextButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@">>" style:UIBarButtonItemStylePlain target:self action:@selector(nextTip)] autorelease];
 	[self.toolbar setItems:_array(prevButtonItem, flexable, tipsBarButtonItem, flexable, nextButtonItem)];
 }
 
