@@ -53,7 +53,7 @@
 		
 		cell.content = [[[UILabel alloc] initWithFrame:CGRectMake(10, 6, 300, 31)] autorelease];
 		cell.content.backgroundColor = [UIColor clearColor];
-		cell.content.textAlignment = UITextAlignmentCenter;
+		cell.content.textAlignment = NSTextAlignmentCenter;
 		cell.content.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		cell.content.font = TEXT_FONT;
 		cell.content.textColor = TEXT_COLOR;

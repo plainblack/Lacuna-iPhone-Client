@@ -64,7 +64,7 @@
 
 		UILabel *tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 95, 44)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentRight;
+		tmpLabel.textAlignment = NSTextAlignmentRight;
 		tmpLabel.font = LABEL_FONT;
 		tmpLabel.textColor = LABEL_COLOR;
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -74,7 +74,7 @@
         
 		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(100, y, 50, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentCenter;
+		tmpLabel.textAlignment = NSTextAlignmentCenter;
 		tmpLabel.font = LABEL_SMALL_FONT;
 		tmpLabel.textColor = LABEL_SMALL_COLOR;
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -83,7 +83,7 @@
 		
 		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(150, y, 50, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentCenter;
+		tmpLabel.textAlignment = NSTextAlignmentCenter;
 		tmpLabel.font = LABEL_SMALL_FONT;
 		tmpLabel.textColor = LABEL_SMALL_COLOR;
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -92,7 +92,7 @@
         
 		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(200, y, 50, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentCenter;
+		tmpLabel.textAlignment = NSTextAlignmentCenter;
 		tmpLabel.font = LABEL_SMALL_FONT;
 		tmpLabel.textColor = LABEL_SMALL_COLOR;
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -102,7 +102,7 @@
 		y += 15;
 		cell.votesNeededLabel = [[[UILabel alloc] initWithFrame:CGRectMake(100, y, 50, 20)] autorelease];
 		cell.votesNeededLabel.backgroundColor = [UIColor clearColor];
-		cell.votesNeededLabel.textAlignment = UITextAlignmentCenter;
+		cell.votesNeededLabel.textAlignment = NSTextAlignmentCenter;
 		cell.votesNeededLabel.font = TEXT_SMALL_FONT;
 		cell.votesNeededLabel.textColor = TEXT_SMALL_COLOR;
 		cell.votesNeededLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -110,7 +110,7 @@
 		
 		cell.votesForLabel = [[[UILabel alloc] initWithFrame:CGRectMake(150, y, 50, 20)] autorelease];
 		cell.votesForLabel.backgroundColor = [UIColor clearColor];
-		cell.votesForLabel.textAlignment = UITextAlignmentCenter;
+		cell.votesForLabel.textAlignment = NSTextAlignmentCenter;
 		cell.votesForLabel.font = TEXT_SMALL_FONT;
 		cell.votesForLabel.textColor = TEXT_SMALL_COLOR;
 		cell.votesForLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -118,7 +118,7 @@
 		
 		cell.votesAgainstLabel = [[[UILabel alloc] initWithFrame:CGRectMake(200, y, 50, 20)] autorelease];
 		cell.votesAgainstLabel.backgroundColor = [UIColor clearColor];
-		cell.votesAgainstLabel.textAlignment = UITextAlignmentCenter;
+		cell.votesAgainstLabel.textAlignment = NSTextAlignmentCenter;
 		cell.votesAgainstLabel.font = TEXT_SMALL_FONT;
 		cell.votesAgainstLabel.textColor = TEXT_SMALL_COLOR;
 		cell.votesAgainstLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;

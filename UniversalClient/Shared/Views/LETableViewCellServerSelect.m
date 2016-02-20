@@ -70,7 +70,7 @@
 		
 		cell.nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 5, 310, 20)] autorelease];
 		cell.nameLabel.backgroundColor = [UIColor clearColor];
-		cell.nameLabel.textAlignment = UITextAlignmentCenter;
+		cell.nameLabel.textAlignment = NSTextAlignmentCenter;
 		cell.nameLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
 		cell.nameLabel.font = TEXT_FONT;
 		cell.nameLabel.textColor = BUTTON_TEXT_COLOR;
@@ -78,7 +78,7 @@
 		
 		cell.locationLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 25, 310, 15)] autorelease];
 		cell.locationLabel.backgroundColor = [UIColor clearColor];
-		cell.locationLabel.textAlignment = UITextAlignmentCenter;
+		cell.locationLabel.textAlignment = NSTextAlignmentCenter;
 		cell.locationLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
 		cell.locationLabel.font = LABEL_FONT;
 		cell.locationLabel.textColor = BUTTON_TEXT_COLOR;
@@ -86,7 +86,7 @@
 		
 		cell.statusLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 40, 310, 15)] autorelease];
 		cell.statusLabel.backgroundColor = [UIColor clearColor];
-		cell.statusLabel.textAlignment = UITextAlignmentCenter;
+		cell.statusLabel.textAlignment = NSTextAlignmentCenter;
 		cell.statusLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
 		cell.statusLabel.font = LABEL_FONT;
 		cell.statusLabel.textColor = BUTTON_TEXT_COLOR;
@@ -94,7 +94,7 @@
 		
 		cell.typeLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 55, 310, 15)] autorelease];
 		cell.typeLabel.backgroundColor = [UIColor clearColor];
-		cell.typeLabel.textAlignment = UITextAlignmentCenter;
+		cell.typeLabel.textAlignment = NSTextAlignmentCenter;
 		cell.typeLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
 		cell.typeLabel.font = LABEL_FONT;
 		cell.typeLabel.textColor = BUTTON_TEXT_COLOR;

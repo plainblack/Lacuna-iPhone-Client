@@ -163,7 +163,7 @@
 		y += 15;
 		UILabel *tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, y, 100, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentRight;
+		tmpLabel.textAlignment = NSTextAlignmentRight;
 		tmpLabel.font = LABEL_FONT;
 		tmpLabel.textColor = LABEL_COLOR;
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -171,7 +171,7 @@
 		[cell.contentView addSubview:tmpLabel];
 		cell.speedLabel = [[[UILabel alloc] initWithFrame:CGRectMake(225, y, 100, 20)] autorelease];
 		cell.speedLabel.backgroundColor = [UIColor clearColor];
-		cell.speedLabel.textAlignment = UITextAlignmentLeft;
+		cell.speedLabel.textAlignment = NSTextAlignmentLeft;
 		cell.speedLabel.font = TEXT_SMALL_FONT;
 		cell.speedLabel.textColor = TEXT_SMALL_COLOR;
 		cell.speedLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -180,7 +180,7 @@
 		y += 15;
 		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, y, 100, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentRight;
+		tmpLabel.textAlignment = NSTextAlignmentRight;
 		tmpLabel.font = LABEL_FONT;
 		tmpLabel.textColor = LABEL_COLOR;
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -188,7 +188,7 @@
 		[cell.contentView addSubview:tmpLabel];
 		cell.holdSizeLabel = [[[UILabel alloc] initWithFrame:CGRectMake(225, y, 100, 20)] autorelease];
 		cell.holdSizeLabel.backgroundColor = [UIColor clearColor];
-		cell.holdSizeLabel.textAlignment = UITextAlignmentLeft;
+		cell.holdSizeLabel.textAlignment = NSTextAlignmentLeft;
 		cell.holdSizeLabel.font = TEXT_SMALL_FONT;
 		cell.holdSizeLabel.textColor = TEXT_SMALL_COLOR;
 		cell.holdSizeLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -198,7 +198,7 @@
         y += 15;
 		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, y, 100, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentRight;
+		tmpLabel.textAlignment = NSTextAlignmentRight;
 		tmpLabel.font = LABEL_FONT;
 		tmpLabel.textColor = LABEL_COLOR;
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -206,7 +206,7 @@
 		[cell.contentView addSubview:tmpLabel];
 		cell.berthLevelLabel = [[[UILabel alloc] initWithFrame:CGRectMake(225, y, 100, 20)] autorelease];
 		cell.berthLevelLabel.backgroundColor = [UIColor clearColor];
-		cell.berthLevelLabel.textAlignment = UITextAlignmentLeft;
+		cell.berthLevelLabel.textAlignment = NSTextAlignmentLeft;
 		cell.berthLevelLabel.font = TEXT_SMALL_FONT;
 		cell.berthLevelLabel.textColor = TEXT_SMALL_COLOR;
 		cell.berthLevelLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -215,7 +215,7 @@
 		y += 15;
 		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, y, 100, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentRight;
+		tmpLabel.textAlignment = NSTextAlignmentRight;
 		tmpLabel.font = LABEL_FONT;
 		tmpLabel.textColor = LABEL_COLOR;
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -223,7 +223,7 @@
 		[cell.contentView addSubview:tmpLabel];
 		cell.stealthLabel = [[[UILabel alloc] initWithFrame:CGRectMake(225, y, 100, 20)] autorelease];
 		cell.stealthLabel.backgroundColor = [UIColor clearColor];
-		cell.stealthLabel.textAlignment = UITextAlignmentLeft;
+		cell.stealthLabel.textAlignment = NSTextAlignmentLeft;
 		cell.stealthLabel.font = TEXT_SMALL_FONT;
 		cell.stealthLabel.textColor = TEXT_SMALL_COLOR;
 		cell.stealthLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -232,7 +232,7 @@
 		y += 15;
 		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, y, 100, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentRight;
+		tmpLabel.textAlignment = NSTextAlignmentRight;
 		tmpLabel.font = LABEL_FONT;
 		tmpLabel.textColor = LABEL_COLOR;
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -240,7 +240,7 @@
 		[cell.contentView addSubview:tmpLabel];
 		cell.combatLabel = [[[UILabel alloc] initWithFrame:CGRectMake(225, y, 100, 20)] autorelease];
 		cell.combatLabel.backgroundColor = [UIColor clearColor];
-		cell.combatLabel.textAlignment = UITextAlignmentLeft;
+		cell.combatLabel.textAlignment = NSTextAlignmentLeft;
 		cell.combatLabel.font = TEXT_SMALL_FONT;
 		cell.combatLabel.textColor = TEXT_SMALL_COLOR;
 		cell.combatLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -249,7 +249,7 @@
 		y += 15;
 		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, y, 100, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentRight;
+		tmpLabel.textAlignment = NSTextAlignmentRight;
 		tmpLabel.font = LABEL_FONT;
 		tmpLabel.textColor = LABEL_COLOR;
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -257,7 +257,7 @@
 		[cell.contentView addSubview:tmpLabel];
 		cell.maxOccupantLabel = [[[UILabel alloc] initWithFrame:CGRectMake(225, y, 100, 20)] autorelease];
 		cell.maxOccupantLabel.backgroundColor = [UIColor clearColor];
-		cell.maxOccupantLabel.textAlignment = UITextAlignmentLeft;
+		cell.maxOccupantLabel.textAlignment = NSTextAlignmentLeft;
 		cell.maxOccupantLabel.font = TEXT_SMALL_FONT;
 		cell.maxOccupantLabel.textColor = TEXT_SMALL_COLOR;
 		cell.maxOccupantLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;

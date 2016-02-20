@@ -191,7 +191,7 @@
 		cell.autoresizesSubviews = YES;
 		
 		cell.label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 95, 20)] autorelease];
-		cell.label.textAlignment = UITextAlignmentRight;
+		cell.label.textAlignment = NSTextAlignmentRight;
 		cell.label.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin;
 		cell.label.font = LABEL_FONT;
 		cell.label.textColor = LABEL_COLOR;
@@ -199,7 +199,7 @@
 		[cell.contentView addSubview:cell.label];
 		
 		cell.textView = [[[UITextView alloc] initWithFrame:CGRectMake(5, 20, 310, 140)] autorelease];
-		cell.textView.textAlignment = UITextAlignmentLeft;
+		cell.textView.textAlignment = NSTextAlignmentLeft;
 		cell.textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
 		cell.textView.autocorrectionType = UITextAutocorrectionTypeYes;
 		cell.textView.font = TEXT_ENTRY_FONT;
