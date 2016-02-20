@@ -51,18 +51,18 @@
 
 			//Draw buildTime
 			if (self.mapBuilding.pendingBuild) {
-				[[Util prettyDuration:self.mapBuilding.pendingBuild.secondsRemaining] drawInRect:CGRectMake(5.0, 0.0, 90.0, 15.0) withFont:TIME_FONT lineBreakMode:UILineBreakModeTailTruncation alignment:NSTextAlignmentRight];
+				[[Util prettyDuration:self.mapBuilding.pendingBuild.secondsRemaining] drawInRect:CGRectMake(5.0, 0.0, 90.0, 15.0) withFont:TIME_FONT lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentRight];
 			}
 			
 			//Draw workTime
 			if (self.mapBuilding.work) {
 				[WARNING_COLOR setFill];
-				[[Util prettyDuration:self.mapBuilding.work.secondsRemaining] drawInRect:CGRectMake(5.0, 20.0, 90.0, 15.0) withFont:TIME_FONT lineBreakMode:UILineBreakModeTailTruncation alignment:NSTextAlignmentRight];
+				[[Util prettyDuration:self.mapBuilding.work.secondsRemaining] drawInRect:CGRectMake(5.0, 20.0, 90.0, 15.0) withFont:TIME_FONT lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentRight];
 				[[UIColor whiteColor] setFill];
 			}
 			
 			//Draw level
-			[[self.mapBuilding.level stringValue] drawInRect:CGRectMake(30.0, 40.0, 40.0, 20.0) withFont:LEVEL_FONT lineBreakMode:UILineBreakModeTailTruncation alignment:NSTextAlignmentCenter];
+			[[self.mapBuilding.level stringValue] drawInRect:CGRectMake(30.0, 40.0, 40.0, 20.0) withFont:LEVEL_FONT lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentCenter];
 			
 			//Draw Efficiency
 			NSInteger efficency = [self.mapBuilding.efficiency intValue];
