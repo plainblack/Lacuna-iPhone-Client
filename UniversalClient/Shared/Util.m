@@ -33,7 +33,7 @@ static NSDecimalNumber *ONE_HUNDRED_BILLION;
 	CGSize cellSize = CGSizeMake(frame.size.width - 10, FLT_MAX);
 	cellSize = [text sizeWithFont:font 
 				   constrainedToSize:cellSize
-					   lineBreakMode:UILineBreakModeWordWrap];
+					   lineBreakMode:NSLineBreakByWordWrapping];
 	return cellSize.height + 10;
 }
 
