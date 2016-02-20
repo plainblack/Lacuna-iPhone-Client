@@ -104,7 +104,7 @@
         
 		cell.subjectText = [[[UILabel alloc] initWithFrame:CGRectMake(5, 5, 310, 20)] autorelease];
 		cell.subjectText.backgroundColor = [UIColor clearColor];
-		cell.subjectText.textAlignment = UITextAlignmentLeft;
+		cell.subjectText.textAlignment = NSTextAlignmentLeft;
 		cell.subjectText.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
 		cell.subjectText.font = TEXT_FONT;
 		cell.subjectText.textColor = MAIL_TEXT_COLOR;
@@ -112,7 +112,7 @@
 		
 		cell.fromLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 25, 40, 15)] autorelease];
 		cell.fromLabel.backgroundColor = [UIColor clearColor];
-		cell.fromLabel.textAlignment = UITextAlignmentRight;
+		cell.fromLabel.textAlignment = NSTextAlignmentRight;
 		cell.fromLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin;
 		cell.fromLabel.font = LABEL_FONT;
 		cell.fromLabel.textColor = MAIL_TEXT_COLOR;
@@ -120,7 +120,7 @@
 		[cell.contentView addSubview:cell.fromLabel];
 		cell.fromText = [[[UILabel alloc] initWithFrame:CGRectMake(50, 25, 265, 15)] autorelease];
 		cell.fromText.backgroundColor = [UIColor clearColor];
-		cell.fromText.textAlignment = UITextAlignmentLeft;
+		cell.fromText.textAlignment = NSTextAlignmentLeft;
 		cell.fromText.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
 		cell.fromText.font = LABEL_FONT;
 		cell.fromText.textColor = MAIL_TEXT_COLOR;
@@ -128,7 +128,7 @@
 		
 		cell.dateLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 40, 40, 15)] autorelease];
 		cell.dateLabel.backgroundColor = [UIColor clearColor];
-		cell.dateLabel.textAlignment = UITextAlignmentRight;
+		cell.dateLabel.textAlignment = NSTextAlignmentRight;
 		cell.dateLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin;
 		cell.dateLabel.font = LABEL_FONT;
 		cell.dateLabel.textColor = MAIL_TEXT_COLOR;
@@ -136,7 +136,7 @@
 		[cell.contentView addSubview:cell.dateLabel];
 		cell.dateText = [[[UILabel alloc] initWithFrame:CGRectMake(50, 40, 265, 15)] autorelease];
 		cell.dateText.backgroundColor = [UIColor clearColor];
-		cell.dateText.textAlignment = UITextAlignmentLeft;
+		cell.dateText.textAlignment = NSTextAlignmentLeft;
 		cell.dateText.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
 		cell.dateText.font = LABEL_FONT;
 		cell.dateText.textColor = MAIL_TEXT_COLOR;

@@ -61,7 +61,7 @@
 		
 		UILabel *tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(20, 5, 280, 22)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentCenter;
+		tmpLabel.textAlignment = NSTextAlignmentCenter;
 		tmpLabel.font = TEXT_FONT;
 		tmpLabel.textColor = TEXT_COLOR;
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
@@ -70,7 +70,7 @@
 
 		cell.reasonLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 25, 310, 52)] autorelease];
 		cell.reasonLabel.backgroundColor = [UIColor clearColor];
-		cell.reasonLabel.textAlignment = UITextAlignmentCenter;
+		cell.reasonLabel.textAlignment = NSTextAlignmentCenter;
 		cell.reasonLabel.font = TEXT_SMALL_FONT;
 		cell.reasonLabel.textColor = TEXT_SMALL_COLOR;
 		cell.reasonLabel.numberOfLines = 0;

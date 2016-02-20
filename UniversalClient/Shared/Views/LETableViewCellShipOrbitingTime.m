@@ -66,7 +66,7 @@
 		
 		UILabel *tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, y+5, 90, 15)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentRight;
+		tmpLabel.textAlignment = NSTextAlignmentRight;
 		tmpLabel.font = LABEL_FONT;
 		tmpLabel.textColor = LABEL_COLOR;
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -74,7 +74,7 @@
 		[cell.contentView addSubview:tmpLabel];
 		cell.dateStartedLabel = [[[UILabel alloc] initWithFrame:CGRectMake(110, y, 200, 22)] autorelease];
 		cell.dateStartedLabel.backgroundColor = [UIColor clearColor];
-		cell.dateStartedLabel.textAlignment = UITextAlignmentLeft;
+		cell.dateStartedLabel.textAlignment = NSTextAlignmentLeft;
 		cell.dateStartedLabel.font = TEXT_FONT;
 		cell.dateStartedLabel.textColor = TEXT_COLOR;
 		cell.dateStartedLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
@@ -83,7 +83,7 @@
 		
 		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, y+7, 90, 13)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentRight;
+		tmpLabel.textAlignment = NSTextAlignmentRight;
 		tmpLabel.font = LABEL_FONT;
 		tmpLabel.textColor = LABEL_COLOR;
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -91,7 +91,7 @@
 		[cell.contentView addSubview:tmpLabel];
 		cell.fromNameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(110, y+5, 200, 15)] autorelease];
 		cell.fromNameLabel.backgroundColor = [UIColor clearColor];
-		cell.fromNameLabel.textAlignment = UITextAlignmentLeft;
+		cell.fromNameLabel.textAlignment = NSTextAlignmentLeft;
 		cell.fromNameLabel.font = TEXT_SMALL_FONT;
 		cell.fromNameLabel.textColor = TEXT_SMALL_COLOR;
 		cell.fromNameLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;

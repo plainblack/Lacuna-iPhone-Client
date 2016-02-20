@@ -97,7 +97,7 @@
 		
 		cell.label = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 95, 44)] autorelease];
 		cell.label.backgroundColor = [UIColor clearColor];
-		cell.label.textAlignment = UITextAlignmentRight;
+		cell.label.textAlignment = NSTextAlignmentRight;
 		cell.label.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.label];
 		cell.numberButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];

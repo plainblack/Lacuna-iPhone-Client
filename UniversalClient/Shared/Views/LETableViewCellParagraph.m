@@ -54,7 +54,7 @@
 		
 		cell.content = [[[UITextView alloc] initWithFrame:CGRectMake(5, 0, 310, 44)] autorelease];
 		cell.content.backgroundColor = [UIColor clearColor];
-		cell.content.textAlignment = UITextAlignmentLeft;
+		cell.content.textAlignment = NSTextAlignmentLeft;
 		cell.content.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		cell.content.editable = NO;
 		cell.content.scrollEnabled = NO;

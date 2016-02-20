@@ -201,7 +201,7 @@
 		[cell.contentView addSubview:tmpImageView];
 		cell.waterCostLabel = [[[UILabel alloc] initWithFrame:CGRectMake(243, 51, 70, 20)] autorelease];
 		cell.waterCostLabel.backgroundColor = [UIColor clearColor];
-		cell.waterCostLabel.textAlignment = UITextAlignmentLeft;
+		cell.waterCostLabel.textAlignment = NSTextAlignmentLeft;
 		cell.waterCostLabel.font = TEXT_SMALL_FONT;
 		cell.waterCostLabel.textColor = TEXT_SMALL_COLOR;
 		cell.waterCostLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;

@@ -145,7 +145,7 @@
 		
 		cell.nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(115, y, 200, 22)] autorelease];
 		cell.nameLabel.backgroundColor = [UIColor clearColor];
-		cell.nameLabel.textAlignment = UITextAlignmentLeft;
+		cell.nameLabel.textAlignment = NSTextAlignmentLeft;
 		cell.nameLabel.font = TEXT_FONT;
 		cell.nameLabel.textColor = TEXT_COLOR;
 		cell.nameLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
@@ -154,7 +154,7 @@
 		y += 20;
 		cell.typeLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, y, 165, 20)] autorelease];
 		cell.typeLabel.backgroundColor = [UIColor clearColor];
-		cell.typeLabel.textAlignment = UITextAlignmentLeft;
+		cell.typeLabel.textAlignment = NSTextAlignmentLeft;
 		cell.typeLabel.font = TEXT_SMALL_FONT;
 		cell.typeLabel.textColor = TEXT_SMALL_COLOR;
 		cell.typeLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;

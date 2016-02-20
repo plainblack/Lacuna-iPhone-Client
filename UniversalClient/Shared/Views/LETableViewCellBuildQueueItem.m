@@ -75,7 +75,7 @@
 		
 		cell.buildingNameText = [[[UILabel alloc] initWithFrame:CGRectMake(5, 5, 310, 20)] autorelease];
 		cell.buildingNameText.backgroundColor = [UIColor clearColor];
-		cell.buildingNameText.textAlignment = UITextAlignmentLeft;
+		cell.buildingNameText.textAlignment = NSTextAlignmentLeft;
 		cell.buildingNameText.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
 		cell.buildingNameText.font = TEXT_FONT;
 		cell.buildingNameText.textColor = TEXT_COLOR;
@@ -83,7 +83,7 @@
 		
 		cell.levelLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 25, 60, 15)] autorelease];
 		cell.levelLabel.backgroundColor = [UIColor clearColor];
-		cell.levelLabel.textAlignment = UITextAlignmentRight;
+		cell.levelLabel.textAlignment = NSTextAlignmentRight;
 		cell.levelLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin;
 		cell.levelLabel.font = TEXT_SMALL_FONT;
 		cell.levelLabel.textColor = TEXT_COLOR;
@@ -91,7 +91,7 @@
 		[cell.contentView addSubview:cell.levelLabel];
 		cell.levelText = [[[UILabel alloc] initWithFrame:CGRectMake(70, 25, 20, 15)] autorelease];
 		cell.levelText.backgroundColor = [UIColor clearColor];
-		cell.levelText.textAlignment = UITextAlignmentLeft;
+		cell.levelText.textAlignment = NSTextAlignmentLeft;
 		cell.levelText.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin;
 		cell.levelText.font = TEXT_SMALL_FONT;
 		cell.levelText.textColor = TEXT_COLOR;
@@ -99,7 +99,7 @@
 		
 		cell.durationLabel = [[[UILabel alloc] initWithFrame:CGRectMake(100, 25, 60, 15)] autorelease];
 		cell.durationLabel.backgroundColor = [UIColor clearColor];
-		cell.durationLabel.textAlignment = UITextAlignmentRight;
+		cell.durationLabel.textAlignment = NSTextAlignmentRight;
 		cell.durationLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleRightMargin;
 		cell.durationLabel.font = TEXT_SMALL_FONT;
 		cell.durationLabel.textColor = TEXT_COLOR;
@@ -107,7 +107,7 @@
 		[cell.contentView addSubview:cell.durationLabel];
 		cell.durationText = [[[UILabel alloc] initWithFrame:CGRectMake(165, 25, 150, 15)] autorelease];
 		cell.durationText.backgroundColor = [UIColor clearColor];
-		cell.durationText.textAlignment = UITextAlignmentLeft;
+		cell.durationText.textAlignment = NSTextAlignmentLeft;
 		cell.durationText.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
 		cell.durationText.font = TEXT_SMALL_FONT;
 		cell.durationText.textColor = TEXT_COLOR;

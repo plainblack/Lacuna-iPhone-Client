@@ -89,7 +89,7 @@
 		
 		UILabel *storageLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 95, 22)] autorelease];
 		storageLabel.backgroundColor = [UIColor clearColor];
-		storageLabel.textAlignment = UITextAlignmentRight;
+		storageLabel.textAlignment = NSTextAlignmentRight;
 		storageLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
 		storageLabel.font = LABEL_FONT;
 		storageLabel.textColor = LABEL_COLOR;
@@ -103,7 +103,7 @@
 		[cell.contentView addSubview:tmpImageView];
 		cell.energyStorageLabel = [[[UILabel alloc] initWithFrame:CGRectMake(34, 23, 70, 20)] autorelease];
 		cell.energyStorageLabel.backgroundColor = [UIColor clearColor];
-		cell.energyStorageLabel.textAlignment = UITextAlignmentLeft;
+		cell.energyStorageLabel.textAlignment = NSTextAlignmentLeft;
 		cell.energyStorageLabel.font = TEXT_SMALL_FONT;
 		cell.energyStorageLabel.textColor = TEXT_SMALL_COLOR;
 		cell.energyStorageLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -116,7 +116,7 @@
 		[cell.contentView addSubview:tmpImageView];
 		cell.foodStorageLabel = [[[UILabel alloc] initWithFrame:CGRectMake(147, 23, 70, 20)] autorelease];
 		cell.foodStorageLabel.backgroundColor = [UIColor clearColor];
-		cell.foodStorageLabel.textAlignment = UITextAlignmentLeft;
+		cell.foodStorageLabel.textAlignment = NSTextAlignmentLeft;
 		cell.foodStorageLabel.font = TEXT_SMALL_FONT;
 		cell.foodStorageLabel.textColor = TEXT_SMALL_COLOR;
 		cell.foodStorageLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -129,7 +129,7 @@
 		[cell.contentView addSubview:tmpImageView];
 		cell.oreStorageLabel = [[[UILabel alloc] initWithFrame:CGRectMake(243, 23, 70, 20)] autorelease];
 		cell.oreStorageLabel.backgroundColor = [UIColor clearColor];
-		cell.oreStorageLabel.textAlignment = UITextAlignmentLeft;
+		cell.oreStorageLabel.textAlignment = NSTextAlignmentLeft;
 		cell.oreStorageLabel.font = TEXT_SMALL_FONT;
 		cell.oreStorageLabel.textColor = TEXT_SMALL_COLOR;
 		cell.oreStorageLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -142,7 +142,7 @@
 		[cell.contentView addSubview:tmpImageView];
 		cell.wasteStorageLabel = [[[UILabel alloc] initWithFrame:CGRectMake(34, 51, 70, 20)] autorelease];
 		cell.wasteStorageLabel.backgroundColor = [UIColor clearColor];
-		cell.wasteStorageLabel.textAlignment = UITextAlignmentLeft;
+		cell.wasteStorageLabel.textAlignment = NSTextAlignmentLeft;
 		cell.wasteStorageLabel.font = TEXT_SMALL_FONT;
 		cell.wasteStorageLabel.textColor = TEXT_SMALL_COLOR;
 		cell.wasteStorageLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -155,7 +155,7 @@
 		[cell.contentView addSubview:tmpImageView];
 		cell.waterStorageLabel = [[[UILabel alloc] initWithFrame:CGRectMake(147, 51, 70, 20)] autorelease];
 		cell.waterStorageLabel.backgroundColor = [UIColor clearColor];
-		cell.waterStorageLabel.textAlignment = UITextAlignmentLeft;
+		cell.waterStorageLabel.textAlignment = NSTextAlignmentLeft;
 		cell.waterStorageLabel.font = TEXT_SMALL_FONT;
 		cell.waterStorageLabel.textColor = TEXT_SMALL_COLOR;
 		cell.waterStorageLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
