@@ -183,7 +183,7 @@
 - (void)subsidizedBuildQueue:(LEBuildingSubsidizeBuildQueue *)request {
 	[self parseData:request.result];
 	[[self findMapBuilding] parseData:[request.result objectForKey:@"building"]];
-    self.buildQueue = [NSArray array];
+    self.buildQueue = [NSMutableArray array];
     self.numBuildQueue = [NSDecimalNumber zero];
     self.subsidizeCost = [NSDecimalNumber zero];
 	self.needsRefresh = YES;
