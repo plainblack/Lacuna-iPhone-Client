@@ -560,7 +560,7 @@ typedef enum {
 
 - (void)colonySelected:(NSString *)colonyId {
 	self.itemPush.targetId = colonyId;
-	[self dismissModalViewControllerAnimated:YES];
+	[self dismissViewControllerAnimated:YES completion:nil];
 	[self->pickColonyController release];
 	self->pickColonyController = nil;
 	[self.tableView reloadData];

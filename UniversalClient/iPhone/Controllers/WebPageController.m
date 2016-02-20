@@ -87,7 +87,7 @@
 #pragma mark Instance Methods
 
 - (IBAction)close {
-	[self dismissModalViewControllerAnimated:YES];
+	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
