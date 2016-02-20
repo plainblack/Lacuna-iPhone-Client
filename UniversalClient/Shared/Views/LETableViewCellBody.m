@@ -65,7 +65,7 @@
 
 		cell.planetLabel = [[[UILabel alloc] initWithFrame:CGRectMake(78, 10, 222, 22)] autorelease];
 		cell.planetLabel.backgroundColor = [UIColor clearColor];
-		cell.planetLabel.textAlignment = UITextAlignmentLeft;
+		cell.planetLabel.textAlignment = NSTextAlignmentLeft;
 		cell.planetLabel.font = TEXT_FONT;
 		cell.planetLabel.textColor = TEXT_COLOR;
 		cell.planetLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
@@ -73,7 +73,7 @@
 
 		UILabel *tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(78, 26, 51, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentRight;
+		tmpLabel.textAlignment = NSTextAlignmentRight;
 		tmpLabel.font = LABEL_SMALL_FONT;
 		tmpLabel.textColor = LABEL_SMALL_COLOR;
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -81,7 +81,7 @@
 		[cell.contentView addSubview:tmpLabel];
 		cell.systemLabel = [[[UILabel alloc] initWithFrame:CGRectMake(137, 26, 163, 20)] autorelease];
 		cell.systemLabel.backgroundColor = [UIColor clearColor];
-		cell.systemLabel.textAlignment = UITextAlignmentLeft;
+		cell.systemLabel.textAlignment = NSTextAlignmentLeft;
 		cell.systemLabel.font = TEXT_SMALL_FONT;
 		cell.systemLabel.textColor = TEXT_SMALL_COLOR;
 		cell.systemLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
@@ -89,7 +89,7 @@
 		
 		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(78, 39, 51, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentRight;
+		tmpLabel.textAlignment = NSTextAlignmentRight;
 		tmpLabel.font = LABEL_SMALL_FONT;
 		tmpLabel.textColor = LABEL_SMALL_COLOR;
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;

@@ -43,7 +43,7 @@
 		cell.backgroundColor = CELL_BACKGROUND_COLOR;
 		cell.autoresizesSubviews = YES;
 		
-		cell.textLabel.textAlignment = UITextAlignmentCenter;
+		cell.textLabel.textAlignment = NSTextAlignmentCenter;
 		
 		//Set Font stuff
 		cell.textLabel.font = BUTTON_TEXT_FONT;

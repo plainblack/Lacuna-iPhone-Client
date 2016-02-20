@@ -65,12 +65,12 @@
 		
 		cell.label = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 310, 20)] autorelease];
 		cell.label.backgroundColor = [UIColor clearColor];
-		cell.label.textAlignment = UITextAlignmentLeft;
+		cell.label.textAlignment = NSTextAlignmentLeft;
 		cell.label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.label];
 		cell.content = [[[UITextView alloc] initWithFrame:CGRectMake(5, 20, 310, 24)] autorelease];
 		cell.content.backgroundColor = [UIColor clearColor];
-		cell.content.textAlignment = UITextAlignmentLeft;
+		cell.content.textAlignment = NSTextAlignmentLeft;
 		cell.content.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		cell.content.editable = NO;
 		cell.content.scrollEnabled = NO;

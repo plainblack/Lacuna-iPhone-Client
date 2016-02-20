@@ -122,7 +122,7 @@
 		
 		UILabel *storageLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 95, 22)] autorelease];
 		storageLabel.backgroundColor = [UIColor clearColor];
-		storageLabel.textAlignment = UITextAlignmentRight;
+		storageLabel.textAlignment = NSTextAlignmentRight;
 		storageLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
 		storageLabel.font = LABEL_FONT;
 		storageLabel.textColor = LABEL_COLOR;
@@ -136,7 +136,7 @@
 		[cell.contentView addSubview:tmpImageView];
 		cell.energyCostLabel = [[[UILabel alloc] initWithFrame:CGRectMake(34, 23, 70, 20)] autorelease];
 		cell.energyCostLabel.backgroundColor = [UIColor clearColor];
-		cell.energyCostLabel.textAlignment = UITextAlignmentLeft;
+		cell.energyCostLabel.textAlignment = NSTextAlignmentLeft;
 		cell.energyCostLabel.font = TEXT_SMALL_FONT;
 		cell.energyCostLabel.textColor = TEXT_SMALL_COLOR;
 		cell.energyCostLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -149,7 +149,7 @@
 		[cell.contentView addSubview:tmpImageView];
 		cell.foodCostLabel = [[[UILabel alloc] initWithFrame:CGRectMake(147, 23, 70, 20)] autorelease];
 		cell.foodCostLabel.backgroundColor = [UIColor clearColor];
-		cell.foodCostLabel.textAlignment = UITextAlignmentLeft;
+		cell.foodCostLabel.textAlignment = NSTextAlignmentLeft;
 		cell.foodCostLabel.font = TEXT_SMALL_FONT;
 		cell.foodCostLabel.textColor = TEXT_SMALL_COLOR;
 		cell.foodCostLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -162,7 +162,7 @@
 		[cell.contentView addSubview:tmpImageView];
 		cell.oreCostLabel = [[[UILabel alloc] initWithFrame:CGRectMake(243, 23, 70, 20)] autorelease];
 		cell.oreCostLabel.backgroundColor = [UIColor clearColor];
-		cell.oreCostLabel.textAlignment = UITextAlignmentLeft;
+		cell.oreCostLabel.textAlignment = NSTextAlignmentLeft;
 		cell.oreCostLabel.font = TEXT_SMALL_FONT;
 		cell.oreCostLabel.textColor = TEXT_SMALL_COLOR;
 		cell.oreCostLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -175,7 +175,7 @@
 		[cell.contentView addSubview:tmpImageView];
 		cell.timeCostLabel = [[[UILabel alloc] initWithFrame:CGRectMake(34, 51, 70, 20)] autorelease];
 		cell.timeCostLabel.backgroundColor = [UIColor clearColor];
-		cell.timeCostLabel.textAlignment = UITextAlignmentLeft;
+		cell.timeCostLabel.textAlignment = NSTextAlignmentLeft;
 		cell.timeCostLabel.font = TEXT_SMALL_FONT;
 		cell.timeCostLabel.textColor = TEXT_SMALL_COLOR;
 		cell.timeCostLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -188,7 +188,7 @@
 		[cell.contentView addSubview:tmpImageView];
 		cell.wasteCostLabel = [[[UILabel alloc] initWithFrame:CGRectMake(147, 51, 70, 20)] autorelease];
 		cell.wasteCostLabel.backgroundColor = [UIColor clearColor];
-		cell.wasteCostLabel.textAlignment = UITextAlignmentLeft;
+		cell.wasteCostLabel.textAlignment = NSTextAlignmentLeft;
 		cell.wasteCostLabel.font = TEXT_SMALL_FONT;
 		cell.wasteCostLabel.textColor = TEXT_SMALL_COLOR;
 		cell.wasteCostLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;

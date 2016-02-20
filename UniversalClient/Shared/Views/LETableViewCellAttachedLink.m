@@ -77,7 +77,7 @@
 		
 		cell.nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 10, 300, 20)] autorelease];
 		cell.nameLabel.backgroundColor = [UIColor clearColor];
-		cell.nameLabel.textAlignment = UITextAlignmentCenter;
+		cell.nameLabel.textAlignment = NSTextAlignmentCenter;
 		cell.nameLabel.font = TEXT_FONT;
 		cell.nameLabel.textColor = TEXT_COLOR;
 		cell.nameLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;

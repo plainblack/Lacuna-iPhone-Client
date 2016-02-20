@@ -74,7 +74,7 @@
 		y = 10.0;
 		UILabel *tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, y, 90, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentRight;
+		tmpLabel.textAlignment = NSTextAlignmentRight;
 		tmpLabel.font = LABEL_FONT;
 		tmpLabel.textColor = LABEL_COLOR;
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -82,7 +82,7 @@
 		[cell.contentView addSubview:tmpLabel];
 		cell.dateArrivesLabel = [[[UILabel alloc] initWithFrame:CGRectMake(110, y, 200, 20)] autorelease];
 		cell.dateArrivesLabel.backgroundColor = [UIColor clearColor];
-		cell.dateArrivesLabel.textAlignment = UITextAlignmentLeft;
+		cell.dateArrivesLabel.textAlignment = NSTextAlignmentLeft;
 		cell.dateArrivesLabel.font = TEXT_FONT;
 		cell.dateArrivesLabel.textColor = TEXT_COLOR;
 		cell.dateArrivesLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
@@ -91,7 +91,7 @@
 		
 		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, y, 90, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentRight;
+		tmpLabel.textAlignment = NSTextAlignmentRight;
 		tmpLabel.font = LABEL_FONT;
 		tmpLabel.textColor = LABEL_COLOR;
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -99,7 +99,7 @@
 		[cell.contentView addSubview:tmpLabel];
 		cell.fromEmpireLabel = [[[UILabel alloc] initWithFrame:CGRectMake(110, y, 200, 20)] autorelease];
 		cell.fromEmpireLabel.backgroundColor = [UIColor clearColor];
-		cell.fromEmpireLabel.textAlignment = UITextAlignmentLeft;
+		cell.fromEmpireLabel.textAlignment = NSTextAlignmentLeft;
 		cell.fromEmpireLabel.font = TEXT_SMALL_FONT;
 		cell.fromEmpireLabel.textColor = TEXT_SMALL_COLOR;
 		cell.fromEmpireLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
@@ -108,7 +108,7 @@
 		
 		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, y, 90, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentRight;
+		tmpLabel.textAlignment = NSTextAlignmentRight;
 		tmpLabel.font = LABEL_FONT;
 		tmpLabel.textColor = LABEL_COLOR;
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -116,7 +116,7 @@
 		[cell.contentView addSubview:tmpLabel];
 		cell.fromNameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(110, y, 200, 20)] autorelease];
 		cell.fromNameLabel.backgroundColor = [UIColor clearColor];
-		cell.fromNameLabel.textAlignment = UITextAlignmentLeft;
+		cell.fromNameLabel.textAlignment = NSTextAlignmentLeft;
 		cell.fromNameLabel.font = TEXT_SMALL_FONT;
 		cell.fromNameLabel.textColor = TEXT_SMALL_COLOR;
 		cell.fromNameLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;

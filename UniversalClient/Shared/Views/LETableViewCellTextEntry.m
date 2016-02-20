@@ -243,12 +243,12 @@ static NSString *CellIdentifier = @"TextEntryCell";
 		
 		cell.label = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 95, 44)] autorelease];
 		cell.label.backgroundColor = [UIColor clearColor];
-		cell.label.textAlignment = UITextAlignmentRight;
+		cell.label.textAlignment = NSTextAlignmentRight;
 		cell.label.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.label];
 		cell.textField = [[[UITextField alloc] initWithFrame:CGRectMake(105, 6, 210, 31)] autorelease];
 		cell.textField.borderStyle = UITextBorderStyleRoundedRect;
-		cell.textField.textAlignment = UITextAlignmentLeft;
+		cell.textField.textAlignment = NSTextAlignmentLeft;
 		cell.textField.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 		cell.textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
 		[cell.contentView addSubview:cell.textField];

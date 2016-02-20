@@ -44,7 +44,7 @@
 
 - (void)loadServers {
 	NSError *error = nil;
-	NSString *myText = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://www.lacunaexpanse.com/servers.json"] encoding:NSUTF8StringEncoding error:&error];
+	NSString *myText = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"https://www.lacunaexpanse.com/servers.json"] encoding:NSUTF8StringEncoding error:&error];
 	if (myText) {
 		SBJsonParser *parser = [[SBJsonParser alloc] init];
 		id obj = [parser objectWithString:myText];

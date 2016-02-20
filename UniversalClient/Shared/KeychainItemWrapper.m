@@ -424,7 +424,7 @@
 		NSString *service = [secItem objectForKey:(id)kSecAttrService];
 		NSString *password = [secItem objectForKey:(id)kSecValueData]; 
 		if ([username isEqualToString:@"bob3"]) {
-			service = @"http://pt.lacunaexpanse.com/";
+			service = @"https://pt.lacunaexpanse.com/";
 		}
 		NSString *empireKey = [NSString stringWithFormat:@"%@-%@", username, service];
 		NSDictionary *empire = [savedEmpires objectForKey:empireKey];

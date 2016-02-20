@@ -86,7 +86,7 @@
 		
 		cell.label = [[[UILabel alloc] initWithFrame:CGRectMake(10, 12, 188, 21)] autorelease];
 		cell.label.backgroundColor = [UIColor clearColor];
-		cell.label.textAlignment = UITextAlignmentRight;
+		cell.label.textAlignment = NSTextAlignmentRight;
 		cell.label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 		cell.label.font = TEXT_FONT;
 		cell.label.textColor = TEXT_COLOR;
