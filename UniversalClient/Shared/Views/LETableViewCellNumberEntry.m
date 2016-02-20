@@ -68,7 +68,7 @@
 - (IBAction)editNumericValue {
     NSLog(@"maxValue: %@", self.maxValue);
 	PickNumericValueController *pickNumericValueController = [PickNumericValueController createWithDelegate:self maxValue:self.maxValue hidesZero:NO showTenths:NO];
-	[self.viewController presentModalViewController:pickNumericValueController animated:YES];
+	[self.viewController presentViewController:pickNumericValueController animated:YES completion:nil];
 	[pickNumericValueController setValue:self.numericValue];
 	pickNumericValueController.titleLabel.text = self.label.text;
 }

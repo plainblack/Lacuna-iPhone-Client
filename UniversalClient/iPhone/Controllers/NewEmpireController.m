@@ -318,13 +318,13 @@ typedef enum {
 						; //DO NOT REMOVE
 						WebPageController *termsWebPageController = [WebPageController create];
 						[termsWebPageController goToUrl:@"http://www.lacunaexpanse.com/terms/"];
-						[self presentModalViewController:termsWebPageController animated:YES];
+						[self presentViewController:termsWebPageController animated:YES completion:nil];
 						break;
 					case TOS_RULES_LINK:
 						; //DO NOT REMOVE
 						WebPageController *rulesWebPageController = [WebPageController create];
 						[rulesWebPageController goToUrl:@"http://www.lacunaexpanse.com/rules/"];
-						[self presentModalViewController:rulesWebPageController animated:YES];
+						[self presentViewController:rulesWebPageController animated:YES completion:nil];
 						break;
 						
 					default:

@@ -132,7 +132,7 @@
 		}
 	}
 	self->pickNumericValueController = [[PickNumericValueController createWithDelegate:self maxValue:max hidesZero:NO showTenths:NO] retain];
-	[self presentModalViewController:self->pickNumericValueController animated:YES];
+	[self presentViewController:self->pickNumericValueController animated:YES completion:nil];
 	self->pickNumericValueController.titleLabel.text = [[self.selectedStoredResource objectForKey:@"type"] capitalizedString];
 }
 

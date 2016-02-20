@@ -174,7 +174,7 @@ typedef enum {
 				[self.entertainment removeVotingOptionNamed:[votingOption objectForKey:@"name"]];
 				WebPageController *webPageController = [WebPageController create];
 				[webPageController goToUrl:url];
-				[self presentModalViewController:webPageController animated:YES];
+				[self presentViewController:webPageController animated:YES completion:nil];
 				[votingOption release];
 			}
 			break;

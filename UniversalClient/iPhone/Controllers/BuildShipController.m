@@ -221,7 +221,7 @@ typedef enum {
 					NSLog(@"WIKI URL: %@", url);
 					WebPageController *webPageController = [WebPageController create];
 					webPageController.urlToLoad = url;
-					[self presentModalViewController:webPageController animated:YES];
+					[self presentViewController:webPageController animated:YES completion:nil];
 					break;
 				case ROW_BUILD_BUTTON:
 					if (currentShip.canBuild) {

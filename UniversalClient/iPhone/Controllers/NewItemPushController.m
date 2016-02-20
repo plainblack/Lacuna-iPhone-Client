@@ -661,7 +661,7 @@ typedef enum {
 	self->pickColonyController = [[PickColonyController create] retain];
 	self->pickColonyController.delegate = self;
 	self->pickColonyController.colonies = session.empire.planets;
-	[self presentModalViewController:self->pickColonyController animated:YES];
+	[self presentViewController:self->pickColonyController animated:YES completion:nil];
 }
 
 

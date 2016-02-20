@@ -167,7 +167,7 @@
 	UIViewController *subViewController = [session.body.currentBuilding tableView:self.selectedTableView didSelectRowAtIndexPath:self.selectedIndexPath];
 	if (subViewController) {
 		if ([subViewController isKindOfClass:[WebPageController class]] ) {
-			[self presentModalViewController:subViewController animated:YES];
+			[self presentViewController:subViewController animated:YES completion:nil];
 		} else {
 			[self.navigationController pushViewController:subViewController animated:YES];
 		}

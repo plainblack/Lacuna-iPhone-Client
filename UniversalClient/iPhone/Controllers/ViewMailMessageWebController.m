@@ -288,7 +288,7 @@ typedef enum {
 				if (link) {
 					WebPageController *webPageController = [WebPageController create];
 					[webPageController goToUrl:link];
-					[self presentModalViewController:webPageController animated:YES];
+					[self presentViewController:webPageController animated:YES completion:nil];
 				}
 			} else if ([key isEqualToString:@"link"]) {
 				NSDictionary *attachment = [self->attachements objectForKey:key];
@@ -296,7 +296,7 @@ typedef enum {
 				if (link) {
 					WebPageController *webPageController = [WebPageController create];
 					[webPageController goToUrl:link];
-					[self presentModalViewController:webPageController animated:YES];
+					[self presentViewController:webPageController animated:YES completion:nil];
 				}
 			} else if ([key isEqualToString:@"table"]) {
 				NSArray *attachment = [self->attachements objectForKey:key];
@@ -478,7 +478,7 @@ typedef enum {
 - (void)showWebPage:(NSString*)url {
 	WebPageController *webPageController = [WebPageController create];
 	[webPageController goToUrl:url];
-	[self presentModalViewController:webPageController animated:YES];
+	[self presentViewController:webPageController animated:YES completion:nil];
 }
 
 
