@@ -137,7 +137,7 @@
 		[cell.contentView addSubview:cell.dateLabel];
 		cell.dateText = [[[UILabel alloc] initWithFrame:CGRectMake(55, 55, 265, 15)] autorelease];
 		cell.dateText.backgroundColor = [UIColor clearColor];
-		cell.dateText.textAlignment = UITextAlignmentLeft;
+		cell.dateText.textAlignment = NSTextAlignmentLeft;
 		cell.dateText.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
 		cell.dateText.font = LABEL_FONT;
 		cell.dateText.textColor = TEXT_COLOR;

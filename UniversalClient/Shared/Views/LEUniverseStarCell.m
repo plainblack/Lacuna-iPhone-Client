@@ -35,7 +35,7 @@
 		self->dataLabel.backgroundColor = [UIColor clearColor];
 		self->dataLabel.textColor = [UIColor redColor];
 		self->dataLabel.numberOfLines = 0;
-		self->dataLabel.textAlignment = UITextAlignmentCenter;
+		self->dataLabel.textAlignment = NSTextAlignmentCenter;
 		[self addSubview:self->dataLabel];
 		
 		UITapGestureRecognizer *tapRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(callTapped:)] autorelease];

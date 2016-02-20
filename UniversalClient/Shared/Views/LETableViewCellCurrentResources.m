@@ -179,7 +179,7 @@
 		//PER HOUR
 		cell.foodPerHourLabel = [[[UILabel alloc] initWithFrame:CGRectMake(267, 10, 45, 20)] autorelease];
 		cell.foodPerHourLabel.backgroundColor = [UIColor clearColor];
-		cell.foodPerHourLabel.textAlignment = UITextAlignmentLeft;
+		cell.foodPerHourLabel.textAlignment = NSTextAlignmentLeft;
 		cell.foodPerHourLabel.font = TEXT_SMALL_FONT;
 		cell.foodPerHourLabel.textColor = TEXT_SMALL_COLOR;
 		cell.foodPerHourLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -217,7 +217,7 @@
 		//TOTAL
 		cell.oreTotalLabel = [[[UILabel alloc] initWithFrame:CGRectMake(165, 39, 74, 20)] autorelease];
 		cell.oreTotalLabel.backgroundColor = [UIColor clearColor];
-		cell.oreTotalLabel.textAlignment = UITextAlignmentRight;
+		cell.oreTotalLabel.textAlignment = NSTextAlignmentRight;
 		cell.oreTotalLabel.font = TEXT_SMALL_FONT;
 		cell.oreTotalLabel.textColor = TEXT_SMALL_COLOR;
 		cell.oreTotalLabel.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;

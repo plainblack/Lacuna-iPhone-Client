@@ -72,7 +72,7 @@
 		
 		cell.empireNameText = [[[UILabel alloc] initWithFrame:CGRectMake(5, 5, 310, 20)] autorelease];
 		cell.empireNameText.backgroundColor = [UIColor clearColor];
-		cell.empireNameText.textAlignment = UITextAlignmentCenter;
+		cell.empireNameText.textAlignment = NSTextAlignmentCenter;
 		cell.empireNameText.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
 		cell.empireNameText.font = BUTTON_TEXT_FONT;
 		cell.empireNameText.textColor = BUTTON_TEXT_COLOR;
@@ -80,7 +80,7 @@
 		
 		cell.serverUriLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 25, 310, 15)] autorelease];
 		cell.serverUriLabel.backgroundColor = [UIColor clearColor];
-		cell.serverUriLabel.textAlignment = UITextAlignmentCenter;
+		cell.serverUriLabel.textAlignment = NSTextAlignmentCenter;
 		cell.serverUriLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
 		cell.serverUriLabel.font = TEXT_SMALL_FONT;
 		cell.serverUriLabel.textColor = BUTTON_TEXT_COLOR;

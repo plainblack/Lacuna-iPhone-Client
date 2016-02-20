@@ -76,7 +76,7 @@
 		
 		cell.asteroidNameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(115, y, 200, 22)] autorelease];
 		cell.asteroidNameLabel.backgroundColor = [UIColor clearColor];
-		cell.asteroidNameLabel.textAlignment = UITextAlignmentLeft;
+		cell.asteroidNameLabel.textAlignment = NSTextAlignmentLeft;
 		cell.asteroidNameLabel.font = TEXT_FONT;
 		cell.asteroidNameLabel.textColor = TEXT_COLOR;
 		cell.asteroidNameLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
@@ -85,7 +85,7 @@
 		
 		UILabel *tmp = [[[UILabel alloc] initWithFrame:CGRectMake(70, y, 50, 20)] autorelease];
 		tmp.backgroundColor = [UIColor clearColor];
-		tmp.textAlignment = UITextAlignmentRight;
+		tmp.textAlignment = NSTextAlignmentRight;
 		tmp.font = TEXT_SMALL_FONT;
 		tmp.textColor = TEXT_SMALL_COLOR;
 		tmp.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -93,7 +93,7 @@
 		[cell.contentView addSubview:tmp];
 		cell.asteroidLocationLabel = [[[UILabel alloc] initWithFrame:CGRectMake(125, y, 165, 20)] autorelease];
 		cell.asteroidLocationLabel.backgroundColor = [UIColor clearColor];
-		cell.asteroidLocationLabel.textAlignment = UITextAlignmentLeft;
+		cell.asteroidLocationLabel.textAlignment = NSTextAlignmentLeft;
 		cell.asteroidLocationLabel.font = TEXT_SMALL_FONT;
 		cell.asteroidLocationLabel.textColor = TEXT_SMALL_COLOR;
 		cell.asteroidLocationLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
@@ -102,7 +102,7 @@
 		
 		tmp = [[[UILabel alloc] initWithFrame:CGRectMake(70, y, 100, 20)] autorelease];
 		tmp.backgroundColor = [UIColor clearColor];
-		tmp.textAlignment = UITextAlignmentRight;
+		tmp.textAlignment = NSTextAlignmentRight;
 		tmp.font = TEXT_SMALL_FONT;
 		tmp.textColor = TEXT_SMALL_COLOR;
 		tmp.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -110,7 +110,7 @@
 		[cell.contentView addSubview:tmp];
 		cell.shippingLabel = [[[UILabel alloc] initWithFrame:CGRectMake(175, y, 105, 20)] autorelease];
 		cell.shippingLabel.backgroundColor = [UIColor clearColor];
-		cell.shippingLabel.textAlignment = UITextAlignmentLeft;
+		cell.shippingLabel.textAlignment = NSTextAlignmentLeft;
 		cell.shippingLabel.font = TEXT_SMALL_FONT;
 		cell.shippingLabel.textColor = TEXT_SMALL_COLOR;
 		cell.shippingLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;

@@ -47,7 +47,7 @@ typedef enum {
 
         self.dateLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10.0, 5.0, 310.0, 20.0)] autorelease];
         self.dateLabel.backgroundColor = [UIColor clearColor];
-        self.dateLabel.textAlignment = UITextAlignmentLeft;
+        self.dateLabel.textAlignment = NSTextAlignmentLeft;
         self.dateLabel.font = BUTTON_TEXT_FONT;
         self.dateLabel.textColor = BUTTON_TEXT_COLOR;
         self.dateLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
@@ -84,7 +84,7 @@ typedef enum {
 
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, y, 100.0, height)];
     nameLabel.backgroundColor = [UIColor clearColor];
-    nameLabel.textAlignment = UITextAlignmentRight;
+    nameLabel.textAlignment = NSTextAlignmentRight;
     nameLabel.font = font;
     nameLabel.textColor = LABEL_COLOR;
     nameLabel.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -94,7 +94,7 @@ typedef enum {
     
     UILabel *dataLabel = [[UILabel alloc] initWithFrame:CGRectMake(110.0, y, 200.0, height)];
     dataLabel.backgroundColor = [UIColor clearColor];
-    dataLabel.textAlignment = UITextAlignmentLeft;
+    dataLabel.textAlignment = NSTextAlignmentLeft;
     dataLabel.font = font;
     dataLabel.textColor = TEXT_COLOR;
     dataLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;

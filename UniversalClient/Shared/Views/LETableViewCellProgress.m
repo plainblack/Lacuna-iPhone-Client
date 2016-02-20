@@ -76,7 +76,7 @@
 		
 		cell.secondsLabel = [[[UILabel alloc] initWithFrame:CGRectMake(20, 22, 280, 21)] autorelease];
 		cell.secondsLabel.backgroundColor = [UIColor clearColor];
-		cell.secondsLabel.textAlignment = UITextAlignmentCenter;
+		cell.secondsLabel.textAlignment = NSTextAlignmentCenter;
 		cell.secondsLabel.font = TEXT_SMALL_FONT;
 		cell.secondsLabel.textColor = TEXT_SMALL_COLOR;
 		cell.secondsLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;

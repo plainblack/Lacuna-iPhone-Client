@@ -73,7 +73,7 @@
 		
 		cell.typeLabel = [[[UILabel alloc] initWithFrame:CGRectMake(90, 10, 225, 25)] autorelease];
 		cell.typeLabel.backgroundColor = [UIColor clearColor];
-		cell.typeLabel.textAlignment = UITextAlignmentLeft;
+		cell.typeLabel.textAlignment = NSTextAlignmentLeft;
 		cell.typeLabel.font = TEXT_FONT;
 		cell.typeLabel.textColor = TEXT_COLOR;
 		cell.typeLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
@@ -81,7 +81,7 @@
 
 		cell.dateCompleteLabel = [[[UILabel alloc] initWithFrame:CGRectMake(90, 35, 225, 20)] autorelease];
 		cell.dateCompleteLabel.backgroundColor = [UIColor clearColor];
-		cell.dateCompleteLabel.textAlignment = UITextAlignmentLeft;
+		cell.dateCompleteLabel.textAlignment = NSTextAlignmentLeft;
 		cell.dateCompleteLabel.font = TEXT_SMALL_FONT;
 		cell.dateCompleteLabel.textColor = TEXT_SMALL_COLOR;
 		cell.dateCompleteLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;

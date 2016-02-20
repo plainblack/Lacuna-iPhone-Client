@@ -78,14 +78,14 @@
 		
 		cell.name = [[[UILabel alloc] initWithFrame:CGRectMake(10, 6, 300, 20)] autorelease];
 		cell.name.backgroundColor = [UIColor clearColor];
-		cell.name.textAlignment = UITextAlignmentLeft;
+		cell.name.textAlignment = NSTextAlignmentLeft;
 		cell.name.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
 		cell.name.font = BUTTON_TEXT_FONT;
 		[cell.contentView addSubview:cell.name];
 
 		cell.buildLevel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 26, 300, 20)] autorelease];
 		cell.buildLevel.backgroundColor = [UIColor clearColor];
-		cell.buildLevel.textAlignment = UITextAlignmentLeft;
+		cell.buildLevel.textAlignment = NSTextAlignmentLeft;
 		cell.buildLevel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
 		cell.buildLevel.font = TEXT_FONT;
 		[cell.contentView addSubview:cell.buildLevel];

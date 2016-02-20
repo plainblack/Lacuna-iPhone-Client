@@ -73,7 +73,7 @@
 
 		cell.name = [[[UILabel alloc] initWithFrame:CGRectMake(70, 10, 230, 50)] autorelease];
 		cell.name.backgroundColor = [UIColor clearColor];
-		cell.name.textAlignment = UITextAlignmentLeft;
+		cell.name.textAlignment = NSTextAlignmentLeft;
 		cell.name.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
         cell.name.numberOfLines = 0;
 		cell.name.font = BUTTON_TEXT_FONT;

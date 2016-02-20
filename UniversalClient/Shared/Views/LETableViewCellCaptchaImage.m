@@ -71,7 +71,7 @@
 		tmpLabel.text = @"Loading";
 		tmpLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
 		tmpLabel.backgroundColor = [UIColor clearColor];
-		tmpLabel.textAlignment = UITextAlignmentCenter;
+		tmpLabel.textAlignment = NSTextAlignmentCenter;
 		[cell.contentView addSubview:tmpLabel];
 
 		cell.imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 300, 80)] autorelease];
