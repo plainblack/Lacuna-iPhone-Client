@@ -201,7 +201,7 @@ typedef enum {
 		NSString *url = [session wikiLinkForBuilding:[building objectForKey:@"url"]];
 		WebPageController *webPageController = [WebPageController create];
 		webPageController.urlToLoad = url;
-		[self presentModalViewController:webPageController animated:YES];
+		[self presentViewController:webPageController animated:YES completion:nil];
 	} else if (indexPath.row == ROW_BUILD) {
 		selectedBuilding = indexPath.section;
 		NSDictionary *building = [self.buildables objectAtIndex:selectedBuilding];
