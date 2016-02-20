@@ -36,8 +36,8 @@
 #pragma mark NSObject Methods
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"empireId:%@, name:%@, numPlanets:%@, status:%@, description:%@, city:%@, country:%@, skype:%@, playerName:%@, lastLogin:%@, founded:%@, speciesName:%@, medalCount:%i, medalCount:%i, allianceId:%@, allianceName:%@",
-			self.empireId, self.name, self.numPlanets, self.status, self.empireDescription, self.city, self.country, self.skype, self.playerName, self.lastLogin, self.founded, self.speciesName, [self.colonies count], [self.medals count], self.allianceId, self.allianceName];
+	return [NSString stringWithFormat:@"empireId:%@, name:%@, numPlanets:%@, status:%@, description:%@, city:%@, country:%@, skype:%@, playerName:%@, lastLogin:%@, founded:%@, speciesName:%@, medalCount:%lu, medalCount:%lu, allianceId:%@, allianceName:%@",
+			self.empireId, self.name, self.numPlanets, self.status, self.empireDescription, self.city, self.country, self.skype, self.playerName, self.lastLogin, self.founded, self.speciesName, (unsigned long)[self.colonies count], (unsigned long)[self.medals count], self.allianceId, self.allianceName];
 }
 
 

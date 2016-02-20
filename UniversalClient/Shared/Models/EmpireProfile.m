@@ -43,8 +43,8 @@
 #pragma mark NSObject Methods
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"description:%@, status:%@, city:%@, country:%@, skype:%@, playerName:%@, email:%@, sitterPassword:%@, medalCount:%i, notes:%@",
-			self.empireDescription, self.status, self.city, self.country, self.skype, self.playerName, self.email, self.sitterPassword, [self.medals count], self.notes];
+	return [NSString stringWithFormat:@"description:%@, status:%@, city:%@, country:%@, skype:%@, playerName:%@, email:%@, sitterPassword:%@, medalCount:%lu, notes:%@",
+			self.empireDescription, self.status, self.city, self.country, self.skype, self.playerName, self.email, self.sitterPassword, (unsigned long)[self.medals count], self.notes];
 }
 
 

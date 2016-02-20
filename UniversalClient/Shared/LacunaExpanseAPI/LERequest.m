@@ -262,7 +262,7 @@ static id<LERequestMonitor> delegate;
 		[request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
 		[request setValue:@"TLE iOS Client" forHTTPHeaderField:@"User-Agent"];
 		[request setHTTPMethod:@"POST"];
-		[request setValue:[NSString stringWithFormat:@"%d", [jsonData length]] forHTTPHeaderField:@"Content-Length"];
+		[request setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
 		[request setHTTPBody:jsonData];
 		
 		self.conn = [[[NSURLConnection alloc] initWithRequest:request delegate:self] autorelease];

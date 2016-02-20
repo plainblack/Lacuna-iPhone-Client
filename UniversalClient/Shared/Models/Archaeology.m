@@ -42,7 +42,7 @@
 
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"secondsRemaining:%i, glyphs:%@", self.secondsRemaining, self.glyphs];
+	return [NSString stringWithFormat:@"secondsRemaining:%li, glyphs:%@", (long)self.secondsRemaining, self.glyphs];
 }
 
 

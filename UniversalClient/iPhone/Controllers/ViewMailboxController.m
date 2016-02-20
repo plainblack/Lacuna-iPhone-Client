@@ -434,13 +434,13 @@
 
 - (void)updateSelectionCount {
     if ([self.mailbox canArchive] && [self.mailbox canTrash]) {
-        self.archiveOrTrashBarButtonItem.title = [NSString stringWithFormat:@"Archive/Trash (%i)", [self.selectedMessageIds count]];
+        self.archiveOrTrashBarButtonItem.title = [NSString stringWithFormat:@"Archive/Trash (%lu)", (unsigned long)[self.selectedMessageIds count]];
     } else if ([self.mailbox canArchive]) {
-        self.archiveOrTrashBarButtonItem.title = [NSString stringWithFormat:@"Archive (%i)", [self.selectedMessageIds count]];
+        self.archiveOrTrashBarButtonItem.title = [NSString stringWithFormat:@"Archive (%lu)", (unsigned long)[self.selectedMessageIds count]];
     } else if ([self.mailbox canTrash]) {
-        self.archiveOrTrashBarButtonItem.title = [NSString stringWithFormat:@"Trash (%i)", [self.selectedMessageIds count]];
+        self.archiveOrTrashBarButtonItem.title = [NSString stringWithFormat:@"Trash (%lu)", (unsigned long)[self.selectedMessageIds count]];
     } else {
-        self.archiveOrTrashBarButtonItem.title = [NSString stringWithFormat:@"Nothing (%i)", [self.selectedMessageIds count]];
+        self.archiveOrTrashBarButtonItem.title = [NSString stringWithFormat:@"Nothing (%lu)", (unsigned long)[self.selectedMessageIds count]];
     }
 }
 

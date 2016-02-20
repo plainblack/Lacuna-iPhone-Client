@@ -163,7 +163,7 @@ typedef enum {
 	[self.growthCell setRating:_intv([self.speciesTemplate objectForKey:@"growth_affinity"])];
 	
 	[self calculatePoints];
-	self.navigationItem.title = [NSString stringWithFormat:@"%i / 45 points", self->points];
+	self.navigationItem.title = [NSString stringWithFormat:@"%li / 45 points", (long)self->points];
 	
 	self.sectionHeaders = _array([LEViewSectionTab tableView:self.tableView withText:@"Species"],
 								 [LEViewSectionTab tableView:self.tableView withText:@"Habital Orbits"],
@@ -389,10 +389,10 @@ typedef enum {
 		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Invalid Orbits" message:@"Max Orbit must be greater than or equal to min orbit." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 		[av show];
 	} else if (self->points > 45) {
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Too many points" message:[NSString stringWithFormat:@"You have spent %i points, but you can only spend 45 points.", self->points] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Too many points" message:[NSString stringWithFormat:@"You have spent %li points, but you can only spend 45 points.", (long)self->points] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 		[av show];
 	} else if (self->points < 45) {
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Too few points" message:[NSString stringWithFormat:@"You have spent %i points, but you must spend 45 points.", self->points] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Too few points" message:[NSString stringWithFormat:@"You have spent %li points, but you must spend 45 points.", (long)self->points] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 		[av show];
 	} else {
 		self.pendingRequest = YES;
@@ -422,7 +422,7 @@ typedef enum {
 
 - (void)updatePoints {
 	[self calculatePoints];
-	self.navigationItem.title = [NSString stringWithFormat:@"%i / 45 points", self->points];
+	self.navigationItem.title = [NSString stringWithFormat:@"%li / 45 points", (long)self->points];
 }
 
 

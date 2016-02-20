@@ -406,7 +406,7 @@ typedef enum {
                     [actionSheet release];
                     break;
                 default:
-                    NSLog(@"Invalid action clicked: %i:%i", indexPath.section, indexPath.row);
+                    NSLog(@"Invalid action clicked: %li:%li", (long)indexPath.section, (long)indexPath.row);
                     break;
             }
             break;

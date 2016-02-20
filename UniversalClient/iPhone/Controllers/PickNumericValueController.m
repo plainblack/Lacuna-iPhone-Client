@@ -98,11 +98,11 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
 	if (component == 0 && self.hideZero) {
-		return [NSString stringWithFormat:@"%i", row+1];
+		return [NSString stringWithFormat:@"%li", row+1];
 	} else if ((component == self->numDigits-2) && self.showTenths) {
 		return @".";
 	} else {
-		return [NSString stringWithFormat:@"%i", row];
+		return [NSString stringWithFormat:@"%li", (long)row];
 	}
 }
 
@@ -118,9 +118,9 @@
 			[valueAsString appendFormat:@"."];
 		} else {
 			if (self.hideZero) {
-				[valueAsString appendFormat:@"%i", [self.numberPicker selectedRowInComponent:index]+1];
+				[valueAsString appendFormat:@"%li", [self.numberPicker selectedRowInComponent:index]+1];
 			} else {
-				[valueAsString appendFormat:@"%i", [self.numberPicker selectedRowInComponent:index]];
+				[valueAsString appendFormat:@"%li", (long)[self.numberPicker selectedRowInComponent:index]];
 			}
 		}
 	}

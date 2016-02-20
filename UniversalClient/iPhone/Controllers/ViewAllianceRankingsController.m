@@ -383,7 +383,7 @@ typedef enum {
 	self.numAlliances = request.numAlliances;
 	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[self.alliances count]];
 	for (int i=0; i < [self.alliances count]; i++) {
-		[tmp addObject:[LEViewSectionTab tableView:self.tableView withText:[NSString stringWithFormat:@"Alliance %i", ((request.pageNumber-1)*25+i+1)]]];
+		[tmp addObject:[LEViewSectionTab tableView:self.tableView withText:[NSString stringWithFormat:@"Alliance %li", ((request.pageNumber-1)*25+i+1)]]];
 	}
 	self.sectionHeaders = tmp;
 	[self togglePageButtons];

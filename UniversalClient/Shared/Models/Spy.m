@@ -40,8 +40,8 @@
 #pragma mark NSObject Methods
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"id:%@, name:%@, bodyId:%@, bodyName:%@, assignemtn:%@, level:%@, politicsExp:%@, mayhemExp:%@, theftExp:%@, intelExp:%@, offenseRating:%@, defenseRating:%@, isAvailable:%i, secondsRemaining:%i, assignmentStarted:%@, assignmentEnds:%@, possibleAssignments:%@, numOffensiveMissions:%@, numDefensiveMissions:%@", 
-			self.id, self.name, self.bodyId, self.bodyName, self.assignment, self.level, self.politicsExp, self.mayhemExp, self.theftExp, self.intelExp, self.offenseRating, self.defenseRating, self.isAvailable, self.secondsRemaining, self.assignmentStarted, self.assignmentEnds, self.possibleAssignments, self.numOffensiveMissions, self.numDefensiveMissions];
+	return [NSString stringWithFormat:@"id:%@, name:%@, bodyId:%@, bodyName:%@, assignemtn:%@, level:%@, politicsExp:%@, mayhemExp:%@, theftExp:%@, intelExp:%@, offenseRating:%@, defenseRating:%@, isAvailable:%i, secondsRemaining:%li, assignmentStarted:%@, assignmentEnds:%@, possibleAssignments:%@, numOffensiveMissions:%@, numDefensiveMissions:%@", 
+			self.id, self.name, self.bodyId, self.bodyName, self.assignment, self.level, self.politicsExp, self.mayhemExp, self.theftExp, self.intelExp, self.offenseRating, self.defenseRating, self.isAvailable, (long)self.secondsRemaining, self.assignmentStarted, self.assignmentEnds, self.possibleAssignments, self.numOffensiveMissions, self.numDefensiveMissions];
 }
 
 
