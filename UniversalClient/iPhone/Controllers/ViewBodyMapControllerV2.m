@@ -221,7 +221,7 @@
 }
 
 
-- (void)scrollViewDidEndZooming:(UIScrollView *)inScrollView withView:(UIView *)view atScale:(double)scale {
+- (void)scrollViewDidEndZooming:(UIScrollView *)inScrollView withView:(UIView *)view atScale:(float)scale {
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];  
 	[userDefaults setFloat:scale forKey:@"bodyMapZoom"];
 	[userDefaults synchronize];

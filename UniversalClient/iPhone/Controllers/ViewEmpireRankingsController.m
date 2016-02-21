@@ -71,7 +71,6 @@ typedef enum {
 	self.pageSegmentedControl = [[[UISegmentedControl alloc] initWithItems:_array(UP_ARROW_ICON, DOWN_ARROW_ICON)] autorelease];
 	[self.pageSegmentedControl addTarget:self action:@selector(switchPage) forControlEvents:UIControlEventValueChanged]; 
 	self.pageSegmentedControl.momentary = YES;
-	self.pageSegmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
 	UIBarButtonItem *rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.pageSegmentedControl] autorelease];
 	self.navigationItem.rightBarButtonItem = rightBarButtonItem; 
 	
@@ -365,7 +364,7 @@ typedef enum {
 	self.numEmpires = request.numEmpires;
 	NSMutableArray *tmp = [NSMutableArray arrayWithCapacity:[self.empires count]];
 	for (int i=0; i < [self.empires count]; i++) {
-		[tmp addObject:[LEViewSectionTab tableView:self.tableView withText:[NSString stringWithFormat:@"Empire %li", ((request.pageNumber-1)*25+i+1)]]];
+		[tmp addObject:[LEViewSectionTab tableView:self.tableView withText:[NSString stringWithFormat:@"Empire %i", ((request.pageNumber-1)*25+i+1)]]];
 	}
 	self.sectionHeaders = tmp;
 	[self togglePageButtons];

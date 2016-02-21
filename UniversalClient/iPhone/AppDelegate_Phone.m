@@ -238,8 +238,8 @@
 - (void)gameover:(NSString *)endGameUrl {
 	WebPageController *webPageController = [WebPageController create];
 	[webPageController goToUrl:endGameUrl];
-	if (self.tabBarController.modalViewController) {
-		[self.tabBarController.modalViewController presentModalViewController:webPageController animated:YES];
+	if (self.tabBarController.presentedViewController) {
+		[self.tabBarController.presentedViewController presentViewController:webPageController animated:YES completion:nil];
 	} else {
 		[self.tabBarController presentViewController:webPageController animated:YES completion:nil];
 	}
@@ -335,7 +335,7 @@
 #pragma mark -
 #pragma mark UIAlertViewDelegate Methods
 
-- (void) alertView:(UIAlertView *) alertView clickedButtonAtIndex:(long)index {
+- (void) alertView:(UIAlertView *) alertView clickedButtonAtIndex:(int)index {
 	Session *session = [Session sharedInstance];
 	if ([alertView.title isEqualToString:@"Welcome"]) {
 		if (index != [alertView cancelButtonIndex]) {

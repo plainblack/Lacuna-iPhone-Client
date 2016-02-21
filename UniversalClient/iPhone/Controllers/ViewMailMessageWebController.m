@@ -57,7 +57,6 @@ typedef enum {
 	self.messageSegmentedControl = [[[UISegmentedControl alloc] initWithItems:_array(UP_ARROW_ICON, DOWN_ARROW_ICON)] autorelease];
 	[self.messageSegmentedControl addTarget:self action:@selector(switchMessage) forControlEvents:UIControlEventValueChanged]; 
 	self.messageSegmentedControl.momentary = YES;
-	self.messageSegmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
 	UIBarButtonItem *rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.messageSegmentedControl] autorelease];
 	self.navigationItem.rightBarButtonItem = rightBarButtonItem; 
 	
