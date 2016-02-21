@@ -490,7 +490,7 @@ typedef enum {
 		[av addAction: ok];
 		[self presentViewController:av animated:YES completion:nil];
 	} else if ([self.orbitMin compare:self.minOrbitCell.rating] == NSOrderedAscending) {
-		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Min Orbit too hight" message:[NSString stringWithFormat:@"Your Min Orbit cannot go above %@.", self.orbitMin] preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Min Orbit too high" message:[NSString stringWithFormat:@"Your Min Orbit cannot go above %@.", self.orbitMin] preferredStyle:UIAlertControllerStyleAlert];
 		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
 							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
 		[av addAction: ok];
