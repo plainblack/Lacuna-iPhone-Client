@@ -27,7 +27,7 @@
 	
 	self.webView.hidden = YES;
 	
-	[self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.lacunaexpanse.com/tutorial/"]]];
+	[self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.lacunaexpanse.com/tutorial/"]]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

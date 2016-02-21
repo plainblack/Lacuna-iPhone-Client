@@ -27,7 +27,7 @@
 	
 	self.webView.hidden = YES;
 	
-	[self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://community.lacunaexpanse.com/forums"]]];
+	[self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://community.lacunaexpanse.com/forums"]]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
