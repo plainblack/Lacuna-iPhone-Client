@@ -166,11 +166,17 @@ typedef enum {
 			break;
 		case LOGIN_FORM_ROW_LOGIN_BUTTON:
 			if ([self.passwordCell.textField.text length] == 0) {
-				UIAlertView *noEmpireNameAlertView = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must enter a password." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-				[noEmpireNameAlertView show];
+				UIAlertController *noEmpireNameAlertView = [UIAlertController alertControllerWithTitle:@"Error" message: @"You must enter a password." preferredStyle:UIAlertControllerStyleAlert];
+				UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+									 { [noEmpireNameAlertView dismissViewControllerAnimated:YES completion:nil]; }];
+				[noEmpireNameAlertView addAction: ok];
+				[self presentViewController:noEmpireNameAlertView animated:YES completion:nil];
 			} else if (!self.selectedServer) {
-				UIAlertView *noEmpireNameAlertView = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must select a server." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-				[noEmpireNameAlertView show];
+				UIAlertController *noEmpireNameAlertView = [UIAlertController alertControllerWithTitle:@"Error" message: @"You must select a server." preferredStyle:UIAlertControllerStyleAlert];
+				UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+									 { [noEmpireNameAlertView dismissViewControllerAnimated:YES completion:nil]; }];
+				[noEmpireNameAlertView addAction: ok];
+				[self presentViewController:noEmpireNameAlertView animated:YES completion:nil];
 			} else {
 				[self doLogin];
 			}

@@ -540,8 +540,11 @@ typedef enum {
 
 - (IBAction)send {
 	if ([self.itemPush.items count] == 0) {
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Incomplete" message:@"You have not selected anything to push." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-		[av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Incomplete" message: @"You have not selected anything to push." preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
 	} else {
 			if (self.baseTradeBuilding.usesEssentia) {
 			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"This will cost 2 essentia. Do you wish to contine?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];

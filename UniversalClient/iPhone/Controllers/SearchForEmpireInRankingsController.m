@@ -200,8 +200,11 @@ typedef enum {
 		[self searchForEmpire:textField.text];
 		return YES;
 	} else {
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must enter at least 3 characters to search." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-		[av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Error" message: @"You must enter at least 3 characters to search." preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
 		return NO;
 	}
 }

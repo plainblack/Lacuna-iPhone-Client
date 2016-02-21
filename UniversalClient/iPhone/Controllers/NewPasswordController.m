@@ -121,11 +121,17 @@ typedef enum {
 	switch (indexPath.row) {
 		case ROW_SAVE:
 			if ([self.passwordCell.textField.text length] == 0) {
-				UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must enter the new password." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-				[av show];
+				UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Error" message: @"You must enter the new password." preferredStyle:UIAlertControllerStyleAlert];
+				UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+									 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+				[av addAction: ok];
+				[self presentViewController:av animated:YES completion:nil];
 			} else if ([self.passwordConfirmCell.textField.text length] == 0) {
-				UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must enter the confirmation of the new password." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-				[av show];
+				UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Error" message: @"You must enter the confirmation of the new password." preferredStyle:UIAlertControllerStyleAlert];
+				UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+									 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+				[av addAction: ok];
+				[self presentViewController:av animated:YES completion:nil];
 			} else {
 				Session *session = [Session sharedInstance];
 				[session.empire changeToPassword:self.passwordCell.textField.text confirmPassword:self.passwordConfirmCell.textField.text target:self callback:@selector(passwordChanged:)];

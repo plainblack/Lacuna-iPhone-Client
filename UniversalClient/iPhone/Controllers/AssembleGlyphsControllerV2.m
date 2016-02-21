@@ -118,8 +118,11 @@
 		self.archaeology.delegate = self;
 		[self.archaeology assembleGlyphs:glyphIds];
 	} else {
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Failed" message:@"You must select at least one glyph to combine" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-		[av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Failed" message: @"You must select at least one glyph to combine" preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
 	}
 
 }
@@ -213,8 +216,11 @@
 - (void) assembleyComplete:(NSString *)itemName {
 	[archaeology loadGlyphs];
 	
-	UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Glyphs Assembled" message:[NSString stringWithFormat:@"You assembled a %@ plan.", itemName] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-	[av show];
+	UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Glyphs Assembled" message:[NSString stringWithFormat:@"You assembled a %@ plan.", itemName] preferredStyle:UIAlertControllerStyleAlert];
+	UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+						 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+	[av addAction: ok];
+	[self presentViewController:av animated:YES completion:nil];
 	[self.selectedGlyphs replaceObjectAtIndex:0 withObject:[NSNull null]];
 	[self.selectedGlyphs replaceObjectAtIndex:1 withObject:[NSNull null]];
 	[self.selectedGlyphs replaceObjectAtIndex:2 withObject:[NSNull null]];
@@ -227,8 +233,11 @@
 
 
 - (void) assembleyFailed:(NSString *)reason {
-	UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Failed" message:reason delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-	[av show];
+	UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Failed" message:reason preferredStyle:UIAlertControllerStyleAlert];
+	UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+						 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+	[av addAction: ok];
+	[self presentViewController:av animated:YES completion:nil];
 }
 
 

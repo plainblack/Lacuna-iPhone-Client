@@ -190,8 +190,11 @@ typedef enum {
 		} else {
 			errorText = @"This trade is not valid.";
 		}
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Trade invalid" message:errorText delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-		[av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Trade invalid" message:errorText preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
 	}
 }
 

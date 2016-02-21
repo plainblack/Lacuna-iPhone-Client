@@ -306,11 +306,17 @@ typedef enum {
 
 	if ([request wasError]) {
 		[request markErrorHandled];
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Alert" message:@"That email address is not associtate with any empire." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-		[av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Alert" message: @"That email address is not associtate with any empire." preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
 	} else {
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Email Sent" message:@"A email with password reset instructions has been sent. Please check your email." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-		[av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Email Sent" message: @"A email with password reset instructions has been sent. Please check your email." preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
 	}
 
 	return nil;
@@ -323,8 +329,11 @@ typedef enum {
 
 	if ([request wasError]) {
 		[request markErrorHandled];
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Alert" message:[request errorMessage]delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-		[av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Alert" message:[request errorMessage] preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
 	} else {
 		Session *session = [Session sharedInstance];
 		[session loggedInEmpireData:request.empireData sessionId:request.sessionId password:request.password];

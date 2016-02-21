@@ -472,23 +472,41 @@ typedef enum {
 
 - (IBAction)redefineSpecies {
 	if (_intv(self.maxOrbitCell.rating) < _intv(self.minOrbitCell.rating)) {
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Invalid Orbits" message:@"Max Orbit must be greater than or equal to min orbit." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-		[av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Invalid Orbits" message: @"Max Orbit must be greater than or equal to min orbit." preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
 	} else if (self->points > 45) {
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Too many points" message:[NSString stringWithFormat:@"You have spent %i points, but you can only spend 45 points.", self->points] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-		[av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Too many points" message:[NSString stringWithFormat:@"You have spent %i points, but you can only spend 45 points.", self->points] preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
 	} else if (self->points < 45) {
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Too few points" message:[NSString stringWithFormat:@"You have spent %i points, but you must spend 45 points.", self->points] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-		[av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Too few points" message:[NSString stringWithFormat:@"You have spent %i points, but you must spend 45 points.", self->points] preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
 	} else if ([self.orbitMin compare:self.minOrbitCell.rating] == NSOrderedAscending) {
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Min Orbit too hight" message:[NSString stringWithFormat:@"Your Min Orbit cannot go above %@.", self.orbitMin] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-		[av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Min Orbit too hight" message:[NSString stringWithFormat:@"Your Min Orbit cannot go above %@.", self.orbitMin] preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
 	} else if ([self.orbitMax compare:self.maxOrbitCell.rating] == NSOrderedDescending) {
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Max Orbit too low" message:[NSString stringWithFormat:@"Your Max Orbit cannot go below %@.", self.orbitMax] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-		[av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Max Orbit too low" message:[NSString stringWithFormat:@"Your Max Orbit cannot go below %@.", self.orbitMax] preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
 	} else if ([self.growthMin compare:self.growthCell.rating] == NSOrderedDescending) {
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Growth too low" message:[NSString stringWithFormat:@"Your Growth cannot go below %@.", self.growthMin] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-		[av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Growth too low" message:[NSString stringWithFormat:@"Your Growth cannot go below %@.", self.growthMin] preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
 	} else {
 		self.pendingRequest = YES;
 		[[[LEEmpireRedefineSpecies alloc] initWithCallback:@selector(redefinedSpecies:)

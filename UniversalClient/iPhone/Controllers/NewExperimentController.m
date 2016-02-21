@@ -362,8 +362,11 @@ typedef enum {
 - (void)experimentComplete:(LEBuildingRunExperiment *)request {
 	if (![request wasError]) {
 		[self.prepareExperiment parseData:request.result];
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Experiment Complete" message:request.message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-		[av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Experiment Complete" message:request.message preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
 		if (request.spySurvived) {
 			//[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 			[self.prepareExperiment.grafts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
