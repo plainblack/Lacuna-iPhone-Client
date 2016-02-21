@@ -342,8 +342,11 @@ typedef enum {
 								self.pendingRequest = YES;
 							}
 						} else {
-							UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Alert" message:@"You must agree to the Terms of Service and Rules." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-							[av show];
+							UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Alert" message: @"You must agree to the Terms of Service and Rules." preferredStyle:UIAlertControllerStyleAlert];
+							UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+												 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+							[av addAction: ok];
+							[self presentViewController:av animated:YES completion:nil];
 						}
 						
 						break;
@@ -468,20 +471,29 @@ typedef enum {
 			case 1000:
 				; //DO NOT REMOVE
 				[request markErrorHandled];
-				UIAlertView *nameAlertView = [[[UIAlertView alloc] initWithTitle:@"Could not create empire" message:@"Empire name invalid" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-				[nameAlertView show];
+				UIAlertController *nameAlertView = [UIAlertController alertControllerWithTitle:@"Could not create empire" message: @"Empire name invalid" preferredStyle:UIAlertControllerStyleAlert];
+				UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+									 { [nameAlertView dismissViewControllerAnimated:YES completion:nil]; }];
+				[nameAlertView addAction: ok];
+				[self presentViewController:nameAlertView animated:YES completion:nil];
 				break;
 			case 1001:
 				; //DO NOT REMOVE
 				[request markErrorHandled];
-				UIAlertView *passwordAlertView = [[[UIAlertView alloc] initWithTitle:@"Could not create empire" message:@"Password invalid" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-				[passwordAlertView show];
+				UIAlertController *passwordAlertView = [UIAlertController alertControllerWithTitle:@"Could not create empire" message: @"Password invalid" preferredStyle:UIAlertControllerStyleAlert];
+				UIAlertAction* ok2 = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+									 { [passwordAlertView dismissViewControllerAnimated:YES completion:nil]; }];
+				[passwordAlertView addAction: ok2];
+				[self presentViewController:passwordAlertView animated:YES completion:nil];
 				break;
 			case 1014:
 				; //DO NOT REMOVE
 				[request markErrorHandled];
-				UIAlertView *captchaAlertView = [[[UIAlertView alloc] initWithTitle:@"Captcha solution is incorrect." message:[request errorMessage] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-				[captchaAlertView show];
+				UIAlertController *captchaAlertView = [UIAlertController alertControllerWithTitle:@"Captcha solution is incorrect." message:[request errorMessage] preferredStyle:UIAlertControllerStyleAlert];
+				UIAlertAction* ok3 = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+									 { [captchaAlertView dismissViewControllerAnimated:YES completion:nil]; }];
+				[captchaAlertView addAction: ok3];
+				[self presentViewController:captchaAlertView animated:YES completion:nil];
 				self.captchaUrl = [[request errorData] objectForKey:@"url"];
 				self.captchaGuid = [[request errorData] objectForKey:@"guid"];
 				[self.captchaImageCell setCapthchaImageURL:self.captchaUrl];

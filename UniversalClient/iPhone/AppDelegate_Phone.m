@@ -335,7 +335,7 @@
 #pragma mark -
 #pragma mark UIAlertViewDelegate Methods
 
-- (void) alertView:(UIAlertView *) alertView clickedButtonAtIndex:(int)index {
+- (void) alertView:(UIAlertView *) alertView clickedButtonAtIndex:(long)index {
 	Session *session = [Session sharedInstance];
 	if ([alertView.title isEqualToString:@"Welcome"]) {
 		if (index != [alertView cancelButtonIndex]) {

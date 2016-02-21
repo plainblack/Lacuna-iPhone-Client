@@ -393,11 +393,19 @@ typedef enum {
 		[self presentViewController:av animated:YES completion:nil];
 		
 	} else if (self->points > 45) {
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Too many points" message:[NSString stringWithFormat:@"You have spent %li points, but you can only spend 45 points.", (long)self->points] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-		[av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Too many points" message:[NSString stringWithFormat:@"You have spent %li points, but you can only spend 45 points.", (long)self->points] preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
+		
 	} else if (self->points < 45) {
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Too few points" message:[NSString stringWithFormat:@"You have spent %li points, but you must spend 45 points.", (long)self->points] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-		[av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Too few points" message:[NSString stringWithFormat:@"You have spent %li points, but you must spend 45 points.", (long)self->points] preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
+		
 	} else {
 		self.pendingRequest = YES;
 		[[[LEEmpireUpdateSpecies alloc] initWithCallback:@selector(speciesCreated:) target:self

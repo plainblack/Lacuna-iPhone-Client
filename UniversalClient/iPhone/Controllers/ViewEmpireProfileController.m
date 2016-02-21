@@ -663,8 +663,12 @@ typedef enum {
 - (BOOL)newTextValue:(NSString *)value forTextName:(NSString *)textName {
 	if ([textName isEqualToString:@"Email Addresses"]) {
 		if ([value rangeOfString:@"@"].location == NSNotFound) {
-			UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"That does not appear to be a valid email address" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-			[av show];
+			UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Error" message: @"That does not appear to be a valid email address." preferredStyle:UIAlertControllerStyleAlert];
+			UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+								 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+			[av addAction: ok];
+			[self presentViewController:av animated:YES completion:nil];
+			
 			return NO;
 		} else {
 			Session *session = [Session sharedInstance];
