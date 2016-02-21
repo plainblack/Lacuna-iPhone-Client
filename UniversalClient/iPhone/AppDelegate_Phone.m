@@ -231,7 +231,7 @@
 	NSURL *announcementUrl = [NSURL URLWithString:[NSString stringWithFormat:@"/announcement?session_id=%@", session.sessionId] relativeToURL:baseUrl];
 	WebPageController *webPageController = [WebPageController create];
 	[webPageController goToUrl:[announcementUrl absoluteString]];
-	[self.tabBarController presentModalViewController:webPageController animated:YES];
+	[self.tabBarController presentViewController:webPageController animated:YES completion:nil];
 }
 
 
@@ -241,7 +241,7 @@
 	if (self.tabBarController.modalViewController) {
 		[self.tabBarController.modalViewController presentModalViewController:webPageController animated:YES];
 	} else {
-		[self.tabBarController presentModalViewController:webPageController animated:YES];
+		[self.tabBarController presentViewController:webPageController animated:YES completion:nil];
 	}
 }
 
@@ -249,7 +249,7 @@
 - (void)captchaValidate:(LERequest *)requestToValidate {
 	CaptchaViewController *captchaViewController = [CaptchaViewController create];
 	captchaViewController.requestNeedingCaptcha = requestToValidate;
-	[self.tabBarController presentModalViewController:captchaViewController animated:YES];
+	[self.tabBarController presentViewController:captchaViewController animated:YES completion:nil];
 }
 
 
@@ -386,7 +386,7 @@
 	UINavigationController *navController = [[[UINavigationController alloc] initWithRootViewController:loginController] autorelease];
 	navController.navigationBar.tintColor = TINT_COLOR;
 	navController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-	[self.tabBarController presentModalViewController:navController animated:animated];
+	[self.tabBarController presentViewController:navController animated:animated completion:nil];
 }
 
 

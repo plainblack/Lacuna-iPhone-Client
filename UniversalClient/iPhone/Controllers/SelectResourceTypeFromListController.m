@@ -115,7 +115,7 @@
 	self.selectedStoredResourceTypeKey = [self.storedResourceTypeKeys objectAtIndex:indexPath.row];
 	NSDecimalNumber *storedResourceTypeQuantity = [Util asNumber:[self.storedResourceTypes objectForKey:self.selectedStoredResourceTypeKey]];
 	self->pickNumericValueController = [[PickNumericValueController createWithDelegate:self maxValue:storedResourceTypeQuantity hidesZero:NO showTenths:NO] retain];
-	[self presentModalViewController:self->pickNumericValueController animated:YES];
+	[self presentViewController:self->pickNumericValueController animated:YES completion:nil];
 	self->pickNumericValueController.titleLabel.text = [self.selectedStoredResourceTypeKey capitalizedString];
 }
 

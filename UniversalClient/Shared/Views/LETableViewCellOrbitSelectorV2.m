@@ -90,7 +90,7 @@
 
 - (IBAction)editNumericValue {
 	PickNumericValueController *pickNumericValueController = [PickNumericValueController createWithDelegate:self maxValue:[NSDecimalNumber decimalNumberWithString:@"7"] hidesZero:YES showTenths:NO];
-	[self.viewController presentModalViewController:pickNumericValueController animated:YES];
+	[self.viewController presentViewController:pickNumericValueController animated:YES completion:nil];
 	[pickNumericValueController setValue:self.numericValue];
 	pickNumericValueController.titleLabel.text = self.nameLabel.text;
 }

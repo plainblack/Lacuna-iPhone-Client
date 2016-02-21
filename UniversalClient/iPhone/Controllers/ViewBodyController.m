@@ -480,7 +480,7 @@ typedef enum {
 		self->pickColonyController = [[PickColonyController create] retain];
 		self->pickColonyController.delegate = self;
 		self->pickColonyController.colonies = session.empire.planets;
-		[self presentModalViewController:self->pickColonyController animated:YES];
+		[self presentViewController:self->pickColonyController animated:YES completion:nil];
 	} else {
 		if ([[[session.empire.planets objectAtIndex:0] objectForKey:@"id"] isEqualToString:self.bodyId]) {
 			self.bodyId = [[session.empire.planets objectAtIndex:1] objectForKey:@"id"];

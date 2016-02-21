@@ -281,7 +281,7 @@
 - (void)showWebPage:(NSString*)url {
 	WebPageController *webPageController = [WebPageController create];
 	[webPageController goToUrl:url];
-	[self presentModalViewController:webPageController animated:YES];
+	[self presentViewController:webPageController animated:YES completion:nil];
 }
 
 
