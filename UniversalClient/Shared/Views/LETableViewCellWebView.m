@@ -140,7 +140,7 @@
 			[self.delegate voteNoForBody:[parts objectAtIndex:0] building:[parts objectAtIndex:1] proposition:[parts objectAtIndex:2]];
 		} else {
 			NSString *urlAsString = [[request URL] absoluteString];
-			if ([[urlAsString substringToIndex:4] isEqualToString:@"http"]) {
+			if ([[urlAsString substringToIndex:4] isEqualToString:@"https"]) {
 				[self.delegate showWebPage:urlAsString];
 			}
 		}

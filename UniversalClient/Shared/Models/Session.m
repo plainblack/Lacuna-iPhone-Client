@@ -290,7 +290,7 @@
 	if (wikiUrl) {
 		return wikiUrl;
 	} else {
-		return @"http://community.lacunaexpanse.com/wiki";
+		return @"https://community.lacunaexpanse.com/wiki";
 	}
 }
 

@@ -392,7 +392,7 @@
 
 - (void)hideLogin {
 	self.tabBarController.selectedViewController = self.myWorldsNavigationController;
-	[self.tabBarController dismissModalViewControllerAnimated:YES];
+	[self.tabBarController dismissViewControllerAnimated:YES completion:nil];
 }
 
 
