@@ -460,7 +460,7 @@ typedef enum {
 - (void)colonySelected:(NSString *)colonyId {
 	self.bodyId = colonyId;
 	[self loadBody];
-	[self dismissModalViewControllerAnimated:YES];
+	[self dismissViewControllerAnimated:YES completion:nil];
 	[self->pickColonyController release];
 }
 

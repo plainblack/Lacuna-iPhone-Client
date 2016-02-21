@@ -303,7 +303,7 @@ typedef enum {
 
 - (void)colonySelected:(NSString *)colonyId {
 	self.fetchToBodyId = colonyId;
-	[self dismissModalViewControllerAnimated:YES];
+	[self dismissViewControllerAnimated:YES completion:nil];
 	[self->pickColonyController release];
 	self->pickColonyController = nil;
 	[[[LEBuildingPrepareFetchSpies alloc] initWithCallback:@selector(prepareDataLoaded:) target:self onBodyId:self.mapItem.id toBodyId:self.fetchToBodyId] autorelease];

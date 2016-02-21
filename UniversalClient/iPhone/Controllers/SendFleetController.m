@@ -365,7 +365,7 @@ typedef enum {
 
 - (void)colonySelected:(NSString *)colonyId {
 	self.sendFromBodyId = colonyId;
-	[self dismissModalViewControllerAnimated:YES];
+	[self dismissViewControllerAnimated:YES completion:nil];
 	[self->pickColonyController release];
 	self->pickColonyController = nil;
 	if ([self.mapItem.type isEqualToString:@"star"]) {

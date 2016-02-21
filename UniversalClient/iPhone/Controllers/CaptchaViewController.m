@@ -224,7 +224,7 @@ typedef enum {
 	} else {
 		//RESEND
 		[self.requestNeedingCaptcha resend];
-		[self dismissModalViewControllerAnimated:YES];
+		[self dismissViewControllerAnimated:YES completion:nil];
 	}
 }
 
