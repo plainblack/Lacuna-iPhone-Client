@@ -203,8 +203,11 @@ typedef enum {
     if (isNotNull(self.selectedStar)) {
         [self.parliament proposeRenameStar:[Util idFromDict:self.selectedStar named:@"id"] name:self.nameCell.textField.text target:self callback:@selector(proposedRenameStar:)];
     } else {
-        UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must select a star to rename." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-        [av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Error" message: @"You must select a star to rename." preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
     }
 }
 

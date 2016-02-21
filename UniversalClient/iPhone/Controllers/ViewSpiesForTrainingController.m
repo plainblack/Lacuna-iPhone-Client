@@ -164,11 +164,17 @@ typedef enum {
 - (void)trainedSpy:(LEBuildingTrainSpySkill *)request {
     NSMutableDictionary *reasonNotTrained = [request.results objectForKey:@"reason_not_trained"];
 	if (isNotNull(reasonNotTrained)) {
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Warning" message:[NSString stringWithFormat:@"Your spy could not be trained. %@", [reasonNotTrained objectForKey:@"message"]] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-		[av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Warning" message:[NSString stringWithFormat:@"Your spy could not be trained. %@", [reasonNotTrained objectForKey:@"message"]] preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
 	} else {
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Training Started" message:@"Your spy is now busy training." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-		[av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Training Started" message: @"Your spy is now busy training." preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
         [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:[self.tableView indexPathForSelectedRow].section] withRowAnimation:UITableViewRowAnimationFade];
     }
 }

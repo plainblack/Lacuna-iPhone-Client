@@ -220,15 +220,21 @@ typedef enum {
             [self.parliament proposeRenameAsteroid:[Util idFromDict:self.selectedBody named:@"id"] name:self.nameCell.textField.text target:self callback:@selector(proposedRenameAsteroid:)];
         } else {
             if (isNotNull([self.selectedBody objectForKey:@"empire"])) {
-                UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You cannot rename a planet that is already controlled." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-                [av show];
+				UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Error" message: @"You cannot rename a planet that is already controlled." preferredStyle:UIAlertControllerStyleAlert];
+				UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+									 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+				[av addAction: ok];
+				[self presentViewController:av animated:YES completion:nil];
             } else {
                 [self.parliament proposeRenameUninhabited:[Util idFromDict:self.selectedBody named:@"id"] name:self.nameCell.textField.text target:self callback:@selector(proposedRenameUninhabited:)];
             }
         }
     } else {
-        UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must select an asteroid to rename." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-        [av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Error" message: @"You must select an astroid to rename." preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
     }
 }
 

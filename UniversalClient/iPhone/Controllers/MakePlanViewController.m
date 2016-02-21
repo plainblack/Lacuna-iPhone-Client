@@ -205,8 +205,11 @@ typedef enum {
                 } else {
                     errorMessage = @"Cannot make this plan yet.";  
                 }
-                UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Cannot build plan." message:errorMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-                [av show];
+				UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Cannot build plans." message:errorMessage preferredStyle:UIAlertControllerStyleAlert];
+				UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+									 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+				[av addAction: ok];
+				[self presentViewController:av animated:YES completion:nil];
             }
             break;
     }

@@ -295,8 +295,11 @@ typedef enum {
 	if ([self.reserveRequest count] > 0) {
         [self.distributionCenter reserve:self.reserveRequest target:self callback:@selector(resourcesReserved:)];
 	} else {
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Incomplete" message:@"You must have something added to reserve" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-		[av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Incomplete" message: @"You must have something added to reserve." preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
 	}
 }
 
@@ -347,8 +350,11 @@ typedef enum {
 - (void)resourcesReserved:(LEBuildingReserve *)request {
 	if ([request wasError]) {
 		NSString *errorText = [request errorMessage];
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:errorText delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-		[av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Error" message:errorText preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
 		[request markErrorHandled];
 	} else {
 		[self.navigationController popViewControllerAnimated:YES];

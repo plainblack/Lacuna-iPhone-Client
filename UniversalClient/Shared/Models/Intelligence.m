@@ -258,8 +258,11 @@
 - (id)spyTrained:(LEBuildingTrainSpy *)request {
 	self.numSpies = [self.numSpies decimalNumberByAdding:request.trained];
 	if (_intv(request.notTrained) > 0) {
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Warning" message:@"Your spy could not be trained. You probably don't have enough resources to train one." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-		[av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Warning" message: @"Your spy could not be trained. You probably don't have enough resources to train one." preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
 	}
 	[self generateSections];
 	self.needsRefresh = YES;

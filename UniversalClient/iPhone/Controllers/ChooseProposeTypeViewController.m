@@ -257,15 +257,21 @@ typedef enum {
 
 - (void)proposedMembersOnlyColonization:(LEBuildingProposeMembersOnlyColonization *)request {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-    UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Proposed" message:@"Members only colonization rights has been proposed." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-    [av show];
+	UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Proposed" message: @"Members only colonization rights has been proposed." preferredStyle:UIAlertControllerStyleAlert];
+	UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+						 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+	[av addAction: ok];
+	[self presentViewController:av animated:YES completion:nil];
 }
 
 
 - (void)proposedMembersOnlyMiningRights:(LEBuildingProposeMembersOnlyMiningRights *)request {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-    UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Proposed" message:@"Members only mining rights has been proposed." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-    [av show];
+	UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Proposed" message: @"Members only mining rights has been proposed." preferredStyle:UIAlertControllerStyleAlert];
+	UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+						 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+	[av addAction: ok];
+	[self presentViewController:av animated:YES completion:nil];
 }
 
 

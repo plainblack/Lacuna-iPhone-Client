@@ -202,8 +202,11 @@ typedef enum {
     if ( isNotNull(self.selectedEmpire) && ([self.messageCell.textView.text length]>0) ) {
         [self.parliament proposeInductMember:[Util idFromDict:self.selectedEmpire named:@"id"] message:self.messageCell.textView.text target:self callback:@selector(proposedInductMember:)];
     } else {
-        UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must select an empire to induct and enter a message." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-        [av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Error" message: @"You must select an empire to induct and enter a message." preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
     }
 }
 

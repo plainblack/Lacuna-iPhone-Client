@@ -217,8 +217,11 @@ typedef enum {
     if (isNotNull(self.selectedBody)) {
         [self.parliament proposeFireBfgOn:[Util idFromDict:self.selectedBody named:@"id"] reason:self.reasonCell.textView.text target:self callback:@selector(proposedFireBfg:)];
     } else {
-        UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must select an planet to fire at." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-        [av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Error" message: @"You must select an planet to fire at." preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
     }
 }
 

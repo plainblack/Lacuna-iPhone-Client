@@ -189,8 +189,11 @@ typedef enum {
     if (isNotNull(self.selectedStar)) {
         [self.parliament proposeSeizeStar:[Util idFromDict:self.selectedStar named:@"id"] target:self callback:@selector(proposedSeizeStar:)];
     } else {
-        UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:@"You must select a star to seize control over." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-        [av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Error" message: @"You must select a star to seize control over." preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
     }
 }
 
