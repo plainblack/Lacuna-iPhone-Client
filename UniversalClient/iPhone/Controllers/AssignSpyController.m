@@ -217,15 +217,16 @@ typedef enum {
 		title = @"Mission Failed";
 	}
 	
-	UIAlertView *av;
-	
 	if (isNotNull(messageId)) {
-		av = [[[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Message", nil] autorelease];
+		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Message", nil] autorelease];
+		[av show];
 	} else {
-		av = [[[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
 	}
-	
-	[av show];
 }
 
 
