@@ -157,9 +157,10 @@
 			}];
 			UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
 			}];
-			[alert addAction:okAction];
 			[alert addAction:cancelAction];
+			[alert addAction:okAction];
 			[self presentViewController:alert animated:YES completion:nil];
+			[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 			
 		} else {
 			[self callCellSelected];
@@ -218,17 +219,6 @@
     NSLog(@"refresh called");
 	Session *session = [Session sharedInstance];
 	session.body.currentBuilding.needsReload = YES;
-}
-
-
-#pragma mark -
-#pragma mark UIActionSheetDelegate Methods
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
-		[self callCellSelected];
-	}
-	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
 

@@ -120,21 +120,17 @@ NSString *messageText = @"Are you really sure you want to do this? This action c
 #pragma mark -
 #pragma mark Action Methods
 
-- (IBAction)promoteMember {
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Are you really sure you want to promote this member to be the leader? You cannot undo this action." delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
-	actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-	[actionSheet showFromTabBar:self.tabBarController.tabBar];
-	[actionSheet release];
-}
-
-#pragma mark -
-#pragma mark UIActionSheetDelegate Methods
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
+- (IBAction)promoteMember {	
+	UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Are you really sure you want to promote this member to be the leader?" message:@"You cannot undo this action." preferredStyle:UIAlertControllerStyleAlert];
+	UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
 		[self.embassy assignAllianceLeader:self.member.empireId];
 		[self.navigationController popViewControllerAnimated:YES];
-	}
+	}];
+	UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+	}];
+	[alert addAction:cancelAction];
+	[alert addAction:okAction];
+	[self presentViewController:alert animated:YES completion:nil];
 }
 
 

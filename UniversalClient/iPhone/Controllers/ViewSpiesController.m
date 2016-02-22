@@ -189,10 +189,18 @@ typedef enum {
 	switch (indexPath.row) {
 		case ROW_BURN_BUTTON:
 			self.selectedSpy = spy;
-			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Burn spy?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
-			actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-			[actionSheet showFromTabBar:self.tabBarController.tabBar];
-			[actionSheet release];
+			UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Burn Spy?" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+			UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+				[self.intelligenceBuilding burnSpy:self.selectedSpy];
+				self.selectedSpy = nil;
+			}];
+			UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+			}];
+			[alert addAction:cancelAction];
+			[alert addAction:okAction];
+			[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+			[self presentViewController:alert animated:YES completion:nil];
+			
 			break;
 		case ROW_RENAME_BUTTON:
 			; //DO NOT REMOVE
@@ -254,18 +262,6 @@ typedef enum {
 			NSLog(@"Invalid switchPage");
 			break;
 	}
-}
-
-
-#pragma mark -
-#pragma mark UIActionSheetDelegate Methods
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
-		[self.intelligenceBuilding burnSpy:self.selectedSpy];
-		self.selectedSpy = nil;
-	}
-	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
 

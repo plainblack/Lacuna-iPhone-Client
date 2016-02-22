@@ -404,6 +404,17 @@ typedef enum {
                     actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
                     [actionSheet showFromTabBar:self.tabBarController.tabBar];
                     [actionSheet release];
+					
+					UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Do you really wish to abandon this colony?" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+					UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+						[[[LEBodyAbandon alloc] initWithCallback:@selector(bodyAbandoned:) target:self forBody:self.bodyId] autorelease];
+					}];
+					UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+					}];
+					[alert addAction:cancelAction];
+					[alert addAction:okAction];
+					[self presentViewController:alert animated:YES completion:nil];
+					[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
                     break;
                 default:
                     NSLog(@"Invalid action clicked: %li:%li", (long)indexPath.section, (long)indexPath.row);
@@ -489,17 +500,6 @@ typedef enum {
 		}
 		[self loadBody];
 	}
-}
-
-
-#pragma mark -
-#pragma mark UIActionSheetDelegate Methods
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
-		[[[LEBodyAbandon alloc] initWithCallback:@selector(bodyAbandoned:) target:self forBody:self.bodyId] autorelease];
-	}
-	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
 

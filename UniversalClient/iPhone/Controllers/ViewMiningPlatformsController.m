@@ -182,10 +182,18 @@ typedef enum {
 					break;
 				case ROW_ABANDON_PLATFORM:
 					self.selectedMiningPlatform = miningPlatform;
-					UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"Abandon Platform %@?", miningPlatform.asteroidName] delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
-					actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-					[actionSheet showFromTabBar:self.tabBarController.tabBar];
-					[actionSheet release];
+					
+					UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"Abandon Platform %@?", miningPlatform.asteroidName] message:@"MESSAGE" preferredStyle:UIAlertControllerStyleAlert];
+					UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+						[self.miningMinistry abandonPlatformAtAsteroid:self.selectedMiningPlatform];
+						self.selectedMiningPlatform = nil;
+					}];
+					UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+					}];
+					[alert addAction:cancelAction];
+					[alert addAction:okAction];
+					[self presentViewController:alert animated:YES completion:nil];
+					
 					break;
 			}
 		}
@@ -212,17 +220,6 @@ typedef enum {
 	self.miningMinistry = nil;
 	self.selectedMiningPlatform = nil;
     [super dealloc];
-}
-
-
-#pragma mark -
-#pragma mark UIActionSheetDelegate Methods
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
-		[self.miningMinistry abandonPlatformAtAsteroid:self.selectedMiningPlatform];
-		self.selectedMiningPlatform = nil;
-	}
 }
 
 

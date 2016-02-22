@@ -115,21 +115,17 @@
 #pragma mark -
 #pragma mark Action Methods
 
-- (IBAction)expelMember {
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Are you really sure you want to expel this member?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
-	actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-	[actionSheet showFromTabBar:self.tabBarController.tabBar];
-	[actionSheet release];
-}
-
-#pragma mark -
-#pragma mark UIActionSheetDelegate Methods
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
+- (IBAction)expelMember {	
+	UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Are you really sure you want to expel this member?" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+	UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
 		[self.embassy expelMemeber:self.member.empireId withMessage:self.messageCell.textView.text];
 		[self.navigationController popViewControllerAnimated:YES];
-	}
+	}];
+	UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+	}];
+	[alert addAction:cancelAction];
+	[alert addAction:okAction];
+	[self presentViewController:alert animated:YES completion:nil];
 }
 
 

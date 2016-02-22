@@ -276,10 +276,39 @@ typedef enum {
 	}
 	if (msg) {
 		self->selectedSection = indexPath.section;
-		UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:msg delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
-		actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-		[actionSheet showFromTabBar:self.tabBarController.tabBar];
-		[actionSheet release];
+		
+		UIAlertController *alert = [UIAlertController alertControllerWithTitle:msg message:@"" preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+			switch (self->selectedSection) {
+				case EMPIRE_BOOST_SECTION_ENERGY:
+					[[[LEEmpireBoostEnergy alloc] initWithCallback:@selector(boostedEnergy:) target:self] autorelease];
+					break;
+				case EMPIRE_BOOST_SECTION_FOOD:
+					[[[LEEmpireBoostFood alloc] initWithCallback:@selector(boostedFood:) target:self] autorelease];
+					break;
+				case EMPIRE_BOOST_SECTION_HAPPINESS:
+					[[[LEEmpireBoostHappiness alloc] initWithCallback:@selector(boostedHappiness:) target:self] autorelease];
+					break;
+				case EMPIRE_BOOST_SECTION_ORE:
+					[[[LEEmpireBoostOre alloc] initWithCallback:@selector(boostedOre:) target:self] autorelease];
+					break;
+				case EMPIRE_BOOST_SECTION_WATER:
+					[[[LEEmpireBoostWater alloc] initWithCallback:@selector(boostedWater:) target:self] autorelease];
+					break;
+				case EMPIRE_BOOST_SECTION_STORAGE:
+					[[[LEEmpireBoostStorage alloc] initWithCallback:@selector(boostedStorage:) target:self] autorelease];
+					break;
+				case EMPIRE_BOOST_SECTION_BUILDING:
+					[[[LEEmpireBoostBuilding alloc] initWithCallback:@selector(boostedBuilding:) target:self] autorelease];
+					break;
+			}
+		}];
+		UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+		}];
+		[alert addAction:cancelAction];
+		[alert addAction:okAction];
+		[self presentViewController:alert animated:YES completion:nil];
+		[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 	}
 }
 
@@ -339,39 +368,6 @@ typedef enum {
 		buttonCell.textLabel.text = [NSString stringWithFormat:@"Start %@ Boost", name];
 	}
 	return buttonCell;
-}
-
-
-#pragma mark -
-#pragma mark UIActionSheetDelegate Methods
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
-		switch (self->selectedSection) {
-			case EMPIRE_BOOST_SECTION_ENERGY:
-				[[[LEEmpireBoostEnergy alloc] initWithCallback:@selector(boostedEnergy:) target:self] autorelease];
-				break;
-			case EMPIRE_BOOST_SECTION_FOOD:
-				[[[LEEmpireBoostFood alloc] initWithCallback:@selector(boostedFood:) target:self] autorelease];
-				break;
-			case EMPIRE_BOOST_SECTION_HAPPINESS:
-				[[[LEEmpireBoostHappiness alloc] initWithCallback:@selector(boostedHappiness:) target:self] autorelease];
-				break;
-			case EMPIRE_BOOST_SECTION_ORE:
-				[[[LEEmpireBoostOre alloc] initWithCallback:@selector(boostedOre:) target:self] autorelease];
-				break;
-			case EMPIRE_BOOST_SECTION_WATER:
-				[[[LEEmpireBoostWater alloc] initWithCallback:@selector(boostedWater:) target:self] autorelease];
-				break;
-			case EMPIRE_BOOST_SECTION_STORAGE:
-				[[[LEEmpireBoostStorage alloc] initWithCallback:@selector(boostedStorage:) target:self] autorelease];
-				break;
-            case EMPIRE_BOOST_SECTION_BUILDING:
-				[[[LEEmpireBoostBuilding alloc] initWithCallback:@selector(boostedBuilding:) target:self] autorelease];
-				break;
-		}
-	}
-	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
 

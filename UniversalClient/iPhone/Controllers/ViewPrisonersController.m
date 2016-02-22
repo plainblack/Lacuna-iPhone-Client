@@ -207,10 +207,16 @@ typedef enum {
 	switch (indexPath.row) {
 		case ROW_PRISONER_EXECUTE:
 			self.selectedPrisoner = prisoner;
-			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Execute spy, this will make your people unhappy?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
-			actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-			[actionSheet showFromTabBar:self.tabBarController.tabBar];
-			[actionSheet release];
+			UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Execute spy, this will make your people unhappy?" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+			UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+				[self.spySecurityBuilding executePrisoner:self.selectedPrisoner.id];
+				self.selectedPrisoner = nil;
+			}];
+			UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+			}];
+			[alert addAction:cancelAction];
+			[alert addAction:okAction];
+			[self presentViewController:alert animated:YES completion:nil];
 			break;
 		case ROW_PRISONER_RELEASE:
 			[self.spySecurityBuilding releasePrisoner:prisoner.id];
@@ -241,18 +247,6 @@ typedef enum {
 	self.prisonersLastUpdated = nil;
 	self.selectedPrisoner = nil;
     [super dealloc];
-}
-
-
-
-#pragma mark -
-#pragma mark UIActionSheetDelegate Methods
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
-		[self.spySecurityBuilding executePrisoner:self.selectedPrisoner.id];
-		self.selectedPrisoner = nil;
-	}
 }
 
 
