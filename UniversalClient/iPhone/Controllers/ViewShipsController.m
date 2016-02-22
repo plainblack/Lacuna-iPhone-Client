@@ -206,10 +206,17 @@ typedef enum {
 		switch (indexPath.row) {
 			case ROW_SCUTTLE_BUTTON:
 				self.ship = currentShip;
-				UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Scuttle ship?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
-				actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-				[actionSheet showFromTabBar:self.tabBarController.tabBar];
-				[actionSheet release];
+				UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Scuttle ship?" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+				UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+					[self.spacePort scuttleShip:self.ship];
+					self.ship = nil;
+				}];
+				UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+				}];
+				[alert addAction:cancelAction];
+				[alert addAction:okAction];
+				[self presentViewController:alert animated:YES completion:nil];
+				[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 				break;
 			case ROW_RECALL_BUTTON:
 				[self.spacePort recallShip:currentShip];
@@ -261,18 +268,6 @@ typedef enum {
 	self.ship = nil;
 	self.shipsLastUpdated = nil;
     [super dealloc];
-}
-
-
-#pragma mark -
-#pragma mark UIActionSheetDelegate Methods
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
-		[self.spacePort scuttleShip:self.ship];
-		self.ship = nil;
-	}
-	[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
 
