@@ -151,10 +151,16 @@
 		self.selectedTableView = tableView;
 		self.selectedIndexPath = indexPath;
 		if ([session.body.currentBuilding isConfirmCell:indexPath]) {
-			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[session.body.currentBuilding confirmMessage:indexPath] delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
-			actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-			[actionSheet showFromTabBar:self.tabBarController.tabBar];
-			[actionSheet release];
+			UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Alert" message:[session.body.currentBuilding confirmMessage:indexPath] preferredStyle:UIAlertControllerStyleAlert];
+			UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+				[self callCellSelected];
+			}];
+			UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+			}];
+			[alert addAction:okAction];
+			[alert addAction:cancelAction];
+			[self presentViewController:alert animated:YES completion:nil];
+			
 		} else {
 			[self callCellSelected];
 		}

@@ -348,7 +348,7 @@
 			NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 			[userDefaults setBool:YES forKey:@"HideTipsAlert"];
 		} else {
-			NSLog(@"Index: %i", index);
+			NSLog(@"Index: %li", index);
 			if (index == 1) {
 				[self showTips];
 			}

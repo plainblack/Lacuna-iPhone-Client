@@ -209,10 +209,17 @@ typedef enum {
 		Session *session = [Session sharedInstance];
 		if (session.empire.isIsolationist && ([url isEqualToString:ESPIONAGE_URL] || [url isEqualToString:MUNITIONS_LAB_URL])) {
 			self.selectedBuildingUrl = url;
-			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Building this will take you out of Isolationist mode. This means spies can be sent to your Colonies. Are you sure you want to do this?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
-			actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-			[actionSheet showFromTabBar:self.tabBarController.tabBar];
-			[actionSheet release];
+			UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Alert" message:@"Building this will take you out of Isolationist mode. This means spies can be sent to your Colonies. Are you sure you want to do this?" preferredStyle:UIAlertControllerStyleAlert];
+			UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+				[[[LEBuildBuilding alloc] initWithCallback:@selector(buildingBuilt:) target:self bodyId:self.bodyId x:self.x y:self.y url:self.selectedBuildingUrl] autorelease];
+				self.selectedBuildingUrl = nil;
+			}];
+			UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+			}];
+			[alert addAction:okAction];
+			[alert addAction:cancelAction];
+			[self presentViewController:alert animated:YES completion:nil];
+			
 		} else {
 			[[[LEBuildBuilding alloc] initWithCallback:@selector(buildingBuilt:) target:self bodyId:self.bodyId x:self.x y:self.y url:url] autorelease];
 		}
@@ -359,17 +366,6 @@ typedef enum {
 	}
 	
 	return nil;
-}
-
-
-#pragma mark -
-#pragma mark UIActionSheetDelegate Methods
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
-		[[[LEBuildBuilding alloc] initWithCallback:@selector(buildingBuilt:) target:self bodyId:self.bodyId x:self.x y:self.y url:self.selectedBuildingUrl] autorelease];
-		self.selectedBuildingUrl = nil;
-	}
 }
 
 

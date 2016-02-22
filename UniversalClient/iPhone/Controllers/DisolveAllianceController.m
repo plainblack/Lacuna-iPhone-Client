@@ -98,10 +98,17 @@
 #pragma mark UITableViewDataSource Methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Are you really sure you want to disolve this alliance? This cannot be undone." delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
-	actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-	[actionSheet showFromTabBar:self.tabBarController.tabBar];
-	[actionSheet release];
+	
+	UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Are you really sure you want to disolve this alliance?" message:@"This cannot be undone." preferredStyle:UIAlertControllerStyleAlert];
+	UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+		[self disolveAlliance];
+		[self.navigationController popViewControllerAnimated:YES];
+	}];
+	UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+	}];
+	[alert addAction:okAction];
+	[alert addAction:cancelAction];
+	[self presentViewController:alert animated:YES completion:nil];
 }
 
 
@@ -135,16 +142,6 @@
 
 - (void)disolveAlliance {
 	[self.embassy disolveAlliance];
-}
-
-#pragma mark -
-#pragma mark UIActionSheetDelegate Methods
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
-		[self disolveAlliance];
-		[self.navigationController popViewControllerAnimated:YES];
-	}
 }
 
 

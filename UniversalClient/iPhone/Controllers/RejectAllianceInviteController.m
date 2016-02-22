@@ -115,20 +115,16 @@
 #pragma mark Action Methods
 
 - (IBAction)rejectInvite {
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Are you really sure you want to reject this invite?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
-	actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-	[actionSheet showFromTabBar:self.tabBarController.tabBar];
-	[actionSheet release];
-}
-
-#pragma mark -
-#pragma mark UIActionSheetDelegate Methods
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
+	UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Alert" message:@"Are you really sure you want to reject this invite?" preferredStyle:UIAlertControllerStyleAlert];
+	UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
 		[self.embassy rejectInvite:self.invite.id withMessage:self.messageCell.textView.text];
 		[self.navigationController popViewControllerAnimated:YES];
-	}
+	}];
+	UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+	}];
+	[alert addAction:okAction];
+	[alert addAction:cancelAction];
+	[self presentViewController:alert animated:YES completion:nil];
 }
 
 
