@@ -399,12 +399,7 @@ typedef enum {
                     [[self navigationController] pushViewController:renameBodyController animated:YES];
                     break;
                 case ACTION_ROW_ABANDON_BODY:
-                    ; //DO NOT REMOVE
-                    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Do you really wish to abandon this colony?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
-                    actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-                    [actionSheet showFromTabBar:self.tabBarController.tabBar];
-                    [actionSheet release];
-					
+                    ; //DO NOT REMOVE					
 					UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Do you really wish to abandon this colony?" message:@"" preferredStyle:UIAlertControllerStyleAlert];
 					UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
 						[[[LEBodyAbandon alloc] initWithCallback:@selector(bodyAbandoned:) target:self forBody:self.bodyId] autorelease];

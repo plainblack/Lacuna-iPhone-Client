@@ -155,10 +155,15 @@ typedef enum {
     NSLog(@"TEST 1");
 	if (self.shipyard && self.shipyard.buildQueue && indexPath.section >= [self.shipyard.buildQueue count]) {
         NSLog(@"TEST 2");
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"Subsidizing the ship build queue will cost %@ essentia. Are you sure you want to do this?", self.shipyard.subsidizeCost] delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
-        actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-        [actionSheet showFromTabBar:self.tabBarController.tabBar];
-        [actionSheet release];
+		UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Subsidizing the ship build queue will cost %@ essentia. Are you sure you want to do this?" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+			[self.shipyard subsidizeBuildQueue];
+		}];
+		UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+		}];
+		[alert addAction:cancelAction];
+		[alert addAction:okAction];
+		[self presentViewController:alert animated:YES completion:nil];
     }
 }
 
@@ -207,15 +212,6 @@ typedef enum {
 - (void)togglePageButtons {
 	[self.pageSegmentedControl setEnabled:[self.shipyard hasPreviousBuildQueuePage] forSegmentAtIndex:0];
 	[self.pageSegmentedControl setEnabled:[self.shipyard hasNextBuildQueuePage] forSegmentAtIndex:1];
-}
-
-
-#pragma mark - UIActionSheetDelegate Methods
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
-        [self.shipyard subsidizeBuildQueue];
-	}
 }
 
 

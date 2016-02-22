@@ -546,11 +546,16 @@ typedef enum {
 		[av addAction: ok];
 		[self presentViewController:av animated:YES completion:nil];
 	} else {
-			if (self.baseTradeBuilding.usesEssentia) {
-			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"This will cost 2 essentia. Do you wish to contine?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
-			actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-			[actionSheet showFromTabBar:self.tabBarController.tabBar];
-			[actionSheet release];
+			if (self.baseTradeBuilding.usesEssentia) {				
+				UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"This will cost 2 essentia. Do you wish to contine?" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+				UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+					[self pushItems];
+				}];
+				UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+				}];
+				[alert addAction:cancelAction];
+				[alert addAction:okAction];
+				[self presentViewController:alert animated:YES completion:nil];
 		} else {
 			[self pushItems];
 		}
@@ -688,15 +693,6 @@ typedef enum {
 	}
 
 	return nil;
-}
-
-#pragma mark -
-#pragma mark UIActionSheetDelegate Methods
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
-		[self pushItems];
-	}
 }
 
 

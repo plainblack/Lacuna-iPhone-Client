@@ -242,11 +242,18 @@ typedef enum {
                         [self.missionCommand completeMission:mission target:self callback:@selector(missionCompleted:)];
                         break;
                     case ROW_SKIP_BUTTON:
-                        self.skipMission = mission;
-                        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Are you really sure you want to skip this mission?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
-                        actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-                        [actionSheet showFromTabBar:self.tabBarController.tabBar];
-                        [actionSheet release];
+                        self.skipMission = mission;						
+						UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Are you really sure you want to skip this mission?" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+						UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+							self->pendingRequest = YES;
+							[self.missionCommand skipMission:self.skipMission target:self callback:@selector(missionSkipped:)];
+						}];
+						UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+							[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+						}];
+						[alert addAction:cancelAction];
+						[alert addAction:okAction];
+						[self presentViewController:alert animated:YES completion:nil];
                         break;
                 }
             }
@@ -274,19 +281,6 @@ typedef enum {
 	self.missionCommand = nil;
 	self.skipMission = nil;
     [super dealloc];
-}
-
-
-#pragma mark -
-#pragma mark UIActionSheetDelegate Methods
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
-        self->pendingRequest = YES;
-		[self.missionCommand skipMission:self.skipMission target:self callback:@selector(missionSkipped:)];
-	} else {
-        [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-    }
 }
 
 
