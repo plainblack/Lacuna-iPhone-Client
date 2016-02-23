@@ -201,11 +201,15 @@
 				}
 			}];
 			if (numOtherShips > 0) {
-				UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"INCOMING SHIPS!" message:@"Incoming ships detected. Go to your Spaceport for more information." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-				[av show];
+				UIAlertController *av = [UIAlertController alertControllerWithTitle:@"INCOMING SHIPS!" message: @"Incoming ships detected. Go to your Spaceport for more information." preferredStyle:UIAlertControllerStyleAlert];
+				UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+									 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+				[av addAction: ok];
 			} else if (numAllyShips) {
-				UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Ally ships incoming" message:@"Incoming ally ships detected. Go to your Spaceport for more information." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-				[av show];
+				UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Ally ships incoming" message: @"Incoming ally ships detected. Go to your Spaceport for more information." preferredStyle:UIAlertControllerStyleAlert];
+				UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+									 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+				[av addAction: ok];
 			}
 
 			[warnAboutSet release];

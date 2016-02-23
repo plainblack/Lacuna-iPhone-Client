@@ -114,8 +114,10 @@ static id<LERequestMonitor> delegate;
 
 
 	if ([self errorCode] == 1017) {
-        UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Vote Required" message:[self errorMessage] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-        [av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Vote Required" message:[self errorMessage] preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
 
 		[self requestFinished];
 		[self requestComplete];
@@ -200,8 +202,11 @@ static id<LERequestMonitor> delegate;
 				if ([errorText isEqualToString:@"Internal error."]) {
 					errorText = @"Your request could be not be completed due to a server error.";
 				}
-				UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Error" message:errorText delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-				[av show];
+				
+				UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Error" message:errorText preferredStyle:UIAlertControllerStyleAlert];
+				UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+									 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+				[av addAction: ok];
 			}
 		}
 		
