@@ -306,8 +306,10 @@
 			return viewPendingInvitesController;
 		case BUILDING_ROW_UPDATE_ALLIANCE:
 			; //DO NOT REMOVE
-			UIAlertView *av6 = [[[UIAlertView alloc] initWithTitle:@"WIP" message:@"Update Alliance is not complete yet" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-			[av6 show];
+			UIAlertController *av6 = [UIAlertController alertControllerWithTitle:@"WIP" message: @"Update Alliance is not complete yet" preferredStyle:UIAlertControllerStyleAlert];
+			UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+								 { [av6 dismissViewControllerAnimated:YES completion:nil]; }];
+			[av6 addAction: ok];
 			return nil;
 		case BUILDING_ROW_DISOLVE_ALLIANCE:
 			; //DO NOT REMOVE

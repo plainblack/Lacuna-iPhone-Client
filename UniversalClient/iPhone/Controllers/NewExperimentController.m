@@ -321,10 +321,16 @@ typedef enum {
 		case SECTION_EXPERIMENTS:
 			if ([[self.graft objectForKey:@"graftable_affinities"] count] > 0) {
 				self.selectedAffinity = [[self.graft objectForKey:@"graftable_affinities"] objectAtIndex:indexPath.row];
-				UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"Experiment on Prisoner? This will cost %@ essentia, may kill the prisoner, and may increase your %@.", self.prepareExperiment.essentiaCost, [Util prettyCodeValue:self.selectedAffinity]] delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
-				actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-				[actionSheet showFromTabBar:self.tabBarController.tabBar];
-				[actionSheet release];
+				
+				UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"Experiment on Prisoner? This will cost %@ essentia, may kill the prisoner, and may increase your %@.", self.prepareExperiment.essentiaCost, [Util prettyCodeValue:self.selectedAffinity]] message:@"" preferredStyle:UIAlertControllerStyleAlert];
+				UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+					[self.geneticsLab runExperimentWithSpy:[[self.graft objectForKey:@"spy"] objectForKey:@"id"] affinity:self.selectedAffinity target:self callback:@selector(experimentComplete:)];
+				}];
+				UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+				}];
+				[alert addAction:cancelAction];
+				[alert addAction:okAction];
+				[self presentViewController:alert animated:YES completion:nil];
 			}
 			break;
 	}
@@ -381,16 +387,6 @@ typedef enum {
 			[self.navigationController popViewControllerAnimated:YES];
 		}
 
-	}
-}
-
-
-#pragma mark -
-#pragma mark UIActionSheetDelegate Methods
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
-		[self.geneticsLab runExperimentWithSpy:[[self.graft objectForKey:@"spy"] objectForKey:@"id"] affinity:self.selectedAffinity target:self callback:@selector(experimentComplete:)];
 	}
 }
 

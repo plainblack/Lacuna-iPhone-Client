@@ -165,11 +165,16 @@ typedef enum {
 }
 
 
-- (void)save {
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Are you sue you wish to do this?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
-	actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-	[actionSheet showFromTabBar:self.tabBarController.tabBar];
-	[actionSheet release];
+- (void)save {	
+	UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Are you sue you wish to do this?" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+	UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+		[self.geneticsLab changeName:self.nameCell.textField.text description:self.descriptionCell.textView.text forTarger:self callback:@selector(speciesRenamed:)];
+	}];
+	UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+	}];
+	[alert addAction:cancelAction];
+	[alert addAction:okAction];
+	[self presentViewController:alert animated:YES completion:nil];
 }
 
 
@@ -186,14 +191,6 @@ typedef enum {
 	return YES;
 }
 
-#pragma mark -
-#pragma mark UIActionSheetDelegate Methods
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
-		[self.geneticsLab changeName:self.nameCell.textField.text description:self.descriptionCell.textView.text forTarger:self callback:@selector(speciesRenamed:)];
-	}
-}
 
 #pragma mark -
 #pragma mark Callback Methods

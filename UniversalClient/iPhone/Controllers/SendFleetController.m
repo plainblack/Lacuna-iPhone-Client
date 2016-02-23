@@ -277,11 +277,16 @@ typedef enum {
 				if ([self.availableShips count] > 0) {
 					self.selectedShip = [self.availableShips objectAtIndex:(indexPath.section-3)];
 					Session *session = [Session sharedInstance];
-					if (session.empire.isIsolationist && ([self.selectedShip.type isEqualToString:@"colony_ship"] || [self.selectedShip.type isEqualToString:@"short_range_colony_ship"])) {
-						UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Sending out a Colony Ship or Short Range Colongy Ship will take you out of Isolationist mode. This means spies can be sent to your Colonies. Are you sure you want to do this?" delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
-						actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-						[actionSheet showFromTabBar:self.tabBarController.tabBar];
-						[actionSheet release];
+					if (session.empire.isIsolationist && ([self.selectedShip.type isEqualToString:@"colony_ship"] || [self.selectedShip.type isEqualToString:@"short_range_colony_ship"])) {			
+						UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Sending out a Colony Ship or Short Range Colongy Ship will take you out of Isolationist mode. This means spies can be sent to your Colonies. Are you sure you want to do this?" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+						UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+							[self addSelectedShip];
+						}];
+						UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+						}];
+						[alert addAction:cancelAction];
+						[alert addAction:okAction];
+						[self presentViewController:alert animated:YES completion:nil];
 					} else {
                         [self addSelectedShip];
 					}
@@ -376,16 +381,6 @@ typedef enum {
 	self.availableShips = nil;
 	self.shipTravelTimes = nil;
 	[self.tableView reloadData];
-}
-
-
-#pragma mark -
-#pragma mark UIActionSheetDelegate Methods
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
-        [self addSelectedShip];
-	}
 }
 
 

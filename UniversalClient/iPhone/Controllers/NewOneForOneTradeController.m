@@ -250,8 +250,11 @@ typedef enum {
 - (id)tradedOneForOne:(LEBuildingTradeOneForOne *)request {
 	if ([request wasError]) {
 		NSString *errorText = [request errorMessage];
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Count not do 1 for 1 trade." message:errorText delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-		[av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Count not do 1 for 1 trade." message:errorText preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
 		[request markErrorHandled];
 	} else {
 		[self.navigationController popViewControllerAnimated:YES];

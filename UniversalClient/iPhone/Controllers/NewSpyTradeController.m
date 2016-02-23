@@ -238,10 +238,15 @@ typedef enum {
 	if (self.trade.askEssentia) {
 		if (self.baseTradeBuilding.usesEssentia) {
             NSDecimalNumber *cost = [[NSDecimalNumber decimalNumberWithString:@"3"] decimalNumberBySubtracting:[[NSDecimalNumber decimalNumberWithString:@"0.1"] decimalNumberByMultiplyingBy:self.baseTradeBuilding.level]];
-			UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:[NSString stringWithFormat:@"If this trade is accepted it will cost you %@ Essentia. Do you wish to contine?", cost] delegate:self cancelButtonTitle:@"No" destructiveButtonTitle:@"Yes" otherButtonTitles:nil];
-			actionSheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-			[actionSheet showFromTabBar:self.tabBarController.tabBar];
-			[actionSheet release];
+			UIAlertController *alert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"If this trade is accepted it will cost you %@ Essentia. Do you wish to contine?", cost] message:@"" preferredStyle:UIAlertControllerStyleAlert];
+			UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+				[self postTrade];
+			}];
+			UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+			}];
+			[alert addAction:cancelAction];
+			[alert addAction:okAction];
+			[self presentViewController:alert animated:YES completion:nil];
 		} else {
 			[self postTrade];
 		}
@@ -326,15 +331,6 @@ typedef enum {
 	}
 	
 	return nil;
-}
-
-#pragma mark -
-#pragma mark UIActionSheetDelegate Methods
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (actionSheet.destructiveButtonIndex == buttonIndex ) {
-		[self postTrade];
-	}
 }
 
 

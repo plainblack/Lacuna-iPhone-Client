@@ -685,8 +685,10 @@ typedef enum {
 - (id)pushedItems:(LEBuildingPushItems *)request {
 	if ([request wasError]) {
 		NSString *errorText = [request errorMessage];
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Could not push items." message:errorText delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-		[av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Cound not push items." message:errorText preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
 		[request markErrorHandled];
 	} else {
 		[self.navigationController popViewControllerAnimated:YES];
