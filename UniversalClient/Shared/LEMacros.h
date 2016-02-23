@@ -37,6 +37,7 @@
 #define BUILD_ICON [UIImage imageNamed:@"assets/iphone ui/build.png"]
 #define UP_ARROW_ICON [UIImage imageNamed:@"assets/iphone ui/icon_arrow_up.png"]
 #define DOWN_ARROW_ICON [UIImage imageNamed:@"assets/iphone ui/icon_arrow_down.png"]
+#define SPY_ICON [UIImage imageNamed:@"assets/iphone ui/spy.png"]
 
 //Colors
 #define CELL_BACKGROUND_IMAGE [UIImage imageNamed:@"assets/iphone ui/cell-bkg.png"]
