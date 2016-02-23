@@ -159,18 +159,24 @@
 					if ([parts count] == 1) {
 						NSInteger majorVersion = [[parts objectAtIndex:0] intValue];
 						if (majorVersion > SERVER_MAJOR) {
-							UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"ERROR" message:[NSString stringWithFormat:@"The server is reporting a Major Version upgrade. This version of the client will not work with it. Server major sersion is %li, but this client is compatible with major version %i.", (long)majorVersion, SERVER_MAJOR] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-							[av show];
+							UIAlertController *av = [UIAlertController alertControllerWithTitle:@"ERROR" message:[NSString stringWithFormat:@"The server is reporting a Major Version upgrade. This version of the client will not work with it. Server major sersion is %li, but this client is compatible with major version %i.", (long)majorVersion, SERVER_MAJOR] preferredStyle:UIAlertControllerStyleAlert];
+							UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+												 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+							[av addAction: ok];
 						}
                     } else if ([parts count] == 2) {
 						NSInteger majorVersion = [[parts objectAtIndex:0] intValue];
 						if (majorVersion > SERVER_MAJOR) {
-							UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"ERROR" message:[NSString stringWithFormat:@"The server is reporting a Major Version upgrade. This version of the client will not work with it. Server major sersion is %li, but this client is compatible with major version %i.", (long)majorVersion, SERVER_MAJOR] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-							[av show];
+							UIAlertController *av = [UIAlertController alertControllerWithTitle:@"ERROR" message:[NSString stringWithFormat:@"The server is reporting a Major Version upgrade. This version of the client will not work with it. Server major sersion is %li, but this client is compatible with major version %i.", (long)majorVersion, SERVER_MAJOR] preferredStyle:UIAlertControllerStyleAlert];
+							UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+												 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+							[av addAction: ok];
 						}
 					} else {
-						UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"ERROR" message:[NSString stringWithFormat:@"The server version is invalid. Please report this! Server Version %@", newServerVersion] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-						[av show];
+						UIAlertController *av = [UIAlertController alertControllerWithTitle:@"ERROR" message:[NSString stringWithFormat:@"The server version is invalid. Please report this! Server Version %@", newServerVersion] preferredStyle:UIAlertControllerStyleAlert];
+						UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+											 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+						[av addAction: ok];
 					}
 				}
 			} else {
@@ -180,18 +186,24 @@
                 if ([parts count] == 1) {
                     NSInteger majorVersion = [[parts objectAtIndex:0] intValue];
                     if (majorVersion > SERVER_MAJOR) {
-                        UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"ERROR" message:[NSString stringWithFormat:@"The server is reporting a Major Version upgrade. This version of the client will not work with it. Server major sersion is %li, but this client is compatible with major version %i.", (long)majorVersion, SERVER_MAJOR] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-                        [av show];
+						UIAlertController *av = [UIAlertController alertControllerWithTitle:@"ERROR" message:[NSString stringWithFormat:@"The server is reporting a Major Version upgrade. This version of the client will not work with it. Server major sersion is %li, but this client is compatible with major version %i.", (long)majorVersion, SERVER_MAJOR] preferredStyle:UIAlertControllerStyleAlert];
+						UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+											 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+						[av addAction: ok];
                     }
                 } else if ([parts count] == 2) {
 					NSInteger majorVersion = [[parts objectAtIndex:0] intValue];
 					if (majorVersion > SERVER_MAJOR) {
-						UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"ERROR" message:[NSString stringWithFormat:@"The server is reporting a Major Version upgrade. This version of the client will not work with it. Server major sersion is %li, but this client is compatible with major version %i.", (long)majorVersion, SERVER_MAJOR] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-						[av show];
+						UIAlertController *av = [UIAlertController alertControllerWithTitle:@"ERROR" message:[NSString stringWithFormat:@"The server is reporting a Major Version upgrade. This version of the client will not work with it. Server major sersion is %li, but this client is compatible with major version %i.", (long)majorVersion, SERVER_MAJOR] preferredStyle:UIAlertControllerStyleAlert];
+						UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+											 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+						[av addAction: ok];
 					}
 				} else {
-					UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"ERROR" message:[NSString stringWithFormat:@"The server version is invalid. Please report this! Server Version %@", newServerVersion] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-					[av show];
+					UIAlertController *av = [UIAlertController alertControllerWithTitle:@"ERROR" message:[NSString stringWithFormat:@"The server version is invalid. Please report this! Server Version %@", newServerVersion] preferredStyle:UIAlertControllerStyleAlert];
+					UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+										 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+					[av addAction: ok];
 				}
 			}
 			self.rpcLimit = [Util asNumber:[serverStatus objectForKey:@"rpc_limit"]];
