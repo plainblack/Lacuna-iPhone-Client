@@ -502,6 +502,9 @@
         case LEMailboxFilterTypeExcavator:
             filterName = @"Excavator";
             break;
+		case LEMailboxFilterTypeFissure:
+			filterName = @"Fissure";
+			break;
         case LEMailboxFilterTypeIntelligence:
             filterName = @"Intelligence";
             break;

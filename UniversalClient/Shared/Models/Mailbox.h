@@ -26,6 +26,7 @@ typedef enum {
     LEMailboxFilterTypeComplaint,
     LEMailboxFilterTypeCorrespondence,
     LEMailboxFilterTypeExcavator,
+	LEMailboxFilterTypeFissure,
     LEMailboxFilterTypeIntelligence,
     LEMailboxFilterTypeMedal,
     LEMailboxFilterTypeMission,

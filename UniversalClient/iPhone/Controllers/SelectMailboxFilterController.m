@@ -21,6 +21,7 @@ typedef enum {
     ROW_COMPLAINT,
     ROW_CORRESPONDENCE,
     ROW_EXCAVATOR,
+	ROW_FISSURE,
     ROW_INTELLIGENCE,
     ROW_MEDAL,
     ROW_MISSION,
@@ -106,6 +107,9 @@ typedef enum {
         case ROW_EXCAVATOR:
             button.textLabel.text = @"Excavator";
             break;
+		case ROW_FISSURE:
+			button.textLabel.text = @"Fissure";
+			break;
         case ROW_MISSION:
             button.textLabel.text = @"Mission";
             break;
@@ -165,6 +169,9 @@ typedef enum {
         case ROW_EXCAVATOR:
             [self.delegate selectedMailboxFilter:LEMailboxFilterTypeExcavator];
             break;
+		case ROW_FISSURE:
+			[self.delegate selectedMailboxFilter:LEMailboxFilterTypeFissure];
+			break;
         case ROW_MISSION:
             [self.delegate selectedMailboxFilter:LEMailboxFilterTypeMission];
             break;

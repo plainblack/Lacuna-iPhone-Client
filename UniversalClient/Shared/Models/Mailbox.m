@@ -242,6 +242,9 @@
         case LEMailboxFilterTypeExcavator:
             return _array(@"Excavator");
             break;
+		case LEMailboxFilterTypeFissure:
+			return _array(@"Fissure");
+			break;
         case LEMailboxFilterTypeIntelligence:
             return _array(@"Intelligence");
             break;
