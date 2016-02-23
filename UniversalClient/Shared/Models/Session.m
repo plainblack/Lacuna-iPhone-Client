@@ -396,8 +396,10 @@
 			[appDelegate restartCreateEmpireId:[Util idFromDict:[request errorData] named:@"empire_id"] username:request.username password:request.password];
 		} else {
 			NSString *errorText = [request errorMessage];
-			UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Could not login" message:errorText delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-			[av show];
+			UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Could not login" message:errorText preferredStyle:UIAlertControllerStyleAlert];
+			UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+								 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+			[av addAction: ok];
 		}
 
 		self.sessionId = nil;
@@ -416,8 +418,10 @@
 		[request markErrorHandled];
 		
 		NSString *errorText = [request errorMessage];
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Could not relogin" message:errorText delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-		[av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Could not relogin" message:errorText preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
 		
 		self.sessionId = nil;
 		NSLog(@"relogged in error unset empire");
