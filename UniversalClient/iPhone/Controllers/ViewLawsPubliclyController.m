@@ -249,15 +249,20 @@ typedef enum {
 
 
 - (void)voteYesForBody:(NSString *)bodyId building:(NSString *)buildingId proposition:(NSString *)propositionId {
-    UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Cannot Vote" message:@"You cannot vote from this interface. If you would like to vote got the Parliament building for this Space Station to vote." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-    [av show];
-    
+	UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Cannot Vote" message: @"You cannot vote from this interface. If you would like to vote got the Parliament building for this Space Station to vote." preferredStyle:UIAlertControllerStyleAlert];
+	UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+						 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+	[av addAction: ok];
+	[self presentViewController:av animated:YES completion:nil];
 }
 
 
 - (void)voteNoForBody:(NSString *)bodyId building:(NSString *)buildingId proposition:(NSString *)propositionId {
-    UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Cannot Vote" message:@"You cannot vote from this interface. If you would like to vote got the Parliament building for this Space Station to vote." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-    [av show];
+	UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Cannot Vote" message: @"You cannot vote from this interface. If you would like to vote got the Parliament building for this Space Station to vote." preferredStyle:UIAlertControllerStyleAlert];
+	UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+						 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+	[av addAction: ok];
+	[self presentViewController:av animated:YES completion:nil];
 }
 
 

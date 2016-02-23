@@ -53,8 +53,10 @@
 
 - (void)newNumericValue:(NSDecimalNumber *)value {
 	if ([self.maxValue compare:value] == NSOrderedAscending) {
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Amount Invalid" message:[NSString stringWithFormat:@"You entered %@ which is above the maximum amount of %@.", value, self.maxValue] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-		[av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Amount Invalid" message:[NSString stringWithFormat:@"You entered %@ which is above the maximum amount of %@.", value, self.maxValue] preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
 		value = self.maxValue;
 	}
 	[self setNumericValue:value];

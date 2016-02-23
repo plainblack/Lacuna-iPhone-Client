@@ -557,8 +557,12 @@ typedef enum {
 - (void)voteCast:(LEBuildingCastVote *)request {
     if (![request wasError]) {
         NSString *msg = [NSString stringWithFormat:@"The vote needs %@ votes to pass. Current Votes Yes: %@, No: %@", [request.proposition objectForKey:@"votes_needed"], [request.proposition objectForKey:@"votes_yes"], [request.proposition objectForKey:@"votes_no"]];
-        UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Vote Cast!" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-        [av show];
+		
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Vote Cast!" message:msg preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
     }
 }
 

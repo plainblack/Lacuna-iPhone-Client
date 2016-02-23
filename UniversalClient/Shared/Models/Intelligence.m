@@ -262,7 +262,6 @@
 		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
 							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
 		[av addAction: ok];
-		[self presentViewController:av animated:YES completion:nil];
 	}
 	[self generateSections];
 	self.needsRefresh = YES;

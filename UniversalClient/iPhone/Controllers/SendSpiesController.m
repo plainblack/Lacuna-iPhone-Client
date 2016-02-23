@@ -347,15 +347,20 @@ typedef enum {
 			}
 			[[[LEBuildingSendSpies alloc] initWithCallback:@selector(spiesLeft:) target:self onBodyId:self.sendFromBodyId toBodyId:self.mapItem.id shipId:self.selectedShip.id spyIds:selectedSpyIds] autorelease];
 		} else {
-			UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Incomplete" message:@"You must select at least one spy to send." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-			[av show];
+			UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Incomplete" message: @"You must select at least one spy to send." preferredStyle:UIAlertControllerStyleAlert];
+			UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+								 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+			[av addAction: ok];
+			[self presentViewController:av animated:YES completion:nil];
 		}
 
 	} else {
-		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Incomplete" message:@"You must select a ship to be used." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-		[av show];
+		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Incomplete" message: @"ou must select a ship to be used." preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
+							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
+		[av addAction: ok];
+		[self presentViewController:av animated:YES completion:nil];
 	}
-
 }
 
 
