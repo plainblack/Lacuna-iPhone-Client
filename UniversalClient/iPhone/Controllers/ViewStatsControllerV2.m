@@ -16,7 +16,6 @@
 #import	"ViewSpyRankingsController.h"
 #import "ViewWeeklyMedalWinnersController.h"
 #import "ViewAllianceRankingsController.h"
-//Below RedOrion Added - Empire Id
 //#import "ViewEmpireIDsController.h"
 
 
@@ -34,7 +33,6 @@ typedef enum {
 	EMPIRE_ROW_OFFENSIVE_SUCCESS,
 	EMPIRE_ROW_DEFENSIVE_SUCCESS,
 	EMPIRE_ROW_DIRTIEST,
-    //Below RedOrion Added - Empire Id
 //    EMPIRE_ROW_IDS
 } EMPIRE_ROW;
 
@@ -135,7 +133,6 @@ typedef enum {
 				case EMPIRE_ROW_OFFENSIVE_SUCCESS:
 				case EMPIRE_ROW_DEFENSIVE_SUCCESS:
 				case EMPIRE_ROW_DIRTIEST:
-                //Below RedOrion Added - Empire Id
 //                case EMPIRE_ROW_IDS:
 					return [LETableViewCellButton getHeightForTableView:tableView];
 					break;
@@ -221,8 +218,8 @@ typedef enum {
 					diretiesEmpiresButton.textLabel.text = @"Dirtiest Empires";
 					cell = diretiesEmpiresButton;
 					break;
-/*                //Below RedOrion Added - Empire Id
-                case EMPIRE_ROW_IDS:
+
+/*                case EMPIRE_ROW_IDS:
 					; //DO NOT REMOVE
 					LETableViewCellButton *empireIDsButton = [LETableViewCellButton getCellForTableView:tableView];
 					empireIDsButton.textLabel.text = @"Empire IDs";
@@ -338,14 +335,13 @@ typedef enum {
 				case EMPIRE_ROW_DIRTIEST:
 					viewEmpireRankingsController.sortBy = @"dirtiest_rank";
 					break;
-/*            //Below RedOrion Added - Empire Id
             }
-                ViewEmpireIDsController *viewEmpireIDsController = [ViewEmpireIDsController create];
+/*                ViewEmpireIDsController *viewEmpireIDsController = [ViewEmpireIDsController create];
                     switch (indexPath.row) {
                 case EMPIRE_ROW_IDS:
 					viewEmpireIDsController.sortBy = @"empire_id";
 					break;
-*/			}
+			}*/
 			[self.navigationController pushViewController:viewEmpireRankingsController animated:YES];
 			break;
 		case SECTION_COLONY_RANKINS:

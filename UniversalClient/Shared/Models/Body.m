@@ -50,7 +50,6 @@
 @synthesize allianceName;
 @synthesize influenceTotal;
 @synthesize influenceSpent;
-//RedOrion
 @synthesize population;
 
 
@@ -65,7 +64,6 @@
 	return self;
 }
 
-//RedOrion added population
 - (NSString *)description {
 	return [NSString stringWithFormat:@"id:%@, name:%@, type:%@, surfaceImageName:%@, empireId:%@, empireName:%@, x:%@, y:%@, starId:%@, starName:%@, orbit:%@, buildingCount:%@, needsSurfaceRefresh:%i, incomingForeignShips:%@, planetWater: %@, ores:%@, stationId:%@, stationName:%@, stationX:%@, stationY:%@, allianceId:%@, allianceName:%@, influenceTotal:%@, influenceSpent:%@, population:%@",
 			self.id, self.name, self.type, self.surfaceImageName, self.empireId, self.empireName, self.x, self.y, self.starId, self.starName, self.orbit, self.buildingCount, self.needsSurfaceRefresh, self.incomingForeignShips, self.planetWater, self.ores, self.stationId, self.stationName, self.stationX, self.stationY, self.allianceId, self.allianceName, self.influenceTotal, self.influenceSpent, self.population];
@@ -100,7 +98,6 @@
     self.allianceName = nil;
     self.influenceTotal = nil;
     self.influenceSpent = nil;
-    //RedOrion
     self.population = nil;
 	[super dealloc];
 }
@@ -141,7 +138,6 @@
 	self.alignment = [empireData objectForKey:@"alignment"];
 	self.needsSurfaceRefresh = _boolv([bodyData objectForKey:@"needs_surface_refresh"]);
 	self.buildingCount = [Util asNumber:[bodyData objectForKey:@"building_count"]];
-    //RedOrion
     self.population = [Util asNumber:[bodyData objectForKey:@"population"]];
 	if (!self.happiness) {
 		self.happiness = [[[NoLimitResource alloc] init] autorelease];

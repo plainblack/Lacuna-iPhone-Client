@@ -20,7 +20,6 @@
 @property(nonatomic, retain) IBOutlet UILabel *typeLabel;
 @property(nonatomic, retain) IBOutlet UILabel *speedLabel;
 @property(nonatomic, retain) IBOutlet UILabel *holdSizeLabel;
-//Below RedOrion Added - Berth Level
 @property(nonatomic, retain) IBOutlet UILabel *berthLevelLabel;
 @property(nonatomic, retain) IBOutlet UILabel *stealthLabel;
 @property(nonatomic, retain) IBOutlet UILabel *combatLabel;

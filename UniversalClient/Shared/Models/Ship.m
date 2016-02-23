@@ -22,7 +22,6 @@
 @synthesize speed;
 @synthesize fleetSpeed;
 @synthesize holdSize;
-//Below RedOrion Added - Berth Level
 @synthesize berthLevel;
 @synthesize stealth;
 @synthesize combat;
@@ -49,7 +48,6 @@
 #pragma mark -
 #pragma mark NSObject Methods
 
-//Below RedOrion Added - Berth Level
 - (NSString *)description {
 	return [NSString stringWithFormat:@"id:%@, name:%@, type:%@, typeHumanized:%@, task:%@, speed:%@, fleetSpeed:%@, holdSize:%@, berthLevel:%@, stealth:%@, combat: %@, maxOccupants:%@, dateStarted:%@, dateAvailable:%@, dateArrives:%@, fromId:%@, fromType:%@, fromName:%@, fromEmpireId:%@ fromEmpireName:%@, toId:%@, toType:%@, toName:%@, payload:%@, obitingId:%@, obitingType:%@, obitingName:%@, orbitingX:%@, orbitingY:%@",
 			self.id, self.name, self.type, self.typeHumanized, self.task, self.speed, self.fleetSpeed, self.holdSize, self.berthLevel, self.stealth, self.combat, self.maxOccupants, self.dateStarted, self.dateAvailable, self.dateArrives, self.fromId, self.fromType, self.fromName, self.fromEmpireId, self.fromEmpireName, self.toId, self.toType, self.toName, self.payload, self.orbitingId, self.orbitingType, self.orbitingName, self.orbitingX, self.orbitingY];
@@ -65,7 +63,6 @@
 	self.speed = nil;
     self.fleetSpeed = nil;
 	self.holdSize = nil;
-    //Below RedOrion Added - Berth Level
     self.berthLevel = nil;
 	self.stealth = nil;
 	self.combat = nil;
@@ -104,7 +101,6 @@
 	self.speed = [Util asNumber:[shipData objectForKey:@"speed"]];
 	self.fleetSpeed = [Util asNumber:[shipData objectForKey:@"fleet_speed"]];
 	self.holdSize = [Util asNumber:[shipData objectForKey:@"hold_size"]];
-    //Below RedOrion Added - Berth Level
     self.berthLevel = [Util asNumber:[shipData objectForKey:@"berth_level"]];
 	self.stealth = [Util asNumber:[shipData objectForKey:@"stealth"]];
 	self.combat = [Util asNumber:[shipData objectForKey:@"combat"]];

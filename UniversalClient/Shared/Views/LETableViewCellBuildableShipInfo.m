@@ -17,7 +17,6 @@
 
 @synthesize typeLabel;
 @synthesize holdSizeLabel;
-//Below RedOrion Added - Berth Level
 @synthesize berthLevelLabel;
 @synthesize speedLabel;
 @synthesize stealthLabel;
@@ -45,7 +44,6 @@
 - (void)dealloc {
 	self.typeLabel = nil;
 	self.holdSizeLabel = nil;
-    //Below RedOrion Added - Berth Level
     self.berthLevelLabel = nil;
 	self.speedLabel = nil;
 	self.stealthLabel = nil;
@@ -66,7 +64,6 @@
 	self.stealthLabel.text = [NSString stringWithFormat:@"%@", [buildableShip.attributes objectForKey:@"stealth"]];
 	self.combatLabel.text = [NSString stringWithFormat:@"%@", [buildableShip.attributes objectForKey:@"combat"]];
 	self.maxOccupantLabel.text = [NSString stringWithFormat:@"%@", [buildableShip.attributes objectForKey:@"max_occupants"]];
-    //Below RedOrion Added - Berth Level
     self.berthLevelLabel.text = [NSString stringWithFormat:@"%@", [buildableShip.attributes objectForKey:@"berth_level"]];
     if (isNull([buildableShip.attributes objectForKey:@"berth_level"])) {
         self.berthLevelLabel.text = @"";
@@ -120,7 +117,6 @@
 		cell.holdSizeLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.holdSizeLabel];
         
-        //Below RedOrion0 Added - Berth Level
         y += 15;
 		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, y, 100, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];

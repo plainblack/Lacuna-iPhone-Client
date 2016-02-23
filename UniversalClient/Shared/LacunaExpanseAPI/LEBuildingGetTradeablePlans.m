@@ -49,7 +49,6 @@
 
 - (NSString *)methodName {
 	return @"get_plan_summary";
-    //RedOrion
     //updated from get_plans
 }
 

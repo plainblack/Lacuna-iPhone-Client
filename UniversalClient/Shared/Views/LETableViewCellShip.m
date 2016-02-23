@@ -19,7 +19,6 @@
 @synthesize typeLabel;
 @synthesize speedLabel;
 @synthesize holdSizeLabel;
-//Below RedOrion Added - Berth Level
 @synthesize berthLevelLabel;
 @synthesize stealthLabel;
 @synthesize combatLabel;
@@ -48,7 +47,6 @@
 	self.typeLabel = nil;
 	self.speedLabel = nil;
 	self.holdSizeLabel = nil;
-    //Below RedOrion Added - Berth Level
     self.berthLevelLabel = nil;
 	self.stealthLabel = nil;
 	self.combatLabel = nil;
@@ -86,7 +84,6 @@
 	} else {
 		self.holdSizeLabel.text = @"Unknown";
 	}
-    //Below RedOrion0 Added - Berth Level
 	if (isNotNull(ship.berthLevel)) {
 		self.berthLevelLabel.text = [Util prettyNSDecimalNumber:ship.berthLevel];
 	} else {
@@ -107,7 +104,6 @@
 	} else {
 		self.maxOccupantLabel.text = @"Unknown";
 	}
-    //Below RedOrion Added - Birth Level
     if (isNotNull(ship.berthLevel)) {
 		self.berthLevelLabel.text = [Util prettyNSDecimalNumber:ship.berthLevel];
 	} else {
@@ -194,7 +190,6 @@
 		cell.holdSizeLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
 		[cell.contentView addSubview:cell.holdSizeLabel];
 
-        //Below RedOrion Added - Berth Level
         y += 15;
 		tmpLabel = [[[UILabel alloc] initWithFrame:CGRectMake(120, y, 100, 20)] autorelease];
 		tmpLabel.backgroundColor = [UIColor clearColor];

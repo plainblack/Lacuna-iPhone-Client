@@ -48,7 +48,6 @@
 
 - (NSString *)methodName {
 	return @"get_glyph_summary";
-    //RedOrion
     //updated from get_glyphs
 }
 

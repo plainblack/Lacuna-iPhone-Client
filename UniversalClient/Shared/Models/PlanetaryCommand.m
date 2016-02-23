@@ -53,11 +53,9 @@
                                          @"Actions", @"name",
                                          _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_PLANS]), @"rows");
     
-    //RedOrion Added Population
     NSMutableDictionary *planetInfo = _dict([NSDecimalNumber numberWithInt:BUILDING_SECTION_PLANET_INFO], @"type",
                                          @"Planet Info", @"name",
                                          _array([NSDecimalNumber numberWithInt:BUILDING_ROW_VIEW_POPULATION], [NSDecimalNumber numberWithInt:BUILDING_ROW_BUILDING_COUNT], [NSDecimalNumber numberWithInt:BUILDING_ROW_SIZE]), @"rows");
-	//RedOrion Added Population
 	self.sections = _array([self generateProductionSection], actions, nextColonySection, planetInfo, [self generateHealthSection], [self generateUpgradeSection], [self generateGeneralInfoSection]);
 }
 
@@ -107,7 +105,6 @@
 			viewPlansCell.textLabel.text = @"View Plans";
 			cell = viewPlansCell;
 			break;
-        //RedOrion
         case BUILDING_ROW_VIEW_POPULATION:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellLabeledIconText *currentPopulationCell = [LETableViewCellLabeledIconText getCellForTableView:tableView isSelectable:NO];
@@ -120,7 +117,6 @@
             currentPopulationCell.content.text = [Util prettyNSDecimalNumber:session.body.population];
 			cell = currentPopulationCell;
             break;
-        //RedOrion
         case BUILDING_ROW_BUILDING_COUNT:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellLabeledIconText *currentBuildingCountCell = [LETableViewCellLabeledIconText getCellForTableView:tableView isSelectable:NO];
@@ -130,7 +126,6 @@
             currentBuildingCountCell.content.text = [Util prettyNSDecimalNumber:session.body.buildingCount];
 			cell = currentBuildingCountCell;
             break;
-        //RedOrion
         case BUILDING_ROW_SIZE:
 			; //DON'T REMOVE THIS!! IF YOU DO THIS WON'T COMPILE
 			LETableViewCellLabeledIconText *currentSizeCell = [LETableViewCellLabeledIconText getCellForTableView:tableView isSelectable:NO];

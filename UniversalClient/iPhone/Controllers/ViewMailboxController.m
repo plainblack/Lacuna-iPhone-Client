@@ -186,7 +186,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (!tableView.editing) {
-        //RedOrion Fix - Going from a mail message with link to star should now work
         [self.mailbox addObserver:self forKeyPath:@"messageHeaders" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:NULL];
         //ViewMailMessageController *viewMailMessageController = [ViewMailMessageController create];
         ViewMailMessageWebController *viewMailMessageController = [ViewMailMessageWebController create];
