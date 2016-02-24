@@ -23,7 +23,7 @@
 typedef enum {
 	ROW_SPY_INFO,
 	ROW_TRAIN_BUTTON,
-    ROW_COUNT
+	ROW_COUNT
 } ROW;
 
 
@@ -38,7 +38,7 @@ typedef enum {
 #pragma mark View lifecycle
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+	[super viewDidLoad];
 	
 	self.navigationItem.title = @"Available Spies";
 	self.navigationItem.backBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil] autorelease];
@@ -48,17 +48,17 @@ typedef enum {
 
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+	[super viewWillAppear:animated];
 }
 
 
 - (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+	[super viewDidAppear:animated];
 }
 
 
 - (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
+	[super viewDidDisappear:animated];
 }
 
 
@@ -75,7 +75,7 @@ typedef enum {
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return ROW_COUNT;
+	return ROW_COUNT;
 }
 
 
@@ -85,7 +85,7 @@ typedef enum {
 			return [LETableViewCellLabeledText getHeightForTableView:tableView];
 			break;
 		case ROW_TRAIN_BUTTON:
-            return [LETableViewCellButton getHeightForTableView:tableView];
+			return [LETableViewCellButton getHeightForTableView:tableView];
 			break;
 		default:
 			return tableView.rowHeight;
@@ -97,8 +97,8 @@ typedef enum {
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSMutableDictionary *spy = [self.spyTraining.spies objectAtIndex:indexPath.section];
-    
-    UITableViewCell *cell = nil;
+	
+	UITableViewCell *cell = nil;
 	
 	switch (indexPath.row) {
 		case ROW_SPY_INFO:
@@ -110,16 +110,16 @@ typedef enum {
 			break;
 		case ROW_TRAIN_BUTTON:
 			; //DO NOT REMOVE
-            LETableViewCellButton *trainButtonCell = [LETableViewCellButton getCellForTableView:tableView];
-            trainButtonCell.textLabel.text = @"Train";
-            cell = trainButtonCell;
+			LETableViewCellButton *trainButtonCell = [LETableViewCellButton getCellForTableView:tableView];
+			trainButtonCell.textLabel.text = @"Train";
+			cell = trainButtonCell;
 			break;
 		default:
 			cell = nil;
 			break;
 	}
-    
-    return cell;
+	
+	return cell;
 }
 
 
@@ -130,7 +130,7 @@ typedef enum {
 	NSMutableDictionary *spy = [self.spyTraining.spies objectAtIndex:indexPath.section];
 	switch (indexPath.row) {
 		case ROW_TRAIN_BUTTON:
-            [self.spyTraining trainSpy:[Util idFromDict:spy named:@"spy_id"] target:self callback:@selector(trainedSpy:)];
+			[self.spyTraining trainSpy:[Util idFromDict:spy named:@"spy_id"] target:self callback:@selector(trainedSpy:)];
 			break;
 	}
 }
@@ -140,10 +140,10 @@ typedef enum {
 #pragma mark Memory management
 
 - (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Relinquish ownership any cached data, images, etc that aren't in use.
+	// Releases the view if it doesn't have a superview.
+	[super didReceiveMemoryWarning];
+	
+	// Relinquish ownership any cached data, images, etc that aren't in use.
 }
 
 - (void)viewDidUnload {
@@ -154,7 +154,7 @@ typedef enum {
 - (void)dealloc {
 	self.spyTraining = nil;
 	self.selectedSpy = nil;
-    [super dealloc];
+	[super dealloc];
 }
 
 
@@ -162,21 +162,15 @@ typedef enum {
 #pragma mark Callback Methods
 
 - (void)trainedSpy:(LEBuildingTrainSpySkill *)request {
-    NSMutableDictionary *reasonNotTrained = [request.results objectForKey:@"reason_not_trained"];
+	NSMutableDictionary *reasonNotTrained = [request.results objectForKey:@"reason_not_trained"];
 	if (isNotNull(reasonNotTrained)) {
-		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Warning" message:[NSString stringWithFormat:@"Your spy could not be trained. %@", [reasonNotTrained objectForKey:@"message"]] preferredStyle:UIAlertControllerStyleAlert];
-		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
-							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
-		[av addAction: ok];
-		[self presentViewController:av animated:YES completion:nil];
+		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Warning" message:[NSString stringWithFormat:@"Your spy could not be trained. %@", [reasonNotTrained objectForKey:@"message"]] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+		[av show];
 	} else {
-		UIAlertController *av = [UIAlertController alertControllerWithTitle:@"Training Started" message: @"Your spy is now busy training." preferredStyle:UIAlertControllerStyleAlert];
-		UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action)
-							 { [av dismissViewControllerAnimated:YES completion:nil]; }];
-		[av addAction: ok];
-		[self presentViewController:av animated:YES completion:nil];
-        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:[self.tableView indexPathForSelectedRow].section] withRowAnimation:UITableViewRowAnimationFade];
-    }
+		UIAlertView *av = [[[UIAlertView alloc] initWithTitle:@"Training Started" message:@"Your spy is now busy training." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+		[av show];
+		[self.tableView deleteSections:[NSIndexSet indexSetWithIndex:[self.tableView indexPathForSelectedRow].section] withRowAnimation:UITableViewRowAnimationFade];
+	}
 }
 
 
